@@ -8,19 +8,26 @@ export interface Props {
 }
 
 const { frontmatter } = Astro.props;
+const { title, source, remixDetails } = frontmatter;
+
+const author = remixDetails?.composer || SITE.author
 ---
 
 <li>
   <div class="song-card">
     <div class="inline-block text-lg font-medium">
-      <h2 class="text-lg font-medium">{frontmatter.title}</h2>
+      <h2 class="text-lg font-medium">
+        <a href={source}>{title}</a>
+      </h2>
     </div>
 
-    <p class="opacity-75">{frontmatter.composer || SITE.author}</p>
+    <p class="opacity-75">
+      {author} {remixDetails && <>(<a href={remixDetails?.linkToOriginal}>orig.</a>)</>}
+    </p>
 
     <audio
       class="pt-1"
-      src={frontmatter.source}
+      src={source}
       preload="metadata"
       controls
     />
@@ -30,5 +37,8 @@ const { frontmatter } = Astro.props;
 <style>
   .song-card {
     @apply bg-skin-card-muted rounded-lg p-3;
+  }
+  a {
+    @apply text-skin-accent hover:underline hover:decoration-wavy;
   }
 </style>

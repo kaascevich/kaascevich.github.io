@@ -11,8 +11,8 @@ export interface Props {
 
 const { songs } = Astro.props;
 
-const originals = songs.filter(song => !song.data.composer)
-const remixes = songs.filter(song => song.data.composer)
+const originals = songs.filter(song => !song.data.remixDetails)
+const remixes = songs.filter(song => song.data.remixDetails)
 
 const description = "all the songs I've created or remixed";
 ---

@@ -17,8 +17,11 @@ const songs = defineCollection({
   type: "data",
   schema: () => z.object({
     title: z.string(),
-    composer: z.string().optional(),
     source: z.string(),
+    remixDetails: z.object({
+      composer: z.string(),
+      linkToOriginal: z.string(),
+    }).optional()
   }),
 });
 
