@@ -1,7 +1,7 @@
 // Get theme data from local storage
 const currentTheme = localStorage.theme;
 
-function getPreferTheme() {
+function getPreferredTheme() {
   // return theme value in local storage if it is set
   if (currentTheme) return currentTheme;
 
@@ -11,7 +11,7 @@ function getPreferTheme() {
     : "light";
 }
 
-let themeValue = getPreferTheme();
+let themeValue = getPreferredTheme();
 
 function reflectPreference() {
   document.firstElementChild?.setAttribute("data-theme", themeValue);
