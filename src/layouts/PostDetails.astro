@@ -44,9 +44,9 @@ const layoutProps = {
 ---
 
 <Layout {...layoutProps}>
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-4">
+  <div class="back-button-wrapper">
     <button
-      class="focus-outline mb-2 mt-8 flex hover:opacity-75"
+      class="back-button"
       onclick="history.length === 1 ? location = '/' : history.back()"
     >
       <span>&larr; go back</span>
@@ -54,19 +54,19 @@ const layoutProps = {
   </div>
 
   <main>
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Timestamp {published} {modified} size="lg" className="mt-2 mb-1"/>
-    <span class="opacity-80">{readingTime}</span>
+    <h1 transition:name={slugifyStr(title)}>{title}</h1>
+    <Timestamp {published} {modified} size="lg" className="timestamp"/>
+    <span class="reading-time">{readingTime}</span>
     
     <article class="prose mx-auto mt-8 max-w-3xl">
       <Content/>
     </article>
 
-    <ul class="my-8">
+    <ul class="tag-list">
       {tags.map(tag => <Tag tag={slugifyStr(tag)}/>)}
     </ul>
 
-    <div class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4">
+    <div class="article-footer">
       <BackToTop/>
       <ShareLinks/>
     </div>
@@ -77,11 +77,31 @@ const layoutProps = {
 </Layout>
 
 <style>
+  .back-button-wrapper {
+    @apply mx-auto flex w-full max-w-3xl justify-start px-4;
+  }
+  .back-button {
+    @apply focus-outline mb-2 mt-8 flex hover:opacity-75;
+  }
+
   main {
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
-  .post-title {
+  h1 {
     @apply text-2xl font-semibold text-skin-accent;
+  }
+  .reading-time {
+    @apply opacity-80;
+  }
+  .timestamp {
+    @apply mt-2 mb-1;
+  }
+
+  .tag-list {
+    @apply my-8;
+  }
+  .article-footer {
+    @apply flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4;
   }
 </style>
 

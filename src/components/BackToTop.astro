@@ -1,9 +1,12 @@
-<button
-  id="back-to-top"
-  class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
->
+<button id="back-to-top">
   &uarr; back to top
 </button>
+
+<style>
+  #back-to-top {
+    @apply focus-outline whitespace-nowrap py-1 hover:opacity-75
+  }
+</style>
 
 <script is:inline data-astro-rerun>
   document.querySelector("#back-to-top")?.addEventListener(

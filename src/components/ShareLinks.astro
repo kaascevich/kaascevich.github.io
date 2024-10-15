@@ -34,8 +34,8 @@ const shareLinks = [
 ---
 
 <div class="social-icons">
-  <span class="italic">share this post on:</span>
-  <div class="text-center">
+  <span class="share-text">share this post on:</span>
+  <div class="share-links-wrapper">
     {shareLinks.map(social =>
       <LinkButton
         href={social.href + URL}
@@ -50,6 +50,12 @@ const shareLinks = [
 </div>
 
 <style>
+  .share-text {
+    @apply italic;
+  }
+  .share-links-wrapper {
+    @apply text-center;
+  }
   .social-icons {
     @apply flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start;
   }

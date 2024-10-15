@@ -6,7 +6,7 @@ import { SITE } from "@config";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-auto">
+<footer>
   <Hr noPadding/>
   <div class="footer-wrapper">
     <Socials centered/>
@@ -18,7 +18,7 @@ const currentYear = new Date().getFullYear();
 
 <style>
   footer {
-    @apply w-full;
+    @apply w-full mt-auto;
   }
   .footer-wrapper {
     @apply flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4;
