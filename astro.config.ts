@@ -58,6 +58,9 @@ export default defineConfig({
     ],
     shikiConfig: {
       themes: { light: "catppuccin-latte", dark: "catppuccin-macchiato" },
+      langAlias: {
+        plist: "xml",
+      },
     },
     remarkRehype: {
       footnoteBackContent: "↑",

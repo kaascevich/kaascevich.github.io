@@ -30,7 +30,7 @@ Checking in Activity Monitor, this app is located at `/System/Library/PrivateFra
 
 Yet, checking the `entitlements.plist` embedded within the executable shows that AXVisualSupportAgnet does indeed have permission to use the mic without user authorization:
 
-```xml
+```plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
