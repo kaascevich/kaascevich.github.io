@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import opengraphImages from "astro-opengraph-images";
+import ogImages from "astro-opengraph-images";
 import compress from "@playform/compress";
 import mdAstro from "@astropub/md";
 
@@ -23,7 +23,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     react(),
     sitemap(),
-    opengraphImages({
+    ogImages({
       options: {
         fonts: [
           {
