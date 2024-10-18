@@ -181,13 +181,3 @@
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
 }
-
-@layer components {
-  .display-none {
-    @apply hidden;
-  }
-
-  .focus-outline {
-    @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
-  }
-}
