@@ -24,7 +24,7 @@ const { title, published, modified, description } = frontmatter;
   >{
     secHeading
       ? <h2 transition:name={slug}>{title}</h2>
-      : <h3 transition:name={slug}>{title}</h3>
+      : <h3>{title}</h3>
   }</a>
   <Timestamp {published} {modified}/>
   <p>{description}</p>
