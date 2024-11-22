@@ -1,0 +1,37 @@
+---
+import Timestamp from "@components/Timestamp";
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  slug: string,
+  frontmatter: CollectionEntry<"blog">["data"],
+  secHeading?: boolean,
+}
+
+const {
+  slug,
+  frontmatter,
+  secHeading = true
+} = Astro.props;
+
+const { title, published, modified, description } = frontmatter;
+---
+
+<li class="my-6">
+  <a
+    href={`/posts/${slug}/`}
+    class="inline-block text-lg font-medium text-skin-accent decoration-wavy underline-offset-4 focus-visible:no-underline"
+  >{
+    secHeading
+      ? <h2 transition:name={slug}>{title}</h2>
+      : <h3 transition:name={slug}>{title}</h3>
+  }</a>
+  <Timestamp {published} {modified}/>
+  <p>{description}</p>
+</li>
+
+<style>
+  h2, h3 {
+    @apply text-lg font-medium decoration-wavy hover:underline;
+  }
+</style>

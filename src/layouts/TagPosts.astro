@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import Card from "@components/Card";
+import Card from "@components/Card.astro";
 import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
 import type { Page } from "astro";
@@ -10,20 +10,19 @@ import type { CollectionEntry } from "astro:content";
 export interface Props {
   page: Page<CollectionEntry<"blog">>,
   tag: string,
-  tagName: string,
 }
 
-const { page, tag, tagName } = Astro.props;
+const { page, tag } = Astro.props;
 
-const description = `${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tagName}"`;
+const description = `${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tag}"`;
 ---
 
-<Layout title={`tag: ${tagName} | ${SITE.title}`} {description} activeNav="tags">
-  <Main title={[`tag:`, tagName]} titleTransition={tag} {description}>
+<Layout title={`tag: ${tag} | ${SITE.title}`} {description} activeNav="tags">
+  <Main title={[`tag:`, tag]} titleTransition={tag} {description}>
     <h1 slot="title" transition:name={tag}>{`tag:${tag}`}</h1>
     <ul>
       {page.data.map(({ data, slug }) =>
-        <Card href={`/posts/${slug}/`} frontmatter={data}/>
+        <Card {slug} frontmatter={data}/>
       )}
     </ul>
   </Main>

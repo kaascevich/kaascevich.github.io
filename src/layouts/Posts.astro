@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Pagination from "@components/Pagination.astro";
-import Card from "@components/Card";
+import Card from "@components/Card.astro";
 import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
@@ -20,7 +20,7 @@ const description = "all the blog posts I've let loose on the world";
   <Main title="posts" {description}>
     <ul>
       {page.data.map(({ data, slug }) =>
-        <Card href={`/posts/${slug}/`} frontmatter={data}/>
+        <Card {slug} frontmatter={data}/>
       )}
     </ul>
   </Main>

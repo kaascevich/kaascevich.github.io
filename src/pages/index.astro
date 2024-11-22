@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import ExternalLink from "@components/ExternalLink.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
+import Card from "@components/Card.astro";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SITE, SOCIALS } from "@config";
@@ -59,7 +59,7 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
         <ul>
           {featuredPosts.map(({ data, slug }) =>
             <Card
-              href={`/posts/${slug}/`}
+              {slug}
               frontmatter={data}
               secHeading={false}
             />
@@ -75,7 +75,7 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
         <ul>
           {nonFeaturedPosts.map(({ data, slug }, index) => index < SITE.postsPerIndex &&
             <Card
-              href={`/posts/${slug}/`}
+              {slug}
               frontmatter={data}
               secHeading={false}
             />

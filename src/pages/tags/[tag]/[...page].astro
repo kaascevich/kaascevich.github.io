@@ -10,19 +10,19 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
   const tags = getUniqueTags(posts);
 
-  return tags.flatMap(({ tag, tagName }) => {
+  return tags.flatMap(tag => {
     const tagPosts = getPostsByTag(posts, tag);
 
     return paginate(tagPosts, {
       params: { tag },
-      props: { tagName },
+      props: { },
       pageSize: SITE.postsPerPage,
     });
   });
 }
 
 const { tag } = Astro.params;
-const { page, tagName } = Astro.props;
+const { page } = Astro.props;
 ---
 
-<TagPosts {page} {tag} {tagName}/>
+<TagPosts {page} {tag}/>
