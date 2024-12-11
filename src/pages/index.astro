@@ -57,9 +57,9 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
       <section id="featured">
         <h2>featured</h2>
         <ul>
-          {featuredPosts.map(({ data, slug }) =>
+          {featuredPosts.map(({ data, id }) =>
             <Card
-              {slug}
+              {id}
               frontmatter={data}
               secHeading={false}
             />
@@ -73,9 +73,9 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
       <section id="recent-posts">
         <h2>recent</h2>
         <ul>
-          {nonFeaturedPosts.map(({ data, slug }, index) => index < SITE.postsPerIndex &&
+          {nonFeaturedPosts.map(({ data, id }, index) => index < SITE.postsPerIndex &&
             <Card
-              {slug}
+              {id}
               frontmatter={data}
               secHeading={false}
             />

@@ -10,7 +10,7 @@ export interface Props {
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   const postResult = posts.map(post => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: { post },
   }));
 

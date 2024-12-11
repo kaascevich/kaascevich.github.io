@@ -12,6 +12,7 @@ import { SITE } from "@config";
 import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
+import { render } from "astro:content";
 
 export interface Props {
   post: CollectionEntry<"blog">,
@@ -29,7 +30,7 @@ const {
   tags,
 } = post.data;
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
@@ -53,7 +54,7 @@ const layoutProps = {
   </div>
 
   <main>
-    <h1 transition:name={post.slug}>{title}</h1>
+    <h1 transition:name={post.id}>{title}</h1>
     <Timestamp {published} {modified} size="lg" className="timestamp"/>
     <span class="reading-time">{readingTime}</span>
     

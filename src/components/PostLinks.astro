@@ -8,9 +8,9 @@ export interface Props {
 
 const { post, posts } = Astro.props;
 
-const allPosts = posts.map(({ data: { title }, slug }) => ({ slug, title }));
+const allPosts = posts.map(({ data: { title }, id }) => ({ id, title }));
 
-const currentPostIndex = allPosts.findIndex(a => a.slug === post.slug);
+const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
@@ -21,7 +21,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
   {prevPost &&
     <a
-      href={`/posts/${prevPost.slug}`}
+      href={`/posts/${prevPost.id}`}
       class="post-link"
     >
       &larr;
@@ -33,7 +33,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   }
   {nextPost &&
     <a
-      href={`/posts/${nextPost.slug}`}
+      href={`/posts/${nextPost.id}`}
       class="post-link justify-end text-right sm:col-start-2"
     >
       <div>

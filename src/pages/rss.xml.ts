@@ -8,14 +8,14 @@ export async function GET() {
   const posts = await getCollection("blog");
   const sortedPosts = getSortedPosts(posts);
 
-  const items = await Promise.all(sortedPosts.map(async ({ body, data, slug }) => ({
-    link: `posts/${slug}/`,
+  const items = await Promise.all(sortedPosts.map(async ({ body, data, id }) => ({
+    link: `posts/${id}/`,
     title: data.title,
     author: SITE.author,
     description: data.description,
     pubDate: new Date(data.modified ?? data.published),
     categories: data.tags,
-    content: (await markdown(body)).toString(),
+    content: (await markdown(body!)).toString(),
   })));
 
   return rss({
