@@ -16,8 +16,6 @@ permissions:
 
 jobs:
   build:
-    env:
-      DARK_VISITORS_API_KEY: ${{ secrets.DARK_VISITORS_API_KEY }}
     runs-on: macos-latest
     steps:
       - name: Checkout your repository using git

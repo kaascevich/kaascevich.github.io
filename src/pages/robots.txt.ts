@@ -1,34 +1,47 @@
 import type { APIRoute } from "astro";
 import { SITE } from "@config";
 
-const darkVisitors = await fetch("https://api.darkvisitors.com/robots-txts", {
-  method: "POST",
-  headers: {
-    "Authorization": `Bearer ${import.meta.env.DARK_VISITORS_API_KEY}`,
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    agent_types: [
-      "AI Assistant",
-      "AI Data Scraper",
-      "AI Search Crawler",
-      "Undocumented AI Agent",
-    ],
-    disallow: "/",
-  }),
-}).then(response => response.text());
-
 const robots = `
-${darkVisitors}
-
-
-# This is pretty much just for things like Siri and Spotlight results.
-# As far as I'm aware, there's nothing really sketchy here.
-User-agent: Applebot
-Allow: /
+User-agent: AI2Bot
+User-agent: Ai2Bot-Dolma
+User-agent: Amazonbot
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: ChatGPT-User
+User-agent: Claude-Web
+User-agent: ClaudeBot
+User-agent: Diffbot
+User-agent: FacebookBot
+User-agent: FriendlyCrawler
+User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: GoogleOther
+User-agent: GoogleOther-Image
+User-agent: GoogleOther-Video
+User-agent: ICC-Crawler
+User-agent: ImagesiftBot
+User-agent: Meta-ExternalAgent
+User-agent: Meta-ExternalFetcher
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: PetalBot
+User-agent: Scrapy
+User-agent: Timpibot
+User-agent: VelenPublicWebCrawler
+User-agent: Webzio-Extended
+User-agent: YouBot
+User-agent: anthropic-ai
+User-agent: cohere-ai
+User-agent: facebookexternalhit
+User-agent: iaskspider/2.0
+User-agent: img2dataset
+User-agent: omgili
+User-agent: omgilibot
+Disallow: /
 
 User-agent: *
-Disallow: 
+Allow: /
 
 Sitemap: ${new URL("sitemap-index.xml", SITE.website).href}
 `.trim();
