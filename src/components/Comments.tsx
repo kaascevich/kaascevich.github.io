@@ -1,16 +1,11 @@
-import Giscus, { type Theme } from "@giscus/react";
+import Giscus from "@giscus/react";
 import { GISCUS } from "@config";
 import { useEffect, useState } from "react";
 
-interface CommentsProps {
-  lightTheme?: Theme,
-  darkTheme?: Theme,
-}
+const lightTheme = "https://giscus.catppuccin.com/themes/latte-no-loader.css";
+const darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css";
 
-export default function Comments({
-  lightTheme = "https://giscus.catppuccin.com/themes/latte-no-loader.css",
-  darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css",
-}: CommentsProps) {
+export default function Comments() {
   const [theme, setTheme] = useState(() => {
     const currentTheme = localStorage.getItem("theme");
     const browserTheme = matchMedia("(prefers-color-scheme: dark)").matches
