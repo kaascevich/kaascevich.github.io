@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
-import Card from "@components/Card.astro";
+import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
 
 export type SearchItem = {
@@ -39,7 +39,7 @@ export default function SearchBar({ searchList }: Props) {
     // if URL has search query,
     // insert that search query in input field
     const searchUrl = new URLSearchParams(location.search);
-    const searchStr = searchUrl.get("q");
+    const searchStr = searchUrl.get("query");
     if (searchStr) setInputVal(searchStr);
 
     // put focus cursor at the end of the string
@@ -57,7 +57,7 @@ export default function SearchBar({ searchList }: Props) {
     // update search string in URL
     if (inputVal.length > 0) {
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set("q", inputVal);
+      searchParams.set("query", inputVal);
       const newRelativePathQuery = location.pathname + "?" + searchParams.toString();
       history.replaceState(history.state, "", newRelativePathQuery);
     } else {
@@ -95,7 +95,7 @@ export default function SearchBar({ searchList }: Props) {
         <Card
           id={item.id}
           frontmatter={item.data}
-          key={`${refIndex}-${item.id}`}
+          key={item.id}
         />
       )}
     </ul>
