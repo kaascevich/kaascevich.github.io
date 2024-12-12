@@ -168,11 +168,11 @@ const { activeNav } = Astro.props;
 </style>
 
 <script>
-  function toggleNav() {
-    // Toggle menu
+  /** Sets up the button that toggles the navigation menu. */
+  function setUpNavToggle() {
     const menuBtn = document.querySelector(".hamburger-menu");
     const menuIcon = document.querySelector(".menu-icon");
-    const menuItems = document.querySelector("#menu-items");
+    const menuItems = document.getElementById("menu-items");
 
     menuBtn?.addEventListener("click", () => {
       const menuExpanded = menuBtn.ariaExpanded === "true";
@@ -183,8 +183,6 @@ const { activeNav } = Astro.props;
     });
   }
 
-  toggleNav();
-
-  // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
+  setUpNavToggle();
+  document.addEventListener("astro:after-swap", setUpNavToggle);
 </script>

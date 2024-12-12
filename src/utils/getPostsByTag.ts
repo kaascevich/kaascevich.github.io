@@ -7,7 +7,10 @@ import getSortedPosts from "@utils/getSortedPosts";
  * @param tag - The tag to filter by.
  * @returns A list of filtered posts.
  * */
-export default function getPostsByTag(posts: CollectionEntry<"blog">[], tag: string) {
+export default function getPostsByTag(
+  posts: CollectionEntry<"blog">[],
+  tag: string
+): CollectionEntry<"blog">[] {
   return getSortedPosts(
     posts.filter(post => post.data.tags.includes(tag))
   );

@@ -9,20 +9,14 @@ const darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css"
 
 /** A comments section for blog posts. */
 export default function Comments() {
-  const [theme, setTheme] = useState(() => {
-    const currentTheme = localStorage.getItem("theme");
-    const browserTheme = matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-
-    return currentTheme ?? browserTheme;
-  });
+  const [theme, setTheme] = useState(() =>
+    localStorage.getItem("theme")
+      ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  );
 
   useEffect(() => {
     const mediaQuery = matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = ({ matches }: MediaQueryListEvent) => {
-      setTheme(matches ? "dark" : "light");
-    };
+    const handleChange = ({ matches }: MediaQueryListEvent) => setTheme(matches ? "dark" : "light");
 
     mediaQuery.addEventListener("change", handleChange);
 
@@ -30,7 +24,7 @@ export default function Comments() {
   }, []);
 
   useEffect(() => {
-    const themeButton = document.querySelector("#theme-button");
+    const themeButton = document.getElementById("theme-button");
     const handleClick = () =>
       setTheme(prevTheme => prevTheme === "dark" ? "light" : "dark");
 
