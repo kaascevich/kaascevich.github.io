@@ -1,6 +1,5 @@
 /**
  * Gets the current site theme.
-
  * @returns {string | null} The current site theme.
 */
 function getTheme() {
@@ -9,7 +8,6 @@ function getTheme() {
 
 /**
  * Sets the current site theme.
- * 
  * @param {string} theme - The new site thee.
  */
 function setTheme(theme) {
@@ -17,12 +15,10 @@ function setTheme(theme) {
   reflectThemePreference();
 }
 
-/**
- * Applies the current theme to the site.
- */
+/** Applies the current theme to the site. */
 function reflectThemePreference() {
   document.documentElement.dataset.theme = getTheme();
-  document.getElementById("theme-btn")?.setAttribute("aria-label", getTheme());
+  document.getElementById("theme-button")?.setAttribute("aria-label", getTheme());
 
   if (document.body) {
     const backgroundColor = getComputedStyle(document.body).backgroundColor;
@@ -42,7 +38,7 @@ onload = () => {
     reflectThemePreference();
 
     // now this script can find and listen for clicks on the control
-    document.getElementById("theme-btn")?.addEventListener(
+    document.getElementById("theme-button")?.addEventListener(
       "click",
       () => setTheme(getTheme() === "light" ? "dark" : "light")
     );

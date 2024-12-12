@@ -3,13 +3,14 @@ import type { CollectionEntry } from "astro:content";
 import { SITE } from "@config";
 
 export interface Props {
-  href?: string,
+  /** The song's frontmatter. */
   frontmatter: CollectionEntry<"songs">["data"],
 }
 
 const { frontmatter } = Astro.props;
-const { title, source, remixDetails } = frontmatter;
+const { title, sourceURL, remixDetails } = frontmatter;
 
+/** The author of this song. */
 const author = remixDetails?.composer || SITE.author
 ---
 
@@ -17,7 +18,7 @@ const author = remixDetails?.composer || SITE.author
   <div class="song-card">
     <div class="song-card-header">
       <h2>
-        <a href={source}>{title}</a>
+        <a href={sourceURL}>{title}</a>
       </h2>
     </div>
 
@@ -26,7 +27,7 @@ const author = remixDetails?.composer || SITE.author
     </p>
 
     <audio
-      src={source}
+      src={sourceURL}
       preload="metadata"
       controls
     />

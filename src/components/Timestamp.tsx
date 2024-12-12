@@ -1,13 +1,21 @@
 interface TimestampProps {
+  /** The date this post was published. */
   published: Date,
+  /**
+   * The date this post was last modified, or `null`
+   * if it has not yet been modified.
+   */
   modified?: Date,
 }
 
 interface Props extends TimestampProps {
+  /** The size of this timestamp. */
   size?: "sm" | "lg",
+  /** Classes to apply to this timestamp. */
   className?: string,
 }
 
+/** A timestamp for blog posts. */
 export default function Timestamp({
   published,
   modified,

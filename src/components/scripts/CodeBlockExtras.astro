@@ -1,6 +1,7 @@
 <script is:inline data-astro-rerun>
   const copyButtonLabel = "copy";
 
+  /** Attaches the language name and a copy button to code blocks. */
   function attachCodeBlockExtras() {
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
 
@@ -38,6 +39,11 @@
       wrapper.appendChild(codeBlock);
     }
 
+    /**
+     * Copies the contents of the given code block to the clipboard.
+     * @param {HTMLPreElement} block - The code block to copy.
+     * @param {HTMLButtonElement} button - The copy button.
+     */
     async function copyCode(block, button) {
       const code = block.querySelector("code");
       const text = code?.innerText;

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { SITE } from "@config";
 
+/** The contents of the `robots.txt` file. */
 const robots = `
 User-agent: AI2Bot
 User-agent: Ai2Bot-Dolma
@@ -43,7 +44,7 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: ${new URL("sitemap-index.xml", SITE.website).href}
+Sitemap: ${new URL("sitemap-index.xml", SITE.url).href}
 `.trim();
 
 export const GET: APIRoute = () => new Response(robots, {

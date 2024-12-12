@@ -9,10 +9,16 @@ import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SITE, SOCIALS } from "@config";
 
+/** A list of all posts. */
 const posts = await getCollection("blog");
 
+/** A list of all posts, sorted by date. */
 const sortedPosts = getSortedPosts(posts);
+
+/** All featured posts. */
 const featuredPosts = sortedPosts.filter(post => post.data.featured);
+
+/** All non-featured posts. */
 const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
 ---
 
@@ -61,7 +67,7 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
             <Card
               {id}
               frontmatter={data}
-              secHeading={false}
+              level2Heading={false}
             />
           )}
         </ul>
@@ -77,14 +83,14 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
             <Card
               {id}
               frontmatter={data}
-              secHeading={false}
+              level2Heading={false}
             />
           )}
         </ul>
       </section>
     }
 
-    <div class="all-posts-btn-wrapper">
+    <div class="all-posts-button-wrapper">
       <LinkButton href="/posts/">
         all posts &rarr;
       </LinkButton>
@@ -122,7 +128,7 @@ const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
   #featured h2, #recent-posts h2 {
     @apply text-2xl font-semibold tracking-wide;
   }
-  .all-posts-btn-wrapper {
+  .all-posts-button-wrapper {
     @apply mb-8 text-center;
   }
 </style>

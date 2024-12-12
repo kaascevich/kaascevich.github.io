@@ -3,22 +3,31 @@ import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
 
+/** A searchable post. */
 export type SearchItem = {
+  /** The title of this post. */
   title: string,
+  /** The description of this post. */
   description: string,
+  /** Extra data for this post. */
   data: CollectionEntry<"blog">["data"],
+  /** The ID of this post. */
   id: string,
 };
 
 interface Props {
+  /** The list of posts that can be searched through. */
   searchList: SearchItem[],
 }
 
+/** A search result. */
 interface SearchResult {
+  /** The found item. */
   item: SearchItem,
   refIndex: number,
 }
 
+/** A search interface for searching through blog posts. */
 export default function SearchBar({ searchList }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
@@ -36,8 +45,7 @@ export default function SearchBar({ searchList }: Props) {
   );
 
   useEffect(() => {
-    // if URL has search query,
-    // insert that search query in input field
+    // if the URL has search query, insert that into the input field
     const searchUrl = new URLSearchParams(location.search);
     const searchStr = searchUrl.get("query");
     if (searchStr) { setInputVal(searchStr); }

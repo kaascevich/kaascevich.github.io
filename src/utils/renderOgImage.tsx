@@ -1,6 +1,13 @@
 import { SITE } from "../config";
 import type { RenderFunctionInput } from "astro-opengraph-images";
 
+/**
+ * Renders an OpenGraph image.
+ * @param input - The function's parameters.
+ * @param input.title - The page's title.
+ * @param input.description - The page's description.
+ * @returns A promise containing the rendered image.
+ */
 export default async function renderOgImage(
   { title, description }: RenderFunctionInput
 ): Promise<React.ReactNode> {

@@ -8,12 +8,15 @@ import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
+  /** The current page. */
   page: Page<CollectionEntry<"blog">>,
+  /** The tag being used to filter posts. */
   tag: string,
 }
 
 const { page, tag } = Astro.props;
 
+/** The description of this page. */
 const description = `${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tag}"`;
 ---
 

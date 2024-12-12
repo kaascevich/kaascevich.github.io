@@ -3,15 +3,19 @@ import { SITE } from "@config";
 import Hr from "@components/Hr.astro";
 import LinkButton from "@components/LinkButton.astro";
 
+/** The main navigation items. */
 const mainNavItems = [
   "posts",
   "tags",
   "songs",
   "about",
 ] as const;
+
+/** A navigation item. */
 export type NavItem = typeof mainNavItems[number] | "search";
 
 export interface Props {
+  /** The active navigation item. */
   activeNav?: NavItem,
 }
 
@@ -68,7 +72,7 @@ const { activeNav } = Astro.props;
           </li>
           <li>
             <button
-              id="theme-btn"
+              id="theme-button"
               class="focus-outline"
               title="toggle dark mode"
               aria-label="auto"
@@ -142,10 +146,10 @@ const { activeNav } = Astro.props;
   nav button svg {
     @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
   }
-  #theme-btn {
+  #theme-button {
     @apply p-3 sm:p-1;
   }
-  #theme-btn svg {
+  #theme-button svg {
     @apply scale-125 sm:scale-100;
   }
 

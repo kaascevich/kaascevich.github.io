@@ -8,11 +8,13 @@ import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
+  /** The current page. */
   page: Page<CollectionEntry<"blog">>,
 }
 
 const { page } = Astro.props;
 
+/** The description of the Posts section. */
 const description = "all the blog posts I've let loose on the world";
 ---
 

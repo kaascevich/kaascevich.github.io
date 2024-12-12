@@ -1,8 +1,9 @@
 import type { GiscusProps } from "@giscus/react";
-import type { Site, SocialObjects } from "./types";
+import type { Site, SocialLink } from "./types";
 
+/** Global configuration for the site. */
 export const SITE: Site = {
-  website: "https://kaascevich.github.io/",
+  url: "https://kaascevich.github.io/",
   author: "Kaleb A. Ascevich",
   profile: "https://kaascevich.github.io/about",
   description: "my tiny little haven on the internet",
@@ -12,7 +13,8 @@ export const SITE: Site = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 
-export const SOCIALS: SocialObjects = [
+/** Social media links. */
+export const SOCIALS: SocialLink[] = [
   {
     name: "GitHub",
     href: "https://github.com/kaascevich",

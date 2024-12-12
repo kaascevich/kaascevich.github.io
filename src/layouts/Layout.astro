@@ -7,12 +7,19 @@ import Header, { type NavItem } from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 
 export interface Props {
+  /** The title of this page. */
   title?: string,
+  /** The title to use for OpenGraph images. */
   ogTitle?: string,
+  /** The description of this page. */
   description?: string,
+  /** The date this page was published. */
   published?: Date,
+  /** The date this page was last modified, if any. */
   modified?: Date,
+  /** Whether to enable smooth scrolling. */
   scrollSmooth?: boolean,
+  /** The active navigation item. */
   activeNav?: NavItem,
 }
 
@@ -26,20 +33,30 @@ const {
   activeNav,
 } = Astro.props;
 
+/** The canonical URL to this page. */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
+/** This page's OpenGraph image. */
 const ogImage = getImagePath({ url: Astro.url, site: Astro.site });
 
+/** Structured data for Google Search. */
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  /** The title of this page. */
   headline: title,
+  /** This page's OpenGraph image. */
   image: ogImage,
+  /** The date this page was published. */
   datePublished: published?.toISOString(),
+  /** The date this page was last modified, if any. */
   dateModified: modified?.toISOString(),
+  /** Details about this page's author. */
   author: [{
     "@type": "Person",
+    /** The name of this page's author. */
     name: SITE.author,
+    /** A URL to the author's profile. */
     url: SITE.profile,
   }],
 } as const;

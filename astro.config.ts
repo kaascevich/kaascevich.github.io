@@ -18,7 +18,7 @@ import renderOgImage from "./src/utils/renderOgImage";
 import { SITE } from "./src/config";
 
 export default defineConfig({
-  site: SITE.website,
+  site: SITE.url,
   integrations: [
     tailwind({ applyBaseStyles: false }),
     react(),

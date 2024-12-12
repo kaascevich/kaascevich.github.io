@@ -2,6 +2,7 @@
 import Songs from "@layouts/Songs.astro";
 import { getCollection } from "astro:content";
 
+/** A list of all songs. */
 const songs = await getCollection("songs");
 ---
 

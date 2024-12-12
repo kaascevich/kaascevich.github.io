@@ -6,9 +6,12 @@ import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
 import { SITE } from "@config";
 
+/** A list of all posts. */
 const posts = await getCollection("blog");
+/** A list of all unique tags. */
 const tags = getUniqueTags(posts);
 
+/** The description of the Tags section. */
 const description = `all the tags I've used in my posts (${tags.length} total)`;
 ---
 

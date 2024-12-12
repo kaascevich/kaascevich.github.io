@@ -6,14 +6,18 @@ import { SITE } from "@config";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
+  /** A list of all songs. */
   songs: CollectionEntry<"songs">[],
 }
 
 const { songs } = Astro.props;
 
+/** Original songs. */
 const originals = songs.filter(song => !song.data.remixDetails)
+/** Remixed songs. */
 const remixes = songs.filter(song => song.data.remixDetails)
 
+/** The description of the Songs section. */
 const description = "all the songs I've created or remixed";
 ---
 

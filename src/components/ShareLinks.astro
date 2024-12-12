@@ -2,8 +2,7 @@
 import LinkButton from "@components/LinkButton.astro";
 import socialIcons from "@assets/socialIcons";
 
-const URL = Astro.url;
-
+/** A list of platforms posts can be shared on. */
 const shareLinks = [
   {
     name: "WhatsApp",
@@ -38,7 +37,7 @@ const shareLinks = [
   <div class="share-links-wrapper">
     {shareLinks.map(social =>
       <LinkButton
-        href={social.href + URL}
+        href={social.href + Astro.url}
         className="link-button"
         title={social.linkTitle}
       >

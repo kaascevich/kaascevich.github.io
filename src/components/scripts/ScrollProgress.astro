@@ -1,4 +1,5 @@
 <script is:inline data-astro-rerun>
+  /** Creates a progress bar showing the current scroll position. */
   function createProgressBar() {
     // create the main container div
     const progressContainer = document.createElement("div");
@@ -14,17 +15,16 @@
   }
   createProgressBar();
 
+  /** Updates the scroll progress bar. */
   function updateScrollProgress() {
     document.addEventListener("scroll", () => {
       const rootNode = document.documentElement;
-      const winScroll = rootNode.scrollTop;
+      const windowScroll = rootNode.scrollTop;
       const height = rootNode.scrollHeight - rootNode.clientHeight;
-      const scrolled = (winScroll / height) * 100;
+      const scrolled = (windowScroll / height) * 100;
 
       const progressBar = document?.getElementById("progress-bar");
-      if (progressBar) {
-        progressBar.style.width = scrolled + "%";
-      }
+      if (progressBar) { progressBar.style.width = scrolled + "%"; }
     });
   }
   updateScrollProgress();

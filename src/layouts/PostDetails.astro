@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Layout, { type Props as LayoutProps } from "@layouts/Layout.astro";
 import Tag from "@components/Tag.astro";
 import Comments from "@components/Comments";
 import Timestamp from "@components/Timestamp";
@@ -15,7 +15,9 @@ import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
 import { render } from "astro:content";
 
 export interface Props {
+  /** The post to display. */
   post: CollectionEntry<"blog">,
+  /** A list of all posts. */
   posts: CollectionEntry<"blog">[],
 }
 
@@ -30,13 +32,14 @@ const {
   tags,
 } = post.data;
 
+
 const { Content } = await render(post);
 
-const layoutProps = {
+/** Properties to pass to the `Layout` component. */
+const layoutProps: LayoutProps = {
   title: `${title} | ${SITE.title}`,
   ogTitle: title,
   description,
-  readingTime,
   published,
   modified,
   scrollSmooth: true,

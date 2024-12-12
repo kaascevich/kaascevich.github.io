@@ -2,17 +2,23 @@
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
+  /** The current post. */
   post: CollectionEntry<"blog">,
+  /** A list of all posts. */
   posts: CollectionEntry<"blog">[],
 }
 
 const { post, posts } = Astro.props;
 
+/** The IDs and titles of all posts. */
 const allPosts = posts.map(({ data: { title }, id }) => ({ id, title }));
 
+/** The current post's index. */
 const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 
+/** The previous post. */
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
+/** The next post. */
 const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
 ---
 

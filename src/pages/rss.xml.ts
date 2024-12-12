@@ -21,7 +21,7 @@ export async function GET() {
   return rss({
     title: SITE.title,
     description: SITE.description,
-    site: SITE.website,
+    site: SITE.url,
     trailingSlash: false,
     items,
   });

@@ -2,9 +2,12 @@ import Giscus from "@giscus/react";
 import { GISCUS } from "@config";
 import { useEffect, useState } from "react";
 
+/** A CSS file containing light theme styles. */
 const lightTheme = "https://giscus.catppuccin.com/themes/latte-no-loader.css";
+/** A CSS file containing dark theme styles. */
 const darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css";
 
+/** A comments section for blog posts. */
 export default function Comments() {
   const [theme, setTheme] = useState(() => {
     const currentTheme = localStorage.getItem("theme");
@@ -27,7 +30,7 @@ export default function Comments() {
   }, []);
 
   useEffect(() => {
-    const themeButton = document.querySelector("#theme-btn");
+    const themeButton = document.querySelector("#theme-button");
     const handleClick = () =>
       setTheme(prevTheme => prevTheme === "dark" ? "light" : "dark");
 
