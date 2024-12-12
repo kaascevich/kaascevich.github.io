@@ -1,57 +1,51 @@
-// Get theme data from local storage
-const currentTheme = localStorage.theme;
+/**
+ * Gets the current site theme.
 
-function getPreferredTheme() {
-  // return theme value in local storage if it is set
-  if (currentTheme) return currentTheme;
-
-  // return user device's prefer color scheme
-  return matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+ * @returns {string | null} The current site theme.
+*/
+function getTheme() {
+  return localStorage.getItem("theme");
 }
 
-let themeValue = getPreferredTheme();
+/**
+ * Sets the current site theme.
+ * 
+ * @param {string} theme - The new site thee.
+ */
+function setTheme(theme) {
+  localStorage.setItem("theme", theme);
+  reflectThemePreference();
+}
 
-function reflectPreference() {
-  document.firstElementChild?.setAttribute("data-theme", themeValue);
+/**
+ * Applies the current theme to the site.
+ */
+function reflectThemePreference() {
+  document.documentElement.dataset.theme = getTheme();
+  document.getElementById("theme-btn")?.setAttribute("aria-label", getTheme());
 
-  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
-
-  // Get a reference to the body element
-  const body = document.body;
-
-  // Check if the body element exists before using getComputedStyle
-  if (body) {
-    // Get the computed styles for the body element
-    const computedStyles = getComputedStyle(body);
-
-    // Get the background color property
-    const bgColor = computedStyles.backgroundColor;
-
-    // Set the background color in <meta theme-color .../>
-    document.querySelector("meta[name='theme-color']")?.setAttribute("content", bgColor);
+  if (document.body) {
+    const backgroundColor = getComputedStyle(document.body).backgroundColor;
+    document.querySelector("meta[name='theme-color']")?.setAttribute("content", backgroundColor);
   }
 }
 
-// set early so no page flashes / CSS is made aware
-reflectPreference();
-
-function setPreference() {
-  localStorage.theme = themeValue;
-  reflectPreference();
+if (getTheme() === null) {
+  setTheme(matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 }
+
+// set early to avoid flashes
+reflectThemePreference();
 
 onload = () => {
   function setThemeFeature() {
-    // set on load so screen readers can get the latest value on the button
-    reflectPreference();
+    reflectThemePreference();
 
     // now this script can find and listen for clicks on the control
-    document.querySelector("#theme-btn")?.addEventListener("click", () => {
-      themeValue = themeValue === "light" ? "dark" : "light";
-      setPreference();
-    });
+    document.getElementById("theme-btn")?.addEventListener(
+      "click",
+      () => setTheme(getTheme() === "light" ? "dark" : "light")
+    );
   }
 
   setThemeFeature();
@@ -60,7 +54,4 @@ onload = () => {
 
 // sync with system changes
 matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({ matches: isDark }) => {
-    themeValue = isDark ? "dark" : "light";
-    setPreference();
-  });
+  .addEventListener("change", ({ matches: isDark }) => setTheme(isDark ? "dark" : "light"));

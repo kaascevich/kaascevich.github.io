@@ -40,7 +40,7 @@ export default function SearchBar({ searchList }: Props) {
     // insert that search query in input field
     const searchUrl = new URLSearchParams(location.search);
     const searchStr = searchUrl.get("query");
-    if (searchStr) setInputVal(searchStr);
+    if (searchStr) { setInputVal(searchStr); }
 
     // put focus cursor at the end of the string
     setTimeout(() => {
