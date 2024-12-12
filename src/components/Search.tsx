@@ -91,7 +91,7 @@ export default function SearchBar({ searchList }: Props) {
     {inputVal.length > 0 && <div className="mt-8">{resultsFound}</div>}
 
     <ul>
-      {searchResults?.map(({ item, refIndex }) =>
+      {searchResults?.map(({ item }) =>
         <Card
           id={item.id}
           frontmatter={item.data}
