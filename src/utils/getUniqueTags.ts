@@ -1,16 +1,15 @@
-import type { CollectionEntry } from "astro:content";
+import getPosts from "@utils/getPosts";
 import postFilter from "@utils/postFilter";
 
 /** A blog post tag. */
 type Tag = string;
 
 /**
- * Gets all unique tags from a list of blog posts.
- * @param posts - A list of blog posts.
+ * Gets all unique tags from all blog posts.
  * @returns A list of unique tags.
  */
-export default function getUniqueTags(posts: CollectionEntry<"blog">[]): Tag[] {
-  return posts
+export default async function getUniqueTags(): Promise<Tag[]> {
+  return (await getPosts())
     .filter(postFilter)
     .flatMap(post => post.data.tags)
     .filter(

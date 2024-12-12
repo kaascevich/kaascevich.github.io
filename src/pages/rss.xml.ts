@@ -1,10 +1,10 @@
 import rss from "@astrojs/rss";
-import getSortedPosts from "@utils/getSortedPosts";
+import getPosts from "@utils/getPosts";
 import { SITE } from "@config";
 import { markdown } from "@astropub/md";
 
 export async function GET() {
-  const posts = await getSortedPosts();
+  const posts = await getPosts();
 
   const items = await Promise.all(posts.map(async ({ body, data, id }) => ({
     link: `posts/${id}/`,

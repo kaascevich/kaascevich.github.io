@@ -3,10 +3,10 @@ import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import SearchBar from "@components/Search";
-import getSortedPosts from "@utils/getSortedPosts";
+import getPosts from "@utils/getPosts";
 
 /** A list of all posts, sorted by date. */
-const posts = await getSortedPosts();
+const posts = await getPosts();
 
 /** A list of posts to search through. */
 const searchList = posts.map(({ data, id }) => ({

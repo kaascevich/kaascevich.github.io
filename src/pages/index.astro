@@ -5,11 +5,11 @@ import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
+import getPosts from "@utils/getPosts";
 import { SITE, SOCIALS } from "@config";
 
 /** A list of all posts, sorted by date. */
-const posts = await getSortedPosts();
+const posts = await getPosts();
 
 /** All featured posts. */
 const featuredPosts = posts.filter(post => post.data.featured);

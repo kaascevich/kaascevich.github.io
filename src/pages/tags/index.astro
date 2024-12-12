@@ -1,15 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
 import { SITE } from "@config";
 
-/** A list of all posts. */
-const posts = await getCollection("blog");
 /** A list of all unique tags. */
-const tags = getUniqueTags(posts);
+const tags = await getUniqueTags();
 
 /** The description of the Tags section. */
 const description = `all the tags I've used in my posts (${tags.length} total)`;
