@@ -2,15 +2,13 @@
 export interface Props {
   /** Whether to omit padding. */
   noPadding?: boolean,
-  /** Whether to hide this element from accessibility software. */
-  ariaHidden?: boolean,
 }
 
-const { noPadding = false, ariaHidden = true } = Astro.props;
+const { noPadding = false } = Astro.props;
 ---
 
 <div class={`max-w-3xl mx-auto ${noPadding ? "px-0" : "px-4"}`}>
-  <hr aria-hidden={ariaHidden}/>
+  <hr aria-hidden/>
 </div>
 
 <style>
