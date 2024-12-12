@@ -20,10 +20,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
-/** A list of all posts. */
-const posts = await getCollection("blog");
 /** A list of all posts, sorted by date. */
-const sortedPosts = getSortedPosts(posts);
+const posts = await getSortedPosts();
 ---
 
-<PostDetails {post} posts={sortedPosts}/>
+<PostDetails {post} posts={posts}/>

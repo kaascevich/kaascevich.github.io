@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import ExternalLink from "@components/ExternalLink.astro";
 import LinkButton from "@components/LinkButton.astro";
@@ -9,17 +8,14 @@ import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SITE, SOCIALS } from "@config";
 
-/** A list of all posts. */
-const posts = await getCollection("blog");
-
 /** A list of all posts, sorted by date. */
-const sortedPosts = getSortedPosts(posts);
+const posts = await getSortedPosts();
 
 /** All featured posts. */
-const featuredPosts = sortedPosts.filter(post => post.data.featured);
+const featuredPosts = posts.filter(post => post.data.featured);
 
 /** All non-featured posts. */
-const nonFeaturedPosts = sortedPosts.filter(post => !post.data.featured);
+const nonFeaturedPosts = posts.filter(post => !post.data.featured);
 ---
 
 <Layout>

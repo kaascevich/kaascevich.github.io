@@ -1,18 +1,15 @@
 ---
-import { getCollection } from "astro:content";
 import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import SearchBar from "@components/Search";
 import getSortedPosts from "@utils/getSortedPosts";
 
-/** A list of all posts. */
-const posts = await getCollection("blog");
 /** A list of all posts, sorted by date. */
-const sortedPosts = getSortedPosts(posts);
+const posts = await getSortedPosts();
 
 /** A list of posts to search through. */
-const searchList = sortedPosts.map(({ data, id }) => ({
+const searchList = posts.map(({ data, id }) => ({
   title: data.title,
   description: data.description,
   data,

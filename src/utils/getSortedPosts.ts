@@ -1,4 +1,4 @@
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import postFilter from "@utils/postFilter";
 
 function getPostSortIndex({ data }: CollectionEntry<"blog">) {
@@ -6,11 +6,20 @@ function getPostSortIndex({ data }: CollectionEntry<"blog">) {
 }
 
 /**
+ * Sorts all blog posts by publication or modification date.
+ * @returns A list of posts, sorted by date in descending order.
+ */
+export default async function getSortedPosts(): Promise<CollectionEntry<"blog">[]> {
+  return sortPosts(await getCollection("blog"));
+}
+
+
+/**
  * Sorts blog posts by publication or modification date.
  * @param posts - The posts to sort.
  * @returns A list of posts, sorted by date in descending order.
  */
-export default function getSortedPosts(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
+export function sortPosts(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
   return posts
     .filter(postFilter)
     .sort((a, b) => getPostSortIndex(b) - getPostSortIndex(a));

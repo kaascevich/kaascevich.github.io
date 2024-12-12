@@ -1,14 +1,12 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SITE } from "@config";
 import { markdown } from "@astropub/md";
 
 export async function GET() {
-  const posts = await getCollection("blog");
-  const sortedPosts = getSortedPosts(posts);
+  const posts = await getSortedPosts();
 
-  const items = await Promise.all(sortedPosts.map(async ({ body, data, id }) => ({
+  const items = await Promise.all(posts.map(async ({ body, data, id }) => ({
     link: `posts/${id}/`,
     title: data.title,
     author: SITE.author,

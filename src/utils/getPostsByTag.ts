@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import getSortedPosts from "@utils/getSortedPosts";
+import { sortPosts } from "@utils/getSortedPosts";
 
 /**
  * Filters all blog posts by tag.
@@ -11,7 +11,7 @@ export default function getPostsByTag(
   posts: CollectionEntry<"blog">[],
   tag: string
 ): CollectionEntry<"blog">[] {
-  return getSortedPosts(
+  return sortPosts(
     posts.filter(post => post.data.tags.includes(tag))
   );
 }
