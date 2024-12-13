@@ -44,7 +44,7 @@ struct Me: Person {
     ),
     "zenbook": (
       PC(.laptop, "ASUS"),
-      [.windows]
+      [.linux(distro: "Bazzite")]
     ),
     "imacg4": (
       Mac(.powerMac, 4, 2),
