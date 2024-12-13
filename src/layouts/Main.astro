@@ -1,41 +1,19 @@
 ---
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 
-/** Properties for a non-animated page title. */
-interface StringTitleProp {
+export interface Props {
   /** The title of this page. */
   title: string,
   /** The description of this page. */
   description?: string,
-}
-
-/** Properties for an animated page title. */
-interface ArrayTitleProp {
-  /** The title of this page. */
-  title: [string, string],
-  /** The transition name for the animated title. */
-  titleTransition: string,
-  /** The description of this page. */
-  description?: string,
-}
-
-export type Props = StringTitleProp | ArrayTitleProp;
+};
 
 const { props } = Astro;
 ---
 
 <Breadcrumbs/>
 <main>
-  {"titleTransition" in props ? (
-    <h1>
-      {props.title[0]}
-      <span transition:name={props.titleTransition}>
-        {props.title[1]}
-      </span>
-    </h1>
-  ) : (
-    <h1>{props.title}</h1>
-  )}
+  <h1>{props.title}</h1>
   <p>{props.description}</p>
   <slot/>
 </main>

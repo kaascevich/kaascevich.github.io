@@ -14,6 +14,6 @@ const description = `all the tags I've used in my posts (${tags.length} total)`;
 
 <Layout title={`tags | ${SITE.title}`} {description} activeNav="tags">
   <Main title="tags" {description}>
-    <ul>{tags.map(tag => <Tag {tag} size="lg" transitions/>)}</ul>
+    <ul>{tags.map(tag => <Tag {tag} size="lg"/>)}</ul>
   </Main>
 </Layout>

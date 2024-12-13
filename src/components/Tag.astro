@@ -6,17 +6,14 @@ export interface Props {
   tag: Tag,
   /** The size of this tag. */
   size?: "sm" | "lg",
-  /** Whether this tag should participate in page transitions. */
-  transitions?: boolean
 }
 
-const { tag, size = "sm", transitions = false } = Astro.props;
+const { tag, size = "sm" } = Astro.props;
 ---
 
 <li class={`inline-block ${size === "sm" ? "my-1" : "my-3 mx-1"} underline-offset-4`}>
   <a
     href={`/tags/${tag}/`}
-    transition:name={transitions ? tag : undefined}
     class={`${size === "sm" ? "text-sm" : "text-lg"} pr-2 group`}
   >
     <svg xmlns="http://www.w3.org/2000/svg" class={`${size === "sm" ? " scale-75" : "scale-110"} mb-1`}>

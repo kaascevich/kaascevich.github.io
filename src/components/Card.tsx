@@ -18,7 +18,6 @@ export default function Card({ id, frontmatter, level2Heading }: Props) {
   const { title, published, modified, description } = frontmatter;
 
   const headerProps = {
-    style: { viewTransitionName: id },
     className: "text-lg font-medium decoration-wavy hover:underline",
   };
 
