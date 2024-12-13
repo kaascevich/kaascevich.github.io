@@ -21,8 +21,8 @@ export default function SearchBar({ posts }: Props) {
   const [inputVal, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null);
 
-  const handleChange = (e: FormEvent<HTMLInputElement>) =>
-    setInputVal(e.currentTarget.value);
+  const handleChange = (event: FormEvent<HTMLInputElement>) =>
+    setInputVal(event.currentTarget.value);
 
   const fuse = useMemo(
     () => new Fuse(posts, {
