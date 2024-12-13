@@ -33,12 +33,12 @@ export default function SearchBar({ posts }: Props) {
   );
 
   useEffect(() => {
-    // if the URL has search query, insert that into the input field
+    // if the URL has a search query, insert that
     const searchURL = new URLSearchParams(location.search);
     const searchString = searchURL.get("query");
     if (searchString) { setInputVal(searchString); }
 
-    // put focus cursor at the end of the string
+    // put cursor at the end
     setTimeout(() => {
       const searchStringLength = searchString?.length ?? 0;
       inputRef.current!.selectionStart = searchStringLength;
