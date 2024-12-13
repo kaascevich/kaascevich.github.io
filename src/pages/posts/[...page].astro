@@ -4,12 +4,10 @@ import Posts from "@layouts/Posts.astro";
 import type { GetStaticPaths } from "astro";
 import getPosts from "@utils/getPosts";
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return paginate(
-    await getPosts(),
-    { pageSize: SITE.postsPerPage }
-  );
-}) satisfies GetStaticPaths;
+export const getStaticPaths = (async ({ paginate }) => paginate(
+  await getPosts(),
+  { pageSize: SITE.postsPerPage }
+)) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---

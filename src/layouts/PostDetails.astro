@@ -1,18 +1,18 @@
 ---
+import { render, type CollectionEntry } from "astro:content";
+import { SITE } from "@config";
+
 import Layout, { type Props as LayoutProps } from "@layouts/Layout.astro";
 import Tag from "@components/Tag.astro";
 import Comments from "@components/Comments";
 import Timestamp from "@components/Timestamp";
 import PostLinks from "@components/PostLinks.astro";
-import type { CollectionEntry } from "astro:content";
 import ShareLinks from "@components/ShareLinks.astro";
 import BackToTop from "@components/BackToTop.astro";
-import { SITE } from "@config";
 
 import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
-import { render } from "astro:content";
 
 export interface Props {
   /** The post to display. */
@@ -31,7 +31,6 @@ const {
   modified,
   tags,
 } = post.data;
-
 
 const { Content } = await render(post);
 
@@ -59,17 +58,17 @@ const layoutProps: LayoutProps = {
   <main>
     <h1 transition:name={post.id}>{title}</h1>
     <Timestamp {published} {modified} size="lg" className="timestamp"/>
-    <span class="reading-time">{readingTime}</span>
+    <span id="reading-time">{readingTime}</span>
     
     <article class="prose mx-auto mt-8 max-w-3xl">
       <Content/>
     </article>
 
-    <ul class="tag-list">
+    <ul id="tag-list">
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
 
-    <div class="article-footer">
+    <div id="article-footer">
       <BackToTop/>
       <ShareLinks/>
     </div>
@@ -93,17 +92,17 @@ const layoutProps: LayoutProps = {
   h1 {
     @apply text-2xl font-semibold text-skin-accent;
   }
-  .reading-time {
+  #reading-time {
     @apply opacity-80;
   }
   .timestamp {
     @apply mt-2 mb-1;
   }
 
-  .tag-list {
+  #tag-list {
     @apply my-8;
   }
-  .article-footer {
+  #article-footer {
     @apply flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4;
   }
 </style>
@@ -113,7 +112,7 @@ const layoutProps: LayoutProps = {
 <CodeBlockExtras/>
 
 <script is:inline data-astro-rerun>
-  /* go to page start after page swap */
+  /* go to page start after transition */
   document.addEventListener("astro:after-swap", () =>
     scrollTo({ left: 0, top: 0, behavior: "instant" })
   );
