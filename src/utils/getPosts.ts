@@ -10,7 +10,8 @@ function getPostSortIndex({ data }: CollectionEntry<"blog">) {
  * @returns A list of posts, sorted by date in descending order.
  */
 export default async function getPosts(): Promise<CollectionEntry<"blog">[]> {
-  return (await getCollection("blog"))
+  const posts = await getCollection("blog");
+  return posts
     .filter(postFilter)
     .sort((a, b) => getPostSortIndex(b) - getPostSortIndex(a));
 }

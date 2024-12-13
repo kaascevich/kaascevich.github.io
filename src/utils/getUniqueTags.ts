@@ -9,7 +9,8 @@ type Tag = string;
  * @returns A list of unique tags.
  */
 export default async function getUniqueTags(): Promise<Tag[]> {
-  return (await getPosts())
+  const posts = await getPosts();
+  return posts
     .filter(postFilter)
     .flatMap(post => post.data.tags)
     .filter(
