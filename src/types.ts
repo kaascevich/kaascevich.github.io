@@ -32,3 +32,6 @@ export type SocialLink = {
   /** The link's title. */
   linkTitle: string,
 };
+
+/** A blog post tag. */
+export type Tag = string;

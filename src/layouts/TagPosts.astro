@@ -6,12 +6,13 @@ import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
+import type { Tag } from "types";
 
 export interface Props {
   /** The current page. */
   page: Page<CollectionEntry<"blog">>,
   /** The tag being used to filter posts. */
-  tag: string,
+  tag: Tag,
 }
 
 const { page, tag } = Astro.props;
