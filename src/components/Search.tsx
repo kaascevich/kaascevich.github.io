@@ -89,7 +89,7 @@ export default function SearchBar({ posts }: Props) {
       {searchResults?.map(({ item }) =>
         <Card
           id={item.id}
-          frontmatter={item.data}
+          data={item.data}
           key={item.id}
         />
       )}

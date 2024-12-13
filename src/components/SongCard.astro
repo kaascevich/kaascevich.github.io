@@ -4,11 +4,11 @@ import { SITE } from "@config";
 
 export interface Props {
   /** The song's frontmatter. */
-  frontmatter: CollectionEntry<"songs">["data"],
+  data: CollectionEntry<"songs">["data"],
 }
 
-const { frontmatter } = Astro.props;
-const { title, sourcePath, remixDetails } = frontmatter;
+const { data } = Astro.props;
+const { title, sourcePath, remixDetails } = data;
 
 const sourceURL = `/assets/songs/${sourcePath}`;
 

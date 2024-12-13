@@ -5,7 +5,7 @@ interface Props {
   /** The ID of the post this card represents. */
   id: string,
   /** The frontmatter of the post this card represents. */
-  frontmatter: CollectionEntry<"blog">["data"],
+  data: CollectionEntry<"blog">["data"],
   /** Whether to use a level 2 heading for the card title instead of a level 3 heading. */
   level2Heading?: boolean,
 }
@@ -14,8 +14,8 @@ interface Props {
  * A card showing the essential details of a blog post, as well
  * as a link to said post.
  */
-export default function Card({ id, frontmatter, level2Heading }: Props) {
-  const { title, published, modified, description } = frontmatter;
+export default function Card({ id, data, level2Heading }: Props) {
+  const { title, published, modified, description } = data;
 
   const headerProps = {
     className: "text-lg font-medium decoration-wavy hover:underline",

@@ -25,7 +25,7 @@ const description = `${page.total} ${page.total === 1 ? "article" : "articles"} 
   <Main title={`tag: ${tag}`} {description}>
     <h1 slot="title" >{`tag: ${tag}`}</h1>
     <ul>
-      {page.data.map(({ data, id }) => <Card {id} frontmatter={data}/>)}
+      {page.data.map(({ data, id }) => <Card {id} {data}/>)}
     </ul>
   </Main>
 
