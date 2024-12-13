@@ -18,7 +18,7 @@ interface SearchResult {
 /** A search interface for searching through blog posts. */
 export default function SearchBar({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputVal, setInputVal] = useState("");
+  const [inputValue, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null);
 
   const handleChange = (event: FormEvent<HTMLInputElement>) =>
@@ -47,19 +47,19 @@ export default function SearchBar({ posts }: Props) {
   }, []);
 
   useEffect(() => {
-    const inputResult = inputVal.length > 0 ? fuse.search(inputVal) : [];
+    const inputResult = inputValue.length > 0 ? fuse.search(inputValue) : [];
     setSearchResults(inputResult);
 
     // update search string in URL
-    if (inputVal.length > 0) {
+    if (inputValue.length > 0) {
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set("query", inputVal);
+      searchParams.set("query", inputValue);
       const newRelativePathQuery = `${location.pathname}?${searchParams.toString()}`;
       history.replaceState(history.state, "", newRelativePathQuery);
     } else {
       history.replaceState(history.state, "", location.pathname);
     }
-  }, [inputVal]);
+  }, [inputValue]);
 
   return <>
     <search className="relative block">
@@ -74,15 +74,15 @@ export default function SearchBar({ posts }: Props) {
         placeholder="type something here..."
         type="search"
         name="search"
-        value={inputVal}
+        value={inputValue}
         onChange={handleChange}
         autoComplete="off"
         ref={inputRef}
       />
     </search>
 
-    {inputVal.length > 0 && <div className="mt-8">
-      found {searchResults?.length} {searchResults?.length === 1 ? "result" : "results"} for "{inputVal}"
+    {inputValue.length > 0 && <div className="mt-8">
+      found {searchResults?.length} {searchResults?.length === 1 ? "result" : "results"} for "{inputValue}"
     </div>}
 
     <ul>
