@@ -48,9 +48,7 @@ export default function Timestamp({
 }
 
 const FormattedTimestamp = ({ published, modified }: TimestampProps) => {
-  const actualDate = new Date(
-    modified && modified > published ? modified : published
-  );
+  const actualDate = modified && modified > published ? modified : published;
 
   const date = actualDate.toLocaleDateString("en-US", {
     year: "numeric",

@@ -11,7 +11,7 @@ const { frontmatter } = Astro.props;
 const { title, sourceURL, remixDetails } = frontmatter;
 
 /** The author of this song. */
-const author = remixDetails?.composer || SITE.author
+const author = remixDetails?.composer ?? SITE.author
 ---
 
 <li>
@@ -23,7 +23,7 @@ const author = remixDetails?.composer || SITE.author
     </div>
 
     <p>
-      {author} {remixDetails && <>(<a href={remixDetails?.linkToOriginal}>orig.</a>)</>}
+      {author} {remixDetails && <>(<a href={remixDetails.linkToOriginal}>orig.</a>)</>}
     </p>
 
     <audio

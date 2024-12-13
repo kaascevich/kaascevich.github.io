@@ -66,7 +66,7 @@ export default function SearchBar({ searchList }: Props) {
     if (inputVal.length > 0) {
       const searchParams = new URLSearchParams(location.search);
       searchParams.set("query", inputVal);
-      const newRelativePathQuery = location.pathname + "?" + searchParams.toString();
+      const newRelativePathQuery = `${location.pathname}?${searchParams.toString()}`;
       history.replaceState(history.state, "", newRelativePathQuery);
     } else {
       history.replaceState(history.state, "", location.pathname);

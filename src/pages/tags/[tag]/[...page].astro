@@ -9,15 +9,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getPosts();
   const tags = await getUniqueTags();
 
-  return tags.flatMap(tag => {
-    const tagPosts = posts.filter(post => post.data.tags.includes(tag));
-
-    return paginate(tagPosts, {
-      params: { tag },
-      props: { },
-      pageSize: SITE.postsPerPage,
-    });
-  });
+  return tags.flatMap(tag => paginate(posts.filter(post => post.data.tags.includes(tag)), {
+    params: { tag },
+    props: { },
+    pageSize: SITE.postsPerPage,
+  }));
 }
 
 const { tag } = Astro.params;

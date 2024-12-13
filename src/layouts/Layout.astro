@@ -9,7 +9,7 @@ import Footer from "@components/Footer.astro";
 export interface Props {
   /** The title of this page. */
   title?: string,
-  /** The title to use for OpenGraph images. */
+  /** The title to use for Open Graph images. */
   ogTitle?: string,
   /** The description of this page. */
   description?: string,
@@ -36,7 +36,7 @@ const {
 /** The canonical URL to this page. */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
-/** This page's OpenGraph image. */
+/** This page's Open Graph image. */
 const ogImage = getImagePath({ url: Astro.url, site: Astro.site });
 
 /** Structured data for Google Search. */
@@ -45,7 +45,7 @@ const structuredData = {
   "@type": "BlogPosting",
   /** The title of this page. */
   headline: title,
-  /** This page's OpenGraph image. */
+  /** This page's Open Graph image. */
   image: ogImage,
   /** The date this page was published. */
   datePublished: published?.toISOString(),
@@ -122,7 +122,7 @@ const structuredData = {
     <slot/>
     <Footer/>
 
-    <script is:inline>
+    <script is:inline data-astro-rerun>
       document.querySelector("main").id = "main-content";
     </script>
   </body>
