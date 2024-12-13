@@ -20,7 +20,7 @@ const post = defineCollection({
     /** Whether this post should be featured on the main page. */
     featured: z.boolean().optional(),
     /** This post's tags. */
-    tags: z.array(z.string()).default(["other"]),
+    tags: z.array(z.string().toLowerCase()).default(["other"]),
     /** The description of this post. */
     description: z.string(),
     /** The amount of time it should take to read this post. */
@@ -34,14 +34,14 @@ const song = defineCollection({
   schema: () => z.object({
     /** The title of this song. */
     title: z.string(),
-    /** The URL to this song's audio file. */
-    sourceURL: z.string(),
+    /** The path to this song's audio file, with a base of "/assets/songs". */
+    sourcePath: z.string().endsWith(".mp3"),
     /** Remix-specific metadata. */
     remixDetails: z.object({
       /** The song's original composer. */
       composer: z.string(),
       /** A URL to the original song. */
-      linkToOriginal: z.string(),
+      linkToOriginal: z.string().url(),
     }).optional()
   }),
 });
