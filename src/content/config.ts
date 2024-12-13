@@ -15,13 +15,13 @@ const post = defineCollection({
      * if it has not yet been modified.
      */
     modified: z.date().optional(),
-    /** The title of this post. */
+    /** This post's title. */
     title: z.string(),
     /** Whether this post should be featured on the main page. */
     featured: z.boolean().optional(),
     /** This post's tags. */
     tags: z.array(z.string().toLowerCase()).default(["other"]),
-    /** The description of this post. */
+    /** This post's description. */
     description: z.string(),
     /** The amount of time it should take to read this post. */
     readingTime: z.string().optional(),
@@ -32,7 +32,7 @@ const post = defineCollection({
 const song = defineCollection({
   type: "data",
   schema: () => z.object({
-    /** The title of this song. */
+    /** This song's title. */
     title: z.string(),
     /** The path to this song's audio file, with a base of "/assets/songs". */
     sourcePath: z.string().endsWith(".mp3"),

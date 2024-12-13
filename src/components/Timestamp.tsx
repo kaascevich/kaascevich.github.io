@@ -9,7 +9,7 @@ interface TimestampProps {
 }
 
 interface Props extends TimestampProps {
-  /** The size of this timestamp. */
+  /** The timestamp's size. */
   size?: "sm" | "lg",
   /** Classes to apply to this timestamp. */
   className?: string,
