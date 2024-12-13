@@ -111,39 +111,37 @@
   }
 
   .prose {
-    @apply prose-blockquote:!border-l-skin-accent/50 prose-blockquote:opacity-80;
-
     & :is(h1, h2, h3, h4, h5, h6) {
-      margin-bottom: theme('spacing.3') !important;
-      color: rgb(var(--color-text-base)) !important;
+      margin-bottom: theme('spacing.3');
+      color: rgb(var(--color-text-base));
     }
 
     & p {
-      color: rgb(var(--color-text-base)) !important;
+      color: rgb(var(--color-text-base));
     }
 
     & a {
-      color: rgb(var(--color-text-base)) !important;
-      text-decoration-style: wavy !important;
-      text-underline-offset: 4px !important;
+      color: rgb(var(--color-text-base));
+      text-decoration-style: wavy;
+      text-underline-offset: 4px;
     }
 
     & a:hover {
-      color: rgb(var(--color-accent)) !important;
+      color: rgb(var(--color-accent));
     }
 
     & blockquote {
-      border-left-color: rgb(var(--color-accent) / 0.5) !important;
-      opacity: 0.8 !important;
+      border-left-color: rgb(var(--color-accent) / 0.5);
+      opacity: 0.8;
     }
 
     & figcaption {
-      color: rgb(var(--color-text-base)) !important;
-      opacity: 0.7 !important;
+      color: rgb(var(--color-text-base));
+      opacity: 0.7;
     }
 
     & strong {
-      color: rgb(var(--color-text-base)) !important;
+      color: rgb(var(--color-text-base));
     }
 
     & code {
@@ -153,24 +151,24 @@
     }
 
     & code::before {
-      content: none !important;
+      content: none;
     }
 
     & code::after {
-      content: none !important;
+      content: none;
     }
 
     & ol {
-      color: rgb(var(--color-text-base)) !important;
+      color: rgb(var(--color-text-base));
     }
 
     & ul {
-      overflow-x: clip !important;
-      color: rgb(var(--color-text-base)) !important;
+      overflow-x: clip;
+      color: rgb(var(--color-text-base));
     }
 
     & li::marker {
-      color: rgb(var(--color-accent)) !important;
+      color: rgb(var(--color-accent));
     }
 
     & table {
@@ -188,17 +186,17 @@
     }
 
     & img {
-      margin-top: theme('spacing.2') !important;
-      margin-bottom: theme('spacing.2') !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      border-width: 2px !important;
-      border-color: rgb(var(--color-border)) !important;
-      border-radius: theme('borderRadius.lg') !important;
+      margin-top: theme('spacing.2');
+      margin-bottom: theme('spacing.2');
+      margin-left: auto;
+      margin-right: auto;
+      border-width: 2px;
+      border-color: rgb(var(--color-border));
+      border-radius: theme('borderRadius.lg');
     }
 
     & hr {
-      border-color: rgb(var(--color-border)) !important;
+      border-color: rgb(var(--color-border));
     }
 
     & figcaption {
@@ -215,7 +213,7 @@
     }
 
     & a:hover {
-      color: rgb(var(--color-accent)) !important;
+      color: rgb(var(--color-accent));
     }
 
     & a[data-footnote-ref] {
@@ -223,7 +221,7 @@
     }
 
     & a[data-footnote-backref] {
-      color: rgb(var(--color-accent)) !important;
+      color: rgb(var(--color-accent));
       text-decoration: none;
     }
 
@@ -246,7 +244,7 @@
 
     & blockquote {
       font-style: normal;
-      border-left-color: rgba(var(--color-accent), 0.5) !important;
+      border-left-color: rgba(var(--color-accent), 0.5);
       opacity: 0.8;
     }
 
@@ -304,7 +302,7 @@
     word-break: break-words;
   }
 
-  /* Apply Dark Theme (if multi-theme specified) */
+  /* Apply dark theme */
   html[data-theme="dark"] {
     pre:has(code),
     pre:has(code) span {
