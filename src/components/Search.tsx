@@ -73,9 +73,6 @@ export default function SearchBar({ searchList }: Props) {
     }
   }, [inputVal]);
 
-  const resultsFound =
-    `found ${searchResults?.length} ${searchResults?.length === 1 ? "result" : "results"} for "${inputVal}"`;
-
   return <>
     <search className="relative block">
       <label className="absolute inset-y-0 left-0 flex items-center pl-2 opacity-75">
@@ -96,7 +93,9 @@ export default function SearchBar({ searchList }: Props) {
       />
     </search>
 
-    {inputVal.length > 0 && <div className="mt-8">{resultsFound}</div>}
+    {inputVal.length > 0 && <div className="mt-8">
+      found {searchResults?.length} {searchResults?.length === 1 ? "result" : "results"} for "{inputVal}"
+    </div>}
 
     <ul>
       {searchResults?.map(({ item }) =>
