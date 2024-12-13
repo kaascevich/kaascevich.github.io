@@ -3,32 +3,20 @@ import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
 
-/** A searchable post. */
-export type SearchItem = {
-  /** The title of this post. */
-  title: string,
-  /** The description of this post. */
-  description: string,
-  /** Extra data for this post. */
-  data: CollectionEntry<"blog">["data"],
-  /** The ID of this post. */
-  id: string,
-};
-
 interface Props {
   /** The list of posts that can be searched through. */
-  searchList: SearchItem[],
+  posts: CollectionEntry<"blog">[],
 }
 
 /** A search result. */
 interface SearchResult {
   /** The found item. */
-  item: SearchItem,
+  item: CollectionEntry<"blog">,
   refIndex: number,
 }
 
 /** A search interface for searching through blog posts. */
-export default function SearchBar({ searchList }: Props) {
+export default function SearchBar({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null);
@@ -37,11 +25,11 @@ export default function SearchBar({ searchList }: Props) {
     setInputVal(e.currentTarget.value);
 
   const fuse = useMemo(
-    () => new Fuse(searchList, {
-      keys: ["title", "description"],
-      threshold: 0.5,
+    () => new Fuse(posts, {
+      keys: ["data.title", "data.description"],
+      threshold: 0.3,
     }),
-    [searchList]
+    [posts]
   );
 
   useEffect(() => {
