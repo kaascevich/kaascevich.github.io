@@ -46,18 +46,26 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 
 <style>
   .breadcrumb {
-    @apply mx-auto mb-1 mt-8 w-full max-w-3xl px-4;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: theme("spacing.1");
+    margin-top: theme("spacing.8");
+    width: 100%;
+    max-width: theme('maxWidth.3xl');
+    padding-left: theme('spacing.4');
+    padding-right: theme('spacing.4');
   }
   .breadcrumb ul li {
-    @apply inline;
+    display: inline;
   }
   .breadcrumb ul li a {
-    @apply opacity-70;
+    opacity: 70%;
+    transition: opacity 0.1s linear;
   }
   .breadcrumb ul li span {
-    @apply opacity-70;
+    opacity: 70%;
   }
-  .breadcrumb ul li:not(:last-child) a {
-    @apply hover:opacity-100;
+  .breadcrumb ul li:not(:last-child) a:hover {
+    opacity: 100%;
   }
 </style>

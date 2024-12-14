@@ -4,7 +4,16 @@
 
 <style>
   #back-to-top {
-    @apply focus-outline whitespace-nowrap py-1 hover:opacity-75
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    white-space: nowrap;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    transition: opacity 0.1s linear;
+  }
+  
+  #back-to-top:hover {
+    opacity: 0.75;
   }
 </style>
 

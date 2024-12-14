@@ -64,6 +64,7 @@
     outline-width: 2px;
     outline-offset: 1px;
     outline-color: rgb(var(--color-fill));
+    transition: color 0.1s linear;
   }
 
   a:focus-visible {
@@ -103,13 +104,6 @@
     }
   }
 
-  mark {
-    border-radius: theme('borderRadius.DEFAULT');
-    padding: 0.2rem;
-    background-color: rgb(var(--color-highlight));
-    color: rgb(var(--color-fill));
-  }
-
   .prose {
     & :is(h1, h2, h3, h4, h5, h6) {
       margin-bottom: theme('spacing.3');
@@ -138,6 +132,13 @@
     & figcaption {
       color: rgb(var(--color-text-base));
       opacity: 0.7;
+    }
+
+    & mark {
+      border-radius: theme('borderRadius.DEFAULT');
+      padding: 0.2rem;
+      background-color: rgb(var(--color-highlight));
+      color: rgb(var(--color-fill));
     }
 
     & strong {
