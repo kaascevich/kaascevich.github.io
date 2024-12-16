@@ -11,7 +11,7 @@ export interface Props {
 const { post, posts } = Astro.props;
 
 /** The IDs and titles of all posts. */
-const allPosts = posts.map(({ data: { title }, id }) => ({ id, title }));
+const allPosts = posts.map(post => ({ id: post.id, title: post.data.title }));
 
 /** The current post's index. */
 const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
