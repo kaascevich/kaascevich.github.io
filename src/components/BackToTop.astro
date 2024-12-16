@@ -1,4 +1,7 @@
-<button id="back-to-top">
+<button
+  id="back-to-top"
+  onclick="document.documentElement.scrollTop = 0;"
+>
   &uarr; back to top
 </button>
 
@@ -13,12 +16,6 @@
   }
   
   #back-to-top:hover {
-    opacity: 0.75;
+    opacity: 75%;
   }
 </style>
-
-<script is:inline data-astro-rerun>
-  document.getElementById("back-to-top")?.addEventListener(
-    "click", () => document.documentElement.scrollTop = 0
-  );
-</script>

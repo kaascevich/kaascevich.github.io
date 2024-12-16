@@ -46,8 +46,8 @@
     color: rgb(var(--color-text-base));
   }
 
-  body::selection {
-    background-color: rgb(var(--color-accent) / 0.7);
+  body ::selection {
+    background-color: rgb(var(--color-accent), 70%);
     color: rgb(var(--color-fill));
   }
 
@@ -87,11 +87,11 @@
     display: inline-block;
     height: theme('spacing.6');
     width: theme('spacing.6');
-    transform: scale(1.25);
+    transform: scale(125%);
     fill: transparent;
     stroke: currentColor;
     stroke-width: 2;
-    opacity: 0.9;
+    opacity: 90%;
   }
 
   svg.icon-tabler:hover {
@@ -100,7 +100,7 @@
 
   @media (min-width: theme('screens.sm')) {
     svg.icon-tabler {
-      transform: scale(1.1);
+      transform: scale(110%);
     }
   }
 
@@ -125,13 +125,13 @@
     }
 
     & blockquote {
-      border-left-color: rgb(var(--color-accent) / 0.5);
-      opacity: 0.8;
+      border-left-color: rgb(var(--color-accent), 50%);
+      opacity: 80%;
     }
 
     & figcaption {
       color: rgb(var(--color-text-base));
-      opacity: 0.7;
+      opacity: 70%;
     }
 
     & mark {
@@ -147,7 +147,7 @@
 
     & code {
       border-radius: theme('borderRadius.DEFAULT');
-      background-color: rgb(var(--color-card) / 0.75);
+      background-color: rgb(var(--color-card), 75%);
       padding: theme('spacing.1');
     }
 
@@ -245,8 +245,7 @@
 
     & blockquote {
       font-style: normal;
-      border-left-color: rgba(var(--color-accent), 0.5);
-      opacity: 0.8;
+      border-left-color: rgb(var(--color-accent), 50%);
     }
 
     & h2#table-of-contents {
