@@ -9,6 +9,7 @@ import Timestamp from "@components/Timestamp";
 import PostLinks from "@components/PostLinks.astro";
 import ShareLinks from "@components/ShareLinks.astro";
 import BackToTop from "@components/BackToTop.astro";
+import BackButton from "@components/BackButton.astro";
 
 import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
@@ -47,12 +48,7 @@ const layoutProps: LayoutProps = {
 
 <Layout {...layoutProps}>
   <div class="back-button-wrapper">
-    <button
-      class="back-button"
-      onclick="history.length === 1 ? location = '/' : history.back()"
-    >
-      &larr; go back
-    </button>
+    <BackButton/>
   </div>
 
   <main>
@@ -80,10 +76,7 @@ const layoutProps: LayoutProps = {
 
 <style>
   .back-button-wrapper {
-    @apply mx-auto flex w-full max-w-3xl justify-start px-4;
-  }
-  .back-button {
-    @apply focus-outline mb-2 mt-8 flex hover:opacity-75;
+    @apply mx-auto w-full max-w-3xl justify-start px-4 mb-2 mt-8;
   }
 
   main {

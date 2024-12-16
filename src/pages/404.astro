@@ -1,6 +1,7 @@
 ---
 import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
+import BackButton from "@components/BackButton.astro";
 ---
 
 <Layout title={`404 | ${SITE.title}`} description="page not found">
@@ -9,12 +10,9 @@ import Layout from "@layouts/Layout.astro";
       <h1>404</h1>
       <span class="url">{Astro.url}</span>
       <p>page not found</p>
-      <button
-        class="back-button"
-        onclick="history.length === 1 ? location = '/' : history.back()"
-      >
-        &larr; go back
-      </button>
+      <div class="back-button-wrapper">
+        <BackButton/>
+      </div>
     </div>
   </main>
 </Layout>
@@ -37,7 +35,7 @@ import Layout from "@layouts/Layout.astro";
     @apply italic opacity-80;
   }
 
-  .back-button {
-    @apply text-lg focus-outline mb-2 mt-4 flex hover:opacity-75;
+  .back-button-wrapper {
+    @apply text-lg mb-2 mt-4;
   }
 </style>
