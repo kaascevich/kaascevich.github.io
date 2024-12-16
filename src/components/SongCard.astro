@@ -18,11 +18,9 @@ const author = remixDetails?.composer ?? SITE.author
 
 <li>
   <div class="song-card">
-    <div class="song-card-header">
-      <h2>
-        <a href={sourceURL}>{title}</a>
-      </h2>
-    </div>
+    <h2>
+      <a href={sourceURL}>{title}</a>
+    </h2>
 
     <p>
       {author} {remixDetails && <>(<a href={remixDetails.linkToOriginal}>orig.</a>)</>}
@@ -37,16 +35,15 @@ const author = remixDetails?.composer ?? SITE.author
 </li>
 
 <style>
-  .song-card { @apply bg-skin-card-muted rounded-lg p-3; }
+  .song-card {
+    @apply bg-skin-card-muted rounded-lg p-3;
   
-  .song-card-header {
-    @apply inline-block text-lg font-medium;
-    h2 {
-      @apply text-lg font-medium;
-      a { @apply text-skin-accent hover:underline hover:decoration-wavy; }
+    & h2 {
+      @apply inline-block text-lg font-medium;
+      & a { @apply text-skin-accent hover:underline hover:decoration-wavy; }
     }
-  }
 
-  p { @apply opacity-75; }
-  audio { @apply pt-1; }
+    & p { opacity: 75%; }
+    & audio { @apply pt-1; }
+  }
 </style>

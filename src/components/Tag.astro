@@ -26,6 +26,8 @@ const { tag, size = "sm" } = Astro.props;
 <style>
   a {
     @apply relative underline decoration-wavy hover:text-skin-accent focus-visible:p-1;
-    svg { @apply -mr-5 h-6 w-6 scale-95 text-skin-base opacity-80 group-hover:fill-skin-accent; }
+    & svg {
+      @apply -mr-5 h-6 w-6 scale-95 text-skin-base opacity-80 group-hover:fill-skin-accent;
+    }
   }
 </style>

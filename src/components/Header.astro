@@ -36,7 +36,6 @@ const { activeNav } = Astro.props;
           aria-controls="menu-items"
         >
           <svg
-            id="hamburger-menu-icon"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -109,63 +108,63 @@ const { activeNav } = Astro.props;
   }
   #hamburger-menu {
     @apply self-end p-2 sm:hidden;
-    svg { @apply h-6 w-6 scale-125 fill-skin-base; }
-  }
-  #hamburger-menu-icon {
-    .close { @apply opacity-0; }
-    &.is-active {
-      .line { @apply opacity-0; }
-      .close { @apply opacity-100; }
+    & svg {
+      @apply h-6 w-6 scale-125 fill-skin-base;
+      & .close { opacity: 0%; }
+      &.is-active {
+        & .line { opacity: 0%; }
+        & .close { opacity: 100%; }
+      }
     }
   }
 
   nav {
     @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
 
-    ul {
+    & ul {
       @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
 
-      li {
+      & li {
         @apply col-span-2 flex items-center justify-center;
 
-        a {
+        & a {
           @apply w-full px-4 py-3 text-center hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
           font-weight: 450;
         }
-        &:nth-last-child(2) a { @apply w-auto; }
+        &:nth-last-child(2) a { width: auto; }
         &:nth-last-child(1), &:nth-last-child(2) {
           @apply col-span-1;
         }
       }
     }
-    a.active {
+    & a.active {
       @apply font-extrabold;
-      svg { @apply fill-skin-accent; }
+      & svg { @apply fill-skin-accent; }
     }
-    button {
+    & button {
       @apply p-1;
-      svg { @apply h-6 w-6 fill-skin-base hover:fill-skin-accent; }
+      & svg { @apply h-6 w-6 fill-skin-base hover:fill-skin-accent; }
     }
   }
 
   #theme-button {
     @apply p-3 sm:p-1;
-    svg { @apply scale-125 sm:scale-100; }
+    & svg { @apply scale-125 sm:scale-100; }
   }
 </style>
 
 <script>
   /** Sets up the button that toggles the navigation menu. */
   function setUpNavToggle() {
-    const menuBtn = document.getElementById("hamburger-menu")!;
-    const menuIcon = document.getElementById("hamburger-menu-icon")!;
+    const menuButton = document.getElementById("hamburger-menu")!;
+    const menuIcon = menuButton.querySelector("svg")!;
     const menuItems = document.getElementById("menu-items")!;
 
-    menuBtn.onclick = () => {
-      const isMenuExpanded = menuBtn.ariaExpanded === "true";
+    menuButton.onclick = () => {
+      const isMenuExpanded = menuButton.ariaExpanded === "true";
       menuIcon.classList.toggle("is-active");
-      menuBtn.ariaExpanded = isMenuExpanded ? "false" : "true";
-      menuBtn.ariaLabel = isMenuExpanded ? "open menu" : "close menu";
+      menuButton.ariaExpanded = isMenuExpanded ? "false" : "true";
+      menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu";
       menuItems.classList.toggle("display-none");
     };
   }

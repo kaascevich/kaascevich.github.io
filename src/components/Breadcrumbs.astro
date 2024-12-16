@@ -26,19 +26,15 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
       <span aria-hidden>&rarr;</span>
     </li>
     {
-      breadcrumbList.map((breadcrumb, index) =>
+      breadcrumbList.map((breadcrumb, index) => <li>{
         index + 1 === breadcrumbList.length ? (
-          <li>
-            <span aria-current="page">
-              {decodeURIComponent(breadcrumb)}
-            </span>
-          </li>
+          <span aria-current="page">
+            {decodeURIComponent(breadcrumb)}
+          </span>
         ) : (
-          <li>
-            <a href={`/${breadcrumb}/`}>{breadcrumb}</a>
-            <span aria-hidden>&rarr;</span>
-          </li>
-        )
+          <a href={`/${breadcrumb}/`}>{breadcrumb}</a>
+          <span aria-hidden>&rarr;</span>
+        )}</li>
       )
     }
   </ul>
@@ -52,15 +48,15 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     padding-left: theme('spacing.4');
     padding-right: theme('spacing.4');
     
-    ul {
-      li {
+    & ul {
+      & li {
         display: inline;
 
-        a {
+        & a {
           opacity: 70%;
           transition: opacity 0.1s linear;
         }
-        span { opacity: 70%; }
+        & span { opacity: 70%; }
         &:not(:last-child) a:hover {
           opacity: 100%;
         }

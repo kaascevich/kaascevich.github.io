@@ -1,17 +1,14 @@
-<button
-  id="back-to-top"
-  onclick="document.documentElement.scrollTop = 0;"
->
+<button onclick="document.documentElement.scrollTop = 0;">
   &uarr; back to top
 </button>
 
 <style>
-  #back-to-top {
+  button {
     outline: 2px solid transparent;
     outline-offset: 2px;
     white-space: nowrap;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: theme("spacing.1");
+    padding-bottom: theme("spacing.1");
     transition: opacity 0.1s linear;
     
     &:hover { opacity: 75%; }
