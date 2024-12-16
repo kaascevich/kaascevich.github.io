@@ -39,8 +39,8 @@
     display: flex;
     min-height: 100svh;
     flex-direction: column;
-    background-color: rgb(var(--color-fill));
     font-family: theme("fontFamily.sans");
+    background-color: rgb(var(--color-fill));
     color: rgb(var(--color-text-base));
     & ::selection {
       background-color: rgb(var(--color-accent), 70%);
@@ -184,10 +184,7 @@
     }
 
     & img {
-      margin-top: theme("spacing.2");
-      margin-bottom: theme("spacing.2");
-      margin-left: auto;
-      margin-right: auto;
+      margin: theme("spacing.2") auto;
       border-width: 2px;
       border-color: rgb(var(--color-border));
       border-radius: theme("borderRadius.lg");

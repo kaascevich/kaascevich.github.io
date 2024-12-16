@@ -46,10 +46,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 
 <style>
   .breadcrumb {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: theme("spacing.1");
-    margin-top: theme("spacing.8");
+    margin: theme("spacing.8") auto theme("spacing.1");
     width: 100%;
     max-width: theme('maxWidth.3xl');
     padding-left: theme('spacing.4');
@@ -58,7 +55,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     ul {
       li {
         display: inline;
-        
+
         a {
           opacity: 70%;
           transition: opacity 0.1s linear;
