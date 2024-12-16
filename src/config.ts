@@ -1,5 +1,5 @@
 import type { GiscusProps } from "@giscus/react";
-import type { Site, SocialLink } from "./types";
+import type { Site, Social } from "./types";
 
 /** Global configuration for the site. */
 export const SITE: Site = {
@@ -14,7 +14,7 @@ export const SITE: Site = {
 };
 
 /** Social media links. */
-export const SOCIALS: SocialLink[] = [
+export const SOCIALS: Social[] = [
   {
     name: "GitHub",
     href: "https://github.com/kaascevich",
