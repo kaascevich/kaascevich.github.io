@@ -23,7 +23,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
   <ul>
     <li>
       <a href="/">home</a>
-      <span aria-hidden="true">&rarr;</span>
+      <span aria-hidden>&rarr;</span>
     </li>
     {
       breadcrumbList.map((breadcrumb, index) =>
@@ -36,7 +36,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
         ) : (
           <li>
             <a href={`/${breadcrumb}/`}>{breadcrumb}</a>
-            <span aria-hidden="true">&rarr;</span>
+            <span aria-hidden>&rarr;</span>
           </li>
         )
       )

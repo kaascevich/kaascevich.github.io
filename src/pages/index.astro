@@ -78,7 +78,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       </section>
     }
 
-    <div class="all-posts-button-wrapper">
+    <div id="all-posts-button-wrapper">
       <LinkButton href="/posts/">
         all posts &rarr;
       </LinkButton>
@@ -116,7 +116,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   #featured h2, #recent-posts h2 {
     @apply text-2xl font-semibold tracking-wide;
   }
-  .all-posts-button-wrapper {
+  #all-posts-button-wrapper {
     @apply mb-8 text-center;
   }
 </style>

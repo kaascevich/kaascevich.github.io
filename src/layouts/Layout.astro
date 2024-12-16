@@ -34,7 +34,7 @@ const {
 } = Astro.props;
 
 /** The canonical URL to this page. */
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 /** This page's Open Graph image. */
 const ogImage = getImagePath({ url: Astro.url, site: Astro.site });
