@@ -28,7 +28,7 @@ For several months now, "Accessibility Services" has been using my microphone fo
 
 Checking in Activity Monitor, this app is located at `/System/Library/PrivateFrameworks/UniversalAccess.framework/Versions/A/Resources/AXVisualSupportAgent.app`.[^1] It seems to be responsible for handling the screen zoom feature of macOS. As far as I'm aware, this thing should have _no reason_ to be using the mic.
 
-Yet, checking the `entitlements.plist` embedded within the executable shows that AXVisualSupportAgnet does indeed have permission to use the mic without user authorization:
+Yet, checking the `entitlements.plist` embedded within the executable shows that AXVisualSupportAgent does indeed have permission to use the mic without user authorization:
 
 ```plist
 <?xml version="1.0" encoding="UTF-8"?>
