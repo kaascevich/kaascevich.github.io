@@ -138,10 +138,13 @@
       color: rgb(var(--color-text-base));
       font-weight: theme("fontWeight.extrabold");
     }
+    
+    & pre {
+      background-color: rgb(var(--color-card), 75%);
+    }
 
     & code {
       border-radius: theme("borderRadius.DEFAULT");
-      background-color: rgb(var(--color-card), 75%);
       padding: theme("spacing.1");
       word-break: break-words;
       &::before, &::after { content: none; }
@@ -228,14 +231,13 @@
     }
   }
 
-  /* ===== Code Blocks & Syntax Highlighting ===== */
+  /* MARK: Code Blocks & Syntax Highlighting */
   pre:has(code) {
     border-width: 1px;
     border-color: rgb(var(--color-border));
     white-space: pre;
   }
 
-  /* Apply dark theme */
   html[data-theme="dark"] {
     & pre:has(code),
     & pre:has(code) span {
