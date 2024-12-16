@@ -3,7 +3,7 @@ export interface Props {
   /** The URL this button links to. */
   href: string,
   /** Classes to apply to this button. */
-  className?: string,
+  class?: string,
   /** The accessibility label for this button. */
   ariaLabel?: string,
   /** The title for this button. */
@@ -14,7 +14,7 @@ export interface Props {
 
 const {
   href,
-  className = "",
+  class: className = "",
   ariaLabel,
   title,
   disabled = false,
