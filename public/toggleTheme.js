@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Gets the current site theme.
  * @returns {string | null} The current site theme.
