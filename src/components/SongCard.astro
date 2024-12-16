@@ -37,24 +37,16 @@ const author = remixDetails?.composer ?? SITE.author
 </li>
 
 <style>
-  .song-card {
-    @apply bg-skin-card-muted rounded-lg p-3;
-  }
+  .song-card { @apply bg-skin-card-muted rounded-lg p-3; }
   
   .song-card-header {
     @apply inline-block text-lg font-medium;
-  }
-  .song-card-header h2 {
-    @apply text-lg font-medium;
-  }
-  .song-card-header h2 a {
-    @apply text-skin-accent hover:underline hover:decoration-wavy;
+    h2 {
+      @apply text-lg font-medium;
+      a { @apply text-skin-accent hover:underline hover:decoration-wavy; }
+    }
   }
 
-  p {
-    @apply opacity-75;
-  }
-  audio {
-    @apply pt-1;
-  }
+  p { @apply opacity-75; }
+  audio { @apply pt-1; }
 </style>

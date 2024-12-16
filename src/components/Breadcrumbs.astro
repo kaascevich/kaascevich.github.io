@@ -54,18 +54,20 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     max-width: theme('maxWidth.3xl');
     padding-left: theme('spacing.4');
     padding-right: theme('spacing.4');
-  }
-  .breadcrumb ul li {
-    display: inline;
-  }
-  .breadcrumb ul li a {
-    opacity: 70%;
-    transition: opacity 0.1s linear;
-  }
-  .breadcrumb ul li span {
-    opacity: 70%;
-  }
-  .breadcrumb ul li:not(:last-child) a:hover {
-    opacity: 100%;
+    
+    ul {
+      li {
+        display: inline;
+        
+        a {
+          opacity: 70%;
+          transition: opacity 0.1s linear;
+        }
+        span { opacity: 70%; }
+        &:not(:last-child) a:hover {
+          opacity: 100%;
+        }
+      }
+    }
   }
 </style>

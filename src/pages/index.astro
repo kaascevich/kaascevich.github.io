@@ -29,7 +29,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         aria-label="rss feed"
         title="RSS feed"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon">
+        <svg xmlns="http://www.w3.org/2000/svg">
           <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"/>
           <path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"/>
           <circle cx="6" cy="18" r="2"/>
@@ -90,19 +90,15 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   /* ===== Hero Section ===== */
   #hero {
     @apply pb-6 pt-8;
+
+    h1 { @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl; }
+    .rss-link {
+      @apply mb-6;
+      svg { @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125; }
+    }
+    p { @apply my-2; }
   }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
+
   .social-wrapper {
     @apply mt-4 flex flex-col sm:flex-row sm:items-center;
   }
@@ -112,9 +108,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
 
   #featured, #recent-posts {
     @apply pb-6 pt-12;
-  }
-  #featured h2, #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
+    h2 { @apply text-2xl font-semibold tracking-wide; }
   }
   #all-posts-button-wrapper {
     @apply mb-8 text-center;
