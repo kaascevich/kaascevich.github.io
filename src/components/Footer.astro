@@ -9,9 +9,9 @@ const currentYear = new Date().getFullYear();
 
 <footer>
   <Hr noPadding/>
-  <div class="footer-wrapper">
+  <div id="footer-wrapper">
     <Socials centered/>
-    <div class="copyright-wrapper">
+    <div id="copyright-wrapper">
       Copyright &copy; {currentYear} {SITE.author}
     </div>
   </div>
@@ -21,7 +21,7 @@ const currentYear = new Date().getFullYear();
   footer {
     @apply w-full mt-auto;
   }
-  .footer-wrapper {
+  #footer-wrapper {
     @apply flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4;
   }
   .link-button {
@@ -30,7 +30,7 @@ const currentYear = new Date().getFullYear();
   .link-button svg {
     @apply scale-125;
   }
-  .copyright-wrapper {
+  #copyright-wrapper {
     @apply my-2 flex flex-col items-center whitespace-nowrap sm:flex-row;
   }
 </style>
