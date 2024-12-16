@@ -24,7 +24,7 @@ const {
 {
   disabled ? (
     <span
-      class:list={["group inline-block", className]}
+      class={`group inline-block ${className}`}
       {title}
       aria-disabled={disabled}
     >
@@ -33,7 +33,7 @@ const {
   ) : (
     <a
       {href}
-      class:list={["group inline-block hover:text-skin-accent", className]}
+      class={`group inline-block hover:text-skin-accent ${className}`}
       aria-label={ariaLabel}
       {title}
     >
