@@ -3,7 +3,7 @@
   function attachCodeBlockExtras() {
     const copyButtonLabel = "copy";
 
-    document.querySelectorAll("pre").forEach(codeBlock => {
+    for (const codeBlock of document.querySelectorAll("pre")) {
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
@@ -34,7 +34,7 @@
 
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
-    });
+    }
 
     /**
      * Copies the contents of the given code block to the clipboard.

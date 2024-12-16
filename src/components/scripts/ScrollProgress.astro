@@ -11,13 +11,13 @@
     progressContainer.appendChild(progressBar);
     document.body.appendChild(progressContainer);
 
-    document.addEventListener("scroll", () => {
+    document.onscroll = () => {
       const rootNode = document.documentElement;
       const height = rootNode.scrollHeight - rootNode.clientHeight;
       const scrolled = (rootNode.scrollTop / height) * 100;
 
       progressBar.style.width = `${scrolled}%`;
-    });
+    };
   }
   createProgressBar();
 </script>
