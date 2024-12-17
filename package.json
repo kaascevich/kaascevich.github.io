@@ -21,6 +21,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^5.0.5",
     "astro-opengraph-images": "^1.11.3",
+    "cssnano": "^7.0.6",
     "fuse.js": "^7.0.0",
     "mdast-util-to-string": "^4.0.0",
     "postcss-nested": "^7.0.2",
