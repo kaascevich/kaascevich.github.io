@@ -138,11 +138,13 @@ const { activeNav } = Astro.props;
     }
     & a.active {
       @apply font-extrabold;
-      & svg { @apply fill-skin-accent; }
+      & svg { fill: rgb(var(--color-accent)); }
     }
     & button {
-      @apply p-1;
-      & svg { @apply h-6 w-6 fill-skin-base hover:fill-skin-accent; }
+      padding: theme("spacing.1");
+      & svg {
+        @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
+      }
     }
   }
 
