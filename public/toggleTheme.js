@@ -10,7 +10,7 @@ function getTheme() {
 
 /**
  * Sets the current site theme.
- * @param {string} theme - The new site thee.
+ * @param {string} theme - The new site theme.
  */
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
