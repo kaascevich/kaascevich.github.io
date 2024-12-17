@@ -25,7 +25,9 @@ const { title, description } = Astro.props;
       @apply text-2xl font-semibold sm:text-3xl;
     }
     & p {
-      @apply mb-6 mt-2 italic;
+      margin-bottom: theme("spacing.6");
+      margin-top: theme("spacing.2");
+      font-style: italic;
     }
   }
 </style>
