@@ -1,7 +1,7 @@
 ---
 import { SITE } from "@config";
-import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
 
 import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
@@ -18,20 +18,12 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={`${frontmatter.title} | ${SITE.title}`} activeNav="about">
-  <Breadcrumbs/>
-  <main>
-    <section class="prose mb-28 max-w-3xl prose-img:border-0">
-      <h1>{frontmatter.title}</h1>
+  <Main title={frontmatter.title}>
+    <article class="prose max-w-3xl">
       <slot/>
-    </section>
-  </main>
+    </article>
+  </Main>
 </Layout>
-
-<style>
-  h1 {
-    @apply text-2xl tracking-wider sm:text-3xl;
-  }
-</style>
 
 <ScrollProgress/>
 <CodeBlockExtras/>
