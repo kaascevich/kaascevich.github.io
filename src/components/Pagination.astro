@@ -12,30 +12,29 @@ const { page } = Astro.props;
 ---
 
 {
-  page.lastPage > 1 &&
-    <nav class="pagination-wrapper" aria-label="Pagination">
-      <LinkButton
-        disabled={!page.url.prev}
-        href={page.url.prev as string}
-        class={`mr-4 select-none ${page.url.prev ? "" : "disabled"}`}
-        ariaLabel="previous"
-      >
-        &larr; prev
-      </LinkButton>
-      {page.currentPage} / {page.lastPage}
-      <LinkButton
-        disabled={!page.url.next}
-        href={page.url.next as string}
-        class={`mx-4 select-none ${page.url.next ? "" : "disabled"}`}
-        ariaLabel="next"
-      >
-        next &rarr;
-      </LinkButton>
-    </nav>
+  page.lastPage > 1 && <nav class="pagination" aria-label="pagination">
+    <LinkButton
+      disabled={!page.url.prev}
+      href={page.url.prev!}
+      class={`mr-4 select-none ${page.url.prev ? "" : "disabled"}`}
+      ariaLabel="previous"
+    >
+      &larr; prev
+    </LinkButton>
+    {page.currentPage} / {page.lastPage}
+    <LinkButton
+      disabled={!page.url.next}
+      href={page.url.next!}
+      class={`mx-4 select-none ${page.url.next ? "" : "disabled"}`}
+      ariaLabel="next"
+    >
+      next &rarr;
+    </LinkButton>
+  </nav>
 }
 
 <style>
-  .pagination-wrapper {
+  .pagination {
     @apply mb-8 mt-auto flex justify-center;
   }
   .disabled {

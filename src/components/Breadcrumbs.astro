@@ -19,7 +19,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 }
 ---
 
-<nav aria-label="breadcrumbs">
+<nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li>
       <a href="/">home</a>
@@ -41,7 +41,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 </nav>
 
 <style>
-  nav {
+  .breadcrumbs {
     margin: theme("spacing.8") auto theme("spacing.1");
     width: 100%;
     max-width: theme('maxWidth.3xl');
