@@ -18,13 +18,13 @@ export default function Card({ id, data, level2Heading }: Props) {
   const { title, published, modified, description } = data;
 
   const headerProps = {
-    className: "text-lg font-medium decoration-wavy hover:underline",
+    className: "text-lg font-medium decoration-solid hover:underline",
   };
 
   return <li className="my-6">
     <a
       href={`/posts/${id}/`}
-      className="inline-block text-lg font-medium text-skin-accent decoration-wavy underline-offset-4 focus-visible:no-underline"
+      className="inline-block text-lg font-medium text-skin-accent decoration-solid underline-offset-4 focus-visible:no-underline"
     >{
       level2Heading
         ? <h2 {...headerProps}>{title}</h2>
