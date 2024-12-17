@@ -13,9 +13,8 @@ const { class: className = "" } = Astro.props;
   </button>
 </div>
 
-<style>
-  button {
-    @apply focus-outline flex hover:opacity-75;
-    transition: opacity 0.1s linear;
-  }
+<style lang="sass">
+  button
+    @apply focus-outline flex hover:opacity-75
+    transition: opacity 0.1s linear
 </style>

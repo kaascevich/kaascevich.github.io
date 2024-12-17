@@ -20,9 +20,8 @@ const { social } = Astro.props;
   <Fragment set:html={socialIcons[social.name]}/>
 </LinkButton>
 
-<style>
-  .link-button {
-    @apply p-1.5 hover:rotate-6 sm:p-1;
-    transition: transform 0.1s ease-in-out;
-  }
+<style lang="sass">
+  .link-button
+    @apply p-1.5 hover:rotate-6 sm:p-1
+    transition: transform 0.1s ease-in-out
 </style>
