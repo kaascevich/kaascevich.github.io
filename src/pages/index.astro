@@ -88,19 +88,21 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
 <style>
   /* ===== Hero Section ===== */
   #hero {
-    @apply pb-6 pt-8;
+    padding-top: theme("spacing.8");
+    padding-bottom: theme("spacing.6");
 
     & h1 {
       @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
     }
     & .rss-link {
-      @apply mb-6;
+      margin-bottom: theme("spacing.6");
       & svg {
         @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
       }
     }
     & p {
-      @apply my-2;
+      margin-top: theme("spacing.2");
+      margin-bottom: theme("spacing.2");
     }
   }
 
@@ -114,12 +116,15 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   }
 
   #featured, #recent-posts {
-    @apply pb-6 pt-12;
+    padding-top: theme("spacing.12");
+    padding-bottom: theme("spacing.6");
+
     & h2 {
       @apply text-2xl font-semibold tracking-wide;
     }
   }
   #all-posts-button-wrapper {
-    @apply mb-8 text-center;
+    margin-bottom: theme("spacing.8");
+    text-align: center;
   }
 </style>
