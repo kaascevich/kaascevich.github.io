@@ -10,7 +10,7 @@ import BackButton from "@components/BackButton.astro";
       <h1>404</h1>
       <span class="url">{Astro.url}</span>
       <p>page not found</p>
-      <BackButton class="text-lg mb-2 mt-4"/>
+      <BackButton/>
     </div>
   </main>
 </Layout>
@@ -27,6 +27,10 @@ import BackButton from "@components/BackButton.astro";
     & p {
       @apply mt-4 text-2xl sm:text-3xl;
     }
+  }
+
+  .back-button {
+    @apply text-lg mb-2 mt-4;
   }
 
   .url {

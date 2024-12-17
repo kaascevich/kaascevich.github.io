@@ -47,7 +47,7 @@ const layoutProps: LayoutProps = {
 ---
 
 <Layout {...layoutProps}>
-  <BackButton class="mx-auto w-full max-w-3xl justify-start px-4 mb-2 mt-8"/>
+  <BackButton/>
 
   <main>
     <h1>{title}</h1>
@@ -73,6 +73,10 @@ const layoutProps: LayoutProps = {
 </Layout>
 
 <style>
+  .back-button {
+    @apply mx-auto w-full max-w-3xl justify-start px-4 mb-2 mt-8;
+  }
+
   main {
     @apply mx-auto w-full max-w-3xl px-4 pb-12;
   }
