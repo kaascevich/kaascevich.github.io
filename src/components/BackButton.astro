@@ -5,11 +5,9 @@ export interface Props {
 }
 
 const { class: className = "" } = Astro.props;
-
-console.log(className);
 ---
 
-<div class:list={["back-button", className]}>
+<div class={className}>
   <button onclick="history.length === 1 ? location = '/' : history.back()">
     &larr; go back
   </button>
