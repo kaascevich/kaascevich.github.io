@@ -43,6 +43,11 @@ export default defineConfig({
           conservativeCollapse: true,
         },
       },
+      JavaScript: {
+        "terser": {
+          toplevel: true,
+        },
+      },
     }),
   ],
   markdown: {
