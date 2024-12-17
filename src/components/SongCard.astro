@@ -36,14 +36,18 @@ const author = remixDetails?.composer ?? SITE.author
 
 <style>
   .song-card {
-    @apply bg-skin-card-muted rounded-lg p-3;
+    background-color: rgb(var(--color-card-muted));
+    border-radius: theme("borderRadius.lg");
+    padding: theme("spacing.3");
   
     & h2 {
       @apply inline-block text-lg font-medium;
-      & a { @apply text-skin-accent hover:underline hover:decoration-wavy; }
+      & a {
+        @apply text-skin-accent hover:underline hover:decoration-wavy;
+      }
     }
 
     & p { opacity: 75%; }
-    & audio { @apply pt-1; }
+    & audio { padding-top: theme("spacing.1"); }
   }
 </style>
