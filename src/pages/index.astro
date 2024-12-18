@@ -106,13 +106,11 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     }
   }
 
-  .social {
-    &-wrapper {
-      @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-    }
-    &-links {
-      @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-    }
+  .social-wrapper {
+    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+  }
+  .social-links {
+    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
   }
 
   #featured, #recent-posts {

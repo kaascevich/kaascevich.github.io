@@ -223,13 +223,14 @@
 
     &::-webkit-scrollbar {
       width: theme("spacing.3");
-      &-track { display: none; }
+    }
     
-      &-thumb {
-        background-color: rgb(var(--color-card));
-        border-radius: theme("borderRadius.md");
-        &:hover { background-color: rgb(var(--color-card-muted)); }
-      }
+    &::-webkit-scrollbar-track { display: none; }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(var(--color-card));
+      border-radius: theme("borderRadius.md");
+      &:hover { background-color: rgb(var(--color-card-muted)); }
     }
   }
 
