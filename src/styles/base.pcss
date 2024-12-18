@@ -145,7 +145,8 @@
       background-color: rgb(var(--color-card), 75%);
     }
 
-    & code {
+    & :not(pre) > code {
+      background-color: rgb(var(--color-card));
       border-radius: theme("borderRadius.DEFAULT");
       padding: theme("spacing.1");
       word-break: break-words;
@@ -224,7 +225,7 @@
     &::-webkit-scrollbar {
       width: theme("spacing.3");
     }
-    
+
     &::-webkit-scrollbar-track { display: none; }
   
     &::-webkit-scrollbar-thumb {
