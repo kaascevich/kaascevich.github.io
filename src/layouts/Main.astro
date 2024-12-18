@@ -12,17 +12,19 @@ const { title, description } = Astro.props;
 ---
 
 <Breadcrumbs/>
-<main>
+<main >
   <h1>{title}</h1>
   {description && <p>{description}</p>}
   <slot/>
 </main>
 
 <style lang="sass">
+  @use "../styles/mixins" as *
   main
     @apply mx-auto w-full max-w-3xl px-4 pb-4
     h1
-      @apply text-2xl font-semibold sm:text-3xl
+      +font-size(1.5rem, 2rem)
+      @apply font-semibold sm:text-3xl
     p
       margin-bottom: theme("spacing.6")
       margin-top: theme("spacing.2")

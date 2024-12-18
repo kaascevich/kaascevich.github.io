@@ -48,15 +48,14 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     padding-left: theme('spacing.4')
     padding-right: theme('spacing.4')
     
-    ul
-      li
-        display: inline
+    ul li
+      display: inline
 
-        a
-          opacity: 70%
-          transition: opacity 0.1s linear
-        span
-          opacity: 70%
-        &:not(:last-child) a:hover
-          opacity: 100%
+      a
+        opacity: 70%
+        transition: opacity 0.1s linear
+      span
+        opacity: 70%
+      &:not(:last-child) a:hover
+        opacity: 100%
 </style>
