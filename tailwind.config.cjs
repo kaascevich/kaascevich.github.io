@@ -83,14 +83,5 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    ({ addUtilities }) => addUtilities({
-      ".display-none": {
-        display: "none",
-      },
-      ".focus-outline": {
-        "@apply outline-2 outline-offset-1 outline-skin-fill": {},
-        "@apply focus-visible:no-underline focus-visible:outline-dashed": {},
-      },
-    }),
   ],
 };

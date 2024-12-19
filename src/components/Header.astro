@@ -30,7 +30,6 @@ const { activeNav } = Astro.props;
       <nav>
         <button
           id="hamburger-menu"
-          class="focus-outline"
           aria-label="open menu"
           aria-expanded={false}
           aria-controls="menu-items"
@@ -60,7 +59,7 @@ const { activeNav } = Astro.props;
           <li>
             <LinkButton
               href="/search/"
-              class={`focus-outline p-3 sm:p-1 ${activeNav === "search" ? "active" : ""}`}
+              class={`p-3 sm:p-1 ${activeNav === "search" ? "active" : ""}`}
               aria-label="search"
               title="search"
             >
@@ -72,7 +71,6 @@ const { activeNav } = Astro.props;
           <li>
             <button
               id="theme-button"
-              class="focus-outline"
               title="toggle dark mode"
               aria-label="auto"
               aria-live="polite"
@@ -94,16 +92,56 @@ const { activeNav } = Astro.props;
 
 <style>
   #skip-to-content {
-    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
+    position: absolute;
+    top: -100%;
+    left: theme("spacing.16");
+    z-index: 50;
+    background-color: rgb(var(--color-accent));
+    padding: theme("spacing.2") theme("spacing.3");
+    color: rgb(var(--color-fill));
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:focus {
+      top: theme("spacing.4");
+    }
   }
   #nav-container {
-    @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    max-width: theme("maxWidth.3xl");
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    @media (min-width: theme("screens.sm")) {
+      flex-direction: row;
+    }
   }
   #top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: theme("spacing.4");
+    @media (min-width: theme("screens.sm")) {
+      align-items: center;
+      padding-top: theme("spacing.8");
+      padding-bottom: theme("spacing.8");
+    }
   }
   #logo {
-    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl hover:text-skin-accent whitespace-nowrap;
+    position: absolute;
+    padding-top: theme("spacing.1");
+    padding-bottom: theme("spacing.1");
+    font-weight: theme("fontWeight.semibold");
+    white-space: nowrap;
+    @media (min-width: theme("screens.sm")) {
+      position: static;
+    }
+    &:hover {
+      color: rgb(var(--color-accent));
+    }
+    @apply text-xl sm:text-2xl;
   }
   #hamburger-menu {
     align-self: flex-end;
