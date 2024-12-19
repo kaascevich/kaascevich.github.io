@@ -35,7 +35,10 @@ const { page } = Astro.props;
 
 <style>
   .pagination {
-    @apply mb-8 mt-auto flex justify-center;
+    margin-bottom: theme("spacing.8");
+    margin-top: auto;
+    display: flex;
+    justify-content: center
   }
   .disabled {
     @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;

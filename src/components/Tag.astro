@@ -11,12 +11,12 @@ export interface Props {
 const { tag, size = "sm" } = Astro.props;
 ---
 
-<li class={`inline-block ${size === "sm" ? "my-1" : "my-3 mx-1"} underline-offset-4`}>
+<li class={size === "sm" ? "my-1" : "my-3 mx-1"}>
   <a
     href={`/tags/${tag}/`}
-    class={`${size === "sm" ? "text-sm" : "text-lg"} pr-2 group`}
+    class={size === "sm" ? "text-sm" : "text-lg"}
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class={`${size === "sm" ? " scale-75" : "scale-110"} mb-1`}>
+    <svg xmlns="http://www.w3.org/2000/svg" style={{ scale: `${size === "sm" ? 75 : 110}%` }}>
       <path d="M16.018 3.815 15.232 8h-4.966l.716-3.815-1.964-.37L8.232 8H4v2h3.857l-.751 4H3v2h3.731l-.714 3.805 1.965.369L8.766 16h4.966l-.714 3.805 1.965.369.783-4.174H20v-2h-3.859l.751-4H21V8h-3.733l.716-3.815-1.965-.37zM14.106 14H9.141l.751-4h4.966l-.752 4z"/>
     </svg>
     &nbsp;&nbsp;&nbsp;{tag}
@@ -24,10 +24,33 @@ const { tag, size = "sm" } = Astro.props;
 </li>
 
 <style>
-  a {
-    @apply relative underline decoration-solid hover:text-skin-accent focus-visible:p-1;
-    svg {
-      @apply -mr-5 h-6 w-6 scale-95 text-skin-base opacity-80 group-hover:fill-skin-accent;
+  li {
+    display: inline-block;
+    text-underline-offset: 4px;
+
+    a {
+      position: relative;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      padding-right: theme("spacing.2");
+
+      &:hover {
+        color: rgb(var(--color-accent));
+        svg {
+          fill: rgb(var(--color-accent));
+        }
+      }
+      
+      svg {
+        transition: fill 0.1s linear;
+        margin-right: calc(0 - theme("spacing.5"));
+        margin-bottom: theme("spacing.1");
+        height: theme("spacing.6");
+        width: theme("spacing.6");
+        scale: 95%;
+        color: rgb(var(--color-text-base));
+        opacity: 80%;
+      }
     }
   }
 </style>

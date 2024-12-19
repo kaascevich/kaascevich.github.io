@@ -43,8 +43,13 @@ const author = remixDetails?.composer ?? SITE.author
     h2 {
       @apply inline-block text-lg font-medium;
       a {
-        @apply text-skin-accent hover:underline hover:decoration-solid;
+        color: rgb(var(--color-accent));
       }
+    }
+
+    a:hover {
+      text-decoration-line: underline;
+      text-decoration-style: solid;
     }
 
     p { opacity: 75%; }

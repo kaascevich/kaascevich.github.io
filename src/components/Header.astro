@@ -143,7 +143,12 @@ const { activeNav } = Astro.props;
     button {
       padding: theme("spacing.1");
       svg {
-        @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
+        height: theme("spacing.6");
+        width: theme("spacing.6");
+        fill: rgb(var(--color-text-base));
+        &:hover {
+          fill: rgb(var(--color-accent));
+        }
       }
     }
   }

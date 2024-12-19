@@ -20,7 +20,13 @@ const { title, description } = Astro.props;
 
 <style>
   main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-4;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: theme("maxWidth.3xl");
+    padding-left: theme("spacing.4");
+    padding-right: theme("spacing.4");
+    padding-bottom: theme("spacing.4");
     h1 {
       @apply text-2xl font-semibold sm:text-3xl;
     }
