@@ -2,7 +2,7 @@
 const socialIcons = {
   GitHub: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -11,7 +11,7 @@ const socialIcons = {
   </svg>`,
   Mail: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -21,7 +21,7 @@ const socialIcons = {
   </svg>`,
   WhatsApp: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -31,7 +31,7 @@ const socialIcons = {
   </svg>`,
   Pinterest: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -42,7 +42,7 @@ const socialIcons = {
   </svg>`,
   Discord: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -56,7 +56,7 @@ const socialIcons = {
   </svg>`,
   Reddit: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -70,7 +70,7 @@ const socialIcons = {
   </svg>`,
   Steam: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
@@ -80,7 +80,7 @@ const socialIcons = {
   </svg>`,
   Telegram: `<svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon-tabler"
+    class="social-icon"
     stroke-linecap="round"
     stroke-linejoin="round"
   >
