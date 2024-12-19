@@ -98,7 +98,17 @@ const layoutProps: LayoutProps = {
     margin-bottom: theme("spacing.8");
   }
   #article-footer {
-    @apply flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: theme("spacing.6");
+    
+    @media (min-width: theme("screens.sm")) {
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      gap: theme("spacing.4");
+    }
   }
 </style>
 

@@ -106,9 +106,19 @@ const { activeNav } = Astro.props;
     @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl hover:text-skin-accent whitespace-nowrap;
   }
   #hamburger-menu {
-    @apply self-end p-2 sm:hidden;
+    align-self: flex-end;
+    padding: theme("spacing.2");
+
+    @media (min-width: theme("screens.sm")) {
+      display: none;
+    }
+
     svg {
-      @apply h-6 w-6 scale-125 fill-skin-base;
+      height: theme("spacing.6");
+      width: theme("spacing.6");
+      scale: 125%;
+      fill: rgb(var(--color-text-base));
+
       .close { opacity: 0%; }
       &.is-active {
         .line { opacity: 0%; }
@@ -118,26 +128,68 @@ const { activeNav } = Astro.props;
   }
 
   nav {
-    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: theme("screens.sm")) {
+      margin-left: theme("spacing.4");
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
 
     ul {
-      @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+      margin-top: theme("spacing.4");
+      display: grid;
+      width: theme("spacing.44");
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(4, minmax(0, 1fr));
+      column-gap: theme("spacing.2");
+      row-gap: theme("spacing.2");
+
+      @media (min-width: theme("screens.sm")) {
+        margin-left: 0rem;
+        margin-top: 0rem;
+        width: auto;
+        column-gap: theme("spacing.5");
+        row-gap: 0rem;
+      }
 
       li {
-        @apply col-span-2 flex items-center justify-center;
+        grid-column: span 2 / span 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         a {
-          @apply w-full px-4 py-3 text-center hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
+          width: 100%;
+          padding: theme("spacing.3") theme("spacing.4");
+          text-align: center;
           font-weight: 450;
+
+          @media (min-width: theme("screens.sm")) {
+            margin-top: 0rem;
+            margin-bottom: 0rem;
+            padding: theme("spacing.1") theme("spacing.2");
+          }
+
+          &:hover {
+            color: rgb(var(--color-accent));
+          }
         }
-        &:nth-last-child(2) a { width: auto; }
+        &:nth-last-child(2) a {
+          width: auto;
+        }
         &:nth-last-child(1), &:nth-last-child(2) {
-          @apply col-span-1;
+          grid-column: span 1 / span 1;
         }
       }
     }
     a.active {
-      @apply font-extrabold;
+      font-weight: theme("fontWeight.extrabold");
       svg { fill: rgb(var(--color-accent)); }
     }
     button {
@@ -154,9 +206,15 @@ const { activeNav } = Astro.props;
   }
 
   #theme-button {
-    @apply p-3 sm:p-1;
+    padding: theme("spacing.3");
+    @media (min-width: theme("screens.sm")) {
+      padding: theme("spacing.1");
+    }
     svg {
-      @apply scale-125 sm:scale-100;
+      scale: 125%;
+      @media (min-width: theme("screens.sm")) {
+        scale: 100%;
+      }
     }
   }
 </style>

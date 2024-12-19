@@ -28,7 +28,8 @@ const { title, description } = Astro.props;
     padding-right: theme("spacing.4");
     padding-bottom: theme("spacing.4");
     h1 {
-      @apply text-2xl font-semibold sm:text-3xl;
+      font-weight: theme("fontWeight.semibold");
+      @apply text-2xl sm:text-3xl;
     }
     p {
       margin-bottom: theme("spacing.6");

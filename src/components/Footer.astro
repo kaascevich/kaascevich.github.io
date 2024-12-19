@@ -29,7 +29,12 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between;
     padding-top: theme("spacing.6");
     padding-bottom: theme("spacing.6");
-    @apply sm:flex-row-reverse sm:py-4;
+
+    @media (min-width: theme("screens.sm")) {
+      flex-direction: row-reverse;
+      padding-top: theme("spacing.4");
+      padding-bottom: theme("spacing.4");
+    }
   }
   #copyright {
     margin-top: theme("spacing.2");
@@ -38,6 +43,7 @@ const currentYear = new Date().getFullYear();
     flex-direction: column;
     align-items: center;
     white-space: nowrap;
+    
     @media (min-width: theme("screens.sm")) {
       flex-direction: row;
     }

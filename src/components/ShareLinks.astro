@@ -47,6 +47,15 @@ const shareLinks: Social[] = [
     text-align: center;
   }
   .social-icons {
-    @apply flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: theme("spacing.1");
+    
+    @media (min-width: theme("screens.sm")) {
+      align-items: flex-start;
+    }
   }
 </style>

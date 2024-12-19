@@ -22,7 +22,12 @@ const { social } = Astro.props;
 
 <style>
   .link-button {
-    @apply p-1.5 hover:rotate-6 sm:p-1;
-    transition: transform 0.1s ease-in-out;
+    padding: theme("spacing[1.5]");
+    @media (min-width: theme("screens.sm")) {
+      padding: theme("spacing.1");
+    }
+    
+    transition: rotate 0.1s ease-in-out;
+    &:hover { rotate: 6deg; }
   }
 </style>
