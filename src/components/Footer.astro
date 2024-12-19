@@ -23,9 +23,23 @@ const currentYear = new Date().getFullYear();
     margin-top: auto;
   }
   #footer-wrapper {
-    @apply flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: theme("spacing.6");
+    padding-bottom: theme("spacing.6");
+    @apply sm:flex-row-reverse sm:py-4;
   }
   #copyright {
-    @apply my-2 flex flex-col items-center whitespace-nowrap sm:flex-row;
+    margin-top: theme("spacing.2");
+    margin-bottom: theme("spacing.2");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    @media (min-width: theme("screens.sm")) {
+      flex-direction: row;
+    }
   }
 </style>

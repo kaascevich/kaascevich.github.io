@@ -15,7 +15,9 @@ const { class: className = "" } = Astro.props;
 
 <style>
   button {
-    @apply focus-outline flex hover:opacity-75;
+    @apply focus-outline;
+    display: flex;
     transition: opacity 0.1s linear;
+    &:hover { opacity: 75%; }
   }
 </style>
