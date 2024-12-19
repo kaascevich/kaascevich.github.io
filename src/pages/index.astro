@@ -91,16 +91,16 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     padding-top: theme("spacing.8");
     padding-bottom: theme("spacing.6");
 
-    & h1 {
+    h1 {
       @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
     }
-    & .rss-link {
+    .rss-link {
       margin-bottom: theme("spacing.6");
-      & svg {
+      svg {
         @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
       }
     }
-    & p {
+    p {
       margin-top: theme("spacing.2");
       margin-bottom: theme("spacing.2");
     }
@@ -117,7 +117,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     padding-top: theme("spacing.12");
     padding-bottom: theme("spacing.6");
 
-    & h2 {
+    h2 {
       @apply text-2xl font-semibold tracking-wide;
     }
   }

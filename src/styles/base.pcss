@@ -48,7 +48,7 @@
     caret-color: rgb(var(--color-accent));
     accent-color: rgb(var(--color-accent));
 
-    & ::selection {
+    ::selection {
       background-color: rgb(var(--color-accent), 70%);
       color: rgb(var(--color-fill));
     }
@@ -93,16 +93,16 @@
   }
 
   .prose {
-    & :is(h1, h2, h3, h4, h5, h6) {
+    :is(h1, h2, h3, h4, h5, h6) {
       margin-bottom: theme("spacing.3");
       color: rgb(var(--color-text-base));
     }
 
-    & p {
+    p {
       color: rgb(var(--color-text-base));
     }
 
-    & a {
+    a {
       word-break: break-word;
       color: rgb(var(--color-text-base));
       text-decoration-style: solid;
@@ -119,37 +119,37 @@
       }
     }
 
-    & blockquote {
+    blockquote {
       font-style: normal;
       word-break: break-words;
       border-left-color: rgb(var(--color-accent), 50%);
       opacity: 80%;
     }
 
-    & figcaption {
+    figcaption {
       font-style: italic;
       text-align: center;
       color: rgb(var(--color-text-base));
       opacity: 70%;
     }
 
-    & mark {
+    mark {
       border-radius: theme("borderRadius.DEFAULT");
       padding: 0.2rem;
       background-color: rgb(var(--color-highlight));
       color: rgb(var(--color-fill));
     }
 
-    & strong {
+    strong {
       color: rgb(var(--color-text-base));
       font-weight: theme("fontWeight.extrabold");
     }
     
-    & pre {
+    pre {
       background-color: rgb(var(--color-card), 75%);
     }
 
-    & :not(pre) > code {
+    :not(pre) > code {
       background-color: rgb(var(--color-card));
       border-radius: theme("borderRadius.DEFAULT");
       padding: theme("spacing.1");
@@ -157,24 +157,24 @@
       &::before, &::after { content: none; }
     }
 
-    & ol {
+    ol {
       color: rgb(var(--color-text-base));
     }
 
-    & ul {
+    ul {
       overflow-x: clip;
       color: rgb(var(--color-text-base));
     }
 
-    & li::marker {
+    li::marker {
       color: rgb(var(--color-accent));
     }
 
-    & table {
+    table {
       color: rgb(var(--color-text-base));
     }
 
-    & th, & td {
+    th, td {
       border-width: 1px;
       border-color: rgb(var(--color-border));
 
@@ -193,30 +193,30 @@
       }
     }
 
-    & img {
+    img {
       margin: theme("spacing.2") auto;
       border-width: 2px;
       border-color: rgb(var(--color-border));
       border-radius: theme("borderRadius.lg");
     }
 
-    & hr {
+    hr {
       border-color: rgb(var(--color-border));
     }
 
-    & h2#table-of-contents {
+    h2#table-of-contents {
       margin-bottom: theme("spacing.2");
-      & + p { display: none; }
+      + p { display: none; }
     }
 
-    & details {
+    details {
       display: inline-block;
       cursor: pointer;
       user-select: none;
       color: rgb(var(--color-text-base));
     }
 
-    & summary {
+    summary {
       outline: 2px solid transparent;
       outline-offset: 2px;
     }
@@ -247,8 +247,8 @@
   }
 
   html[data-theme="dark"] {
-    & pre:has(code),
-    & pre:has(code) span {
+    pre:has(code),
+    pre:has(code) span {
       color: var(--shiki-dark) !important;
       background-color: var(--shiki-dark-bg) !important;
       font-style: var(--shiki-dark-font-style) !important;
