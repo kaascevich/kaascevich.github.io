@@ -83,5 +83,10 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
+    ({ addUtilities }) => addUtilities({
+      ".display-none": {
+        display: "none",
+      },
+    }),
   ],
 };
