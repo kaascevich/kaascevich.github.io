@@ -1,5 +1,3 @@
-import type socialIcons from "@assets/socialIcons";
-
 /** Global configuration for the site. */
 export type Site = {
   /** The site's URL. */
@@ -21,6 +19,16 @@ export type Site = {
    * date when the post should become visible.
    */
   scheduledPostMargin: number,
+};
+
+/** A social media service. */
+export type Social = {
+  /** The social media service's name. */
+  name: string,
+  /** The URL to the social media service. */
+  href: string,
+  /** The link's title. */
+  linkTitle: string,
 };
 
 /** A blog post tag. */

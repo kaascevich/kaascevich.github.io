@@ -1,5 +1,5 @@
 import type { GiscusProps } from "@giscus/react";
-import type { Site, Social } from "./types";
+import type { Site, Social } from "types";
 
 /** Global configuration for the site. */
 export const SITE: Site = {
@@ -13,7 +13,7 @@ export const SITE: Site = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 
-/** Social media links. */
+/** A list of social media links. */
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
@@ -34,6 +34,35 @@ export const SOCIALS: Social[] = [
     name: "Steam",
     href: "https://steamcommunity.com/id/macOSisthebestOS/",
     linkTitle: `${SITE.title} on Steam`,
+  },
+];
+
+/** A list of platforms posts can be shared on. */
+export const SHARE_LINKS: Social[] = [
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/?text=",
+    linkTitle: "share this post via WhatsApp",
+  },
+  {
+    name: "Telegram",
+    href: "https://t.me/share/url?url=",
+    linkTitle: "share this post via Telegram",
+  },
+  {
+    name: "Pinterest",
+    href: "https://pinterest.com/pin/create/button/?url=",
+    linkTitle: "share this post on Pinterest",
+  },
+  {
+    name: "Reddit",
+    href: "https://www.reddit.com/submit?title=Check%20out%20this%20post%21&url=",
+    linkTitle: "share this post on Reddit",
+  },
+  {
+    name: "Mail",
+    href: "mailto:?subject=See%20this%20post&body=",
+    linkTitle: "share this post via email",
   },
 ];
 

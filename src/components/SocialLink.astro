@@ -1,15 +1,6 @@
 ---
 import LinkButton from "@components/LinkButton.astro";
-
-/** A social media service. */
-export type Social = {
-  /** The social media service's name. */
-  name: string,
-  /** The URL to the social media service. */
-  href: string,
-  /** The link's title. */
-  linkTitle: string,
-};
+import type { Social } from "types"
 
 export interface Props {
   /** The social media service to display a link to. */

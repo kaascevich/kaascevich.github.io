@@ -1,35 +1,6 @@
 ---
 import SocialLink from "@components/SocialLink.astro";
-import type { Social } from "types";
-
-/** A list of platforms posts can be shared on. */
-const shareLinks: Social[] = [
-  {
-    name: "WhatsApp",
-    href: "https://wa.me/?text=",
-    linkTitle: "share this post via WhatsApp",
-  },
-  {
-    name: "Telegram",
-    href: "https://t.me/share/url?url=",
-    linkTitle: "share this post via Telegram",
-  },
-  {
-    name: "Pinterest",
-    href: "https://pinterest.com/pin/create/button/?url=",
-    linkTitle: "share this post on Pinterest",
-  },
-  {
-    name: "Reddit",
-    href: "https://www.reddit.com/submit?title=Check%20out%20this%20post%21&url=",
-    linkTitle: "share this post on Reddit",
-  },
-  {
-    name: "Mail",
-    href: "mailto:?subject=See%20this%20post&body=",
-    linkTitle: "share this post via email",
-  },
-] as const;
+import { SHARE_LINKS } from "@config";
 ---
 
 <div class="social-icons">
