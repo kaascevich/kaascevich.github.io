@@ -115,10 +115,21 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   }
 
   .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+    margin-top: theme("spacing.4");
+    display: flex;
+    flex-direction: column;
+    @media (min-width: theme("screens.sm")) {
+      flex-direction: row;
+      align-items: center;
+    }
   }
   .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+    margin-bottom: theme("spacing.1");
+    margin-right: theme("spacing.2");
+    white-space: nowrap;
+    @media (min-width: theme("screens.sm")) {
+      margin-bottom: 0rem;
+    }
   }
 
   #featured, #recent-posts {
