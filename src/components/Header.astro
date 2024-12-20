@@ -96,9 +96,9 @@ const { activeNav } = Astro.props;
     top: -100%;
     left: spacing(16);
     z-index: 50;
-    background-color: rgb(var(--color-accent));
+    background-color: $color-accent;
     padding: spacing(2) spacing(3);
-    color: rgb(var(--color-fill));
+    color: $color-fill;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     &:focus {
       top: spacing(4);
@@ -139,7 +139,7 @@ const { activeNav } = Astro.props;
       position: static;
     }
     &:hover {
-      color: rgb(var(--color-accent));
+      color: $color-accent;
     }
     @apply text-xl sm:text-2xl;
   }
@@ -155,7 +155,7 @@ const { activeNav } = Astro.props;
       height: spacing(6);
       width: spacing(6);
       scale: 125%;
-      fill: rgb(var(--color-text-base));
+      fill: $color-text;
 
       .close { opacity: 0%; }
       &.is-active {
@@ -215,7 +215,7 @@ const { activeNav } = Astro.props;
           }
 
           &:hover {
-            color: rgb(var(--color-accent));
+            color: $color-accent;
           }
         }
         &:nth-last-child(2) a {
@@ -228,16 +228,16 @@ const { activeNav } = Astro.props;
     }
     a.active {
       font-weight: $font-weight-extrabold;
-      svg { fill: rgb(var(--color-accent)); }
+      svg { fill: $color-accent; }
     }
     button {
       padding: spacing(1);
       svg {
         height: spacing(6);
         width: spacing(6);
-        fill: rgb(var(--color-text-base));
+        fill: $color-text;
         &:hover {
-          fill: rgb(var(--color-accent));
+          fill: $color-accent;
         }
       }
     }

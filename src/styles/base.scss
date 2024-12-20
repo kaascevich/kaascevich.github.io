@@ -6,11 +6,12 @@
 @tailwind utilities;
 
 @layer base {
-  /* :root {
+  :root {
     color-scheme: light dark;
-  } */
+  }
 
   html[data-theme="light"] {
+    color-scheme: light;
     --color-fill: 239, 241, 245;
     --color-text-base: 76, 79, 105;
     --color-accent: 30, 102, 245;
@@ -21,6 +22,7 @@
   }
 
   :root, html[data-theme="dark"] {
+    color-scheme: dark;
     --color-fill: 36, 39, 58;
     --color-text-base: 202, 211, 245;
     --color-accent: 138, 173, 244;
@@ -46,14 +48,14 @@
     font-feature-settings: "frac";
     font-variation-settings: "CASL" 0.25;
 
-    background-color: rgb(var(--color-fill));
-    color: rgb(var(--color-text-base));
-    caret-color: rgb(var(--color-accent));
-    accent-color: rgb(var(--color-accent));
+    background-color: $color-fill;
+    color: $color-text;
+    caret-color: $color-accent;
+    accent-color: $color-accent;
 
     ::selection {
-      background-color: rgb(var(--color-accent), 70%);
-      color: rgb(var(--color-fill));
+      background-color: rgb(from $color-accent r g b / 70%);
+      color: $color-fill;
     }
   }
 
@@ -69,7 +71,7 @@
     transition: color 0.1s linear;
     outline-width: 2px;
     outline-offset: 1px;
-    outline-color: rgb(var(--color-accent));
+    outline-color: $color-accent;
     &:focus-visible {
       text-decoration-line: none;
       outline-style: dashed;
@@ -80,34 +82,34 @@
     display: inline-block;
     height: spacing(6);
     width: spacing(6);
-    fill: rgb(var(--color-text-base));
+    fill: $color-text;
     transition: fill 0.1s linear;
-    &:hover { fill: rgb(var(--color-accent)); }
+    &:hover { fill: $color-accent; }
   }
 
   .prose {
     h1, h2, h3, h4, h5, h6 {
       margin-bottom: spacing(3);
-      color: rgb(var(--color-text-base));
+      color: $color-text;
     }
 
     p {
-      color: rgb(var(--color-text-base));
+      color: $color-text;
     }
 
     a {
       word-break: break-word;
-      color: rgb(var(--color-text-base));
+      color: $color-text;
       text-decoration-style: solid;
       text-underline-offset: 4px;
-      &:hover { color: rgb(var(--color-accent)); }
+      &:hover { color: $color-accent; }
 
       &[data-footnote-ref] {
         text-underline-offset: 1px;
       }
   
       &[data-footnote-backref] {
-        color: rgb(var(--color-accent));
+        color: $color-accent;
         text-decoration: none;
       }
     }
@@ -115,35 +117,35 @@
     blockquote {
       font-style: normal;
       word-break: break-words;
-      border-left-color: rgb(var(--color-accent), 50%);
+      border-left-color: rgb(from $color-accent r g b / 50%);
       opacity: 80%;
     }
 
     figcaption {
       font-style: italic;
       text-align: center;
-      color: rgb(var(--color-text-base));
+      color: $color-text;
       opacity: 70%;
     }
 
     mark {
       border-radius: $border-radius-default;
       padding: 0.2rem;
-      background-color: rgb(var(--color-highlight));
-      color: rgb(var(--color-fill));
+      background-color: $color-highlight;
+      color: $color-fill;
     }
 
     strong {
-      color: rgb(var(--color-text-base));
+      color: $color-text;
       font-weight: $font-weight-extrabold;
     }
     
     pre {
-      background-color: rgb(var(--color-card), 75%);
+      background-color: rgb(from $color-card r g b / 75%);
     }
 
     :not(pre) > code {
-      background-color: rgb(var(--color-card));
+      background-color: $color-card;
       border-radius: $border-radius-default;
       padding: spacing(1);
       overflow-wrap: break-word;
@@ -151,31 +153,31 @@
     }
 
     ol {
-      color: rgb(var(--color-text-base));
+      color: $color-text;
     }
 
     ul {
       overflow-x: clip;
-      color: rgb(var(--color-text-base));
+      color: $color-text;
     }
 
     li {
       padding-left: 0rem;
       &::marker {
-        color: rgb(var(--color-accent));
+        color: $color-accent;
       }
     }
 
     table {
       th {
-        background-color: rgb(var(--color-card), 50%);
+        background-color: rgb(from $color-card r g b / 50%);
       }
 
       th, td {
-        color: rgb(var(--color-text-base));
+        color: $color-text;
         padding: math.div(2em, 7) math.div(4em, 7);
   
-        border: 2px solid rgb(var(--color-border));
+        border: 2px solid $color-border;
   
         &[align="left"] {
           text-align: left;
@@ -194,12 +196,12 @@
     img {
       margin: spacing(2) auto;
       border-width: 2px;
-      border-color: rgb(var(--color-border));
+      border-color: $color-border;
       border-radius: $border-radius-lg;
     }
 
     hr {
-      border-color: rgb(var(--color-border));
+      border-color: $color-border;
     }
 
     h2#table-of-contents {
@@ -211,7 +213,7 @@
       display: inline-block;
       cursor: pointer;
       user-select: none;
-      color: rgb(var(--color-text-base));
+      color: $color-text;
     }
 
     summary {
@@ -231,16 +233,16 @@
     &::-webkit-scrollbar-track { display: none; }
   
     &::-webkit-scrollbar-thumb {
-      background-color: rgb(var(--color-card));
+      background-color: $color-card;
       border-radius: $border-radius-md;
-      &:hover { background-color: rgb(var(--color-card-muted)); }
+      &:hover { background-color: $color-card-muted; }
     }
   }
 
   /* MARK: Code Blocks & Syntax Highlighting */
   pre:has(code) {
     border-width: 1px;
-    border-color: rgb(var(--color-border));
+    border-color: $color-border;
     white-space: pre;
   }
 

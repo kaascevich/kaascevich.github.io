@@ -6,7 +6,7 @@ description: Just a Markdown formatting test
 
 こんにちは。今日は十二月二十日です。
 
-This is a paragraph. I'm just putting a whole bunch random text in here to fill it up a bit so it actually looks like a substantial paragraph. To achieve this goal, I'm making sure to add as many adjectives as I can feasibly manage to add -- generally, I'm trying to be as verbose as humanly possible here. I think I'm nearly done...
+This is a paragraph. I'm just putting a whole bunch of random text in here to fill it up a bit so it actually looks like a substantial paragraph. To achieve this goal, I'm making sure to add as many adjectives as I can feasibly manage to add -- generally, I'm trying to be as verbose as humanly possible here. I think I'm nearly done...
 
 ## Level 2 Heading
 

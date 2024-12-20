@@ -35,9 +35,9 @@ const { tag, size = "sm" } = Astro.props;
       padding-right: spacing(2);
 
       &:hover {
-        color: rgb(var(--color-accent));
+        color: $color-accent;
         svg {
-          fill: rgb(var(--color-accent));
+          fill: $color-accent;
         }
       }
       
@@ -48,7 +48,7 @@ const { tag, size = "sm" } = Astro.props;
         height: spacing(6);
         width: spacing(6);
         scale: 95%;
-        color: rgb(var(--color-text-base));
+        color: $color-text;
         opacity: 80%;
       }
     }

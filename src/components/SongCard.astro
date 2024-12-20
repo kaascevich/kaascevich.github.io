@@ -36,7 +36,7 @@ const author = remixDetails?.composer ?? SITE.author
 
 <style lang="scss">
   .song-card {
-    background-color: rgb(var(--color-card-muted));
+    background-color: $color-card-muted;
     border-radius: $border-radius-lg;
     padding: spacing(3);
   
@@ -44,7 +44,7 @@ const author = remixDetails?.composer ?? SITE.author
       display: inline-block;
       font-weight: $font-weight-medium;
       a {
-        color: rgb(var(--color-accent));
+        color: $color-accent;
       }
     }
 
