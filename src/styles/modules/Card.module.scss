@@ -1,8 +1,8 @@
-li {
+.card {
   margin-top: spacing(6);
   margin-bottom: spacing(6);
 
-  a {
+  .card-header-link {
     display: inline-block;
     @apply text-lg;
     font-weight: $font-weight-medium;
@@ -13,7 +13,7 @@ li {
       text-decoration-line: none;
     }
 
-    h2, h3 {
+    .card-header {
       @apply text-lg;
       font-weight: $font-weight-medium;
       text-decoration-style: solid;
