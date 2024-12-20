@@ -95,7 +95,12 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       margin-bottom: spacing(4);
       display: inline-block;
       font-weight: $font-weight-bold;
-      @apply text-3xl sm:my-8 sm:text-5xl;
+      @include font-size($font-size-3xl);
+      @media (min-width: $media-small) {
+        margin-top: spacing(8);
+        margin-bottom: spacing(8);
+        @include font-size($font-size-5xl);
+      }
     }
     .rss-link {
       margin-bottom: spacing(6);
@@ -140,7 +145,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     padding-bottom: spacing(6);
 
     h2 {
-      @apply text-2xl;
+      @include font-size($font-size-2xl);
       font-weight: $font-weight-semibold;
       letter-spacing: $letter-spacing-wide;
     }

@@ -135,13 +135,14 @@ const { activeNav } = Astro.props;
     padding-bottom: spacing(1);
     font-weight: $font-weight-semibold;
     white-space: nowrap;
+    @include font-size($font-size-xl);
     @media (min-width: $media-small) {
       position: static;
+      @include font-size($font-size-2xl);
     }
     &:hover {
       color: $color-accent;
     }
-    @apply text-xl sm:text-2xl;
   }
   #hamburger-menu {
     align-self: flex-end;

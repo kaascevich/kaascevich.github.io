@@ -29,7 +29,10 @@ const { title, description } = Astro.props;
     padding-bottom: spacing(4);
     h1 {
       font-weight: $font-weight-semibold;
-      @apply text-2xl sm:text-3xl;
+      @include font-size($font-size-2xl);
+      @media (min-width: $media-small) {
+        @include font-size($font-size-3xl);
+      }
     }
     p {
       margin-bottom: spacing(6);

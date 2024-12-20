@@ -94,6 +94,7 @@ export default defineConfig({
           @use "sass:color";
           @use "@/styles/variables.scss" as *;
           @use "@/styles/functions.scss" as *;
+          @use "@/styles/mixins.scss" as *;
           `,
         },
       },
