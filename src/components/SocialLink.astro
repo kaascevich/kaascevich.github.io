@@ -1,7 +1,15 @@
 ---
-import type { Social } from "types";
 import LinkButton from "@components/LinkButton.astro";
-import socialIcons from "@assets/socialIcons";
+
+/** A social media service. */
+export type Social = {
+  /** The social media service's name. */
+  name: string,
+  /** The URL to the social media service. */
+  href: string,
+  /** The link's title. */
+  linkTitle: string,
+};
 
 export interface Props {
   /** The social media service to display a link to. */
@@ -9,6 +17,7 @@ export interface Props {
 }
 
 const { social } = Astro.props;
+const { default: Icon } = await import(`../assets/icons/socials/${social.name}.svg`);
 ---
 
 <LinkButton
@@ -17,7 +26,7 @@ const { social } = Astro.props;
   title={social.linkTitle}
   aria-label={social.linkTitle}
 >
-  <Fragment set:html={socialIcons[social.name]}/>
+  <Icon/>
 </LinkButton>
 
 <style>
@@ -29,5 +38,15 @@ const { social } = Astro.props;
     
     transition: rotate 0.1s ease-in-out;
     &:hover { rotate: 6deg; }
+    
+    svg {
+      transform: scale(125%);
+      fill: transparent;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      @media (min-width: 640px) { transform: scale(110%); }
+    }
   }
 </style>

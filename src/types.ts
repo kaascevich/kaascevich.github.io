@@ -23,15 +23,5 @@ export type Site = {
   scheduledPostMargin: number,
 };
 
-/** A social media service. */
-export type Social = {
-  /** The social media service's name. */
-  name: keyof typeof socialIcons,
-  /** The URL to the social media service. */
-  href: string,
-  /** The link's title. */
-  linkTitle: string,
-};
-
 /** A blog post tag. */
 export type Tag = string;

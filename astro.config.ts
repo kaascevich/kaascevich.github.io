@@ -79,5 +79,6 @@ export default defineConfig({
   scopedStyleStrategy: "where",
   experimental: {
     contentIntellisense: true,
+    svg: true,
   },
 });
