@@ -55,9 +55,8 @@
 
   a, button {
     transition: color 0.1s linear;
-    outline-width: 2px;
+    outline: 2px $color-accent;
     outline-offset: 1px;
-    outline-color: $color-accent;
     &:focus-visible {
       text-decoration-line: none;
       outline-style: dashed;
@@ -227,8 +226,7 @@
 
   /* MARK: Code Blocks & Syntax Highlighting */
   pre:has(code) {
-    border-width: 1px;
-    border-color: $color-border;
+    border: 1px solid $color-border;
     white-space: pre;
   }
 
