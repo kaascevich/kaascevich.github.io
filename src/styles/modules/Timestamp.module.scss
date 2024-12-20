@@ -1,3 +1,6 @@
+@use "../variables.sass" as *;
+@use "../mixins.sass" as *;
+
 .timestamp-wrapper {
   display: flex;
   align-items: center;
@@ -5,8 +8,7 @@
 
   svg {
     display: inline-block;
-    height: 1.75rem;
-    width: 1.5rem;
+    @include size(1.5rem, 1.75rem);
     min-width: 1.375rem;
     fill: $color-text;
   }

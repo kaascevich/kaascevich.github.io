@@ -88,12 +88,13 @@ export default defineConfig({
     },
     css: {
       preprocessorOptions: {
-        scss: {
+        sass: {
           additionalData: `
-          @use "sass:math";
-          @use "sass:color";
-          @use "@/styles/variables.scss" as *;
-          @use "@/styles/mixins.scss" as *;
+          @use "sass:math"
+          @use "sass:color"
+          @use "@/styles/variables.sass" as *
+          @use "@/styles/functions.sass" as *
+          @use "@/styles/mixins.sass" as *
           `,
         },
       },

@@ -23,31 +23,27 @@ const { tag, size = "sm" } = Astro.props;
   </a>
 </li>
 
-<style lang="scss">
-  li {
-    display: inline-block;
-    text-underline-offset: 4px;
+<style lang="sass">
+  li
+    display: inline-block
+    text-underline-offset: 4px
 
-    a {
-      position: relative;
-      text-decoration: underline solid;
-      padding-right: 0.5rem;
+    a
+      position: relative
+      text-decoration: underline solid
+      padding-right: 0.5rem
 
-      &:hover {
-        color: $color-accent;
-        svg {
-          fill: $color-accent;
-        }
-      }
+      &:hover
+        color: $color-accent
+        svg
+          fill: $color-accent
       
-      svg {
-        margin: { right: -1.25rem; bottom: 0.25rem; }
-        height: 1.5rem;
-        width: 1.5rem;
-        scale: 95%;
-        color: $color-text;
-        opacity: 80%;
-      }
-    }
-  }
+      svg
+        margin:
+          right: -1.25rem
+          bottom: 0.25rem
+        +size(1.5rem)
+        scale: 95%
+        color: $color-text
+        opacity: 80%
 </style>

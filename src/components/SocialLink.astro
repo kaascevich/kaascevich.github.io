@@ -20,26 +20,23 @@ const { default: Icon } = await import(`../assets/icons/socials/${social.name}.s
   <Icon/>
 </LinkButton>
 
-<style lang="scss">
-  .link-button {
-    padding: 0.375rem;
+<style lang="sass">
+  .link-button
+    padding: 0.375rem
+    transition: rotate 0.1s ease-in-out, color 0.1s linear
+    &:hover
+      rotate: 6deg
     
-    transition: rotate 0.1s ease-in-out, color 0.1s linear;
-    &:hover { rotate: 6deg; }
+    @include desktop
+      padding: 0.25rem
     
-    @include desktop {
-      padding: 0.25rem;
-    }
-    
-    svg {
-      transform: scale(125%);
-      fill: transparent;
-      stroke: currentColor {
-        width: 2;
-        linecap: round;
-        linejoin: round;
-      }
-      @media (min-width: 640px) { transform: scale(110%); }
-    }
-  }
+    svg
+      transform: scale(125%)
+      fill: transparent
+      stroke: currentColor
+        width: 2
+        linecap: round
+        linejoin: round
+      @include desktop
+        transform: scale(110%)
 </style>

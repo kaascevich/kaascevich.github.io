@@ -15,42 +15,36 @@ import BackButton from "@components/BackButton.astro";
   </main>
 </Layout>
 
-<style lang="scss">
-  main {
-    margin: { left: auto; right: auto; }
-    display: flex;
-    max-width: $max-width;
-    flex: 1 1 0%;
-    align-items: center;
-    justify-content: center;
-  }
-  .not-found-wrapper {
-    margin-bottom: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    h1 {
-      @include font-size($font-size-9xl);
-      font-weight: $font-weight-bold;
-      color: $color-accent;
-    }
-    p {
-      margin-top: 1rem;
-      @include font-size($font-size-2xl);
-      @include desktop {
-        @include font-size($font-size-3xl);
-      }
-    }
-  }
+<style lang="sass">
+  main
+    +margin-x(auto)
+    display: flex
+    max-width: $max-width
+    flex: 1 1 0%
+    align-items: center
+    justify-content: center
+  
+  .not-found-wrapper
+    margin-bottom: 3.5rem
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    h1
+      +font-size($font-size-9xl)
+      font-weight: $font-weight-bold
+      color: $color-accent
+    p
+      margin-top: 1rem
+      +font-size($font-size-2xl)
+      @include desktop
+        +font-size($font-size-3xl)
 
-  .url {
-    font-style: italic;
-    opacity: 80%;
-  }
+  .url
+    font-style: italic
+    opacity: 80%
 
-  .back-button {
-    margin: { top: 1rem; bottom: 0.5rem; }
-    @include font-size($font-size-lg);
-  }
+  .back-button
+    +margin-y(1rem, 0.5rem)
+    +font-size($font-size-lg)
 </style>

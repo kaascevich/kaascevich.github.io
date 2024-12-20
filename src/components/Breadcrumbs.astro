@@ -40,24 +40,22 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
   </ul>
 </nav>
 
-<style lang="scss">
-  .breadcrumbs {
-    margin: 2rem auto 0.25rem;
-    width: 100%;
-    max-width: $max-width;
-    padding: { left: 1rem; right: 1rem; }
+<style lang="sass">
+  .breadcrumbs
+    margin: 2rem auto 0.25rem
+    width: 100%
+    max-width: $max-width
+    +padding-x(1rem)
     
-    ul {
-      li {
-        display: inline;
+    ul
+      li
+        display: inline
 
-        a {
-          opacity: 70%;
-          transition: opacity 0.1s linear;
-        }
-        span { opacity: 70%; }
-        &:not(:last-child) a:hover { opacity: 100%; }
-      }
-    }
-  }
+        a
+          opacity: 70%
+          +transition(opacity)
+        span
+          opacity: 70%
+        &:not(:last-child) a:hover
+          opacity: 100%
 </style>

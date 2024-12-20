@@ -34,25 +34,23 @@ const author = remixDetails?.composer ?? SITE.author
   </div>
 </li>
 
-<style lang="scss">
-  .song-card {
-    background-color: $color-card-muted;
-    border-radius: $border-radius-lg;
-    padding: 0.75rem;
+<style lang="sass">
+  .song-card
+    background-color: $color-card-muted
+    border-radius: $border-radius-lg
+    padding: 0.75rem
   
-    h2 {
-      display: inline-block;
-      font-weight: $font-weight-medium;
-      a {
-        color: $color-accent;
-      }
-    }
+    h2
+      display: inline-block
+      font-weight: $font-weight-medium
+      a
+        color: $color-accent
 
-    a:hover {
-      text-decoration: underline solid;
-    }
+    a:hover
+      text-decoration: underline solid
 
-    p { opacity: 75%; }
-    audio { padding-top: 0.25rem; }
-  }
+    p
+      opacity: 75%
+    audio
+      padding-top: 0.25rem
 </style>

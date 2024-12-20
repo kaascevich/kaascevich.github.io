@@ -90,166 +90,145 @@ const { activeNav } = Astro.props;
   <Hr/>
 </header>
 
-<style lang="scss">
-  #skip-to-content {
-    position: absolute;
-    top: -100%;
-    left: 4rem;
-    z-index: 50;
-    background-color: $color-accent;
-    padding: 0.5rem 0.75rem;
-    color: $color-fill;
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:focus {
-      top: 1rem;
-    }
-  }
-  #nav-container {
-    margin: { left: auto; right: auto; }
-    display: flex;
-    max-width: $max-width;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    @include desktop {
-      flex-direction: row;
-    }
-  }
-  #top-nav-wrap {
-    position: relative;
-    display: flex;
-    width: 100%;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 1rem;
-    @include desktop {
-      align-items: center;
-      padding: { top: 2rem; bottom: 2rem; }
-    }
-  }
-  #logo {
-    position: absolute;
-    padding: { top: 0.25rem; bottom: 0.25rem; }
-    font-weight: $font-weight-semibold;
-    white-space: nowrap;
-    @include font-size($font-size-xl);
-    @include desktop {
-      position: static;
-      @include font-size($font-size-2xl);
-    }
-    &:hover {
-      color: $color-accent;
-    }
-  }
-  #hamburger-menu {
-    align-self: flex-end;
-    padding: 0.5rem;
+<style lang="sass">
+  #skip-to-content
+    position: absolute
+    top: -100%
+    left: 4rem
+    z-index: 50
+    background-color: $color-accent
+    padding: 0.5rem 0.75rem
+    color: $color-fill
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1)
+    &:focus
+      top: 1rem
+  
+  #nav-container
+    +margin-x(auto)
+    display: flex
+    max-width: $max-width
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    @include desktop
+      flex-direction: row
+  
+  #top-nav-wrap
+    position: relative
+    display: flex
+    width: 100%
+    align-items: flex-start
+    justify-content: space-between
+    padding: 1rem
+    @include desktop
+      align-items: center
+      +padding-y(2rem)
+  
+  #logo
+    position: absolute
+    +padding-y(0.25rem)
+    font-weight: $font-weight-semibold
+    white-space: nowrap
+    +font-size($font-size-xl)
+    @include desktop
+      position: static
+      +font-size($font-size-2xl)
+    &:hover
+      color: $color-accent
 
-    @include desktop {
-      display: none;
-    }
+  #hamburger-menu
+    align-self: flex-end
+    padding: 0.5rem
 
-    svg {
-      height: 1.5rem;
-      width: 1.5rem;
-      scale: 125%;
-      fill: $color-text;
+    @include desktop
+      display: none
 
-      .close { opacity: 0%; }
-      &.is-active {
-        .line { opacity: 0%; }
-        .close { opacity: 100%; }
-      }
-    }
-  }
+    svg
+      +size(1.5rem)
+      scale: 125%
+      fill: $color-text
 
-  nav {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
+      .close
+        opacity: 0%
+      &.is-active
+        .line
+          opacity: 0%
+        .close
+          opacity: 100%
 
-    @include desktop {
-      margin-left: 1rem;
-      padding: { top: 0rem; bottom: 0rem; }
-      flex-direction: row;
-      justify-content: flex-end;
-    }
+  nav
+    display: flex
+    width: 100%
+    flex-direction: column
+    align-items: center
 
-    ul {
-      margin-top: 1rem;
-      display: grid;
-      width: 11rem;
-      grid-template: {
-        columns: repeat(2, minmax(0, 1fr));
-        rows: repeat(4, minmax(0, 1fr));
-      }
-      gap: 0.5rem;
+    @include desktop
+      margin-left: 1rem
+      +padding-y(0rem)
+      flex-direction: row
+      justify-content: flex-end
 
-      @include desktop {
-        margin: { left: 0rem; top: 0rem; }
-        width: auto;
-        gap: 0rem 1.25rem;
-      }
+    ul
+      margin-top: 1rem
+      display: grid
+      width: 11rem
+      grid-template:
+        columns: repeat(2, minmax(0, 1fr))
+        rows: repeat(4, minmax(0, 1fr))
+      gap: 0.5rem
 
-      li {
-        grid-column: span 2 / span 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      @include desktop
+        margin:
+          left: 0rem
+          top: 0rem
+        width: auto
+        gap: 0rem 1.25rem
 
-        a {
-          width: 100%;
-          padding: 0.75rem 1rem;
-          text-align: center;
-          font-weight: 450;
+      li
+        grid-column: span 2 / span 2
+        display: flex
+        align-items: center
+        justify-content: center
 
-          @include desktop {
-            margin: { top: 0rem; bottom: 0rem; }
-            padding: 0.25rem 0.5rem;
-          }
+        a
+          width: 100%
+          padding: 0.75rem 1rem
+          text-align: center
+          font-weight: 450
 
-          &:hover {
-            color: $color-accent;
-          }
-        }
-        &:nth-last-child(2) a {
-          width: auto;
-        }
-        &:nth-last-child(1), &:nth-last-child(2) {
-          grid-column: span 1 / span 1;
-        }
-      }
-    }
-    a.active {
-      font-weight: $font-weight-extrabold;
-      svg { fill: $color-accent; }
-    }
-    button {
-      padding: 0.25rem;
-      svg {
-        height: 1.5rem;
-        width: 1.5rem;
-        fill: $color-text;
-        &:hover {
-          fill: $color-accent;
-        }
-      }
-    }
-  }
+          @include desktop
+            +margin-y(0rem)
+            padding: 0.25rem 0.5rem
 
-  #theme-button {
-    padding: 0.75rem;
-    @include desktop {
-      padding: 0.25rem;
-    }
-    svg {
-      scale: 125%;
-      @include desktop {
-        scale: 100%;
-      }
-    }
-  }
+          &:hover
+            color: $color-accent
+        
+        &:nth-last-child(2) a
+          width: auto
+        &:nth-last-child(1), &:nth-last-child(2)
+          grid-column: span 1 / span 1
+
+    a.active
+      font-weight: $font-weight-extrabold
+      svg
+        fill: $color-accent
+    
+    button
+      padding: 0.25rem
+      svg
+        +size(1.5rem)
+        fill: $color-text
+        &:hover
+          fill: $color-accent
+
+  #theme-button
+    padding: 0.75rem
+    @include desktop
+      padding: 0.25rem
+    svg
+      scale: 125%
+      @include desktop
+        scale: 100%
 </style>
 
 <script>

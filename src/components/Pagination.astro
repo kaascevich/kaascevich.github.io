@@ -33,22 +33,18 @@ const { page } = Astro.props;
   </nav>
 }
 
-<style lang="scss">
-  .pagination {
-    margin: { top: auto; bottom: 2rem; }
-    display: flex;
+<style lang="sass">
+  .pagination
+    +margin-y(auto, 2rem)
+    display: flex
     justify-content: center
-  }
 
-  .page-link {
-    margin: { left: 1rem; right: 1rem; }
+  .page-link
+    +margin-x(1rem)
   
-    &.disabled {
-      pointer-events: none;
-      opacity: 50%;
-      &:hover {
-        color: $color-text;
-      }
-    }
-  }
+    &.disabled
+      pointer-events: none
+      opacity: 50%
+      &:hover
+        color: $color-text
 </style>

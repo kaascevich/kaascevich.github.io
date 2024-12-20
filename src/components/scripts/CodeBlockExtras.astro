@@ -51,28 +51,28 @@
   attachCodeBlockExtras();
 </script>
 
-<style lang="scss" is:global>
-  .copy-code {
-    position: absolute;
-    right: 0.75rem;
-    top: -(0.75rem);
-    border-radius: $border-radius-default;
-    background-color: $color-card;
-    padding: 0.25rem 0.5rem;
-    @include font-size($font-size-xs);
-    line-height: 1rem;
-    color: $color-text;
-    font-weight: $font-weight-medium;
-    &:hover { background-color: $color-card-muted; }
-  }
-  .language-name {
-    position: absolute;
-    left: 0.75rem;
-    top: -(0.75rem);
-    padding: 0.25rem;
-    @include font-size($font-size-xs);
-    line-height: 1rem;
-    font-weight: $font-weight-medium;
-    background-color: $color-fill;
-  }
+<style lang="sass" is:global>
+  .copy-code
+    position: absolute
+    right: 0.75rem
+    top: -0.75rem
+    border-radius: $border-radius-default
+    background-color: $color-card
+    padding: 0.25rem 0.5rem
+    +font-size($font-size-xs)
+    line-height: 1rem
+    color: $color-text
+    font-weight: $font-weight-medium
+    &:hover
+      background-color: $color-card-muted
+
+  .language-name
+    position: absolute
+    left: 0.75rem
+    top: -0.75rem
+    padding: 0.25rem
+    +font-size($font-size-xs)
+    line-height: 1rem
+    font-weight: $font-weight-medium
+    background-color: $color-fill
 </style>

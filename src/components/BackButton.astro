@@ -13,10 +13,10 @@ const { class: className = "" } = Astro.props;
   </button>
 </div>
 
-<style lang="scss">
-  button {
-    display: flex;
-    transition: opacity 0.1s linear;
-    &:hover { opacity: 75%; }
-  }
+<style lang="sass">
+  button
+    display: flex
+    +transition(opacity)
+    &:hover
+      opacity: 75%
 </style>

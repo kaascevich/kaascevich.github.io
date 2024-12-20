@@ -17,32 +17,29 @@ const currentYear = new Date().getFullYear();
   </div>
 </footer>
 
-<style lang="scss">
-  footer {
-    width: 100%;
-    margin-top: auto;
-  }
-  #footer-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: { top: 1.5rem; bottom: 1.5rem; }
+<style lang="sass">
+  footer
+    width: 100%
+    margin-top: auto
 
-    @include desktop {
-      flex-direction: row-reverse;
-      padding: { top: 1rem; bottom: 1rem; }
-    }
-  }
-  #copyright {
-    margin: { top: 0.5rem; bottom: 0.5rem; }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    white-space: nowrap;
+  #footer-wrapper
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    +padding-y(1.5rem)
+
+    @include desktop
+      flex-direction: row-reverse
+      +padding-y(1rem)
     
-    @include desktop {
-      flex-direction: row;
-    }
-  }
+  #copyright
+    +margin-y(0.5rem)
+    display: flex
+    flex-direction: column
+    align-items: center
+    white-space: nowrap
+    
+    @include desktop
+      flex-direction: row
 </style>

@@ -72,49 +72,48 @@ const layoutProps: LayoutProps = {
   </main>
 </Layout>
 
-<style lang="scss">
-  .back-button {
-    margin: 2rem auto 0.5rem;
-    width: 100%;
-    max-width: $max-width;
-    justify-content: flex-start;
-    padding: { left: 1rem; right: 1rem; }
-  }
+<style lang="sass">
+  .back-button
+    margin: 2rem auto 0.5rem
+    width: 100%
+    max-width: $max-width
+    justify-content: flex-start
+    +padding-x(1rem)
 
-  main {
-    margin: { left: auto; right: auto; }
-    width: 100%;
-    max-width: $max-width;
-    padding: { left: 1rem; right: 1rem; bottom: 3rem; }
-  }
-  h1 {
-    @include font-size($font-size-2xl);
-    font-weight: $font-weight-semibold;
-    color: $color-accent;
-  }
-  .reading-time {
-    opacity: 80%;
-  }
-  .timestamp {
-    margin: { top: 0.5rem; bottom: 0.25rem; }
-  }
+  main
+    +margin-x(auto)
+    width: 100%
+    max-width: $max-width
+    padding:
+      left: 1rem
+      right: 1rem
+      bottom: 3rem
 
-  .tag-list {
-    margin: { top: 2rem; bottom: 2rem; }
-  }
-  #article-footer {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+  h1
+    +font-size($font-size-2xl)
+    font-weight: $font-weight-semibold
+    color: $color-accent
+  
+  .reading-time
+    opacity: 80%
+  
+  .timestamp
+    +margin-y(0.5rem, 0.25rem)
+
+  .tag-list
+    +margin-y(2rem)
+  
+  #article-footer
+    display: flex
+    flex-direction: column-reverse
+    align-items: center
+    justify-content: space-between
+    gap: 1.5rem
     
-    @include desktop {
-      flex-direction: row-reverse;
-      align-items: flex-end;
-      gap: 1rem;
-    }
-  }
+    @include desktop
+      flex-direction: row-reverse
+      align-items: flex-end
+      gap: 1rem
 </style>
 
 <ScrollProgress/>

@@ -1,0 +1,45 @@
+@use "sass:list"
+@use "./variables.sass" as *
+
+// MARK: - Fonts
+
+=font-size($font-size)
+  font-size: list.nth($font-size, 1)
+  line-height: list.nth($font-size, 2)
+
+// MARK: - Media
+
+=desktop
+  @media (min-width: $media-desktop)
+    @content
+
+// MARK: - Margins
+
+=margin-x($left, $right: $left)
+  margin-left: $left
+  margin-right: $right
+
+=margin-y($top, $bottom: $top)
+  margin-top: $top
+  margin-bottom: $bottom
+
+// MARK: - Padding
+
+=padding-x($left, $right: $left)
+  padding-left: $left
+  padding-right: $right
+
+=padding-y($top, $bottom: $top)
+  padding-top: $top
+  padding-bottom: $bottom
+
+// MARK: - Sizing
+
+=size($width, $height: $width)
+  width: $width
+  height: $height
+
+// MARK: - Transitions
+
+=transition($transition-property)
+  transition: $transition-property 0.1s linear

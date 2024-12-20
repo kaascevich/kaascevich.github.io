@@ -10,22 +10,22 @@ import { SHARE_LINKS } from "@config";
   </div>
 </div>
 
-<style lang="scss">
-  .share-text {
-    font-style: italic;
-  }
-  .share-links-wrapper {
-    text-align: center;
-  }
-  .social-icons {
-    display: flex;
-    flex: { direction: column; wrap: wrap; }
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
+<style lang="sass">
+  .share-text
+    font-style: italic
+  
+  .share-links-wrapper
+    text-align: center
+
+  .social-icons
+    display: flex
+    flex:
+      direction: column
+      wrap: wrap
+    align-items: center
+    justify-content: center
+    gap: 0.25rem
     
-    @include desktop {
-      align-items: flex-start;
-    }
-  }
+    @include desktop
+      align-items: flex-start
 </style>

@@ -1,0 +1,202 @@
+@use "./fonts/recursive.sass"
+@use "./fonts/kosugi-maru.sass"
+
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+:root
+  color-scheme: light dark
+
+html[data-theme="light"]
+  color-scheme: light
+
+html[data-theme="dark"]
+  color-scheme: dark
+
+#sun-svg, html[data-theme="dark"] #moon-svg
+  display: none
+
+#moon-svg, html[data-theme="dark"] #sun-svg
+  display: block
+
+body
+  display: flex
+  min-height: 100svh
+  flex-direction: column
+  font:
+    family: Recursive, "Kosugi Maru", sans-serif
+    feature-settings: "frac"
+    variation-settings: "CASL" 0.25
+
+  background-color: $color-fill
+  color: $color-text
+  caret-color: $color-accent
+  accent-color: $color-accent
+
+  ::selection
+    background-color: with-opacity($color-accent, 70%)
+    color: $color-fill
+
+section, footer
+  max-width: $max-width
+  +margin-x(auto)
+  +padding-x(1rem)
+
+a, button
+  +transition(color)
+  outline: 2px $color-accent
+  outline-offset: 1px
+  &:focus-visible
+    text-decoration-line: none
+    outline-style: dashed
+
+svg
+  display: inline-block
+  +size(1.5rem)
+  fill: $color-text
+  +transition(fill)
+  &:hover
+    fill: $color-accent
+
+.prose
+  h1, h2, h3, h4, h5, h6
+    margin-bottom: 0.75rem
+    color: $color-text
+
+  p
+    color: $color-text
+
+  a
+    word-break: break-word
+    color: $color-text
+    text-decoration-style: solid
+    text-underline-offset: 4px
+    &:hover
+      color: $color-accent
+
+    &[data-footnote-ref]
+      text-underline-offset: 1px
+
+    &[data-footnote-backref]
+      color: $color-accent
+      text-decoration: none
+
+  blockquote
+    font-style: normal
+    word-break: break-words
+    border-left-color: with-opacity($color-accent, 50%)
+    opacity: 80%
+
+  figcaption
+    font-style: italic
+    text-align: center
+    color: $color-text
+    opacity: 70%
+
+  mark
+    border-radius: $border-radius-default
+    padding: 0.2rem
+    background-color: $color-highlight
+    color: $color-fill
+
+  strong
+    color: $color-text
+    font-weight: $font-weight-extrabold
+  
+  pre
+    background-color: with-opacity($color-card, 75%)
+
+  :not(pre) > code
+    background-color: $color-card
+    border-radius: $border-radius-default
+    padding: 0.25rem
+    overflow-wrap: break-word
+    &::before, &::after
+      content: none
+
+  ol
+    color: $color-text
+
+
+  ul
+    overflow-x: clip
+    color: $color-text
+
+  li
+    padding-left: 0rem
+    &::marker
+      color: $color-accent
+
+  table
+    th
+      background-color: with-opacity($color-card, 50%)
+
+    th, td
+      color: $color-text
+      padding: math.div(2em, 7) math.div(4em, 7)
+
+      border: 2px solid $color-border
+
+      &[align="left"]
+        text-align: left
+  
+      &[align="center"]
+        text-align: center
+      
+      &[align="right"]
+        text-align: right
+
+  img
+    margin: 0.5rem auto
+    border:
+      width: 2px
+      color: $color-border
+      radius: $border-radius-lg
+
+  hr
+    border-color: $color-border
+
+  h2#table-of-contents
+    margin-bottom: 0.5rem
+    & + p
+      display: none
+
+  details
+    display: inline-block
+    cursor: pointer
+    user-select: none
+    color: $color-text
+
+  summary
+    outline: 2px solid transparent
+    outline-offset: 2px
+
+/* MARK: Scrollbar */
+html
+  overflow-y: scroll
+
+  &::-webkit-scrollbar
+    width: 0.75rem
+
+  &::-webkit-scrollbar-track
+    display: none
+
+  &::-webkit-scrollbar-thumb
+    background-color: $color-card
+    border-radius: $border-radius-md
+    &:hover
+      background-color: $color-card-muted
+
+/* MARK: Code Blocks & Syntax Highlighting */
+pre:has(code)
+  border: 1px solid $color-border
+  white-space: pre
+
+html[data-theme="dark"]
+  pre:has(code), pre:has(code) span
+    color: var(--shiki-dark) !important
+    background-color: var(--shiki-dark-bg) !important
+    font-style: var(--shiki-dark-font-style) !important
+    font-weight: var(--shiki-dark-font-weight) !important
+    text-decoration: var(--shiki-dark-text-decoration) !important

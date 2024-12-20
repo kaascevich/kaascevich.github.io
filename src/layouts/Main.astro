@@ -18,22 +18,21 @@ const { title, description } = Astro.props;
   <slot/>
 </main>
 
-<style lang="scss">
-  main {
-    margin: { left: auto; right: auto; }
-    width: 100%;
-    max-width: $max-width;
-    padding: { left: 1rem; right: 1rem; bottom: 1rem; }
-    h1 {
-      font-weight: $font-weight-semibold;
-      @include font-size($font-size-2xl);
-      @include desktop {
-        @include font-size($font-size-3xl);
-      }
-    }
-    p {
-      margin: { top: 0.5rem; bottom: 1.5rem; }
-      font-style: italic;
-    }
-  }
+<style lang="sass">
+  main
+    +margin-x(auto)
+    width: 100%
+    max-width: $max-width
+    padding:
+      left: 1rem
+      right: 1rem
+      bottom: 1rem
+    h1
+      font-weight: $font-weight-semibold
+      +font-size($font-size-2xl)
+      @include desktop
+        +font-size($font-size-3xl)
+    p
+      +margin-y(0.5rem, 1.5rem)
+      font-style: italic
 </style>

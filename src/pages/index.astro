@@ -85,68 +85,57 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   </main>
 </Layout>
 
-<style lang="scss">
-  #hero {
-    padding: { top: 2rem; bottom: 1.5rem; }
+<style lang="sass">
+  #hero
+    +padding-y(2rem, 1.5rem)
 
-    h1 {
-      margin: { top: 1rem; bottom: 1rem; }
-      display: inline-block;
-      font-weight: $font-weight-bold;
-      @include font-size($font-size-3xl);
-      @include desktop {
-        margin: { top: 2rem; bottom: 2rem; }
-        @include font-size($font-size-5xl);
-      }
-    }
-    .rss-link {
-      margin-bottom: 1.5rem;
-      svg {
-        margin-bottom: 0.5rem;
-        height: 1.5rem;
-        width: 1.5rem;
-        scale: 110%;
-        fill: $color-accent;
-        @include desktop {
-          margin-bottom: 0.75rem;
-          scale: 125%;
-        }
-      }
-    }
-    p {
-      margin: { top: 0.5rem; bottom: 0.5rem; }
-    }
-  }
+    h1
+      +margin-y(1rem)
+      display: inline-block
+      font-weight: $font-weight-bold
+      +font-size($font-size-3xl)
+      @include desktop
+        +margin-y(2rem)
+        +font-size($font-size-5xl)
+    
+    .rss-link
+      margin-bottom: 1.5rem
+      svg
+        margin-bottom: 0.5rem
+        +size(1.5rem)
+        scale: 110%
+        fill: $color-accent
+        @include desktop
+          margin-bottom: 0.75rem
+          scale: 125%
+          
+    p
+      +margin-y(0.5rem)
 
-  .social-wrapper {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    @include desktop {
-      flex-direction: row;
-      align-items: center;
-    }
-  }
-  .social-links {
-    margin-bottom: 0.25rem;
-    margin-right: 0.5rem;
-    white-space: nowrap;
-    @include desktop {
-      margin-bottom: 0rem;
-    }
-  }
+  .social-wrapper
+    margin-top: 1rem
+    display: flex
+    flex-direction: column
+    @include desktop
+      flex-direction: row
+      align-items: center
+  
+  .social-links
+    margin-bottom: 0.25rem
+    margin-right: 0.5rem
+    white-space: nowrap
+    @include desktop
+      margin-bottom: 0rem
 
-  #featured, #recent-posts {
-    padding: { top: 3rem; bottom: 1.5rem; }
+  #featured, #recent-posts
+    +padding-y(3rem, 1.5rem)
 
-    h2 {
-      @include font-size($font-size-2xl);
-      font-weight: $font-weight-semibold;
-      letter-spacing: $letter-spacing-wide;
-    }
-  }
-  #all-posts-button-wrapper {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
+    h2
+      +font-size($font-size-2xl)
+      font-weight: $font-weight-semibold
+      letter-spacing: $letter-spacing-wide
+      
+  #all-posts-button-wrapper
+    margin-bottom: 2rem
+    text-align: center
 </style>
