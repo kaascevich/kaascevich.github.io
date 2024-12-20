@@ -74,51 +74,51 @@ const layoutProps: LayoutProps = {
 
 <style lang="scss">
   .back-button {
-    margin: theme("spacing.8") auto theme("spacing.2");
+    margin: spacing(8) auto spacing(2);
     width: 100%;
-    max-width: theme("maxWidth.3xl");
+    max-width: $max-width;
     justify-content: flex-start;
-    padding-left: theme("spacing.4");
-    padding-right: theme("spacing.4");
+    padding-left: spacing(4);
+    padding-right: spacing(4);
   }
 
   main {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: theme("maxWidth.3xl");
-    padding-left: theme("spacing.4");
-    padding-right: theme("spacing.4");
-    padding-bottom: theme("spacing.12");
+    max-width: $max-width;
+    padding-left: spacing(4);
+    padding-right: spacing(4);
+    padding-bottom: spacing(12);
   }
   h1 {
     @apply text-2xl;
-    font-weight: theme("fontWeight.semibold");
+    font-weight: $font-weight-semibold;
     color: rgb(var(--color-accent));
   }
   .reading-time {
     opacity: 80%;
   }
   .timestamp {
-    margin-top: theme("spacing.2");
-    margin-bottom: theme("spacing.1");
+    margin-top: spacing(2);
+    margin-bottom: spacing(1);
   }
 
   .tag-list {
-    margin-top: theme("spacing.8");
-    margin-bottom: theme("spacing.8");
+    margin-top: spacing(8);
+    margin-bottom: spacing(8);
   }
   #article-footer {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: space-between;
-    gap: theme("spacing.6");
+    gap: spacing(6);
     
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       flex-direction: row-reverse;
       align-items: flex-end;
-      gap: theme("spacing.4");
+      gap: spacing(4);
     }
   }
 </style>

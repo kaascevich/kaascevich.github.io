@@ -94,25 +94,25 @@ const { activeNav } = Astro.props;
   #skip-to-content {
     position: absolute;
     top: -100%;
-    left: theme("spacing.16");
+    left: spacing(16);
     z-index: 50;
     background-color: rgb(var(--color-accent));
-    padding: theme("spacing.2") theme("spacing.3");
+    padding: spacing(2) spacing(3);
     color: rgb(var(--color-fill));
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     &:focus {
-      top: theme("spacing.4");
+      top: spacing(4);
     }
   }
   #nav-container {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    max-width: theme("maxWidth.3xl");
+    max-width: $max-width;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       flex-direction: row;
     }
   }
@@ -122,20 +122,20 @@ const { activeNav } = Astro.props;
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
-    padding: theme("spacing.4");
-    @media (min-width: theme("screens.sm")) {
+    padding: spacing(4);
+    @media (min-width: $media-small) {
       align-items: center;
-      padding-top: theme("spacing.8");
-      padding-bottom: theme("spacing.8");
+      padding-top: spacing(8);
+      padding-bottom: spacing(8);
     }
   }
   #logo {
     position: absolute;
-    padding-top: theme("spacing.1");
-    padding-bottom: theme("spacing.1");
-    font-weight: theme("fontWeight.semibold");
+    padding-top: spacing(1);
+    padding-bottom: spacing(1);
+    font-weight: $font-weight-semibold;
     white-space: nowrap;
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       position: static;
     }
     &:hover {
@@ -145,15 +145,15 @@ const { activeNav } = Astro.props;
   }
   #hamburger-menu {
     align-self: flex-end;
-    padding: theme("spacing.2");
+    padding: spacing(2);
 
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       display: none;
     }
 
     svg {
-      height: theme("spacing.6");
-      width: theme("spacing.6");
+      height: spacing(6);
+      width: spacing(6);
       scale: 125%;
       fill: rgb(var(--color-text-base));
 
@@ -171,8 +171,8 @@ const { activeNav } = Astro.props;
     flex-direction: column;
     align-items: center;
 
-    @media (min-width: theme("screens.sm")) {
-      margin-left: theme("spacing.4");
+    @media (min-width: $media-small) {
+      margin-left: spacing(4);
       padding-top: 0rem;
       padding-bottom: 0rem;
       flex-direction: row;
@@ -180,19 +180,19 @@ const { activeNav } = Astro.props;
     }
 
     ul {
-      margin-top: theme("spacing.4");
+      margin-top: spacing(4);
       display: grid;
-      width: theme("spacing.44");
+      width: spacing(44);
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(4, minmax(0, 1fr));
-      column-gap: theme("spacing.2");
-      row-gap: theme("spacing.2");
+      column-gap: spacing(2);
+      row-gap: spacing(2);
 
-      @media (min-width: theme("screens.sm")) {
+      @media (min-width: $media-small) {
         margin-left: 0rem;
         margin-top: 0rem;
         width: auto;
-        column-gap: theme("spacing.5");
+        column-gap: spacing(5);
         row-gap: 0rem;
       }
 
@@ -204,14 +204,14 @@ const { activeNav } = Astro.props;
 
         a {
           width: 100%;
-          padding: theme("spacing.3") theme("spacing.4");
+          padding: spacing(3) spacing(4);
           text-align: center;
           font-weight: 450;
 
-          @media (min-width: theme("screens.sm")) {
+          @media (min-width: $media-small) {
             margin-top: 0rem;
             margin-bottom: 0rem;
-            padding: theme("spacing.1") theme("spacing.2");
+            padding: spacing(1) spacing(2);
           }
 
           &:hover {
@@ -227,14 +227,14 @@ const { activeNav } = Astro.props;
       }
     }
     a.active {
-      font-weight: theme("fontWeight.extrabold");
+      font-weight: $font-weight-extrabold;
       svg { fill: rgb(var(--color-accent)); }
     }
     button {
-      padding: theme("spacing.1");
+      padding: spacing(1);
       svg {
-        height: theme("spacing.6");
-        width: theme("spacing.6");
+        height: spacing(6);
+        width: spacing(6);
         fill: rgb(var(--color-text-base));
         &:hover {
           fill: rgb(var(--color-accent));
@@ -244,13 +244,13 @@ const { activeNav } = Astro.props;
   }
 
   #theme-button {
-    padding: theme("spacing.3");
-    @media (min-width: theme("screens.sm")) {
-      padding: theme("spacing.1");
+    padding: spacing(3);
+    @media (min-width: $media-small) {
+      padding: spacing(1);
     }
     svg {
       scale: 125%;
-      @media (min-width: theme("screens.sm")) {
+      @media (min-width: $media-small) {
         scale: 100%;
       }
     }

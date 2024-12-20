@@ -1,0 +1,5 @@
+@use "sass:math";
+
+@function spacing($value) {
+  @return math.div($value, 4) * 1rem;
+}

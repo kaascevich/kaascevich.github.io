@@ -6,6 +6,10 @@
 @tailwind utilities;
 
 @layer base {
+  /* :root {
+    color-scheme: light dark;
+  } */
+
   html[data-theme="light"] {
     --color-fill: 239, 241, 245;
     --color-text-base: 76, 79, 105;
@@ -38,7 +42,9 @@
     display: flex;
     min-height: 100svh;
     flex-direction: column;
-    font-family: theme("fontFamily.sans");
+    font-family: Recursive, "Kosugi Maru", sans-serif;
+    font-feature-settings: "frac";
+    font-variation-settings: "CASL" 0.25;
 
     background-color: rgb(var(--color-fill));
     color: rgb(var(--color-text-base));
@@ -54,9 +60,9 @@
   section, footer {
     margin-left: auto;
     margin-right: auto;
-    max-width: theme("maxWidth.3xl");
-    padding-left: theme("spacing.4");
-    padding-right: theme("spacing.4");
+    max-width: $max-width;
+    padding-left: spacing(4);
+    padding-right: spacing(4);
   }
 
   a, button {
@@ -72,8 +78,8 @@
   
   svg {
     display: inline-block;
-    height: theme("spacing.6");
-    width: theme("spacing.6");
+    height: spacing(6);
+    width: spacing(6);
     fill: rgb(var(--color-text-base));
     transition: fill 0.1s linear;
     &:hover { fill: rgb(var(--color-accent)); }
@@ -81,7 +87,7 @@
 
   .prose {
     h1, h2, h3, h4, h5, h6 {
-      margin-bottom: theme("spacing.3");
+      margin-bottom: spacing(3);
       color: rgb(var(--color-text-base));
     }
 
@@ -121,7 +127,7 @@
     }
 
     mark {
-      border-radius: theme("borderRadius.DEFAULT");
+      border-radius: $border-radius-default;
       padding: 0.2rem;
       background-color: rgb(var(--color-highlight));
       color: rgb(var(--color-fill));
@@ -129,7 +135,7 @@
 
     strong {
       color: rgb(var(--color-text-base));
-      font-weight: theme("fontWeight.extrabold");
+      font-weight: $font-weight-extrabold;
     }
     
     pre {
@@ -138,8 +144,8 @@
 
     :not(pre) > code {
       background-color: rgb(var(--color-card));
-      border-radius: theme("borderRadius.DEFAULT");
-      padding: theme("spacing.1");
+      border-radius: $border-radius-default;
+      padding: spacing(1);
       overflow-wrap: break-word;
       &::before, &::after { content: none; }
     }
@@ -167,7 +173,7 @@
 
       th, td {
         color: rgb(var(--color-text-base));
-        padding: calc(2em / 7) calc(4em / 7);
+        padding: math.div(2em, 7) math.div(4em, 7);
   
         border: 2px solid rgb(var(--color-border));
   
@@ -186,10 +192,10 @@
     }
 
     img {
-      margin: theme("spacing.2") auto;
+      margin: spacing(2) auto;
       border-width: 2px;
       border-color: rgb(var(--color-border));
-      border-radius: theme("borderRadius.lg");
+      border-radius: $border-radius-lg;
     }
 
     hr {
@@ -197,7 +203,7 @@
     }
 
     h2#table-of-contents {
-      margin-bottom: theme("spacing.2");
+      margin-bottom: spacing(2);
       + p { display: none; }
     }
 
@@ -219,14 +225,14 @@
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
-      width: theme("spacing.3");
+      width: spacing(3);
     }
 
     &::-webkit-scrollbar-track { display: none; }
   
     &::-webkit-scrollbar-thumb {
       background-color: rgb(var(--color-card));
-      border-radius: theme("borderRadius.md");
+      border-radius: $border-radius-md;
       &:hover { background-color: rgb(var(--color-card-muted)); }
     }
   }

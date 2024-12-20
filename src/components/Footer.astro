@@ -27,24 +27,24 @@ const currentYear = new Date().getFullYear();
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: theme("spacing.6");
-    padding-bottom: theme("spacing.6");
+    padding-top: spacing(6);
+    padding-bottom: spacing(6);
 
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       flex-direction: row-reverse;
-      padding-top: theme("spacing.4");
-      padding-bottom: theme("spacing.4");
+      padding-top: spacing(4);
+      padding-bottom: spacing(4);
     }
   }
   #copyright {
-    margin-top: theme("spacing.2");
-    margin-bottom: theme("spacing.2");
+    margin-top: spacing(2);
+    margin-bottom: spacing(2);
     display: flex;
     flex-direction: column;
     align-items: center;
     white-space: nowrap;
     
-    @media (min-width: theme("screens.sm")) {
+    @media (min-width: $media-small) {
       flex-direction: row;
     }
   }

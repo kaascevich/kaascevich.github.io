@@ -37,12 +37,12 @@ const author = remixDetails?.composer ?? SITE.author
 <style lang="scss">
   .song-card {
     background-color: rgb(var(--color-card-muted));
-    border-radius: theme("borderRadius.lg");
-    padding: theme("spacing.3");
+    border-radius: $border-radius-lg;
+    padding: spacing(3);
   
     h2 {
       display: inline-block;
-      font-weight: theme("fontWeight.medium");
+      font-weight: $font-weight-medium;
       a {
         color: rgb(var(--color-accent));
       }
@@ -54,6 +54,6 @@ const author = remixDetails?.composer ?? SITE.author
     }
 
     p { opacity: 75%; }
-    audio { padding-top: theme("spacing.1"); }
+    audio { padding-top: spacing(1); }
   }
 </style>
