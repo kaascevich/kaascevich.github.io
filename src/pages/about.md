@@ -5,7 +5,7 @@ title: "about me"
 
 ![Me! But not quite.](../assets/images/me.png "Me! But not quite.")
 
-いらっしゃいませ to my little online home!
+私の小さなオンラインホームへようこそ！
 
 I'm Kaleb Ascevich, another random person on the internet doing internet things. I love [Swift] programming, especially for Mac apps. I'm also dabbling in [Rust], [NixOS], [GarageBand], and Japanese (because all those things _clearly_ belong in the same sentence). You'll also occasionally find me ranting about other random things.
 

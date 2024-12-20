@@ -17,6 +17,12 @@ import sitemap from "@astrojs/sitemap";
 import renderOgImage from "./src/utils/renderOgImage";
 import { SITE } from "./src/config";
 
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default defineConfig({
   site: SITE.url,
   integrations: [
@@ -74,6 +80,18 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
+    },
+    resolve: {
+      alias: {
+        '@/': `${path.resolve(__dirname, 'src')}/`
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/styles/variables.scss";`,
+        },
+      },
     },
   },
   scopedStyleStrategy: "where",

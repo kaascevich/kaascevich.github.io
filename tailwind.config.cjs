@@ -53,7 +53,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Recursive, 'Fafo Nihongo', sans-serif",
+          "Recursive, 'Kosugi Maru', sans-serif",
           {
             fontFeatureSettings: "'frac'",
             fontVariationSettings: "'CASL' 0.25",
