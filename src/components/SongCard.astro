@@ -41,7 +41,8 @@ const author = remixDetails?.composer ?? SITE.author
     padding: theme("spacing.3");
   
     h2 {
-      @apply inline-block text-lg font-medium;
+      display: inline-block;
+      font-weight: theme("fontWeight.medium");
       a {
         color: rgb(var(--color-accent));
       }

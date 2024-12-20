@@ -69,7 +69,8 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       &:hover { opacity: 75%; }
       
       .post-title {
-        @apply text-sm text-skin-accent/85;
+        @apply text-sm;
+        color: rgb(var(--color-accent), 85%);
       }
     }
   }

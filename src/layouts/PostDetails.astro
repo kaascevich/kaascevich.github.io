@@ -83,7 +83,9 @@ const layoutProps: LayoutProps = {
     padding-bottom: theme("spacing.12");
   }
   h1 {
-    @apply text-2xl font-semibold text-skin-accent;
+    @apply text-2xl;
+    font-weight: theme("fontWeight.semibold");
+    color: rgb(var(--color-accent));
   }
   #reading-time {
     opacity: 80%;
