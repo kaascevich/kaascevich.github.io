@@ -1,5 +1,6 @@
 import Timestamp from "@components/Timestamp";
 import type { CollectionEntry } from "astro:content";
+import styles from "@styles/modules/Card.module.scss";
 
 interface Props {
   /** The ID of the post this card represents. */
@@ -17,18 +18,11 @@ interface Props {
 export default function Card({ id, data, level2Heading }: Props) {
   const { title, published, modified, description } = data;
 
-  const headerProps = {
-    className: "text-lg font-medium decoration-solid hover:underline",
-  };
-
-  return <li className="my-6">
-    <a
-      href={`/posts/${id}/`}
-      className="inline-block text-lg font-medium text-skin-accent decoration-solid underline-offset-4 focus-visible:no-underline"
-    >{
+  return <li className={styles["card"]}>
+    <a href={`/posts/${id}/`} className={styles["card-header-link"]}>{
       level2Heading
-        ? <h2 {...headerProps}>{title}</h2>
-        : <h3 {...headerProps}>{title}</h3>
+        ? <h2 className={styles["card-header"]}>{title}</h2>
+        : <h3 className={styles["card-header"]}>{title}</h3>
     }</a>
     <Timestamp published={published} modified={modified}/>
     <p>{description}</p>

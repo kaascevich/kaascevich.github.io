@@ -1,0 +1,37 @@
+search {
+  position: relative;
+  display: block;
+
+  label {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    padding-left: spacing(2);
+    opacity: 75%;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    border-width: 1px;
+    border-color: $color-border;
+    background-color: $color-fill;
+    padding: spacing(3) spacing(3) spacing(3) spacing(10);
+    &::placeholder {
+      font-style: italic;
+    }
+    &:focus {
+      border-color: $color-accent;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.search-results-text {
+  margin-top: spacing(8);
+}

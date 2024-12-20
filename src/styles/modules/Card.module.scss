@@ -1,0 +1,25 @@
+li {
+  margin-top: spacing(6);
+  margin-bottom: spacing(6);
+
+  a {
+    display: inline-block;
+    @apply text-lg;
+    font-weight: $font-weight-medium;
+    color: $color-accent;
+    text-decoration-style: solid;
+    text-underline-offset: 4px;
+    &:focus-visible {
+      text-decoration-line: none;
+    }
+
+    h2, h3 {
+      @apply text-lg;
+      font-weight: $font-weight-medium;
+      text-decoration-style: solid;
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+}
