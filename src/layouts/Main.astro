@@ -27,7 +27,7 @@ const { title, description } = Astro.props;
     h1 {
       font-weight: $font-weight-semibold;
       @include font-size($font-size-2xl);
-      @media (min-width: $media-small) {
+      @include desktop {
         @include font-size($font-size-3xl);
       }
     }

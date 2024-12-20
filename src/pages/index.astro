@@ -94,7 +94,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       display: inline-block;
       font-weight: $font-weight-bold;
       @include font-size($font-size-3xl);
-      @media (min-width: $media-small) {
+      @include desktop {
         margin: { top: 2rem; bottom: 2rem; }
         @include font-size($font-size-5xl);
       }
@@ -107,7 +107,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         width: 1.5rem;
         scale: 110%;
         fill: $color-accent;
-        @media (min-width: $media-small) {
+        @include desktop {
           margin-bottom: 0.75rem;
           scale: 125%;
         }
@@ -122,7 +122,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    @media (min-width: $media-small) {
+    @include desktop {
       flex-direction: row;
       align-items: center;
     }
@@ -131,7 +131,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     margin-bottom: 0.25rem;
     margin-right: 0.5rem;
     white-space: nowrap;
-    @media (min-width: $media-small) {
+    @include desktop {
       margin-bottom: 0rem;
     }
   }

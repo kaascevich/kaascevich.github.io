@@ -111,7 +111,7 @@ const { activeNav } = Astro.props;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    @media (min-width: $media-small) {
+    @include desktop {
       flex-direction: row;
     }
   }
@@ -122,7 +122,7 @@ const { activeNav } = Astro.props;
     align-items: flex-start;
     justify-content: space-between;
     padding: 1rem;
-    @media (min-width: $media-small) {
+    @include desktop {
       align-items: center;
       padding: { top: 2rem; bottom: 2rem; }
     }
@@ -133,7 +133,7 @@ const { activeNav } = Astro.props;
     font-weight: $font-weight-semibold;
     white-space: nowrap;
     @include font-size($font-size-xl);
-    @media (min-width: $media-small) {
+    @include desktop {
       position: static;
       @include font-size($font-size-2xl);
     }
@@ -145,7 +145,7 @@ const { activeNav } = Astro.props;
     align-self: flex-end;
     padding: 0.5rem;
 
-    @media (min-width: $media-small) {
+    @include desktop {
       display: none;
     }
 
@@ -169,7 +169,7 @@ const { activeNav } = Astro.props;
     flex-direction: column;
     align-items: center;
 
-    @media (min-width: $media-small) {
+    @include desktop {
       margin-left: 1rem;
       padding: { top: 0rem; bottom: 0rem; }
       flex-direction: row;
@@ -186,7 +186,7 @@ const { activeNav } = Astro.props;
       }
       gap: 0.5rem;
 
-      @media (min-width: $media-small) {
+      @include desktop {
         margin: { left: 0rem; top: 0rem; }
         width: auto;
         gap: 0rem 1.25rem;
@@ -204,7 +204,7 @@ const { activeNav } = Astro.props;
           text-align: center;
           font-weight: 450;
 
-          @media (min-width: $media-small) {
+          @include desktop {
             margin: { top: 0rem; bottom: 0rem; }
             padding: 0.25rem 0.5rem;
           }
@@ -240,12 +240,12 @@ const { activeNav } = Astro.props;
 
   #theme-button {
     padding: 0.75rem;
-    @media (min-width: $media-small) {
+    @include desktop {
       padding: 0.25rem;
     }
     svg {
       scale: 125%;
-      @media (min-width: $media-small) {
+      @include desktop {
         scale: 100%;
       }
     }

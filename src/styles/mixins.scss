@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "./variables.scss" as *;
 
 // MARK: - Fonts
 
@@ -7,9 +8,10 @@
   line-height: list.nth($font-size, 2);
 }
 
-// MARK: - Sizing
+// MARK: - Media
 
-@mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
+@mixin desktop {
+  @media (min-width: $media-desktop) {
+    @content;
+  }
 }
