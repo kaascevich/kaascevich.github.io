@@ -28,7 +28,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   {prevPost &&
     <a
       href={`/posts/${prevPost.id}`}
-      class="post-link-prev"
+      class="post-link"
     >
       &larr;
       <div>
@@ -40,7 +40,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   {nextPost &&
     <a
       href={`/posts/${nextPost.id}`}
-      class="post-link-next justify-end text-right sm:col-start-2"
+      class="post-link justify-end text-right sm:col-start-2"
     >
       <div>
         <span>next post</span>
