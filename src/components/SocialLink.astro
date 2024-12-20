@@ -20,15 +20,16 @@ const { default: Icon } = await import(`../assets/icons/socials/${social.name}.s
   <Icon/>
 </LinkButton>
 
-<style>
+<style lang="scss">
   .link-button {
     padding: theme("spacing[1.5]");
-    @media (min-width: theme("screens.sm")) {
-      padding: theme("spacing.1");
-    }
     
     transition: all 0.1s ease-in-out;
     &:hover { rotate: 6deg; }
+    
+    @media (min-width: theme("screens.sm")) {
+      padding: theme("spacing.1");
+    }
     
     svg {
       transform: scale(125%);

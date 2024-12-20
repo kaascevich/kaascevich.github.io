@@ -25,7 +25,6 @@
     "fuse.js": "^7.0.0",
     "mdast-util-to-string": "^4.0.0",
     "postcss-nested": "^7.0.2",
-    "postcss-preset-env": "^10.1.2",
     "reading-time": "^1.5.0",
     "rehype-external-links": "^3.0.0",
     "remark-collapse": "^0.1.2",
@@ -54,6 +53,7 @@
     "react-dom": "^18.3.1",
     "rehype-figure": "^1.0.1",
     "remark-mark-highlight": "^0.1.1",
+    "sass-embedded": "^1.83.0",
     "typescript-eslint": "^8.5.0"
   }
 }
