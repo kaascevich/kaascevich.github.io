@@ -45,8 +45,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     margin: 2rem auto 0.25rem;
     width: 100%;
     max-width: $max-width;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: { left: 1rem; right: 1rem; }
     
     ul {
       li {
@@ -57,9 +56,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
           transition: opacity 0.1s linear;
         }
         span { opacity: 70%; }
-        &:not(:last-child) a:hover {
-          opacity: 100%;
-        }
+        &:not(:last-child) a:hover { opacity: 100%; }
       }
     }
   }

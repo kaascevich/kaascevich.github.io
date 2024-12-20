@@ -17,8 +17,7 @@ import BackButton from "@components/BackButton.astro";
 
 <style lang="scss">
   main {
-    margin-left: auto;
-    margin-right: auto;
+    margin: { left: auto; right: auto; }
     display: flex;
     max-width: $max-width;
     flex: 1 1 0%;
@@ -51,8 +50,7 @@ import BackButton from "@components/BackButton.astro";
   }
 
   .back-button {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin: { top: 1rem; bottom: 0.5rem; }
     @include font-size($font-size-lg);
   }
 </style>

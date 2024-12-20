@@ -35,15 +35,13 @@ const { page } = Astro.props;
 
 <style lang="scss">
   .pagination {
-    margin-top: auto;
-    margin-bottom: 2rem;
+    margin: { top: auto; bottom: 2rem; }
     display: flex;
     justify-content: center
   }
 
   .page-link {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: { left: 1rem; right: 1rem; }
   
     &.disabled {
       pointer-events: none;

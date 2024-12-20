@@ -29,9 +29,11 @@ body {
   display: flex;
   min-height: 100svh;
   flex-direction: column;
-  font-family: Recursive, "Kosugi Maru", sans-serif;
-  font-feature-settings: "frac";
-  font-variation-settings: "CASL" 0.25;
+  font: {
+    family: Recursive, "Kosugi Maru", sans-serif;
+    feature-settings: "frac";
+    variation-settings: "CASL" 0.25;
+  }
 
   background-color: $color-fill;
   color: $color-text;
@@ -45,11 +47,9 @@ body {
 }
 
 section, footer {
-  margin-left: auto;
-  margin-right: auto;
   max-width: $max-width;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: { left: auto; right: auto; }
+  padding: { left: 1rem; right: 1rem; }
 }
 
 a, button {
@@ -179,9 +179,11 @@ svg {
 
   img {
     margin: 0.5rem auto;
-    border-width: 2px;
-    border-color: $color-border;
-    border-radius: $border-radius-lg;
+    border: {
+      width: 2px;
+      color: $color-border;
+      radius: $border-radius-lg;
+    }
   }
 
   hr {
