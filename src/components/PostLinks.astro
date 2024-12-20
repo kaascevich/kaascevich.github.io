@@ -18,6 +18,7 @@ const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 
 /** The previous post. */
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
+
 /** The next post. */
 const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
 ---
@@ -26,10 +27,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 
 <div class="post-link-wrapper">
   {prevPost &&
-    <a
-      href={`/posts/${prevPost.id}`}
-      class="post-link"
-    >
+    <a id="previous-post" href={`/posts/${prevPost.id}`}>
       &larr;
       <div>
         <span>previous post</span>
@@ -38,10 +36,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
     </a>
   }
   {nextPost &&
-    <a
-      href={`/posts/${nextPost.id}`}
-      class="post-link justify-end text-right sm:col-start-2"
-    >
+    <a id="next-post" href={`/posts/${nextPost.id}`}>
       <div>
         <span>next post</span>
         <div class="post-title">{nextPost.title}</div>
@@ -61,7 +56,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .post-link {
+    #previous-post, #next-post {
       display: flex;
       width: 100%;
       gap: theme("spacing.1");
@@ -71,6 +66,14 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       .post-title {
         @apply text-sm;
         color: rgb(var(--color-accent), 85%);
+      }
+    }
+
+    #next-post {
+      justify-content: flex-end;
+      text-align: right;
+      @media (min-width: theme("screens.sm")) {
+        grid-column-start: 2;
       }
     }
   }

@@ -1,6 +1,6 @@
 ---
 import LinkButton from "@components/LinkButton.astro";
-import type { Social } from "types"
+import type { Social } from "types";
 
 export interface Props {
   /** The social media service to display a link to. */
@@ -27,7 +27,7 @@ const { default: Icon } = await import(`../assets/icons/socials/${social.name}.s
       padding: theme("spacing.1");
     }
     
-    transition: rotate 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
     &:hover { rotate: 6deg; }
     
     svg {

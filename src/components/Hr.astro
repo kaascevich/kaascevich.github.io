@@ -7,12 +7,19 @@ export interface Props {
 const { noPadding = false } = Astro.props;
 ---
 
-<div class={`max-w-3xl mx-auto ${noPadding ? "px-0" : "px-4"}`}>
+<div class="hr-wrapper">
   <hr aria-hidden/>
 </div>
 
-<style>
-  hr {
-    border-color: rgb(var(--color-border));
+<style define:vars={{ paddingAmount: noPadding ? "0rem" : "1rem" }}>
+  .hr-wrapper {
+    max-width: theme("maxWidth.3xl");
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--paddingAmount);
+    padding-right: var(--paddingAmount);
+    hr {
+      border-color: rgb(var(--color-border));
+    }
   }
 </style>

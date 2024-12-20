@@ -23,21 +23,22 @@ const {
 
 {
   disabled ? (
-    <span
-      class={`inline-block ${className}`}
-      {title}
-      aria-disabled={disabled}
-    >
+    <span {title} class={`link-button disabled ${className}`} aria-disabled>
       <slot/>
     </span>
   ) : (
-    <a
-      {href}
-      class={`inline-block hover:text-skin-accent ${className}`}
-      aria-label={ariaLabel}
-      {title}
-    >
+    <a {href} {title} class={`link-button ${className}`} aria-label={ariaLabel}>
       <slot/>
     </a>
   )
 }
+
+<style>
+  .link-button {
+    display: inline-block;
+    
+    &:not(.disabled):hover {
+      color: rgb(var(--color-accent));
+    }
+  }
+</style>

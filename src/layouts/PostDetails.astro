@@ -47,18 +47,18 @@ const layoutProps: LayoutProps = {
 ---
 
 <Layout {...layoutProps}>
-  <BackButton class="mx-auto w-full max-w-3xl justify-start px-4 mb-2 mt-8"/>
+  <BackButton class="back-button"/>
 
   <main>
     <h1>{title}</h1>
     <Timestamp {published} {modified} size="lg" className="timestamp"/>
-    <span id="reading-time">{readingTime}</span>
+    <span class="reading-time">{readingTime}</span>
     
     <article class="prose mx-auto mt-8 max-w-3xl">
       <Content/>
     </article>
 
-    <ul id="tag-list">
+    <ul class="tag-list">
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
 
@@ -73,6 +73,15 @@ const layoutProps: LayoutProps = {
 </Layout>
 
 <style>
+  .back-button {
+    margin: theme("spacing.8") auto theme("spacing.2");
+    width: 100%;
+    max-width: theme("maxWidth.3xl");
+    justify-content: flex-start;
+    padding-left: theme("spacing.4");
+    padding-right: theme("spacing.4");
+  }
+
   main {
     margin-left: auto;
     margin-right: auto;
@@ -87,7 +96,7 @@ const layoutProps: LayoutProps = {
     font-weight: theme("fontWeight.semibold");
     color: rgb(var(--color-accent));
   }
-  #reading-time {
+  .reading-time {
     opacity: 80%;
   }
   .timestamp {
@@ -95,7 +104,7 @@ const layoutProps: LayoutProps = {
     margin-bottom: theme("spacing.1");
   }
 
-  #tag-list {
+  .tag-list {
     margin-top: theme("spacing.8");
     margin-bottom: theme("spacing.8");
   }
