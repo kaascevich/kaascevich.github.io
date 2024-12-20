@@ -97,7 +97,15 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     .rss-link {
       margin-bottom: theme("spacing.6");
       svg {
-        @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+        margin-bottom: theme("spacing.2");
+        height: theme("spacing.6");
+        width: theme("spacing.6");
+        scale: 110%;
+        fill: rgb(var(--color-accent));
+        @media (min-width: theme("screens.sm")) {
+          margin-bottom: theme("spacing.3");
+          scale: 125%;
+        }
       }
     }
     p {
