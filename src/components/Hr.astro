@@ -11,13 +11,13 @@ const { noPadding = false } = Astro.props;
   <hr aria-hidden/>
 </div>
 
-<style lang="scss" define:vars={{ paddingAmount: noPadding ? "0" : "4" }}>
+<style lang="scss" define:vars={{ paddingAmount: noPadding ? 0 : 4 }}>
   .hr-wrapper {
     max-width: $max-width;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--paddingAmount);
-    padding-right: var(--paddingAmount);
+    padding-left: spacing(var(--paddingAmount));
+    padding-right: spacing(var(--paddingAmount));
     hr {
       border-color: $color-border;
     }

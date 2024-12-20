@@ -11,8 +11,7 @@
 
       if (languageName !== "console") {
         const copyButton = document.createElement("button");
-        copyButton.className =
-          "copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium hover:bg-skin-card-muted";
+        copyButton.className = "copy-code";
         copyButton.innerText = copyButtonLabel;
 
         codeBlock.tabIndex = 0;
@@ -22,8 +21,7 @@
       }
 
       const languageLabel = document.createElement("div");
-      languageLabel.className =
-        "absolute left-3 -top-3 px-1 py-1 text-xs leading-4 font-medium bg-skin-fill";
+      languageLabel.className = "language-name";
       languageLabel.innerText = languageName;
 
       // hide the language name in reader view
@@ -52,3 +50,29 @@
   }
   attachCodeBlockExtras();
 </script>
+
+<style lang="scss" is:global>
+  .copy-code {
+    position: absolute;
+    right: spacing(3);
+    top: -(spacing(3));
+    border-radius: $border-radius-default;
+    background-color: $color-card;
+    padding: spacing(1) spacing(2);
+    @include font-size($font-size-xs);
+    line-height: 1rem;
+    color: $color-text;
+    font-weight: $font-weight-medium;
+    &:hover { background-color: $color-card-muted; }
+  }
+  .language-name {
+    position: absolute;
+    left: spacing(3);
+    top: -(spacing(3));
+    padding: spacing(1);
+    @include font-size($font-size-xs);
+    line-height: 1rem;
+    font-weight: $font-weight-medium;
+    background-color: $color-fill;
+  }
+</style>

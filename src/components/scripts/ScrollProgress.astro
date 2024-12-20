@@ -2,10 +2,9 @@
   /** Creates a progress bar showing the current scroll position. */
   function createProgressBar() {
     const progressContainer = document.createElement("div");
-    progressContainer.className = "fixed top-0 z-10 h-1 w-full";
+    progressContainer.id = "progress-bar-wrapper";
 
     const progressBar = document.createElement("div");
-    progressBar.className = "h-1 w-0 bg-skin-accent";
     progressBar.id = "progress-bar";
 
     progressContainer.appendChild(progressBar);
@@ -21,3 +20,19 @@
   }
   createProgressBar();
 </script>
+
+<style lang="scss" is:global>
+  #progress-bar-wrapper {
+    position: fixed;
+    top: spacing(0);
+    z-index: 10;
+    height: spacing(1);
+    width: 100%;
+
+    #progress-bar {
+      height: spacing(1);
+      width: spacing(0);
+      background-color: $color-accent;
+    }
+  }
+</style>

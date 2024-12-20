@@ -12,24 +12,10 @@
 
   html[data-theme="light"] {
     color-scheme: light;
-    --color-fill: 239, 241, 245;
-    --color-text-base: 76, 79, 105;
-    --color-accent: 30, 102, 245;
-    --color-card: 172, 176, 190;
-    --color-card-muted: 188, 192, 204;
-    --color-border: 124, 127, 147;
-    --color-highlight: 223, 142, 29;
   }
 
   :root, html[data-theme="dark"] {
     color-scheme: dark;
-    --color-fill: 36, 39, 58;
-    --color-text-base: 202, 211, 245;
-    --color-accent: 138, 173, 244;
-    --color-card: 91, 96, 120;
-    --color-card-muted: 73, 77, 100;
-    --color-border: 147, 154, 183;
-    --color-highlight: 238, 212, 159;
   }
 
   #sun-svg, html[data-theme="dark"] #moon-svg {

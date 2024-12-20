@@ -30,7 +30,7 @@ export default function Timestamp({
     }>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={`${size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"}`}
+        className={size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"}
         aria-hidden
       >
         <path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/>

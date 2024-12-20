@@ -23,7 +23,7 @@ const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
 ---
 
-{ (prevPost || nextPost) && <hr class="my-6 border-skin-line"/> }
+{ (prevPost || nextPost) && <hr/> }
 
 <div class="post-link-wrapper">
   {prevPost &&
@@ -47,6 +47,12 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 </div>
 
 <style lang="scss">
+  hr {
+    margin-top: spacing(6);
+    margin-bottom: spacing(6);
+    border-color: $color-border;
+  }
+
   .post-link-wrapper {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
