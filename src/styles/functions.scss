@@ -1,5 +1,0 @@
-@use "sass:math";
-
-@function spacing($value) {
-  @return calc(($value / 4) * 1rem);
-}

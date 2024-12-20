@@ -22,13 +22,13 @@ const { default: Icon } = await import(`../assets/icons/socials/${social.name}.s
 
 <style lang="scss">
   .link-button {
-    padding: spacing(1.5);
+    padding: 0.375rem;
     
     transition: rotate 0.1s ease-in-out, color 0.1s linear;
     &:hover { rotate: 6deg; }
     
     @media (min-width: $media-small) {
-      padding: spacing(1);
+      padding: 0.25rem;
     }
     
     svg {

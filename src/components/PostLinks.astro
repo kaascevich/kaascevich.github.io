@@ -48,15 +48,15 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 
 <style lang="scss">
   hr {
-    margin-top: spacing(6);
-    margin-bottom: spacing(6);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     border-color: $color-border;
   }
 
   .post-link-wrapper {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: spacing(6);
+    gap: 1.5rem;
 
     @media (min-width: $media-small) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -65,7 +65,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
     #previous-post, #next-post {
       display: flex;
       width: 100%;
-      gap: spacing(1);
+      gap: 0.25rem;
       transition: opacity 0.1s linear;
       &:hover { opacity: 75%; }
       

@@ -74,12 +74,12 @@ const layoutProps: LayoutProps = {
 
 <style lang="scss">
   .back-button {
-    margin: spacing(8) auto spacing(2);
+    margin: 2rem auto 0.5rem;
     width: 100%;
     max-width: $max-width;
     justify-content: flex-start;
-    padding-left: spacing(4);
-    padding-right: spacing(4);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   main {
@@ -87,9 +87,9 @@ const layoutProps: LayoutProps = {
     margin-right: auto;
     width: 100%;
     max-width: $max-width;
-    padding-left: spacing(4);
-    padding-right: spacing(4);
-    padding-bottom: spacing(12);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 3rem;
   }
   h1 {
     @include font-size($font-size-2xl);
@@ -100,25 +100,25 @@ const layoutProps: LayoutProps = {
     opacity: 80%;
   }
   .timestamp {
-    margin-top: spacing(2);
-    margin-bottom: spacing(1);
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .tag-list {
-    margin-top: spacing(8);
-    margin-bottom: spacing(8);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
   #article-footer {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: space-between;
-    gap: spacing(6);
+    gap: 1.5rem;
     
     @media (min-width: $media-small) {
       flex-direction: row-reverse;
       align-items: flex-end;
-      gap: spacing(4);
+      gap: 1rem;
     }
   }
 </style>

@@ -7,7 +7,7 @@
     inset: 0px;
     display: flex;
     align-items: center;
-    padding-left: spacing(2);
+    padding-left: 0.5rem;
     opacity: 75%;
   }
 
@@ -18,7 +18,7 @@
     border-width: 1px;
     border-color: $color-border;
     background-color: $color-fill;
-    padding: spacing(3) spacing(3) spacing(3) spacing(10);
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
     &::placeholder {
       font-style: italic;
     }
@@ -31,5 +31,5 @@
 }
 
 .search-results-text {
-  margin-top: spacing(8);
+  margin-top: 2rem;
 }

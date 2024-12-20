@@ -94,14 +94,14 @@ const { activeNav } = Astro.props;
   #skip-to-content {
     position: absolute;
     top: -100%;
-    left: spacing(16);
+    left: 4rem;
     z-index: 50;
     background-color: $color-accent;
-    padding: spacing(2) spacing(3);
+    padding: 0.5rem 0.75rem;
     color: $color-fill;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     &:focus {
-      top: spacing(4);
+      top: 1rem;
     }
   }
   #nav-container {
@@ -122,17 +122,17 @@ const { activeNav } = Astro.props;
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
-    padding: spacing(4);
+    padding: 1rem;
     @media (min-width: $media-small) {
       align-items: center;
-      padding-top: spacing(8);
-      padding-bottom: spacing(8);
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
   #logo {
     position: absolute;
-    padding-top: spacing(1);
-    padding-bottom: spacing(1);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
     font-weight: $font-weight-semibold;
     white-space: nowrap;
     @include font-size($font-size-xl);
@@ -146,15 +146,15 @@ const { activeNav } = Astro.props;
   }
   #hamburger-menu {
     align-self: flex-end;
-    padding: spacing(2);
+    padding: 0.5rem;
 
     @media (min-width: $media-small) {
       display: none;
     }
 
     svg {
-      height: spacing(6);
-      width: spacing(6);
+      height: 1.5rem;
+      width: 1.5rem;
       scale: 125%;
       fill: $color-text;
 
@@ -173,7 +173,7 @@ const { activeNav } = Astro.props;
     align-items: center;
 
     @media (min-width: $media-small) {
-      margin-left: spacing(4);
+      margin-left: 1rem;
       padding-top: 0rem;
       padding-bottom: 0rem;
       flex-direction: row;
@@ -181,19 +181,19 @@ const { activeNav } = Astro.props;
     }
 
     ul {
-      margin-top: spacing(4);
+      margin-top: 1rem;
       display: grid;
-      width: spacing(44);
+      width: 11rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(4, minmax(0, 1fr));
-      column-gap: spacing(2);
-      row-gap: spacing(2);
+      column-gap: 0.5rem;
+      row-gap: 0.5rem;
 
       @media (min-width: $media-small) {
         margin-left: 0rem;
         margin-top: 0rem;
         width: auto;
-        column-gap: spacing(5);
+        column-gap: 1.25rem;
         row-gap: 0rem;
       }
 
@@ -205,14 +205,14 @@ const { activeNav } = Astro.props;
 
         a {
           width: 100%;
-          padding: spacing(3) spacing(4);
+          padding: 0.75rem 1rem;
           text-align: center;
           font-weight: 450;
 
           @media (min-width: $media-small) {
             margin-top: 0rem;
             margin-bottom: 0rem;
-            padding: spacing(1) spacing(2);
+            padding: 0.25rem 0.5rem;
           }
 
           &:hover {
@@ -232,10 +232,10 @@ const { activeNav } = Astro.props;
       svg { fill: $color-accent; }
     }
     button {
-      padding: spacing(1);
+      padding: 0.25rem;
       svg {
-        height: spacing(6);
-        width: spacing(6);
+        height: 1.5rem;
+        width: 1.5rem;
         fill: $color-text;
         &:hover {
           fill: $color-accent;
@@ -245,9 +245,9 @@ const { activeNav } = Astro.props;
   }
 
   #theme-button {
-    padding: spacing(3);
+    padding: 0.75rem;
     @media (min-width: $media-small) {
-      padding: spacing(1);
+      padding: 0.25rem;
     }
     svg {
       scale: 125%;
