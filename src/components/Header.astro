@@ -229,6 +229,12 @@ const { activeNav } = Astro.props;
       scale: 125%
       @include desktop
         scale: 100%
+
+#sun-svg, :root[data-theme="dark"] #moon-svg
+  display: none
+
+#moon-svg, :root[data-theme="dark"] #sun-svg
+  display: block
 </style>
 
 <script>
