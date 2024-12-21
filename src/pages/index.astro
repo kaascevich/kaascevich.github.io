@@ -44,12 +44,10 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
           If you want a look under the hood, you can find this site&rsquo;s source code <ExternalLink href="https://github.com/kaascevich/kaascevich.github.io">here</ExternalLink> &mdash; I based it off of <ExternalLink href="https://astro-paper.pages.dev">AstroPaper</ExternalLink> (the code is almost unrecognizable, but the design is pretty similar), and used <ExternalLink href="https://catppuccin.com">Catppuccin</ExternalLink> for the colors.
         </p>
       </article>
-      {SOCIALS.length > 0 &&
-        <div class="social-wrapper">
-          <div class="social-links">&ldquo;Social&rdquo; links:</div>
-          <Socials/>
-        </div>
-      }
+      <div class="social-wrapper">
+        <div class="social-links-text">&ldquo;Social&rdquo; links:</div>
+        <Socials/>
+      </div>
     </section>
 
     <Hr/>
@@ -70,7 +68,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       <section id="recent-posts">
         <h2>recent</h2>
         <ul>
-          {nonFeaturedPosts.map(({ data, id }, index) => index < SITE.postsPerIndex &&
+          {nonFeaturedPosts.slice(0, SITE.postsPerIndex).map(({ data, id }) =>
             <Card {id} {data} level2Heading={false}/>
           )}
         </ul>
@@ -120,7 +118,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       flex-direction: row
       align-items: center
   
-  .social-links
+  .social-links-text
     margin-bottom: 0.25rem
     margin-right: 0.5rem
     white-space: nowrap

@@ -17,13 +17,16 @@ export interface Props {
 
 const { page, tag } = Astro.props;
 
+/** This page's title. */
+const title = `tag: ${tag}`;
+
 /** This page's description. */
 const description = `${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tag}"`;
 ---
 
-<Layout title={`tag: ${tag} | ${SITE.title}`} {description} activeNav="tags">
-  <Main title={`tag: ${tag}`} {description}>
-    <h1 slot="title" >{`tag: ${tag}`}</h1>
+<Layout title={`${title} | ${SITE.title}`} {description} activeNav="tags">
+  <Main title={title} {description}>
+    <h1 slot="title">{title}</h1>
     <ul>
       {page.data.map(({ data, id }) => <Card {id} {data}/>)}
     </ul>
