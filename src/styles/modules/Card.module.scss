@@ -6,7 +6,7 @@
 
   .card-header-link {
     display: inline-block;
-    @include font-size($font-size-lg);
+    font-size: $font-size-lg;
     font-weight: $font-weight-medium;
     color: $color-accent;
     text-decoration-style: solid;
@@ -16,7 +16,7 @@
     }
 
     .card-header {
-      @include font-size($font-size-lg);
+      font-size: $font-size-lg;
       font-weight: $font-weight-medium;
       &:hover {
         text-decoration: underline solid;

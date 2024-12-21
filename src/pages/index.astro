@@ -85,16 +85,16 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
 
 <style lang="sass">
   #hero
-    +padding-y(2rem, 1.5rem)
+    +padding-y(1rem, 1.5rem)
 
     h1
       +margin-y(1rem)
       display: inline-block
       font-weight: $font-weight-bold
-      +font-size($font-size-3xl)
+      font-size: $font-size-3xl
       @include desktop
         +margin-y(2rem)
-        +font-size($font-size-5xl)
+        font-size: $font-size-5xl
     
     .rss-link
       margin-bottom: 1.5rem
@@ -129,7 +129,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     +padding-y(3rem, 1.5rem)
 
     h2
-      +font-size($font-size-2xl)
+      font-size: $font-size-2xl
       font-weight: $font-weight-semibold
       letter-spacing: $letter-spacing-wide
       
