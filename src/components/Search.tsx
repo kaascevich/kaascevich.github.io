@@ -48,14 +48,13 @@ export default function SearchBar({ posts }: Props) {
   }, []);
 
   useEffect(() => {
-    const inputResult = inputValue.length > 0 ? fuse.search(inputValue) : [];
-    setSearchResults(inputResult);
+    setSearchResults(inputValue.length > 0 ? fuse.search(inputValue) : []);
 
     // update search string in URL
     if (inputValue.length > 0) {
       const searchParams = new URLSearchParams(location.search);
       searchParams.set("query", inputValue);
-      const newRelativePathQuery = `${location.pathname}?${searchParams.toString()}`;
+      const newRelativePathQuery = `${location.pathname}?${searchParams}`;
       history.replaceState(history.state, "", newRelativePathQuery);
     } else {
       history.replaceState(history.state, "", location.pathname);
