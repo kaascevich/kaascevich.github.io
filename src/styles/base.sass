@@ -33,6 +33,10 @@ body
     background-color: with-opacity($color-accent, 70%)
     color: $color-fill
 
+  @media print
+    background-color: white
+    color: black
+
 section, footer
   max-width: $max-width
   +margin-x(auto)
@@ -98,9 +102,6 @@ svg
   strong
     color: $color-text
     font-weight: $font-weight-extrabold
-  
-  pre
-    background-color: with-opacity($color-card, 75%)
 
   :not(pre) > code
     background-color: $color-card
@@ -171,6 +172,9 @@ svg
     border: 1px solid $color-border
     white-space: pre
     line-height: 1.7
+    @media print
+      white-space: pre-wrap
+      background-color: white !important // something else wants to override this, don't know why
 
 :root[data-theme="dark"] pre:has(code)
   &, span

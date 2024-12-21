@@ -65,6 +65,7 @@
     font-weight: $font-weight-medium
     &:hover
       background-color: $color-card-muted
+    @include hide-in-print
 
   .language-name
     position: absolute
@@ -75,4 +76,6 @@
     line-height: 1rem
     font-weight: $font-weight-medium
     background-color: $color-fill
+    @media print
+      background-color: white
 </style>

@@ -91,6 +91,9 @@ const { activeNav } = Astro.props;
 </header>
 
 <style lang="sass">
+  header
+    @include hide-in-print
+
   #skip-to-content
     position: absolute
     top: -100%

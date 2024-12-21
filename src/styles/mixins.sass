@@ -7,6 +7,10 @@
   @media (min-width: $media-desktop)
     @content
 
+=hide-in-print
+  @media print
+    display: none
+
 // MARK: - Margins
 
 =margin-x($left, $right: $left)
