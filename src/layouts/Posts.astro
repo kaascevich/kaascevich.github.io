@@ -21,9 +21,7 @@ const description = "all the blog posts I've let loose on the world";
 <Layout title={`posts | ${SITE.title}`} {description} activeNav="posts">
   <Main title="posts" {description}>
     <ul>
-      {page.data.map(({ data, id }) =>
-        <Card {id} {data}/>
-      )}
+      {page.data.map(({ data, id }) => <Card {id} {data}/>)}
     </ul>
   </Main>
 
