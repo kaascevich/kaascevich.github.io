@@ -134,15 +134,10 @@ svg
       padding: math.div(2em, 7) math.div(4em, 7)
 
       border: 2px solid $color-border
-
-      &[align="left"]
-        text-align: left
-  
-      &[align="center"]
-        text-align: center
       
-      &[align="right"]
-        text-align: right
+      @each $alignment in left, center, right
+        &[align="#{$alignment}"]
+          text-align: $alignment
 
   img
     margin: 0.5rem auto
