@@ -9,21 +9,11 @@ interface Props {
   posts: CollectionEntry<"blog">[],
 }
 
-/** A search result. */
-interface SearchResult {
-  /** The found item. */
-  item: CollectionEntry<"blog">,
-  refIndex: number,
-}
-
 /** A search interface for searching through blog posts. */
-export default function SearchBar({ posts }: Props) {
+export default function Search({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null);
-
-  const handleChange = (event: FormEvent<HTMLInputElement>) =>
-    setInputVal(event.currentTarget.value);
+  const [searchResults, setSearchResults] = useState<CollectionEntry<"blog">[]>([]);
 
   const fuse = useMemo(
     () => new Fuse(posts, {
@@ -48,7 +38,11 @@ export default function SearchBar({ posts }: Props) {
   }, []);
 
   useEffect(() => {
-    setSearchResults(inputValue.length > 0 ? fuse.search(inputValue) : []);
+    setSearchResults(inputValue.length > 0
+      ? fuse.search(inputValue).map(result => result.item)
+      : []
+    );
+    console.log(searchResults);
 
     // update search string in URL
     if (inputValue.length > 0) {
@@ -60,6 +54,8 @@ export default function SearchBar({ posts }: Props) {
       history.replaceState(history.state, "", location.pathname);
     }
   }, [inputValue]);
+
+  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputVal(event.currentTarget.value);
 
   return <>
     <search className={styles["search-bar"]}>
@@ -79,18 +75,20 @@ export default function SearchBar({ posts }: Props) {
       />
     </search>
 
-    {inputValue.length > 0 && <div className={styles["search-results-text"]}>
-      found {searchResults?.length} {searchResults?.length === 1 ? "result" : "results"} for "{inputValue}"
-    </div>}
+    {inputValue.length > 0 && <>
+      <div className={styles["search-results-text"]}>
+        found {searchResults.length} {searchResults.length === 1 ? "result" : "results"} for "{inputValue}"
+      </div>
 
-    <ul>
-      {searchResults?.map(({ item }) =>
-        <Card
-          id={item.id}
-          data={item.data}
-          key={item.id}
-        />
-      )}
-    </ul>
+      <ul>
+        {searchResults.map((item) =>
+          <Card
+            id={item.id}
+            data={item.data}
+            key={item.id}
+          />
+        )}
+      </ul>
+    </>}
   </>;
 }
