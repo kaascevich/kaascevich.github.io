@@ -1,6 +1,10 @@
 ---
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Pagination from "@components/Pagination.astro";
+import Card from "@components/Card";
+
 import { SITE } from "@config";
-import Posts from "@layouts/Posts.astro";
 import type { GetStaticPaths } from "astro";
 import getPosts from "@utils/getPosts";
 
@@ -10,6 +14,20 @@ export const getStaticPaths = (async ({ paginate }) => paginate(
 )) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+
+/** The title of the Posts section. */
+const title = "posts";
+
+/** The description of the Posts section. */
+const description = "all the blog posts I've let loose on the world";
 ---
 
-<Posts {page}/>
+<Layout {title} {description} activeNav="posts">
+  <Main {title} {description}>
+    <ul>
+      {page.data.map(({ data, id }) => <Card {id} {data}/>)}
+    </ul>
+  </Main>
+
+  <Pagination {page}/>
+</Layout>

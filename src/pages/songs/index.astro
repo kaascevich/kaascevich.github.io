@@ -1,9 +1,55 @@
 ---
-import Songs from "@layouts/Songs.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import SongCard from "@components/SongCard.astro";
+
 import { getCollection } from "astro:content";
 
 /** A list of all songs. */
 const songs = await getCollection("songs");
+
+/** Original songs. */
+const originals = songs.filter(song => !song.data.remixDetails)
+/** Remixed songs. */
+const remixes = songs.filter(song => song.data.remixDetails)
+
+/** The title of the Songs section. */
+const title = "songs";
+
+/** The description of the Songs section. */
+const description = "all the songs I've created or remixed";
 ---
 
-<Songs {songs}/>
+<Layout {title} {description} activeNav="songs">
+  <Main {title} {description}>
+    <section id="originals">
+      <h2>originals</h2>
+      <ul>
+        {originals.map(song => <SongCard data={song.data}/>)}
+      </ul>
+    </section>
+
+    <section id="remixes">
+      <h2>remixes</h2>
+      <ul>
+        {remixes.map(song => <SongCard data={song.data}/>)}
+      </ul>
+    </section>
+  </Main>
+</Layout>
+
+<style lang="sass">
+  section
+    padding: 0.75rem 0rem 1.5rem
+    h2
+      +font-size($font-size-2xl)
+      font-weight: $font-weight-semibold
+      letter-spacing: $letter-spacing-wide
+      margin-bottom: 1rem
+
+  ul
+    display: flex
+    flex-direction: row
+    gap: 1.5rem
+    flex-wrap: wrap
+</style>
