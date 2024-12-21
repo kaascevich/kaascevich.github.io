@@ -32,7 +32,7 @@
     &:focus {
       border-color: $color-accent;
       outline: 2px solid transparent;
-        offset: 2px;
+      outline-offset: 2px;
     }
   }
 }
