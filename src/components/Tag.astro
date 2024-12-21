@@ -11,15 +11,9 @@ export interface Props {
 const { tag, size = "sm" } = Astro.props;
 ---
 
-<li class={size === "sm" ? "my-1" : "my-3 mx-1"}>
-  <a
-    href={`/tags/${tag}/`}
-    class={size === "sm" ? "text-sm" : "text-lg"}
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" style={{ scale: `${size === "sm" ? 75 : 110}%` }}>
-      <path d="M16.018 3.815 15.232 8h-4.966l.716-3.815-1.964-.37L8.232 8H4v2h3.857l-.751 4H3v2h3.731l-.714 3.805 1.965.369L8.766 16h4.966l-.714 3.805 1.965.369.783-4.174H20v-2h-3.859l.751-4H21V8h-3.733l.716-3.815-1.965-.37zM14.106 14H9.141l.751-4h4.966l-.752 4z"/>
-    </svg>
-    &nbsp;&nbsp;&nbsp;{tag}
+<li class={size}>
+  <a href={`/tags/${tag}/`}>
+    <span>{tag}</span>
   </a>
 </li>
 
@@ -35,15 +29,18 @@ const { tag, size = "sm" } = Astro.props;
 
       &:hover
         color: $color-accent
-        svg
-          fill: $color-accent
-      
-      svg
-        margin:
-          right: -1.25rem
-          bottom: 0.25rem
-        +size(1.5rem)
-        scale: 95%
-        color: $color-text
-        opacity: 80%
+
+      span::before
+        content: "#\202f\202f" // two thin spaces
+        color: with-opacity(currentcolor, 80%)
+
+  li.lg
+    margin: 0.75rem 0.25rem
+    a
+      font-size: $font-size-lg
+
+  li.sm
+    +margin-y(0.25rem)
+    a
+      font-size: $font-size-sm
 </style>
