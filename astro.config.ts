@@ -46,7 +46,19 @@ export default defineConfig({
     compress({
       HTML: {
         "html-minifier-terser": {
+          collapseBooleanAttributes: true,
+          collapseInlineTagWhitespace: true,
+          collapseWhitespace: true,
           conservativeCollapse: true,
+          decodeEntities: true,
+          minifyCSS: true,
+          minifyJS: true,
+          minifyURLs: true,
+          quoteCharacter: '"',
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
         },
       },
       JavaScript: {

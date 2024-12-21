@@ -3,6 +3,8 @@ import type { CollectionEntry } from "astro:content";
 
 /**
  * Checks if a post has a published date in the future.
+ * 
+ * When running on the dev server, this function always returns `true`.
  * @param post - A blog post.
  * @returns Whether `post` has a published date in the future.
  */

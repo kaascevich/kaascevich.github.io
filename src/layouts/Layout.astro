@@ -24,8 +24,8 @@ export interface Props {
 }
 
 const {
-  title: titleProp,
-  ogTitle = titleProp,
+  title: _title,
+  ogTitle = _title ?? SITE.title,
   description = SITE.description,
   published,
   modified,
@@ -33,7 +33,7 @@ const {
   activeNav,
 } = Astro.props;
 
-const title = titleProp ? `${titleProp} | ${SITE.title}` : SITE.title;
+const title = _title ? `${_title} | ${SITE.title}` : SITE.title;
 
 /** The canonical URL to this page. */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
