@@ -3,17 +3,19 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
-import { SITE } from "@config";
 
 /** A list of all unique tags. */
 const tags = await getUniqueTags();
+
+/** The title of the Tags section. */
+const title = "tags";
 
 /** The description of the Tags section. */
 const description = `all the tags I've used in my posts (${tags.length} total)`;
 ---
 
-<Layout title={`tags | ${SITE.title}`} {description} activeNav="tags">
-  <Main title="tags" {description}>
+<Layout {title} {description} activeNav="tags">
+  <Main {title} {description}>
     <ul>{tags.map(tag => <Tag {tag} size="lg"/>)}</ul>
   </Main>
 </Layout>

@@ -1,8 +1,7 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
-import { SITE } from "@config";
 
-import Layout, { type Props as LayoutProps } from "@layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Tag from "@components/Tag.astro";
 import Comments from "@components/Comments";
 import Timestamp from "@components/Timestamp";
@@ -34,19 +33,16 @@ const {
 } = post.data;
 
 const { Content } = await render(post);
-
-/** Properties to pass to the `Layout` component. */
-const layoutProps: LayoutProps = {
-  title: `${title} | ${SITE.title}`,
-  ogTitle: title,
-  description,
-  published,
-  modified,
-  scrollSmooth: true,
-};
 ---
 
-<Layout {...layoutProps}>
+<Layout
+  {title}
+  ogTitle={title}
+  {description}
+  {published}
+  {modified}
+  scrollSmooth
+>
   <BackButton class="back-button"/>
 
   <main>

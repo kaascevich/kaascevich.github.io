@@ -1,5 +1,4 @@
 ---
-import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import SearchBar from "@components/Search";
@@ -8,12 +7,15 @@ import getPosts from "@utils/getPosts";
 /** A list of all posts, sorted by date. */
 const posts = await getPosts();
 
+/** The title of the Search page. */
+const title = "search";
+
 /** The description of the Search page. */
 const description = "search for posts";
 ---
 
-<Layout title={`search | ${SITE.title}`} {description} activeNav="search">
-  <Main title="search" {description}>
+<Layout {title} {description} activeNav="search">
+  <Main {title} {description}>
     <SearchBar client:load {posts}/>
   </Main>
 </Layout>

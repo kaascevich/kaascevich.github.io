@@ -2,7 +2,6 @@
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import SongCard from "@components/SongCard.astro";
-import { SITE } from "@config";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
@@ -17,12 +16,15 @@ const originals = songs.filter(song => !song.data.remixDetails)
 /** Remixed songs. */
 const remixes = songs.filter(song => song.data.remixDetails)
 
+/** The title of the Songs section. */
+const title = "songs";
+
 /** The description of the Songs section. */
 const description = "all the songs I've created or remixed";
 ---
 
-<Layout title={`songs | ${SITE.title}`} {description} activeNav="songs">
-  <Main title="songs" {description}>
+<Layout {title} {description} activeNav="songs">
+  <Main {title} {description}>
     <section id="originals">
       <h2>originals</h2>
       <ul>

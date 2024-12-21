@@ -1,5 +1,4 @@
 ---
-import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 
@@ -14,11 +13,11 @@ export interface Props {
   },
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter: { title } } = Astro.props;
 ---
 
-<Layout title={`${frontmatter.title} | ${SITE.title}`} activeNav="about">
-  <Main title={frontmatter.title}>
+<Layout {title} activeNav="about">
+  <Main {title}>
     <article class="prose max-w-3xl">
       <slot/>
     </article>
