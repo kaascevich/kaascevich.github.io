@@ -10,9 +10,8 @@
       span.ariaHidden = "true";
       span.innerText = "#";
 
-      // hide it in reader view
+      // hide the links in reader view
       span.hidden = true;
-      span.style.display = "inline";
       
       link.appendChild(span);
       heading.appendChild(link);
@@ -23,6 +22,7 @@
 
 <style lang="sass" is:global>
   .heading-link
+    display: inline
     margin-left: 0.5rem
     opacity: 0%
     font-style: normal

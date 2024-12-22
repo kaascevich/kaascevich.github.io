@@ -60,7 +60,7 @@ const posts = await getPosts();
       <h1>{title}</h1>
       <Timestamp {published} {modified} size="lg" className="timestamp"/>
       <!-- @ts-ignore: Object is of type "unknown". -->
-      <span class="reading-time">{post.rendered!.metadata!.frontmatter.readingTime}</span>
+      <span class="reading-time" hidden>{post.rendered!.metadata!.frontmatter.readingTime}</span>
     </header>
     
     <article class="prose">
