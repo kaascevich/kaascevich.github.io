@@ -1,6 +1,6 @@
 ---
 published: 2024-09-25T11:19:13-05:00
-modified: 2024-10-08T11:29:32-05:00
+modified: 2024-12-21T21:00:13-05:00
 title: AXVisualSupportAgent woes
 tags:
   - macos
@@ -8,7 +8,9 @@ tags:
 description: Stop. Using. My. Mic.
 ---
 
-> **UPDATE:** I've found a (temporary) solution to the problem described in this article:
+> **UPDATE #2:** **It appears Apple has fixed this issue in macOS 15.2.** I'm leaving the below workaround here in case anyone who hasn't yet updated comes across this article.
+
+> **UPDATE: #1** I've found a (temporary) solution to the problem described in this article:
 > 1. Open Activity Monitor and choose View &rarr; All Processes.
 > 2. Search for `coreaudiod`, and click the Stop icon in the toolbar.
 > 3. An alert will appear asking if you really want to kill `coreaudiod`. Choose Quit, and authenticate if asked. `coreaudiod` will immediately restart after you kill it; this is expected.
