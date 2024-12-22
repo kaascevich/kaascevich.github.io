@@ -11,6 +11,7 @@ import remarkCollapse from "remark-collapse";
 import remarkReadingTime from "./src/utils/plugins/remarkReadingTime.mjs";
 import remarkToc from "remark-toc";
 import { remarkMark } from "remark-mark-highlight";
+import { remarkDefinitionList, defListHastHandlers } from "remark-definition-list";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeFigure from "rehype-figure";
 
@@ -75,6 +76,7 @@ export default defineConfig({
       [remarkCollapse, { test: "Table of contents", }],
       remarkReadingTime,
       remarkMark,
+      remarkDefinitionList,
     ],
     rehypePlugins: [
       rehypeFigure,
@@ -88,6 +90,7 @@ export default defineConfig({
     },
     remarkRehype: {
       footnoteBackContent: "↑",
+      handlers: defListHastHandlers
     },
   },
   vite: {

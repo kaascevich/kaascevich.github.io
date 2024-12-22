@@ -1,0 +1,278 @@
+@use "sass:math"
+  
+@use "./functions.sass" as *
+@use "./mixins.sass" as *
+@use "./variables.sass" as *
+  
+article
+  // MARK: - Base typography
+
+  font-size: 1rem
+  line-height: 1.75
+  max-width: $max-width
+  color: $color-text
+
+  // MARK: - Standard elements
+
+  p
+    +margin-y(1.25rem)
+
+  a
+    text-decoration: underline
+    font-weight: $font-weight-medium
+    word-break: break-word
+    text-underline-offset: 4px
+
+    &[data-footnote-ref]
+      text-underline-offset: 1px
+
+    &[data-footnote-backref]
+      color: $color-accent
+      text-decoration: none
+
+  strong
+    font-weight: $font-weight-extrabold
+    :is(a, blockquote, thead th) &
+      color: inherit
+
+  mark
+    border-radius: $border-radius-default
+    padding: 0.2rem
+    background-color: $color-highlight
+    color: $color-fill
+  
+  // MARK: - Lists
+  
+  ol, ul
+    +margin-y(1.25rem)
+    padding-left: 1.625rem
+
+  ol
+    list-style-type: decimal
+    > li
+      padding-left: 0.375rem
+      &::marker
+        font-weight: $font-weight-normal
+
+  ul
+    list-style-type: disc
+    overflow-x: clip
+
+  li
+    display: list-item
+    +margin-y(0.5rem)
+    &::marker
+      color: $color-accent
+
+  > ul > li,
+  > ol > li
+    p
+      +margin-y(0.75rem)
+    > p:first-child
+      margin-top: 1.25rem
+    > p:last-child
+      margin-bottom: 1.25rem
+
+  ul ul, ul ol, ol ul, ol ol
+    +margin-y(0.75rem)
+
+  // MARK: - Definition lists
+
+  dt
+    font-weight: $font-weight-semibold
+    margin-top: 1.25rem
+    + dt
+      margin-top: 0.25rem
+
+  dl
+    +margin-y(1.25rem)
+
+  dd
+    display: list-item
+    list-style-type: "\2192"
+    margin-top: 0.5rem
+    margin-left: 1.125rem
+    padding-left: 0.5rem
+    &::marker
+      color: $color-accent
+
+
+  // MARK: - Horizontal rules
+
+  hr
+    border-color: $color-border
+    border-top-width: 1px
+    +margin-y(3rem)
+
+  // MARK: - Blockquotes
+
+  blockquote
+    font-weight: $font-weight-medium
+    font-style: normal
+    border-left: 0.25rem solid with-opacity($color-accent, 50%)
+    quotes: "\201c""\201d""\2018""\2019"
+    +margin-y(1.6rem)
+    padding-left: 1rem
+    word-break: break-words
+    opacity: 80%
+
+    p
+      &:first-of-type::before,
+      &:first-of-type::after,
+      &:last-of-type::after
+        content: none
+
+  // MARK: - Headings
+
+  h2, h3, h4
+    font-weight: $font-weight-bold
+    margin-bottom: 0.6rem
+    strong
+      font-weight: 850
+
+  h2
+    font-size: 1.5rem
+    margin-top: 2rem
+    line-height: 1.3333333
+
+  h3
+    font-size: 1.25rem
+    margin-top: 1.6rem
+    line-height: 1.6
+
+  h4
+    +margin-y(1.5rem, 0.5rem)
+    line-height: 1.5
+
+  // MARK: - Media
+
+  picture, video
+    +margin-y(2rem)
+
+  img
+    margin: 0.5rem auto
+    border:
+      width: 2px
+      color: $color-border
+      radius: $border-radius-lg
+
+  picture
+    display: block
+
+  // MARK: - Code
+
+  code
+    font-weight: $font-weight-semibold
+    font-size: 0.875em
+    :is(a, h2, h3, h4, blockquote, thead th) &
+      color: inherit
+
+  strong code
+    font-weight: $font-weight-extrabold
+
+  :not(pre) > code
+    background-color: $color-card
+    border-radius: $border-radius-default
+    padding: 0.25rem
+    overflow-wrap: break-word
+    &::before, &::after
+      content: none
+
+  pre
+    overflow-x: auto
+    font-weight: $font-weight-normal
+    font-size: 0.875rem
+    line-height: 1.7142857
+    +margin-y(1.7142857rem)
+    border-radius: 0.375rem
+    padding: 0.8571429rem 1.1428571rem
+
+    code
+      background-color: transparent
+      border-width: 0rem
+      border-radius: 0rem
+      padding: 0rem
+      color: inherit
+      font-weight: inherit
+      font-family: inherit
+      font-size: inherit
+      line-height: inherit
+
+  pre:has(code)
+    border: 1px solid $color-border
+    white-space: pre
+    line-height: 1.7
+    @media print
+      white-space: pre-wrap
+      background-color: white !important
+
+  // MARK: - Tables
+  
+  table
+    width: 100%
+    table-layout: auto
+    +margin-y(2rem)
+    font-size: 0.875rem
+    line-height: 1.7142857
+
+    thead
+      border-bottom-width: 1px
+      th
+        font-weight: $font-weight-semibold
+        vertical-align: bottom
+        background-color: with-opacity($color-card, 50%)
+
+    tbody
+      tr
+        border-bottom-width: 1px
+        &:last-child
+          border-bottom-width: 0rem
+      td
+        vertical-align: baseline
+
+    tfoot
+      border-top-width: 1px
+      td
+        vertical-align: top
+
+    th, td
+      text-align: start
+      padding: math.div(2rem, 7) math.div(4rem, 7)
+      border: 2px solid $color-border
+
+      @each $alignment in left, center, right
+        &[align="#{$alignment}"]
+          text-align: $alignment
+
+  // MARK: - Figures
+
+  figure
+    +margin-y(2rem)
+    > *
+      +margin-y(0)
+
+  figcaption
+    font-size: 0.875rem
+    line-height: 1.4285714
+    margin-top: 0.8571429rem
+    font-style: italic
+    text-align: center
+    opacity: 70%
+
+  picture > img
+    margin: 0rem
+
+  // MARK: - Reset margins after headings
+
+  hr + *,
+  h2 + *,
+  h3 + *,
+  h4 + *
+    margin-top: 0rem
+
+  // MARK: - Article spacing
+
+  > :first-child
+    margin-top: 0rem
+  > :last-child
+    margin-bottom: 0rem

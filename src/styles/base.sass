@@ -1,6 +1,8 @@
 @use "./fonts/recursive.sass"
 @use "./fonts/kosugi-maru.sass"
 
+@use "./prose.sass"
+
 @tailwind base
 @tailwind components
 @tailwind utilities
@@ -61,121 +63,6 @@ svg
     width: 2
     linecap: round
     linejoin: round
-
-.prose
-  max-width: $max-width !important // to override the `max-width` provided by the typography plugin
-
-  h1, h2, h3, h4, h5, h6
-    margin-bottom: 0.75rem
-    color: $color-text
-
-  p
-    color: $color-text
-
-  a
-    word-break: break-word
-    color: $color-text
-    text-decoration-style: solid
-    text-underline-offset: 4px
-    &:hover
-      color: $color-accent
-
-    &[data-footnote-ref]
-      text-underline-offset: 1px
-
-    &[data-footnote-backref]
-      color: $color-accent
-      text-decoration: none
-
-  blockquote
-    font-style: normal
-    word-break: break-words
-    border-left-color: with-opacity($color-accent, 50%)
-    opacity: 80%
-
-  figcaption
-    font-style: italic
-    text-align: center
-    color: $color-text
-    opacity: 70%
-
-  mark
-    border-radius: $border-radius-default
-    padding: 0.2rem
-    background-color: $color-highlight
-    color: $color-fill
-
-  strong
-    color: $color-text
-    font-weight: $font-weight-extrabold
-
-  :not(pre) > code
-    background-color: $color-card
-    border-radius: $border-radius-default
-    padding: 0.25rem
-    overflow-wrap: break-word
-    &::before, &::after
-      content: none
-
-  ol
-    color: $color-text
-
-
-  ul
-    overflow-x: clip
-    color: $color-text
-
-  li
-    padding-left: 0rem
-    &::marker
-      color: $color-accent
-
-  table
-    th
-      background-color: with-opacity($color-card, 50%)
-
-    th, td
-      color: $color-text
-      padding: math.div(2em, 7) math.div(4em, 7)
-
-      border: 2px solid $color-border
-
-      @each $alignment in left, center, right
-        &[align="#{$alignment}"]
-          text-align: $alignment
-
-  img
-    margin: 0.5rem auto
-    border:
-      width: 2px
-      color: $color-border
-      radius: $border-radius-lg
-
-  hr
-    border-color: $color-border
-
-  h2#table-of-contents
-    margin-bottom: 0.5rem
-    & + p
-      display: none
-
-  details
-    display: inline-block
-    cursor: pointer
-    user-select: none
-    color: $color-text
-
-  summary
-    outline: 2px solid transparent
-      offset: 2px
-
-  pre:has(code)
-    border: 1px solid $color-border
-    white-space: pre
-    line-height: 1.7
-    @media print
-      white-space: pre-wrap
-      background-color: white !important // something else wants to override this, don't know why
 
 :root[data-theme="dark"] pre:has(code)
   &, span
