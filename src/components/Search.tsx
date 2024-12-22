@@ -42,7 +42,6 @@ export default function Search({ posts }: Props) {
       ? fuse.search(inputValue).map(result => result.item)
       : []
     );
-    console.log(searchResults);
 
     // update search string in URL
     if (inputValue.length > 0) {

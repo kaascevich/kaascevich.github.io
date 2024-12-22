@@ -12,6 +12,5 @@ export default function remarkReadingTime() {
     const roundedMinutes = Math.ceil(minutes);
 
     data.astro.frontmatter.readingTime = `About ${roundedMinutes} ${roundedMinutes === 1 ? "minute" : "minutes"}`;
-    console.log("Heyyyy, I'm running!", data.astro.frontmatter.readingTime, data);
   };
 }
