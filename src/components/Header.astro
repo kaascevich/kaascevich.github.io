@@ -32,38 +32,23 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">skip to content</a>
   <div id="nav-container">
     <div id="top-nav-wrap">
-      <a href="/" id="logo">{SITE.title}</a>
+      <a href="/" id="logo" aria-label="home">{SITE.title}</a>
       <nav>
-        <button
-          id="hamburger-menu"
-          aria-label="open menu"
-          aria-expanded={false}
-          aria-controls="menu-items"
-        >
-          <MenuOpenIcon class="line"/>
-          <MenuCloseIcon class="close"/>
+        <button id="hamburger-menu" aria-label="open menu" aria-expanded={false} aria-controls="menu-items">
+          <MenuOpenIcon id="open-icon"/>
+          <MenuCloseIcon id="close-icon"/>
         </button>
         <menu style={{ display: "none" }}>
-          {mainNavItems.map(navItem =>
-            <li><a href={`/${navItem}/`} class={activeNav === navItem ? "active" : ""}>{navItem}</a></li>
-          )}
+          {mainNavItems.map(navItem => <li>
+            <a href={`/${navItem}/`} class:list={[activeNav === navItem && "active"]}>{navItem}</a>
+          </li>)}
           <li>
-            <LinkButton
-              href="/search/"
-              class={`p-3 sm:p-1 ${activeNav === "search" ? "active" : ""}`}
-              aria-label="search"
-              title="search"
-            >
-              <SearchIcon class="scale-125 sm:scale-100"/>
-            </LinkButton>
+            <a href="/search/" class:list={[activeNav === "search" && "active"]} aria-label="search">
+              <SearchIcon/>
+            </a>
           </li>
           <li>
-            <button
-              id="theme-button"
-              title="toggle dark mode"
-              aria-label="auto"
-              aria-live="polite"
-            >
+            <button id="theme-button" title="current theme: automatic" aria-label="toggle theme" aria-live="polite">
               <MoonIcon id="moon-svg"/>
               <SunIcon id="sun-svg"/>
             </button>
@@ -136,14 +121,14 @@ const { activeNav } = Astro.props;
       scale: 125%
       fill: $color-text
 
-      &.line
+      &#open-icon
         display: block
-      &.close
+      &#close-icon
         display: none
-    &.is-active svg
-      &.line
+    &.active svg
+      &#open-icon
         display: none
-      &.close
+      &#close-icon
         display: block
 
   nav
@@ -162,9 +147,7 @@ const { activeNav } = Astro.props;
       margin-top: 1rem
       display: grid
       width: 11rem
-      grid-template:
-        columns: repeat(2, minmax(0, 1fr))
-        rows: repeat(4, minmax(0, 1fr))
+      grid-template: repeat(3, minmax(0, 1fr)) / repeat(2, minmax(0, 1fr))
       gap: 0.5rem
 
       @include desktop
@@ -176,10 +159,21 @@ const { activeNav } = Astro.props;
         gap: 0rem 1.25rem
       
       li
-        grid-column: span 2 / span 2
+        grid-column: span 1 / span 1
         display: flex
         align-items: center
         justify-content: center
+
+        a, button
+          padding: 0.25rem
+          svg
+            +size(1.5rem)
+            scale: 125%
+            fill: $color-text
+            &:hover
+              fill: $color-accent
+            @include desktop
+              scale: 100%
 
         a
           width: 100%
@@ -191,35 +185,15 @@ const { activeNav } = Astro.props;
             +margin-y(0rem)
             padding: 0.25rem 0.5rem
 
-          &:hover
+          &:hover, &.active
             color: $color-accent
-        
-        &:nth-last-child(2) a
-          width: auto
-        &:nth-last-child(1), &:nth-last-child(2)
-          grid-column: span 1 / span 1
+          &.active
+            font-weight: $font-weight-extrabold
 
-    a.active
-      font-weight: $font-weight-extrabold
-      svg
-        fill: $color-accent
-    
-    button
-      padding: 0.25rem
-      svg
-        +size(1.5rem)
-        fill: $color-text
-        &:hover
-          fill: $color-accent
-
-  #theme-button
-    padding: 0.75rem
-    @include desktop
-      padding: 0.25rem
-    svg
-      scale: 125%
-      @include desktop
-        scale: 100%
+        button
+          padding: 0.75rem
+          @include desktop
+            padding: 0.25rem
 
 #sun-svg, :root[data-theme="dark"] #moon-svg
   display: none
@@ -236,7 +210,7 @@ const { activeNav } = Astro.props;
 
     menuButton.onclick = () => {
       const isMenuExpanded = menuButton.ariaExpanded === "true";
-      menuButton.classList.toggle("is-active");
+      menuButton.classList.toggle("active");
       menuButton.ariaExpanded = isMenuExpanded ? "false" : "true";
       menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu";
       menuItems.style.display = isMenuExpanded ? "none" : "grid";

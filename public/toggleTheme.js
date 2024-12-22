@@ -20,7 +20,7 @@ function setTheme(theme) {
 /** Applies the current theme to the site. */
 function reflectThemePreference() {
   document.documentElement.dataset.theme = getTheme();
-  document.getElementById("theme-button")?.setAttribute("aria-label", getTheme());
+  document.getElementById("theme-button")?.setAttribute("title", `current theme: ${getTheme()}`);
 
   if (document.body) {
     const backgroundColor = getComputedStyle(document.body).backgroundColor;
