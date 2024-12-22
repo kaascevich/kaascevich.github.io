@@ -25,9 +25,7 @@ export default function Timestamp({
   className = "",
 }: Props) {
   return (
-    <div className={
-      `${styles["timestamp-wrapper"]} ${size === "sm" ? "text-sm" : "text-base"} ${className}`.trim()
-    }>
+    <div className={`${styles["timestamp-wrapper"]} ${size === "sm" ? "text-sm" : "text-base"} ${className}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"}

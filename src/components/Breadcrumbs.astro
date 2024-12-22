@@ -20,7 +20,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 ---
 
 <nav class="breadcrumbs" aria-label="breadcrumbs">
-  <ul>
+  <menu>
     <li>
       <a href="/">home</a>
       <span aria-hidden>&rarr;</span>
@@ -37,7 +37,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
         )}</li>
       )
     }
-  </ul>
+  </menu>
 </nav>
 
 <style lang="sass">
@@ -48,7 +48,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     +padding-x(1rem)
     @include hide-in-print
     
-    ul
+    menu
       li
         display: inline
 

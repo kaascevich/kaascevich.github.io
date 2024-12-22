@@ -8,9 +8,10 @@ import { toString } from "mdast-util-to-string";
 export default function remarkReadingTime() {
   return function (tree, { data }) {
     const textOnPage = toString(tree);
-    const readingTime = getReadingTime(textOnPage);
-    // readingTime.text will give us minutes read as a friendly string,
-    // i.e. "3 min read"
-    data.astro.frontmatter.readingTime = readingTime.text;
+    const { minutes } = getReadingTime(textOnPage);
+    const roundedMinutes = Math.ceil(minutes);
+
+    data.astro.frontmatter.readingTime = `About ${roundedMinutes} ${roundedMinutes === 1 ? "minute" : "minutes"}`;
+    console.log("Heyyyy, I'm running!", data.astro.frontmatter.readingTime, data);
   };
 }

@@ -52,7 +52,7 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"/>
           </svg>
         </button>
-        <ul id="menu-items" class="display-none sm:flex">
+        <menu style={{ display: "none" }}>
           {mainNavItems.map(navItem =>
             <li><a href={`/${navItem}/`} class={activeNav === navItem ? "active" : ""}>{navItem}</a></li>
           )}
@@ -83,7 +83,7 @@ const { activeNav } = Astro.props;
               </svg>
             </button>
           </li>
-        </ul>
+        </menu>
       </nav>
     </div>
   </div>
@@ -139,6 +139,8 @@ const { activeNav } = Astro.props;
     &:hover
       color: $color-accent
 
+  menu
+
   #hamburger-menu
     align-self: flex-end
     padding: 0.5rem
@@ -171,7 +173,7 @@ const { activeNav } = Astro.props;
       flex-direction: row
       justify-content: flex-end
 
-    ul
+    menu
       margin-top: 1rem
       display: grid
       width: 11rem
@@ -181,12 +183,13 @@ const { activeNav } = Astro.props;
       gap: 0.5rem
 
       @include desktop
+        display: flex !important // to override `display: none` inlined in the element
         margin:
           left: 0rem
           top: 0rem
         width: auto
         gap: 0rem 1.25rem
-
+      
       li
         grid-column: span 2 / span 2
         display: flex
@@ -245,14 +248,14 @@ const { activeNav } = Astro.props;
   function setUpNavToggle() {
     const menuButton = document.getElementById("hamburger-menu")!;
     const menuIcon = menuButton.querySelector("svg")!;
-    const menuItems = document.getElementById("menu-items")!;
+    const menuItems = document.querySelector("menu")!;
 
     menuButton.onclick = () => {
       const isMenuExpanded = menuButton.ariaExpanded === "true";
       menuIcon.classList.toggle("is-active");
       menuButton.ariaExpanded = isMenuExpanded ? "false" : "true";
       menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu";
-      menuItems.classList.toggle("display-none");
+      menuItems.style.display = isMenuExpanded ? "none" : "grid";
     };
   }
 

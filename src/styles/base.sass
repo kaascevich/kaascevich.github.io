@@ -60,6 +60,8 @@ svg
     fill: $color-accent
 
 .prose
+  max-width: $max-width !important // to override the `max-width` provided by the typography plugin
+
   h1, h2, h3, h4, h5, h6
     margin-bottom: 0.75rem
     color: $color-text
@@ -134,7 +136,7 @@ svg
       padding: math.div(2em, 7) math.div(4em, 7)
 
       border: 2px solid $color-border
-      
+
       @each $alignment in left, center, right
         &[align="#{$alignment}"]
           text-align: $alignment

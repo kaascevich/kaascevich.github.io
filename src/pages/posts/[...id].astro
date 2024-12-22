@@ -34,7 +34,6 @@ const { post } = Astro.props;
 const {
   title,
   description,
-  readingTime,
   published,
   modified,
   tags,
@@ -57,11 +56,14 @@ const posts = await getPosts();
   <BackButton class="back-button"/>
 
   <main>
-    <h1>{title}</h1>
-    <Timestamp {published} {modified} size="lg" className="timestamp"/>
-    <span class="reading-time">{readingTime}</span>
+    <header>
+      <h1>{title}</h1>
+      <Timestamp {published} {modified} size="lg" className="timestamp"/>
+      <!-- @ts-ignore: Object is of type "unknown". -->
+      <span class="reading-time">{post.rendered!.metadata!.frontmatter.readingTime}</span>
+    </header>
     
-    <article class="prose mx-auto mt-8 max-w-3xl">
+    <article class="prose">
       <Content/>
     </article>
 
@@ -69,10 +71,10 @@ const posts = await getPosts();
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
 
-    <div id="article-footer">
+    <footer>
       <BackToTop/>
       <ShareLinks/>
-    </div>
+    </footer>
 
     <PostLinks {post} {posts}/>
     <Comments client:only="react"/>
@@ -100,6 +102,9 @@ const posts = await getPosts();
     font-size: $font-size-2xl
     font-weight: $font-weight-semibold
     color: $color-accent
+
+  article
+    margin-top: 2rem
   
   .reading-time
     opacity: 80%
@@ -111,7 +116,8 @@ const posts = await getPosts();
     +margin-y(2rem, 1rem)
     @include hide-in-print
   
-  #article-footer
+  footer
+    +padding-x(0rem)
     display: flex
     flex-direction: column-reverse
     align-items: center
