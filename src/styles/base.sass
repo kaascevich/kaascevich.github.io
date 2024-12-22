@@ -56,10 +56,11 @@ a, button
 svg
   display: inline-block
   +size(1.5rem)
-  fill: $color-text
-  +transition(fill)
-  &:hover
-    fill: $color-accent
+  fill: transparent
+  stroke: currentColor
+    width: 2
+    linecap: round
+    linejoin: round
 
 .prose
   max-width: $max-width !important // to override the `max-width` provided by the typography plugin

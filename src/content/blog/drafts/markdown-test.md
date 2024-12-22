@@ -20,14 +20,6 @@ And some text under a level 3 heading...
 
 Even more text, this time under a level 4 heading.
 
-##### Level 5 Heading
-
-Still adding more text... this is under a level 5 heading.
-
-###### Level 6 Heading
-
-Finally, done! A level 6 heading!
-
 ------
 
 Apostrophes ('test'), quotes ("test"), em dashes (test -- test), ellipses (test...).

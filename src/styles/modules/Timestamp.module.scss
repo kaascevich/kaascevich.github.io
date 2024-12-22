@@ -2,15 +2,11 @@
 @use "../mixins.sass" as *;
 
 .timestamp-wrapper {
-  /* display: flex; */
-  align-items: center;
   opacity: 80%;
 
   svg {
-    display: inline;
     position: relative;
     bottom: 0.15em;
-    fill: $color-text;
   }
   
   .updated-text {

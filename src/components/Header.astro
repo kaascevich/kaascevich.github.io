@@ -106,8 +106,6 @@ const { activeNav } = Astro.props;
     @include desktop
       position: static
       font-size: $font-size-2xl
-    &:hover
-      color: $color-accent
 
   #hamburger-menu
     align-self: flex-end
@@ -119,7 +117,6 @@ const { activeNav } = Astro.props;
     svg
       +size(1.5rem)
       scale: 125%
-      fill: $color-text
 
       &#open-icon
         display: block
@@ -169,9 +166,6 @@ const { activeNav } = Astro.props;
           svg
             +size(1.5rem)
             scale: 125%
-            fill: $color-text
-            &:hover
-              fill: $color-accent
             @include desktop
               scale: 100%
 
