@@ -1,4 +1,5 @@
 import styles from "@styles/modules/Timestamp.module.scss";
+import CalendarIcon from "@assets/icons/calendar.svg?react";
 
 interface TimestampProps {
   /** The date this post was published. */
@@ -26,14 +27,7 @@ export default function Timestamp({
 }: Props) {
   return (
     <div className={`${styles["timestamp-wrapper"]} ${size === "sm" ? "text-sm" : "text-base"} ${className}`}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"}
-        aria-hidden
-      >
-        <path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"/>
-        <path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"/>
-      </svg>
+      <CalendarIcon className={size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"} aria-hidden/>
       {modified && modified > published &&
         <span className={styles["updated-text"]} hidden style={{ display: "inline" }}>Updated:</span>}
       <FormattedTimestamp

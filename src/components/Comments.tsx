@@ -1,7 +1,7 @@
+import styles from "@styles/modules/Comments.module.scss";
 import Giscus from "@giscus/react";
 import { GISCUS } from "@config";
 import { useEffect, useState } from "react";
-import styles from "@styles/modules/Comments.module.scss";
 
 /** A CSS file containing light theme styles. */
 const lightTheme = "https://giscus.catppuccin.com/themes/latte-no-loader.css";

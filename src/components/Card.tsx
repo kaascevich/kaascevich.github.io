@@ -1,6 +1,6 @@
+import styles from "@styles/modules/Card.module.scss";
 import Timestamp from "@components/Timestamp";
 import type { CollectionEntry } from "astro:content";
-import styles from "@styles/modules/Card.module.scss";
 
 interface Props {
   /** The ID of the post this card represents. */

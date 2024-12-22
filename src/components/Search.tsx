@@ -1,8 +1,10 @@
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
+import styles from "@styles/modules/Search.module.scss";
+
+import SearchIcon from "@assets/icons/search.svg?react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
-import styles from "@styles/modules/Search.module.scss";
 
 interface Props {
   /** The list of posts that can be searched through. */
@@ -59,9 +61,7 @@ export default function Search({ posts }: Props) {
   return <>
     <search className={styles["search-bar"]}>
       <label htmlFor="search-input" aria-label="search">
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"/>
-        </svg>
+        <SearchIcon aria-hidden/>
       </label>
       <input
         id="search-input"

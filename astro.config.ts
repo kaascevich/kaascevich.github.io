@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 import ogImages from "astro-opengraph-images";
 import compress from "@playform/compress";
 import mdAstro from "@astropub/md";
+import svgr from "vite-plugin-svgr";
 
 import remarkCollapse from "remark-collapse";
 import remarkReadingTime from "./src/utils/plugins/remarkReadingTime.mjs";
@@ -111,6 +112,11 @@ export default defineConfig({
         },
       },
     },
+    plugins: [
+      svgr({
+        include: '**/*.svg?react',
+      }),
+    ]
   },
   scopedStyleStrategy: "where",
   experimental: {

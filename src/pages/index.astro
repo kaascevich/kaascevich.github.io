@@ -5,6 +5,9 @@ import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
+
+import RSSIcon from "@assets/icons/rss.svg";
+
 import getPosts from "@utils/getPosts";
 import { SITE } from "@config";
 
@@ -25,15 +28,11 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       <a
         target="_blank"
         href="/rss.xml"
-        class="rss-link"
+        id="rss-link"
         aria-label="RSS feed"
         title="RSS feed"
       >
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"/>
-          <path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"/>
-          <circle cx="6" cy="18" r="2"/>
-        </svg>
+        <RSSIcon/>
       </a>
 
       <article class="prose" style={{ maxWidth: "48rem" }}>
@@ -96,13 +95,13 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         +margin-y(2rem)
         font-size: $font-size-5xl
     
-    .rss-link
+    #rss-link
       margin-bottom: 1.5rem
       svg
         margin-bottom: 0.5rem
         +size(1.5rem)
         scale: 110%
-        fill: $color-accent
+        color: $color-accent
         @include desktop
           margin-bottom: 0.75rem
           scale: 125%
