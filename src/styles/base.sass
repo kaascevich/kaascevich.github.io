@@ -3,10 +3,6 @@
 
 @use "./prose.sass"
 
-@tailwind base
-@tailwind components
-@tailwind utilities
-
 :root
   overflow-y: scroll
 
@@ -49,6 +45,7 @@ a, button
   +transition(color)
   outline: 2px $color-accent
     offset: 1px
+  border: none
   &:focus-visible
     text-decoration-line: none
     outline-style: dashed
@@ -63,6 +60,11 @@ svg
     width: 2
     linecap: round
     linejoin: round
+
+pre, code
+  font-family: Recursive, monospace
+  font-feature-settings: normal
+  font-variation-settings: "CASL" 0.25, "MONO" 1
 
 :root[data-theme="dark"] pre:has(code)
   &, span

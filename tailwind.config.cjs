@@ -30,6 +30,19 @@ module.exports = {
           },
         },
       },
+      // fontFamily: {
+      //   sans: [
+      //     "Recursive, 'Kosugi Maru', sans-serif",
+      //     {
+      //       fontFeatureSettings: "'frac'",
+      //       fontVariationSettings: "'CASL' 0.25",
+      //     },
+      //   ],
+      //   mono: [
+      //     "Recursive, monospace",
+      //     { fontVariationSettings: "'CASL' 0.25, 'MONO' 1" },
+      //   ],
+      // },
     },
   },
   plugins: [

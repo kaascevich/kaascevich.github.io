@@ -26,8 +26,19 @@ export default function Timestamp({
   className = "",
 }: Props) {
   return (
-    <div className={`${styles["timestamp-wrapper"]} ${size === "sm" ? "text-sm" : "text-base"} ${className}`}>
-      <CalendarIcon className={size === "sm" ? "scale-90 mr-0.5" : "scale-100 mr-1"} aria-hidden/>
+    <div
+      className={`${styles["timestamp-wrapper"]} ${className}`}
+      style={{
+        fontSize: size === "sm" ? "0.875rem" : "1rem",
+      }}
+    >
+      <CalendarIcon
+        style={{
+          scale: size === "sm" ? "90%" : "100%",
+          marginRight: size === "sm" ? "0.125rem" : "0.25rem",
+        }}
+        aria-hidden
+      />
       {modified && modified > published &&
         <span className={styles["updated-text"]} hidden style={{ display: "inline" }}>Updated:</span>}
       <FormattedTimestamp
