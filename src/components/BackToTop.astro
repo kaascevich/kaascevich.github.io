@@ -8,11 +8,8 @@
       offset: 2px
     white-space: nowrap
     +padding-y(0.25rem)
-    +transition(opacity)
     
-    &:hover
-      opacity: 75%
-      color: $color-text
+    @include transition-opacity
 
     &::before
       content: "#{$char-up-arrow} "

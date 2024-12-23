@@ -66,10 +66,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       display: flex
       width: 100%
       gap: 0.25rem
-      +transition(opacity)
-      &:hover
-        opacity: 75%
-        color: $color-text
+      @include transition-opacity
       
       .post-title
         font-size: $font-size-sm

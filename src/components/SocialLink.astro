@@ -11,17 +11,13 @@ const { social } = Astro.props;
 const { default: Icon } = await import(`../assets/icons/socials/${social.name}.svg`);
 ---
 
-<LinkButton
-  href={social.href}
-  class="link-button"
-  title={social.linkTitle}
-  aria-label={social.linkTitle}
->
+<a href={social.href} title={social.linkTitle} aria-label={social.linkTitle}>
   <Icon/>
-</LinkButton>
+</a>
 
 <style lang="sass">
-  .link-button
+  a
+    display: inline-block
     padding: 0.375rem
     transition: rotate 0.1s ease-in-out, color 0.1s linear
     &:hover

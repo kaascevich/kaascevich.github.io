@@ -54,9 +54,7 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 
         a
           opacity: 70%
-          +transition(opacity)
+          @include transition-opacity(100%)
         span
           opacity: 70%
-        &:not(:last-child) a:hover
-          opacity: 100%
 </style>

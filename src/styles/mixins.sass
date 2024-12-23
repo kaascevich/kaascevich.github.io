@@ -41,3 +41,9 @@
 
 =transition($transition-property)
   transition: $transition-property 0.1s linear
+
+=transition-opacity($opacity: 75%)
+  +transition(opacity)
+  &:hover
+    opacity: $opacity
+    color: $color-text
