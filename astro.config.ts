@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import ogImages from "astro-opengraph-images";
 import compress from "@playform/compress";
@@ -28,7 +27,6 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   site: SITE.url,
   integrations: [
-    tailwind({ applyBaseStyles: false }),
     react(),
     sitemap(),
     ogImages({

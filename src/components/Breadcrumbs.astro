@@ -3,7 +3,7 @@
 const currentURLPath = Astro.url.pathname.replace(/\/+$/, "");
 
 // get url array from path
-// eg: /tags/tailwindcss => ["tags", "tailwindcss"]
+// eg: /tags/swift => ["tags", "swift"]
 const breadcrumbList = currentURLPath.split("/").slice(1);
 
 // if breadcrumb is "home > posts > [page]"

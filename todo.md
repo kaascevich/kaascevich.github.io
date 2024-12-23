@@ -7,4 +7,4 @@
 
 - [ ] Migrate `Search.tsx`, `Card.tsx`, `Timestamp.tsx` and `Comments.tsx` to Astro
 - [ ] Auto-generate `robots.txt` (properly) to keep AIs from stealing my stuff
-- [ ] De-Tailwind-ify the stylesheets
+- [x] De-Tailwind-ify the stylesheets
