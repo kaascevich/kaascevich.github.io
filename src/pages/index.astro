@@ -1,7 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import ExternalLink from "@components/ExternalLink.astro";
-import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
@@ -75,9 +74,9 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     }
 
     <div id="all-posts-button-wrapper">
-      <LinkButton href="/posts/">
+      <a href="/posts/">
         all posts &rarr;
-      </LinkButton>
+      </a>
     </div>
   </main>
 </Layout>
