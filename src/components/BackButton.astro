@@ -18,6 +18,7 @@ const { class: className = "" } = Astro.props;
     display: flex
     +transition(opacity)
     &:hover
+      color: $color-text
       opacity: 75%
     @include hide-in-print
 </style>

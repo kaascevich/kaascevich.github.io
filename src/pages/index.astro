@@ -75,7 +75,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
 
     <div id="all-posts-button-wrapper">
       <a href="/posts/">
-        all posts &rarr;
+        all posts
       </a>
     </div>
   </main>
@@ -135,4 +135,6 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     margin-bottom: 2rem
     text-align: center
     @include hide-in-print
+    a::after
+      content: " #{$char-right-arrow}"
 </style>

@@ -92,6 +92,10 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [
+      // @ts-ignore: Type 'Plugin<any>' is not assignable to type 'PluginOption'.
+      svgr(),
+    ],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
@@ -113,11 +117,6 @@ export default defineConfig({
         },
       },
     },
-    plugins: [
-      svgr({
-        include: '**/*.svg?react',
-      }),
-    ]
   },
   scopedStyleStrategy: "where",
   experimental: {

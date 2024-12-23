@@ -1,5 +1,5 @@
 <button onclick="document.documentElement.scrollTop = 0;">
-  &uarr; back to top
+  back to top
 </button>
 
 <style lang="sass">
@@ -12,4 +12,8 @@
     
     &:hover
       opacity: 75%
+      color: $color-text
+
+    &::before
+      content: "#{$char-up-arrow} "
 </style>
