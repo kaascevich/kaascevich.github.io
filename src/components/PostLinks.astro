@@ -28,7 +28,6 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 <div class="post-link-wrapper">
   {prevPost &&
     <a id="previous-post" href={`/posts/${prevPost.id}`}>
-      &larr;
       <div>
         <span>previous post</span>
         <div class="post-title">{prevPost.title}</div>
@@ -41,7 +40,6 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
         <span>next post</span>
         <div class="post-title">{nextPost.title}</div>
       </div>
-      &rarr;
     </a>
   }
 </div>
@@ -72,9 +70,19 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
         font-size: $font-size-sm
         color: with-opacity($color-accent, 85%)
 
+    #previous-post
+      justify-content: left
+      text-align: left
+      @include desktop
+        grid-column-start: 1
+      &::before
+        content: "#{$char-left-arrow}"
+
     #next-post
-      justify-content: flex-end
+      justify-content: right
       text-align: right
       @include desktop
         grid-column-start: 2
+      &::after
+        content: "#{$char-right-arrow}"
 </style>

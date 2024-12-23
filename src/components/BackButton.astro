@@ -9,7 +9,7 @@ const { class: className = "" } = Astro.props;
 
 <div class={className}>
   <button onclick="history.length === 1 ? location = '/' : history.back()">
-    &larr; go back
+    go back
   </button>
 </div>
 
@@ -18,4 +18,7 @@ const { class: className = "" } = Astro.props;
     display: flex
     @include transition-opacity
     @include hide-in-print
+    &::before
+      white-space: preserve nowrap
+      content: "#{$char-left-arrow} "
 </style>
