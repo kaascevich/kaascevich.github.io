@@ -2,6 +2,7 @@
   /** Adds links to headings. */
   function addHeadingLinks() {
     for (const heading of document.querySelectorAll("h2, h3, h4, h5, h6")) {
+      console.log(heading);
       const link = document.createElement("a");
       link.className = "heading-link";
       link.href = `#${heading.id}`;
@@ -12,6 +13,7 @@
 
       // hide the links in reader view
       span.hidden = true;
+      span.style.display = "inline";
       
       link.appendChild(span);
       heading.appendChild(link);
