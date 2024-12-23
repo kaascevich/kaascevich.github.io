@@ -19,8 +19,9 @@
     .card-header {
       font-size: $font-size-lg;
       font-weight: $font-weight-medium;
+      @include transition(text-decoration);
       &:hover {
-        text-decoration: underline solid;
+        text-decoration: underline;
       }
     }
   }
