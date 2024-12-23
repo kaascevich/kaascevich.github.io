@@ -178,10 +178,12 @@ const { activeNav } = Astro.props;
             +margin-y(0rem)
             padding: 0.25rem 0.5rem
 
-          &:hover, &.active
+          &:hover
             color: $color-accent
           &.active
             font-weight: $font-weight-extrabold
+            svg
+              stroke-width: 3.5
 
         button
           padding: 0.75rem

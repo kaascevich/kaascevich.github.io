@@ -63,8 +63,10 @@
     line-height: 1rem
     color: $color-text
     font-weight: $font-weight-medium
+    +transition(background-color)
     &:hover
       background-color: $color-card-muted
+      color: $color-text
     @include hide-in-print
 
   .language-name

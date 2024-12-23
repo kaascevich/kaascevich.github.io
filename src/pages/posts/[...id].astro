@@ -71,6 +71,8 @@ const posts = await getPosts();
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
 
+    <hr/>
+
     <footer>
       <BackToTop/>
       <ShareLinks/>
@@ -115,6 +117,11 @@ const posts = await getPosts();
   .tag-list
     +margin-y(2rem, 1rem)
     @include hide-in-print
+    + hr
+      +margin-y(2rem)
+      @include desktop
+        display: none
+      @include hide-in-print
   
   footer
     +padding-x(0rem)
