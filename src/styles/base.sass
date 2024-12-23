@@ -8,10 +8,9 @@
   scroll-behavior: smooth
 
   color-scheme: light dark
-  &[data-theme="light"]
-    color-scheme: light
-  &[data-theme="dark"]
-    color-scheme: dark
+  @each $theme in light, dark
+    &[data-theme="#{$theme}"]
+      color-scheme: $theme
 
   @media (prefers-reduced-motion)
     scroll-behavior: auto
@@ -47,12 +46,11 @@ section, footer
 
 a, button
   +transition(color)
-  outline: 2px $color-accent
-    offset: 1px
   border: none
   &:focus-visible
     text-decoration-line: none
-    outline-style: dashed
+    outline: 2px dashed $color-accent
+      offset: 1px
   &:hover
     color: $color-accent
 
