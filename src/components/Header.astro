@@ -109,9 +109,11 @@ const { activeNav } = Astro.props;
   #hamburger-menu
     align-self: flex-end
     padding: 0.5rem
-
     @include desktop
       display: none
+
+    &:hover
+      color: currentcolor
 
     svg
       +size(1.5rem)

@@ -52,33 +52,31 @@
 </script>
 
 <style lang="sass" is:global>
-  .copy-code
+  .language-name, .copy-code
     position: absolute
-    right: 0.75rem
     top: -0.75rem
-    border-radius: $border-radius-default
-    background-color: $color-card
-    padding: 0.25rem 0.5rem
-    font-size: $font-size-xs
+    font-size: 0.75rem
     line-height: 1rem
-    color: $color-text
     font-weight: $font-weight-medium
-    +transition(background-color)
-    &:hover
-      background-color: $color-card-muted
-      color: $color-text
-    @include hide-in-print
 
   .language-name
     display: inline
-    position: absolute
     left: 0.75rem
-    top: -0.75rem
     padding: 0.25rem
-    font-size: $font-size-xs
-    line-height: 1rem
-    font-weight: $font-weight-medium
+    text-transform: lowercase
     background-color: $color-background
     @media print
       background-color: white
+
+  .copy-code
+    right: 0.75rem
+    border-radius: $border-radius-default
+    background-color: $color-card
+    padding: 0.25rem 0.5rem
+    color: $color-text
+    +transition(background-color)
+    &:hover
+      background-color: $color-card-muted
+      color: currentcolor
+    @include hide-in-print
 </style>

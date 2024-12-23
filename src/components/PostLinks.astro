@@ -29,7 +29,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   {prevPost &&
     <a id="previous-post" href={`/posts/${prevPost.id}`}>
       <div>
-        <span>previous post</span>
+        previous post
         <div class="post-title">{prevPost.title}</div>
       </div>
     </a>
@@ -37,7 +37,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   {nextPost &&
     <a id="next-post" href={`/posts/${nextPost.id}`}>
       <div>
-        <span>next post</span>
+        next post
         <div class="post-title">{nextPost.title}</div>
       </div>
     </a>
@@ -62,7 +62,6 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
 
     #previous-post, #next-post
       display: flex
-      width: 100%
       gap: 0.25rem
       @include transition-opacity
       
