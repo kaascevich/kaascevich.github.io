@@ -21,8 +21,6 @@ export interface Props {
   published?: Date,
   /** The date this page was last modified, if any. */
   modified?: Date,
-  /** Whether to enable smooth scrolling. */
-  scrollSmooth?: boolean,
   /** The active navigation item. */
   activeNav?: NavItem,
 }
@@ -33,7 +31,6 @@ const {
   description = SITE.description,
   published,
   modified,
-  scrollSmooth = false,
   activeNav,
 } = Astro.props;
 
@@ -69,7 +66,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en" class:list={[scrollSmooth && "scroll-smooth"]}>
+<html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
