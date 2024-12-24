@@ -114,6 +114,7 @@ export default defineConfig({
           @use "@/styles/functions.sass" as *
           @use "@/styles/mixins.sass" as *
           `,
+          silenceDeprecations: ["mixed-decls"],
         },
       },
     },
