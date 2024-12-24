@@ -26,9 +26,7 @@ const { tag, size = "sm" } = Astro.props;
     a
       position: relative
       padding-right: 0.5rem
-
-      &:hover
-        color: $color-accent
+      @include hover-transition(color, $color-accent)
 
       span::before
         content: "#\202f\202f" // two thin spaces

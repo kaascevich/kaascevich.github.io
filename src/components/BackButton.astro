@@ -16,7 +16,7 @@ const { class: className = "" } = Astro.props;
 <style lang="sass">
   button
     display: flex
-    @include transition-opacity
+    @include hover-transition(opacity, 75%)
     @include hide-in-print
     &::before
       white-space: preserve nowrap

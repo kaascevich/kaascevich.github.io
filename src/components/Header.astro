@@ -102,6 +102,7 @@ const { activeNav } = Astro.props;
     font-weight: $font-weight-semibold
     white-space: nowrap
     font-size: $font-size-xl
+    @include hover-transition(color, $color-accent)
     @include desktop
       position: static
       font-size: $font-size-2xl
@@ -164,6 +165,7 @@ const { activeNav } = Astro.props;
 
         a, button
           padding: 0.25rem
+          @include hover-transition(color, $color-accent)
           svg
             +size(1.5rem)
             scale: 125%
@@ -180,8 +182,6 @@ const { activeNav } = Astro.props;
             +margin-y(0rem)
             padding: 0.25rem 0.5rem
 
-          &:hover
-            color: $color-accent
           &.active
             font-weight: $font-weight-extrabold
             svg

@@ -39,11 +39,10 @@
 
 // MARK: - Transitions
 
-=transition($transition-property)
-  transition: $transition-property 100ms linear
+=transition($property)
+  transition: $property 100ms linear
 
-=transition-opacity($opacity: 75%)
-  +transition(opacity)
+=hover-transition($property, $value)
+  +transition($property)
   &:hover
-    opacity: $opacity
-    color: $color-text
+    #{$property}: $value

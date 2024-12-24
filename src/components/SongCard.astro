@@ -25,11 +25,7 @@ const author = remixDetails?.composer ?? SITE.author
     {author} {remixDetails && <>(<a href={remixDetails.linkToOriginal}>orig.</a>)</>}
   </p>
 
-  <audio
-    src={sourceURL}
-    preload="metadata"
-    controls
-  />
+  <audio src={sourceURL} preload="metadata" controls/>
 </li>
 
 <style lang="sass">
@@ -42,14 +38,16 @@ const author = remixDetails?.composer ?? SITE.author
       display: inline-block
       font-weight: $font-weight-medium
       font-size: $font-size-lg
-      a
-        color: $color-accent
+      color: $color-accent
 
     a:hover
-      text-decoration: underline solid
+      text-decoration: underline
 
     p
       opacity: 75%
+      a
+        font-style: italic
+    
     audio
       padding-top: 0.25rem
 </style>
