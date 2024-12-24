@@ -6,16 +6,21 @@ import SearchIcon from "@assets/icons/search.svg?react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
 
+interface PostDetails  {
+  id: CollectionEntry<"blog">["id"],
+  data: CollectionEntry<"blog">["data"],
+}
+
 interface Props {
   /** The list of posts that can be searched through. */
-  posts: CollectionEntry<"blog">[],
+  posts: PostDetails[],
 }
 
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<CollectionEntry<"blog">[]>([]);
+  const [searchResults, setSearchResults] = useState<PostDetails[]>([]);
 
   const fuse = useMemo(
     () => new Fuse(posts, {
