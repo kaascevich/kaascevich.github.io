@@ -16,7 +16,7 @@
     scroll-behavior: auto
 
 body
-  max-width: 48rem
+  max-width: constants.$max-width
   +margin-x(auto)
   display: flex
   min-height: 100svh
@@ -25,7 +25,7 @@ body
     family: Recursive, "Kosugi Maru", sans-serif
     feature-settings: "frac"
     variation-settings: "CASL" 0.25
-  line-height: calc(740 / 567)
+  line-height: math.div(740, 567)
   tab-size: 2
 
   background-color: colors.$background

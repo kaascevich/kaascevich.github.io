@@ -1,3 +1,5 @@
+@use "sass:math"
+  
 @use "./functions.sass" as *
 @use "./mixins.sass" as *
 @use "./variables/border-radiuses.sass"
@@ -133,7 +135,7 @@ article
   h2
     font-size: 1.5rem
     margin-top: 2rem
-    line-height: calc(4 / 3)
+    line-height: math.div(4, 3)
 
   h3
     font-size: 1.25rem
@@ -181,10 +183,10 @@ article
     font:
       weight: font-weights.$normal
       size: 0.875rem
-    line-height: calc(12 / 7)
-    +margin-y(calc(12rem / 7))
+    line-height: math.div(12, 7)
+    +margin-y(math.div(12rem, 7))
     border-radius: 0.375rem
-    padding: calc(6rem / 7) calc(8rem / 7)
+    padding: math.div(6rem, 7) math.div(8rem, 7)
 
     &:has(code)
       border: 1px solid colors.$border
@@ -211,7 +213,7 @@ article
     table-layout: auto
     +margin-y(2rem)
     font-size: 0.875rem
-    line-height: calc(12 / 7)
+    line-height: math.div(12, 7)
 
     thead
       border-bottom-width: 1px
@@ -235,7 +237,7 @@ article
 
     th, td
       text-align: start
-      padding: calc(2rem / 7) calc(4rem / 7)
+      padding: math.div(2rem, 7) math.div(4rem, 7)
       border: 2px solid colors.$border
 
       @each $alignment in left, center, right
@@ -253,8 +255,8 @@ article
     font:
       size: 0.875rem
       style: italic
-    line-height: calc(10 / 7)
-    margin-top: calc(6rem / 7)
+    line-height: math.div(10, 7)
+    margin-top: math.div(6rem, 7)
     text-align: center
     opacity: 70%
 
