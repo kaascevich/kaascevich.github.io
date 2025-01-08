@@ -23,11 +23,11 @@ const { default: Icon } = await import(`../assets/icons/socials/${social.name}.s
       rotate: 6deg
       color: colors.$accent
     
-    @include desktop
+    +desktop
       padding: 0.25rem
     
     svg
       scale: 125%
-      @include desktop
+      +desktop
         scale: 110%
 </style>

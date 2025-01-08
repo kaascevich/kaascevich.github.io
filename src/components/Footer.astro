@@ -21,7 +21,7 @@ const currentYear = new Date().getFullYear();
   footer
     width: 100%
     margin-top: auto
-    @include hide-in-print
+    +hide-in-print
 
   #footer-wrapper
     display: flex
@@ -30,7 +30,7 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between
     +padding-y(1.5rem)
 
-    @include desktop
+    +desktop
       flex-direction: row-reverse
       +padding-y(1rem)
     
@@ -41,6 +41,6 @@ const currentYear = new Date().getFullYear();
     align-items: center
     white-space: nowrap
     
-    @include desktop
+    +desktop
       flex-direction: row
 </style>

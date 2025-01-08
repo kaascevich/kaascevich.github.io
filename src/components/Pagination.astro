@@ -27,11 +27,11 @@ const { page } = Astro.props;
     +margin-y(auto, 2rem)
     display: flex
     justify-content: center
-    @include hide-in-print
+    +hide-in-print
 
     a
       +margin-x(1rem)
-      @include hover-transition(color, colors.$accent)
+      +hover-transition(color, colors.$accent)
     
       &[aria-disabled="true"]
         pointer-events: none

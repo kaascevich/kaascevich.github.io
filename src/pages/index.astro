@@ -90,7 +90,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       display: inline-block
       font-weight: font-weights.$bold
       font-size: font-sizes.$extralarge2
-      @include desktop
+      +desktop
         +margin-y(2rem)
         font-size: 3rem
     
@@ -101,7 +101,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         +size(1.5rem)
         scale: 110%
         color: colors.$accent
-        @include desktop
+        +desktop
           margin-bottom: 0.75rem
           scale: 125%
           
@@ -112,7 +112,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     margin-top: 1rem
     display: flex
     flex-direction: column
-    @include desktop
+    +desktop
       flex-direction: row
       align-items: center
   
@@ -120,7 +120,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     margin-bottom: 0.25rem
     margin-right: 0.5rem
     white-space: nowrap
-    @include desktop
+    +desktop
       margin-bottom: 0rem
 
   #featured, #recent-posts
@@ -133,8 +133,8 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   #all-posts-button-wrapper
     margin-bottom: 2rem
     text-align: center
-    @include hover-transition(color, colors.$accent)
-    @include hide-in-print
+    +hover-transition(color, colors.$accent)
+    +hide-in-print
     a::after
       content: " #{chars.$right-arrow}"
 </style>

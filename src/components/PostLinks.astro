@@ -48,22 +48,22 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
   hr
     +margin-y(1.5rem)
     border-color: colors.$border
-    @include hide-in-print
+    +hide-in-print
 
   .post-link-wrapper
     display: grid
     grid-template-columns: repeat(1, minmax(0, 1fr))
     gap: 1.5rem
 
-    @include desktop
+    +desktop
       grid-template-columns: repeat(2, minmax(0, 1fr))
 
-    @include hide-in-print
+    +hide-in-print
 
     #previous-post, #next-post
       display: flex
       gap: 0.25rem
-      @include hover-transition(opacity, 75%)
+      +hover-transition(opacity, 75%)
       
       .post-title
         font-size: font-sizes.$small
@@ -72,7 +72,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
     #previous-post
       justify-content: left
       text-align: left
-      @include desktop
+      +desktop
         grid-column-start: 1
       &::before
         content: "#{chars.$left-arrow}"
@@ -80,7 +80,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
     #next-post
       justify-content: right
       text-align: right
-      @include desktop
+      +desktop
         grid-column-start: 2
       &::after
         content: "#{chars.$right-arrow}"
