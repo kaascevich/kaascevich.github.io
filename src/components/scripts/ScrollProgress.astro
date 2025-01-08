@@ -28,7 +28,7 @@
     z-index: 10
     +size(100%, 0.25rem)
     +margin-x(calc(constants.$max-width / 2 - 100vw / 2)) // override max-width set on the body
-    +hide-in-print
+    @include hide-in-print
 
     #progress-bar
       +size(0%, 0.25rem)

@@ -8,10 +8,10 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <Hr noPadding/>
-  <div id="footer-wrapper">
+  <hr aria-hidden/>
+  <div class="footer-wrapper">
     <Socials/>
-    <div id="copyright">
+    <div class="copyright">
       Copyright &copy; {currentYear} {SITE.author}
     </div>
   </div>
@@ -21,26 +21,29 @@ const currentYear = new Date().getFullYear();
   footer
     width: 100%
     margin-top: auto
-    +hide-in-print
+    @include hide-in-print
 
-  #footer-wrapper
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: space-between
-    +padding-y(1.5rem)
+    hr
+      +margin-x(auto)
 
-    +desktop
-      flex-direction: row-reverse
-      +padding-y(1rem)
+    .footer-wrapper
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-between
+      +padding-y(1.5rem)
+
+      @include desktop
+        flex-direction: row-reverse
+        +padding-y(1rem)
     
-  #copyright
-    +margin-y(0.5rem)
-    display: flex
-    flex-direction: column
-    align-items: center
-    white-space: nowrap
-    
-    +desktop
-      flex-direction: row
+      .copyright
+        +margin-y(0.5rem)
+        display: flex
+        flex-direction: column
+        align-items: center
+        white-space: nowrap
+        
+        @include desktop
+          flex-direction: row
 </style>

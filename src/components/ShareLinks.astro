@@ -8,21 +8,15 @@ let shareLinks = SHARE_LINKS.map(social => {
 });
 ---
 
-<div class="social-icons">
+<div class="share-links">
   <span class="share-text">share this post on:</span>
-  <div class="share-links-wrapper">
+  <ul>
     {shareLinks.map(social => <SocialLink {social}/>)}
-  </div>
+  </ul>
 </div>
 
 <style lang="sass">
-  .share-text
-    font-style: italic
-  
-  .share-links-wrapper
-    text-align: center
-
-  .social-icons
+  .share-links
     display: flex
     flex:
       direction: column
@@ -31,6 +25,9 @@ let shareLinks = SHARE_LINKS.map(social => {
     justify-content: center
     gap: 0.25rem
     
-    +desktop
+    @include desktop
       align-items: flex-start
+
+    .share-text
+      font-style: italic
 </style>

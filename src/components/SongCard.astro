@@ -7,8 +7,7 @@ export interface Props {
   data: CollectionEntry<"songs">["data"],
 }
 
-const { data } = Astro.props;
-const { title, sourcePath, remixDetails } = data;
+const { data: { title, sourcePath, remixDetails } } = Astro.props;
 
 const sourceURL = `/assets/songs/${sourcePath}`;
 

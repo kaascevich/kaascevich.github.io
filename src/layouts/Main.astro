@@ -28,12 +28,13 @@ const { title, description } = Astro.props;
       left: 1rem
       right: 1rem
       bottom: 1rem
-    h1
-      font-weight: font-weights.$semibold
-      font-size: font-sizes.$extralarge2
-      +desktop
-        font-size: font-sizes.$extralarge3
-    p
-      +margin-y(0.5rem, 1.5rem)
-      font-style: italic
+    hgroup
+      h1
+        font-weight: font-weights.$semibold
+        font-size: font-sizes.$extralarge2
+        @include desktop
+          font-size: font-sizes.$extralarge3
+      p
+        +margin-y(0.5rem, 1.5rem)
+        font-style: italic
 </style>

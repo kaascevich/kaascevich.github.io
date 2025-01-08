@@ -69,7 +69,6 @@ const posts = await getPosts();
     <ul class="tag-list" hidden>
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
-
     <hr/>
 
     <footer>
@@ -97,45 +96,46 @@ const posts = await getPosts();
       right: 1rem
       bottom: 3rem
 
-  h1
-    font-size: font-sizes.$extralarge2
-    font-weight: font-weights.$semibold
-    color: colors.$accent
+    header
+      h1
+        font-size: font-sizes.$extralarge2
+        font-weight: font-weights.$semibold
+        color: colors.$accent
+  
+      .reading-time
+        display: inline
+        opacity: 80%
+      
+      .timestamp
+        +margin-y(0.5rem, 0.25rem)
 
-  article
-    margin-top: 2rem
-  
-  .reading-time
-    display: inline
-    opacity: 80%
-  
-  .timestamp
-    +margin-y(0.5rem, 0.25rem)
+    article
+      margin-top: 2rem
 
-  .tag-list
-    display: block
-    +margin-y(2rem, 1rem)
-    +hide-in-print
-    + hr
-      +margin-y(2rem)
-      +desktop
-        display: none
-      +hide-in-print
-  
-  footer
-    +padding-x(0rem)
-    display: flex
-    flex-direction: column-reverse
-    align-items: center
-    justify-content: space-between
-    gap: 1.5rem
+    .tag-list
+      display: block
+      +margin-y(2rem, 1rem)
+      @include hide-in-print
+      + hr
+        +margin-y(2rem)
+        @include desktop
+          display: none
+        @include hide-in-print
     
-    +desktop
-      flex-direction: row-reverse
-      align-items: flex-end
-      gap: 1rem
+    footer
+      +padding-x(0rem)
+      display: flex
+      flex-direction: column-reverse
+      align-items: center
+      justify-content: space-between
+      gap: 1.5rem
+      
+      @include desktop
+        flex-direction: row-reverse
+        align-items: flex-end
+        gap: 1rem
 
-    +hide-in-print
+      @include hide-in-print
 </style>
 
 <ScrollProgress/>

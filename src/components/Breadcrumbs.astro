@@ -38,7 +38,7 @@ if (breadcrumbs[0] === "tags" && !isNaN(Number(breadcrumbs[2]))) {
     margin: 2rem auto 0.25rem
     width: 100%
     +padding-x(1rem)
-    +hide-in-print
+    @include hide-in-print
     
     menu li
       display: inline
@@ -49,5 +49,5 @@ if (breadcrumbs[0] === "tags" && !isNaN(Number(breadcrumbs[2]))) {
       a
         opacity: 70%
         &[href]
-          +hover-transition(opacity, 100%)
+          @include hover-transition(opacity, 100%)
 </style>
