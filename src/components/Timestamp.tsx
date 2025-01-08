@@ -25,36 +25,12 @@ export default function Timestamp({
   size = "sm",
   className = "",
 }: Props) {
-  return (
-    <div
-      className={`${styles["timestamp-wrapper"]} ${className}`}
-      style={{
-        fontSize: size === "sm" ? "0.875rem" : "1rem",
-      }}
-    >
-      <CalendarIcon
-        style={{
-          scale: size === "sm" ? "90%" : "100%",
-          marginRight: size === "sm" ? "0.125rem" : "0.25rem",
-        }}
-        aria-hidden
-      />
-      {modified && modified > published &&
-        <span className={styles["updated-text"]} hidden style={{ display: "inline" }}>Updated:</span>}
-      <FormattedTimestamp
-        published={published}
-        modified={modified}
-      />
-    </div>
-  );
-}
-
-const FormattedTimestamp = ({ published, modified }: TimestampProps) => {
-  const actualDate = modified && modified > published ? modified : published;
+  const useModifiedDate = modified && modified > published;
+  const actualDate = useModifiedDate ? modified : published;
 
   const date = actualDate.toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 
@@ -63,9 +39,20 @@ const FormattedTimestamp = ({ published, modified }: TimestampProps) => {
     minute: "2-digit",
   });
 
-  return <span>
-    <time dateTime={actualDate.toISOString()}>{date}</time>
-    <span aria-hidden> | </span>
-    <span style={{ textWrap: "nowrap" }}>{time}</span>
-  </span>;
-};
+  return (
+    <div
+      className={`${styles["timestamp-wrapper"]} ${className}`}
+      style={{ fontSize: size === "sm" ? "0.875rem" : "1rem" }}
+    >
+      <CalendarIcon
+        style={{
+          scale: size === "sm" ? "90%" : "100%",
+          marginRight: size === "sm" ? "0.125rem" : "0.25rem",
+        }}
+        aria-hidden
+      />
+      {useModifiedDate && <span className={styles["updated-text"]}>Updated:</span>}
+      <time dateTime={actualDate.toISOString()}>{date} | {time}</time>
+    </div>
+  );
+}
