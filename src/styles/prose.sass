@@ -63,14 +63,14 @@ article
     &::marker
       color: colors.$accent
 
-  > ul > li,
-  > ol > li
+  > :is(ul, ol) > li
     p
       +margin-y(0.75rem)
-    > p:first-child
-      margin-top: 1.25rem
-    > p:last-child
-      margin-bottom: 1.25rem
+    > p
+      &:first-child
+        margin-top: 1.25rem
+      &:last-child
+        margin-bottom: 1.25rem
 
   :is(ul, ol) :is(ul, ol)
     +margin-y(0.75rem)
@@ -89,8 +89,9 @@ article
     dd
       display: list-item
       list-style-type: "\2192"
-      margin-top: 0.5rem
-      margin-left: 1.125rem
+      margin:
+        top: 0.5rem
+        left: 1.125rem
       padding-left: 0.5rem
       &::marker
         color: colors.$accent
@@ -164,44 +165,44 @@ article
     :is(a, h2, h3, h4, blockquote, thead th) &
       color: inherit
 
-  strong code
-    font-weight: font-weights.$extrabold
+    strong &
+      font-weight: font-weights.$extrabold
 
-  :not(pre) > code
-    background-color: colors.$card
-    border-radius: border-radiuses.$default
-    padding: 0.25rem
-    overflow-wrap: break-word
-    &::before, &::after
-      content: none
+    :not(pre) > &
+      background-color: colors.$card
+      border-radius: border-radiuses.$default
+      padding: 0.25rem
+      overflow-wrap: break-word
+      &::before, &::after
+        content: none
 
   pre
     overflow-x: auto
-    font-weight: font-weights.$normal
-    font-size: 0.875rem
+    font:
+      weight: font-weights.$normal
+      size: 0.875rem
     line-height: calc(12 / 7)
     +margin-y(calc(12rem / 7))
     border-radius: 0.375rem
     padding: calc(6rem / 7) calc(8rem / 7)
 
-    code
-      background-color: transparent
-      border-width: 0rem
-      border-radius: 0rem
-      padding: 0rem
-      color: inherit
-      font-weight: inherit
-      font-family: inherit
-      font-size: inherit
-      line-height: inherit
+    &:has(code)
+      border: 1px solid colors.$border
+      white-space: pre
+      line-height: 1.7
+      @media print
+        white-space: pre-wrap
+        background-color: white !important
 
-  pre:has(code)
-    border: 1px solid colors.$border
-    white-space: pre
-    line-height: 1.7
-    @media print
-      white-space: pre-wrap
-      background-color: white !important
+      code
+        background-color: transparent
+        border:
+          width: 0rem
+          radius: 0rem
+        padding: 0rem
+        color: inherit
+        font: inherit
+        line-height: inherit
 
   // MARK: - Tables
   
@@ -249,10 +250,11 @@ article
       +margin-y(0)
 
   figcaption
-    font-size: 0.875rem
+    font:
+      size: 0.875rem
+      style: italic
     line-height: calc(10 / 7)
     margin-top: calc(6rem / 7)
-    font-style: italic
     text-align: center
     opacity: 70%
 
