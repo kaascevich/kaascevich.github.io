@@ -16,6 +16,8 @@
     scroll-behavior: auto
 
 body
+  max-width: 48rem
+  +margin-x(auto)
   display: flex
   min-height: 100svh
   flex-direction: column
@@ -40,8 +42,6 @@ body
     color: black
 
 section, footer
-  max-width: constants.$max-width
-  +margin-x(auto)
   +padding-x(1rem)
 
 a, button
