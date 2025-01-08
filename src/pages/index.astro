@@ -55,7 +55,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         <h2>featured</h2>
         <ul>
           {featuredPosts.map(({ data, id }) =>
-            <Card {id} {data} level2Heading={false}/>
+            <Card {id} {data} useLevel3Heading/>
           )}
         </ul>
       </section>
@@ -67,7 +67,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
         <h2>recent</h2>
         <ul>
           {nonFeaturedPosts.slice(0, SITE.postsPerIndex).map(({ data, id }) =>
-            <Card {id} {data} level2Heading={false}/>
+            <Card {id} {data} useLevel3Heading/>
           )}
         </ul>
       </section>
