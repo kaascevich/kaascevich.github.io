@@ -75,7 +75,7 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       +desktop
         grid-column-start: 1
       &::before
-        content: "#{chars.$left-arrow}"
+        content: "#{chars.$arrow-left}"
 
     #next-post
       justify-content: right
@@ -83,5 +83,5 @@ const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostInde
       +desktop
         grid-column-start: 2
       &::after
-        content: "#{chars.$right-arrow}"
+        content: "#{chars.$arrow-right}"
 </style>
