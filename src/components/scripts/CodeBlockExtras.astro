@@ -57,26 +57,26 @@
     top: -0.75rem
     font-size: 0.75rem
     line-height: 1rem
-    font-weight: $font-weight-medium
+    font-weight: font-weights.$medium
 
   .language-name
     display: inline
     left: 0.75rem
     padding: 0.25rem
     text-transform: lowercase
-    background-color: $color-background
+    background-color: colors.$background
     @media print
       background-color: white
 
   .copy-code
     right: 0.75rem
-    border-radius: $border-radius-default
-    background-color: $color-card
+    border-radius: border-radiuses.$default
+    background-color: colors.$card
     padding: 0.25rem 0.5rem
-    color: $color-text
+    color: colors.$text
     +transition(background-color)
     &:hover
-      background-color: $color-card-muted
+      background-color: colors.$card-muted
       color: currentcolor
     @include hide-in-print
 </style>

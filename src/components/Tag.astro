@@ -26,7 +26,7 @@ const { tag, size = "sm" } = Astro.props;
     a
       position: relative
       padding-right: 0.5rem
-      @include hover-transition(color, $color-accent)
+      @include hover-transition(color, colors.$accent)
 
       span::before
         content: "#\202f\202f" // two thin spaces
@@ -35,10 +35,10 @@ const { tag, size = "sm" } = Astro.props;
   li.lg
     margin: 0.75rem 0.25rem
     a
-      font-size: $font-size-lg
+      font-size: font-sizes.$large
 
   li.sm
     +margin-y(0.25rem)
     a
-      font-size: $font-size-sm
+      font-size: font-sizes.$small
 </style>

@@ -13,9 +13,9 @@ const { noPadding = false } = Astro.props;
 
 <style lang="sass" define:vars={{ paddingAmount: noPadding ? "0rem" : "1rem" }}>
   .hr-wrapper
-    max-width: $max-width
+    max-width: constants.$max-width
     +margin-x(auto)
     +padding-x(var(--paddingAmount))
     hr
-      border-color: $color-border
+      border-color: colors.$border
 </style>

@@ -1,13 +1,16 @@
 @use "./functions.sass" as *
 @use "./mixins.sass" as *
-@use "./variables.sass" as *
+@use "./variables/constants.sass"
+@use "./variables/border-radiuses.sass"
+@use "./variables/colors.sass"
+@use "./variables/font-weights.sass"
   
 article
   // MARK: - Base typography
 
   line-height: 1.75
-  max-width: $max-width
-  color: $color-text
+  max-width: constants.$max-width
+  color: colors.$text
 
   // MARK: - Standard elements
 
@@ -16,28 +19,28 @@ article
 
   a
     text-decoration: underline
-    font-weight: $font-weight-medium
+    font-weight: font-weights.$medium
     word-break: break-word
     text-underline-offset: 4px
-    @include hover-transition(color, $color-accent)
+    @include hover-transition(color, colors.$accent)
 
     &[data-footnote-ref]
       text-underline-offset: 2px
 
     &[data-footnote-backref]
-      color: $color-accent
+      color: colors.$accent
       text-decoration: none
 
   strong
-    font-weight: $font-weight-extrabold
+    font-weight: font-weights.$extrabold
     :is(a, blockquote, thead th) &
       color: inherit
 
   mark
-    border-radius: $border-radius-default
+    border-radius: border-radiuses.$default
     padding: 0.2rem
-    background-color: $color-highlight
-    color: $color-background
+    background-color: colors.$highlight
+    color: colors.$background
   
   // MARK: - Lists
   
@@ -50,7 +53,7 @@ article
     > li
       padding-left: 0.375rem
       &::marker
-        font-weight: $font-weight-normal
+        font-weight: font-weights.$normal
 
   ul
     list-style-type: disc
@@ -60,7 +63,7 @@ article
     display: list-item
     +margin-y(0.5rem)
     &::marker
-      color: $color-accent
+      color: colors.$accent
 
   > ul > li,
   > ol > li
@@ -80,7 +83,7 @@ article
     +margin-y(1.25rem)
 
     dt
-      font-weight: $font-weight-semibold
+      font-weight: font-weights.$semibold
       margin-top: 1.25rem
       + dt
         margin-top: 0.25rem
@@ -92,22 +95,22 @@ article
       margin-left: 1.125rem
       padding-left: 0.5rem
       &::marker
-        color: $color-accent
+        color: colors.$accent
 
 
   // MARK: - Horizontal rules
 
   hr
-    border-color: $color-border
+    border-color: colors.$border
     border-top-width: 1px
     +margin-y(3rem)
 
   // MARK: - Blockquotes
 
   blockquote
-    font-weight: $font-weight-medium
+    font-weight: font-weights.$medium
     font-style: normal
-    border-left: 0.25rem solid with-opacity($color-accent, 50%)
+    border-left: 0.25rem solid with-opacity(colors.$accent, 50%)
     quotes: "\201c""\201d""\2018""\2019"
     +margin-y(1.6rem)
     padding-left: 1rem
@@ -123,7 +126,7 @@ article
   // MARK: - Headings
 
   h2, h3, h4
-    font-weight: $font-weight-bold
+    font-weight: font-weights.$bold
     margin-bottom: 0.6rem
     strong
       font-weight: 850
@@ -149,8 +152,8 @@ article
 
   img
     margin: 0.5rem auto
-    border: 2px solid $color-border
-      radius: $border-radius-lg
+    border: 2px solid colors.$border
+      radius: border-radiuses.$large
 
   picture
     display: block
@@ -158,17 +161,17 @@ article
   // MARK: - Code
 
   code
-    font-weight: $font-weight-semibold
+    font-weight: font-weights.$semibold
     font-size: 0.875em
     :is(a, h2, h3, h4, blockquote, thead th) &
       color: inherit
 
   strong code
-    font-weight: $font-weight-extrabold
+    font-weight: font-weights.$extrabold
 
   :not(pre) > code
-    background-color: $color-card
-    border-radius: $border-radius-default
+    background-color: colors.$card
+    border-radius: border-radiuses.$default
     padding: 0.25rem
     overflow-wrap: break-word
     &::before, &::after
@@ -176,7 +179,7 @@ article
 
   pre
     overflow-x: auto
-    font-weight: $font-weight-normal
+    font-weight: font-weights.$normal
     font-size: 0.875rem
     line-height: calc(12 / 7)
     +margin-y(calc(12rem / 7))
@@ -195,7 +198,7 @@ article
       line-height: inherit
 
   pre:has(code)
-    border: 1px solid $color-border
+    border: 1px solid colors.$border
     white-space: pre
     line-height: 1.7
     @media print
@@ -214,9 +217,9 @@ article
     thead
       border-bottom-width: 1px
       th
-        font-weight: $font-weight-semibold
+        font-weight: font-weights.$semibold
         vertical-align: bottom
-        background-color: with-opacity($color-card, 50%)
+        background-color: with-opacity(colors.$card, 50%)
 
     tbody
       tr
@@ -234,7 +237,7 @@ article
     th, td
       text-align: start
       padding: calc(2rem / 7) calc(4rem / 7)
-      border: 2px solid $color-border
+      border: 2px solid colors.$border
 
       @each $alignment in left, center, right
         &[align="#{$alignment}"]

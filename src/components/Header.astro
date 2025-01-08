@@ -68,9 +68,9 @@ const { activeNav } = Astro.props;
     top: -100%
     left: 4rem
     z-index: 50
-    background-color: $color-accent
+    background-color: colors.$accent
     padding: 0.5rem 0.75rem
-    color: $color-background
+    color: colors.$background
     transition: top 200ms cubic-bezier(0.4, 0, 0.2, 1)
     &:focus
       top: 1rem
@@ -78,7 +78,7 @@ const { activeNav } = Astro.props;
   #nav-container
     +margin-x(auto)
     display: flex
-    max-width: $max-width
+    max-width: constants.$max-width
     flex-direction: column
     align-items: center
     justify-content: space-between
@@ -99,13 +99,13 @@ const { activeNav } = Astro.props;
   #logo
     position: absolute
     +padding-y(0.25rem)
-    font-weight: $font-weight-semibold
+    font-weight: font-weights.$semibold
     white-space: nowrap
-    font-size: $font-size-xl
-    @include hover-transition(color, $color-accent)
+    font-size: font-sizes.$extralarge
+    @include hover-transition(color, colors.$accent)
     @include desktop
       position: static
-      font-size: $font-size-2xl
+      font-size: font-sizes.$extralarge2
 
   #hamburger-menu
     align-self: flex-end
@@ -162,7 +162,7 @@ const { activeNav } = Astro.props;
 
         a, button
           padding: 0.25rem
-          @include hover-transition(color, $color-accent)
+          @include hover-transition(color, colors.$accent)
           svg
             +size(1.5rem)
             scale: 125%
@@ -180,7 +180,7 @@ const { activeNav } = Astro.props;
             padding: 0.25rem 0.5rem
 
           &.active
-            font-weight: $font-weight-extrabold
+            font-weight: font-weights.$extrabold
             svg
               stroke-width: 3.5
 

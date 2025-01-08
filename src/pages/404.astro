@@ -18,7 +18,7 @@ import BackButton from "@components/BackButton.astro";
   main
     +margin-x(auto)
     display: flex
-    max-width: $max-width
+    max-width: constants.$max-width
     flex: 1 1 0%
     align-items: center
     justify-content: center
@@ -31,13 +31,13 @@ import BackButton from "@components/BackButton.astro";
     justify-content: center
     h1
       font-size: 8rem
-      font-weight: $font-weight-bold
-      color: $color-accent
+      font-weight: font-weights.$bold
+      color: colors.$accent
     p
       margin-top: 1rem
-      font-size: $font-size-2xl
+      font-size: font-sizes.$extralarge2
       @include desktop
-        font-size: $font-size-3xl
+        font-size: font-sizes.$extralarge3
 
   .url
     font-style: italic
@@ -45,5 +45,5 @@ import BackButton from "@components/BackButton.astro";
 
   .back-button
     +margin-y(1rem, 0.5rem)
-    font-size: $font-size-lg
+    font-size: font-sizes.$large
 </style>

@@ -31,15 +31,15 @@ const { page } = Astro.props;
 
     a
       +margin-x(1rem)
-      @include hover-transition(color, $color-accent)
+      @include hover-transition(color, colors.$accent)
     
       &[aria-disabled="true"]
         pointer-events: none
         opacity: 50%
 
       &[aria-label="previous"]::before
-        content: "#{$char-left-arrow} "
+        content: "#{chars.$left-arrow} "
 
       &[aria-label="next"]::after
-        content: " #{$char-right-arrow}"
+        content: " #{chars.$right-arrow}"
 </style>

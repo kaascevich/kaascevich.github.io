@@ -86,23 +86,23 @@ const posts = await getPosts();
   .back-button
     margin: 2rem auto 0.5rem
     width: 100%
-    max-width: $max-width
+    max-width: constants.$max-width
     justify-content: flex-start
     +padding-x(1rem)
 
   main
     +margin-x(auto)
     width: 100%
-    max-width: $max-width
+    max-width: constants.$max-width
     padding:
       left: 1rem
       right: 1rem
       bottom: 3rem
 
   h1
-    font-size: $font-size-2xl
-    font-weight: $font-weight-semibold
-    color: $color-accent
+    font-size: font-sizes.$extralarge2
+    font-weight: font-weights.$semibold
+    color: colors.$accent
 
   article
     margin-top: 2rem

@@ -1,4 +1,3 @@
-@use "../variables.sass" as *
 @use "../mixins.sass" as *
 
 .card
@@ -7,10 +6,10 @@
 
   .card-header-link
     display: inline-block
-    color: $color-accent
+    color: colors.$accent
     font:
-      size: $font-size-lg
-      weight: $font-weight-medium
+      size: font-sizes.$large
+      weight: font-weights.$medium
 
     .card-header
       @include hover-transition(text-decoration, underline)

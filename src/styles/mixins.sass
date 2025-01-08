@@ -1,10 +1,10 @@
 @use "sass:list"
-@use "./variables.sass" as *
+@use "./variables/constants.sass"
 
 // MARK: - Media
 
 =desktop
-  @media (min-width: $media-desktop)
+  @media (min-width: constants.$media-desktop)
     @content
 
 =hide-in-print

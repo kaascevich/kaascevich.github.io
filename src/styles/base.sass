@@ -26,21 +26,21 @@ body
   line-height: calc(740 / 567)
   tab-size: 2
 
-  background-color: $color-background
-  color: $color-text
-  caret-color: $color-accent
-  accent-color: $color-accent
+  background-color: colors.$background
+  color: colors.$text
+  caret-color: colors.$accent
+  accent-color: colors.$accent
 
   ::selection
-    background-color: with-opacity($color-accent, 70%)
-    color: $color-background
+    background-color: with-opacity(colors.$accent, 70%)
+    color: colors.$background
 
   @media print
     background-color: white
     color: black
 
 section, footer
-  max-width: $max-width
+  max-width: constants.$max-width
   +margin-x(auto)
   +padding-x(1rem)
 
@@ -48,7 +48,7 @@ a, button
   border: none
   &:focus-visible
     text-decoration-line: none
-    outline: 2px dashed $color-accent
+    outline: 2px dashed colors.$accent
       offset: 1px
 
 svg
