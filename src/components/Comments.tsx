@@ -1,4 +1,4 @@
-import styles from "@styles/modules/Comments.module.scss";
+import styles from "@styles/modules/Comments.module.sass";
 import Giscus from "@giscus/react";
 import { GISCUS } from "@config";
 import { useEffect, useState } from "react";

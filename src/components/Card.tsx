@@ -1,4 +1,4 @@
-import styles from "@styles/modules/Card.module.scss";
+import styles from "@styles/modules/Card.module.sass";
 import Timestamp from "@components/Timestamp";
 import type { CollectionEntry } from "astro:content";
 

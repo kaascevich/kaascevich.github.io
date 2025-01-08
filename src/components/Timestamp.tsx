@@ -1,4 +1,4 @@
-import styles from "@styles/modules/Timestamp.module.scss";
+import styles from "@styles/modules/Timestamp.module.sass";
 import CalendarIcon from "@assets/icons/calendar.svg?react";
 
 interface TimestampProps {

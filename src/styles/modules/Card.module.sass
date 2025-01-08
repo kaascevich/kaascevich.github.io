@@ -1,0 +1,16 @@
+@use "../variables.sass" as *
+@use "../mixins.sass" as *
+
+.card
+  +margin-y(1.5rem)
+  line-height: 1.5
+
+  .card-header-link
+    display: inline-block
+    color: $color-accent
+    font:
+      size: $font-size-lg
+      weight: $font-weight-medium
+
+    .card-header
+      @include hover-transition(text-decoration, underline)
