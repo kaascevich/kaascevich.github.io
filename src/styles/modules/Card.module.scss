@@ -2,27 +2,19 @@
 @use "../mixins.sass" as *;
 
 .card {
-  margin: { top: 1.5rem; bottom: 1.5rem; }
+  @include margin-y(1.5rem);
   line-height: 1.5;
 
   .card-header-link {
     display: inline-block;
-    font-size: $font-size-lg;
-    font-weight: $font-weight-medium;
     color: $color-accent;
-    text-decoration-style: solid;
-    text-underline-offset: 4px;
-    &:focus-visible {
-      text-decoration-line: none;
+    font: {
+      size: $font-size-lg;
+      weight: $font-weight-medium;
     }
 
     .card-header {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-medium;
-      @include transition(text-decoration);
-      &:hover {
-        text-decoration: underline;
-      }
+      @include hover-transition(text-decoration, underline);
     }
   }
 }
