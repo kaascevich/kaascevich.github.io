@@ -1,4 +1,3 @@
-import type { APIRoute } from "astro";
 import { SITE } from "@config";
 
 /** The contents of the `robots.txt` file. */
