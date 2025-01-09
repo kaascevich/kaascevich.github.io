@@ -47,6 +47,8 @@ Allow: /
 Sitemap: ${new URL("sitemap-index.xml", SITE.url).href}
 `.trim();
 
-export const GET: APIRoute = () => new Response(robots, {
-  headers: { "Content-Type": "text/plain" },
-});
+export function GET() {
+  return new Response(robots, {
+    headers: { "Content-Type": "text/plain" },
+  });
+}
