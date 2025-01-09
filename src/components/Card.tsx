@@ -7,7 +7,7 @@ interface Props {
   id: string,
   /** The frontmatter of the post this card represents. */
   data: CollectionEntry<"blog">["data"],
-  /** Whether to use a level 2 heading for the card title instead of a level 3 heading. */
+  /** Whether to use a level 3 heading for the card title instead of a level 2 heading. */
   useLevel3Heading?: boolean,
 }
 

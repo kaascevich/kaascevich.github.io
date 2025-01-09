@@ -1,9 +1,9 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import BackButton from "@components/BackButton.astro";
 ---
 
-<Layout title="404" description="page not found">
+<BaseLayout title="404" description="page not found">
   <main>
     <div class="not-found-wrapper">
       <h1>404</h1>
@@ -12,7 +12,7 @@ import BackButton from "@components/BackButton.astro";
       <BackButton class="back-button"/>
     </div>
   </main>
-</Layout>
+</BaseLayout>
 
 <style lang="sass">
   main

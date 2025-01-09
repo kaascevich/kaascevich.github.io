@@ -1,6 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
 import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
@@ -16,13 +15,11 @@ export interface Props {
 const { frontmatter: { title } } = Astro.props;
 ---
 
-<Layout {title} activeNav="about">
-  <Main {title}>
-    <article>
-      <slot/>
-    </article>
-  </Main>
-</Layout>
+<MainLayout {title} activeNav="about">
+  <article>
+    <slot/>
+  </article>
+</MainLayout>
 
 <ScrollProgress/>
 <CodeBlockExtras/>

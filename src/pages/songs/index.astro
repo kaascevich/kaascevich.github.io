@@ -1,6 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 import SongCard from "@components/SongCard.astro";
 
 import { getCollection } from "astro:content";
@@ -20,28 +19,26 @@ const title = "songs";
 const description = "all the songs I've created or remixed";
 ---
 
-<Layout {title} {description} activeNav="songs">
-  <Main {title} {description}>
-    <section id="originals">
-      <h2>originals</h2>
-      <ul>
-        {originals.map(song => <SongCard data={song.data}/>)}
-      </ul>
-    </section>
+<MainLayout {title} {description} activeNav="songs">
+  <section id="originals">
+    <h2>originals</h2>
+    <ul>
+      {originals.map(song => <SongCard data={song.data}/>)}
+    </ul>
+  </section>
 
-    <section id="remixes">
-      <h2>remixes</h2>
-      <ul>
-        {remixes.map(song => <SongCard data={song.data}/>)}
-      </ul>
-    </section>
-  </Main>
-</Layout>
+  <section id="remixes">
+    <h2>remixes</h2>
+    <ul>
+      {remixes.map(song => <SongCard data={song.data}/>)}
+    </ul>
+  </section>
+</MainLayout>
 
 <style lang="sass">
   section
     padding: 0.75rem 0rem 1.5rem
-    
+
     h2
       font-size: font-sizes.$extralarge2
       font-weight: font-weights.$semibold

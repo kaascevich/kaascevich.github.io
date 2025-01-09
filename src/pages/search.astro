@@ -1,6 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 import SearchBar from "@components/Search";
 import getPosts from "@utils/getPosts";
 
@@ -16,8 +15,6 @@ const title = "search";
 const description = "search for posts";
 ---
 
-<Layout {title} {description} activeNav="search">
-  <Main {title} {description}>
-    <SearchBar client:load posts={postDetails}/>
-  </Main>
-</Layout>
+<MainLayout {title} {description} activeNav="search">
+  <SearchBar client:load posts={postDetails}/>
+</MainLayout>

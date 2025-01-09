@@ -1,24 +1,32 @@
 ---
+import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import type { NavItem } from "@components/Header.astro";
 
 export interface Props {
   /** This page's title. */
   title: string,
   /** This page's description. */
   description?: string,
+  /** The active navigation item. */
+  activeNav?: NavItem,
 };
 
-const { title, description } = Astro.props;
+const { title, description, activeNav } = Astro.props;
 ---
 
-<Breadcrumbs/>
-<main>
-  <hgroup>
-    <h1>{title}</h1>
-    {description && <p>{description}</p>}
-  </hgroup>
-  <slot/>
-</main>
+<BaseLayout {title} {description} {activeNav}>
+  <Breadcrumbs/>
+  <main>
+    <hgroup>
+      <h1>{title}</h1>
+      {description && <p>{description}</p>}
+    </hgroup>
+    <slot/>
+  </main>
+
+  <slot name="after-main"/>
+</BaseLayout>
 
 <style lang="sass">
   main

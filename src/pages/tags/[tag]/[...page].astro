@@ -1,8 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
-import Card from "@components/Card";
-import Pagination from "@components/Pagination.astro";
+import PaginatedLayout from "@layouts/PaginatedLayout.astro";
 
 import getUniqueTags from "@utils/getUniqueTags";
 import getPosts from "@utils/getPosts";
@@ -21,21 +18,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const { tag } = Astro.params;
 const { page } = Astro.props;
-
-/** This page's title. */
-const title = `tag: ${tag}`;
-
-/** This page's description. */
-const description = `${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tag}"`;
 ---
 
-<Layout {title} {description} activeNav="tags">
-  <Main {title} {description}>
-    <h1 slot="title">{title}</h1>
-    <ul>
-      {page.data.map(({ data, id }) => <Card {id} {data}/>)}
-    </ul>
-  </Main>
-
-  <Pagination {page}/>
-</Layout>
+<PaginatedLayout
+  title={`tag: ${tag}`}
+  description={`${page.total} ${page.total === 1 ? "article" : "articles"} tagged with "${tag}"`}
+  activeNav="tags" 
+  {page}
+/>

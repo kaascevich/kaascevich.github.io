@@ -1,0 +1,32 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import Pagination from "@components/Pagination.astro";
+import CardList from "@components/CardList.astro";
+
+import type { CollectionEntry } from "astro:content";
+import type { NavItem } from "@components/Header.astro";
+import type { Page } from "astro";
+
+export interface Props {
+  /** This page's title. */
+  title: string,
+  /** This page's description. */
+  description: string,
+  /** The active navigation item. */
+  activeNav: NavItem,
+  /** The current page. */
+  page: Page<CollectionEntry<"blog">>,
+}
+
+const {
+  title,
+  description,
+  activeNav,
+  page,
+} = Astro.props;
+---
+
+<MainLayout {title} {description} {activeNav}>
+  <CardList posts={page.data}/>
+  <Pagination slot="after-main" {page}/>
+</MainLayout>

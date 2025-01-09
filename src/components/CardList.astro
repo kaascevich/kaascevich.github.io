@@ -1,0 +1,17 @@
+---
+import Card from "@components/Card";
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  /** A list of posts to show cards for */
+  posts: CollectionEntry<"blog">[],
+  /** Whether to use level 3 headings for the card titles instead of level 2 headings. */
+  useLevel3Heading?: boolean,
+}
+
+const { posts, useLevel3Heading } = Astro.props;
+---
+
+<ul>
+  {posts.map(({ data, id }) => <Card {id} {data} {useLevel3Heading}/>)}
+</ul>

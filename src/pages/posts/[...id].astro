@@ -1,7 +1,7 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import Tag from "@components/Tag.astro";
 import Comments from "@components/Comments";
 import Timestamp from "@components/Timestamp";
@@ -45,7 +45,7 @@ const { Content } = await render(post);
 const posts = await getPosts();
 ---
 
-<Layout
+<BaseLayout
   {title}
   ogTitle={title}
   {description}
@@ -79,7 +79,7 @@ const posts = await getPosts();
     <PostLinks {post} {posts}/>
     <Comments client:only="react"/>
   </main>
-</Layout>
+</BaseLayout>
 
 <style lang="sass">
   .back-button

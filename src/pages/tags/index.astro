@@ -1,6 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
 
@@ -14,8 +13,6 @@ const title = "tags";
 const description = `all the tags I've used in my posts (${tags.length} total)`;
 ---
 
-<Layout {title} {description} activeNav="tags">
-  <Main {title} {description}>
-    <ul>{tags.map(tag => <Tag {tag} size="lg"/>)}</ul>
-  </Main>
-</Layout>
+<MainLayout {title} {description} activeNav="tags">
+  <ul>{tags.map(tag => <Tag {tag} size="lg"/>)}</ul>
+</MainLayout>
