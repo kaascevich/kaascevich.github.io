@@ -38,8 +38,8 @@ const { page } = Astro.props;
         opacity: 50%
 
       &[aria-label="previous"]::before
-        content: "#{chars.$arrow-left} "
+        content: chars.$arrow-left
 
       &[aria-label="next"]::after
-        content: " #{chars.$arrow-right}"
+        content: chars.$arrow-right
 </style>
