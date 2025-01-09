@@ -11,7 +11,7 @@ export async function GET() {
     title: data.title,
     author: SITE.author,
     description: data.description,
-    pubDate: new Date(data.modified ?? data.published),
+    pubDate: (data.modified ?? data.published).toDate(),
     categories: data.tags,
     content: (await markdown(body!)).toString(),
   })));

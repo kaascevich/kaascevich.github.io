@@ -1,6 +1,6 @@
 ---
-published: 2024-09-25T11:19:13-05:00
-modified: 2024-12-21T21:00:13-05:00
+published: "2024-09-25T11:19:13-05:00"
+modified: "2024-12-21T21:00:13-05:00"
 title: AXVisualSupportAgent woes
 tags:
   - macos

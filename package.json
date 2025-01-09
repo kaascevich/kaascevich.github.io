@@ -23,6 +23,7 @@
     "astro-opengraph-images": "^1.11.3",
     "css-preflight": "^1.1.1",
     "cssnano": "^7.0.6",
+    "dayjs": "^1.11.13",
     "fuse.js": "^7.0.0",
     "mdast-util-to-string": "^4.0.0",
     "postcss-nested": "^7.0.2",

@@ -1,5 +1,7 @@
 ---
 import { SITE } from "@config";
+import type { DateTime } from "types";
+import day from "dayjs";
 
 import 'css-preflight';
 import "@styles/base.sass";
@@ -18,9 +20,9 @@ export interface Props {
   /** This page's description. */
   description?: string,
   /** The date this page was published. */
-  published?: Date,
+  published?: DateTime,
   /** The date this page was last modified, if any. */
-  modified?: Date,
+  modified?: DateTime,
   /** The active navigation item. */
   activeNav?: NavItem,
 }
@@ -51,9 +53,9 @@ const structuredData = {
   /** This page's Open Graph image. */
   image: ogImage,
   /** The date this page was published. */
-  datePublished: published?.toISOString(),
+  datePublished: day(published)?.toISOString(),
   /** The date this page was last modified, if any. */
-  dateModified: modified?.toISOString(),
+  dateModified: day(modified)?.toISOString(),
   /** Details about this page's author. */
   author: [{
     "@type": "Person",
@@ -91,8 +93,8 @@ const structuredData = {
     <meta property="og:site_name" content={SITE.title}/>
 
     <!-- Article Published/Modified time -->
-    {published && <meta property="article:published_time" content={published.toISOString()}/>}
-    {modified && <meta property="article:modified_time" content={modified.toISOString()}/>}
+    {published && <meta property="article:published_time" content={day(published).toISOString()}/>}
+    {modified && <meta property="article:modified_time" content={day(modified).toISOString()}/>}
 
     <!-- X -->
     <meta property="twitter:card" content="summary_large_image"/>

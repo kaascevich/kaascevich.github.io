@@ -1,8 +1,9 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import postFilter from "@utils/postFilter";
+import day from "dayjs";
 
 function getPostSortIndex({ data }: CollectionEntry<"blog">) {
-  return Math.floor(new Date(data.modified ?? data.published).getTime() / 1000);
+  return Math.floor(day(data.modified ?? data.published).valueOf() / 1000);
 }
 
 /**

@@ -1,5 +1,5 @@
 ---
-published: 2025-01-09T09:10:24-05:00
+published: "2025-01-09T09:10:24-05:00"
 title: 3D printing
 tags:
   - 3d-printing

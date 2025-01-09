@@ -1,5 +1,5 @@
 ---
-published: 2024-10-14T17:59:05-05:00
+published: "2024-10-14T17:59:05-05:00"
 title: I'm safe!
 tags:
   - hurricane

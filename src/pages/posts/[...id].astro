@@ -39,7 +39,7 @@ const {
   tags,
 } = post.data;
 
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
 
 /** A list of all posts, sorted by date. */
 const posts = await getPosts();
@@ -57,9 +57,8 @@ const posts = await getPosts();
   <main>
     <header>
       <h1>{title}</h1>
-      <Timestamp {published} {modified} size="lg" className="timestamp"/>
-      <!-- @ts-ignore: Object is of type "unknown". -->
-      <span class="reading-time" hidden>{post.rendered!.metadata!.frontmatter.readingTime}</span>
+      <Timestamp {published} {modified} className="timestamp"/>
+      <span class="reading-time" hidden>Reading time: {remarkPluginFrontmatter.readingTime}</span>
     </header>
     
     <article>
@@ -104,7 +103,7 @@ const posts = await getPosts();
         opacity: 80%
       
       .timestamp
-        +margin-y(0.5rem, 0.25rem)
+        +margin-y(0.25rem)
 
     article
       margin-top: 2rem

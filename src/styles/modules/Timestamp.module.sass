@@ -6,7 +6,9 @@
   svg
     position: relative
     bottom: 0.15em
+    +margin-x(-0.15rem, 0.2rem)
   
   .updated-text
-    margin-right: 0.25rem
     font-weight: font-weights.$semibold
+    &::after
+      content: " "

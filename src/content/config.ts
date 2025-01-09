@@ -10,12 +10,9 @@ const post = defineCollection({
   }),
   schema: () => z.object({
     /** The date this post was published. */
-    published: z.date(),
-    /**
-     * The date this post was last modified, or `null`
-     * if it has not yet been modified.
-     */
-    modified: z.date().optional(),
+    published: z.string().datetime({ offset: true }),
+    /** The date this post was last modified, if any. */
+    modified: z.string().datetime({ offset: true }).optional(),
     /** This post's title. */
     title: z.string(),
     /** Whether this post should be featured on the main page. */
@@ -24,8 +21,6 @@ const post = defineCollection({
     tags: z.array(z.string().toLowerCase()).default(["other"]),
     /** This post's description. */
     description: z.string(),
-    /** The amount of time it should take to read this post. */
-    readingTime: z.string().optional(),
   }),
 });
 

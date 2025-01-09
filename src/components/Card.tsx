@@ -23,7 +23,7 @@ export default function Card({ id, data, useLevel3Heading }: Props) {
     <Heading>
       <a href={`/posts/${id}/`}>{title}</a>
     </Heading>
-    <Timestamp published={published} modified={modified}/>
+    <Timestamp published={published} modified={modified} className={styles["timestamp"]}/>
     <p>{description}</p>
   </li>;
 }

@@ -33,3 +33,6 @@ export type Social = {
 
 /** A blog post tag. */
 export type Tag = string;
+
+/** A date-time string parsable by Dayjs. */
+export type DateTime = string;
