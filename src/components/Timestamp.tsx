@@ -37,6 +37,7 @@ export default function Timestamp({
   const time = actualDate.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
+    timeZoneName: "short"
   });
 
   return (
