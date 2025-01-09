@@ -93,7 +93,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      // @ts-ignore: Type 'Plugin<any>' is not assignable to type 'PluginOption'.
       svgr(),
     ],
     optimizeDeps: {
