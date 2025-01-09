@@ -20,15 +20,15 @@
         copyButton.addEventListener("click", async () => await copyCode(codeBlock, copyButton));
       }
 
-      const languageLabel = document.createElement("div");
+      const languageLabel = document.createElement("span");
       languageLabel.className = "language-name";
       languageLabel.innerText = languageName;
-
-      // hide the language name in reader view
-      // FIXME: this doesn't work for some as-of-yet undetermined reason
-      // languageLabel.hidden = true;
       
       codeBlock.appendChild(languageLabel);
+
+      // hide the language name in reader view
+      languageLabel.hidden = true;
+      languageLabel.style.display = "inline";
 
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
