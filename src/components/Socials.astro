@@ -1,16 +1,9 @@
 ---
 import { SOCIALS } from "@config";
 import SocialLink from "@components/SocialLink.astro";
-
-export interface Props {
-  /** Whether to center the icons on the page. */
-  centered?: boolean,
-}
-
-const { centered = false } = Astro.props;
 ---
 
-<ul class:list={[centered && "flex"]}>
+<ul>
   {SOCIALS.map(social => <SocialLink {social}/>)}
 </ul>
 
