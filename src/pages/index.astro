@@ -60,7 +60,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     {nonFeaturedPosts.length > 0 &&
       <section id="recent-posts">
         <h2>recent</h2>
-        <CardList posts={nonFeaturedPosts} useLevel3Heading/>
+        <CardList posts={nonFeaturedPosts.slice(0, SITE.postsPerIndex)} useLevel3Heading/>
       </section>
     }
 
