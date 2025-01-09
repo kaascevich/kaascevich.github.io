@@ -15,10 +15,8 @@ const { class: className = "" } = Astro.props;
 
 <style lang="sass">
   button
-    display: flex
     @include hover-transition(opacity, 75%)
     @include hide-in-print
     &::before
-      white-space: preserve nowrap
-      content: "#{chars.$arrow-left} "
+      content: "#{chars.$arrow-left}"
 </style>
