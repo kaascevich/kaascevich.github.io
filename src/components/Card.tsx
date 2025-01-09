@@ -1,12 +1,12 @@
 import styles from "@styles/modules/Card.module.sass";
 import Timestamp from "@components/Timestamp";
-import type { CollectionEntry } from "astro:content";
+import type { Post } from "@content/config";
 
 interface Props {
   /** The ID of the post this card represents. */
   id: string,
   /** The frontmatter of the post this card represents. */
-  data: CollectionEntry<"blog">["data"],
+  data: Post["data"],
   /** Whether to use a level 3 heading for the card title instead of a level 2 heading. */
   useLevel3Heading?: boolean,
 }

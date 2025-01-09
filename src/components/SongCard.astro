@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { SITE } from "@config";
+import type { Song } from "@content/config";
 
 export interface Props {
   /** The song's frontmatter. */
-  data: CollectionEntry<"songs">["data"],
+  data: Song["data"],
 }
 
 const { data: { title, sourcePath, remixDetails } } = Astro.props;

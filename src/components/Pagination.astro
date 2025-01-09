@@ -1,10 +1,10 @@
 ---
+import type { Post } from "@content/config";
 import type { Page } from "astro";
-import type { CollectionEntry } from "astro:content";
 
 export interface Props {
   /** Data for the current page. */
-  page: Page<CollectionEntry<"blog">>,
+  page: Page<Post>,
 }
 
 const { page } = Astro.props;

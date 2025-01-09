@@ -1,11 +1,11 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { Post } from "@content/config";
 
 export interface Props {
   /** The current post. */
-  post: CollectionEntry<"blog">,
+  post: Post,
   /** A list of all posts. */
-  posts: CollectionEntry<"blog">[],
+  posts: Post[],
 }
 
 const { post, posts } = Astro.props;

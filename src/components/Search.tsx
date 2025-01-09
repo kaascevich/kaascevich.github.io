@@ -4,11 +4,11 @@ import styles from "@styles/modules/Search.module.sass";
 
 import SearchIcon from "@assets/icons/search.svg?react";
 import Card from "@components/Card";
-import type { CollectionEntry } from "astro:content";
+import type { Post } from "@content/config";
 
 interface PostDetails  {
-  id: CollectionEntry<"blog">["id"],
-  data: CollectionEntry<"blog">["data"],
+  id: Post["id"],
+  data: Post["data"],
 }
 
 interface Props {

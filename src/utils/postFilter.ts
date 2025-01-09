@@ -1,5 +1,5 @@
 import { SITE } from "@config";
-import type { CollectionEntry } from "astro:content";
+import type { Post } from "@content/config";
 import day from "dayjs";
 
 /**
@@ -9,7 +9,7 @@ import day from "dayjs";
  * @param post - A blog post.
  * @returns Whether `post` has a published date in the future.
  */
-export default function postFilter({ data }: CollectionEntry<"blog">) {
+export default function postFilter({ data }: Post) {
   const isPublishTimePassed = day() > day(data.published).subtract(SITE.scheduledPostMargin, "milliseconds");
   return import.meta.env.DEV || isPublishTimePassed;
 };

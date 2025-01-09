@@ -1,5 +1,5 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z, type CollectionEntry } from "astro:content";
 
 /** A blog post. */
 const post = defineCollection({
@@ -43,6 +43,9 @@ const song = defineCollection({
 });
 
 export const collections = {
-  "blog": post,
+  "posts": post,
   "songs": song,
 };
+
+export type Post = CollectionEntry<"posts">;
+export type Song = CollectionEntry<"songs">;

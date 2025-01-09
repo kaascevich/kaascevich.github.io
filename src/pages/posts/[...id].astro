@@ -1,5 +1,5 @@
 ---
-import { render, type CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Tag from "@components/Tag.astro";
@@ -15,10 +15,11 @@ import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
 
 import getPosts from "@utils/getPosts";
+import type { Post } from "@content/config";
 
 export interface Props {
   /** The post to display. */
-  post: CollectionEntry<"blog">,
+  post: Post,
 }
 
 export async function getStaticPaths() {

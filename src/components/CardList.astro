@@ -1,10 +1,10 @@
 ---
 import Card from "@components/Card";
-import type { CollectionEntry } from "astro:content";
+import type { Post } from "@content/config";
 
 export interface Props {
   /** A list of posts to show cards for */
-  posts: CollectionEntry<"blog">[],
+  posts: Post[],
   /** Whether to use level 3 headings for the card titles instead of level 2 headings. */
   useLevel3Heading?: boolean,
 }
