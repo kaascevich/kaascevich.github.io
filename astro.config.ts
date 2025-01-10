@@ -82,26 +82,21 @@ export default defineConfig({
     ],
     shikiConfig: {
       themes: { light: "catppuccin-latte", dark: "catppuccin-macchiato" },
-      langAlias: {
-        plist: "xml",
-      },
+      langAlias: { plist: "xml" },
     },
     remarkRehype: {
       footnoteBackContent: "↑",
-      handlers: defListHastHandlers
+      handlers: defListHastHandlers,
     },
   },
   vite: {
-    plugins: [
-      svgr(),
-    ],
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
+    plugins: [svgr()],
+    optimizeDeps: { exclude: ["@resvg/resvg-js"] },
     resolve: {
       alias: {
-        '@/': `${path.resolve(__dirname, 'src')}/`
-      }
+        '@/': `${path.resolve(__dirname, 'src')}/`,
+        '@assets/': `${path.resolve(__dirname, 'src/assets')}/`,
+      },
     },
     css: {
       preprocessorOptions: {
@@ -109,13 +104,13 @@ export default defineConfig({
           additionalData: `
           @use "sass:math"
           @use "sass:color"
-          @use "@/styles/variables/border-radiuses.sass"
-          @use "@/styles/variables/chars.sass"
-          @use "@/styles/variables/colors.sass"
-          @use "@/styles/variables/font-sizes.sass"
-          @use "@/styles/variables/font-weights.sass"
-          @use "@/styles/functions.sass" as *
-          @use "@/styles/mixins.sass" as *
+          @use "@styles/variables/border-radiuses.sass"
+          @use "@styles/variables/chars.sass"
+          @use "@styles/variables/colors.sass"
+          @use "@styles/variables/font-sizes.sass"
+          @use "@styles/variables/font-weights.sass"
+          @use "@styles/functions.sass" as *
+          @use "@styles/mixins.sass" as *
           `,
           silenceDeprecations: ["mixed-decls"],
         },

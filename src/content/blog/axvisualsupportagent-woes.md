@@ -26,7 +26,7 @@ description: Stop. Using. My. Mic.
 
 For several months now, "Accessibility Services" has been using my microphone for _something_ non-stop:
 
-![This is pretty much a permanent fixture in my menu bar now.](../../assets/images/axvisualsupportagent-mic.png "The microphone indicator in my menu bar")
+![This is pretty much a permanent fixture in my menu bar now.](@assets/images/axvisualsupportagent-mic.png "The microphone indicator in my menu bar")
 
 Checking in Activity Monitor, this app is located at `/System/Library/PrivateFrameworks/UniversalAccess.framework/Versions/A/Resources/AXVisualSupportAgent.app`.[^1] It seems to be responsible for handling the screen zoom feature of macOS. As far as I'm aware, this thing should have _no reason_ to be using the mic.
 

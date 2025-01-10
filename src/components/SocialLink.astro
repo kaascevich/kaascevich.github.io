@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const { social } = Astro.props;
-const { default: Icon } = await import(`../assets/icons/socials/${social.name}.svg`);
+const { default: Icon } = await import(`@assets/icons/socials/${social.name}.svg`);
 ---
 
 <a href={social.href} title={social.linkTitle} aria-label={social.linkTitle}>
