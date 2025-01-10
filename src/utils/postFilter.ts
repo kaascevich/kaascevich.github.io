@@ -1,5 +1,5 @@
 import { SITE } from "@config";
-import type { Post } from "content.config";
+import type { Post } from "@content.config";
 import day from "dayjs";
 
 /**

@@ -1,5 +1,5 @@
 import type { GiscusProps } from "@giscus/react";
-import type { Site, Social } from "types";
+import type { Site, Social } from "@types";
 
 /** Global configuration for the site. */
 export const SITE: Site = {

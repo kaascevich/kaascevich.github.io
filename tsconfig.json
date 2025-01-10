@@ -8,9 +8,11 @@
       "@config": ["config.ts"],
       "@components/*": ["components/*"],
       "@content/*": ["content/*"],
+      "@content.config": ["content.config.ts"],
       "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
+      "@types": ["types.ts"],
       "@utils/*": ["utils/*"]
     }
   }

@@ -1,6 +1,6 @@
 import styles from "@styles/modules/Timestamp.module.sass";
 import CalendarIcon from "@assets/icons/calendar.svg?react";
-import type { DateTime } from "types";
+import type { DateTime } from "@types";
 
 import day from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";

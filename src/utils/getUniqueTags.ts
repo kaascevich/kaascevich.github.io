@@ -1,6 +1,6 @@
 import getPosts from "@utils/getPosts";
 import postFilter from "@utils/postFilter";
-import type { Tag } from "types";
+import type { Tag } from "@types";
 
 /**
  * Gets all unique tags from all blog posts.
