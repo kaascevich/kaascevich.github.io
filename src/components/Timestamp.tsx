@@ -4,7 +4,9 @@ import type { DateTime } from "types";
 
 import day from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import timezone from "dayjs/plugin/timezone";
 day.extend(advancedFormat);
+day.extend(timezone);
 
 interface Props {
   /** The date this post was published. */

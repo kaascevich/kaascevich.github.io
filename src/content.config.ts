@@ -26,7 +26,7 @@ const post = defineCollection({
 
 /** A song. */
 const song = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/*.yaml", base: "src/content/songs" }),
   schema: () => z.object({
     /** This song's title. */
     title: z.string(),

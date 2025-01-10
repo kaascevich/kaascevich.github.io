@@ -1,6 +1,6 @@
 import styles from "@styles/modules/Card.module.sass";
 import Timestamp from "@components/Timestamp";
-import type { Post } from "@content/config";
+import type { Post } from "content.config";
 
 interface Props {
   /** The ID of the post this card represents. */
