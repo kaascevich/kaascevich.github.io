@@ -26,7 +26,7 @@ export default function Timestamp({ published, modified, className = "" }: Props
 
   return (
     <div className={`${styles["timestamp-wrapper"]} ${className}`}>
-      <CalendarIcon aria-hidden/>
+      <CalendarIcon aria-hidden={true}/>
       {useModifiedDate && <span className={styles["updated-text"]}>Updated:</span>}
       <time dateTime={date.toISOString()}>{dateTimeString}</time>
     </div>

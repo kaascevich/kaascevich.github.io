@@ -47,14 +47,14 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       </div>
     </section>
 
-    <hr aria-hidden/>
+    <hr aria-hidden={true}/>
 
     {featuredPosts.length > 0 && <>
       <section id="featured">
         <h2>featured</h2>
         <CardList posts={featuredPosts} useLevel3Heading/>
       </section>
-      {nonFeaturedPosts.length > 0 && <hr aria-hidden/>}
+      {nonFeaturedPosts.length > 0 && <hr aria-hidden={true}/>}
     </>}
 
     {nonFeaturedPosts.length > 0 &&

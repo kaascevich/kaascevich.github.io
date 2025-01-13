@@ -23,7 +23,7 @@ const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
 ---
 
-{ (prevPost || nextPost) && <hr/> }
+{ (prevPost || nextPost) && <hr aria-hidden={true}/> }
 
 <div class="post-link-wrapper">
   {prevPost &&

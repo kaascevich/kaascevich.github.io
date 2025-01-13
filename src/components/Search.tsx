@@ -66,7 +66,7 @@ export default function Search({ posts }: Props) {
   return <>
     <search className={styles["search-bar"]}>
       <label htmlFor="search-input" aria-label="search">
-        <SearchIcon aria-hidden/>
+        <SearchIcon aria-hidden={true}/>
       </label>
       <input
         id="search-input"
@@ -86,13 +86,7 @@ export default function Search({ posts }: Props) {
       </div>
 
       <output><ul>
-        {searchResults.map((item) =>
-          <Card
-            id={item.id}
-            data={item.data}
-            key={item.id}
-          />
-        )}
+        {searchResults.map(({ data, id }) => <Card id={id} data={data} key={id}/>)}
       </ul></output>
     </>}
     <noscript>

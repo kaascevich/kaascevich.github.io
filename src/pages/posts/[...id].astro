@@ -69,7 +69,7 @@ const posts = await getPosts();
     <ul class="tag-list" hidden>
       {tags.map(tag => <Tag {tag}/>)}
     </ul>
-    <hr/>
+    <hr aria-hidden={true}/>
 
     <footer>
       <BackToTop/>
