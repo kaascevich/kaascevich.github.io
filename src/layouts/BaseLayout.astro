@@ -24,7 +24,7 @@ export interface Props {
   /** The date this page was last modified, if any. */
   modified?: DateTime,
   /** The active navigation item. */
-  activeNav?: NavItem,
+  activeNav: NavItem,
 }
 
 const {
@@ -92,18 +92,16 @@ const structuredData = {
     <meta property="og:image" content={ogImage}/>
     <meta property="og:site_name" content={SITE.title}/>
 
-    <!-- Article Published/Modified time -->
     {published && <meta property="article:published_time" content={day(published).toISOString()}/>}
     {modified && <meta property="article:modified_time" content={day(modified).toISOString()}/>}
 
-    <!-- X -->
     <meta property="twitter:card" content="summary_large_image"/>
     <meta property="twitter:url" content={canonicalURL}/>
     <meta property="twitter:title" content={ogTitle}/>
     <meta property="twitter:description" content={description}/>
     <meta property="twitter:image" content={ogImage}/>
 
-    <!-- Google JSON-LD Structured data -->
+    <!-- Google JSON-LD structured data -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
@@ -117,10 +115,9 @@ const structuredData = {
     <link rel="preload" href="/fonts/kosugi-maru.ttf" as="font" type="font/ttf"/>
 
     <meta name="theme-color" content=""/>
+    <script is:inline src="/toggleTheme.js"/>
 
     <ClientRouter/>
-
-    <script is:inline src="/toggleTheme.js"/>
   </head>
   <body>
     <Header {activeNav}/>

@@ -16,11 +16,11 @@ const mainNavItems = [
 ] as const;
 
 /** A navigation item. */
-export type NavItem = typeof mainNavItems[number] | "search";
+export type NavItem = typeof mainNavItems[number] | "search" | null;
 
 export interface Props {
   /** The active navigation item. */
-  activeNav?: NavItem,
+  activeNav: NavItem,
 }
 
 const { activeNav } = Astro.props;
