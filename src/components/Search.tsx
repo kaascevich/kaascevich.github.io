@@ -7,7 +7,9 @@ import Card from "@components/Card";
 import type { Post } from "@content.config";
 
 interface PostDetails  {
+  /** This post's ID. */
   id: Post["id"],
+  /** This post's metadata. */
   data: Post["data"],
 }
 

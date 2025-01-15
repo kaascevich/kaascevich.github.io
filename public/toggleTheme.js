@@ -1,8 +1,10 @@
 "use strict";
 
+/** @typedef {"light" | "dark" | null} Theme */
+
 /**
  * Gets the current site theme.
- * @returns {string | null} The current site theme.
+ * @returns {Theme} The current site theme.
 */
 function getTheme() {
   return localStorage.getItem("theme");
@@ -10,7 +12,7 @@ function getTheme() {
 
 /**
  * Sets the current site theme.
- * @param {string} theme - The new site theme.
+ * @param {Theme} theme - The new site theme.
  */
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
@@ -19,7 +21,7 @@ function setTheme(theme) {
 
 /** Applies the current theme to the site. */
 function reflectThemePreference() {
-  document.documentElement.dataset.theme = getTheme();
+  document.documentElement.dataset.theme = getTheme() ?? undefined;
   document.getElementById("theme-button")?.setAttribute("title", `current theme: ${getTheme()}`);
 
   if (document.body) {
@@ -36,18 +38,16 @@ if (getTheme() === null) {
 reflectThemePreference();
 
 onload = () => {
-  function setThemeFeature() {
+  function setUpThemes() {
     reflectThemePreference();
 
-    // now this script can find and listen for clicks on the control
     document.getElementById("theme-button")?.addEventListener(
-      "click",
-      () => setTheme(getTheme() === "light" ? "dark" : "light")
+      "click", () => setTheme(getTheme() === "light" ? "dark" : "light")
     );
   }
 
-  setThemeFeature();
-  document.addEventListener("astro:after-swap", setThemeFeature);
+  setUpThemes();
+  document.addEventListener("astro:after-swap", setUpThemes);
 };
 
 // sync with system changes

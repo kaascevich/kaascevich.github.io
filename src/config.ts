@@ -66,6 +66,7 @@ export const SHARE_LINKS: Social[] = [
   },
 ];
 
+/** Configuration for the Giscus comments system. */
 export const GISCUS: GiscusProps = {
   repo: "kaascevich/kaascevich.github.io",
   repoId: "R_kgDOM1clig",

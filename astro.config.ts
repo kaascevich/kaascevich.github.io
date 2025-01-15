@@ -21,7 +21,9 @@ import { SITE } from "./src/config";
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
+/** The name of this config file.. */
 const __filename = fileURLToPath(import.meta.url);
+/** The filesystem path to this config file. */
 const __dirname = dirname(__filename);
 
 export default defineConfig({

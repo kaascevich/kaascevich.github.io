@@ -1,7 +1,7 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
-/** A blog post. */
+/** The schema for a blog post. */
 const post = defineCollection({
   loader: glob({
     // ignore draft posts unless we're on the dev server
@@ -24,7 +24,7 @@ const post = defineCollection({
   }),
 });
 
-/** A song. */
+/** The schema for a song. */
 const song = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "src/content/songs" }),
   schema: () => z.object({
@@ -47,5 +47,9 @@ export const collections = {
   "songs": song,
 };
 
+
+/** A blog post. */
 export type Post = CollectionEntry<"posts">;
+
+/** A song. */
 export type Song = CollectionEntry<"songs">;
