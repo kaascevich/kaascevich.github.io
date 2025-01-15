@@ -1,14 +1,5 @@
----
-export interface Props {
-  /** Classes to apply to the button. */
-  class?: string,
-}
-
-const { class: className = "" } = Astro.props;
----
-
-<div class={className}>
-  <button onclick="history.length === 1 ? location = '/' : history.back()">
+<div class="back-button"}>
+  <button onclick="if (history.length === 1) { location = '/'; } else { history.back(); }">
     go back
   </button>
 </div>

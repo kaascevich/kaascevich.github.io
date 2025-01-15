@@ -54,12 +54,12 @@ const posts = await getPosts();
   {modified}
   activeNav="posts"
 >
-  <BackButton class="back-button"/>
+  <BackButton/>
 
   <main>
     <header>
       <h1>{title}</h1>
-      <Timestamp {published} {modified} className="timestamp"/>
+      <Timestamp {published} {modified}/>
       <span class="reading-time" hidden>Reading time: {remarkPluginFrontmatter.readingTime}</span>
     </header>
     
@@ -83,7 +83,7 @@ const posts = await getPosts();
 </BaseLayout>
 
 <style lang="sass">
-  .back-button
+  :global(.back-button)
     margin: 2rem auto 0.5rem
     width: 100%
     justify-content: flex-start
@@ -104,7 +104,7 @@ const posts = await getPosts();
         display: inline
         opacity: 80%
       
-      .timestamp
+      :global(.timestamp)
         +margin-y(0.25rem)
 
     article

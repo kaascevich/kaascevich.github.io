@@ -13,19 +13,17 @@ interface Props {
   published: DateTime,
   /** The date this post was last modified, if any. */
   modified?: DateTime,
-  /** Classes to apply to this timestamp. */
-  className?: string,
 }
 
 /** A timestamp for blog posts. */
-export default function Timestamp({ published, modified, className = "" }: Props) {
+export default function Timestamp({ published, modified }: Props) {
   const useModifiedDate = modified && modified > published;
   const date = day(useModifiedDate ? modified : published);
 
   const dateTimeString = date.format("MMM D, YYYY [at] h:mm a (z)");
 
   return (
-    <div className={`${styles["timestamp-wrapper"]} ${className}`}>
+    <div className={`${styles["timestamp-wrapper"]} timestamp`}>
       <CalendarIcon aria-hidden={true}/>
       {useModifiedDate && <span className={styles["updated-text"]}>Updated:</span>}
       <time dateTime={date.toISOString()}>{dateTimeString}</time>

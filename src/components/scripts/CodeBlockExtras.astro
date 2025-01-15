@@ -11,7 +11,7 @@
 
       if (languageName !== "console") {
         const copyButton = document.createElement("button");
-        copyButton.className = "copy-code";
+        copyButton.className = "copy-button";
         copyButton.innerText = copyButtonLabel;
 
         codeBlock.appendChild(copyButton);
@@ -44,14 +44,14 @@
 
       // visual feedback for copy
       button.innerText = "copied";
-      setTimeout(() => button.innerText = copyButtonLabel, 800);
+      setTimeout(() => button.innerText = copyButtonLabel, 850);
     }
   }
   attachCodeBlockExtras();
 </script>
 
 <style lang="sass" is:global>
-  .language-name, .copy-code
+  .language-name, .copy-button
     position: absolute
     top: -0.75rem
     font-size: 0.75rem
@@ -67,7 +67,7 @@
     @media print
       background-color: white
 
-  .copy-code
+  .copy-button
     right: 0.75rem
     border-radius: border-radiuses.$default
     background-color: colors.$card
