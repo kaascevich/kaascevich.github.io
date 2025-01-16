@@ -31,7 +31,7 @@ export default function Comments() {
     return () => themeButton?.removeEventListener("click", handleClick);
   }, []);
 
-  return <div className={styles["comments-wrapper"]}>
+  return <div className={styles["comments"]}>
     <Giscus theme={theme === "light" ? lightTheme : darkTheme} {...GISCUS}/>
   </div>;
 }
