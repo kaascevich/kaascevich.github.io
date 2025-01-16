@@ -18,8 +18,8 @@ import sitemap from "@astrojs/sitemap";
 import renderOgImage from "./src/utils/renderOgImage";
 import { SITE } from "./src/config";
 
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 
 /** The name of this config file.. */
 const __filename = fileURLToPath(import.meta.url);
@@ -96,8 +96,8 @@ export default defineConfig({
     optimizeDeps: { exclude: ["@resvg/resvg-js"] },
     resolve: {
       alias: {
-        '@/': `${path.resolve(__dirname, 'src')}/`,
-        '@assets/': `${path.resolve(__dirname, 'src/assets')}/`,
+        "@/": `${path.resolve(__dirname, "src")}/`,
+        "@assets/": `${path.resolve(__dirname, "src/assets")}/`,
       },
     },
     css: {
