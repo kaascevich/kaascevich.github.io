@@ -6,8 +6,8 @@ import BackButton from "@components/BackButton.astro";
 <BaseLayout title="404" description="page not found" activeNav={null}>
   <main>
     <h1>404</h1>
-    <span class="url">{Astro.url}</span>
-    <p>page not found</p>
+    <div class="url">{Astro.url}</div>
+    <div class="not-found">page not found</div>
     <BackButton/>
   </main>
 </BaseLayout>
@@ -17,16 +17,17 @@ import BackButton from "@components/BackButton.astro";
     +margin-x(auto)
     margin-bottom: 3.5rem
     display: flex
-    flex: 1 1 0%
-    flex-direction: column
+    flex:
+      grow: 1
+      direction: column
     align-items: center
     justify-content: center
+    text-align: center
   
     h1
-      font-size: 8rem
-      font-weight: font-weights.$bold
+      +font(8rem, font-weights.$bold)
       color: colors.$accent
-    p
+    .not-found
       margin-top: 1rem
       font-size: font-sizes.$extralarge2
       @include desktop

@@ -40,13 +40,13 @@ const description = "all the songs I've created or remixed";
     padding: 0.75rem 0rem 1.5rem
 
     h2
-      font-size: font-sizes.$extralarge2
-      font-weight: font-weights.$semibold
+      +font(font-sizes.$extralarge2, font-weights.$semibold)
       margin-bottom: 1rem
 
     ul
       display: flex
-      flex-direction: row
+      flex:
+        direction: row
+        wrap: wrap
       gap: 1.5rem
-      flex-wrap: wrap
 </style>

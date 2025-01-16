@@ -1,43 +1,24 @@
 import { SITE } from "@config";
 
+/** A list of AI training crawlers. */
+const aiCrawlers = [
+  "AI2Bot",            "Ai2Bot-Dolma",        "Amazonbot",
+  "Applebot-Extended", "Bytespider",          "CCBot",
+  "ChatGPT-User",      "Claude-Web",          "ClaudeBot",
+  "Diffbot",           "FacebookBot",         "FriendlyCrawler",
+  "GPTBot",            "Google-Extended",     "GoogleOther",
+  "GoogleOther-Image", "GoogleOther-Video",   "ICC-Crawler",
+  "ImagesiftBot",      "Meta-ExternalAgent",  "Meta-ExternalFetcher",
+  "OAI-SearchBot",     "PerplexityBot",       "PetalBot",
+  "Scrapy",            "Timpibot",            "VelenPublicWebCrawler",
+  "Webzio-Extended",   "YouBot",              "anthropic-ai",
+  "cohere-ai",         "facebookexternalhit", "iaskspider/2.0",
+  "img2dataset",       "omgili",              "omgilibot",
+];
+
 /** The contents of the `robots.txt` file. */
 const robots = `
-User-agent: AI2Bot
-User-agent: Ai2Bot-Dolma
-User-agent: Amazonbot
-User-agent: Applebot-Extended
-User-agent: Bytespider
-User-agent: CCBot
-User-agent: ChatGPT-User
-User-agent: Claude-Web
-User-agent: ClaudeBot
-User-agent: Diffbot
-User-agent: FacebookBot
-User-agent: FriendlyCrawler
-User-agent: GPTBot
-User-agent: Google-Extended
-User-agent: GoogleOther
-User-agent: GoogleOther-Image
-User-agent: GoogleOther-Video
-User-agent: ICC-Crawler
-User-agent: ImagesiftBot
-User-agent: Meta-ExternalAgent
-User-agent: Meta-ExternalFetcher
-User-agent: OAI-SearchBot
-User-agent: PerplexityBot
-User-agent: PetalBot
-User-agent: Scrapy
-User-agent: Timpibot
-User-agent: VelenPublicWebCrawler
-User-agent: Webzio-Extended
-User-agent: YouBot
-User-agent: anthropic-ai
-User-agent: cohere-ai
-User-agent: facebookexternalhit
-User-agent: iaskspider/2.0
-User-agent: img2dataset
-User-agent: omgili
-User-agent: omgilibot
+${aiCrawlers.map(bot => `User-agent: ${bot}`).join("\n")}
 Disallow: /
 
 User-agent: *

@@ -36,8 +36,7 @@ const { title, description, activeNav } = Astro.props;
       bottom: 1rem
     hgroup
       h1
-        font-weight: font-weights.$semibold
-        font-size: font-sizes.$extralarge2
+        +font(font-sizes.$extralarge2, font-weights.$semibold)
         @include desktop
           font-size: font-sizes.$extralarge3
       p

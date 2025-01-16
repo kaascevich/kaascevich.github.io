@@ -13,22 +13,26 @@
 // MARK: - Margins
 
 =margin-x($left, $right: $left)
-  margin-left: $left
-  margin-right: $right
+  margin:
+    left: $left
+    right: $right
 
 =margin-y($top, $bottom: $top)
-  margin-top: $top
-  margin-bottom: $bottom
+  margin:
+    top: $top
+    bottom: $bottom
 
 // MARK: - Padding
 
 =padding-x($left, $right: $left)
-  padding-left: $left
-  padding-right: $right
+  padding:
+    left: $left
+    right: $right
 
 =padding-y($top, $bottom: $top)
-  padding-top: $top
-  padding-bottom: $bottom
+  padding:
+    top: $top
+    bottom: $bottom
 
 // MARK: - Sizing
 
@@ -45,3 +49,10 @@
   +transition($property)
   &:hover
     #{$property}: $value
+
+// MARK: - Fonts
+
+=font($size, $weight)
+  font:
+    size: $size
+    weight: $weight

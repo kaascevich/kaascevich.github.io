@@ -1,4 +1,11 @@
 // MARK: - Colors
 
 @function with-opacity($color, $opacity)
+  // This is the only surefire way I've found to bypass Sass's lack
+  // of support for `light-dark` colors. It just gets inlined as-is
+  // into the final CSS and bypasses Sass stuff entirely.
+  // 
+  // Unfortunately, this could result in some loss of color information
+  // for colors outside of the sRGB gamut, but since I'm only using
+  // sRGB colors in this project anyway, it's a non-issue for me.
   @return rgb(from $color r g b / $opacity)

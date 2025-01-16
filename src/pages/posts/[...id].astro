@@ -96,8 +96,7 @@ const posts = await getPosts();
 
     header
       h1
-        font-size: font-sizes.$extralarge2
-        font-weight: font-weights.$semibold
+        +font(font-sizes.$extralarge2, font-weights.$semibold)
         color: colors.$accent
   
       .reading-time

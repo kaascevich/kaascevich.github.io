@@ -79,8 +79,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     h1
       +margin-y(1rem)
       display: inline-block
-      font-weight: font-weights.$bold
-      font-size: font-sizes.$extralarge2
+      +font(font-sizes.$extralarge2, font-weights.$bold)
       @include desktop
         +margin-y(2rem)
         font-size: 3rem
@@ -108,8 +107,9 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
       align-items: center
   
   .social-links-text
-    margin-bottom: 0.25rem
-    margin-right: 0.5rem
+    margin:
+      bottom: 0.25rem
+      right: 0.5rem
     white-space: nowrap
     @include desktop
       margin-bottom: 0rem
@@ -118,8 +118,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
     +padding-y(3rem, 1.5rem)
 
     h2
-      font-size: font-sizes.$extralarge2
-      font-weight: font-weights.$semibold
+      +font(font-sizes.$extralarge2, font-weights.$semibold)
       
   #all-posts-button-wrapper
     margin-bottom: 2rem

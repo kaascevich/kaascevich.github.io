@@ -7,9 +7,7 @@
   h2, h3
     display: inline-block
     color: colors.$accent
-    font:
-      size: font-sizes.$large
-      weight: font-weights.$medium
+    +font(font-sizes.$large, font-weights.$medium)
 
     a
       @include hover-transition(text-decoration, underline)

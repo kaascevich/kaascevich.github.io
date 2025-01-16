@@ -119,15 +119,13 @@ const { activeNav } = Astro.props;
             +size(1.5rem)
             scale: 125%
 
-            &#open-icon
-              display: block
-            &#close-icon
-              display: none
+            @each $icon, $display in (open: block, close: none)
+              &##{$icon}-icon
+                display: $display
           &.active svg
-            &#open-icon
-              display: none
-            &#close-icon
-              display: block
+            @each $icon, $display in (open: none, close: block)
+              &##{$icon}-icon
+                display: $display
 
         menu
           margin-top: 1rem
