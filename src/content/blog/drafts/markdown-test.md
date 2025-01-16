@@ -1,6 +1,6 @@
 ---
 published: "2024-12-20T11:50:21-05:00"
-title: Markdown Test
+title: Markdown test
 description: Just a Markdown formatting test
 ---
 

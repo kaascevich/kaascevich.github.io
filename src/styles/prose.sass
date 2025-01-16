@@ -39,7 +39,7 @@ article
 
   mark
     border-radius: border-radiuses.$default
-    padding: 0.2rem
+    padding: 0.125rem
     background-color: colors.$highlight
     color: colors.$background
   
@@ -48,6 +48,8 @@ article
   ol, ul
     +margin-y(1.25rem)
     padding-left: 1.625rem
+    ol, ul
+      +margin-y(0.75rem)
 
   ol
     list-style-type: decimal
@@ -74,9 +76,6 @@ article
         margin-top: 1.25rem
       &:last-child
         margin-bottom: 1.25rem
-
-  :is(ul, ol) :is(ul, ol)
-    +margin-y(0.75rem)
 
   // MARK: - Definition lists
 
@@ -113,7 +112,6 @@ article
     font-weight: font-weights.$medium
     font-style: normal
     border-left: 0.25rem solid with-opacity(colors.$accent, 50%)
-    quotes: "\201c""\201d""\2018""\2019"
     +margin-y(1.6rem)
     padding-left: 1rem
     word-break: break-words
@@ -214,27 +212,17 @@ article
     table-layout: auto
     +margin-y(2rem)
     font-size: 0.875rem
-    line-height: math.div(12, 7)
 
-    thead
-      border-bottom-width: 1px
-      th
-        font-weight: font-weights.$semibold
-        vertical-align: bottom
-        background-color: with-opacity(colors.$card, 50%)
+    thead th
+      font-weight: font-weights.$semibold
+      vertical-align: bottom
+      background-color: with-opacity(colors.$card, 50%)
 
-    tbody
-      tr
-        border-bottom-width: 1px
-        &:last-child
-          border-bottom-width: 0rem
-      td
-        vertical-align: baseline
+    tbody td
+      vertical-align: baseline
 
-    tfoot
-      border-top-width: 1px
-      td
-        vertical-align: top
+    tfoot td
+      vertical-align: top
 
     th, td
       text-align: start
@@ -250,7 +238,7 @@ article
   figure
     +margin-y(2rem)
     > *
-      +margin-y(0)
+      +margin-y(0rem)
 
   figcaption
     font:
