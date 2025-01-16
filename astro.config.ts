@@ -104,8 +104,8 @@ export default defineConfig({
       preprocessorOptions: {
         sass: {
           additionalData: `
-          @use "sass:math"
           @use "sass:color"
+          @use "sass:math"
           @use "@styles/variables/border-radiuses.sass"
           @use "@styles/variables/chars.sass"
           @use "@styles/variables/colors.sass"

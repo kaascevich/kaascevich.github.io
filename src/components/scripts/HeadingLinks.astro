@@ -27,7 +27,10 @@
     margin-left: 0.5rem
     opacity: 0%
     font-style: normal
+    +transition(opacity)
     :hover > &, &:focus
+      // we want this when hovering over any part
+      // of the heading, not just the link itself
       opacity: 100%
     @include hide-in-print
 </style>

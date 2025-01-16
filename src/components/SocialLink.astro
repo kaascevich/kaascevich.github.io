@@ -18,10 +18,7 @@ const { default: Icon } = await import(`@assets/icons/socials/${social.name}.svg
   a
     display: inline-block
     padding: 0.375rem
-    transition: rotate 100ms ease-in-out, color 100ms linear
-    &:hover
-      rotate: 6deg
-      color: colors.$accent
+    +hover-transition($scale: 105%, $color: colors.$accent)
     
     @include desktop
       padding: 0.25rem

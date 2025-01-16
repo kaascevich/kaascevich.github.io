@@ -1,4 +1,5 @@
-@use "sass:list"
+@use "sass:map"
+@use "sass:meta"
 
 // MARK: - Media
 
@@ -42,13 +43,16 @@
 
 // MARK: - Transitions
 
-=transition($property)
-  transition: $property 100ms linear
+=transition($properties...)
+  transition: 100ms linear
+    property: $properties
 
-=hover-transition($property, $value)
-  +transition($property)
+=hover-transition($args...)
+  $properties: meta.keywords($args)
+  +transition(map.keys($properties))
   &:hover
-    #{$property}: $value
+    @each $property, $value in $properties
+      #{$property}: $value
 
 // MARK: - Fonts
 

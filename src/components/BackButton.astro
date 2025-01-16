@@ -6,7 +6,7 @@
 
 <style lang="sass">
   button
-    @include hover-transition(opacity, 75%)
+    @include hover-transition($opacity: 75%)
     @include hide-in-print
     &::before
       content: chars.$arrow-left
