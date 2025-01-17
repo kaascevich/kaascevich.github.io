@@ -47,7 +47,6 @@ export const collections = {
   "songs": song,
 };
 
-
 /** A blog post. */
 export type Post = CollectionEntry<"posts">;
 

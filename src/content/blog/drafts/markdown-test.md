@@ -6,6 +6,10 @@ description: Just a Markdown formatting test
 
 > **NOTE:** **This is not my writing**. I borrowed it from <https://tailwindcss-typography.vercel.app>, because it's honestly the most comprehensive Markdown test I've encountered. I did modify it a bit to include some of my own custom styles, though.
 
+This very brief font test, however, _is_ my writing.
+
+Fractions: 1/2, 1/3, 2/3, 1/4, 3/4.
+
 ------
 
 ## What to expect from here on out

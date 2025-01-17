@@ -5,15 +5,15 @@
 
 :root
   overflow-y: scroll
+
   scroll-behavior: smooth
+  @media (prefers-reduced-motion)
+    scroll-behavior: auto
 
   color-scheme: light dark
   @each $theme in light, dark
     &[data-theme="#{$theme}"]
       color-scheme: $theme
-
-  @media (prefers-reduced-motion)
-    scroll-behavior: auto
 
 body
   max-width: 48rem
@@ -23,7 +23,7 @@ body
   flex-direction: column
   font:
     family: Recursive, "Kosugi Maru", sans-serif
-    feature-settings: "frac"
+    variant: diagonal-fractions
     variation-settings: "CASL" 0.25
   line-height: math.div(740, 567)
   tab-size: 2
