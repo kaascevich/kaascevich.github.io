@@ -49,6 +49,7 @@
 
 =hover-transition($args...)
   $properties: meta.keywords($args)
+  
   +transition(map.keys($properties))
   &:hover
     @each $property, $value in $properties

@@ -31,7 +31,7 @@ const { page } = Astro.props;
 
     a
       +margin-x(1rem)
-      @include hover-transition($color: colors.$accent)
+      +hover-transition($color: colors.$accent)
     
       &[aria-disabled="true"]
         pointer-events: none

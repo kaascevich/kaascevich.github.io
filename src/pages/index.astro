@@ -123,7 +123,7 @@ const nonFeaturedPosts = posts.filter(post => !post.data.featured);
   #all-posts-button-wrapper
     margin-bottom: 2rem
     text-align: center
-    @include hover-transition($color: colors.$accent)
+    +hover-transition($color: colors.$accent)
     @include hide-in-print
     a::after
       content: chars.$arrow-right
