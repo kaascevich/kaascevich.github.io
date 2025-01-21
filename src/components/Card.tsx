@@ -1,10 +1,10 @@
 import styles from "@styles/modules/Card.module.sass";
 import Timestamp from "@components/Timestamp";
-import type { PostInfo } from "@content.config";
+import type { EntryInfo } from "@types";
 
 interface Props {
   /** The metadata of the post this card represents. */
-  post: PostInfo,
+  post: EntryInfo<"posts">,
   /** Whether to use a level 3 heading for the card title instead of a level 2 heading. */
   useLevel3Heading?: boolean,
 }

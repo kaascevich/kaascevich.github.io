@@ -5,7 +5,7 @@ import { SITE } from "@config";
 import type { GetStaticPaths } from "astro";
 import allPosts from "@utils/allPosts";
 
-export const getStaticPaths = (async ({ paginate }) => paginate(
+export const getStaticPaths = (options => options.paginate(
   allPosts,
   { pageSize: SITE.postsPerPage }
 )) satisfies GetStaticPaths;

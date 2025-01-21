@@ -1,14 +1,15 @@
 ---
 import { SITE } from "@config";
-import type { SongInfo } from "@content.config";
+import type { EntryInfo } from "@types";
 
 export interface Props {
   /** The song's metadata. */
-  song: SongInfo,
+  song: EntryInfo<"songs">,
 }
 
 const { song: { id, title, remixDetails } } = Astro.props;
 
+/** THe file path of this song's audio file. */
 const sourceURL = `/assets/songs/${id}.mp3`;
 
 /** This song's author. */
@@ -21,7 +22,7 @@ const author = remixDetails?.composer ?? SITE.author
   </h2>
 
   <p>
-    {author} {remixDetails && <>(<a href={remixDetails.linkToOriginal}>orig.</a>)</>}
+    {author} {remixDetails && <a href={remixDetails.linkToOriginal}>original</a>}
   </p>
 
   <audio src={sourceURL} preload="metadata" controls/>
@@ -37,14 +38,15 @@ const author = remixDetails?.composer ?? SITE.author
       display: inline-block
       +font(font-sizes.$large, font-weights.$medium)
       color: colors.$accent
-
-    a:hover
-      text-decoration: underline
+      a:hover
+        text-decoration: underline
 
     p
       opacity: 75%
       a
+        +hover-transition($color: colors.$accent)
         font-style: italic
+        font-size: 0.75em
     
     audio
       padding-top: 0.25rem

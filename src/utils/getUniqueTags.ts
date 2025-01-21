@@ -1,17 +1,12 @@
 import allPosts from "@utils/allPosts";
-import type { Tag } from "@types";
 
 /**
  * Gets all unique tags from all blog posts.
  * @returns A list of unique tags.
  */
-export default async function getUniqueTags(): Promise<Tag[]> {
+export default function getUniqueTags(): string[] {
   return allPosts
     .flatMap(post => post.tags)
-    .filter(
-      (value, index, self) =>
-        self.findIndex(tag => tag === value) === index
-    )
+    .filter((value, index, all) => all.findIndex(tag => tag === value) === index)
     .sort((tagA, tagB) => tagA.localeCompare(tagB));
 }
-

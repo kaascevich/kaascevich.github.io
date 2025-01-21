@@ -4,18 +4,18 @@ import styles from "@styles/modules/Search.module.sass";
 
 import SearchIcon from "@assets/icons/search.svg?react";
 import Card from "@components/Card";
-import type { PostInfo } from "@content.config";
+import type { EntryInfo } from "@types";
 
 interface Props {
   /** The list of posts that can be searched through. */
-  posts: PostInfo[],
+  posts: EntryInfo<"posts">[],
 }
 
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<PostInfo[]>([]);
+  const [searchResults, setSearchResults] = useState<EntryInfo<"posts">[]>([]);
 
   const fuse = useMemo(
     () => new Fuse(posts, {

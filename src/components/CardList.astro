@@ -1,10 +1,10 @@
 ---
 import Card from "@components/Card";
-import type { PostInfo } from "@content.config";
+import type { EntryInfo } from "@types";
 
 export interface Props {
   /** A list of posts to show cards for. */
-  posts: PostInfo[],
+  posts: EntryInfo<"posts">[],
   /** Whether to use level 3 headings for the card titles instead of level 2 headings. */
   useLevel3Heading?: boolean,
 }

@@ -1,3 +1,5 @@
+import type { CollectionEntry, CollectionKey } from "astro:content";
+
 /** Global configuration for the site. */
 export type Site = {
   /** The site's URL. */
@@ -31,8 +33,8 @@ export type Social = {
   linkTitle: string,
 };
 
-/** A blog post tag. */
-export type Tag = string;
-
 /** A date-time string parsable by Dayjs. */
 export type DateTime = string;
+
+/** Metadata for an Astro content collection entry. */
+export type EntryInfo<T extends CollectionKey> = Readonly<{ id: string } & CollectionEntry<T>["data"]>

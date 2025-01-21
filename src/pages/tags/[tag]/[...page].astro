@@ -8,7 +8,6 @@ import { SITE } from "@config";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const tags = await getUniqueTags();
-
   return tags.flatMap(tag => paginate(
     allPosts.filter(post => post.tags.includes(tag)),
     { params: { tag }, pageSize: SITE.postsPerPage }

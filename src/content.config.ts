@@ -44,13 +44,3 @@ export const collections = {
   "posts": post,
   "songs": song,
 };
-
-/** A blog post. */
-export type Post = CollectionEntry<"posts">;
-/** Metadata for a blog post. */
-export type PostInfo = Readonly<{ id: string } & Post["data"]>;
-
-/** A song. */
-export type Song = CollectionEntry<"songs">;
-/** Metadata for a song. */
-export type SongInfo = Readonly<{ id: string } & Song["data"]>;

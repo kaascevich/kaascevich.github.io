@@ -1,17 +1,13 @@
 ---
-import type { PostInfo } from "@content.config";
+import type { EntryInfo } from "@types";
+import allPosts from "@utils/allPosts";
 
 export interface Props {
   /** The current post. */
-  post: PostInfo,
-  /** A list of all posts. */
-  posts: PostInfo[],
+  post: EntryInfo<"posts">,
 }
 
-const { post, posts } = Astro.props;
-
-/** The IDs and titles of all posts. */
-const allPosts = posts.map(post => ({ id: post.id, title: post.title }));
+const { post } = Astro.props;
 
 /** The current post's index. */
 const currentPostIndex = allPosts.findIndex(a => a.id === post.id);

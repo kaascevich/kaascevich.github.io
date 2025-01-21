@@ -14,25 +14,24 @@ import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
 
-import allPosts, { allPostsRaw } from "@utils/allPosts";
-import type { Post, PostInfo } from "@content.config";
+import { getEntry } from "astro:content";
+import allPosts from "@utils/allPosts";
+import type { EntryInfo } from "@types";
 
 export interface Props {
   /** The post to display. */
-  post: Post,
+  post: EntryInfo<"posts">,
 }
 
-export async function getStaticPaths() {
-  return allPostsRaw.map(post => ({
-    params: { id: post.id },
-    props: { post },
-  }));
-}
+export const getStaticPaths = () => allPosts.map(post => ({
+  params: { id: post.id },
+  props: { post },
+}));
 
-const { post: rawPost } = Astro.props;
-const post: PostInfo = { id: rawPost.id, ...rawPost.data };
+const { post } = Astro.props;
 
 const {
+  id,
   title,
   description,
   published,
@@ -40,7 +39,7 @@ const {
   tags,
 } = post;
 
-const { Content, remarkPluginFrontmatter } = await render(rawPost);
+const { Content, remarkPluginFrontmatter } = await render(await getEntry("posts", id)!);
 ---
 
 <BaseLayout
@@ -74,7 +73,7 @@ const { Content, remarkPluginFrontmatter } = await render(rawPost);
       <ShareLinks/>
     </footer>
 
-    <PostLinks {post} posts={allPosts}/>
+    <PostLinks {post}/>
     <Comments client:only="react"/>
   </main>
 </BaseLayout>
