@@ -14,7 +14,7 @@ import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
 
-import getPosts, { getPostsRaw } from "@utils/getPosts";
+import allPosts, { allPostsRaw } from "@utils/allPosts";
 import type { Post, PostInfo } from "@content.config";
 
 export interface Props {
@@ -23,8 +23,7 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPostsRaw();
-  return posts.map(post => ({
+  return allPostsRaw.map(post => ({
     params: { id: post.id },
     props: { post },
   }));
@@ -42,9 +41,6 @@ const {
 } = post;
 
 const { Content, remarkPluginFrontmatter } = await render(rawPost);
-
-/** A list of all posts, sorted by date. */
-const posts = await getPosts();
 ---
 
 <BaseLayout
@@ -78,7 +74,7 @@ const posts = await getPosts();
       <ShareLinks/>
     </footer>
 
-    <PostLinks {post} {posts}/>
+    <PostLinks {post} posts={allPosts}/>
     <Comments client:only="react"/>
   </main>
 </BaseLayout>

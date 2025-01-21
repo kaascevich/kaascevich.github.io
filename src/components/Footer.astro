@@ -6,11 +6,13 @@ import { SITE } from "@config";
 const currentYear = new Date().getFullYear();
 ---
 
-<hr aria-hidden={true}/>
 <footer>
-  <Socials/>
-  <div class="copyright">
-    Copyright &copy; {currentYear} {SITE.author}
+  <hr aria-hidden={true}/>
+  <div class="footer-wrapper">
+    <Socials/>
+    <div class="copyright">
+      Copyright &copy; {currentYear} {SITE.author}
+    </div>
   </div>
 </footer>
 
@@ -20,17 +22,18 @@ const currentYear = new Date().getFullYear();
     margin-top: auto
     @include hide-in-print
 
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: space-between
-    +padding-y(1.5rem)
+    .footer-wrapper
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-between
+      +padding-y(1.5rem)
 
-    @include desktop
-      flex-direction: row-reverse
-      +padding-y(1rem)
-  
-    .copyright
-      +margin-y(0.5rem)
-      white-space: nowrap
+      @include desktop
+        flex-direction: row-reverse
+        +padding-y(1rem)
+    
+      .copyright
+        +margin-y(0.5rem)
+        white-space: nowrap
 </style>

@@ -1,17 +1,15 @@
 import rss from "@astrojs/rss";
-import { getPostsRaw } from "@utils/getPosts";
+import { allPostsRaw } from "@utils/allPosts";
 import { SITE } from "@config";
 import day from "dayjs";
 
 export async function GET() {
-  const posts = await getPostsRaw();
-
   return rss({
     title: SITE.title,
     description: SITE.description,
     site: SITE.url,
     trailingSlash: false,
-    items: posts.map(post => ({
+    items: allPostsRaw.map(post => ({
       link: `posts/${post.id}/`,
       title: post.data.title,
       author: SITE.author,

@@ -6,17 +6,14 @@ import Socials from "@components/Socials.astro";
 
 import RSSIcon from "@assets/icons/rss.svg";
 
-import getPosts from "@utils/getPosts";
+import allPosts from "@utils/allPosts";
 import { SITE } from "@config";
 
-/** A list of all posts, sorted by date. */
-const posts = await getPosts();
-
 /** All featured posts. */
-const featuredPosts = posts.filter(post => post.featured);
+const featuredPosts = allPosts.filter(post => post.featured);
 
 /** All non-featured posts. */
-const nonFeaturedPosts = posts.filter(post => !post.featured);
+const nonFeaturedPosts = allPosts.filter(post => !post.featured);
 ---
 
 <BaseLayout activeNav={null}>

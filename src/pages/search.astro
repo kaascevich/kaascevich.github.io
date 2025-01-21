@@ -1,10 +1,7 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import SearchBar from "@components/Search";
-import getPosts from "@utils/getPosts";
-
-/** A list of all posts, sorted by date. */
-const posts = await getPosts();
+import allPosts from "@utils/allPosts";
 
 /** The title of the Search page. */
 const title = "search";
@@ -14,5 +11,5 @@ const description = "search for posts";
 ---
 
 <MainLayout {title} {description} activeNav="search">
-  <SearchBar client:load {posts}/>
+  <SearchBar client:load posts={allPosts}/>
 </MainLayout>

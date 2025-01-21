@@ -3,10 +3,10 @@ import PaginatedLayout from "@layouts/PaginatedLayout.astro";
 
 import { SITE } from "@config";
 import type { GetStaticPaths } from "astro";
-import getPosts from "@utils/getPosts";
+import allPosts from "@utils/allPosts";
 
 export const getStaticPaths = (async ({ paginate }) => paginate(
-  await getPosts(),
+  allPosts,
   { pageSize: SITE.postsPerPage }
 )) satisfies GetStaticPaths;
 
