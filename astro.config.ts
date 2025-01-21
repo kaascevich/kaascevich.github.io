@@ -7,7 +7,7 @@ import mdAstro from "@astropub/md";
 import svgr from "vite-plugin-svgr";
 
 import remarkCollapse from "remark-collapse";
-import remarkReadingTime from "./src/utils/plugins/remarkReadingTime.mjs";
+import remarkReadingTime from "./src/utils/plugins/remarkReadingTime";
 import remarkToc from "remark-toc";
 import { remarkMark } from "remark-mark-highlight";
 import { remarkDefinitionList, defListHastHandlers } from "remark-definition-list";

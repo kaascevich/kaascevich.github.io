@@ -4,7 +4,7 @@ import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
 
 /** A list of all unique tags. */
-const tags = await getUniqueTags();
+const tags = getUniqueTags();
 
 /** The title of the Tags section. */
 const title = "tags";

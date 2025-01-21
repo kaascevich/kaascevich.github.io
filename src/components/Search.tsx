@@ -19,7 +19,7 @@ export default function Search({ posts }: Props) {
 
   const fuse = useMemo(
     () => new Fuse(posts, {
-      keys: ["data.title", "data.description"],
+      keys: ["title", "description"],
       threshold: 0.3,
     }),
     [posts]

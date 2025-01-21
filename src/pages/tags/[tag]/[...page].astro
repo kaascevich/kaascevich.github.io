@@ -6,8 +6,8 @@ import allPosts from "@utils/allPosts";
 import type { GetStaticPathsOptions } from "astro";
 import { SITE } from "@config";
 
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const tags = await getUniqueTags();
+export function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const tags = getUniqueTags();
   return tags.flatMap(tag => paginate(
     allPosts.filter(post => post.tags.includes(tag)),
     { params: { tag }, pageSize: SITE.postsPerPage }

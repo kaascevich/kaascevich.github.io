@@ -8,12 +8,7 @@ import MenuOpenIcon from "@assets/icons/menu-open.svg";
 import MenuCloseIcon from "@assets/icons/menu-close.svg";
 
 /** The main navigation items. */
-const mainNavItems = [
-  "posts",
-  "tags",
-  "songs",
-  "about",
-] as const;
+const mainNavItems = ["posts", "tags", "songs", "about"] as const;
 
 /** A navigation item. */
 export type NavItem = typeof mainNavItems[number] | "search" | null;
