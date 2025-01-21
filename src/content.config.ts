@@ -30,8 +30,6 @@ const song = defineCollection({
   schema: () => z.object({
     /** This song's title. */
     title: z.string(),
-    /** The path to this song's audio file, with a base of "/assets/songs". */
-    sourcePath: z.string().endsWith(".mp3"),
     /** Remix-specific metadata. */
     remixDetails: z.object({
       /** The song's original composer. */

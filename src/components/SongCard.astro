@@ -3,13 +3,15 @@ import { SITE } from "@config";
 import type { Song } from "@content.config";
 
 export interface Props {
+  /** The song's ID. */
+  id: string,
   /** The song's frontmatter. */
   data: Song["data"],
 }
 
-const { data: { title, sourcePath, remixDetails } } = Astro.props;
+const { id, data: { title, sourcePath, remixDetails } } = Astro.props;
 
-const sourceURL = `/assets/songs/${sourcePath}`;
+const sourceURL = `/assets/songs/${id}.mp3`;
 
 /** This song's author. */
 const author = remixDetails?.composer ?? SITE.author
