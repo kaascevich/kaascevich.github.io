@@ -4,8 +4,8 @@ import { defineCollection, z, type CollectionEntry } from "astro:content";
 /** The schema for a blog post. */
 const post = defineCollection({
   loader: glob({
-    // ignore draft posts unless we're on the dev server
-    pattern: import.meta.env.PROD ? ["**/*.md", "!drafts/**/*"] : "**/*.md",
+    // only show draft posts when we're on the dev server
+    pattern: import.meta.env.DEV ? ["*.md", "drafts/*.md"] : "*.md",
     base: "src/content/blog",
   }),
   schema: () => z.object({
@@ -18,7 +18,7 @@ const post = defineCollection({
     /** Whether this post should be featured on the main page. */
     featured: z.boolean().optional(),
     /** This post's tags. */
-    tags: z.array(z.string().toLowerCase()).default(["other"]),
+    tags: z.array(z.string().regex(/^[a-z0-9]+(?:\-[a-z0-9]+)*$/)).default(["other"]),
     /** This post's description. */
     description: z.string(),
   }).readonly(),
