@@ -10,7 +10,7 @@ export const SITE: Site = {
   title: "kaascevich",
   postsPerIndex: 5,
   postsPerPage: 5,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  scheduledPostMargin: 15,
 };
 
 /** A list of social media links. */

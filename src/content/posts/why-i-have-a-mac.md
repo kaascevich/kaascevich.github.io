@@ -4,7 +4,7 @@ modified: "2024-09-24T15:27:46-05:00"
 title: Why I have a Mac
 tags:
   - mac
-featured: true
+fisFeatured: true
 description: All of the reasons I've accumulated over the years
 ---
 

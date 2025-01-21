@@ -10,10 +10,10 @@ import allPosts from "@utils/allPosts";
 import { SITE } from "@config";
 
 /** All featured posts. */
-const featuredPosts = allPosts.filter(post => post.featured);
+const featuredPosts = allPosts.filter(post => post.isFeatured);
 
 /** All non-featured posts. */
-const nonFeaturedPosts = allPosts.filter(post => !post.featured);
+const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured);
 ---
 
 <BaseLayout activeNav={null}>

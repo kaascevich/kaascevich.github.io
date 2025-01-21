@@ -1,5 +1,4 @@
 import allPosts from "@utils/allPosts";
-import postFilter from "@utils/postFilter";
 import type { Tag } from "@types";
 
 /**
@@ -8,7 +7,6 @@ import type { Tag } from "@types";
  */
 export default async function getUniqueTags(): Promise<Tag[]> {
   return allPosts
-    .filter(postFilter)
     .flatMap(post => post.tags)
     .filter(
       (value, index, self) =>
