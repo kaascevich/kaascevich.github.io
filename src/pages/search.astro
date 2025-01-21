@@ -6,8 +6,6 @@ import getPosts from "@utils/getPosts";
 /** A list of all posts, sorted by date. */
 const posts = await getPosts();
 
-const postDetails = posts.map(post => ({ id: post.id, data: post.data }));
-
 /** The title of the Search page. */
 const title = "search";
 
@@ -16,5 +14,5 @@ const description = "search for posts";
 ---
 
 <MainLayout {title} {description} activeNav="search">
-  <SearchBar client:load posts={postDetails}/>
+  <SearchBar client:load {posts}/>
 </MainLayout>

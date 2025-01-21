@@ -5,7 +5,7 @@ import CardList from "@components/CardList.astro";
 
 import type { NavItem } from "@components/Header.astro";
 import type { Page } from "astro";
-import type { Post } from "@content.config";
+import type { PostInfo } from "@content.config";
 
 export interface Props {
   /** This page's title. */
@@ -15,7 +15,7 @@ export interface Props {
   /** The active navigation item. */
   activeNav: NavItem,
   /** The current page. */
-  page: Page<Post>,
+  page: Page<PostInfo>,
 }
 
 const {

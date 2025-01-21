@@ -1,4 +1,4 @@
-import { glob } from "astro/loaders";
+import { glob, file } from "astro/loaders";
 import { defineCollection, z, type CollectionEntry } from "astro:content";
 
 /** The schema for a blog post. */
@@ -21,12 +21,12 @@ const post = defineCollection({
     tags: z.array(z.string().toLowerCase()).default(["other"]),
     /** This post's description. */
     description: z.string(),
-  }),
+  }).readonly(),
 });
 
 /** The schema for a song. */
 const song = defineCollection({
-  loader: glob({ pattern: "**/*.yaml", base: "src/content/songs" }),
+  loader: file("src/content/songs.yaml"),
   schema: () => z.object({
     /** This song's title. */
     title: z.string(),
@@ -37,7 +37,7 @@ const song = defineCollection({
       /** A URL to the original song. */
       linkToOriginal: z.string().url(),
     }).optional()
-  }),
+  }).readonly(),
 });
 
 export const collections = {
@@ -48,5 +48,15 @@ export const collections = {
 /** A blog post. */
 export type Post = CollectionEntry<"posts">;
 
+/** Metadata for a blog post. */
+export type PostInfo = Readonly<{
+  id: string,
+} & Post["data"]>;
+
 /** A song. */
 export type Song = CollectionEntry<"songs">;
+
+/** Metadata for a song. */
+export type SongInfo = Readonly<{
+  id: string,
+} & Song["data"]>;

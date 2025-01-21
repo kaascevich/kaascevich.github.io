@@ -4,25 +4,18 @@ import styles from "@styles/modules/Search.module.sass";
 
 import SearchIcon from "@assets/icons/search.svg?react";
 import Card from "@components/Card";
-import type { Post } from "@content.config";
-
-interface PostDetails  {
-  /** This post's ID. */
-  id: Post["id"],
-  /** This post's metadata. */
-  data: Post["data"],
-}
+import type { PostInfo } from "@content.config";
 
 interface Props {
   /** The list of posts that can be searched through. */
-  posts: PostDetails[],
+  posts: PostInfo[],
 }
 
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<PostDetails[]>([]);
+  const [searchResults, setSearchResults] = useState<PostInfo[]>([]);
 
   const fuse = useMemo(
     () => new Fuse(posts, {
@@ -88,7 +81,7 @@ export default function Search({ posts }: Props) {
       </div>
 
       <output><ul>
-        {searchResults.map(({ data, id }) => <Card id={id} data={data} key={id}/>)}
+        {searchResults.map(post => <Card post={post} key={post.id}/>)}
       </ul></output>
     </>}
     <noscript>

@@ -13,10 +13,10 @@ import { SITE } from "@config";
 const posts = await getPosts();
 
 /** All featured posts. */
-const featuredPosts = posts.filter(post => post.data.featured);
+const featuredPosts = posts.filter(post => post.featured);
 
 /** All non-featured posts. */
-const nonFeaturedPosts = posts.filter(post => !post.data.featured);
+const nonFeaturedPosts = posts.filter(post => !post.featured);
 ---
 
 <BaseLayout activeNav={null}>

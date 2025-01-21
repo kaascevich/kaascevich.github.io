@@ -5,12 +5,13 @@ import SongCard from "@components/SongCard.astro";
 import { getCollection } from "astro:content";
 
 /** A list of all songs. */
-const songs = await getCollection("songs");
+const songs = (await getCollection("songs"))
+  .map(({ id, data }) => ({ id, ...data }));
 
 /** Original songs. */
-const originals = songs.filter(song => !song.data.remixDetails)
+const originals = songs.filter(song => !song.remixDetails)
 /** Remixed songs. */
-const remixes = songs.filter(song => song.data.remixDetails)
+const remixes = songs.filter(song => song.remixDetails)
 
 /** The title of the Songs section. */
 const title = "songs";
@@ -23,14 +24,14 @@ const description = "all the songs I've created or remixed";
   <section id="originals">
     <h2>originals</h2>
     <ul>
-      {originals.map(({ id, data }) => <SongCard {id} {data}/>)}
+      {originals.map(song => <SongCard {song}/>)}
     </ul>
   </section>
 
   <section id="remixes">
     <h2>remixes</h2>
     <ul>
-      {remixes.map(({ id, data }) => <SongCard {id} {data}/>)}
+      {remixes.map(song => <SongCard {song}/>)}
     </ul>
   </section>
 </MainLayout>

@@ -14,8 +14,8 @@ import ScrollProgress from "@components/scripts/ScrollProgress.astro";
 import HeadingLinks from "@components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
 
-import getPosts from "@utils/getPosts";
-import type { Post } from "@content.config";
+import getPosts, { getPostsRaw } from "@utils/getPosts";
+import type { Post, PostInfo } from "@content.config";
 
 export interface Props {
   /** The post to display. */
@@ -23,14 +23,15 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getPostsRaw();
   return posts.map(post => ({
     params: { id: post.id },
     props: { post },
   }));
 }
 
-const { post } = Astro.props;
+const { post: rawPost } = Astro.props;
+const post: PostInfo = { id: rawPost.id, ...rawPost.data };
 
 const {
   title,
@@ -38,9 +39,9 @@ const {
   published,
   modified,
   tags,
-} = post.data;
+} = post;
 
-const { Content, remarkPluginFrontmatter } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(rawPost);
 
 /** A list of all posts, sorted by date. */
 const posts = await getPosts();

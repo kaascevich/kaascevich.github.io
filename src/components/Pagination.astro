@@ -1,10 +1,10 @@
 ---
-import type { Post } from "@content.config";
+import type { PostInfo } from "@content.config";
 import type { Page } from "astro";
 
 export interface Props {
   /** Data for the current page. */
-  page: Page<Post>,
+  page: Page<PostInfo>,
 }
 
 const { page } = Astro.props;

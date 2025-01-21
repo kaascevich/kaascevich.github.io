@@ -1,10 +1,10 @@
 import rss from "@astrojs/rss";
-import getPosts from "@utils/getPosts";
+import { getPostsRaw } from "@utils/getPosts";
 import { SITE } from "@config";
 import day from "dayjs";
 
 export async function GET() {
-  const posts = await getPosts();
+  const posts = await getPostsRaw();
 
   return rss({
     title: SITE.title,
