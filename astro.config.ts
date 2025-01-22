@@ -112,7 +112,7 @@ export default defineConfig({
           @use "@/styles/variables/font-weights.sass"
           @use "@/styles/functions.sass" as *
           @use "@/styles/mixins.sass" as *
-          `.trim(),
+          `,
           silenceDeprecations: ["mixed-decls"],
         },
       },
