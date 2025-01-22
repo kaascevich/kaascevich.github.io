@@ -1,5 +1,5 @@
 import { glob, file } from "astro/loaders";
-import { defineCollection, z, type CollectionEntry } from "astro:content";
+import { defineCollection, z } from "astro:content";
 
 /** The schema for a blog post. */
 const post = defineCollection({

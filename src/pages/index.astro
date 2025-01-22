@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import ExternalLink from "@/components/ExternalLink.astro";
 import CardList from "@/components/CardList.astro";
 import Socials from "@/components/Socials.astro";
 
 import RSSIcon from "@/assets/icons/rss.svg";
+
+import { Content } from "@/assets/description.md";
 
 import allPosts from "@/utils/allPosts";
 import { SITE } from "@/config";
@@ -31,12 +32,7 @@ const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured);
       </a>
 
       <article>
-        <p>
-          I&rsquo;m Kaleb, and I&rsquo;m quite content to float around aimlessly online. Take a gander at <a href="about">my about page</a> for more info.
-        </p>
-        <p>
-          If you want a look under the hood, you can find this site&rsquo;s source code <ExternalLink href="https://github.com/kaascevich/kaascevich.github.io">here</ExternalLink> &mdash; I based it off of <ExternalLink href="https://astro-paper.pages.dev">AstroPaper</ExternalLink> (the code is almost unrecognizable, but the design is pretty similar), and used <ExternalLink href="https://catppuccin.com">Catppuccin</ExternalLink> for the colors.
-        </p>
+        <Content/>
       </article>
       <div class="social-wrapper">
         <div class="social-links-text">&ldquo;Social&rdquo; links:</div>
