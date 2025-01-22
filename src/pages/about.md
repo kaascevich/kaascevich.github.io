@@ -1,9 +1,9 @@
 ---
-layout: "@layouts/AboutLayout.astro"
+layout: "@/layouts/AboutLayout.astro"
 title: "about me"
 ---
 
-![Me! But not quite.](@assets/images/me.png "Me! But not quite.")
+![Me! But not quite.](@/assets/images/me.png "Me! But not quite.")
 
 私の小さなオンラインホームへようこそ！
 

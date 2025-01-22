@@ -1,6 +1,6 @@
-import styles from "@styles/modules/Comments.module.sass";
+import styles from "@/styles/modules/Comments.module.sass";
 import Giscus from "@giscus/react";
-import { GISCUS } from "@config";
+import { GISCUS } from "@/config";
 import { useEffect, useState } from "react";
 
 /** A CSS file containing light theme styles. */

@@ -1,7 +1,7 @@
-import { SITE } from "@config";
+import { SITE } from "@/config";
 import { getCollection } from "astro:content";
 import day from "dayjs";
-import type { EntryInfo } from "@types";
+import type { EntryInfo } from "@/types";
 
 function getPostSortIndex({ published, modified }: EntryInfo<"posts">) {
   return Math.floor(day(modified ?? published).valueOf() / 1000);

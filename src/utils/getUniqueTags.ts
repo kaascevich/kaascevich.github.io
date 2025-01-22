@@ -1,4 +1,4 @@
-import allPosts from "@utils/allPosts";
+import allPosts from "@/utils/allPosts";
 
 /**
  * Gets all unique tags from all blog posts.

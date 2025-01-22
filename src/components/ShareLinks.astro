@@ -1,6 +1,6 @@
 ---
-import SocialLink from "@components/SocialLink.astro";
-import { SHARE_LINKS } from "@config";
+import SocialLink from "@/components/SocialLink.astro";
+import { SHARE_LINKS } from "@/config";
 
 let shareLinks = SHARE_LINKS.map(social => {
   social.href += Astro.url.href;

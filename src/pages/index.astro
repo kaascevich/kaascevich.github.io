@@ -1,13 +1,13 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import ExternalLink from "@components/ExternalLink.astro";
-import CardList from "@components/CardList.astro";
-import Socials from "@components/Socials.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ExternalLink from "@/components/ExternalLink.astro";
+import CardList from "@/components/CardList.astro";
+import Socials from "@/components/Socials.astro";
 
-import RSSIcon from "@assets/icons/rss.svg";
+import RSSIcon from "@/assets/icons/rss.svg";
 
-import allPosts from "@utils/allPosts";
-import { SITE } from "@config";
+import allPosts from "@/utils/allPosts";
+import { SITE } from "@/config";
 
 /** All featured posts. */
 const featuredPosts = allPosts.filter(post => post.isFeatured);

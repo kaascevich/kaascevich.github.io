@@ -1,4 +1,4 @@
-import { SITE } from "@config";
+import { SITE } from "@/config";
 
 /** A list of AI training crawlers. */
 const aiCrawlers = [

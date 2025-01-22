@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
-import allPosts from "@utils/allPosts";
-import { SITE } from "@config";
+import allPosts from "@/utils/allPosts";
+import { SITE } from "@/config";
 import day from "dayjs";
 import { getEntry } from "astro:content";
 
@@ -9,7 +9,7 @@ export async function GET() {
     const rawPost = await getEntry("posts", post.id)!;
     return { ...post, rendered: rawPost.rendered }
   }));
-  
+
   return rss({
     title: SITE.title,
     description: SITE.description,

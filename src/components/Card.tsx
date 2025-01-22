@@ -1,6 +1,6 @@
-import styles from "@styles/modules/Card.module.sass";
-import Timestamp from "@components/Timestamp";
-import type { EntryInfo } from "@types";
+import styles from "@/styles/modules/Card.module.sass";
+import Timestamp from "@/components/Timestamp";
+import type { EntryInfo } from "@/types";
 
 interface Props {
   /** The metadata of the post this card represents. */

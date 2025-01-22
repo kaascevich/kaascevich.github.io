@@ -1,9 +1,9 @@
 ---
-import PaginatedLayout from "@layouts/PaginatedLayout.astro";
+import PaginatedLayout from "@/layouts/PaginatedLayout.astro";
 
-import { SITE } from "@config";
+import { SITE } from "@/config";
 import type { GetStaticPaths } from "astro";
-import allPosts from "@utils/allPosts";
+import allPosts from "@/utils/allPosts";
 
 export const getStaticPaths = (options => options.paginate(
   allPosts,

@@ -170,7 +170,7 @@ content = {
     };
     "/config" = {
       mountpoint = "/config";
-      mountOptions = [ "subvol=@config" compress noatime ];
+      mountOptions = [ "subvol=@/config" compress noatime ];
     };
     "/swap" = {
       mountpoint = "/swap";

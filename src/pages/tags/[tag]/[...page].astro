@@ -1,10 +1,10 @@
 ---
-import PaginatedLayout from "@layouts/PaginatedLayout.astro";
+import PaginatedLayout from "@/layouts/PaginatedLayout.astro";
 
-import getUniqueTags from "@utils/getUniqueTags";
-import allPosts from "@utils/allPosts";
+import getUniqueTags from "@/utils/getUniqueTags";
+import allPosts from "@/utils/allPosts";
 import type { GetStaticPathsOptions } from "astro";
-import { SITE } from "@config";
+import { SITE } from "@/config";
 
 export function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const tags = getUniqueTags();

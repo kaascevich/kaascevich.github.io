@@ -1,22 +1,22 @@
 ---
 import { render } from "astro:content";
 
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Tag from "@components/Tag.astro";
-import Comments from "@components/Comments";
-import Timestamp from "@components/Timestamp";
-import PostLinks from "@components/PostLinks.astro";
-import ShareLinks from "@components/ShareLinks.astro";
-import BackToTop from "@components/BackToTop.astro";
-import BackButton from "@components/BackButton.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tag from "@/components/Tag.astro";
+import Comments from "@/components/Comments";
+import Timestamp from "@/components/Timestamp";
+import PostLinks from "@/components/PostLinks.astro";
+import ShareLinks from "@/components/ShareLinks.astro";
+import BackToTop from "@/components/BackToTop.astro";
+import BackButton from "@/components/BackButton.astro";
 
-import ScrollProgress from "@components/scripts/ScrollProgress.astro";
-import HeadingLinks from "@components/scripts/HeadingLinks.astro";
-import CodeBlockExtras from "@components/scripts/CodeBlockExtras.astro";
+import ScrollProgress from "@/components/scripts/ScrollProgress.astro";
+import HeadingLinks from "@/components/scripts/HeadingLinks.astro";
+import CodeBlockExtras from "@/components/scripts/CodeBlockExtras.astro";
 
 import { getEntry } from "astro:content";
-import allPosts from "@utils/allPosts";
-import type { EntryInfo } from "@types";
+import allPosts from "@/utils/allPosts";
+import type { EntryInfo } from "@/types";
 
 export interface Props {
   /** The post to display. */

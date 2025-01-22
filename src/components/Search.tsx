@@ -1,10 +1,10 @@
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
-import styles from "@styles/modules/Search.module.sass";
+import styles from "@/styles/modules/Search.module.sass";
 
-import SearchIcon from "@assets/icons/search.svg?react";
-import Card from "@components/Card";
-import type { EntryInfo } from "@types";
+import SearchIcon from "@/assets/icons/search.svg?react";
+import Card from "@/components/Card";
+import type { EntryInfo } from "@/types";
 
 interface Props {
   /** The list of posts that can be searched through. */

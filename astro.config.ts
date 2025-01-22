@@ -21,7 +21,7 @@ import { SITE } from "./src/config";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 
-/** The name of this config file.. */
+/** The name of this config file. */
 const __filename = fileURLToPath(import.meta.url);
 /** The filesystem path to this config file. */
 const __dirname = dirname(__filename);
@@ -97,7 +97,6 @@ export default defineConfig({
     resolve: {
       alias: {
         "@/": `${path.resolve(__dirname, "src")}/`,
-        "@assets/": `${path.resolve(__dirname, "src/assets")}/`,
       },
     },
     css: {
@@ -106,17 +105,18 @@ export default defineConfig({
           additionalData: `
           @use "sass:color"
           @use "sass:math"
-          @use "@styles/variables/border-radiuses.sass"
-          @use "@styles/variables/chars.sass"
-          @use "@styles/variables/colors.sass"
-          @use "@styles/variables/font-sizes.sass"
-          @use "@styles/variables/font-weights.sass"
-          @use "@styles/functions.sass" as *
-          @use "@styles/mixins.sass" as *
-          `,
+          @use "@/styles/variables/border-radiuses.sass"
+          @use "@/styles/variables/chars.sass"
+          @use "@/styles/variables/colors.sass"
+          @use "@/styles/variables/font-sizes.sass"
+          @use "@/styles/variables/font-weights.sass"
+          @use "@/styles/functions.sass" as *
+          @use "@/styles/mixins.sass" as *
+          `.trim(),
           silenceDeprecations: ["mixed-decls"],
         },
       },
+      preprocessorMaxWorkers: true,
     },
   },
   scopedStyleStrategy: "where",
