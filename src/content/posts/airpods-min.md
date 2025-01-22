@@ -27,8 +27,15 @@ Here's what that very same event brought to the $179 AirPods 4 with ANC:
 
 Do you see a discrepancy here?
 
-The AirPods Max had been around for 4 years without a single update. Meanwhile, the Pros kept getting more and more and more new stuff, and now the base AirPods have a bunch of it too. And Apple thinks they can get away with nothing but new colors and a new charging port?
+The AirPods Max had been around for 4 years without a single update. Meanwhile,
+the Pros kept getting more and more and more new stuff, and now the base
+AirPods have a bunch of it too. And Apple thinks they can get away with nothing
+but new colors and a new charging port?
 
-Don't get me wrong, the updates we _did_ get to the AirPods Max are nice to have. And the Maxes are still quite good headphones (if a _little_ overpriced). The problem is that there are _much better_ headphones on the market now, and Apple doesn't seem to care.
+Don't get me wrong, the updates we _did_ get to the AirPods Max are nice to
+have. And the Maxes are still quite good headphones (if a _little_ overpriced).
+The problem is that there are _much better_ headphones on the market now, and
+Apple doesn't seem to care.
 
-I was _so excited_ for Apple to announce a new version of the AirPods Max at the September event. But we got a disgrace instead.
+I was _so excited_ for Apple to announce a new version of the AirPods Max at
+the September event. But we got a disgrace instead.

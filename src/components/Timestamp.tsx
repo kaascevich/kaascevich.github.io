@@ -25,7 +25,9 @@ export default function Timestamp({ published, modified }: Props) {
   return (
     <div className={`${styles["timestamp"]} timestamp`}>
       <CalendarIcon aria-hidden={true}/>
-      {useModifiedDate && <span className={styles["updated-text"]}>Updated:</span>}
+      {useModifiedDate &&
+        <span className={styles["updated-text"]}>Updated:</span>
+      }
       <time dateTime={date.toISOString()}>{dateTimeString}</time>
     </div>
   );

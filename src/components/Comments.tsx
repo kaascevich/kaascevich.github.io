@@ -17,7 +17,9 @@ export default function Comments() {
 
   useEffect(() => {
     const mediaQuery = matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = ({ matches }: MediaQueryListEvent) => setTheme(matches ? "dark" : "light");
+    const handleChange = ({ matches }: MediaQueryListEvent) => setTheme(
+      matches ? "dark" : "light"
+    );
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
@@ -25,7 +27,9 @@ export default function Comments() {
 
   useEffect(() => {
     const themeButton = document.getElementById("theme-button");
-    const handleClick = () => setTheme(prevTheme => prevTheme === "dark" ? "light" : "dark");
+    const handleClick = () => setTheme(
+      prevTheme => prevTheme === "dark" ? "light" : "dark"
+    );
 
     themeButton?.addEventListener("click", handleClick);
     return () => themeButton?.removeEventListener("click", handleClick);

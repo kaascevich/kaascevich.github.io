@@ -92,8 +92,14 @@ const structuredData = {
     <meta property="og:image" content={ogImage}/>
     <meta property="og:site_name" content={SITE.title}/>
 
-    {published && <meta property="article:published_time" content={day(published).toISOString()}/>}
-    {modified && <meta property="article:modified_time" content={day(modified).toISOString()}/>}
+    {published && <meta
+      property="article:published_time"
+      content={day(published).toISOString()}
+    />}
+    {modified && <meta
+      property="article:modified_time"
+      content={day(modified).toISOString()}
+    />}
 
     <meta property="twitter:card" content="summary_large_image"/>
     <meta property="twitter:url" content={canonicalURL}/>
@@ -109,10 +115,23 @@ const structuredData = {
     />
 
     <!-- Google Search Console -->
-    <meta name="google-site-verification" content="W67jyEkQq8XW9mdSwbixVBe4OCucIRPrXxpRv2cxhyE"/>
+    <meta
+      name="google-site-verification"
+      content="W67jyEkQq8XW9mdSwbixVBe4OCucIRPrXxpRv2cxhyE"
+    />
 
-    <link rel="preload" href="/fonts/recursive.woff2" as="font" type="font/woff2"/>
-    <link rel="preload" href="/fonts/kosugi-maru.ttf" as="font" type="font/ttf"/>
+    <link
+      rel="preload"
+      href="/fonts/recursive.woff2"
+      as="font"
+      type="font/woff2"
+    />
+    <link
+      rel="preload"
+      href="/fonts/kosugi-maru.ttf"
+      as="font"
+      type="font/ttf"
+    />
 
     <meta name="theme-color" content=""/>
     <script is:inline src="/toggleTheme.js"/>

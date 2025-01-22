@@ -8,29 +8,49 @@ tags:
 description: Putting far too much effort into an obsolete MacBook
 ---
 
-One day a few months ago, I ran into this glorious little thing known as [NixOS](https://nixos.org). Being a Swift developer whose favorite-ish word is "declarative", I naturally wanted to give this a shot. But, of course, I can't just summon a perfectly-configured NixOS machine out of thin air (as nice as that would be). So I had to choose a device to be the victim of my experimentation.
+One day a few months ago, I ran into this glorious little thing known as
+[NixOS]. Being a Swift developer whose favorite-ish word is
+"declarative", I naturally wanted to give this a shot. But, of course, I can't
+just summon a perfectly-configured NixOS machine out of thin air (as nice as
+that would be). So I had to choose a device to be the victim of my
+experimentation.
 
 I own a total of 3 laptops and one desktop:
 - a 13" M1 MacBook Air, which serves as my more-than-capable daily driver
 - an ASUS Zenbook something-or-other that does everything else
-- an 11" early-2014 MacBook Air, which doesn't really serve any useful purpose[^1]
+- an 11" early-2014 MacBook Air, which doesn't really serve any useful
+  purpose[^1]
 - an iMac G4 that's 3 years older than me
 
-Obviously, the 20-year-old iMac is not a contender. My M1 MacBook, by virture of being an M1 MacBook, is also off the table. The Zenbook has historically served as my all-around plaything, but I had just reinstalled Windows and spent far too much time getting it to a usable state, so I wasn't gonna be touching that for a while.
+Obviously, the 20-year-old iMac is not a contender. My M1 MacBook, by virture
+of being an M1 MacBook, is also off the table. The Zenbook has historically
+served as my all-around plaything, but I had just reinstalled Windows and spent
+far too much time getting it to a usable state, so I wasn't gonna be touching
+that for a while.
 
-So, my brain went: "Hey, I have that old Intel MacBook lying around. Why don't I try NixOS on that?"
+So, my brain went: "Hey, I have that old Intel MacBook lying around. Why don't
+I try NixOS on that?"
 
 That was... absolutely not a mistake, but still a bit of a pain.
 
+[NixOS]: https://nixos.org
+
 ## Why, Fi?
 
-Marginally surprisingly (or unsurprisingly, depending on how you look at it), Linux on non-T2 Intel Macs actually has a fair bit of support. I flashed an SD card[^2] with a GNOME NixOS image from the Zenbook, and the MacBook booted it just fine.
+Marginally surprisingly (or unsurprisingly, depending on how you look at it),
+Linux on non-T2 Intel Macs actually has a fair bit of support. I flashed an SD
+card[^2] with a GNOME NixOS image from the Zenbook, and the MacBook booted it
+just fine.
 
-It was when I started exploring the live ISO when I realized that no, the MacBook had _not_ booted it just fine, it had booted it _mostly_ fine. Trying to connect to the network results in literally nothing, because there's nothing to connect to the network with:[^3]
+It was when I started exploring the live ISO when I realized that no, the
+MacBook had _not_ booted it just fine, it had booted it _mostly_ fine. Trying
+to connect to the network results in literally nothing, because there's nothing
+to connect to the network with:[^3]
 
 !["What's this Wi-Fi thing you keep rambling about?"](@/assets/images/no-wifi.png "A screenshot of the GNOME status menus, showing a complete lack of Wi-Fi options.")
 
-Checking from the terminal reveals that the Wi-Fi adapter just... doesn't exist:
+Checking from the terminal reveals that the Wi-Fi adapter just... doesn't
+exist:
 
 ```console
 $ ip link
@@ -38,11 +58,16 @@ $ ip link
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 ```
 
-I found this to be rather puzzling. After a whole bunch of internet-ing, though, the problem turned out to be rather simple: the official NixOS ISOs don't include the `broadcom-sta` driver, which is the only one that supports the BCM4360 Wi-Fi card in my particular MacBook. The reason for this omission? Licensing.
+I found this to be rather puzzling. After a whole bunch of internet-ing,
+though, the problem turned out to be rather simple: the official NixOS ISOs
+don't include the `broadcom-sta` driver, which is the only one that supports
+the BCM4360 Wi-Fi card in my particular MacBook. The reason for this omission?
+Licensing.
 
 Who would've guessed.
 
-At least it's a relatively simple fix. I created a file called `iso.nix` and pasted in something like this:
+At least it's a relatively simple fix. I created a file called `iso.nix` and
+pasted in something like this:
 
 ```nix
 { config, pkgs, ... }: {
@@ -88,9 +113,14 @@ Nothing seems to appear in the Wi-Fi networks list, though... that's weird.
 
 ### `wpa_supplican't`
 
-So, long story short[^4]: `wpa_supplicant` is the thing NixOS uses by default to manage Wi-Fi connections. Apparently, it sucks. (At least, for me, it does.)
+So, long story short[^4]: `wpa_supplicant` is the thing NixOS uses by default
+to manage Wi-Fi connections. Apparently, it sucks. (At least, for me, it does.)
 
-`iwd` worked a whole lot better for me, and was also a whole lot easier to use from the command line. The primary downside is that you can't specify connections declaratively in your configuration, but since this is an inherently portable device, it's easier to just connect to networks on-the-fly with `iwctl` or the GUI like you would on macOS.
+`iwd` worked a whole lot better for me, and was also a whole lot easier to use
+from the command line. The primary downside is that you can't specify
+connections declaratively in your configuration, but since this is an
+inherently portable device, it's easier to just connect to networks on-the-fly
+with `iwctl` or the GUI.
 
 So, I added this to my `iso.nix`:
 
@@ -158,11 +188,20 @@ PING example.com (93.184.215.14) 56(84) bytes of data.
 rtt min/avg/max/mdev - 24.785/26.845/28.905/2.060 ms
 ```
 
-Now that the live ISO is actually functional (well, save for the camera, but who the hell actually cares about the camera in a 10-year-old MacBook Air), we can use it for its intended purpose in [the next part](/posts/macbookair61-part-2). Somewhat.
+Now that the live ISO is actually functional (well, save for the camera, but
+who the hell actually cares about the camera in a 10-year-old MacBook Air), we
+can use it for its intended purpose in [the next part][next]. Somewhat.
+
+[next]: /posts/macbookair61-part-2
 
 ----------
 
-[^1]: FYI: it still doesn't. None of this madness actually serves a practical purpose. I just get bored sometimes.
-[^2]: Owning a lot of Nintendo consoles results in you having a lot of SD cards lying around.
-[^3]: In case you were curious: yes, I did try Bluetooth tethering at some point. Here's what I learned from it: don't try Bluetooth tethering if you don't have an unlimited hotspot plan and a heck of a lot of time to gruesomely murder.
+[^1]: FYI: it still doesn't. None of this madness actually serves a practical
+  purpose. I just get bored sometimes.
+[^2]: Owning a lot of Nintendo consoles results in you having a lot of SD cards
+  lying around.
+[^3]: In case you were curious: yes, I did try Bluetooth tethering at some
+  point. Here's what I learned from it: don't try Bluetooth tethering if you
+  don't have an unlimited hotspot plan and a heck of a lot of time to
+  gruesomely murder.
 [^4]: Because I don't exactly remember the long story. This was a while ago.

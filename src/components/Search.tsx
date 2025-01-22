@@ -56,7 +56,9 @@ export default function Search({ posts }: Props) {
     }
   }, [inputValue]);
 
-  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputVal(event.currentTarget.value);
+  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputVal(
+    event.currentTarget.value
+  );
 
   return <>
     <search className={styles["search-bar"]}>

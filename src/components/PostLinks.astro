@@ -13,10 +13,14 @@ const { post } = Astro.props;
 const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 
 /** The previous post. */
-const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
+const prevPost = currentPostIndex !== 0
+  ? allPosts[currentPostIndex - 1]
+  : null;
 
 /** The next post. */
-const nextPost = currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+const nextPost = currentPostIndex !== allPosts.length
+  ? allPosts[currentPostIndex + 1]
+  : null;
 ---
 
 { (prevPost || nextPost) && <hr aria-hidden={true}/> }

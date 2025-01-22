@@ -1,5 +1,5 @@
 <div class="back-button">
-  <button onclick="if (history.length === 1) { location = '/'; } else { history.back(); }">
+  <button onclick="history.length === 1 ? location = '/' : history.back();">
     go back
   </button>
 </div>

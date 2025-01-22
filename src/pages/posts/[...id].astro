@@ -39,7 +39,9 @@ const {
   tags,
 } = post;
 
-const { Content, remarkPluginFrontmatter } = await render(await getEntry("posts", id)!);
+const { Content, remarkPluginFrontmatter } = await render(
+  await getEntry("posts", id)!
+);
 ---
 
 <BaseLayout
@@ -56,7 +58,9 @@ const { Content, remarkPluginFrontmatter } = await render(await getEntry("posts"
     <header>
       <h1>{title}</h1>
       <Timestamp {published} {modified}/>
-      <span class="reading-time" hidden>Reading time: {remarkPluginFrontmatter.readingTime}</span>
+      <span class="reading-time" hidden>
+        Reading time: {remarkPluginFrontmatter.readingTime}
+      </span>
     </header>
     
     <article>

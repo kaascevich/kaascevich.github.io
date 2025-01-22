@@ -5,7 +5,10 @@ import type { EntryInfo } from "@/types";
 interface Props {
   /** The metadata of the post this card represents. */
   post: EntryInfo<"posts">,
-  /** Whether to use a level 3 heading for the card title instead of a level 2 heading. */
+  /**
+   * Whether to use a level 3 heading for the card title instead of a level 2
+   * heading.
+   */
   useLevel3Heading?: boolean,
 }
 

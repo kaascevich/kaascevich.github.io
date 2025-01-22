@@ -26,21 +26,36 @@ const { activeNav } = Astro.props;
   <div id="nav-container">
     <a href="/" id="logo" aria-label="home">{SITE.title}</a>
     <nav>
-      <button id="hamburger-menu" aria-label="open menu" aria-expanded={false} aria-controls="menu-items">
+      <button
+        id="hamburger-menu"
+        aria-label="open menu"
+        aria-expanded={false}
+        aria-controls="menu-items"
+      >
         <MenuOpenIcon id="open-icon"/>
         <MenuCloseIcon id="close-icon"/>
       </button>
       <menu style={{ display: "none" }}>
         {mainNavItems.map(navItem => <li>
-          <a href={`/${navItem}/`} class:list={[activeNav === navItem && "active"]}>{navItem}</a>
+          <a
+            href={`/${navItem}/`}
+            class:list={[activeNav === navItem && "active"]}
+          >{navItem}</a>
         </li>)}
         <li>
-          <a href="/search/" class:list={[activeNav === "search" && "active"]} aria-label="search">
-            <SearchIcon/>
-          </a>
+          <a
+            href="/search/"
+            class:list={[activeNav === "search" && "active"]}
+            aria-label="search"
+          ><SearchIcon/></a>
         </li>
         <li>
-          <button id="theme-button" title="current theme: automatic" aria-label="toggle theme" aria-live="polite">
+          <button
+            id="theme-button"
+            title="current theme: automatic"
+            aria-label="toggle theme"
+            aria-live="polite"
+          >
             <MoonIcon id="moon-svg"/>
             <SunIcon id="sun-svg"/>
           </button>
@@ -130,7 +145,8 @@ const { activeNav } = Astro.props;
           gap: 0.5rem
 
           @include desktop
-            display: flex !important // to override `display: none` inlined in the element
+            // to override `display: none` inlined in the element
+            display: flex !important
             margin:
               left: 0rem
               top: 0rem

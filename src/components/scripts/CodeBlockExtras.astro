@@ -16,7 +16,10 @@
 
         codeBlock.appendChild(copyButton);
         
-        copyButton.addEventListener("click", async () => await copyCode(codeBlock, copyButton));
+        copyButton.addEventListener(
+          "click",
+          async () => await copyCode(codeBlock, copyButton)
+        );
       }
 
       const languageLabel = document.createElement("span");

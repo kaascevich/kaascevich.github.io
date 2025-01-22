@@ -8,8 +8,9 @@ function getPostSortIndex({ published, modified }: EntryInfo<"posts">) {
 }
 
 const allPostsRaw = await getCollection("posts", post =>
-  import.meta.env.DEV ||
-    day() > day(post.data.published).subtract(SITE.scheduledPostMargin, "minutes")
+  import.meta.env.DEV || day() > day(post.data.published).subtract(
+    SITE.scheduledPostMargin, "minutes"
+  )
 );
 
 /** A list of all blog posts, sorted by publication or modification date. */

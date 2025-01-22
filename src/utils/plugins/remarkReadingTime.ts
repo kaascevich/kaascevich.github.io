@@ -12,6 +12,7 @@ export default function remarkReadingTime(): ReturnType<RemarkPlugin> {
     const { minutes } = getReadingTime(textOnPage);
     const roundedMinutes = Math.ceil(minutes);
 
-    data.astro!.frontmatter!.readingTime = `about ${roundedMinutes} ${roundedMinutes === 1 ? "minute" : "minutes"}`;
+    data.astro!.frontmatter!.readingTime =
+      `about ${roundedMinutes} ${roundedMinutes === 1 ? "minute" : "minutes"}`;
   };
 };

@@ -37,4 +37,5 @@ export type Social = {
 export type DateTime = string;
 
 /** Metadata for an Astro content collection entry. */
-export type EntryInfo<T extends CollectionKey> = Readonly<{ id: string } & CollectionEntry<T>["data"]>
+export type EntryInfo<T extends CollectionKey> =
+  Readonly<{ id: string } & CollectionEntry<T>["data"]>

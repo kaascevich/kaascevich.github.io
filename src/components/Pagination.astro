@@ -12,13 +12,17 @@ const { page } = Astro.props;
 
 {
   page.lastPage > 1 && <nav aria-label="pagination">
-    <a href={page.url.prev} aria-disabled={!page.url.prev} aria-label="previous">
-      prev
-    </a>
+    <a
+      href={page.url.prev}
+      aria-disabled={!page.url.prev}
+      aria-label="previous"
+    >prev</a>
     {page.currentPage} / {page.lastPage}
-    <a href={page.url.next} aria-disabled={!page.url.next} aria-label="next">
-      next
-    </a>
+    <a
+      href={page.url.next}
+      aria-disabled={!page.url.next}
+      aria-label="next"
+    >next</a>
   </nav>
 }
 

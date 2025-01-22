@@ -18,7 +18,8 @@ const post = defineCollection({
     /** Whether this post should be featured on the main page. */
     isFeatured: z.boolean().optional(),
     /** This post's tags. */
-    tags: z.array(z.string().regex(/^[a-z0-9]+(?:\-[a-z0-9]+)*$/)).default(["other"]),
+    tags: z.string().regex(/^[a-z0-9]+(?:\-[a-z0-9]+)*$/)
+      .array().default(["other"]),
     /** This post's description. */
     description: z.string(),
   }).readonly(),
@@ -35,7 +36,7 @@ const song = defineCollection({
       /** The song's original composer. */
       composer: z.string(),
       /** A URL to the original song. */
-      linkToOriginal: z.string().url(),
+      originalLink: z.string().url(),
     }).optional().readonly(),
   }).readonly(),
 });
