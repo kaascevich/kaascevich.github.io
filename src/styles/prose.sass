@@ -40,7 +40,7 @@ article
   mark
     border-radius: border-radiuses.$default
     padding: 0.125rem
-    background-color: colors.$highlight
+    background: colors.$highlight
     color: colors.$background
   
   // MARK: - Lists
@@ -102,8 +102,9 @@ article
   // MARK: - Horizontal rules
 
   hr
-    border-color: colors.$border
-    border-top-width: 1px
+    border:
+      color: colors.$border
+      top-width: 1px
     +margin-y(3rem)
 
   // MARK: - Blockquotes
@@ -170,7 +171,7 @@ article
       font-weight: font-weights.$extrabold
 
     :not(pre) > &
-      background-color: colors.$card
+      background: colors.$card
       border-radius: border-radiuses.$default
       padding: 0.25rem
       overflow-wrap: break-word
@@ -191,10 +192,10 @@ article
       line-height: 1.7
       @media print
         white-space: pre-wrap
-        background-color: white !important
+        background: white !important
 
       code
-        background-color: transparent
+        background: transparent
         border:
           width: 0rem
           radius: 0rem
@@ -214,7 +215,7 @@ article
     thead th
       font-weight: font-weights.$semibold
       vertical-align: bottom
-      background-color: with-opacity(colors.$card, 50%)
+      background: with-opacity(colors.$card, 50%)
 
     tbody td
       vertical-align: baseline

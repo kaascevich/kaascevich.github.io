@@ -62,19 +62,19 @@
     left: 0.75rem
     padding: 0.25rem
     text-transform: lowercase
-    background-color: colors.$background
+    background: colors.$background
     @media print
-      background-color: white
+      background: white
 
   .copy-button
     right: 0.75rem
     border-radius: border-radiuses.$default
-    background-color: colors.$card
+    background: colors.$card
     padding: 0.25rem 0.5rem
     color: colors.$text
-    +transition(background-color)
+    +transition(background)
     &:hover
-      background-color: colors.$card-muted
+      background: colors.$card-muted
       color: currentcolor
     @include hide-in-print
 </style>
