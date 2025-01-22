@@ -1,5 +1,6 @@
+import type { AstroUserConfig } from "astro";
+
 import fs from "node:fs";
-import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import ogImages from "astro-opengraph-images";
 import compress from "@playform/compress";
@@ -26,7 +27,7 @@ const __filename = fileURLToPath(import.meta.url);
 /** The filesystem path to this config file. */
 const __dirname = dirname(__filename);
 
-export default defineConfig({
+export default {
   site: SITE.url,
   integrations: [
     react(),
@@ -124,4 +125,4 @@ export default defineConfig({
     contentIntellisense: true,
     svg: true,
   },
-});
+} satisfies AstroUserConfig;
