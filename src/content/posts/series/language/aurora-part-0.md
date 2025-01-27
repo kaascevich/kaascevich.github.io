@@ -31,6 +31,8 @@ Creating Sources/Aurora/Aurora.swift
 Creating Tests/
 Creating Tests/AuroraTests/
 Creating Tests/AuroraTests/AuroraTests.swift
+$ git init
+Initialized empty Git repository in /Users/kaleb/Developer/Other/Swift/Aurora/.git/
 $ code .
 ```
 
