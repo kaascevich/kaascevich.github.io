@@ -28,7 +28,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default {
-  site: SITE.url,
+  site: SITE.url.href,
   integrations: [
     react(),
     sitemap(),
