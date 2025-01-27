@@ -1,13 +1,13 @@
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
 /** Global configuration for the site. */
-export type Site = {
+export interface Site {
   /** The site's URL. */
-  url: string,
+  url: URL,
   /** The site's author. */
   author: string,
   /** The author's profile page. */
-  profile: string,
+  profile: URL,
   /** The site's description. */
   description: string,
   /** The site's title. */
@@ -21,17 +21,17 @@ export type Site = {
    * date when the post should become visible.
    */
   scheduledPostMargin: number,
-};
+}
 
 /** A social media service. */
-export type Social = {
+export interface Social {
   /** The social media service's name. */
   name: string,
+  /** The link's title. */
+  title: string,
   /** The URL to the social media service. */
   href: string,
-  /** The link's title. */
-  linkTitle: string,
-};
+}
 
 /** A date-time string parsable by Dayjs. */
 export type DateTime = string;

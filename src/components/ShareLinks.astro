@@ -1,11 +1,12 @@
 ---
 import SocialLink from "@/components/SocialLink.astro";
 import { SHARE_LINKS } from "@/config";
+import type { Social } from "@/types";
 
-let shareLinks = SHARE_LINKS.map(social => {
-  social.href += Astro.url.href;
-  return social;
-});
+let shareLinks: Social[] = SHARE_LINKS.map(social => ({
+  ...social,
+  href: social.href + Astro.url.href,
+}));
 ---
 
 <div class="share-links">

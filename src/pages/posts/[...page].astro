@@ -2,13 +2,12 @@
 import PaginatedLayout from "@/layouts/PaginatedLayout.astro";
 
 import { SITE } from "@/config";
-import type { GetStaticPaths } from "astro";
+import type { GetStaticPathsOptions } from "astro";
 import allPosts from "@/utils/allPosts";
 
-export const getStaticPaths = (options => options.paginate(
-  allPosts,
-  { pageSize: SITE.postsPerPage }
-)) satisfies GetStaticPaths;
+export function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  return paginate(allPosts, { pageSize: SITE.postsPerPage });
+}
 
 const { page } = Astro.props;
 ---

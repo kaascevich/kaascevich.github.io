@@ -1,6 +1,5 @@
 ---
 layout: "@/layouts/AboutLayout.astro"
-title: "about me"
 ---
 
 ![Me! But not quite.](@/assets/images/me.png "Me! But not quite.")

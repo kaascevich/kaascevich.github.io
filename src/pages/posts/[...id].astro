@@ -23,10 +23,12 @@ export interface Props {
   post: EntryInfo<"posts">,
 }
 
-export const getStaticPaths = () => allPosts.map(post => ({
-  params: { id: post.id },
-  props: { post },
-}));
+export function getStaticPaths() {
+  return allPosts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
 
 const { post } = Astro.props;
 

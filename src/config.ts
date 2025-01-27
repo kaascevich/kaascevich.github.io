@@ -3,9 +3,9 @@ import type { Site, Social } from "@/types";
 
 /** Global configuration for the site. */
 export const SITE: Site = {
-  url: "https://kaascevich.github.io/",
+  url: new URL("https://kaascevich.github.io/"),
   author: "Kaleb A. Ascevich",
-  profile: "https://kaascevich.github.io/about",
+  profile: new URL("https://kaascevich.github.io/about"),
   description: "my tiny little haven on the internet",
   title: "kaascevich",
   postsPerIndex: 5,
@@ -17,23 +17,23 @@ export const SITE: Site = {
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
+    title: `${SITE.title} on GitHub`,
     href: "https://github.com/kaascevich",
-    linkTitle: `${SITE.title} on GitHub`,
   },
   {
     name: "Mail",
+    title: `send an email to ${SITE.title}`,
     href: "mailto:cloths-fringe0s@icloud.com",
-    linkTitle: `send an email to ${SITE.title}`,
   },
   {
     name: "Discord",
+    title: `${SITE.title} on Discord`,
     href: "https://discord.com/users/1181742723917688882",
-    linkTitle: `${SITE.title} on Discord`,
   },
   {
     name: "Steam",
+    title: `${SITE.title} on Steam`,
     href: "https://steamcommunity.com/id/macOSisthebestOS/",
-    linkTitle: `${SITE.title} on Steam`,
   },
 ];
 
@@ -41,28 +41,28 @@ export const SOCIALS: Social[] = [
 export const SHARE_LINKS: Social[] = [
   {
     name: "WhatsApp",
+    title: "share this post via WhatsApp",
     href: "https://wa.me/?text=",
-    linkTitle: "share this post via WhatsApp",
   },
   {
     name: "Telegram",
+    title: "share this post via Telegram",
     href: "https://t.me/share/url?url=",
-    linkTitle: "share this post via Telegram",
   },
   {
     name: "Pinterest",
+    title: "share this post on Pinterest",
     href: "https://pinterest.com/pin/create/button/?url=",
-    linkTitle: "share this post on Pinterest",
   },
   {
     name: "Reddit",
+    title: "share this post on Reddit",
     href: "https://www.reddit.com/submit?title=Check%20out%20this%20post%21&url=",
-    linkTitle: "share this post on Reddit",
   },
   {
     name: "Mail",
+    title: "share this post via email",
     href: "mailto:?subject=See%20this%20post&body=",
-    linkTitle: "share this post via email",
   },
 ];
 
