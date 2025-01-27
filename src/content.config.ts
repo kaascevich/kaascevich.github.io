@@ -4,8 +4,8 @@ import { defineCollection, z } from "astro:content";
 /** The schema for a blog post. */
 const post = defineCollection({
   loader: glob({
-    // only show draft posts when we're on the dev server
-    pattern: import.meta.env.DEV ? ["*.md", "drafts/*.md"] : "*.md",
+    // don't show draft posts unless we're on the dev server
+    pattern: import.meta.env.PROD ? ["**/*.md", "!drafts/*.md"] : "**/*.md",
     base: "src/content/posts",
   }),
   schema: z.object({
