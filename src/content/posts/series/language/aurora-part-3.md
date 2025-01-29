@@ -109,8 +109,8 @@ aurora>
 > For the sake of clarity, text I type into the terminal will be shown at a
 > lower brightness.
 
-I think we forgot to set the `terminator` in that call to `print`... let's go ahead
-and do that:
+I think we forgot to set the `terminator` in that call to `print`... let's go
+ahead and do that:
 
 ```swift
 // ...
@@ -239,7 +239,7 @@ Aurora.ExpressionParser (internal):6:14: [2;1mnote:[0m[1m 'init()' declared h
 [96m7 |[0m }
 ```
 
-Ohp, that's a thing. Let's fix that too real quick.
+Oop, that's a thing. Let's fix that too real quick.
 
 ```swift
 // ...

@@ -15,11 +15,11 @@ precedence in a later part.
 ## Refactoring
 
 First, though, I want to get the not-yet-a-tree representation separated from
-the parsing. So let's add a new file, `Sources/Syntax/Expression.swift`:
+the parsing. So let's add a new file, `Sources/Aurora/Syntax/Expression.swift`:
 
 ```console
-$ mkdir Sources/Syntax
-$ touch Sources/Syntax/Expression.swift
+$ mkdir -p Sources/Aurora/Syntax
+$ touch Sources/Aurora/Syntax/Expression.swift
 ```
 
 ```swift
@@ -37,11 +37,11 @@ enum Expression: Equatable {
 }
 ```
 
-Rename `Sources/Parsing/Expression.swift` to `ExpressionParsing.swift`, and
-add `Parsable` conformances via extensions:
+Rename `Sources/Aurora/Parsing/Expression.swift` to `ExpressionParsing.swift`,
+and add `Parsable` conformances via extensions:
 
 ```console
-$ cd Sources/Parsing
+$ cd Sources/Aurora/Parsing
 $ mv Expression.swift ExpressionParsing.swift
 ```
 
@@ -62,11 +62,12 @@ extension Expression.Operation: Parsable {
 }
 ```
 
-For consistency's sake, we'll also rename `Tests/Parsing/ExpressionTests.swift`
-to `ExpressionParsingTests.swift`, and update the suite names accordingly.
+For consistency's sake, we'll also rename
+`Tests/AuroraTests/Parsing/ExpressionTests.swift` to
+`ExpressionParsingTests.swift`, and update the suite names accordingly.
 
 ```console
-$ cd Tests/Parsing
+$ cd Tests/AuroraTests/Parsing
 $ mv ExpressionTests.swift ExpressionParsingTests.swift
 ```
 
@@ -264,11 +265,11 @@ Unfortunately, the only real solution to this is another refactor.
 
 What I think I'm going to do is separate parsers into their very own types
 (which is how the Parsing library was intended to be used). So let's start by
-just deleting `Sources/Utilities/Protocols.swift`, because we aren't gonna need
-that where we're going.
+just deleting `Sources/AuroraUtilities/Protocols.swift`, because we aren't
+gonna need that where we're going.
 
 ```console
-$ rm Sources/Utilities/Protocols.swift
+$ rm Sources/Aurora/Utilities/Protocols.swift
 ```
 
 Now let's promote our `extension`s to `struct`s and conform them to `Parser`
