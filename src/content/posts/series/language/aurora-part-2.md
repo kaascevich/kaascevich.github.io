@@ -51,30 +51,13 @@ import Parsing
 
 extension Expression: Parsable {
   static var parser: some Parser<Substring, Self> {
-    OneOf {
-      Parse {
-        Digits()
-        Whitespace()
-        Operation.parser
-        Whitespace()
-        Digits()
-      }.map { (lhs, op, rhs) in
-        Self.operation(lhs: lhs, rhs: rhs, op: op)
-      }
-
-      Digits().map(Self.number)
-    }
+    // ...
   }
 }
 
 extension Expression.Operation: Parsable {
   static var parser: some Parser<Substring, Self> {
-    OneOf<_, Self, _> {
-      "+".map { .add }
-      "-".map { .subtract }
-      "*".map { .multiply }
-      "/".map { .divide }
-    }
+    // ...
   }
 }
 ```
