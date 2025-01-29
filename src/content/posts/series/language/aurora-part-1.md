@@ -33,7 +33,7 @@ import Testing
   @Suite("Numbers") struct NumberTests {
     @Test("One-digit number")
     func oneDigitNumber() throws {
-      try #expect(ExpressionParser().parse("1") == Expression(value: 1))
+      try #expect(Expression(parsing: "1") == .init(value: 1))
     }
   }
 }
