@@ -11,7 +11,6 @@ import BackToTop from "@/components/BackToTop.astro";
 import BackButton from "@/components/BackButton.astro";
 
 import ScrollProgress from "@/components/scripts/ScrollProgress.astro";
-import HeadingLinks from "@/components/scripts/HeadingLinks.astro";
 import CodeBlockExtras from "@/components/scripts/CodeBlockExtras.astro";
 
 import { getEntry } from "astro:content";
@@ -137,7 +136,6 @@ const { Content, remarkPluginFrontmatter } = await render(
 </style>
 
 <ScrollProgress/>
-<HeadingLinks/>
 <CodeBlockExtras/>
 
 <script is:inline data-astro-rerun>

@@ -171,7 +171,7 @@ To confirm that we haven't broken anything, let's run the tests:
 
 Brilliant!
 
-## Parenthesized expresssions
+## Parenthesized expressions
 
 Let's start with something a bit more simple, by only allowing expressions
 surrounded in parentheses (unless it's just a plain number, of course).

@@ -75,9 +75,6 @@
     background: colors.$card
     padding: 0.25rem 0.5rem
     color: colors.$text
-    +transition(background)
-    &:hover
-      background: colors.$card-muted
-      color: currentcolor
+    +hover-transition($background: colors.$card-muted)
     @include hide-in-print
 </style>
