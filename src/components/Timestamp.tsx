@@ -18,7 +18,8 @@ interface Props {
 /** A timestamp for blog posts. */
 export default function Timestamp({ published, modified }: Props) {
   const useModifiedDate = modified && modified > published;
-  const date = day(useModifiedDate ? modified : published);
+  const date = day(useModifiedDate ? modified : published).
+    tz("America/New_York");
 
   const dateTimeString = date.format("MMM D, YYYY [at] h:mm a (z)");
 
