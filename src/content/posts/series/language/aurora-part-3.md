@@ -3,7 +3,7 @@ published: "2025-01-28T20:35:00-05:00"
 title: Aurora (part 3)
 tags:
   - swift
-  - language
+  - aurora
 description: A fairly simple REPL
 ---
 

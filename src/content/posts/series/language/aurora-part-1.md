@@ -3,7 +3,7 @@ published: "2025-01-27T12:01:00-05:00"
 title: Aurora (part 1)
 tags:
   - swift
-  - language
+  - aurora
 description: Express yourself
 ---
 

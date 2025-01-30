@@ -3,7 +3,7 @@ published: "2025-01-30T11:06:00-05:00"
 title: Aurora (part 4)
 tags:
   - swift
-  - language
+  - aurora
 description: Actually doing the math
 ---
 

@@ -3,7 +3,7 @@ published: "2025-01-26T19:26:00-05:00"
 title: Aurora (part 0)
 tags:
   - swift
-  - language
+  - aurora
 description: A programming language, written in Swift
 ---
 
