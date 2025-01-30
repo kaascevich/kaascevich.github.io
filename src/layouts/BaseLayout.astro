@@ -21,7 +21,7 @@ export interface Props {
   description?: string,
   /** The date this page was published. */
   published?: DateTime,
-  /** The date this page was last modified, if any. */
+  /** The date this page was last modified. */
   modified?: DateTime,
   /** The active navigation item. */
   activeNav: NavItem,
@@ -54,7 +54,7 @@ const structuredData = {
   image: ogImage,
   /** The date this page was published. */
   datePublished: day(published)?.toISOString(),
-  /** The date this page was last modified, if any. */
+  /** The date this page was last modified. */
   dateModified: day(modified)?.toISOString(),
   /** Details about this page's author. */
   author: [{

@@ -11,7 +11,7 @@ day.extend(timezone);
 interface Props {
   /** The date this post was published. */
   published: DateTime,
-  /** The date this post was last modified, if any. */
+  /** The date this post was last modified. */
   modified?: DateTime,
 }
 

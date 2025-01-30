@@ -11,7 +11,7 @@ const post = defineCollection({
   schema: z.object({
     /** The date this post was published. */
     published: z.string().datetime({ offset: true }),
-    /** The date this post was last modified, if any. */
+    /** The date this post was last modified. */
     modified: z.string().datetime({ offset: true }).optional(),
     /** This post's title. */
     title: z.string(),
