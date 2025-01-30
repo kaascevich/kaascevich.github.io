@@ -7,13 +7,19 @@ import compress from "@playform/compress";
 import mdAstro from "@astropub/md";
 import svgr from "vite-plugin-svgr";
 
-import remarkCollapse from "remark-collapse";
 import remarkReadingTime from "./src/utils/plugins/remarkReadingTime";
 import remarkToc from "remark-toc";
 import { remarkMark } from "remark-mark-highlight";
 import { remarkDefinitionList, defListHastHandlers } from "remark-definition-list";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeFigure from "rehype-figure";
+
+import shellSession from "@robot-inventor/shell-session-syntax";
+import {
+  transformerNotationErrorLevel,
+  transformerNotationHighlight,
+  transformerMetaHighlight,
+} from "@shikijs/transformers";
 
 import sitemap from "@astrojs/sitemap";
 import renderOgImage from "./src/utils/renderOgImage";
@@ -74,7 +80,6 @@ export default {
   markdown: {
     remarkPlugins: [
       remarkToc,
-      [remarkCollapse, { test: "Table of contents", }],
       remarkReadingTime,
       remarkMark,
       remarkDefinitionList,
@@ -85,7 +90,13 @@ export default {
     ],
     shikiConfig: {
       themes: { light: "catppuccin-latte", dark: "catppuccin-macchiato" },
+      langs: [shellSession],
       langAlias: { plist: "xml" },
+      transformers: [
+        transformerNotationHighlight(),
+        transformerNotationErrorLevel(),
+        transformerMetaHighlight(),
+      ],
     },
     remarkRehype: {
       footnoteBackContent: "↑",

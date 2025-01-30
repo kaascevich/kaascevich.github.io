@@ -34,7 +34,7 @@ import Testing
   @Suite("Numbers") struct NumberTests {
     @Test("One-digit number")
     func oneDigitNumber() throws {
-      try #expect(Expression(parsing: "1") == .init(value: 1))
+      try #expect(Expression(parsing: "1") == .init(value: 1)) // [!code error]
     }
   }
 }
@@ -45,21 +45,13 @@ empty `Sources/Aurora/Parsing/Expression.swift` so we get actually helpful
 diagnostics_):
 
 ```ansi
-Building for debugging...
-/Users/kaleb/Developer/Other/Swift/Aurora/Tests/AuroraTests/Parsing/ExpressionTests.swift:7:17: [31;1merror:[0m[1m cannot find 'Expression' in scope[0m
-[96m 6 |[0m   func oneDigitNumber() throws {
-[96m 7 |[0m     try #expect(Expression(parsing: "1") == .init(value: 1))
-[96m   |[0m                 `- [31;1merror:[0m[1m cannot find 'Expression' in scope[0m
-[96m 8 |[0m   }
+[1m.../Tests/AuroraTests/Parsing/ExpressionTests.swift:7:17: [31merror:[0m[1m cannot find 'Expression' in scope[0m
+    try #expect(Expression(parsing: "1") == .init(value: 1))
+[32;1m                ^~~~~~~~~~[0m
 
-/Users/kaleb/Developer/Other/Swift/Aurora/Tests/AuroraTests/Parsing/ExpressionTests.swift:7:5: [33;1mwarning:[0m[1m no calls to throwing functions occur within 'try' expression[0m
-[96m 5 |[0m   @Test("One-digit number")
-[96m 6 |[0m   func oneDigitNumber() throws {
-[96m 7 |[0m     try #expect(Expression(parsing: "1") == .init(value: 1))
-[96m   |[0m     `- [33;1mwarning:[0m[1m no calls to throwing functions occur within 'try' expression[0m
-[96m 8 |[0m   }
-
-error: fatalError
+[1m.../Tests/AuroraTests/Parsing/ExpressionTests.swift:7:5: [35mwarning:[0m[1m no calls to throwing functions occur within 'try' expression[0m
+    try #expect(Expression(parsing: "1") == .init(value: 1))
+[32;1m    ^[0m
 ```
 
 > We're gonna get a _lot_ of those "no calls to throwing functions occur within
@@ -109,7 +101,7 @@ Straight A's so far!
 
 Now let's try multi-digit numbers:
 
-```swift
+```swift {6-9}
 // ExpressionTests.swift
 // ...
 @Suite("Expressions") struct ExpressionTests {
@@ -166,7 +158,7 @@ extension Parsable {
 
 Let's make `Expression` conform to `Parsable`:
 
-```swift
+```swift {3,6-8}
 // Expression.swift
 // ...
 struct Expression: Equatable, Parsable {
@@ -191,7 +183,7 @@ Hooray!
 Now that we've got simple numbers working, let's try to parse simple binary
 operations (like `1 + 2` or `35 / 7`). Let's start by adding a test:
 
-```swift
+```swift {5-14}
 // ExpressionTests.swift
 //...
 @Suite("Expressions") struct ExpressionTests {
@@ -211,7 +203,7 @@ operations (like `1 + 2` or `35 / 7`). Let's start by adding a test:
 
 To make this compile, we need to change `Expression` into an `enum`:
 
-```swift
+```swift {3-10}
 // Expression.swift
 // ...
 enum Expression: Equatable, Parsable {
@@ -226,7 +218,7 @@ enum Expression: Equatable, Parsable {
 
 Then we can add an `Operation` enum to `Expression`:
 
-```swift
+```swift {2-9}
 // ...
 extension Expression {
   enum Operation: Equatable {
@@ -241,7 +233,7 @@ extension Expression {
 Trying to compile the tests, it looks like I forgot to replace `init(value:)`
 with `number(_:)`. Let's do that:
 
-```swift
+```swift {7,12}
 // ExpressionTests.swift
 // ...
 @Suite("Expressions") struct ExpressionTests {
@@ -273,10 +265,9 @@ Oh yeah, we have to actually parse an operator. Thankfully, this is just about
 as easy as parsing a number was -- we can use the `OneOf` parser, which acts
 similarly to a `switch` statement, choosing the first parser that succeeds.
 
-```swift
+```swift {6-13}
 // Expression.swift
 //...
-
 extension Expression {
   enum Operation: Equatable, Parsable {
     // ...
@@ -295,10 +286,9 @@ extension Expression {
 And add a test (taking advantage of Swift Testing's parameterized tests,
 because any and all code repetition is the bane of my existence):
 
-```swift
+```swift {6-14}
 // ExpressionTests.swift
 // ...
-
 @Suite("Expressions") struct ExpressionTests {
   // ...
   @Suite("Binary expressions") struct BinaryExpressionTests {
@@ -323,7 +313,7 @@ because any and all code repetition is the bane of my existence):
 Now we can finally parse some expressions! Let's add support for binary
 expressions to `Expression.parser`:
 
-```swift
+```swift {6-13,16}
 // Expression.swift
 // ...
 enum Expression: Equatable, Parsable {
@@ -360,7 +350,7 @@ order, we have to reorder them manually in a closure.
 To end off this rather lengthy post, I'll quickly add support for whitespace in
 binary expressions. Let's write a test:
 
-```swift
+```swift {7-14}
 // ExpressionTests.swift
 //...
 @Suite("Expressions") struct ExpressionTests {
@@ -389,7 +379,7 @@ binary expressions. Let's write a test:
 This is absolutely trivial to implement; we just have to sprinkle some
 `Whitespace` parsers around.
 
-```swift
+```swift {9,11}
 // Expression.swift
 // ...
 enum Expression: Equatable, Parsable {

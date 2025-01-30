@@ -16,7 +16,7 @@ Compared to the last two posts, this one should be fairly short.
 First, we've gotta add a new executable target. Update `Package.swift` as
 follows:
 
-```swift
+```swift {7,11-14,18-24}
 // Package.swift
 // ...
 let package = Package(
@@ -80,7 +80,7 @@ hello!
 
 Let's start reading some lines:
 
-```swift
+```swift {5-10}
 // ...
 @main struct AuroraCLI: ParsableCommand {
   // ...
@@ -95,24 +95,23 @@ Let's start reading some lines:
 }
 ```
 
-```ansi
+```console
+$ swift run
 aurora> 
-[2mhello![0m
+hello!
 hello!
 aurora> 
-[2mthere should not be a newline after that prompt...[0m
+there should not be a newline after that prompt...
 there should not be a newline after that prompt...
 aurora> 
-[2m^C[0m
+^C
+$
 ```
-
-> For the sake of clarity, text I type into the terminal will be shown at a
-> lower brightness.
 
 I think we forgot to set the `terminator` in that call to `print`... let's go
 ahead and do that:
 
-```swift
+```swift {6}
 // ...
 @main struct AuroraCLI: ParsableCommand {
   // ...
@@ -125,21 +124,23 @@ ahead and do that:
 }
 ```
 
-```ansi
-aurora> [2mhello again![0m
+```console
+$ swift run
+aurora> hello again!
 hello again!
-aurora> [2m:)[0m
+aurora> :)
 :)
-aurora> [2m1 + 2[0m
+aurora> 1 + 2
 1 + 2
-aurora> [2m^C[0m
+aurora> ^C
+$
 ```
 
 I don't like that we have to use ^C to quit the REPL, though... how about we
 use `:quit` as an exit command? It's similar to the Swift REPL, and it's
 unlikely to ever be valid Aurora syntax.
 
-```swift
+```swift {9}
 // ...
 @main struct AuroraCLI: ParsableCommand {
   // ...
@@ -156,21 +157,23 @@ unlikely to ever be valid Aurora syntax.
 }
 ```
 
-```ansi
-aurora> [2mboo[0m
+```console
+$ swift run
+aurora> boo
 boo
-aurora> [2mthis is a line[0m
+aurora> this is a line
 this is a line
-aurora> [2mquit[0m
+aurora> quit
 quit
-aurora> [2m:quit[0m
+aurora> :quit
+$
 ```
 
 ## Running the parser
 
 Let's parse some expressions!
 
-```swift
+```swift {9-10}
 // ...
 import Aurora
 
@@ -179,7 +182,7 @@ import Aurora
   func run() throws {
     while true {
       // ...
-      let parsed = try ExpressionParser().parse(line)
+      let parsed = try ExpressionParser().parse(line) // [!code error]
       dump(parsed)
     }
   }
@@ -187,19 +190,15 @@ import Aurora
 ```
 
 ```ansi
-/Users/kaleb/Developer/Other/Swift/Aurora/Sources/AuroraCLI/AuroraCLI.swift:14:24: [31;1merror:[0m[1m cannot find 'ExpressionParser' in scope[0m
-[96m12 |[0m       if line == ":quit" { break }
-[96m13 |[0m 
-[96m14 |[0m       let parsed = try ExpressionParser.parse(line)
-[96m   |[0m                        `- [31;1merror:[0m[1m cannot find 'ExpressionParser' in scope[0m
-[96m15 |[0m       print(parsed)
-[96m16 |[0m     }
+[1m.../Sources/AuroraCLI/AuroraCLI.swift:14:24: [31merror:[0m[1m cannot find 'ExpressionParser' in scope[0m
+      let parsed = try ExpressionParser.parse(line)
+[32;1m                       ^~~~~~~~~~~~~~~~[0m
 ```
 
 Ah, right, we haven't made anything `public`. Let's go around and fix that,
 letting the compiler errors lead the way.
 
-```swift
+```swift {3,4}
 // ExpressionParsing.swift
 // ...
 public struct ExpressionParser: Parser {
@@ -210,7 +209,7 @@ public struct ExpressionParser: Parser {
 // ...
 ```
 
-```swift
+```swift {2,4}
 // Expression.swift
 public indirect enum Expression: Equatable {
   // ...
@@ -223,25 +222,18 @@ public indirect enum Expression: Equatable {
 Let's try that again.
 
 ```ansi
-/Users/kaleb/Developer/Other/Swift/Aurora/Sources/AuroraCLI/AuroraCLI.swift:14:24: [31;1merror:[0m[1m 'ExpressionParser' initializer is inaccessible due to 'internal' protection level[0m
-[96m12 |[0m       if line == ":quit" { break }
-[96m13 |[0m 
-[96m14 |[0m       let parsed = try ExpressionParser().parse(line)
-[96m   |[0m                        `- [31;1merror:[0m[1m 'ExpressionParser' initializer is inaccessible due to 'internal' protection level[0m
-[96m15 |[0m       print(parsed)
-[96m16 |[0m     }
+[1m.../Sources/AuroraCLI/AuroraCLI.swift:14:24: [31merror:[0m[1m 'ExpressionParser' initializer is inaccessible due to 'internal' protection level[0m
+      let parsed = try ExpressionParser().parse(line)
+[32;1m                       ^~~~~~~~~~~~~~~~[0m
 
-Aurora.ExpressionParser (internal):6:14: [2;1mnote:[0m[1m 'init()' declared here[0m
-[96m4 |[0m     public typealias Output = Aurora.Expression
-[96m5 |[0m     public typealias _Body = some Parsing.Parser<Substring, Aurora.Expression>
-[96m6 |[0m     internal init()
-[96m  |[0m              `- [2;1mnote:[0m[1m 'init()' declared here[0m
-[96m7 |[0m }
+[1mAurora.ExpressionParser (internal):6:14: [2mnote:[0m[1m 'init()' declared here[0m
+     internal init()
+[32;1m              ^~~~[0m
 ```
 
 Oop, that's a thing. Let's fix that too real quick.
 
-```swift
+```swift {3}
 // ...
 public struct ExpressionParser: Parser {
   public init() { }
@@ -252,11 +244,12 @@ public struct ExpressionParser: Parser {
 
 Aaaaaaaaaaand it runs!
 
-```ansi
-aurora> [2m1[0m
+```console
+$ swift run
+aurora> 1
 ▿ Aurora.Expression.number
   - number: 1
-aurora> [2m1 + 2[0m
+aurora> 1 + 2
 ▿ Aurora.Expression.operation
   ▿ operation: (3 elements)
     ▿ lhs: Aurora.Expression.number
@@ -264,7 +257,7 @@ aurora> [2m1 + 2[0m
     ▿ rhs: Aurora.Expression.number
       - number: 2
     - op: Aurora.Expression.Operation.add
-aurora> [2m5 * (14 / 7)[0m
+aurora> 5 * (14 / 7)
 ▿ Aurora.Expression.operation
   ▿ operation: (3 elements)
     ▿ lhs: Aurora.Expression.number
@@ -277,15 +270,17 @@ aurora> [2m5 * (14 / 7)[0m
           - number: 7
         - op: Aurora.Expression.Operation.divide
     - op: Aurora.Expression.Operation.multiply
-aurora> [2m:quit[0m
+aurora> :quit
+$
 ```
 
 It could certainly be a bit less... verbose, but for now it works.
 
 What happens if we type in something invalid?
 
-```ansi
-aurora> [2m(1 + 2[0m
+```console
+$ swift run
+aurora> (1 + 2
 Error: error: multiple failures occurred
 
 error: unexpected input
@@ -298,18 +293,19 @@ error: unexpected input
 1 | (1 + 2
   | ^ expected at least 1 digit
   | ^ expected at least 1 digit
+$
 ```
 
 Fairly concise! I don't like how it kicks us out of the REPL, though. We should
 probably catch that error:
 
-```swift
+```swift {6,9,12-14}
 // ...
 import Aurora
 
 @main struct AuroraCLI: ParsableCommand {
   // ...
-  func run() throws {
+  func run() {
     while true {
       // ...
       do {
@@ -323,8 +319,9 @@ import Aurora
 }
 ```
 
-```ansi
-aurora> [2m2 * 3[0m
+```console
+$ swift run
+aurora> 2 * 3
 ▿ Aurora.Expression.operation
   ▿ operation: (3 elements)
     ▿ lhs: Aurora.Expression.number
@@ -332,12 +329,12 @@ aurora> [2m2 * 3[0m
     ▿ rhs: Aurora.Expression.number
       - number: 3
     - op: Aurora.Expression.Operation.multiply
-aurora> [2m1 -[0m
+aurora> 1 -
 !! error: unexpected input
  --> input:1:2
 1 | 1 -
   |  ^ expected end of input
-aurora> [2m(6 - (4 / ))[0m
+aurora> (6 - (4 / ))
 !! error: multiple failures occurred
 
 error: unexpected input
@@ -350,7 +347,8 @@ error: unexpected input
 1 | (6 - (4 / ))
   | ^ expected at least 1 digit
   | ^ expected at least 1 digit
-aurora> [2m:quit[0m
+aurora> :quit
+$
 ```
 
 That'll be it for this part. **Next up: evaluation!**

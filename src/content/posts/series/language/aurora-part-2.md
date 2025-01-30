@@ -45,7 +45,7 @@ $ cd Sources/Aurora/Parsing
 $ mv Expression.swift ExpressionParsing.swift
 ```
 
-```swift
+```swift {4,10}
 // ExpressionParsing.swift
 import Parsing
 
@@ -71,7 +71,7 @@ $ cd Tests/AuroraTests/Parsing
 $ mv ExpressionTests.swift ExpressionParsingTests.swift
 ```
 
-```swift
+```swift {3,4,8}
 // ExpressionParsingTests.swift
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
@@ -90,7 +90,7 @@ $ mv ExpressionTests.swift ExpressionParsingTests.swift
 Adding support for nesting to the syntax tree is absolutely trivial; all we
 need to do is change the `Int` types in `Expression.operation` to `Expression`:
 
-```swift
+```swift {2,4}
 // Expression.swift
 indirect enum Expression: Equatable {
   case number(Int)
@@ -110,7 +110,7 @@ indirect enum Expression: Equatable {
 All we have to do now is update the rest of the code. Starting with
 `ExpressionParsing.swift`:
 
-```swift
+```swift {7,11}
 // ExpressionParsing.swift
 // ...
 extension Expression: Parsable {
@@ -135,7 +135,7 @@ extension Expression: Parsable {
 
 `ExpressionParsingTests.swift`:
 
-```swift
+```swift {10-11,19-20}
 // ExpressionParsingTests.swift
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
@@ -178,7 +178,7 @@ surrounded in parentheses (unless it's just a plain number, of course).
 
 The obligatory test:
 
-```swift
+```swift {6-17}
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
   // ...
@@ -210,7 +210,7 @@ The obligatory test:
 
 Let's try the obvious first:
 
-```swift
+```swift {4-15,20,24}
 // ExpressionParsing.swift
 // ...
 extension Expression: Parsable {
@@ -252,8 +252,8 @@ Building for debugging...
 [8/14] Emitting module CasePaths
 ```
 
-Aaaaand it just hangs there. We've successfully thrown the compiler into an
-infinite loop. 🎉
+Aaaaand it just hangs there. We have successfully managed to throw the Swift
+compiler into an infinite loop. 🎉
 
 I think I know what the issue is: we're using computed properties to make our
 parsers, but by trying to parse an `Expression` within an `Expression`, we're
@@ -275,7 +275,7 @@ $ rm Sources/Aurora/Utilities/Protocols.swift
 Now let's promote our `extension`s to `struct`s and conform them to `Parser`
 instead of `Parsable`:
 
-```swift
+```swift {2,6}
 // ...
 struct ExpressionParser: Parser {
   // ...
@@ -288,7 +288,7 @@ struct OperationParser: Parser {
 
 Let's move `subExpression` to its own type as well:
 
-```swift
+```swift {2-15}
 // ...
 struct SubExpressionParser: Parser {
   var body: some Parser<Substring, Expression> {
@@ -309,7 +309,7 @@ struct SubExpressionParser: Parser {
 
 Rename the `parser` properties to `body`, and fix references:
 
-```swift
+```swift {3,6,10,12,15,23,24}
 // ...
 struct ExpressionParser: Parser {
   var body: some Parser<Substring, Expression> {
@@ -345,7 +345,7 @@ struct OperationParser: Parser {
 
 And now we've got tests to fix:
 
-```swift
+```swift {7,12,19,24,29,34}
 // ExpressionParsingTests.swift
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
@@ -399,7 +399,7 @@ _\*phew\*_.
 
 Now that we know that's working, let's try something more complicated:
 
-```swift
+```swift {6-27}
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
   // ...
@@ -445,7 +445,7 @@ correctly.
 First, let's wrap `operators(string:result:)` in a new suite,
 `OperatorParsingTests`:
 
-```swift
+```swift {6,11}
 // ExpressionTests.swift
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
@@ -464,7 +464,7 @@ First, let's wrap `operators(string:result:)` in a new suite,
 
 Now we'll add a test for invalid operators:
 
-```swift
+```swift {7-12}
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
   // ...
@@ -489,7 +489,7 @@ Now we'll add a test for invalid operators:
 
 A test for invalid numbers:
 
-```swift
+```swift {5-10}
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
   @Suite("Number parsing") struct NumberParsingTests {
@@ -511,7 +511,7 @@ A test for invalid numbers:
 
 And a test for malformed expressions:
 
-```swift
+```swift {6-13}
 // ...
 @Suite("Expression parsing") struct ExpressionParsingTests {
   // ...
