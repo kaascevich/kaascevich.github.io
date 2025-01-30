@@ -93,8 +93,8 @@ export default {
       langs: [shellSession],
       langAlias: { plist: "xml" },
       transformers: [
-        transformerNotationHighlight(),
-        transformerNotationErrorLevel(),
+        transformerNotationHighlight({ matchAlgorithm: "v3" }),
+        transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
         transformerMetaHighlight(),
       ],
     },
