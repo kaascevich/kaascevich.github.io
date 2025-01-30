@@ -60,11 +60,9 @@ const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured);
       </section>
     }
 
-    <div id="all-posts-button-wrapper">
-      <a href="/posts/">
-        all posts
-      </a>
-    </div>
+    <a id="all-posts-button" href="/posts/">
+      all posts
+    </a>
   </main>
 </BaseLayout>
 
@@ -116,11 +114,12 @@ const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured);
     h2
       +font(font-sizes.$extralarge2, font-weights.$semibold)
       
-  #all-posts-button-wrapper
+  #all-posts-button
+    display: block
     margin-bottom: 2rem
     text-align: center
     +hover-transition($color: colors.$accent)
     @include hide-in-print
-    a::after
+    &::after
       content: chars.$arrow-right
 </style>
