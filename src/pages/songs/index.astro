@@ -3,24 +3,23 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import SongCard from "@/components/SongCard.astro";
 
 import { getCollection } from "astro:content";
+import type { EntryInfo } from "@/types";
 
 /** A list of all songs. */
-const songs = (await getCollection("songs"))
+const songs: EntryInfo<"songs">[] = (await getCollection("songs"))
   .map(({ id, data }) => ({ id, ...data }));
 
 /** Original songs. */
 const originals = songs.filter(song => !song.remixDetails)
 /** Remixed songs. */
 const remixes = songs.filter(song => song.remixDetails)
-
-/** The title of the Songs section. */
-const title = "songs";
-
-/** The description of the Songs section. */
-const description = "all the songs I've created or remixed";
 ---
 
-<MainLayout {title} {description} activeNav="songs">
+<MainLayout
+  title="songs"
+  description="all the songs I've created or remixed"
+  activeNav="songs"
+>
   <section id="originals">
     <h2>originals</h2>
     <ul>
