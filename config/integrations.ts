@@ -2,29 +2,12 @@ import type { AstroIntegration } from "astro";
 
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import ogImages from "astro-opengraph-images";
 import mdAstro from "@astropub/md";
 import compress from "@playform/compress";
-
-import fs from "node:fs";
-import renderOgImage from "../src/utils/renderOgImage";
 
 export default [
   react(),
   sitemap(),
-  ogImages({
-    options: {
-      fonts: [
-        {
-          name: "Recursive",
-          weight: 600,
-          style: "normal",
-          data: fs.readFileSync("public/fonts/recursive-sans-semibold.ttf"),
-        },
-      ],
-    },
-    render: renderOgImage,
-  }),
   mdAstro(),
   compress({
     HTML: {
