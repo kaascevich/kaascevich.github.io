@@ -53,6 +53,10 @@ struct Me: Person {
       Mac(.powerMac, 4, 2),
       [.macOS, .macOS]
     ),
+    "Kaleb's Ally": (
+      PC(.handheld, "ASUS"),
+      [.linux(distro: "Bazzite")]
+    ),
   ]
 }
 
