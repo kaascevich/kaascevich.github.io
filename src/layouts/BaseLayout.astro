@@ -12,7 +12,7 @@ import Footer from "@/components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import { getImagePath } from "astro-opengraph-images";
 
-export interface Props {
+interface Props {
   /** This page's title. */
   title?: string | undefined,
   /** The title to use for Open Graph images. */

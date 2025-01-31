@@ -17,7 +17,7 @@ import { getEntry } from "astro:content";
 import allPosts from "@/utils/allPosts";
 import type { EntryInfo } from "@/types";
 
-export interface Props {
+interface Props {
   /** The post to display. */
   post: EntryInfo<"posts">,
 }

@@ -13,7 +13,7 @@ const mainNavItems = ["posts", "tags", "songs", "about"] as const;
 /** A navigation item. */
 export type NavItem = typeof mainNavItems[number] | "search" | null;
 
-export interface Props {
+interface Props {
   /** The active navigation item. */
   activeNav: NavItem,
 }
