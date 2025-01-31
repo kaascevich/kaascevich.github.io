@@ -10,7 +10,8 @@ import Header, { type NavItem } from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
 import { ClientRouter } from "astro:transitions";
-import { getImagePath } from "astro-opengraph-images";
+
+import { Schema } from "astro-seo-schema";
 
 interface Props {
   /** This page's title. */
@@ -40,31 +41,6 @@ const title = _title ? `${_title} | ${SITE.title}` : SITE.title;
 
 /** The canonical URL to this page. */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-/** This page's Open Graph image. */
-const ogImage = getImagePath({ url: Astro.url, site: Astro.site });
-
-/** Structured data for Google Search. */
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  /** This page's title. */
-  headline: title,
-  /** This page's Open Graph image. */
-  image: ogImage,
-  /** The date this page was published. */
-  datePublished: day(published)?.toISOString(),
-  /** The date this page was last modified. */
-  dateModified: day(modified)?.toISOString(),
-  /** Details about this page's author. */
-  author: [{
-    "@type": "Person",
-    /** The name of this page's author. */
-    name: SITE.author,
-    /** A URL to the author's profile. */
-    url: SITE.profile,
-  }],
-} as const;
 ---
 
 <!doctype html>
@@ -89,7 +65,6 @@ const structuredData = {
     <meta property="og:title" content={ogTitle}/>
     <meta property="og:description" content={description}/>
     <meta property="og:url" content={canonicalURL}/>
-    <meta property="og:image" content={ogImage}/>
     <meta property="og:site_name" content={SITE.title}/>
 
     {published && <meta
@@ -105,14 +80,20 @@ const structuredData = {
     <meta property="twitter:url" content={canonicalURL}/>
     <meta property="twitter:title" content={ogTitle}/>
     <meta property="twitter:description" content={description}/>
-    <meta property="twitter:image" content={ogImage}/>
 
     <!-- Google JSON-LD structured data -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-      is:inline
-    />
+    <Schema item={{
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      datePublished: day(published)?.toISOString(),
+      dateModified: day(modified)?.toISOString(),
+      author: [{
+        "@type": "Person",
+        name: SITE.author,
+        url: SITE.profile.href,
+      }],
+    }}>
 
     <!-- Google Search Console -->
     <meta
