@@ -21,10 +21,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site output
         uses: withastro/action@v2
-      - name: Set Timezone
-        uses: szenius/set-timezone@v2.0
-        with:
-          timezoneMacos: "America/New_York"
 
   deploy:
     needs: build
