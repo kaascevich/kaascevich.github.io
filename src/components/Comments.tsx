@@ -10,9 +10,8 @@ const darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css"
 
 /** A comments section for blog posts. */
 export default function Comments() {
-  const [theme, setTheme] = useState(() =>
-    localStorage.getItem("theme")
-      ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme")
+    ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
   );
 
   useEffect(() => {

@@ -3,10 +3,10 @@ interface Props {
   /** The tag's name. */
   tag: string,
   /** The tag's size. */
-  size?: "sm" | "lg" | undefined,
+  size: "sm" | "lg",
 }
 
-const { tag, size = "sm" } = Astro.props;
+const { tag, size } = Astro.props;
 ---
 
 <li class={size}>
