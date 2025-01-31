@@ -1,4 +1,4 @@
-<script is:inline data-astro-rerun>
+<script>
   /** Attaches the language name and a copy button to code blocks. */
   function attachCodeBlockExtras() {
     const copyButtonLabel = "copy";
@@ -13,24 +13,20 @@
         const copyButton = document.createElement("button");
         copyButton.className = "copy-button";
         copyButton.innerText = copyButtonLabel;
-
+        copyButton.onclick = async () => await copyCode(codeBlock, copyButton);
         codeBlock.appendChild(copyButton);
         
-        copyButton.addEventListener(
-          "click",
-          async () => await copyCode(codeBlock, copyButton)
-        );
       }
 
       const languageLabel = document.createElement("span");
       languageLabel.className = "language-name";
       languageLabel.innerText = languageName;
-      
-      codeBlock.appendChild(languageLabel);
 
       // hide the language name in reader view
       languageLabel.hidden = true;
       languageLabel.style.display = "inline";
+
+      codeBlock.appendChild(languageLabel);
 
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
@@ -38,10 +34,10 @@
 
     /**
      * Copies the contents of the given code block to the clipboard.
-     * @param {HTMLPreElement} block - The code block to copy.
-     * @param {HTMLButtonElement} button - The copy button.
+     * @param block - The code block to copy.
+     * @param button - The copy button.
      */
-    async function copyCode(block, button) {
+    async function copyCode(block: HTMLPreElement, button: HTMLButtonElement) {
       const text = block.querySelector("code")?.innerText;
       await navigator.clipboard.writeText(text ?? "");
 
@@ -51,6 +47,7 @@
     }
   }
   attachCodeBlockExtras();
+  document.addEventListener("astro:after-swap", attachCodeBlockExtras);
 </script>
 
 <style lang="sass" is:global>

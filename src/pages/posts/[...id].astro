@@ -136,11 +136,4 @@ const { Content, remarkPluginFrontmatter } = await render(
 </style>
 
 <ScrollProgress/>
-<CodeBlockExtras/>
-
-<script is:inline data-astro-rerun>
-  /* go to page start after transition */
-  document.addEventListener("astro:after-swap", () =>
-    scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
-</script>
+<CodeBlockExtras/> 
