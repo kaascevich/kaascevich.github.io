@@ -7,10 +7,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "sync": "astro sync",
-    "astro": "astro",
-    "format:check": "prettier --check . --plugin=prettier-plugin-astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro",
-    "lint": "eslint ."
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
