@@ -1,6 +1,6 @@
 import type { AstroUserConfig } from "astro";
 
-import { SITE } from "@/config";
+import { SITE } from "./src/config";
 
 import integrations from "./config/integrations";
 import markdown from "./config/markdown";
