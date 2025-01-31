@@ -16,33 +16,41 @@ function getTheme() {
  */
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
-  reflectThemePreference();
+  applyTheme();
 }
 
 /** Applies the current theme to the site. */
-function reflectThemePreference() {
+function applyTheme() {
   document.documentElement.dataset.theme = getTheme() ?? undefined;
-  document.getElementById("theme-button")?.setAttribute("title", `current theme: ${getTheme()}`);
+  document.getElementById("theme-button")?.setAttribute(
+    "title",
+    `current theme: ${getTheme()}`,
+  );
 
   if (document.body) {
     const backgroundColor = getComputedStyle(document.body).backgroundColor;
-    document.querySelector("meta[name='theme-color']")?.setAttribute("content", backgroundColor);
+    document.querySelector("meta[name='theme-color']")?.setAttribute(
+      "content",
+      backgroundColor,
+    );
   }
 }
 
 if (getTheme() === null) {
-  setTheme(matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  setTheme(
+    matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+  );
 }
 
 // set early to avoid flashes
-reflectThemePreference();
+applyTheme();
 
 onload = () => {
   function setUpThemes() {
-    reflectThemePreference();
+    applyTheme();
 
     document.getElementById("theme-button")?.addEventListener(
-      "click", () => setTheme(getTheme() === "light" ? "dark" : "light")
+      "click", () => setTheme(getTheme() === "light" ? "dark" : "light"),
     );
   }
 
@@ -51,5 +59,7 @@ onload = () => {
 };
 
 // sync with system changes
-matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({ matches: isDark }) => setTheme(isDark ? "dark" : "light"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener(
+  "change",
+  ({ matches: isDark }) => setTheme(isDark ? "dark" : "light"),
+);
