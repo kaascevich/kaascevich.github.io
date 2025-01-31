@@ -19,7 +19,6 @@
     "@robot-inventor/shell-session-syntax": "^3.0.0",
     "astro": "^5.0.5",
     "astro-opengraph-images": "^1.11.3",
-    "astro-seo-schema": "^5.0.0",
     "css-preflight": "^1.1.1",
     "cssnano": "^7.0.6",
     "dayjs": "^1.11.13",

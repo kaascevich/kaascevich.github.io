@@ -11,8 +11,6 @@ import Footer from "@/components/Footer.astro";
 
 import { ClientRouter } from "astro:transitions";
 
-import { Schema } from "astro-seo-schema";
-
 interface Props {
   /** This page's title. */
   title?: string | undefined,
@@ -41,6 +39,26 @@ const title = _title ? `${_title} | ${SITE.title}` : SITE.title;
 
 /** The canonical URL to this page. */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+/** Structured data for Google Search. */
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  /** This page's title. */
+  headline: title,
+  /** The date this page was published. */
+  datePublished: day(published)?.toISOString(),
+  /** The date this page was last modified. */
+  dateModified: day(modified)?.toISOString(),
+  /** Details about this page's author. */
+  author: [{
+    "@type": "Person",
+    /** The name of this page's author. */
+    name: SITE.author,
+    /** A URL to the author's profile. */
+    url: SITE.profile,
+  }],
+} as const;
 ---
 
 <!doctype html>
@@ -82,18 +100,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description}/>
 
     <!-- Google JSON-LD structured data -->
-    <Schema item={{
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: title,
-      datePublished: day(published)?.toISOString(),
-      dateModified: day(modified)?.toISOString(),
-      author: [{
-        "@type": "Person",
-        name: SITE.author,
-        url: SITE.profile.href,
-      }],
-    }}>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+      is:inline
+    />
 
     <!-- Google Search Console -->
     <meta
