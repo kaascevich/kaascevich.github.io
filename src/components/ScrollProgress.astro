@@ -1,0 +1,31 @@
+<div class="progress-bar-wrapper">
+  <div class="progress-bar"/>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const progressBar: HTMLDivElement
+      = document.querySelector(".progress-bar")!;
+    document.onscroll = () => {
+      const rootNode = document.documentElement;
+      const scrollHeight = rootNode.scrollHeight - rootNode.clientHeight;
+      const scrolled = rootNode.scrollTop / scrollHeight;
+
+      progressBar.style.width = `${scrolled * 100}%`;
+    };
+  });
+</script>
+
+<style lang="sass">
+  .progress-bar-wrapper
+    position: fixed
+    top: 0rem
+    left: 0rem
+    z-index: 10
+    +size(100%, 0.25rem)
+    @include hide-in-print
+
+    .progress-bar
+      +size(0%, 0.25rem)
+      background: colors.$accent
+</style>
