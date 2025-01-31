@@ -9,10 +9,10 @@ const currentYear = new Date().getFullYear();
 <footer>
   <hr aria-hidden={true}/>
   <div class="footer-wrapper">
-    <Socials/>
     <div class="copyright">
       Copyright &copy; {currentYear} {SITE.author}
     </div>
+    <Socials/>
   </div>
 </footer>
 
@@ -30,7 +30,7 @@ const currentYear = new Date().getFullYear();
       +padding-y(1.5rem)
 
       @include desktop
-        flex-direction: row-reverse
+        flex-direction: row
         +padding-y(1rem)
     
       .copyright
