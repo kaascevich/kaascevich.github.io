@@ -9,7 +9,7 @@ export interface Props {
    * Whether to use level 3 headings for the card titles instead of level 2
    * headings.
    */
-  useLevel3Heading?: boolean,
+  useLevel3Heading?: boolean | undefined,
 }
 
 const { posts, useLevel3Heading } = Astro.props;

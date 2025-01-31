@@ -12,7 +12,7 @@ interface Props {
   /** The date this post was published. */
   published: DateTime,
   /** The date this post was last modified. */
-  modified?: DateTime,
+  modified?: DateTime | undefined,
 }
 
 /** A timestamp for blog posts. */

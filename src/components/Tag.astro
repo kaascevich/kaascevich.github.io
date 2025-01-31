@@ -3,7 +3,7 @@ export interface Props {
   /** The tag's name. */
   tag: string,
   /** The tag's size. */
-  size?: "sm" | "lg",
+  size?: "sm" | "lg" | undefined,
 }
 
 const { tag, size = "sm" } = Astro.props;

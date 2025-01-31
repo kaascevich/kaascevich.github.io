@@ -14,15 +14,15 @@ import { getImagePath } from "astro-opengraph-images";
 
 export interface Props {
   /** This page's title. */
-  title?: string,
+  title?: string | undefined,
   /** The title to use for Open Graph images. */
-  ogTitle?: string,
+  ogTitle?: string | undefined,
   /** This page's description. */
-  description?: string,
+  description?: string | undefined,
   /** The date this page was published. */
-  published?: DateTime,
+  published?: DateTime | undefined,
   /** The date this page was last modified. */
-  modified?: DateTime,
+  modified?: DateTime | undefined,
   /** The active navigation item. */
   activeNav: NavItem,
 }

@@ -9,7 +9,7 @@ interface Props {
    * Whether to use a level 3 heading for the card title instead of a level 2
    * heading.
    */
-  useLevel3Heading?: boolean,
+  useLevel3Heading?: boolean | undefined,
 }
 
 /**
