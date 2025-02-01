@@ -6,13 +6,16 @@ interface Props {
   social: Social,
 }
 
-const { social } = Astro.props;
+const {
+  social: { name, title, href }
+} = Astro.props;
+
 const { default: Icon } = await import(
-  `@/assets/icons/socials/${social.name}.svg`
+  `@/assets/icons/socials/${name}.svg`
 );
 ---
 
-<a href={social.href} title={social.title} aria-label={social.title}>
+<a {href} {title} aria-label={title}>
   <Icon/>
 </a>
 

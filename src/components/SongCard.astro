@@ -7,7 +7,9 @@ interface Props {
   song: EntryInfo<"songs">,
 }
 
-const { song: { id, title, remixDetails } } = Astro.props;
+const {
+  song: { id, title, remixDetails }
+} = Astro.props;
 
 /** THe file path of this song's audio file. */
 const sourceURL = `/assets/songs/${id}.mp3`;

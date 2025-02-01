@@ -17,8 +17,8 @@ export interface Site {
   /** The number of posts to show on each page. */
   postsPerPage: number,
   /**
-   * The number of minutes before a post's publish
-   * date when the post should become visible.
+   * The number of minutes before a post's publish date when the post should
+   * become visible.
    */
   scheduledPostMargin: number,
 }

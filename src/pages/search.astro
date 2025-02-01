@@ -4,10 +4,6 @@ import SearchBar from "@/components/Search";
 import allPosts from "@/utils/allPosts";
 ---
 
-<MainLayout
-  title="search"
-  description="search for posts"
-  activeNav="search"
->
+<MainLayout title="search" description="search for posts" activeNav="search">
   <SearchBar client:load posts={allPosts}/>
 </MainLayout>

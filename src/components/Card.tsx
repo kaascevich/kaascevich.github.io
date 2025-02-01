@@ -13,8 +13,8 @@ interface Props {
 }
 
 /**
- * A card showing the essential details of a blog post, as well
- * as a link to said post.
+ * A card showing the essential details of a blog post, as well as a link to
+ * said post.
  */
 export default function Card({ post, useLevel3Heading }: Props) {
   const { id, title, published, modified, description } = post;

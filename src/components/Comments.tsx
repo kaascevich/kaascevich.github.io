@@ -4,9 +4,12 @@ import { GISCUS } from "@/config";
 import { useEffect, useState } from "react";
 
 /** A CSS file containing light theme styles. */
-const lightTheme = "https://giscus.catppuccin.com/themes/latte-no-loader.css";
+const lightTheme =
+  "https://giscus.catppuccin.com/themes/latte-no-loader.css";
+
 /** A CSS file containing dark theme styles. */
-const darkTheme = "https://giscus.catppuccin.com/themes/macchiato-no-loader.css";
+const darkTheme =
+  "https://giscus.catppuccin.com/themes/macchiato-no-loader.css";
 
 /** A comments section for blog posts. */
 export default function Comments() {

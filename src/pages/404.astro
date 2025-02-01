@@ -26,17 +26,18 @@ import BackButton from "@/components/BackButton.astro";
     h1
       +font(8rem, font-weights.$bold)
       color: colors.$accent
+
+    .url
+      font-style: italic
+      opacity: 80%
+
     .not-found
       margin-top: 1rem
       font-size: font-sizes.$extralarge2
       @include desktop
         font-size: font-sizes.$extralarge3
 
-  .url
-    font-style: italic
-    opacity: 80%
-
-  :global(.back-button)
-    +margin-y(1rem, 0.5rem)
-    font-size: font-sizes.$large
+    :global(.back-button)
+      +margin-y(1rem, 0.5rem)
+      font-size: font-sizes.$large
 </style>

@@ -1,9 +1,6 @@
 import allPosts from "@/utils/allPosts";
 
-/**
- * Gets all unique tags from all blog posts.
- * @returns A list of unique tags.
- */
+/** Gets all unique tags from all blog posts. */
 const uniqueTags = allPosts
   .flatMap(post => post.tags)
   .filter(

@@ -40,14 +40,18 @@ const { activeNav } = Astro.props;
           <a
             href={`/${navItem}/`}
             class:list={[activeNav === navItem && "active"]}
-          >{navItem}</a>
+          >
+            {navItem}
+          </a>
         </li>)}
         <li>
           <a
             href="/search/"
             class:list={[activeNav === "search" && "active"]}
             aria-label="search"
-          ><SearchIcon/></a>
+          >
+            <SearchIcon/>
+          </a>
         </li>
         <li>
           <button

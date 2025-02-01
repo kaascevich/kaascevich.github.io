@@ -8,7 +8,7 @@ tags:
 description: Stop. Using. My. Mic.
 ---
 
-> **UPDATE #2:** **It appears Apple has fixed both of the below issues in macOS =
+> **UPDATE #2:** **It appears Apple has fixed both of the below issues in macOS
 > 15.2.** I'm leaving the below workaround here in case anyone who hasn't yet
 > updated comes across this article.
 
@@ -79,8 +79,8 @@ this goddamn icon out of my menu bar.
 There's also another issue I'm having with AXVisualSupportAgent that doesn't
 appear to be related to the one above -- it seems to be leaking memory at a
 rate of about a megabyte every 20 seconds. I'm even more clueless as to what
-might be causing this, so again, [please contact me][email] if you have any 
-uggestions.
+might be causing this, so again, [please contact me][email] if you have any
+suggestions.
 
 ------
 

@@ -14,8 +14,8 @@ interface Props {
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<EntryInfo<"posts">[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const [results, setResults] = useState<EntryInfo<"posts">[]>([]);
 
   const fuse = useMemo(
     () => new Fuse(posts, {
@@ -29,7 +29,7 @@ export default function Search({ posts }: Props) {
     // if the URL has a search query, insert that
     const searchURL = new URLSearchParams(location.search);
     const searchString = searchURL.get("query");
-    if (searchString) { setInputVal(searchString); }
+    if (searchString) { setInputValue(searchString); }
 
     // put cursor at the end
     setTimeout(() => {
@@ -40,7 +40,7 @@ export default function Search({ posts }: Props) {
   }, []);
 
   useEffect(() => {
-    setSearchResults(inputValue.length > 0
+    setResults(inputValue.length > 0
       ? fuse.search(inputValue).map(result => result.item)
       : []
     );
@@ -56,7 +56,7 @@ export default function Search({ posts }: Props) {
     }
   }, [inputValue]);
 
-  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputVal(
+  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputValue(
     event.currentTarget.value
   );
 
@@ -79,16 +79,17 @@ export default function Search({ posts }: Props) {
 
     {inputValue.length > 0 && <>
       <div className={styles["search-results-text"]}>
-        found {searchResults.length} {searchResults.length === 1 ? "result" : "results"} for "{inputValue}"
+        found {results.length} {results.length === 1 ? "result" : "results"}
       </div>
 
       <output><ul>
-        {searchResults.map(post => <Card post={post} key={post.id}/>)}
+        {results.map(post => <Card post={post} key={post.id}/>)}
       </ul></output>
     </>}
     <noscript>
       <div className={styles["search-results-text"]}>
-        JavaScript needs to be enabled for searching to work. No pressure, though. You do you.
+        JavaScript needs to be enabled for searching to work. No pressure,
+        though. You do you.
       </div>
     </noscript>
   </>;

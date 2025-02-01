@@ -12,10 +12,6 @@ description: Just a Markdown formatting test
 > I also do not necessarily condone the opinions stated below. Again: not my
 > writing.
 
-This very brief font test, however, _is_ my writing.
-
-Fractions: 1/2, 1/3, 2/3, 1/4, 3/4.
-
 ------
 
 ## What to expect from here on out

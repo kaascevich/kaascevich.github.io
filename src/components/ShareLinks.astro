@@ -10,7 +10,7 @@ let shareLinks: Social[] = SHARE_LINKS.map(social => ({
 ---
 
 <div class="share-links">
-  <span class="share-text">share this post:</span>
+  share this post:
   <ul>
     {shareLinks.map(social => <SocialLink {social}/>)}
   </ul>
@@ -18,6 +18,7 @@ let shareLinks: Social[] = SHARE_LINKS.map(social => ({
 
 <style lang="sass">
   .share-links
+    font-style: italic
     display: flex
     flex:
       direction: column
@@ -28,7 +29,4 @@ let shareLinks: Social[] = SHARE_LINKS.map(social => ({
     
     @include desktop
       align-items: flex-start
-
-    .share-text
-      font-style: italic
 </style>
