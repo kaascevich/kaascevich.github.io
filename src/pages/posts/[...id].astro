@@ -1,21 +1,21 @@
 ---
-import { render } from "astro:content";
+import { render } from "astro:content"
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Tag from "@/components/Tag.astro";
-import Comments from "@/components/Comments";
-import Timestamp from "@/components/Timestamp";
-import PostLinks from "@/components/PostLinks.astro";
-import ShareLinks from "@/components/ShareLinks.astro";
-import BackToTop from "@/components/BackToTop.astro";
-import BackButton from "@/components/BackButton.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import Tag from "@/components/Tag.astro"
+import Comments from "@/components/Comments"
+import Timestamp from "@/components/Timestamp"
+import PostLinks from "@/components/PostLinks.astro"
+import ShareLinks from "@/components/ShareLinks.astro"
+import BackToTop from "@/components/BackToTop.astro"
+import BackButton from "@/components/BackButton.astro"
 
-import ScrollProgress from "@/components/ScrollProgress.astro";
-import CodeBlockExtras from "@/components/CodeBlockExtras.astro";
+import ScrollProgress from "@/components/ScrollProgress.astro"
+import CodeBlockExtras from "@/components/CodeBlockExtras.astro"
 
-import { getEntry } from "astro:content";
-import allPosts from "@/utils/allPosts";
-import type { EntryInfo } from "@/types";
+import { getEntry } from "astro:content"
+import allPosts from "@/utils/allPosts"
+import type { EntryInfo } from "@/types"
 
 interface Props {
   /** The post to display. */
@@ -26,10 +26,10 @@ export function getStaticPaths() {
   return allPosts.map(post => ({
     params: { id: post.id },
     props: { post },
-  }));
+  }))
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props
 
 const {
   id,
@@ -38,11 +38,11 @@ const {
   published,
   modified,
   tags,
-} = post;
+} = post
 
 const { Content, remarkPluginFrontmatter } = await render(
   await getEntry("posts", id)!
-);
+)
 ---
 
 <BaseLayout

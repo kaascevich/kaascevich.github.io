@@ -1,6 +1,6 @@
-import styles from "@/styles/modules/Card.module.sass";
-import Timestamp from "@/components/Timestamp";
-import type { EntryInfo } from "@/types";
+import styles from "@/styles/modules/Card.module.sass"
+import Timestamp from "@/components/Timestamp"
+import type { EntryInfo } from "@/types"
 
 interface Props {
   /** The metadata of the post this card represents. */
@@ -17,8 +17,8 @@ interface Props {
  * said post.
  */
 export default function Card({ post, useLevel3Heading }: Props) {
-  const { id, title, published, modified, description } = post;
-  const Heading = useLevel3Heading ? "h3" : "h2";
+  const { id, title, published, modified, description } = post
+  const Heading = useLevel3Heading ? "h3" : "h2"
 
   return <li className={styles["card"]}>
     <Heading>
@@ -26,5 +26,5 @@ export default function Card({ post, useLevel3Heading }: Props) {
     </Heading>
     <Timestamp published={published} modified={modified}/>
     <p>{description}</p>
-  </li>;
+  </li>
 }

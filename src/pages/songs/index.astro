@@ -1,13 +1,13 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
-import SongCard from "@/components/SongCard.astro";
+import MainLayout from "@/layouts/MainLayout.astro"
+import SongCard from "@/components/SongCard.astro"
 
-import { getCollection } from "astro:content";
-import type { EntryInfo } from "@/types";
+import { getCollection } from "astro:content"
+import type { EntryInfo } from "@/types"
 
 /** A list of all songs. */
 const songs: EntryInfo<"songs">[] = (await getCollection("songs"))
-  .map(({ id, data }) => ({ id, ...data }));
+  .map(({ id, data }) => ({ id, ...data }))
 
 /** Original songs. */
 const originals = songs.filter(song => !song.remixDetails)

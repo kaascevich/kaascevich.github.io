@@ -5,15 +5,15 @@
 <script>
   document.addEventListener('astro:page-load', () => {
     const progressBar: HTMLDivElement
-      = document.querySelector(".progress-bar")!;
+      = document.querySelector(".progress-bar")!
     document.onscroll = () => {
-      const rootNode = document.documentElement;
-      const scrollHeight = rootNode.scrollHeight - rootNode.clientHeight;
-      const scrolled = rootNode.scrollTop / scrollHeight;
+      const rootNode = document.documentElement
+      const scrollHeight = rootNode.scrollHeight - rootNode.clientHeight
+      const scrolled = rootNode.scrollTop / scrollHeight
 
-      progressBar.style.width = `${scrolled * 100}%`;
-    };
-  });
+      progressBar.style.width = `${scrolled * 100}%`
+    }
+  })
 </script>
 
 <style lang="sass">

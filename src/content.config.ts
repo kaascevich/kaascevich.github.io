@@ -1,5 +1,5 @@
-import { glob, file } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { glob, file } from "astro/loaders"
+import { defineCollection, z } from "astro:content"
 
 /** The schema for a blog post. */
 const post = defineCollection({
@@ -23,7 +23,7 @@ const post = defineCollection({
     /** This post's description. */
     description: z.string(),
   }).readonly(),
-});
+})
 
 /** The schema for a song. */
 const song = defineCollection({
@@ -39,9 +39,9 @@ const song = defineCollection({
       originalLink: z.string().url(),
     }).optional().readonly(),
   }).readonly(),
-});
+})
 
 export const collections = {
   "posts": post,
   "songs": song,
-};
+}

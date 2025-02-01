@@ -1,24 +1,24 @@
 ---
-import { SITE } from "@/config";
+import { SITE } from "@/config"
 
-import SearchIcon from "@/assets/icons/search.svg";
-import SunIcon from "@/assets/icons/sun.svg";
-import MoonIcon from "@/assets/icons/moon.svg";
-import MenuOpenIcon from "@/assets/icons/menu-open.svg";
-import MenuCloseIcon from "@/assets/icons/menu-close.svg";
+import SearchIcon from "@/assets/icons/search.svg"
+import SunIcon from "@/assets/icons/sun.svg"
+import MoonIcon from "@/assets/icons/moon.svg"
+import MenuOpenIcon from "@/assets/icons/menu-open.svg"
+import MenuCloseIcon from "@/assets/icons/menu-close.svg"
 
 /** The main navigation items. */
-const mainNavItems = ["posts", "tags", "songs", "about"] as const;
+const mainNavItems = ["posts", "tags", "songs", "about"] as const
 
 /** A navigation item. */
-export type NavItem = typeof mainNavItems[number] | "search" | null;
+export type NavItem = typeof mainNavItems[number] | "search" | null
 
 interface Props {
   /** The active navigation item. */
   activeNav: NavItem,
 }
 
-const { activeNav } = Astro.props;
+const { activeNav } = Astro.props
 ---
 
 <header>
@@ -202,18 +202,18 @@ const { activeNav } = Astro.props;
 <script>
   /** Sets up the button that toggles the navigation menu. */
   function setUpNavToggle() {
-    const menuButton = document.getElementById("hamburger-menu")!;
-    const menuItems = document.querySelector("menu")!;
+    const menuButton = document.getElementById("hamburger-menu")!
+    const menuItems = document.querySelector("menu")!
 
     menuButton.onclick = () => {
-      const isMenuExpanded = menuButton.ariaExpanded === "true";
-      menuButton.classList.toggle("active");
-      menuButton.ariaExpanded = isMenuExpanded ? "false" : "true";
-      menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu";
-      menuItems.style.display = isMenuExpanded ? "none" : "grid";
-    };
+      const isMenuExpanded = menuButton.ariaExpanded === "true"
+      menuButton.classList.toggle("active")
+      menuButton.ariaExpanded = isMenuExpanded ? "false" : "true"
+      menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu"
+      menuItems.style.display = isMenuExpanded ? "none" : "grid"
+    }
   }
 
-  setUpNavToggle();
-  document.addEventListener("astro:after-swap", setUpNavToggle);
+  setUpNavToggle()
+  document.addEventListener("astro:after-swap", setUpNavToggle)
 </script>

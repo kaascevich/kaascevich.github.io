@@ -1,11 +1,11 @@
-import type { ShikiConfig } from "astro";
+import type { ShikiConfig } from "astro"
 
-import shellSession from "@robot-inventor/shell-session-syntax";
+import shellSession from "@robot-inventor/shell-session-syntax"
 import {
   transformerNotationErrorLevel,
   transformerNotationHighlight,
   transformerMetaHighlight,
-} from "@shikijs/transformers";
+} from "@shikijs/transformers"
 
 export default {
   themes: { light: "catppuccin-latte", dark: "catppuccin-macchiato" },
@@ -16,4 +16,4 @@ export default {
     transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
     transformerMetaHighlight(),
   ],
-} satisfies ShikiConfig;
+} satisfies ShikiConfig

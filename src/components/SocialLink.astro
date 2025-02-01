@@ -1,5 +1,5 @@
 ---
-import type { Social } from "@/types";
+import type { Social } from "@/types"
 
 interface Props {
   /** The social media service to display a link to. */
@@ -8,11 +8,11 @@ interface Props {
 
 const {
   social: { name, title, href }
-} = Astro.props;
+} = Astro.props
 
 const { default: Icon } = await import(
   `@/assets/icons/socials/${name}.svg`
-);
+)
 ---
 
 <a {href} {title} aria-label={title}>

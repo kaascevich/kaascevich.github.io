@@ -1,4 +1,4 @@
-import { SITE } from "@/config";
+import { SITE } from "@/config"
 
 /** A list of AI training crawlers. */
 const aiCrawlers = [
@@ -14,7 +14,7 @@ const aiCrawlers = [
   "Webzio-Extended",   "YouBot",              "anthropic-ai",
   "cohere-ai",         "facebookexternalhit", "iaskspider/2.0",
   "img2dataset",       "omgili",              "omgilibot",
-];
+]
 
 /** The contents of the `robots.txt` file. */
 const robots = `
@@ -25,10 +25,10 @@ User-agent: *
 Allow: /
 
 Sitemap: ${new URL("sitemap-index.xml", SITE.url).href}
-`.trim();
+`.trim()
 
 export function GET() {
   return new Response(robots, {
     headers: { "Content-Type": "text/plain" },
-  });
+  })
 }

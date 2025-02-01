@@ -1,10 +1,10 @@
-import Fuse from "fuse.js";
-import { useEffect, useRef, useState, useMemo, type FormEvent } from "react";
-import styles from "@/styles/modules/Search.module.sass";
+import Fuse from "fuse.js"
+import { useEffect, useRef, useState, useMemo, type FormEvent } from "react"
+import styles from "@/styles/modules/Search.module.sass"
 
-import SearchIcon from "@/assets/icons/search.svg?react";
-import Card from "@/components/Card";
-import type { EntryInfo } from "@/types";
+import SearchIcon from "@/assets/icons/search.svg?react"
+import Card from "@/components/Card"
+import type { EntryInfo } from "@/types"
 
 interface Props {
   /** The list of posts that can be searched through. */
@@ -13,9 +13,9 @@ interface Props {
 
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState("");
-  const [results, setResults] = useState<EntryInfo<"posts">[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [inputValue, setInputValue] = useState("")
+  const [results, setResults] = useState<EntryInfo<"posts">[]>([])
 
   const fuse = useMemo(
     () => new Fuse(posts, {
@@ -23,42 +23,42 @@ export default function Search({ posts }: Props) {
       threshold: 0.3,
     }),
     [posts]
-  );
+  )
 
   useEffect(() => {
     // if the URL has a search query, insert that
-    const searchURL = new URLSearchParams(location.search);
-    const searchString = searchURL.get("query");
-    if (searchString) { setInputValue(searchString); }
+    const searchURL = new URLSearchParams(location.search)
+    const searchString = searchURL.get("query")
+    if (searchString) { setInputValue(searchString) }
 
     // put cursor at the end
     setTimeout(() => {
-      const searchStringLength = searchString?.length ?? 0;
-      inputRef.current!.selectionStart = searchStringLength;
-      inputRef.current!.selectionEnd = searchStringLength;
-    }, 50);
-  }, []);
+      const searchStringLength = searchString?.length ?? 0
+      inputRef.current!.selectionStart = searchStringLength
+      inputRef.current!.selectionEnd = searchStringLength
+    }, 50)
+  }, [])
 
   useEffect(() => {
     setResults(inputValue.length > 0
       ? fuse.search(inputValue).map(result => result.item)
       : []
-    );
+    )
 
     // update search string in URL
     if (inputValue.length > 0) {
-      const searchParams = new URLSearchParams(location.search);
-      searchParams.set("query", inputValue);
-      const newRelativePathQuery = `${location.pathname}?${searchParams}`;
-      history.replaceState(history.state, "", newRelativePathQuery);
+      const searchParams = new URLSearchParams(location.search)
+      searchParams.set("query", inputValue)
+      const newRelativePathQuery = `${location.pathname}?${searchParams}`
+      history.replaceState(history.state, "", newRelativePathQuery)
     } else {
-      history.replaceState(history.state, "", location.pathname);
+      history.replaceState(history.state, "", location.pathname)
     }
-  }, [inputValue]);
+  }, [inputValue])
 
   const handleChange = (event: FormEvent<HTMLInputElement>) => setInputValue(
     event.currentTarget.value
-  );
+  )
 
   return <>
     <search className={styles["search-bar"]}>
@@ -92,5 +92,5 @@ export default function Search({ posts }: Props) {
         though. You do you.
       </div>
     </noscript>
-  </>;
+  </>
 }

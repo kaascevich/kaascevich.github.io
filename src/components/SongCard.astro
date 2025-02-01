@@ -1,6 +1,6 @@
 ---
-import { SITE } from "@/config";
-import type { EntryInfo } from "@/types";
+import { SITE } from "@/config"
+import type { EntryInfo } from "@/types"
 
 interface Props {
   /** The song's metadata. */
@@ -9,10 +9,10 @@ interface Props {
 
 const {
   song: { id, title, remixDetails }
-} = Astro.props;
+} = Astro.props
 
 /** THe file path of this song's audio file. */
-const sourceURL = `/assets/songs/${id}.mp3`;
+const sourceURL = `/assets/songs/${id}.mp3`
 
 /** This song's author. */
 const author = remixDetails?.composer ?? SITE.author

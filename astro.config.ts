@@ -1,10 +1,10 @@
-import type { AstroUserConfig } from "astro";
+import type { AstroUserConfig } from "astro"
 
-import { SITE } from "./src/config";
+import { SITE } from "./src/config"
 
-import integrations from "./config/integrations";
-import markdown from "./config/markdown";
-import vite from "./config/vite";
+import integrations from "./config/integrations"
+import markdown from "./config/markdown"
+import vite from "./config/vite"
 
 export default {
   site: SITE.url.href,
@@ -16,4 +16,4 @@ export default {
     contentIntellisense: true,
     svg: true,
   },
-} satisfies AstroUserConfig;
+} satisfies AstroUserConfig

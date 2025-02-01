@@ -1,11 +1,11 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
-import Pagination from "@/components/Pagination.astro";
-import CardList from "@/components/CardList.astro";
+import MainLayout from "@/layouts/MainLayout.astro"
+import Pagination from "@/components/Pagination.astro"
+import CardList from "@/components/CardList.astro"
 
-import type { NavItem } from "@/components/Header.astro";
-import type { Page } from "astro";
-import type { EntryInfo } from "@/types";
+import type { NavItem } from "@/components/Header.astro"
+import type { Page } from "astro"
+import type { EntryInfo } from "@/types"
 
 interface Props {
   /** This page's title. */
@@ -23,7 +23,7 @@ const {
   description,
   activeNav,
   page,
-} = Astro.props;
+} = Astro.props
 ---
 
 <MainLayout {title} {description} {activeNav}>

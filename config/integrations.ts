@@ -1,9 +1,9 @@
-import type { AstroIntegration } from "astro";
+import type { AstroIntegration } from "astro"
 
-import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import mdAstro from "@astropub/md";
-import compress from "@playform/compress";
+import react from "@astrojs/react"
+import sitemap from "@astrojs/sitemap"
+import mdAstro from "@astropub/md"
+import compress from "@playform/compress"
 
 export default [
   react(),
@@ -33,4 +33,4 @@ export default [
       },
     },
   }),
-] satisfies AstroIntegration[];
+] satisfies AstroIntegration[]

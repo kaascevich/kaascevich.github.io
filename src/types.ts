@@ -1,4 +1,4 @@
-import type { CollectionEntry, CollectionKey } from "astro:content";
+import type { CollectionEntry, CollectionKey } from "astro:content"
 
 /** Global configuration for the site. */
 export interface Site {
@@ -34,7 +34,7 @@ export interface Social {
 }
 
 /** A date-time string parsable by Dayjs. */
-export type DateTime = string;
+export type DateTime = string
 
 /** Metadata for an Astro content collection entry. */
 export type EntryInfo<T extends CollectionKey> =

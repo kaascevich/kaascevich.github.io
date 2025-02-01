@@ -1,26 +1,26 @@
 ---
-import type { EntryInfo } from "@/types";
-import allPosts from "@/utils/allPosts";
+import type { EntryInfo } from "@/types"
+import allPosts from "@/utils/allPosts"
 
 interface Props {
   /** The current post. */
   post: EntryInfo<"posts">,
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props
 
 /** The current post's index. */
-const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
+const currentPostIndex = allPosts.findIndex(a => a.id === post.id)
 
 /** The next (older) post. */
 const nextPost = currentPostIndex !== 0
   ? allPosts[currentPostIndex - 1]
-  : null;
+  : null
 
 /** The previous (newer) post. */
 const prevPost = currentPostIndex !== allPosts.length
   ? allPosts[currentPostIndex + 1]
-  : null;
+  : null
 ---
 
 { (prevPost || nextPost) && <hr aria-hidden={true}/> }

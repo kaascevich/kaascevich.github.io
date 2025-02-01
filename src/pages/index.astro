@@ -1,20 +1,20 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import CardList from "@/components/CardList.astro";
-import Socials from "@/components/Socials.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import CardList from "@/components/CardList.astro"
+import Socials from "@/components/Socials.astro"
 
-import RSSIcon from "@/assets/icons/rss.svg";
+import RSSIcon from "@/assets/icons/rss.svg"
 
-import { Content } from "@/assets/description.md";
+import { Content } from "@/assets/description.md"
 
-import allPosts from "@/utils/allPosts";
-import { SITE } from "@/config";
+import allPosts from "@/utils/allPosts"
+import { SITE } from "@/config"
 
 /** All featured posts. */
-const featuredPosts = allPosts.filter(post => post.isFeatured);
+const featuredPosts = allPosts.filter(post => post.isFeatured)
 
 /** All non-featured posts. */
-const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured);
+const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured)
 ---
 
 <BaseLayout activeNav={null}>

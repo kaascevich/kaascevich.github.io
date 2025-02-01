@@ -1,5 +1,5 @@
-import type { GiscusProps } from "@giscus/react";
-import type { Site, Social } from "@/types";
+import type { GiscusProps } from "@giscus/react"
+import type { Site, Social } from "@/types"
 
 /** Global configuration for the site. */
 export const SITE: Site = {
@@ -11,7 +11,7 @@ export const SITE: Site = {
   postsPerIndex: 5,
   postsPerPage: 5,
   scheduledPostMargin: 15,
-};
+}
 
 /** A list of social media links. */
 export const SOCIALS: Social[] = [
@@ -35,7 +35,7 @@ export const SOCIALS: Social[] = [
     title: `${SITE.title} on Steam`,
     href: "https://steamcommunity.com/id/macOSisthebestOS/",
   },
-];
+]
 
 /** A list of platforms posts can be shared on. */
 export const SHARE_LINKS: Social[] = [
@@ -64,7 +64,7 @@ export const SHARE_LINKS: Social[] = [
     title: "share this post via email",
     href: "mailto:?subject=See%20this%20post&body=",
   },
-];
+]
 
 /** Configuration for the Giscus comments system. */
 export const GISCUS: GiscusProps = {
@@ -78,4 +78,4 @@ export const GISCUS: GiscusProps = {
   emitMetadata: "0",
   inputPosition: "top",
   lang: "en",
-};
+}

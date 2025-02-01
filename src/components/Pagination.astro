@@ -1,13 +1,13 @@
 ---
-import type { EntryInfo } from "@/types";
-import type { Page } from "astro";
+import type { EntryInfo } from "@/types"
+import type { Page } from "astro"
 
 interface Props {
   /** Data for the current page. */
   page: Page<EntryInfo<"posts">>,
 }
 
-const { page } = Astro.props;
+const { page } = Astro.props
 ---
 
 {

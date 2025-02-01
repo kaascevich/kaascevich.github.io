@@ -1,11 +1,11 @@
-import type { RehypePlugins } from "astro";
+import type { RehypePlugins } from "astro"
 
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeFigure from "rehype-figure";
-import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeExternalLinks from "rehype-external-links"
+import rehypeFigure from "rehype-figure"
+import rehypeSlug from "rehype-slug"
 
-import { h } from "hastscript";
+import { h } from "hastscript"
 
 export default [
   rehypeFigure,
@@ -19,4 +19,4 @@ export default [
     },
   }],
   [rehypeExternalLinks, { target: "_blank" }],
-] satisfies RehypePlugins;
+] satisfies RehypePlugins

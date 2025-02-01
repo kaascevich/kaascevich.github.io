@@ -1,13 +1,13 @@
-import type { ViteUserConfig } from "astro";
+import type { ViteUserConfig } from "astro"
 
-import svgr from "vite-plugin-svgr";
+import svgr from "vite-plugin-svgr"
 
-import { fileURLToPath } from "url";
-import path, { dirname } from "path";
+import { fileURLToPath } from "url"
+import path, { dirname } from "path"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const srcPath = path.resolve(__dirname, "../src");
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const srcPath = path.resolve(__dirname, "../src")
 
 export default {
   plugins: [svgr()],
@@ -32,4 +32,4 @@ export default {
     },
     preprocessorMaxWorkers: true,
   },
-} satisfies ViteUserConfig;
+} satisfies ViteUserConfig

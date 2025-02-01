@@ -1,4 +1,4 @@
-import allPosts from "@/utils/allPosts";
+import allPosts from "@/utils/allPosts"
 
 /** Gets all unique tags from all blog posts. */
 const uniqueTags = allPosts
@@ -6,6 +6,6 @@ const uniqueTags = allPosts
   .filter(
     (value, index, all) => all.findIndex(tag => tag === value) === index
   )
-  .sort((tagA, tagB) => tagA.localeCompare(tagB));
+  .sort((tagA, tagB) => tagA.localeCompare(tagB))
 
-export default uniqueTags;
+export default uniqueTags
