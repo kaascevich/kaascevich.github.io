@@ -47,10 +47,8 @@ const { Content, remarkPluginFrontmatter } = await render(
 
 <BaseLayout
   {title}
-  ogTitle={title}
   {description}
-  {published}
-  {modified}
+  postInfo={post}
   activeNav="posts"
 >
   <BackButton/>

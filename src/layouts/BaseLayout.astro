@@ -1,6 +1,6 @@
 ---
 import { SITE } from "@/config";
-import type { DateTime } from "@/types";
+import type { EntryInfo } from "@/types";
 import day from "dayjs";
 
 import "css-preflight";
@@ -9,56 +9,26 @@ import "@/styles/base.sass";
 import Header, { type NavItem } from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
+import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
   /** This page's title. */
   title?: string | undefined,
-  /** The title to use for Open Graph images. */
-  ogTitle?: string | undefined,
   /** This page's description. */
   description?: string | undefined,
-  /** The date this page was published. */
-  published?: DateTime | undefined,
-  /** The date this page was last modified. */
-  modified?: DateTime | undefined,
+  /** Metadata for the blog post on this page. */
+  postInfo?: EntryInfo<"posts"> | undefined,
   /** The active navigation item. */
   activeNav: NavItem,
 }
 
 const {
-  title: _title,
-  ogTitle = _title ?? SITE.title,
+  title,
   description = SITE.description,
-  published,
-  modified,
+  postInfo,
   activeNav,
 } = Astro.props;
-
-const title = _title ? `${_title} | ${SITE.title}` : SITE.title;
-
-/** The canonical URL to this page. */
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-/** Structured data for Google Search. */
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  /** This page's title. */
-  headline: title,
-  /** The date this page was published. */
-  datePublished: day(published)?.toISOString(),
-  /** The date this page was last modified. */
-  dateModified: day(modified)?.toISOString(),
-  /** Details about this page's author. */
-  author: [{
-    "@type": "Person",
-    /** The name of this page's author. */
-    name: SITE.author,
-    /** A URL to the author's profile. */
-    url: SITE.profile,
-  }],
-} as const;
 ---
 
 <!doctype html>
@@ -68,42 +38,38 @@ const structuredData = {
     <meta name="viewport" content="width=device-width"/>
     <link rel="icon" type="image/png" href="/favicon.ico"/>
     <link rel="icon" type="image/png" href="/favicon.png"/>
-    <link rel="canonical" href={canonicalURL}/>
-    <meta name="generator" content={Astro.generator}/>
-
-    <!-- General Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content="article"/>
-    <meta name="description" content={description}/>
-    <meta name="author" content={SITE.author}/>
     <link rel="sitemap" href="/sitemap-index.xml"/>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={title}/>
-    <meta property="og:title" content={ogTitle}/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:url" content={canonicalURL}/>
-    <meta property="og:site_name" content={SITE.title}/>
-
-    {published && <meta
-      property="article:published_time"
-      content={day(published).toISOString()}
-    />}
-    {modified && <meta
-      property="article:modified_time"
-      content={day(modified).toISOString()}
-    />}
-
-    <meta property="twitter:card" content="summary_large_image"/>
-    <meta property="twitter:url" content={canonicalURL}/>
-    <meta property="twitter:title" content={ogTitle}/>
-    <meta property="twitter:description" content={description}/>
-
-    <!-- Google JSON-LD structured data -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-      is:inline
+    <!-- General Meta Tags -->
+    <SEO
+      {title}
+      titleTemplate=`%s | ${SITE.title}`
+      titleDefault={SITE.title}
+      {description}
+      openGraph={{
+        basic: {
+          title: title ?? SITE.title,
+          type: "article",
+          image: "",
+        },
+        article: postInfo && {
+          publishedTime: day(postInfo.published).toISOString(),
+          modifiedTime: day(postInfo.modified).toISOString(),
+          authors: [SITE.author],
+          tags: postInfo.tags,
+        },
+      }}
+      twitter={{
+        card: "summary",
+        title: title ?? SITE.title,
+        description,
+      }}
+      extend={{
+        meta: [
+          { name: "author", content: SITE.author },
+          { name: "generator", content: Astro.generator },
+        ],
+      }}
     />
 
     <!-- Google Search Console -->
@@ -111,6 +77,8 @@ const structuredData = {
       name="google-site-verification"
       content="W67jyEkQq8XW9mdSwbixVBe4OCucIRPrXxpRv2cxhyE"
     />
+
+    <!-- Font preloading -->
 
     <link
       rel="preload"
@@ -127,6 +95,8 @@ const structuredData = {
       crossorigin="anonymous"
     />
 
+    <!-- Themes -->
+
     <meta name="theme-color" content=""/>
     <script is:inline src="/toggleTheme.js"/>
 
@@ -139,12 +109,7 @@ const structuredData = {
 
     <script is:inline data-astro-rerun>
       document.querySelector("main").id = "main-content";
-
-      console.group("Oh well hello! \u{1f44b}");
-      console.log("Feeling a bit curious-minded? The whole site's open-source, you know. Take a gander here: https://github.com/kaascevich/kaascevich.github.io");
-      console.log("Or you can keep cruising around the Web Inspector (or whatever it's called in your browser of choice). I don't blame you \u{2014} it can be a pretty fun ride!");
-      console.log("Anyway, whatever it is you're doing down here, I wish you the best of luck!");
-      console.groupEnd();
     </script>
+    <script is:inline data-astro-rerun src="/consoleMessage.js"/>
   </body>
 </html>
