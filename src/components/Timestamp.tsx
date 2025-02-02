@@ -10,9 +10,9 @@ day.extend(timezone)
 
 interface Props {
   /** The date this post was published. */
-  published: DateTime,
+  published: DateTime
   /** The date this post was last modified. */
-  modified?: DateTime | undefined,
+  modified?: DateTime | undefined
 }
 
 /** A timestamp for blog posts. */

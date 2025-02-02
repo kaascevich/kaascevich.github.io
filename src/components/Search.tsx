@@ -8,7 +8,7 @@ import type { EntryInfo } from "@/types"
 
 interface Props {
   /** The list of posts that can be searched through. */
-  posts: EntryInfo<"posts">[],
+  posts: EntryInfo<"posts">[]
 }
 
 /** A search interface for searching through blog posts. */

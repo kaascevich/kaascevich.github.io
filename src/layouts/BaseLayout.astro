@@ -11,16 +11,17 @@ import Footer from "@/components/Footer.astro"
 
 import { SEO } from "astro-seo"
 import { ClientRouter } from "astro:transitions"
+import { fade } from "astro:transitions"
 
 interface Props {
   /** This page's title. */
-  title?: string | undefined,
+  title?: string | undefined
   /** This page's description. */
-  description?: string | undefined,
+  description?: string | undefined
   /** Metadata for the blog post on this page. */
-  postInfo?: EntryInfo<"posts"> | undefined,
+  postInfo?: EntryInfo<"posts"> | undefined
   /** The active navigation item. */
-  activeNav: NavItem,
+  activeNav: NavItem
 }
 
 const {

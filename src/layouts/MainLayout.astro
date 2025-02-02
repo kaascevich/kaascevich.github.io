@@ -5,11 +5,11 @@ import type { NavItem } from "@/components/Header.astro"
 
 interface Props {
   /** This page's title. */
-  title: string,
+  title: string
   /** This page's description. */
-  description?: string | undefined,
+  description?: string | undefined
   /** The active navigation item. */
-  activeNav: NavItem,
+  activeNav: NavItem
 }
 
 const { title, description, activeNav } = Astro.props

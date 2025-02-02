@@ -4,12 +4,12 @@ import type { EntryInfo } from "@/types"
 
 interface Props {
   /** A list of posts to show cards for. */
-  posts: EntryInfo<"posts">[],
+  posts: EntryInfo<"posts">[]
   /**
    * Whether to use level 3 headings for the card titles instead of level 2
    * headings.
    */
-  useLevel3Heading?: boolean | undefined,
+  useLevel3Heading?: boolean | undefined
 }
 
 const { posts, useLevel3Heading } = Astro.props
