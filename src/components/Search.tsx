@@ -31,12 +31,7 @@ export default function Search({ posts }: Props) {
     const searchString = searchURL.get("query")
     if (searchString) { setInputValue(searchString) }
 
-    // put cursor at the end
-    setTimeout(() => {
-      const searchStringLength = searchString?.length ?? 0
-      inputRef.current!.selectionStart = searchStringLength
-      inputRef.current!.selectionEnd = searchStringLength
-    }, 50)
+    inputRef.current?.focus()
   }, [])
 
   useEffect(() => {
