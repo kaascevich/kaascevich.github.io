@@ -23,10 +23,10 @@ export default function Timestamp({ published, modified }: Props) {
   const dateTimeString = date.format("MMM D, YYYY [at] h:mm a (z)")
 
   return (
-    <div className={`${styles["timestamp"]} timestamp`}>
+    <div className={`${styles.timestamp} timestamp`}>
       <CalendarIcon aria-hidden={true}/>
       {useModifiedDate &&
-        <span className={styles["updated-text"]}>Updated:</span>
+        <span className={styles.updated}>Updated:</span>
       }
       <time dateTime={date.toISOString()}>{dateTimeString}</time>
     </div>

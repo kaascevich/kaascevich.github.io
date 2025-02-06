@@ -20,7 +20,7 @@ export default function Card({ post, useLevel3Heading }: Props) {
   const { id, title, published, modified, description } = post
   const Heading = useLevel3Heading ? "h3" : "h2"
 
-  return <li className={styles["card"]}>
+  return <li className={styles.card}>
     <Heading>
       <a href={`/posts/${id}/`}>{title}</a>
     </Heading>

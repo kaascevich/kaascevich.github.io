@@ -49,7 +49,7 @@ export default function Search({ posts }: Props) {
   }, [inputValue])
 
   return <>
-    <search className={styles["search-bar"]}>
+    <search className={styles.search}>
       <label htmlFor="search-input" aria-label="search">
         <SearchIcon aria-hidden={true}/>
       </label>
@@ -66,7 +66,7 @@ export default function Search({ posts }: Props) {
     </search>
 
     {inputValue.length > 0 && <>
-      <div className={styles["search-results-text"]}>
+      <div className={styles.resultsCount}>
         found {results.length} {results.length === 1 ? "result" : "results"}
       </div>
 
