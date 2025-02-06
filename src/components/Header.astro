@@ -1,17 +1,18 @@
 ---
 import { SITE } from "@/config"
 
+import NavMenu from "@/components/NavMenu.astro"
+import SkipToContent from "@/components/SkipToContent.astro"
+
 import SearchIcon from "@/assets/icons/search.svg"
 import SunIcon from "@/assets/icons/sun.svg"
 import MoonIcon from "@/assets/icons/moon.svg"
-import MenuOpenIcon from "@/assets/icons/menu-open.svg"
-import MenuCloseIcon from "@/assets/icons/menu-close.svg"
 
 /** The main navigation items. */
-const mainNavItems = ["posts", "tags", "songs", "about"] as const
+const navItems = ["posts", "tags", "songs", "about", "search"] as const
 
 /** A navigation item. */
-export type NavItem = typeof mainNavItems[number] | "search" | null
+export type NavItem = typeof navItems[number] | null
 
 interface Props {
   /** The active navigation item. */
@@ -22,50 +23,31 @@ const { activeNav } = Astro.props
 ---
 
 <header>
-  <a id="skip-to-content" href="#main-content">skip to content</a>
+  <SkipToContent/>
   <div id="nav-container">
     <a href="/" id="logo" aria-label="home">{SITE.title}</a>
-    <nav>
-      <button
-        id="hamburger-menu"
-        aria-label="open menu"
-        aria-expanded={false}
-        aria-controls="menu-items"
-      >
-        <MenuOpenIcon id="open-icon"/>
-        <MenuCloseIcon id="close-icon"/>
-      </button>
-      <menu style={{ display: "none" }}>
-        {mainNavItems.map(navItem => <li>
-          <a
-            href={`/${navItem}/`}
-            class:list={[activeNav === navItem && "active"]}
-          >
-            {navItem}
-          </a>
-        </li>)}
-        <li>
-          <a
-            href="/search/"
-            class:list={[activeNav === "search" && "active"]}
-            aria-label="search"
-          >
-            <SearchIcon/>
-          </a>
-        </li>
-        <li>
-          <button
-            id="theme-button"
-            title="current theme: automatic"
-            aria-label="toggle theme"
-            aria-live="polite"
-          >
-            <MoonIcon id="moon-svg"/>
-            <SunIcon id="sun-svg"/>
-          </button>
-        </li>
-      </menu>
-    </nav>
+    <NavMenu class="nav-menu">
+      {navItems.map(navItem => <li>
+        <a
+          href={`/${navItem}/`}
+          class:list={[activeNav === navItem && "active"]}
+          aria-label={navItem}
+        >
+          {navItem === "search" ? <SearchIcon/> : navItem}
+        </a>
+      </li>)}
+      <li>
+        <button
+          id="theme-button"
+          title="current theme: automatic"
+          aria-label="toggle theme"
+          aria-live="polite"
+        >
+          <MoonIcon id="moon-svg"/>
+          <SunIcon id="sun-svg"/>
+        </button>
+      </li>
+    </NavMenu>
   </div>
   <hr aria-hidden={true}/>
 </header>
@@ -73,18 +55,6 @@ const { activeNav } = Astro.props
 <style lang="sass">
   header
     @include hide-in-print
-
-    #skip-to-content
-      position: absolute
-      top: -100%
-      left: 4rem
-      z-index: 50
-      background: colors.$accent
-      padding: 0.5rem 0.75rem
-      color: colors.$background
-      transition: top 200ms cubic-bezier(0.4, 0, 0.2, 1)
-      &:focus
-        top: 1rem
     
     #nav-container
       +margin-x(auto)
@@ -111,86 +81,40 @@ const { activeNav } = Astro.props
           position: static
           font-size: font-sizes.$extralarge2
 
-      nav
+      .nav-menu li
+        grid-column: span 1 / span 1
         display: flex
-        width: 100%
-        flex-direction: column
         align-items: center
+        justify-content: center
 
-        @include desktop
-          margin-left: 1rem
-          +padding-y(0rem)
-          flex-direction: row
-          justify-content: flex-end
-
-        #hamburger-menu
-          align-self: flex-end
-          padding: 0.5rem
-          @include desktop
-            display: none
-
+        a, button
+          padding: 0.25rem
+          +hover-transition($color: colors.$accent)
           svg
             +size(1.5rem)
             scale: 125%
+            @include desktop
+              scale: 100%
 
-            @each $icon, $display in (open: block, close: none)
-              &##{$icon}-icon
-                display: $display
-          &.active svg
-            @each $icon, $display in (open: none, close: block)
-              &##{$icon}-icon
-                display: $display
-
-        menu
-          margin-top: 1rem
-          display: grid
-          width: 11rem
-          grid-template: repeat(3, minmax(0, 1fr)) / repeat(2, minmax(0, 1fr))
-          gap: 0.5rem
+        a
+          width: 100%
+          padding: 0.75rem 1rem
+          text-align: center
+          font-weight: 450
 
           @include desktop
-            // to override `display: none` inlined in the element
-            display: flex !important
-            margin:
-              left: 0rem
-              top: 0rem
-            width: auto
-            gap: 0rem 1.25rem
-          
-          li
-            grid-column: span 1 / span 1
-            display: flex
-            align-items: center
-            justify-content: center
+            +margin-y(0rem)
+            padding: 0.25rem 0.5rem
 
-            a, button
-              padding: 0.25rem
-              +hover-transition($color: colors.$accent)
-              svg
-                +size(1.5rem)
-                scale: 125%
-                @include desktop
-                  scale: 100%
+          &.active
+            font-weight: font-weights.$extrabold
+            svg
+              stroke-width: 3.5
 
-            a
-              width: 100%
-              padding: 0.75rem 1rem
-              text-align: center
-              font-weight: 450
-
-              @include desktop
-                +margin-y(0rem)
-                padding: 0.25rem 0.5rem
-
-              &.active
-                font-weight: font-weights.$extrabold
-                svg
-                  stroke-width: 3.5
-
-            button
-              padding: 0.75rem
-              @include desktop
-                padding: 0.25rem
+        button
+          padding: 0.75rem
+          @include desktop
+            padding: 0.25rem
 
   #sun-svg, :root[data-theme="dark"] #moon-svg
     display: none
@@ -198,22 +122,3 @@ const { activeNav } = Astro.props
   #moon-svg, :root[data-theme="dark"] #sun-svg
     display: block
 </style>
-
-<script>
-  /** Sets up the button that toggles the navigation menu. */
-  function setUpNavToggle() {
-    const menuButton = document.getElementById("hamburger-menu")!
-    const menuItems = document.querySelector("menu")!
-
-    menuButton.onclick = () => {
-      const isMenuExpanded = menuButton.ariaExpanded === "true"
-      menuButton.classList.toggle("active")
-      menuButton.ariaExpanded = isMenuExpanded ? "false" : "true"
-      menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu"
-      menuItems.style.display = isMenuExpanded ? "none" : "grid"
-    }
-  }
-
-  setUpNavToggle()
-  document.addEventListener("astro:after-swap", setUpNavToggle)
-</script>

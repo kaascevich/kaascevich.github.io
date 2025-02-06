@@ -1,0 +1,93 @@
+---
+import MenuOpenIcon from "@/assets/icons/menu-open.svg"
+import MenuCloseIcon from "@/assets/icons/menu-close.svg"
+
+interface Props {
+  /** The class to apply to this nav menu. */
+  class: string,
+}
+
+const { class: className } = Astro.props;
+---
+
+<nav class={className}>
+  <button
+    id="hamburger-menu"
+    aria-label="open menu"
+    aria-expanded={false}
+    aria-controls="menu-items"
+  >
+    <MenuOpenIcon id="open-icon"/>
+    <MenuCloseIcon id="close-icon"/>
+  </button>
+  <menu style={{ display: "none" }}>
+    <slot/>
+  </menu>
+</nav>
+
+<style lang="sass">
+  nav
+    display: flex
+    width: 100%
+    flex-direction: column
+    align-items: center
+
+    @include desktop
+      margin-left: 1rem
+      +padding-y(0rem)
+      flex-direction: row
+      justify-content: flex-end
+
+    #hamburger-menu
+      align-self: flex-end
+      padding: 0.5rem
+      @include desktop
+        display: none
+
+      svg
+        +size(1.5rem)
+        scale: 125%
+
+        @each $icon, $display in (open: block, close: none)
+          &##{$icon}-icon
+            display: $display
+      &.active svg
+        @each $icon, $display in (open: none, close: block)
+          &##{$icon}-icon
+            display: $display
+
+    menu
+      margin-top: 1rem
+      display: grid
+      width: 11rem
+      grid-template: repeat(3, minmax(0, 1fr)) / repeat(2, minmax(0, 1fr))
+      gap: 0.5rem
+
+      @include desktop
+        // to override `display: none` inlined in the element
+        display: flex !important
+        margin:
+          left: 0rem
+          top: 0rem
+        width: auto
+        gap: 0rem 1.25rem
+</style>
+
+<script>
+  /** Sets up the button that toggles the navigation menu. */
+  function setUpNavToggle() {
+    const menuButton = document.getElementById("hamburger-menu")!
+    const menuItems = document.querySelector("menu")!
+
+    menuButton.onclick = () => {
+      const isMenuExpanded = menuButton.ariaExpanded === "true"
+      menuButton.classList.toggle("active")
+      menuButton.ariaExpanded = isMenuExpanded ? "false" : "true"
+      menuButton.ariaLabel = isMenuExpanded ? "open menu" : "close menu"
+      menuItems.style.display = isMenuExpanded ? "none" : "grid"
+    }
+  }
+
+  setUpNavToggle()
+  document.addEventListener("astro:after-swap", setUpNavToggle)
+</script>
