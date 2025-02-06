@@ -35,10 +35,7 @@ export default function Search({ posts }: Props) {
   }, [])
 
   useEffect(() => {
-    setResults(inputValue.length > 0
-      ? fuse.search(inputValue).map(result => result.item)
-      : []
-    )
+    setResults(fuse.search(inputValue).map(result => result.item))
 
     // update search string in URL
     if (inputValue.length > 0) {
