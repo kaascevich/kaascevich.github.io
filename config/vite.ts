@@ -21,7 +21,6 @@ export default {
         @use "sass:math"
         @use "@/styles/variables/chars.sass"
         @use "@/styles/variables/colors.sass"
-        @use "@/styles/variables/font-sizes.sass"
         @use "@/styles/variables/font-weights.sass"
         @use "@/styles/functions.sass" as *
         @use "@/styles/mixins.sass" as *
