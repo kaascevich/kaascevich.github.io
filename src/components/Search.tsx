@@ -48,10 +48,6 @@ export default function Search({ posts }: Props) {
     }
   }, [inputValue])
 
-  const handleChange = (event: FormEvent<HTMLInputElement>) => setInputValue(
-    event.currentTarget.value
-  )
-
   return <>
     <search className={styles["search-bar"]}>
       <label htmlFor="search-input" aria-label="search">
@@ -63,7 +59,7 @@ export default function Search({ posts }: Props) {
         type="search"
         name="search"
         value={inputValue}
-        onChange={handleChange}
+        onChange={event => setInputValue(event.currentTarget.value)}
         autoComplete="off"
         ref={inputRef}
       />
