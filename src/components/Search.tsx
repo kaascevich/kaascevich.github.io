@@ -41,8 +41,8 @@ export default function Search({ posts }: Props) {
     if (inputValue.length > 0) {
       const searchParams = new URLSearchParams(location.search)
       searchParams.set("query", inputValue)
-      const newRelativePathQuery = `${location.pathname}?${searchParams}`
-      history.replaceState(history.state, "", newRelativePathQuery)
+      const newQuery = `${location.pathname}?${searchParams}`
+      history.replaceState(history.state, "", newQuery)
     } else {
       history.replaceState(history.state, "", location.pathname)
     }
