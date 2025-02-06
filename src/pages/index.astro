@@ -117,6 +117,8 @@ const nonFeaturedPosts = allPosts.filter(post => !post.isFeatured)
       
   #all-posts-link
     display: block
+    width: fit-content
+    +margin-x(auto)
     margin-bottom: 2rem
     text-align: center
     +hover-transition($color: colors.$accent)
