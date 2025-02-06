@@ -19,7 +19,6 @@ export default {
         additionalData: `
         @use "sass:color"
         @use "sass:math"
-        @use "@/styles/variables/border-radiuses.sass"
         @use "@/styles/variables/chars.sass"
         @use "@/styles/variables/colors.sass"
         @use "@/styles/variables/font-sizes.sass"

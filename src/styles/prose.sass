@@ -2,7 +2,6 @@
   
 @use "@/styles/functions.sass" as *
 @use "@/styles/mixins.sass" as *
-@use "@/styles/variables/border-radiuses.sass"
 @use "@/styles/variables/chars.sass"
 @use "@/styles/variables/colors.sass"
 @use "@/styles/variables/font-weights.sass"
@@ -38,7 +37,7 @@ article
       color: inherit
 
   mark
-    border-radius: border-radiuses.$default
+    border-radius: 0.25rem
     padding: 0.125rem
     background: colors.$highlight
     color: colors.$background
@@ -154,7 +153,7 @@ article
   img
     margin: 0.5rem auto
     border: 2px solid colors.$border
-      radius: border-radiuses.$large
+      radius: 0.5rem
 
   picture
     display: block
@@ -172,7 +171,7 @@ article
 
     :not(pre) > &
       background: colors.$card
-      border-radius: border-radiuses.$default
+      border-radius: 0.25rem
       padding: 0.25rem
       overflow-wrap: break-word
       &::before, &::after
