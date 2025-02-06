@@ -20,12 +20,14 @@
     padding: 0.75rem 0.75rem 0.75rem 2.5rem
     border: 1px solid colors.$border
       radius: 0.5rem
-    
+
+    outline: 0px solid colors.$accent
+    +transition(outline-width)
+     
     &::placeholder
       font-style: italic
     &:focus
-      border-color: colors.$accent
-      outline: transparent
+      outline-width: 2px
 
 .search-results-text
   margin-top: 2rem
