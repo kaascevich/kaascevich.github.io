@@ -26,7 +26,7 @@ const { activeNav } = Astro.props
   <SkipToContent/>
   <div id="nav-container">
     <a href="/" id="logo" aria-label="home">{SITE.title}</a>
-    <NavMenu class="nav-menu">
+    <NavMenu>
       {navItems.map(navItem => <li>
         <a
           href={`/${navItem}/`}
@@ -81,7 +81,7 @@ const { activeNav } = Astro.props
           position: static
           font-size: 1.5rem
 
-      .nav-menu li
+      :global(.nav-menu) li
         grid-column: span 1 / span 1
         display: flex
         align-items: center

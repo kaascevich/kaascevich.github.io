@@ -1,16 +1,9 @@
 ---
 import MenuOpenIcon from "@/assets/icons/menu-open.svg"
 import MenuCloseIcon from "@/assets/icons/menu-close.svg"
-
-interface Props {
-  /** The class to apply to this nav menu. */
-  class: string,
-}
-
-const { class: className } = Astro.props;
 ---
 
-<nav class={className}>
+<nav class="nav-menu">
   <button
     id="hamburger-menu"
     aria-label="open menu"
