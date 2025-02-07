@@ -1,16 +1,26 @@
 import type { GiscusProps } from "@giscus/react"
-import type { Site, Social } from "@/types"
+import type { Social } from "@/types"
 
 /** Global configuration for the site. */
-export const SITE: Site = {
+export const SITE = {
+  /** The site's URL. */
   url: "https://kaascevich.github.io/",
+  /** The site's author. */
   author: "Kaleb A. Ascevich",
+  /** The site's description. */
   description: "my tiny little haven on the internet",
+  /** The site's title. */
   title: "kaascevich",
+  /** The number of posts to show on the main page. */
   postsPerIndex: 5,
+  /** The number of posts to show on each page. */
   postsPerPage: 5,
+  /**
+   * The number of minutes before a post's publish date when the post should
+   * become visible.
+   */
   scheduledPostMargin: 15,
-}
+} as const
 
 /** A list of social media links. */
 export const SOCIALS: Social[] = [
