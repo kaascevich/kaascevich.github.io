@@ -3,11 +3,10 @@ import type { ViteUserConfig } from "astro"
 import svgr from "vite-plugin-svgr"
 
 import { fileURLToPath } from "url"
-import path, { dirname } from "path"
+import { dirname, resolve } from "path"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const srcPath = path.resolve(__dirname, "../src")
+const filename = fileURLToPath(import.meta.url)
+const srcPath = resolve(dirname(filename), "../src")
 
 export default {
   plugins: [svgr()],
