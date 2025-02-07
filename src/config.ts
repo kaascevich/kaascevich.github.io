@@ -3,9 +3,9 @@ import type { Site, Social } from "@/types"
 
 /** Global configuration for the site. */
 export const SITE: Site = {
-  url: new URL("https://kaascevich.github.io/"),
+  url: "https://kaascevich.github.io/",
   author: "Kaleb A. Ascevich",
-  profile: new URL("https://kaascevich.github.io/about"),
+  profile: "https://kaascevich.github.io/about",
   description: "my tiny little haven on the internet",
   title: "kaascevich",
   postsPerIndex: 5,

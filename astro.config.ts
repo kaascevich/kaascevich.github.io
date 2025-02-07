@@ -7,7 +7,7 @@ import markdown from "./config/markdown"
 import vite from "./config/vite"
 
 export default {
-  site: SITE.url.href,
+  site: SITE.url,
   integrations,
   markdown,
   vite,

@@ -3,11 +3,11 @@ import type { CollectionEntry, CollectionKey } from "astro:content"
 /** Global configuration for the site. */
 export interface Site {
   /** The site's URL. */
-  readonly url: URL
+  readonly url: string
   /** The site's author. */
   readonly author: string
   /** The author's profile page. */
-  readonly profile: URL
+  readonly profile: string
   /** The site's description. */
   readonly description: string
   /** The site's title. */
