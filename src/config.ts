@@ -87,4 +87,4 @@ export const GISCUS: GiscusProps = {
   emitMetadata: "0",
   inputPosition: "top",
   lang: "en",
-}
+} as const

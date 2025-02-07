@@ -13,7 +13,7 @@ import { SEO } from "astro-seo"
 import { ClientRouter } from "astro:transitions"
 import { fade } from "astro:transitions"
 
-interface Props {
+type Props = Readonly<{
   /** This page's title. */
   title?: string | undefined
   /** This page's description. */
@@ -22,7 +22,7 @@ interface Props {
   postInfo?: EntryInfo<"posts"> | undefined
   /** The active navigation item. */
   activeNav: NavItem
-}
+}>
 
 const {
   title,

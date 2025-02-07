@@ -2,10 +2,10 @@
 import type { EntryInfo } from "@/types"
 import allPosts from "@/utils/allPosts"
 
-interface Props {
+type Props = Readonly<{
   /** The current post. */
   post: EntryInfo<"posts">
-}
+}>
 
 const { post } = Astro.props
 

@@ -2,15 +2,15 @@
 import Card from "@/components/Card"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** A list of posts to show cards for. */
-  posts: EntryInfo<"posts">[]
+  posts: readonly EntryInfo<"posts">[]
   /**
    * Whether to use level 3 headings for the card titles instead of level 2
    * headings.
    */
   useLevel3Heading?: boolean | undefined
-}
+}>
 
 const { posts, useLevel3Heading } = Astro.props
 ---

@@ -2,10 +2,10 @@
 import type { EntryInfo } from "@/types"
 import type { Page } from "astro"
 
-interface Props {
+type Props = Readonly<{
   /** Data for the current page. */
   page: Page<EntryInfo<"posts">>
-}
+}>
 
 const { page } = Astro.props
 ---

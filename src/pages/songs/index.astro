@@ -6,13 +6,17 @@ import { getCollection } from "astro:content"
 import type { EntryInfo } from "@/types"
 
 /** A list of all songs. */
-const songs: EntryInfo<"songs">[] = (await getCollection("songs"))
-  .map(({ id, data }) => ({ id, ...data }))
+const songs: readonly EntryInfo<"songs">[] =
+  (await getCollection("songs"))
+    .map(({ id, data }) => ({ id, ...data }))
 
 /** Original songs. */
-const originals = songs.filter(song => !song.remixDetails)
+const originals: readonly EntryInfo<"songs">[] = 
+  songs.filter(song => !song.remixDetails)
+
 /** Remixed songs. */
-const remixes = songs.filter(song => song.remixDetails)
+const remixes: readonly EntryInfo<"songs">[] =
+  songs.filter(song => song.remixDetails)
 ---
 
 <MainLayout

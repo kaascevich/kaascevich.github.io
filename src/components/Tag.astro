@@ -1,10 +1,10 @@
 ---
-interface Props {
+type Props = Readonly<{
   /** The tag's name. */
   tag: string
   /** The tag's size. */
   size: "sm" | "lg"
-}
+}>
 
 const { tag, size } = Astro.props
 ---

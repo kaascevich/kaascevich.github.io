@@ -14,10 +14,10 @@ const navItems = ["posts", "tags", "songs", "about", "search"] as const
 /** A navigation item. */
 export type NavItem = typeof navItems[number] | null
 
-interface Props {
+type Props = Readonly<{
   /** The active navigation item. */
   activeNav: NavItem
-}
+}>
 
 const { activeNav } = Astro.props
 ---

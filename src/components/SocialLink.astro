@@ -1,10 +1,10 @@
 ---
 import type { Social } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** The social media service to display a link to. */
   social: Social
-}
+}>
 
 const {
   social: { name, title, href }

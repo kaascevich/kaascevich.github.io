@@ -3,14 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro"
 import Breadcrumbs from "@/components/Breadcrumbs.astro"
 import type { NavItem } from "@/components/Header.astro"
 
-interface Props {
+type Props = Readonly<{
   /** This page's title. */
   title: string
   /** This page's description. */
   description?: string | undefined
   /** The active navigation item. */
   activeNav: NavItem
-}
+}>
 
 const { title, description, activeNav } = Astro.props
 ---

@@ -2,10 +2,10 @@
 import { SITE } from "@/config"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** The song's metadata. */
   song: EntryInfo<"songs">
-}
+}>
 
 const {
   song: { id, title, remixDetails }

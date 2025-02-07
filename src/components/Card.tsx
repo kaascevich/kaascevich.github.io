@@ -2,7 +2,7 @@ import styles from "@/styles/modules/Card.module.sass"
 import Timestamp from "@/components/Timestamp"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** The metadata of the post this card represents. */
   post: EntryInfo<"posts">
   /**
@@ -10,7 +10,7 @@ interface Props {
    * heading.
    */
   useLevel3Heading?: boolean | undefined
-}
+}>
 
 /**
  * A card showing the essential details of a blog post, as well as a link to

@@ -3,13 +3,10 @@ import Giscus from "@giscus/react"
 import { GISCUS } from "@/config"
 import { useEffect, useState } from "react"
 
-/** A CSS file containing light theme styles. */
-const lightTheme =
-  "https://giscus.catppuccin.com/themes/latte-no-loader.css"
-
-/** A CSS file containing dark theme styles. */
-const darkTheme =
-  "https://giscus.catppuccin.com/themes/macchiato-no-loader.css"
+const themes = {
+  light: "https://giscus.catppuccin.com/themes/latte-no-loader.css",
+  dark: "https://giscus.catppuccin.com/themes/macchiato-no-loader.css",
+}
 
 /** A comments section for blog posts. */
 export default function Comments() {
@@ -38,6 +35,9 @@ export default function Comments() {
   }, [])
 
   return <div className={styles.comments}>
-    <Giscus theme={theme === "light" ? lightTheme : darkTheme} {...GISCUS}/>
+    <Giscus
+      theme={theme === "light" ? themes.light : themes.dark}
+      {...GISCUS}
+    />
   </div>
 }

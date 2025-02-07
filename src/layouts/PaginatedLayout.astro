@@ -7,7 +7,7 @@ import type { NavItem } from "@/components/Header.astro"
 import type { Page } from "astro"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** This page's title. */
   title: string
   /** This page's description. */
@@ -16,7 +16,7 @@ interface Props {
   activeNav: NavItem
   /** The current page. */
   page: Page<EntryInfo<"posts">>
-}
+}>
 
 const {
   title,

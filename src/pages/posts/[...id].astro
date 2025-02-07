@@ -17,10 +17,10 @@ import { getEntry } from "astro:content"
 import allPosts from "@/utils/allPosts"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** The post to display. */
   post: EntryInfo<"posts">
-}
+}>
 
 export function getStaticPaths() {
   return allPosts.map(post => ({

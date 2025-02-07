@@ -6,10 +6,10 @@ import SearchIcon from "@/assets/icons/search.svg?react"
 import Card from "@/components/Card"
 import type { EntryInfo } from "@/types"
 
-interface Props {
+type Props = Readonly<{
   /** The list of posts that can be searched through. */
-  posts: EntryInfo<"posts">[]
-}
+  posts: readonly EntryInfo<"posts">[]
+}>
 
 /** A search interface for searching through blog posts. */
 export default function Search({ posts }: Props) {

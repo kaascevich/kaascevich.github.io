@@ -8,12 +8,12 @@ import timezone from "dayjs/plugin/timezone"
 day.extend(advancedFormat)
 day.extend(timezone)
 
-interface Props {
+type Props = Readonly<{
   /** The date this post was published. */
   published: DateTime
   /** The date this post was last modified. */
   modified?: DateTime | undefined
-}
+}>
 
 /** A timestamp for blog posts. */
 export default function Timestamp({ published, modified }: Props) {

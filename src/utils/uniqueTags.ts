@@ -1,7 +1,7 @@
 import allPosts from "@/utils/allPosts"
 
 /** Gets all unique tags from all blog posts. */
-const uniqueTags = allPosts
+const uniqueTags: readonly string[] = allPosts
   .flatMap(post => post.tags)
   .filter(
     (value, index, all) => all.findIndex(tag => tag === value) === index
