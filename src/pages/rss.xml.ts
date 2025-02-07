@@ -1,8 +1,9 @@
 import rss from "@astrojs/rss"
-import allPosts from "@/utils/allPosts"
-import { SITE } from "@/config"
 import day from "dayjs"
 import { getEntry } from "astro:content"
+
+import { SITE } from "@/config"
+import { allPosts } from "@/utils/allPosts"
 
 export async function GET() {
   const renderedPosts = await Promise.all(allPosts.map(async post => {

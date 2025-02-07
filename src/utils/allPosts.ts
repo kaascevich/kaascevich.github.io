@@ -1,6 +1,7 @@
-import { SITE } from "@/config"
 import { getCollection } from "astro:content"
 import day from "dayjs"
+
+import { SITE } from "@/config"
 import type { EntryInfo } from "@/types"
 
 function getPostSortIndex({ published, modified }: EntryInfo<"posts">) {
@@ -14,8 +15,6 @@ const allPostsRaw = await getCollection("posts", post =>
 )
 
 /** A list of all blog posts, sorted by publication or modification date. */
-const allPosts: EntryInfo<"posts">[] = allPostsRaw
+export const allPosts: EntryInfo<"posts">[] = allPostsRaw
   .map(({ id, data }) => ({ id, ...data }))
   .sort((a, b) => getPostSortIndex(b) - getPostSortIndex(a))
-
-export default allPosts

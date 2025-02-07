@@ -1,13 +1,13 @@
 ---
+import type { GetStaticPaths } from "astro"
+
 import PaginatedLayout from "@/layouts/PaginatedLayout.astro"
 
 import { SITE } from "@/config"
-import type { GetStaticPathsOptions } from "astro"
-import allPosts from "@/utils/allPosts"
+import { allPosts } from "@/utils/allPosts"
 
-export function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  return paginate(allPosts, { pageSize: SITE.postsPerPage })
-}
+export const getStaticPaths: GetStaticPaths = ({ paginate }) =>
+  paginate(allPosts, { pageSize: SITE.postsPerPage })
 
 const { page } = Astro.props
 ---

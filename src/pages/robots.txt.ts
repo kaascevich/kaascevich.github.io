@@ -27,8 +27,6 @@ Allow: /
 Sitemap: ${new URL("sitemap-index.xml", SITE.url).href}
 `.trim()
 
-export function GET() {
-  return new Response(robots, {
-    headers: { "Content-Type": "text/plain" },
-  })
-}
+export const GET = () => new Response(
+  robots, { headers: { "Content-Type": "text/plain" } }
+)

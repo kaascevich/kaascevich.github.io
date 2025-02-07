@@ -1,15 +1,15 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro"
 import Tag from "@/components/Tag.astro"
-import tags from "@/utils/uniqueTags"
+import { allTags } from "@/utils/allTags"
 ---
 
 <MainLayout
   title="tags"
-  description={`all the tags I've used in my posts (${tags.length} total)`}
+  description={`all the tags I've used in my posts (${allTags.length} total)`}
   activeNav="tags"
 >
   <ul>
-    {tags.map(tag => <Tag {tag} size="lg"/>)}
+    {allTags.map(tag => <Tag {tag} size="lg"/>)}
   </ul>
 </MainLayout>

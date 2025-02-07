@@ -1,17 +1,17 @@
 ---
+import type { GetStaticPaths } from "astro"
+
 import PaginatedLayout from "@/layouts/PaginatedLayout.astro"
 
-import tags from "@/utils/uniqueTags"
-import allPosts from "@/utils/allPosts"
-import type { GetStaticPathsOptions } from "astro"
 import { SITE } from "@/config"
+import { allTags } from "@/utils/allTags"
+import { allPosts } from "@/utils/allPosts"
 
-export function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  return tags.flatMap(tag => paginate(
+export const getStaticPaths: GetStaticPaths = ({ paginate }) =>
+  allTags.flatMap(tag => paginate(
     allPosts.filter(post => post.tags.includes(tag)),
     { params: { tag }, pageSize: SITE.postsPerPage }
   ))
-}
 
 const { tag } = Astro.params
 const { page } = Astro.props

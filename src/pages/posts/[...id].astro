@@ -1,5 +1,6 @@
 ---
-import { render } from "astro:content"
+import { render, getEntry } from "astro:content"
+import type { GetStaticPaths } from "astro"
 
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import Tag from "@/components/Tag.astro"
@@ -13,8 +14,7 @@ import BackButton from "@/components/BackButton.astro"
 import ScrollProgress from "@/components/ScrollProgress.astro"
 import CodeBlockExtras from "@/components/CodeBlockExtras.astro"
 
-import { getEntry } from "astro:content"
-import allPosts from "@/utils/allPosts"
+import { allPosts } from "@/utils/allPosts"
 import type { EntryInfo } from "@/types"
 
 type Props = Readonly<{
@@ -22,12 +22,11 @@ type Props = Readonly<{
   post: EntryInfo<"posts">
 }>
 
-export function getStaticPaths() {
-  return allPosts.map(post => ({
+export const getStaticPaths: GetStaticPaths = () =>
+  allPosts.map(post => ({
     params: { id: post.id },
     props: { post },
   }))
-}
 
 const { post } = Astro.props
 
