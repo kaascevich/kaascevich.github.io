@@ -6,8 +6,6 @@ export interface Site {
   readonly url: string
   /** The site's author. */
   readonly author: string
-  /** The author's profile page. */
-  readonly profile: string
   /** The site's description. */
   readonly description: string
   /** The site's title. */
