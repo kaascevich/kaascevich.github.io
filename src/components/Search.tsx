@@ -1,5 +1,5 @@
 import Fuse from "fuse.js"
-import { useEffect, useRef, useState, useMemo, type FormEvent } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import styles from "@/styles/modules/Search.module.sass"
 
 import SearchIcon from "@/assets/icons/search.svg?react"
