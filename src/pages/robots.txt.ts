@@ -1,4 +1,5 @@
 import { SITE } from "@/config"
+import type { APIRoute } from "astro"
 
 /** A list of AI training crawlers. */
 const aiCrawlers = [
@@ -27,6 +28,6 @@ Allow: /
 Sitemap: ${new URL("sitemap-index.xml", SITE.url).href}
 `.trim()
 
-export const GET = () => new Response(
+export const GET: APIRoute = () => new Response(
   robots, { headers: { "Content-Type": "text/plain" } }
 )
