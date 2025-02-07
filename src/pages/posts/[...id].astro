@@ -1,6 +1,5 @@
 ---
 import { render, getEntry } from "astro:content"
-import type { GetStaticPaths } from "astro"
 
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import Tag from "@/components/Tag.astro"
@@ -22,11 +21,12 @@ type Props = Readonly<{
   post: EntryInfo<"posts">
 }>
 
-export const getStaticPaths: GetStaticPaths = () =>
-  allPosts.map(post => ({
+export function getStaticPaths() {
+  return allPosts.map(post => ({
     params: { id: post.id },
     props: { post },
   }))
+}
 
 const { post } = Astro.props
 
