@@ -1,17 +1,17 @@
 ---
 published: "2025-01-28T20:35:00-05:00"
-title: Aurora (part 3)
+title: aurora (part 3)
 tags:
   - swift
   - aurora
-description: A fairly simple REPL
+description: a fairly simple repl
 ---
 
 Compared to the last two posts, this one should be fairly short.
 
-## Contents
+## contents
 
-## Setting up
+## setting up
 
 First, we've gotta add a new executable target. Update `Package.swift` as
 follows:
@@ -76,7 +76,7 @@ Build of product 'AuroraCLI' complete! (1.07s)
 hello!
 ```
 
-## Reading lines
+## reading lines
 
 Let's start reading some lines:
 
@@ -169,7 +169,7 @@ aurora> :quit
 $
 ```
 
-## Running the parser
+## running the parser
 
 Let's parse some expressions!
 

@@ -1,10 +1,10 @@
 ---
 published: "2024-09-30T09:06:46-05:00"
-title: AirPods Min
+title: airpods min
 tags:
   - airpods
   - rant
-description: The AirPods Max almost ruined the September event for me
+description: the airpods max almost ruined the event for me
 ---
 
 Here's what the Apple event earlier this month brought to the $549 AirPods Max:

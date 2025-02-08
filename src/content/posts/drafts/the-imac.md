@@ -1,10 +1,10 @@
 ---
 published: "2024-09-23T17:51:54-05:00"
-title: '"The iMac"'
+title: “the imac”
 tags:
   - mac
 isFeatured: true
-description: It's useless, and I love it
+description: it’s useless, and i love it
 ---
 
 2 summers ago, I bought an iMac G4 on eBay for around $150.[^1]

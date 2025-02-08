@@ -1,9 +1,9 @@
 ---
 published: "2025-01-09T09:10:24-05:00"
-title: 3D printing
+title: 3d printing
 tags:
   - 3d-printing
-description: I don't know why I didn't unbox this thing sooner
+description: i don’t know why i didn’t unbox this thing sooner
 ---
 
 Hi again! 👋 It's been a little while, hasn't it?

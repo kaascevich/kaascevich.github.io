@@ -1,9 +1,9 @@
 ---
 published: "2024-09-24T17:36:13-05:00"
-title: Desktop icons
+title: desktop icons
 tags:
   - rant
-description: I hate them with an extreme passion
+description: i hate them with an excessively extreme passion
 ---
 
 This is what my current desktop setup looks like:

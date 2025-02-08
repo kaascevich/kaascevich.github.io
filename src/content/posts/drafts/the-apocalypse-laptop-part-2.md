@@ -1,16 +1,16 @@
 ---
 published: "2024-10-05T08:09:20-05:00"
-title: The apocalypse laptop (part 2)
+title: the apocalypse laptop (part 2)
 tags:
   - mac
   - linux
-description: I like 🥝
+description: i like 🥝
 ---
 
 In this blog post, I'll take the Debian install we made in the last post and
 turn it into something actually useful for the apocalypse.
 
-## Too much stuff
+## too much stuff
 
 So, we have a functional Debian install with a GNOME desktop, and Wi-Fi is
 working correctly. But there's a _lot_ of extra stuff in this GNOME install
@@ -92,7 +92,7 @@ $ sudo apt upgrade
 $ sudo systemctl reboot
 ```
 
-## Okay, can I have a kiwi now?
+## okay, can I have a kiwi now?
 
 Now we can finally set up [Kiwix], which is what I'll use to
 manage my offline library. It's simple enough to install:

@@ -1,11 +1,11 @@
 ---
 published: "2024-09-27T18:45:03-05:00"
-title: MacBookAir6,1 (part 1)
+title: macbookair6,1 (part 1)
 tags:
   - linux
   - nixos
   - mac
-description: Putting far too much effort into an obsolete MacBook
+description: putting far too much effort into an obsolete macbook
 ---
 
 One day a few months ago, I ran into this glorious little thing known as

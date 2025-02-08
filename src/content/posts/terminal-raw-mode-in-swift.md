@@ -1,11 +1,11 @@
 ---
 published: "2024-09-22T20:46:00-05:00"
-title: Terminal raw mode in Swift
+title: terminal raw mode in swift
 tags:
   - swift
   - snippets
   - c
-description: When the standard library just doesn't quite cut it
+description: when the standard library just doesn’t quite cut it
 ---
 
 The Swift standard library, while relatively minimal on its own, typically does

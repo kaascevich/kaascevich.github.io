@@ -1,11 +1,11 @@
 ---
 published: "2024-09-25T11:19:13-05:00"
 modified: "2024-12-21T21:00:13-05:00"
-title: AXVisualSupportAgent woes
+title: axvisualsupportagent woes
 tags:
   - macos
   - bug
-description: Stop. Using. My. Mic.
+description: stop. using. my. mic.
 ---
 
 > **UPDATE #2:** **It appears Apple has fixed both of the below issues in macOS

@@ -1,11 +1,11 @@
 ---
 published: "2024-09-24T12:39:37-05:00"
 modified: "2024-09-24T15:27:46-05:00"
-title: Why I have a Mac
+title: why i have a mac
 tags:
   - mac
 isFeatured: true
-description: All of the reasons I've accumulated over the years
+description: all of the reasons I’ve accumulated over the… seconds
 ---
 
 Every once in a while, someone voices a complaint with their PC, and my

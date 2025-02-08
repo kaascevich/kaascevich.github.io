@@ -1,9 +1,9 @@
 ---
 published: "2024-10-14T17:59:05-05:00"
-title: I'm safe!
+title: i’m safe!
 tags:
   - hurricane
-description: Spotty internet, but otherwise doin' pretty good
+description: spotty internet, but otherwise doin’ pretty good
 ---
 
 By some miracle, we made it through Milton with little more than a couple power

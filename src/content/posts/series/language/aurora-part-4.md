@@ -1,10 +1,10 @@
 ---
 published: "2025-01-30T11:06:00-05:00"
-title: Aurora (part 4)
+title: aurora (part 4)
 tags:
   - swift
   - aurora
-description: Actually doing the math
+description: actually, like, doing the math
 ---
 
 We've spent a good while parsing some mathematical expressions -- I think it's

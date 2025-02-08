@@ -1,10 +1,10 @@
 ---
 published: "2025-01-26T19:26:00-05:00"
-title: Aurora (part 0)
+title: aurora (part 0)
 tags:
   - swift
   - aurora
-description: A programming language, written in Swift
+description: a programming language, written in swift
 ---
 
 Y'know, it's been a while since I've done any real Swift programming. I think I

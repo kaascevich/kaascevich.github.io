@@ -1,10 +1,10 @@
 ---
 published: "2024-10-01T18:04:36-05:00"
-title: The apocalypse laptop (part 1)
+title: the apocalypse laptop (part 1)
 tags:
   - mac
   - linux
-description: I might have just found an actual use for that MacBook
+description: i might have just found, like, an actual use for that macbook
 ---
 
 > FYI: I'm putting the NixOS project on hold. I don't know for how long.

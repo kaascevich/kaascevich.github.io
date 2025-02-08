@@ -20,13 +20,14 @@ export default function Timestamp({ published, modified }: Props) {
   const useModifiedDate = modified && modified > published
   const date = day(useModifiedDate ? modified : published)
 
-  const dateTimeString = date.format("MMM D, YYYY [at] h:mm a (z)")
+  const dateTimeString = date.format("MMM D, YYYY @ h:mm a (z)")
+    .toLowerCase()
 
   return (
     <div className={`${styles.timestamp} timestamp`}>
       <CalendarIcon aria-hidden={true}/>
       {useModifiedDate &&
-        <span className={styles.updated}>Updated:</span>
+        <span className={styles.updated}>updated:</span>
       }
       <time dateTime={date.toISOString()}>{dateTimeString}</time>
     </div>

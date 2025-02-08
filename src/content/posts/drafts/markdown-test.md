@@ -1,7 +1,7 @@
 ---
 published: "2024-12-20T11:50:21-05:00"
-title: Markdown test
-description: Just a Markdown formatting test
+title: markdown test
+description: just a markdown formatting test
 ---
 
 > **NOTE:** **This is not my writing**. I borrowed it from
@@ -14,7 +14,7 @@ description: Just a Markdown formatting test
 
 ------
 
-## What to expect from here on out
+## what to expect from here on out
 
 What follows from here is just a bunch of absolute nonsense I've written to
 dogfood the plugin itself. It includes every sensible typographic element I
@@ -30,7 +30,7 @@ It's important to cover all of these use cases for a few reasons:
 
 Now we're going to try out another header style.
 
-### Typoography should be easy
+### typoography should be easy
 
 So that's a header for you -- with any luck if we've done our job correctly
 that will look pretty reasonable.
@@ -54,16 +54,16 @@ looks good, too:
 
 And that's the end of this section.
 
-## What if we stack headings?
+## what if we stack headings?
 
-### We should make sure that looks good, too
+### we should make sure that looks good, too[^2]
 
 Sometimes you have headings directly underneath each other. In those cases you
 often have to undo the top margin on the second heading because it usually
 looks better for the headings to be closer together than a paragraph followed
 by a heading should be.
 
-### When a heading comes after a paragraph
+### when a heading comes after a paragraph
 
 When a heading comes after a paragraph, we need a bit more space, like I
 already mentioned above. Now let's see what a more complex list would look
@@ -95,7 +95,7 @@ like.
 After this sort of list I usually have a closing statement or paragraph,
 because it kinda looks weird jumping right to a heading.
 
-## Code should look okay by default
+## code should look okay by default
 
 I think most people are going to use [highlight.js] or [Prism] or something if
 they want to style their code blocks but it wouldn't hurt to make them look
@@ -126,7 +126,7 @@ Hopefully that looks good enough to you.
 [highlight.js]: https://highlightjs.org/
 [Prism]: (https://prismjs.com/)
 
-## What about nested lists?
+## what about nested lists?
 
 Nested lists basically always look bad which is why editors like Medium don't
 even let you do it, but I guess since some of you goofballs are going to do it
@@ -175,7 +175,7 @@ That means I have to worry about styling that annoying situation too.
 
 And finally a sentence to close off this section.
 
-## We didn't forget about description lists
+## we didn't forget about description lists
 
 Well, that's not exactly true, we first released this plugin back in 2020 and
 it took three years before we added description lists. But they're here now, so
@@ -199,7 +199,7 @@ Why can't you hear a pterodactyl go to the bathroom?
   blanditiis fugiat ullam magnam suscipit deserunt illum natus facilis atque
   vero consequatur! Quisquam, debitis error.
 
-## There are other elements we need to style
+## there are other elements we need to style
 
 I almost forgot to mention links, like
 [this link to the Tailwind CSS website][tailwind site]. We almost made them
@@ -219,7 +219,7 @@ We also need to make sure inline code looks good, like if I wanted to talk
 about `<span>` elements or tell you the good news about
 `@tailwindcss/typography`.
 
-### Sometimes I even use `code` in headings
+### sometimes I even use `code` in headings
 
 Even though it's probably a bad idea, and historically I've had a hard time
 making it look good. This _"wrap the code blocks in backticks"_ trick works
@@ -230,7 +230,7 @@ if I wanted to tell you about the [`tailwindcss/docs`][tailwind docs]
 repository. I don't love that there is an underline below the backticks but it
 is absolutely not worth the madness it would require to avoid it.
 
-#### We haven't used an h4 yet
+#### we haven't used an h4 yet
 
 But now we have. Please don't use `h5` or `h6` in your content, Medium only
 supports two heading levels for a reason, you animals. I honestly considered
@@ -240,9 +240,9 @@ We don't style them at all out of the box because `h4` elements are already so
 small that they are the same size as the body copy. What are we supposed to do
 with an `h5`, make it _smaller_ than the body copy? No thanks.
 
-### We still need to think about stacked headings though
+### we still need to think about stacked headings though
 
-#### Let's make sure we don't screw that up with `h4` elements, either
+#### let's make sure we don't screw that up with `h4` elements, either
 
 Phew, with any luck we have styled the headings above this text and they look
 pretty good.
@@ -261,3 +261,4 @@ can't hurt.
 ------
 
 [^1]: And footnotes!
+[^2]: And add a footnote to it for good measure.

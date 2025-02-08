@@ -1,9 +1,9 @@
 ---
 published: "2024-10-07T11:52:51-05:00"
-title: The lack of calm before the storm
+title: the lack of calm before the storm
 tags:
   - hurricane
-description: TWO major hurricanes? Really?
+description: TWO major hurricanes? like, really?
 ---
 
 Hurricane Milton was a tropical storm yesterday morning. 24 hours later, it

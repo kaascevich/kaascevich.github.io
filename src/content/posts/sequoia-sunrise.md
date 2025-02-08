@@ -1,11 +1,11 @@
 ---
 published: "2024-09-24T13:58:30-05:00"
-title: Sequoia Sunrise
+title: sequoia sunrise
 tags:
   - macos
   - mac
   - wallpaper
-description: The new best semi-default wallpaper?
+description: the new best semi-default wallpaper?
 ---
 
 This is one of a few new wallpapers added in macOS Sequoia, and serves as a

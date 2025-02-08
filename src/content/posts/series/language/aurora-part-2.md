@@ -1,18 +1,18 @@
 ---
 published: "2025-01-28T13:44:00-05:00"
-title: Aurora (part 2)
+title: aurora (part 2)
 tags:
   - swift
   - aurora
-description: Ne(nesti(nesting)g)st(nesting)ng
+description: ne(nesti(nesting)g)st(nesting)ng
 ---
 
 It's time to implement nesting. I'll probably end up covering operator
 precedence in a later part.
 
-## Contents
+## contents
 
-## Refactoring
+## refactoring
 
 First, though, I want to get the not-yet-a-tree representation separated from
 the parsing. So let's add a new file, `Sources/Aurora/Syntax/Expression.swift`:
@@ -85,7 +85,7 @@ $ mv ExpressionTests.swift ExpressionParsingTests.swift
 }
 ```
 
-## Representing nested expressions
+## representing nested expressions
 
 Adding support for nesting to the syntax tree is absolutely trivial; all we
 need to do is change the `Int` types in `Expression.operation` to `Expression`:
@@ -171,7 +171,7 @@ To confirm that we haven't broken anything, let's run the tests:
 
 Brilliant!
 
-## Parenthesized expressions
+## parenthesized expressions
 
 Let's start with something a bit more simple, by only allowing expressions
 surrounded in parentheses (unless it's just a plain number, of course).
@@ -261,7 +261,7 @@ inadvertently creating a case of unconditional recursion, and it seems the
 compiler doesn't know to emit a diagnostic in this particular case.
 Unfortunately, the only real solution to this is another refactor.
 
-### Refactoring... again
+### refactoring... again
 
 What I think I'm going to do is separate parsers into their very own types
 (which is how the Parsing library was intended to be used). So let's start by
@@ -387,7 +387,7 @@ And now we've got tests to fix:
 }
 ```
 
-### Parenthesized expressions, take 2
+### parenthesized expressions, take 2 🎬
 
 Let's try the tests again:
 
@@ -437,7 +437,7 @@ Now that we know that's working, let's try something more complicated:
 
 Suh-weet!
 
-## Some more tests
+## some more tests
 
 To round this off, I'll add some more tests to make sure we're doing things
 correctly.
