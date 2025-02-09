@@ -1,30 +1,34 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import BackButton from "@/components/BackButton.astro"
+
+// append zero-width spaces to all slashes to assist with wrapping on mobile
+const slashWrappingURL = Astro.url.href.replaceAll("/", "/\u200b")
 ---
 
 <BaseLayout title="404" description="page not found" activeNav={null}>
   <main>
     <h1>404</h1>
-    <div class="url">{Astro.url}</div>
-    <div class="not-found">page not found</div>
+    <div class="url">{slashWrappingURL}</div>
+    <div class="not-found">that doesn&rsquo;t exist :(</div>
     <BackButton/>
   </main>
 </BaseLayout>
 
 <style lang="sass">
   main
-    +margin-x(auto)
-    margin-bottom: 3.5rem
     display: flex
     flex: 1
       direction: column
     align-items: center
     justify-content: center
     text-align: center
+    @include desktop
+      margin-bottom: 3.5rem
   
     h1
       +font(8rem, font-weights.$bold)
+      line-height: 1
       color: colors.$accent
 
     .url

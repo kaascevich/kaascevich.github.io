@@ -4,7 +4,7 @@ layout: "@/layouts/AboutLayout.astro"
 
 ![Me! But not quite.](@/assets/images/me.png "Me! But not quite.")
 
-私の小さなオンラインホームへようこそ！
+小さなオンラインホームへようこそ！
 
 I'm Kaleb Ascevich, another random person on the internet doing internet
 things. I love [Swift] programming, especially for Mac apps. I'm also dabbling

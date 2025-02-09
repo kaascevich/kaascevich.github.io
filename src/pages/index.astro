@@ -21,7 +21,7 @@ const recentPosts = allPosts.filter(post => !post.isFeatured)
 <BaseLayout activeNav={null}>
   <main>
     <section id="hero">
-      <h1 lang="ja">私のサイトへようこそ！</h1>
+      <h1 lang="ja">サイトへようこそ！</h1>
       <a href="/rss.xml" id="rss-link" aria-label="rss feed" title="rss feed">
         <RSSIcon/>
       </a>
@@ -30,7 +30,6 @@ const recentPosts = allPosts.filter(post => !post.isFeatured)
         <Content/>
       </article>
       <div class="social-wrapper">
-        <div class="social-links-text">&ldquo;Social&rdquo; links:</div>
         <Socials/>
       </div>
     </section>
@@ -89,20 +88,9 @@ const recentPosts = allPosts.filter(post => !post.isFeatured)
 
   .social-wrapper
     margin-top: 1rem
-    display: flex
-    flex-direction: column
     text-align: center
     @include desktop
-      flex-direction: row
-      align-items: center
-  
-  .social-links-text
-    margin:
-      bottom: 0.25rem
-      right: 0.5rem
-    white-space: nowrap
-    @include desktop
-      margin-bottom: 0rem
+      text-align: left
 
   #featured, #recent-posts
     +padding-y(3rem, 1.5rem)
