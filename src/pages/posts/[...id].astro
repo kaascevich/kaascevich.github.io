@@ -63,7 +63,7 @@ const { Content, remarkPluginFrontmatter } = await render(
     </article>
 
     <footer>
-      <ul class="tag-list" hidden>
+      <ul>
         {tags.map(tag => <Tag {tag} size="sm"/>)}
       </ul>
       <a class="back-to-top" href="#top">back to top</a>
@@ -113,11 +113,6 @@ const { Content, remarkPluginFrontmatter } = await render(
         gap: 1rem
       
       @include hide-in-print
-
-      .tag-list
-        display: block
-        :global(li)
-          +padding-x(0.125rem)
 
       .back-to-top
         +hover-transition($opacity: 75%)

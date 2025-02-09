@@ -13,7 +13,7 @@ export const SITE = {
   /** The number of posts to show on the main page. */
   postsPerIndex: 5,
   /** The number of posts to show on each page. */
-  postsPerPage: 5,
+  postsPerPage: 10,
   /**
    * The number of minutes before a post's publish date when the post should
    * become visible.
