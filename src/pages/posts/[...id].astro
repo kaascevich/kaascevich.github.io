@@ -66,7 +66,7 @@ const { Content, remarkPluginFrontmatter } = await render(
       <ul>
         {tags.map(tag => <Tag {tag} size="sm"/>)}
       </ul>
-      <a class="back-to-top" href="#top">back to top</a>
+      <a class="back-to-top" href="#top">&uarr; &uarr; &uarr;</a>
     </footer>
 
     <PostLinks {post}/>
@@ -102,24 +102,15 @@ const { Content, remarkPluginFrontmatter } = await render(
     footer
       padding-top: 2rem
       display: flex
-      flex-direction: column
-      align-items: center
+      flex-direction: row
+      align-items: flex-end
       justify-content: space-between
-      gap: 0.5rem
-      
-      @include desktop
-        flex-direction: row
-        align-items: flex-end
-        gap: 1rem
+      gap: 1rem
       
       @include hide-in-print
 
       .back-to-top
         +hover-transition($opacity: 75%)
-        &::before
-          content: "#{chars.$arrow-up} "
-        &::after
-          content: " #{chars.$arrow-up}"
 </style>
 
 <ScrollProgress/>

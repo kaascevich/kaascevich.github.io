@@ -19,7 +19,7 @@ const post = defineCollection({
     isFeatured: z.boolean().optional(),
     /** This post's tags. */
     tags: z.string().regex(/^[a-z0-9]+(?:\-[a-z0-9]+)*$/)
-      .array().readonly().default(["other"]),
+      .array().default(["other"]),
     /** This post's description. */
     description: z.string(),
   }).readonly(),
