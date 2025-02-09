@@ -1,4 +1,3 @@
-import type { GiscusProps } from "@giscus/react"
 import type { Social } from "@/types"
 
 /** Global configuration for the site. */
@@ -74,17 +73,3 @@ export const SHARE_LINKS: Social[] = [
     href: "mailto:?subject=See%20this%20post&body=",
   },
 ]
-
-/** Configuration for the Giscus comments system. */
-export const GISCUS: GiscusProps = {
-  repo: "kaascevich/kaascevich.github.io",
-  repoId: "R_kgDOM1clig",
-  category: "Comments",
-  categoryId: "DIC_kwDOM1clis4CiycT",
-  mapping: "og:title",
-  strict: "1",
-  reactionsEnabled: "1",
-  emitMetadata: "0",
-  inputPosition: "top",
-  lang: "en",
-} as const

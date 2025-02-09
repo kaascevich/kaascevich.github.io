@@ -3,7 +3,6 @@ import { render, getEntry } from "astro:content"
 
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import Tag from "@/components/Tag.astro"
-import Comments from "@/components/Comments"
 import Timestamp from "@/components/Timestamp"
 import PostLinks from "@/components/PostLinks.astro"
 import ShareLinks from "@/components/ShareLinks.astro"
@@ -76,7 +75,6 @@ const { Content, remarkPluginFrontmatter } = await render(
     </footer>
 
     <PostLinks {post}/>
-    <Comments client:only="react"/>
   </main>
 </BaseLayout>
 
@@ -89,7 +87,7 @@ const { Content, remarkPluginFrontmatter } = await render(
   main
     +margin-x(auto)
     width: 100%
-    padding-bottom: 3rem
+    padding-bottom: 1.5rem
 
     header
       h1
