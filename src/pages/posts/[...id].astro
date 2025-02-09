@@ -5,7 +5,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro"
 import Tag from "@/components/Tag.astro"
 import Timestamp from "@/components/Timestamp"
 import PostLinks from "@/components/PostLinks.astro"
-import BackToTop from "@/components/BackToTop.astro"
 import BackButton from "@/components/BackButton.astro"
 
 import ScrollProgress from "@/components/ScrollProgress.astro"
@@ -67,7 +66,7 @@ const { Content, remarkPluginFrontmatter } = await render(
       <ul class="tag-list" hidden>
         {tags.map(tag => <Tag {tag} size="sm"/>)}
       </ul>
-      <BackToTop/>
+      <a class="back-to-top" href="#top">back to top</a>
     </footer>
 
     <PostLinks {post}/>
@@ -119,6 +118,13 @@ const { Content, remarkPluginFrontmatter } = await render(
         display: block
         :global(li)
           +padding-x(0.125rem)
+
+      .back-to-top
+        +hover-transition($opacity: 75%)
+        &::before
+          content: "#{chars.$arrow-up} "
+        &::after
+          content: " #{chars.$arrow-up}"
 </style>
 
 <ScrollProgress/>
