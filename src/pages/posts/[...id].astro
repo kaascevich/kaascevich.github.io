@@ -5,7 +5,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro"
 import Tag from "@/components/Tag.astro"
 import Timestamp from "@/components/Timestamp"
 import PostLinks from "@/components/PostLinks.astro"
-import ShareLinks from "@/components/ShareLinks.astro"
 import BackToTop from "@/components/BackToTop.astro"
 import BackButton from "@/components/BackButton.astro"
 
@@ -64,13 +63,10 @@ const { Content, remarkPluginFrontmatter } = await render(
       <Content/>
     </article>
 
-    <ul class="tag-list" hidden>
-      {tags.map(tag => <Tag {tag} size="sm"/>)}
-    </ul>
-    <hr aria-hidden={true}/>
-
     <footer>
-      <ShareLinks/>
+      <ul class="tag-list" hidden>
+        {tags.map(tag => <Tag {tag} size="sm"/>)}
+      </ul>
       <BackToTop/>
     </footer>
 
@@ -103,31 +99,24 @@ const { Content, remarkPluginFrontmatter } = await render(
 
     article
       margin-top: 2rem
-
-    .tag-list
-      display: block
-      +margin-y(2rem, 1rem)
-      @include hide-in-print
-      + hr
-        +margin-y(2rem)
-        @include desktop
-          display: none
-        @include hide-in-print
     
     footer
-      +padding-x(0rem)
+      padding-top: 2rem
       display: flex
       flex-direction: column
       align-items: center
       justify-content: space-between
-      gap: 1.5rem
+      gap: 0.5rem
       
       @include desktop
         flex-direction: row
         align-items: flex-end
         gap: 1rem
-
+      
       @include hide-in-print
+
+      .tag-list
+        display: block
 </style>
 
 <ScrollProgress/>

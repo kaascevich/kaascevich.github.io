@@ -44,32 +44,3 @@ export const SOCIALS: Social[] = [
     href: "https://steamcommunity.com/id/macOSisthebestOS/",
   },
 ]
-
-/** A list of platforms posts can be shared on. */
-export const SHARE_LINKS: Social[] = [
-  {
-    name: "WhatsApp",
-    title: "share this post via WhatsApp",
-    href: "https://wa.me/?text=",
-  },
-  {
-    name: "Telegram",
-    title: "share this post via Telegram",
-    href: "https://t.me/share/url?url=",
-  },
-  {
-    name: "Pinterest",
-    title: "share this post on Pinterest",
-    href: "https://pinterest.com/pin/create/button/?url=",
-  },
-  {
-    name: "Reddit",
-    title: "share this post on Reddit",
-    href: "https://www.reddit.com/submit?title=Check%20out%20this%20post%21&url=",
-  },
-  {
-    name: "Mail",
-    title: "share this post via email",
-    href: "mailto:?subject=See%20this%20post&body=",
-  },
-]

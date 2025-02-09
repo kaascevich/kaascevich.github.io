@@ -11,6 +11,7 @@
     
     +hover-transition($opacity: 75%)
 
-    &::before
-      content: chars.$arrow-up
+    @each $pseudo in (before, after)
+      &::#{$pseudo}
+        content: chars.$arrow-up
 </style>
