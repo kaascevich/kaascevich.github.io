@@ -1,3 +1,5 @@
+.vercel
+
 # build output
 dist/
 
@@ -17,11 +19,11 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS-specific files
-.DS_Store
-
-.vercel
-
+# lockfiles
 package-lock.json
 bun.lockb
 yarn.lock
+pnpm-lock.yaml
+
+# macOS stuff
+.DS_Store
