@@ -1,11 +1,16 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "quickfix.biome": "always"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.documentSelectors": ["**/*.svelte"],
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
