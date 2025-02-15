@@ -11,7 +11,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(await getSortedPosts(), { pageSize: PAGE_SIZE })
 }) satisfies GetStaticPaths
 
-interface Props {
+type Props = {
   page: Page<CollectionEntry<"posts">>
 }
 

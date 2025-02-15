@@ -19,33 +19,33 @@ importers:
         version: 3.2.1
       '@astrojs/svelte':
         specifier: 7.0.3
-        version: 7.0.3(@types/node@22.13.4)(astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(svelte@5.20.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
+        version: 7.0.3(@types/node@22.13.4)(astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(svelte@5.20.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
       '@astrojs/tailwind':
-        specifier: ^5.1.4
-        version: 5.1.5(astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@3.4.17)
+        specifier: ^5.1.5
+        version: 5.1.5(astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@3.4.17)
       '@eslint/js':
         specifier: ^9.20.0
         version: 9.20.0
       '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.1.1
+        specifier: ^5.1.2
         version: 5.1.2
       '@fontsource/roboto':
-        specifier: ^5.1.0
+        specifier: ^5.1.1
         version: 5.1.1
       '@iconify-json/fa6-brands':
-        specifier: ^1.2.3
+        specifier: ^1.2.5
         version: 1.2.5
       '@iconify-json/fa6-regular':
-        specifier: ^1.2.2
+        specifier: ^1.2.3
         version: 1.2.3
       '@iconify-json/fa6-solid':
-        specifier: ^1.2.2
+        specifier: ^1.2.3
         version: 1.2.3
       '@iconify-json/material-symbols':
-        specifier: ^1.2.8
+        specifier: ^1.2.14
         version: 1.2.14
       '@iconify/svelte':
-        specifier: ^4.0.2
+        specifier: ^4.2.0
         version: 4.2.0(svelte@5.20.0)
       '@robot-inventor/shell-session-syntax':
         specifier: ^3.0.0
@@ -54,34 +54,34 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       '@tailwindcss/typography':
-        specifier: ^0.5.15
+        specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
       astro:
         specifier: 5.1.6
-        version: 5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
+        version: 5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
       astro-compress:
-        specifier: ^2.3.5
-        version: 2.3.6(@types/node@22.13.4)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.63.0)(typescript@5.7.3)(yaml@2.7.0)
+        specifier: ^2.3.6
+        version: 2.3.6(@types/node@22.13.4)(jiti@2.4.2)(rollup@2.79.2)(stylus@0.63.0)(typescript@5.7.3)(yaml@2.7.0)
       astro-icon:
-        specifier: ^1.1.4
+        specifier: ^1.1.5
         version: 1.1.5
       eslint:
         specifier: ^9.20.1
-        version: 9.20.1(jiti@1.21.7)
+        version: 9.20.1(jiti@2.4.2)
       eslint-config-prettier:
         specifier: ^10.0.1
-        version: 10.0.1(eslint@9.20.1(jiti@1.21.7))
+        version: 10.0.1(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-astro:
         specifier: ^1.3.1
-        version: 1.3.1(eslint@9.20.1(jiti@1.21.7))
+        version: 1.3.1(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-svelte:
         specifier: ^2.46.1
-        version: 2.46.1(eslint@9.20.1(jiti@1.21.7))(svelte@5.20.0)
+        version: 2.46.1(eslint@9.20.1(jiti@2.4.2))(svelte@5.20.0)
       hastscript:
         specifier: ^9.0.0
         version: 9.0.0
       katex:
-        specifier: ^0.16.19
+        specifier: ^0.16.21
         version: 0.16.21
       markdown-it:
         specifier: ^14.1.0
@@ -90,10 +90,10 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       overlayscrollbars:
-        specifier: ^2.10.1
+        specifier: ^2.11.0
         version: 2.11.0
       pagefind:
-        specifier: ^1.2.0
+        specifier: ^1.3.0
         version: 1.3.0
       photoswipe:
         specifier: ^5.4.4
@@ -123,7 +123,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       remark-directive:
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: 3.0.1
       remark-directive-rehype:
         specifier: ^0.4.2
@@ -135,10 +135,10 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       remark-sectionize:
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0
       sanitize-html:
-        specifier: ^2.13.1
+        specifier: ^2.14.0
         version: 2.14.0
       sharp:
         specifier: ^0.33.5
@@ -147,13 +147,13 @@ importers:
         specifier: ^0.63.0
         version: 0.63.0
       svelte:
-        specifier: ^5.5.3
+        specifier: ^5.20.0
         version: 5.20.0
       tailwindcss:
-        specifier: ^3.4.16
+        specifier: ^3.4.17
         version: 3.4.17
       typescript:
-        specifier: ^5.7.2
+        specifier: ^5.7.3
         version: 5.7.3
       unist-util-visit:
         specifier: ^5.0.0
@@ -182,10 +182,13 @@ importers:
         version: 2.13.0
       '@typescript-eslint/parser':
         specifier: ^8.24.0
-        version: 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+        version: 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       eslint-define-config:
         specifier: ^2.1.0
         version: 2.1.0
+      jiti:
+        specifier: ^2.4.2
+        version: 2.4.2
       postcss-import:
         specifier: ^16.1.0
         version: 16.1.0(postcss@8.5.2)
@@ -197,7 +200,7 @@ importers:
         version: 3.3.3(prettier@3.5.1)(svelte@5.20.0)
       typescript-eslint:
         specifier: ^8.24.0
-        version: 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+        version: 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
 
 packages:
 
@@ -3365,6 +3368,10 @@ packages:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
 
+  jiti@2.4.2:
+    resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
+    hasBin: true
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -5679,14 +5686,14 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.2
 
-  '@astrojs/svelte@7.0.3(@types/node@22.13.4)(astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(svelte@5.20.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)':
+  '@astrojs/svelte@7.0.3(@types/node@22.13.4)(astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(svelte@5.20.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
-      astro: 5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
+      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      astro: 5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
       svelte: 5.20.0
       svelte2tsx: 0.7.34(svelte@5.20.0)(typescript@5.7.3)
       typescript: 5.7.3
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -5701,9 +5708,9 @@ snapshots:
       - tsx
       - yaml
 
-  '@astrojs/tailwind@5.1.5(astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@3.4.17)':
+  '@astrojs/tailwind@5.1.5(astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0))(tailwindcss@3.4.17)':
     dependencies:
-      astro: 5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0)
       autoprefixer: 10.4.20(postcss@8.5.2)
       postcss: 8.5.2
       postcss-load-config: 4.0.2(postcss@8.5.2)
@@ -6669,9 +6676,9 @@ snapshots:
   '@esbuild/win32-x64@0.24.2':
     optional: true
 
-  '@eslint-community/eslint-utils@4.4.1(eslint@9.20.1(jiti@1.21.7))':
+  '@eslint-community/eslint-utils@4.4.1(eslint@9.20.1(jiti@2.4.2))':
     dependencies:
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.1': {}
@@ -7135,25 +7142,25 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.12
 
-  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)))(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))':
+  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)))(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      '@sveltejs/vite-plugin-svelte': 5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
       debug: 4.4.0
       svelte: 5.20.0
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))':
+  '@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)))(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)))(svelte@5.20.0)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
       debug: 4.4.0
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.17
       svelte: 5.20.0
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
-      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
+      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -7394,15 +7401,15 @@ snapshots:
       '@types/node': 22.13.4
     optional: true
 
-  '@typescript-eslint/eslint-plugin@8.24.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3))(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)':
+  '@typescript-eslint/eslint-plugin@8.24.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+      '@typescript-eslint/parser': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/scope-manager': 8.24.0
-      '@typescript-eslint/type-utils': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
-      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+      '@typescript-eslint/type-utils': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/visitor-keys': 8.24.0
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       graphemer: 1.4.0
       ignore: 5.3.2
       natural-compare: 1.4.0
@@ -7411,14 +7418,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)':
+  '@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.24.0
       '@typescript-eslint/types': 8.24.0
       '@typescript-eslint/typescript-estree': 8.24.0(typescript@5.7.3)
       '@typescript-eslint/visitor-keys': 8.24.0
       debug: 4.4.0
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
@@ -7428,12 +7435,12 @@ snapshots:
       '@typescript-eslint/types': 8.24.0
       '@typescript-eslint/visitor-keys': 8.24.0
 
-  '@typescript-eslint/type-utils@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)':
+  '@typescript-eslint/type-utils@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/typescript-estree': 8.24.0(typescript@5.7.3)
-      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       debug: 4.4.0
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       ts-api-utils: 2.0.1(typescript@5.7.3)
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -7455,13 +7462,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)':
+  '@typescript-eslint/utils@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@1.21.7))
+      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@2.4.2))
       '@typescript-eslint/scope-manager': 8.24.0
       '@typescript-eslint/types': 8.24.0
       '@typescript-eslint/typescript-estree': 8.24.0(typescript@5.7.3)
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
@@ -7607,12 +7614,12 @@ snapshots:
       object.assign: 4.1.7
       util: 0.12.5
 
-  astro-compress@2.3.6(@types/node@22.13.4)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.63.0)(typescript@5.7.3)(yaml@2.7.0):
+  astro-compress@2.3.6(@types/node@22.13.4)(jiti@2.4.2)(rollup@2.79.2)(stylus@0.63.0)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
       '@playform/pipe': 0.1.2
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
       commander: 13.0.0
       csso: 5.0.5
       deepmerge-ts: 7.1.3
@@ -7681,7 +7688,7 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0):
+  astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
       '@astrojs/compiler': 2.10.4
       '@astrojs/internal-helpers': 0.4.2
@@ -7733,8 +7740,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.14.4
       vfile: 6.0.3
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.37.0)(yaml@2.7.0)
-      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.37.0)(yaml@2.7.0)
+      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
       which-pm: 3.0.1
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
@@ -7778,7 +7785,7 @@ snapshots:
       - uploadthing
       - yaml
 
-  astro@5.1.6(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0):
+  astro@5.1.6(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(rollup@2.79.2)(stylus@0.63.0)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
       '@astrojs/compiler': 2.10.4
       '@astrojs/internal-helpers': 0.4.2
@@ -7830,8 +7837,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.14.4
       vfile: 6.0.3
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
-      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
+      vitefu: 1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0))
       which-pm: 3.0.1
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
@@ -8598,42 +8605,42 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-compat-utils@0.5.1(eslint@9.20.1(jiti@1.21.7)):
+  eslint-compat-utils@0.5.1(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       semver: 7.7.1
 
-  eslint-compat-utils@0.6.4(eslint@9.20.1(jiti@1.21.7)):
+  eslint-compat-utils@0.6.4(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
       semver: 7.7.1
 
-  eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@1.21.7)):
+  eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
-      eslint: 9.20.1(jiti@1.21.7)
+      eslint: 9.20.1(jiti@2.4.2)
 
   eslint-define-config@2.1.0: {}
 
-  eslint-plugin-astro@1.3.1(eslint@9.20.1(jiti@1.21.7)):
+  eslint-plugin-astro@1.3.1(eslint@9.20.1(jiti@2.4.2)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@1.21.7))
+      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@2.4.2))
       '@jridgewell/sourcemap-codec': 1.5.0
       '@typescript-eslint/types': 8.24.0
       astro-eslint-parser: 1.2.1
-      eslint: 9.20.1(jiti@1.21.7)
-      eslint-compat-utils: 0.6.4(eslint@9.20.1(jiti@1.21.7))
+      eslint: 9.20.1(jiti@2.4.2)
+      eslint-compat-utils: 0.6.4(eslint@9.20.1(jiti@2.4.2))
       globals: 15.15.0
       postcss: 8.5.2
       postcss-selector-parser: 7.1.0
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-svelte@2.46.1(eslint@9.20.1(jiti@1.21.7))(svelte@5.20.0):
+  eslint-plugin-svelte@2.46.1(eslint@9.20.1(jiti@2.4.2))(svelte@5.20.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@1.21.7))
+      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@2.4.2))
       '@jridgewell/sourcemap-codec': 1.5.0
-      eslint: 9.20.1(jiti@1.21.7)
-      eslint-compat-utils: 0.5.1(eslint@9.20.1(jiti@1.21.7))
+      eslint: 9.20.1(jiti@2.4.2)
+      eslint-compat-utils: 0.5.1(eslint@9.20.1(jiti@2.4.2))
       esutils: 2.0.3
       known-css-properties: 0.35.0
       postcss: 8.5.2
@@ -8661,9 +8668,9 @@ snapshots:
 
   eslint-visitor-keys@4.2.0: {}
 
-  eslint@9.20.1(jiti@1.21.7):
+  eslint@9.20.1(jiti@2.4.2):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@1.21.7))
+      '@eslint-community/eslint-utils': 4.4.1(eslint@9.20.1(jiti@2.4.2))
       '@eslint-community/regexpp': 4.12.1
       '@eslint/config-array': 0.19.2
       '@eslint/core': 0.11.0
@@ -8698,7 +8705,7 @@ snapshots:
       natural-compare: 1.4.0
       optionator: 0.9.4
     optionalDependencies:
-      jiti: 1.21.7
+      jiti: 2.4.2
     transitivePeerDependencies:
       - supports-color
 
@@ -9465,6 +9472,8 @@ snapshots:
       supports-color: 7.2.0
 
   jiti@1.21.7: {}
+
+  jiti@2.4.2: {}
 
   js-tokens@4.0.0: {}
 
@@ -11671,12 +11680,12 @@ snapshots:
     dependencies:
       semver: 7.7.1
 
-  typescript-eslint@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3):
+  typescript-eslint@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.24.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3))(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
-      '@typescript-eslint/parser': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
-      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
-      eslint: 9.20.1(jiti@1.21.7)
+      '@typescript-eslint/eslint-plugin': 8.24.0(@typescript-eslint/parser@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/parser': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/utils': 8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      eslint: 9.20.1(jiti@2.4.2)
       typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
@@ -11843,7 +11852,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.37.0)(yaml@2.7.0):
+  vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.37.0)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.2
@@ -11851,13 +11860,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.13.4
       fsevents: 2.3.3
-      jiti: 1.21.7
+      jiti: 2.4.2
       lightningcss: 1.28.2
       stylus: 0.63.0
       terser: 5.37.0
       yaml: 2.7.0
 
-  vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0):
+  vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.2
@@ -11865,15 +11874,15 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.13.4
       fsevents: 2.3.3
-      jiti: 1.21.7
+      jiti: 2.4.2
       lightningcss: 1.28.2
       stylus: 0.63.0
       terser: 5.39.0
       yaml: 2.7.0
 
-  vitefu@1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)):
+  vitefu@1.0.5(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)):
     optionalDependencies:
-      vite: 6.1.0(@types/node@22.13.4)(jiti@1.21.7)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
+      vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.28.2)(stylus@0.63.0)(terser@5.39.0)(yaml@2.7.0)
 
   volar-service-css@0.0.62(@volar/language-service@2.4.11):
     dependencies:

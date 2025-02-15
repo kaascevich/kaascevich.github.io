@@ -5,15 +5,14 @@ import { licenseConfig, profileConfig } from "../../config"
 import { i18n } from "../../i18n/translation"
 import I18nKey from "../../i18n/i18nKey"
 
-interface Props {
+type Props = {
   title: string
   slug: string
   pubDate: Date
   class: string
 }
 
-const { title, slug, pubDate } = Astro.props
-const className = Astro.props.class
+const { title, slug, pubDate, class: className } = Astro.props
 const profileConf = profileConfig
 const licenseConf = licenseConfig
 const postUrl = decodeURIComponent(Astro.url.toString())
@@ -57,8 +56,9 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         href={licenseConf.url}
         target="_blank"
         class="link text-[var(--primary)] whitespace-nowrap"
-        >{licenseConf.name}</a
       >
+        {licenseConf.name}
+      </a>
     </div>
   </div>
   <Icon

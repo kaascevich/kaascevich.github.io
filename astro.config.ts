@@ -2,7 +2,7 @@ import sitemap from "@astrojs/sitemap"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
 import swup from "@swup/astro"
-import Compress from "astro-compress"
+import compress from "astro-compress"
 import icon from "astro-icon"
 import { defineConfig } from "astro/config"
 
@@ -60,11 +60,15 @@ export default defineConfig({
     }),
     svelte(),
     sitemap(),
-    Compress({
+    compress({
       CSS: false,
       Image: false,
       Action: {
-        Passed: async () => true, // https://github.com/PlayForm/Compress/issues/376
+        // https://github.com/PlayForm/Compress/issues/376
+        Passed: () =>
+          new Promise((resolve) => {
+            resolve(true)
+          }),
       },
     }),
   ],

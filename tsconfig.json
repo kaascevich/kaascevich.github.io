@@ -1,9 +1,9 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "baseUrl": ".",
     "strictNullChecks": true,
-    "allowJs": false,
+    "allowJs": true,
     "declaration": true,
     "plugins": [
       {
@@ -20,5 +20,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["**/*", ".*"],
+  "exclude": ["node_modules", ".astro"]
 }

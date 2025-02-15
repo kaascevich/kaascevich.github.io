@@ -5,7 +5,7 @@ import { i18n } from "../i18n/translation"
 import I18nKey from "../i18n/i18nKey"
 import { url } from "../utils/url-utils"
 
-interface Props {
+type Props = {
   class: string
   published: Date
   updated?: Date
@@ -15,6 +15,7 @@ interface Props {
   hideUpdateDate?: boolean
 }
 const {
+  class: className,
   published,
   updated,
   tags,
@@ -22,7 +23,6 @@ const {
   hideTagsForMobile = false,
   hideUpdateDate = false,
 } = Astro.props
-const className = Astro.props.class
 ---
 
 <div
@@ -39,9 +39,9 @@ const className = Astro.props.class
         class="text-xl"
       />
     </div>
-    <span class="text-50 text-sm font-medium"
-      >{formatDateToYYYYMMDD(published)}</span
-    >
+    <span class="text-50 text-sm font-medium">
+      {formatDateToYYYYMMDD(published)}
+    </span>
   </div>
 
   <!-- update date -->
@@ -89,13 +89,12 @@ const className = Astro.props.class
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       {
-        tags &&
-          tags.length > 0 &&
+        tags.length > 0 ?
           tags.map((tag, i) => (
             <>
               <div
                 class:list={[
-                  { hidden: i == 0 },
+                  { hidden: i === 0 },
                   "mx-1.5 text-[var(--meta-divider)] text-sm",
                 ]}
               >
@@ -110,13 +109,9 @@ const className = Astro.props.class
               </a>
             </>
           ))
-      }
-      {
-        !(tags && tags.length > 0) && (
-          <div class="transition text-50 text-sm font-medium">
+        : <div class="transition text-50 text-sm font-medium">
             {i18n(I18nKey.noTags)}
           </div>
-        )
       }
     </div>
   </div>

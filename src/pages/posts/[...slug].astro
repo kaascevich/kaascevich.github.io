@@ -1,6 +1,6 @@
 ---
 import path from "node:path"
-import { getCollection } from "astro:content"
+import { getCollection, type CollectionEntry } from "astro:content"
 import License from "@components/misc/License.astro"
 import Markdown from "@components/misc/Markdown.astro"
 import I18nKey from "@i18n/i18nKey"
@@ -13,8 +13,9 @@ import PostMetadata from "../../components/PostMeta.astro"
 import ImageWrapper from "../../components/misc/ImageWrapper.astro"
 import { profileConfig, siteConfig } from "../../config"
 import { formatDateToYYYYMMDD } from "../../utils/date-utils"
+import type { GetStaticPaths } from "astro"
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const blogEntries = await getCollection(
     "posts",
     (post) => import.meta.env.DEV || !post.data.draft,
@@ -23,6 +24,10 @@ export async function getStaticPaths() {
     params: { slug: entry.slug },
     props: { entry },
   }))
+}
+
+type Props = {
+  entry: CollectionEntry<"posts">
 }
 
 const { entry } = Astro.props
@@ -85,7 +90,7 @@ const jsonLd = {
           </div>
           <div class="text-sm">
             {remarkPluginFrontmatter.words}
-            {" " + i18n(I18nKey.wordsCount)}
+            {i18n(I18nKey.wordsCount)}
           </div>
         </div>
         <div class="flex flex-row items-center">
@@ -96,7 +101,7 @@ const jsonLd = {
           </div>
           <div class="text-sm">
             {remarkPluginFrontmatter.minutes}
-            {" " + i18n(I18nKey.minutesCount)}
+            {i18n(I18nKey.minutesCount)}
           </div>
         </div>
       </div>

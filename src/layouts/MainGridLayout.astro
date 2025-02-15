@@ -15,7 +15,7 @@ import {
   MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "../constants/constants"
 
-interface Props {
+type Props = {
   title?: string
   banner?: string
   description?: string
@@ -32,9 +32,11 @@ const {
   setOGTypeArticle,
   headings = [],
 } = Astro.props
+
 const hasBannerCredit =
   siteConfig.banner.enable && siteConfig.banner.credit.enable
-const hasBannerLink = !!siteConfig.banner.credit.url
+
+const hasBannerLink = Boolean(siteConfig.banner.credit.url)
 
 const mainPanelTop =
   siteConfig.banner.enable ?

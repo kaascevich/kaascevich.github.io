@@ -19,24 +19,22 @@
     const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)")
     const changeThemeWhenSchemeChanged: Parameters<
       typeof darkModePreference.addEventListener<"change">
-    >[1] = (e) => {
-      applyThemeToDocument(mode)
-    }
+    >[1] = () => applyThemeToDocument(mode)
+
     darkModePreference.addEventListener("change", changeThemeWhenSchemeChanged)
-    return () => {
+    return () =>
       darkModePreference.removeEventListener(
         "change",
         changeThemeWhenSchemeChanged,
       )
-    }
   })
 
-  function switchScheme(newMode: LIGHT_DARK_MODE) {
+  function switchScheme(newMode: LIGHT_DARK_MODE): void {
     mode = newMode
     setTheme(newMode)
   }
 
-  function toggleScheme() {
+  function toggleScheme(): void {
     let i = 0
     for (; i < seq.length; i++) {
       if (seq[i] === mode) {
@@ -46,14 +44,16 @@
     switchScheme(seq[(i + 1) % seq.length])
   }
 
-  function showPanel() {
-    const panel = document.querySelector("#light-dark-panel")
-    panel?.classList.remove("float-panel-closed")
+  function showPanel(): void {
+    document
+      .querySelector("#light-dark-panel")
+      ?.classList.remove("float-panel-closed")
   }
 
-  function hidePanel() {
-    const panel = document.querySelector("#light-dark-panel")
-    panel?.classList.add("float-panel-closed")
+  function hidePanel(): void {
+    document
+      .querySelector("#light-dark-panel")
+      ?.classList.add("float-panel-closed")
   }
 </script>
 
@@ -71,19 +71,19 @@
       <Icon
         icon="material-symbols:wb-sunny-outline-rounded"
         class="text-[1.25rem]"
-      ></Icon>
+      />
     </div>
     <div class="absolute" class:opacity-0={mode !== DARK_MODE}>
       <Icon
         icon="material-symbols:dark-mode-outline-rounded"
         class="text-[1.25rem]"
-      ></Icon>
+      />
     </div>
     <div class="absolute" class:opacity-0={mode !== AUTO_MODE}>
       <Icon
         icon="material-symbols:radio-button-partial-outline"
         class="text-[1.25rem]"
-      ></Icon>
+      />
     </div>
   </button>
 
@@ -100,7 +100,7 @@
         <Icon
           icon="material-symbols:wb-sunny-outline-rounded"
           class="text-[1.25rem] mr-3"
-        ></Icon>
+        />
         {i18n(I18nKey.lightMode)}
       </button>
       <button
@@ -111,7 +111,7 @@
         <Icon
           icon="material-symbols:dark-mode-outline-rounded"
           class="text-[1.25rem] mr-3"
-        ></Icon>
+        />
         {i18n(I18nKey.darkMode)}
       </button>
       <button
@@ -122,7 +122,7 @@
         <Icon
           icon="material-symbols:radio-button-partial-outline"
           class="text-[1.25rem] mr-3"
-        ></Icon>
+        />
         {i18n(I18nKey.systemMode)}
       </button>
     </div>

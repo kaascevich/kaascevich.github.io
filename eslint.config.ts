@@ -1,5 +1,3 @@
-/// <reference types="typescript-eslint" />
-
 import { defineFlatConfig } from "eslint-define-config"
 
 import js from "@eslint/js"
@@ -8,11 +6,9 @@ import eslintPluginAstro from "eslint-plugin-astro"
 import eslintPluginSvelte from "eslint-plugin-svelte"
 import eslintConfigPrettier from "eslint-config-prettier"
 
+// @ts-expect-error -- oh boy, I really don't wanna get into this right now
 export default defineFlatConfig([
   js.configs.recommended,
-  ...ts.configs.recommendedTypeChecked,
-  ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginSvelte.configs["flat/recommended"],
   {
     rules: {
       // possible problems
@@ -23,12 +19,16 @@ export default defineFlatConfig([
       "no-unreachable-loop": "error",
 
       // suggestions
-      camelcase: "warn",
-      "capitalized-comments": ["warn", "never"],
-      "class-methods-use-this": "warn",
+      camelcase: [
+        "warn",
+        {
+          // allow language codes
+          allow: [/[a-z]{2}_(?:[a-z]|[A-Z]){2}/.source],
+        },
+      ],
       complexity: ["warn", 15],
       "consistent-return": "error",
-      eqeqeq: "error",
+      eqeqeq: ["error", "always", { null: "ignore" }],
       "logical-assignment-operators": "error",
       "new-cap": "warn",
       "no-alert": "warn",
@@ -39,7 +39,6 @@ export default defineFlatConfig([
       "no-extra-label": "error",
       "no-implicit-coercion": "error",
       "no-implied-eval": "error",
-      "no-invalid-this": "error",
       "no-lonely-if": "error",
       "no-multi-assign": "error",
       "no-negated-condition": "error",
@@ -59,25 +58,25 @@ export default defineFlatConfig([
       "no-useless-rename": "error",
       "no-useless-return": "error",
       "no-var": "error",
-      "no-void": "error",
       "object-shorthand": "error",
-      "one-var": "error",
+      "one-var": ["error", "never"],
       "operator-assignment": "error",
       "prefer-arrow-callback": "error",
       "prefer-const": "error",
       "prefer-exponentiation-operator": "error",
       "prefer-numeric-literals": "error",
       "prefer-object-has-own": "error",
-      "prefer-object-spread": "error",
       "prefer-regex-literals": "error",
       "prefer-rest-params": "error",
-      "prefer-spread": "error",
       "prefer-template": "error",
       "require-await": "error",
       "require-yield": "error",
       strict: "error",
     },
   },
+
+  ...ts.configs.strictTypeChecked,
+  ...ts.configs.stylisticTypeChecked,
   {
     languageOptions: {
       parserOptions: {
@@ -86,6 +85,39 @@ export default defineFlatConfig([
       },
     },
   },
+  {
+    rules: {
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/consistent-type-exports": "error",
+      "@typescript-eslint/consistent-type-imports": "error",
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          allowExpressions: true,
+          allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+        },
+      ],
+      "@typescript-eslint/method-signature-style": "error",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-useless-empty-export": "error",
+      "@typescript-eslint/prefer-destructuring": "error",
+      "@typescript-eslint/prefer-readonly": "error",
+      "@typescript-eslint/prefer-ts-expect-error": "error",
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        { allowNumber: true },
+      ],
+      "@typescript-eslint/strict-boolean-expressions": "error",
+
+      "class-methods-use-this": "off",
+      "@typescript-eslint/class-methods-use-this": "error",
+      "no-loop-func": "off",
+      "@typescript-eslint/no-loop-func": "error",
+    },
+  },
+
+  ...eslintPluginAstro.configs.recommended,
+  ...eslintPluginSvelte.configs["flat/recommended"],
 
   ...eslintPluginSvelte.configs["flat/prettier"],
   eslintConfigPrettier,

@@ -7,9 +7,8 @@ import { i18n } from "../i18n/translation"
 import I18nKey from "../i18n/i18nKey"
 import { getDir } from "../utils/url-utils"
 
-interface Props {
+type Props = {
   class?: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   entry: any
   title: string
   url: string
@@ -23,6 +22,7 @@ interface Props {
   style: string
 }
 const {
+  class: className,
   entry,
   title,
   url,
@@ -34,9 +34,8 @@ const {
   description,
   style,
 } = Astro.props
-const className = Astro.props.class
 
-const hasCover = image !== undefined && image !== null && image !== ""
+const hasCover = image !== ""
 
 const coverWidth = "28%"
 
@@ -103,12 +102,12 @@ const { remarkPluginFrontmatter } = await entry.render()
     <div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition">
       <div>
         {remarkPluginFrontmatter.words}
-        {" " + i18n(I18nKey.wordsCount)}
+        {i18n(I18nKey.wordsCount)}
       </div>
       <div>|</div>
       <div>
         {remarkPluginFrontmatter.minutes}
-        {" " + i18n(I18nKey.minutesCount)}
+        {i18n(I18nKey.minutesCount)}
       </div>
     </div>
   </div>
@@ -118,11 +117,7 @@ const { remarkPluginFrontmatter } = await entry.render()
       <a
         href={url}
         aria-label={title}
-        class:list={[
-          "group",
-          "max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0",
-          "md:w-[var(--coverWidth)] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95",
-        ]}
+        class="group max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0 md:w-[var(--coverWidth)] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
       >
         <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
         <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
@@ -159,6 +154,7 @@ const { remarkPluginFrontmatter } = await entry.render()
     )
   }
 </div>
+
 <div
   class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"
 >

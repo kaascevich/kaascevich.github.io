@@ -15,7 +15,7 @@ import { Icon } from "astro-icon/components"
 </div>
 
 <style lang="stylus">
-.back-to-top-wrapper
+  .back-to-top-wrapper
     width: 3.75rem
     height: 3.75rem
     position: absolute
@@ -23,7 +23,7 @@ import { Icon } from "astro-icon/components"
     top: 0
     pointer-events: none
 
-.back-to-top-btn
+  .back-to-top-btn
     color: var(--primary)
     font-size: 2.25rem
     font-weight: bold
@@ -35,17 +35,16 @@ import { Icon } from "astro-icon/components"
     transform: translateX(5rem)
     pointer-events: auto
     i
-        font-size: 1.75rem
+      font-size: 1.75rem
     &.hide
-        transform: translateX(5rem) scale(0.9)
-        opacity: 0
-        pointer-events: none
+      transform: translateX(5rem) scale(0.9)
+      opacity: 0
+      pointer-events: none
     &:active
       transform: translateX(5rem) scale(0.9)
-
 </style>
 
-<script is:raw is:inline>
+<script is:inline>
   function backToTop() {
     window.scroll({ top: 0, behavior: "smooth" })
   }

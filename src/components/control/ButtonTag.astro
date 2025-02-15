@@ -1,11 +1,11 @@
 ---
-interface Props {
+type Props = {
   size?: string
   dot?: boolean
   href?: string
   label?: string
 }
-const { size, dot, href, label }: Props = Astro.props
+const { size, dot = false, href, label }: Props = Astro.props
 ---
 
 <a {href} aria-label={label} class="btn-regular h-8 text-sm px-3 rounded-lg">

@@ -4,8 +4,9 @@ import I18nKey from "@i18n/i18nKey"
 import { i18n } from "@i18n/translation"
 import MainGridLayout from "@layouts/MainGridLayout.astro"
 import { getSortedPosts } from "@utils/content-utils"
+import type { GetStaticPaths } from "astro"
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const posts = await getSortedPosts()
 
   const allTags = posts.reduce((acc, post) => {
@@ -14,11 +15,11 @@ export async function getStaticPaths() {
   }, new Set<string>())
 
   return Array.from(allTags).map((tag) => ({
-    params: { tag: tag },
+    params: { tag },
   }))
-}
+}) satisfies GetStaticPaths
 
-const tag = Astro.params.tag as string
+const { tag } = Astro.params
 ---
 
 <MainGridLayout
