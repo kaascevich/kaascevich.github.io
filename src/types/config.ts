@@ -1,4 +1,4 @@
-import type { AUTO_MODE, DARK_MODE, LIGHT_MODE } from '@constants/constants'
+import type { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants"
 
 export type SiteConfig = {
   title: string
@@ -13,7 +13,7 @@ export type SiteConfig = {
   banner: {
     enable: boolean
     src: string
-    position?: 'top' | 'center' | 'bottom'
+    position?: "top" | "center" | "bottom"
     credit: {
       enable: boolean
       text: string
@@ -30,7 +30,7 @@ export type SiteConfig = {
 
 export type Favicon = {
   src: string
-  theme?: 'light' | 'dark'
+  theme?: "light" | "dark"
   sizes?: string
 }
 

@@ -10,19 +10,21 @@ draft: false
 ---
 
 ## GitHub Repository Cards
-You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API. 
+You can add dynamic cards that link to GitHub repositories, on page load, the
+repository information is pulled from the GitHub API.
 
 ::github{repo="Fabrizz/MMM-OnSpotify"}
 
 Create a GitHub repository card with the code `::github{repo="<owner>/<repo>"}`.
 
-```markdown
+```md
 ::github{repo="saicaca/fuwari"}
 ```
 
 ## Admonitions
 
-Following types of admonitions are supported: `note` `tip` `important` `warning` `caution`
+Following types of admonitions are supported: `note` `tip` `important` `warning`
+`caution`
 
 :::note
 Highlights information that users should take into account, even when skimming.
@@ -46,7 +48,7 @@ Negative potential consequences of an action.
 
 ### Basic Syntax
 
-```markdown
+```md
 :::note
 Highlights information that users should take into account, even when skimming.
 :::
@@ -64,7 +66,7 @@ The title of the admonition can be customized.
 This is a note with a custom title.
 :::
 
-```markdown
+```md
 :::note[MY CUSTOM TITLE]
 This is a note with a custom title.
 :::
@@ -73,9 +75,10 @@ This is a note with a custom title.
 ### GitHub Syntax
 
 > [!TIP]
-> [The GitHub syntax](https://github.com/orgs/community/discussions/16925) is also supported.
+> [The GitHub syntax](https://github.com/orgs/community/discussions/16925) is
+> also supported.
 
-```
+```md
 > [!NOTE]
 > The GitHub syntax is also supported.
 

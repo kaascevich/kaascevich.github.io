@@ -1,41 +1,48 @@
 ---
-import '@fontsource-variable/jetbrains-mono'
-import '@fontsource-variable/jetbrains-mono/wght-italic.css'
+import "@fontsource-variable/jetbrains-mono"
+import "@fontsource-variable/jetbrains-mono/wght-italic.css"
 
 interface Props {
   class: string
 }
 const className = Astro.props.class
 ---
-<div data-pagefind-body class=`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`>
-    <!--<div class="prose dark:prose-invert max-w-none custom-md">-->
-    <!--<div class="max-w-none custom-md">-->
-    <slot/>
+
+<div
+  data-pagefind-body
+  class=`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`
+>
+  <slot />
 </div>
 
 <script>
-  const observer = new MutationObserver(addPreCopyButton);
-  observer.observe(document.body, { childList: true, subtree: true });
-  
-  document.addEventListener("DOMContentLoaded", addPreCopyButton);
+  const observer = new MutationObserver(addPreCopyButton)
+  observer.observe(document.body, { childList: true, subtree: true })
+
+  document.addEventListener("DOMContentLoaded", addPreCopyButton)
 
   function addPreCopyButton() {
-    observer.disconnect();
-    
-    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+    observer.disconnect()
+
+    let codeBlocks = Array.from(document.querySelectorAll("pre"))
 
     for (let codeBlock of codeBlocks) {
-      if (codeBlock.parentElement?.nodeName === "DIV" && codeBlock.parentElement?.classList.contains("code-block")) continue
+      if (
+        codeBlock.parentElement?.nodeName === "DIV" &&
+        codeBlock.parentElement?.classList.contains("code-block")
+      )
+        continue
 
-      let wrapper = document.createElement("div");
-      wrapper.className = "relative code-block";
+      let wrapper = document.createElement("div")
+      wrapper.className = "relative code-block"
 
-      let copyButton = document.createElement("button");
-      copyButton.className = "copy-btn btn-regular-dark absolute active:scale-90 h-8 w-8 top-2 right-2 opacity-75 text-sm p-1.5 rounded-lg transition-all ease-in-out";
+      let copyButton = document.createElement("button")
+      copyButton.className =
+        "copy-btn btn-regular-dark absolute active:scale-90 h-8 w-8 top-2 right-2 opacity-75 text-sm p-1.5 rounded-lg transition-all ease-in-out"
 
-      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.setAttribute("tabindex", "0")
       if (codeBlock.parentNode) {
-        codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+        codeBlock.parentNode.insertBefore(wrapper, codeBlock)
       }
 
       let copyIcon = `<svg class="copy-btn-icon copy-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"/></svg>`
@@ -43,24 +50,24 @@ const className = Astro.props.class
       copyButton.innerHTML = `<div>${copyIcon} ${successIcon}</div>
       `
 
-      wrapper.appendChild(codeBlock);
-      wrapper.appendChild(copyButton);
+      wrapper.appendChild(codeBlock)
+      wrapper.appendChild(copyButton)
 
-      let timeout: ReturnType<typeof setTimeout>;
+      let timeout: ReturnType<typeof setTimeout>
       copyButton.addEventListener("click", async () => {
         if (timeout) {
-            clearTimeout(timeout);
+          clearTimeout(timeout)
         }
-        let text = codeBlock?.querySelector("code")?.innerText;
-        if (text === undefined) return;
-        await navigator.clipboard.writeText(text);
-        copyButton.classList.add("success");
+        let text = codeBlock?.querySelector("code")?.innerText
+        if (text === undefined) return
+        await navigator.clipboard.writeText(text)
+        copyButton.classList.add("success")
         timeout = setTimeout(() => {
-          copyButton.classList.remove("success");
-        }, 1000);
-      });
+          copyButton.classList.remove("success")
+        }, 1000)
+      })
     }
-    
-    observer.observe(document.body, { childList: true, subtree: true });
+
+    observer.observe(document.body, { childList: true, subtree: true })
   }
 </script>

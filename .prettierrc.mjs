@@ -10,6 +10,4 @@ export default {
   semi: false,
 
   astroAllowShorthand: true,
-
-  proseWrap: "always",
 }

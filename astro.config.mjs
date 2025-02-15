@@ -1,35 +1,41 @@
-import sitemap from "@astrojs/sitemap";
-import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
-import swup from "@swup/astro";
-import Compress from "astro-compress";
-import icon from "astro-icon";
-import { defineConfig } from "astro/config";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeComponents from "rehype-components"; /* Render the custom directive content */
-import rehypeKatex from "rehype-katex";
-import rehypeSlug from "rehype-slug";
-import remarkDirective from "remark-directive"; /* Handle directives */
-import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
-import remarkMath from "remark-math";
-import remarkSectionize from "remark-sectionize";
-import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
-import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
-import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
-import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import sitemap from "@astrojs/sitemap"
+import svelte from "@astrojs/svelte"
+import tailwind from "@astrojs/tailwind"
+import swup from "@swup/astro"
+import Compress from "astro-compress"
+import icon from "astro-icon"
+import { defineConfig } from "astro/config"
 
-// https://astro.build/config
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeComponents from "rehype-components"
+import rehypeKatex from "rehype-katex"
+import rehypeSlug from "rehype-slug"
+import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs"
+import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs"
+
+import {
+  remarkDefinitionList,
+  defListHastHandlers,
+} from "remark-definition-list"
+import remarkDirective from "remark-directive"
+import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives"
+import remarkMath from "remark-math"
+import remarkSectionize from "remark-sectionize"
+
+import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js"
+import { remarkExcerpt } from "./src/plugins/remark-excerpt.js"
+import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs"
+
+import shellSession from "@robot-inventor/shell-session-syntax"
+
 export default defineConfig({
   site: "https://fuwari.vercel.app/",
   base: "/",
   trailingSlash: "always",
   integrations: [
-    tailwind(
-        {
-          nesting: true,
-        }
-    ),
+    tailwind({
+      nesting: true,
+    }),
     swup({
       theme: false,
       animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
@@ -68,6 +74,7 @@ export default defineConfig({
       remarkReadingTime,
       remarkExcerpt,
       remarkGithubAdmonitionsToDirectives,
+      remarkDefinitionList,
       remarkDirective,
       remarkSectionize,
       parseDirectiveNode,
@@ -112,6 +119,13 @@ export default defineConfig({
         },
       ],
     ],
+    remarkRehype: {
+      handlers: { ...defListHastHandlers },
+    },
+    shikiConfig: {
+      langs: [shellSession],
+      langAlias: { plist: "xml" },
+    },
   },
   vite: {
     build: {
@@ -122,11 +136,11 @@ export default defineConfig({
             warning.message.includes("is dynamically imported by") &&
             warning.message.includes("but also statically imported by")
           ) {
-            return;
+            return
           }
-          warn(warning);
+          warn(warning)
         },
       },
     },
   },
-});
+})
