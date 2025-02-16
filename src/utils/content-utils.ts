@@ -1,16 +1,14 @@
 import { getCollection, type CollectionEntry } from "astro:content"
 import I18nKey from "@i18n/i18nKey"
 import { i18n } from "@i18n/translation"
+import { elementCounts } from "./array-utils"
 
-export async function getFilteredPosts(): Promise<CollectionEntry<"posts">[]> {
-  return await getCollection(
+export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
+  const allBlogPosts = await getCollection(
     "posts",
     (post) => import.meta.env.DEV || !post.data.draft,
   )
-}
 
-export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
-  const allBlogPosts = await getFilteredPosts()
   const sorted = allBlogPosts.sort((a, b) => {
     const dateA = new Date(a.data.published)
     const dateB = new Date(b.data.published)
@@ -35,19 +33,13 @@ export type Tag = {
 }
 
 export async function getTagList(): Promise<Tag[]> {
-  const allBlogPosts = await getFilteredPosts()
+  const allBlogPosts = await getSortedPosts()
 
-  const counts: Record<string, number> = {}
-  allBlogPosts.map((post) => {
-    post.data.tags.map((tag) => {
-      counts[tag] ??= 0
-      counts[tag] += 1
-    })
-  })
+  const counts = elementCounts(allBlogPosts.flatMap((post) => post.data.tags))
 
-  return Object.keys(counts)
+  return [...counts.keys()]
     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-    .map((key) => ({ name: key, count: counts[key]! }))
+    .map((key) => ({ name: key, count: counts.get(key)! }))
 }
 
 export type Category = {
@@ -56,20 +48,17 @@ export type Category = {
 }
 
 export async function getCategoryList(): Promise<Category[]> {
-  const allBlogPosts = await getFilteredPosts()
+  const allBlogPosts = await getSortedPosts()
 
-  const counts: Record<string, number> = {}
-  allBlogPosts.map((post: CollectionEntry<"posts">) => {
-    const category =
+  const counts = elementCounts(
+    allBlogPosts.flatMap((post) =>
       post.data.category === "" ?
         i18n(I18nKey.uncategorized)
-      : post.data.category
+      : post.data.category,
+    ),
+  )
 
-    counts[category] ??= 0
-    counts[category] += 1
-  })
-
-  return Object.keys(counts)
+  return [...counts.keys()]
     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-    .map((category) => ({ name: category, count: counts[category]! }))
+    .map((category) => ({ name: category, count: counts.get(category)! }))
 }

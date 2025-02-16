@@ -4,8 +4,8 @@ import { Icon } from "astro-icon/components"
 import { url } from "../../utils/url-utils"
 type Props = {
   page: Page
-  class?: string
-  style?: string
+  class?: string | undefined
+  style?: string | undefined
 }
 
 const { page, class: className, style } = Astro.props

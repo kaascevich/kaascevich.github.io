@@ -13,8 +13,8 @@ const COLLAPSED_HEIGHT = "7.5rem"
 const isCollapsed = tags.length >= 20
 
 type Props = {
-  class?: string
-  style?: string
+  class?: string | undefined
+  style?: string | undefined
 }
 
 const { class: className, style } = Astro.props
@@ -30,12 +30,12 @@ const { class: className, style } = Astro.props
 >
   <div class="flex gap-2 flex-wrap">
     {
-      tags.map((t) => (
+      tags.map((tag) => (
         <ButtonTag
-          href={url(`/archive/tag/${t.name}/`)}
-          label={`View all posts with the ${t.name} tag`}
+          href={url(`/archive/tag/${tag.name}/`)}
+          label={`View all posts with the ${tag.name} tag`}
         >
-          {t.name}
+          {tag.name}
         </ButtonTag>
       ))
     }

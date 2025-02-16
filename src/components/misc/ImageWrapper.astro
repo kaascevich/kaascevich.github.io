@@ -1,12 +1,12 @@
 ---
 import path from "node:path"
 type Props = {
-  id?: string
+  id?: string | undefined
   src: string
-  class?: string
-  alt?: string
-  position?: string
-  basePath?: string
+  class?: string | undefined
+  alt?: string | undefined
+  position?: string | undefined
+  basePath?: string | undefined
 }
 import { Image } from "astro:assets"
 import { url } from "../../utils/url-utils"

@@ -6,9 +6,9 @@ import { getSortedPosts } from "../utils/content-utils"
 import { getPostUrlBySlug } from "../utils/url-utils"
 
 type Props = {
-  keyword?: string
-  tags?: string[]
-  categories?: string[]
+  keyword?: string | undefined
+  tags?: string[] | undefined
+  categories?: string[] | undefined
 }
 const { keyword, tags, categories } = Astro.props
 

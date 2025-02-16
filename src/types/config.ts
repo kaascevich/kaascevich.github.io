@@ -11,11 +11,11 @@ export type SiteConfig = {
   banner: {
     enable: boolean
     src: string
-    position?: "top" | "center" | "bottom"
+    position?: "top" | "center" | "bottom" | undefined
     credit: {
       enable: boolean
       text: string
-      url?: string
+      url?: string | undefined
     }
   }
   toc: {
@@ -28,8 +28,8 @@ export type SiteConfig = {
 
 export type Favicon = {
   src: string
-  theme?: "light" | "dark"
-  sizes?: string
+  theme?: "light" | "dark" | undefined
+  sizes?: string | undefined
 }
 
 export enum LinkPreset {
@@ -41,7 +41,7 @@ export enum LinkPreset {
 export type NavBarLink = {
   name: string
   url: string
-  external?: boolean
+  external?: boolean | undefined
 }
 
 export type NavBarConfig = {
@@ -49,9 +49,9 @@ export type NavBarConfig = {
 }
 
 export type ProfileConfig = {
-  avatar?: string
+  avatar?: string | undefined
   name: string
-  bio?: string
+  bio?: string | undefined
   links: {
     name: string
     url: string

@@ -6,8 +6,8 @@ import type { MarkdownHeading } from "astro"
 import TOC from "./TOC.astro"
 
 type Props = {
-  class?: string
-  headings?: MarkdownHeading[]
+  class?: string | undefined
+  headings?: MarkdownHeading[] | undefined
 }
 
 const { class: className, headings } = Astro.props

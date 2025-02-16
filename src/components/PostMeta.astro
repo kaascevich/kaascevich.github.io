@@ -8,11 +8,11 @@ import { url } from "../utils/url-utils"
 type Props = {
   class: string
   published: Date
-  updated?: Date
+  updated?: Date | undefined
   tags: string[]
   category: string
-  hideTagsForMobile?: boolean
-  hideUpdateDate?: boolean
+  hideTagsForMobile?: boolean | undefined
+  hideUpdateDate?: boolean | undefined
 }
 const {
   class: className,

@@ -19,11 +19,11 @@ import { url, pathsEqual } from "../utils/url-utils"
 import "katex/dist/katex.css"
 
 type Props = {
-  title?: string
-  banner?: string
-  description?: string
-  lang?: string
-  setOGTypeArticle?: boolean
+  title?: string | undefined
+  banner?: string | undefined
+  description?: string | undefined
+  lang?: string | undefined
+  setOGTypeArticle?: boolean | undefined
 }
 
 let { title, banner, description, lang, setOGTypeArticle = false } = Astro.props

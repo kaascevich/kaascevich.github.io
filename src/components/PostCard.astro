@@ -8,12 +8,12 @@ import I18nKey from "../i18n/i18nKey"
 import { getDir } from "../utils/url-utils"
 
 type Props = {
-  class?: string
+  class?: string | undefined
   entry: any
   title: string
   url: string
   published: Date
-  updated?: Date
+  updated?: Date | undefined
   tags: string[]
   category: string
   image: string
