@@ -4,15 +4,13 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 
 import { profileConfig, siteConfig } from "@/config"
+import type { Theme } from "@/types/config"
 import ConfigCarrier from "@components/ConfigCarrier.astro"
 import {
-  AUTO_MODE,
   BANNER_HEIGHT,
   BANNER_HEIGHT_EXTEND,
   BANNER_HEIGHT_HOME,
-  DARK_MODE,
   DEFAULT_THEME,
-  LIGHT_MODE,
   PAGE_WIDTH,
 } from "../constants/constants"
 import { defaultFavicons } from "../constants/icon"
@@ -40,7 +38,11 @@ const isHomePage = pathsEqual(Astro.url.pathname, url("/"))
 
 // define global CSS variables
 const configHue = siteConfig.themeColor.hue
-if (banner == null || typeof banner !== "string" || banner.trim() === "") {
+if (
+  banner === undefined ||
+  typeof banner !== "string" ||
+  banner.trim() === ""
+) {
   banner = siteConfig.banner.src
 }
 
@@ -114,24 +116,22 @@ const bannerOffset =
       is:inline
       define:vars={{
         DEFAULT_THEME,
-        LIGHT_MODE,
-        DARK_MODE,
-        AUTO_MODE,
         BANNER_HEIGHT_EXTEND,
         PAGE_WIDTH,
         configHue,
       }}
     >
       // load theme from local storage
+      /** @type {Theme} */
       const theme = localStorage.getItem("theme") ?? DEFAULT_THEME
       switch (theme) {
-        case LIGHT_MODE:
+        case "light":
           document.documentElement.classList.remove("dark")
           break
-        case DARK_MODE:
+        case "dark":
           document.documentElement.classList.add("dark")
           break
-        case AUTO_MODE:
+        case "auto":
           if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
             document.documentElement.classList.add("dark")
           } else {
@@ -254,7 +254,7 @@ const bannerOffset =
       if (!(tDom instanceof Node)) return // ensure the event target is an HTML Node
       for (let ig of ignores) {
         let ie = document.getElementById(ig)
-        if (ie == tDom || ie?.contains(tDom)) {
+        if (ie === tDom || ie?.contains(tDom)) {
           return
         }
       }

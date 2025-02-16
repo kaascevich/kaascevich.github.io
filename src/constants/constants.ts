@@ -1,11 +1,10 @@
+import type { Theme } from "@/types/config"
+
 export const UNCATEGORIZED = "__uncategorized__"
 
 export const PAGE_SIZE = 8
 
-export const LIGHT_MODE = "light"
-export const DARK_MODE = "dark"
-export const AUTO_MODE = "auto"
-export const DEFAULT_THEME = AUTO_MODE
+export const DEFAULT_THEME = "auto" satisfies Theme
 
 // Banner height unit: vh
 export const BANNER_HEIGHT = 35

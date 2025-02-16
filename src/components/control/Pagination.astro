@@ -82,11 +82,11 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
     }
   </div>
   <a
-    href={url(page.url.next || "")}
+    href={url(page.url.next ?? "")}
     aria-label={page.url.next ? "Next Page" : null}
     class:list={[
       "btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11",
-      { disabled: page.url.next == undefined },
+      { disabled: page.url.next === undefined },
     ]}
   >
     <Icon

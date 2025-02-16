@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { LIGHT_DARK_MODE } from "@/types/config"
-  import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants.ts"
+  import type { Theme } from "@/types/config"
   import I18nKey from "@i18n/i18nKey"
   import { i18n } from "@i18n/translation"
   import Icon from "@iconify/svelte"
@@ -11,8 +10,8 @@
   } from "@utils/setting-utils.ts"
   import { onMount } from "svelte"
 
-  const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE, AUTO_MODE]
-  let mode: LIGHT_DARK_MODE = $state(AUTO_MODE)
+  const seq: Theme[] = ["light", "dark", "auto"]
+  let mode: Theme = $state("auto")
 
   onMount(() => {
     mode = getStoredTheme()
@@ -29,7 +28,7 @@
       )
   })
 
-  function switchScheme(newMode: LIGHT_DARK_MODE): void {
+  function switchScheme(newMode: Theme): void {
     mode = newMode
     setTheme(newMode)
   }
@@ -67,19 +66,19 @@
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
-    <div class="absolute" class:opacity-0={mode !== LIGHT_MODE}>
+    <div class="absolute" class:opacity-0={mode !== "light"}>
       <Icon
         icon="material-symbols:wb-sunny-outline-rounded"
         class="text-[1.25rem]"
       />
     </div>
-    <div class="absolute" class:opacity-0={mode !== DARK_MODE}>
+    <div class="absolute" class:opacity-0={mode !== "dark"}>
       <Icon
         icon="material-symbols:dark-mode-outline-rounded"
         class="text-[1.25rem]"
       />
     </div>
-    <div class="absolute" class:opacity-0={mode !== AUTO_MODE}>
+    <div class="absolute" class:opacity-0={mode !== "auto"}>
       <Icon
         icon="material-symbols:radio-button-partial-outline"
         class="text-[1.25rem]"
@@ -94,8 +93,8 @@
     <div class="card-base float-panel p-2">
       <button
         class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
-        class:current-theme-btn={mode === LIGHT_MODE}
-        onclick={() => switchScheme(LIGHT_MODE)}
+        class:current-theme-btn={mode === "light"}
+        onclick={() => switchScheme("light")}
       >
         <Icon
           icon="material-symbols:wb-sunny-outline-rounded"
@@ -105,8 +104,8 @@
       </button>
       <button
         class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
-        class:current-theme-btn={mode === DARK_MODE}
-        onclick={() => switchScheme(DARK_MODE)}
+        class:current-theme-btn={mode === "dark"}
+        onclick={() => switchScheme("dark")}
       >
         <Icon
           icon="material-symbols:dark-mode-outline-rounded"
@@ -116,8 +115,8 @@
       </button>
       <button
         class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"
-        class:current-theme-btn={mode === AUTO_MODE}
-        onclick={() => switchScheme(AUTO_MODE)}
+        class:current-theme-btn={mode === "auto"}
+        onclick={() => switchScheme("auto")}
       >
         <Icon
           icon="material-symbols:radio-button-partial-outline"

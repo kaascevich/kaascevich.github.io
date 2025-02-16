@@ -1,10 +1,5 @@
-import type { LIGHT_DARK_MODE } from "@/types/config"
-import {
-  AUTO_MODE,
-  DARK_MODE,
-  DEFAULT_THEME,
-  LIGHT_MODE,
-} from "@constants/constants.ts"
+import type { Theme } from "@/types/config"
+import { DEFAULT_THEME } from "@constants/constants.ts"
 
 export function getDefaultHue(): number {
   const fallback = "250"
@@ -14,24 +9,25 @@ export function getDefaultHue(): number {
 
 export function getHue(): number {
   const stored = localStorage.getItem("hue")
-  return stored == null ? getDefaultHue() : Number.parseInt(stored)
+  return stored === null ? getDefaultHue() : Number.parseInt(stored)
 }
 
 export function setHue(hue: number): void {
   localStorage.setItem("hue", String(hue))
-  const r = document.querySelector<HTMLElement>(":root")
-  r?.style.setProperty("--hue", String(hue))
+  document
+    .querySelector<HTMLElement>(":root")
+    ?.style.setProperty("--hue", String(hue))
 }
 
-export function applyThemeToDocument(theme: LIGHT_DARK_MODE): void {
+export function applyThemeToDocument(theme: Theme): void {
   switch (theme) {
-    case LIGHT_MODE:
+    case "light":
       document.documentElement.classList.remove("dark")
       break
-    case DARK_MODE:
+    case "dark":
       document.documentElement.classList.add("dark")
       break
-    case AUTO_MODE:
+    case "auto":
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.documentElement.classList.add("dark")
       } else {
@@ -41,13 +37,11 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE): void {
   }
 }
 
-export function setTheme(theme: LIGHT_DARK_MODE): void {
+export function setTheme(theme: Theme): void {
   localStorage.setItem("theme", theme)
   applyThemeToDocument(theme)
 }
 
-export function getStoredTheme(): LIGHT_DARK_MODE {
-  return (
-    (localStorage.getItem("theme") as LIGHT_DARK_MODE | null) ?? DEFAULT_THEME
-  )
+export function getStoredTheme(): Theme {
+  return (localStorage.getItem("theme") as Theme | null) ?? DEFAULT_THEME
 }

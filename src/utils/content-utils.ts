@@ -1,23 +1,21 @@
 import { getCollection, type CollectionEntry } from "astro:content"
-import type { BlogPostData } from "@/types/config"
 import I18nKey from "@i18n/i18nKey"
 import { i18n } from "@i18n/translation"
 
-export async function getSortedPosts(): Promise<
-  { body: string; data: BlogPostData; slug: string }[]
-> {
-  const allBlogPosts = (await getCollection(
+export async function getFilteredPosts(): Promise<CollectionEntry<"posts">[]> {
+  return await getCollection(
     "posts",
     (post) => import.meta.env.DEV || !post.data.draft,
-  )) as unknown as { body: string; data: BlogPostData; slug: string }[]
-
-  const sorted = allBlogPosts.sort(
-    (a: { data: BlogPostData }, b: { data: BlogPostData }) => {
-      const dateA = new Date(a.data.published)
-      const dateB = new Date(b.data.published)
-      return dateA > dateB ? -1 : 1
-    },
   )
+}
+
+export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
+  const allBlogPosts = await getFilteredPosts()
+  const sorted = allBlogPosts.sort((a, b) => {
+    const dateA = new Date(a.data.published)
+    const dateB = new Date(b.data.published)
+    return dateA > dateB ? -1 : 1
+  })
 
   for (let i = 1; i < sorted.length; i += 1) {
     sorted[i]!.data.nextSlug = sorted[i - 1]!.slug
@@ -37,25 +35,19 @@ export type Tag = {
 }
 
 export async function getTagList(): Promise<Tag[]> {
-  const allBlogPosts = await getCollection<"posts">(
-    "posts",
-    (post) => import.meta.env.DEV || !post.data.draft,
-  )
+  const allBlogPosts = await getFilteredPosts()
 
-  const countMap: Record<string, number> = {}
+  const counts: Record<string, number> = {}
   allBlogPosts.map((post) => {
     post.data.tags.map((tag) => {
-      countMap[tag] ??= 0
-      countMap[tag] += 1
+      counts[tag] ??= 0
+      counts[tag] += 1
     })
   })
 
-  // sort tags
-  const keys: string[] = Object.keys(countMap).sort((a, b) =>
-    a.toLowerCase().localeCompare(b.toLowerCase()),
-  )
-
-  return keys.map((key) => ({ name: key, count: countMap[key] }))
+  return Object.keys(counts)
+    .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+    .map((key) => ({ name: key, count: counts[key]! }))
 }
 
 export type Category = {
@@ -64,30 +56,20 @@ export type Category = {
 }
 
 export async function getCategoryList(): Promise<Category[]> {
-  const allBlogPosts = await getCollection<"posts">(
-    "posts",
-    (post) => import.meta.env.DEV || !post.data.draft,
-  )
-  const count: Record<string, number> = {}
+  const allBlogPosts = await getFilteredPosts()
+
+  const counts: Record<string, number> = {}
   allBlogPosts.map((post: CollectionEntry<"posts">) => {
-    if (post.data.category === "") {
-      const ucKey = i18n(I18nKey.uncategorized)
-      count[ucKey] ??= 0
-      count[ucKey] += 1
-      return
-    }
+    const category =
+      post.data.category === "" ?
+        i18n(I18nKey.uncategorized)
+      : post.data.category
 
-    count[post.data.category] ??= 0
-    count[post.data.category]! += 1
+    counts[category] ??= 0
+    counts[category] += 1
   })
 
-  const lst = Object.keys(count).sort((a, b) => {
-    return a.toLowerCase().localeCompare(b.toLowerCase())
-  })
-
-  const ret: Category[] = []
-  for (const c of lst) {
-    ret.push({ name: c, count: count[c] })
-  }
-  return ret
+  return Object.keys(counts)
+    .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+    .map((category) => ({ name: category, count: counts[category]! }))
 }

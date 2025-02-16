@@ -95,6 +95,7 @@ export default defineFlatConfig([
         {
           allowExpressions: true,
           allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+          allowIIFEs: true,
         },
       ],
       "@typescript-eslint/method-signature-style": "error",
