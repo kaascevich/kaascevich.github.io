@@ -12,10 +12,10 @@ const COLLAPSED_HEIGHT = "7.5rem"
 
 const isCollapsed = tags.length >= 20
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
   style?: string | undefined
-}
+}>
 
 const { class: className, style } = Astro.props
 ---

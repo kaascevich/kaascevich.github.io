@@ -2,11 +2,12 @@
 import type { Page } from "astro"
 import { Icon } from "astro-icon/components"
 import { url } from "../../utils/url-utils"
-type Props = {
+
+type Props = Readonly<{
   page: Page
   class?: string | undefined
   style?: string | undefined
-}
+}>
 
 const { page, class: className, style } = Astro.props
 

@@ -1,9 +1,9 @@
 ---
-type Props = {
+type Props = Readonly<{
   href?: string | undefined
   label?: string | undefined
-}
-const { href, label }: Props = Astro.props
+}>
+const { href, label } = Astro.props
 ---
 
 <a {href} aria-label={label} class="btn-regular h-8 text-sm px-3 rounded-lg">

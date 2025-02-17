@@ -9,7 +9,7 @@ import {
 export const siteConfig: SiteConfig = {
   title: "Fuwari",
   subtitle: "Demo Site",
-  lang: "en", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
+  lang: "en",
   themeColor: {
     hue: 250,
     fixed: false,

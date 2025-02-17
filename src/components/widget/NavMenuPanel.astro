@@ -3,9 +3,9 @@ import type { NavBarLink } from "../../types/config"
 import { Icon } from "astro-icon/components"
 import { url } from "../../utils/url-utils"
 
-type Props = {
-  links: NavBarLink[]
-}
+type Props = Readonly<{
+  links: readonly NavBarLink[]
+}>
 
 const { links } = Astro.props
 ---

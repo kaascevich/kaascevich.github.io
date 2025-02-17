@@ -10,7 +10,7 @@
   } from "@utils/setting-utils.ts"
   import { onMount } from "svelte"
 
-  const seq: Theme[] = ["light", "dark", "auto"]
+  const allModes: readonly Theme[] = ["light", "dark", "auto"]
   let mode: Theme = $state("auto")
 
   onMount(() => {
@@ -34,13 +34,8 @@
   }
 
   function toggleScheme(): void {
-    let i = 0
-    for (; i < seq.length; i++) {
-      if (seq[i] === mode) {
-        break
-      }
-    }
-    switchScheme(seq[(i + 1) % seq.length])
+    const currentModeIndex = allModes.findIndex((m) => m === mode)
+    switchScheme(allModes[(currentModeIndex + 1) % allModes.length]!)
   }
 
   function showPanel(): void {

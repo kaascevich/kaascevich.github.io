@@ -16,12 +16,12 @@ import type { Favicon } from "../types/config"
 import { url, pathsEqual } from "../utils/url-utils"
 import "katex/dist/katex.css"
 
-type Props = {
+type Props = Readonly<{
   title?: string | undefined
   description?: string | undefined
   lang?: string | undefined
   setOGTypeArticle?: boolean | undefined
-}
+}>
 
 const {
   title,
@@ -48,10 +48,10 @@ const pageTitle =
     `${siteConfig.title} - ${siteConfig.subtitle}`
   : `${title} - ${siteConfig.title}`
 
-const favicons: Favicon[] =
+const favicons: readonly Favicon[] =
   siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons
 
-const siteLang = lang.replace("_", "-")
+const siteLang = lang?.replace("_", "-")
 
 const bannerOffsetByPosition = {
   top: `${BANNER_HEIGHT_EXTEND}vh`,
@@ -59,7 +59,7 @@ const bannerOffsetByPosition = {
   bottom: "0",
 }
 const bannerOffset =
-  bannerOffsetByPosition[siteConfig.banner?.position ?? "center"]
+  bannerOffsetByPosition[siteConfig.banner.position ?? "center"]
 ---
 
 <!doctype html>
@@ -240,7 +240,7 @@ const bannerOffset =
 
   const bannerEnabled = !!document.getElementById("banner-wrapper")
 
-  function setClickOutsideToClose(panel: string, ignores: string[]) {
+  function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
     document.addEventListener("click", (event) => {
       let panelDom = document.getElementById(panel)
       let tDom = event.target
@@ -387,7 +387,7 @@ const bannerOffset =
       // hide the temp high element when the transition is done
       document.getElementById("page-height-extend")?.classList.remove("hidden")
     })
-    window.swup.hooks.on("visit:end", (visit: { to: { url: string } }) => {
+    window.swup.hooks.on("visit:end", () => {
       setTimeout(() => {
         document.getElementById("page-height-extend")?.classList.add("hidden")
 

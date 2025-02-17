@@ -2,9 +2,9 @@
 import "@fontsource-variable/jetbrains-mono"
 import "@fontsource-variable/jetbrains-mono/wght-italic.css"
 
-type Props = {
+type Props = Readonly<{
   class: string
-}
+}>
 const { class: className } = Astro.props
 ---
 

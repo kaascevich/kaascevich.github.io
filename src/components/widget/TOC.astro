@@ -2,10 +2,10 @@
 import type { MarkdownHeading } from "astro"
 import { siteConfig } from "../../config"
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
-  headings: MarkdownHeading[]
-}
+  headings: readonly MarkdownHeading[]
+}>
 
 const { class: className, headings } = Astro.props
 const maxLevel = siteConfig.toc.depth
@@ -79,7 +79,7 @@ let heading1Count = 1
     headingIdxMap = new Map<string, number>()
     headings: HTMLElement[] = []
     sections: HTMLElement[] = []
-    tocEntries: HTMLAnchorElement[] = []
+    tocEntries: readonly HTMLAnchorElement[] = []
     active: boolean[] = []
     activeIndicator: HTMLElement | null = null
 
@@ -90,7 +90,7 @@ let heading1Count = 1
       })
     }
 
-    markVisibleSection = (entries: IntersectionObserverEntry[]) => {
+    markVisibleSection = (entries: readonly IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         const id = entry.target.children[0]?.getAttribute("id")
         const idx = id ? this.headingIdxMap.get(id) : undefined

@@ -27,12 +27,12 @@ export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
   return sorted
 }
 
-export type Tag = {
+export type Tag = Readonly<{
   name: string
   count: number
-}
+}>
 
-export async function getTagList(): Promise<Tag[]> {
+export async function getTagList(): Promise<readonly Tag[]> {
   const allBlogPosts = await getSortedPosts()
 
   const counts = elementCounts(allBlogPosts.flatMap((post) => post.data.tags))
@@ -42,12 +42,12 @@ export async function getTagList(): Promise<Tag[]> {
     .map((key) => ({ name: key, count: counts.get(key)! }))
 }
 
-export type Category = {
+export type Category = Readonly<{
   name: string
   count: number
-}
+}>
 
-export async function getCategoryList(): Promise<Category[]> {
+export async function getCategoryList(): Promise<readonly Category[]> {
   const allBlogPosts = await getSortedPosts()
 
   const counts = elementCounts(

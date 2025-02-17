@@ -14,10 +14,10 @@ const COLLAPSE_THRESHOLD = 5
 
 const isCollapsed = categories.length >= COLLAPSE_THRESHOLD
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
   style?: string | undefined
-}
+}>
 
 const { class: className, style } = Astro.props
 ---

@@ -2,15 +2,12 @@
 import Profile from "./Profile.astro"
 import Tag from "./Tags.astro"
 import Categories from "./Categories.astro"
-import type { MarkdownHeading } from "astro"
-import TOC from "./TOC.astro"
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
-  headings?: MarkdownHeading[] | undefined
-}
+}>
 
-const { class: className, headings } = Astro.props
+const { class: className } = Astro.props
 ---
 
 <div id="sidebar" class:list={[className, "w-full"]}>

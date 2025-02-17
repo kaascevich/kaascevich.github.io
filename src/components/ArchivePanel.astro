@@ -5,10 +5,10 @@ import { i18n } from "../i18n/translation"
 import { getSortedPosts } from "../utils/content-utils"
 import { getPostUrlByID } from "../utils/url-utils"
 
-type Props = {
-  tags?: string[] | undefined
-  categories?: string[] | undefined
-}
+type Props = Readonly<{
+  tags?: readonly string[] | undefined
+  categories?: readonly string[] | undefined
+}>
 const { tags, categories } = Astro.props
 
 let posts = await getSortedPosts()
@@ -39,7 +39,7 @@ function formatDate(date: Date): string {
   return `${month}-${day}`
 }
 
-function formatTag(tag: string[]): string {
+function formatTag(tag: readonly string[]): string {
   return tag.map((t) => `#${t}`).join(" ")
 }
 ---

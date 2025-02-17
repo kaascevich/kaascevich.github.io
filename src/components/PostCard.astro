@@ -8,12 +8,13 @@ import I18nKey from "../i18n/i18nKey"
 import { getDir } from "../utils/url-utils"
 import { render, type CollectionEntry } from "astro:content"
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
   entry: CollectionEntry<"posts">
   url: string
   style: string
-} & CollectionEntry<"posts">["data"]
+}> &
+  CollectionEntry<"posts">["data"]
 
 const {
   class: className,
