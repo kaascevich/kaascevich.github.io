@@ -11,17 +11,10 @@ import { render, type CollectionEntry } from "astro:content"
 type Props = {
   class?: string | undefined
   entry: CollectionEntry<"posts">
-  title: string
   url: string
-  published: Date
-  updated?: Date | undefined
-  tags: string[]
-  category: string
-  image: string
-  description: string
-  draft: boolean
   style: string
-}
+} & CollectionEntry<"posts">["data"]
+
 const {
   class: className,
   entry,
@@ -36,8 +29,6 @@ const {
   style,
 } = Astro.props
 
-const hasCover = image !== ""
-
 const coverWidth = "28%"
 
 const { remarkPluginFrontmatter } = await render(entry)
@@ -51,13 +42,9 @@ const { remarkPluginFrontmatter } = await render(entry)
   {style}
 >
   <div
-    class:list={[
-      "pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative",
-      {
-        "w-full md:w-[calc(100%_-_52px_-_12px)]": !hasCover,
-        "w-full md:w-[calc(100%_-_var(--coverWidth)_-_12px)]": hasCover,
-      },
-    ]}
+    class={`pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full md:w-[calc(100%_-_${
+      image === undefined ? "52px" : "var(--coverWidth)"
+    }_-_12px)]`}
   >
     <a
       href={url}
@@ -93,10 +80,10 @@ const { remarkPluginFrontmatter } = await render(entry)
     <div
       class:list={[
         "transition text-75 mb-3.5 pr-4",
-        { "line-clamp-2 md:line-clamp-1": description === "" },
+        { "line-clamp-2 md:line-clamp-1": description === undefined },
       ]}
     >
-      {description === "" ? remarkPluginFrontmatter.excerpt : description}
+      {description ?? remarkPluginFrontmatter.excerpt}
     </div>
 
     <!-- word count and read time  -->
@@ -126,31 +113,7 @@ const { remarkPluginFrontmatter } = await render(entry)
   </div>
 
   {
-    hasCover && (
-      <a
-        href={url}
-        aria-label={title}
-        class="group max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0 md:w-[var(--coverWidth)] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
-      >
-        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
-        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
-          <Icon
-            name="material-symbols:chevron-right-rounded"
-            class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl"
-          />
-        </div>
-        <ImageWrapper
-          src={image}
-          basePath={path.join("content/posts/", getDir(entry.id))}
-          alt="Cover Image of the Post"
-          class="w-full h-full"
-        />
-      </a>
-    )
-  }
-
-  {
-    !hasCover && (
+    image === undefined ?
       <a
         href={url}
         aria-label={title}
@@ -164,7 +127,25 @@ const { remarkPluginFrontmatter } = await render(entry)
           class="transition text-[var(--primary)] text-4xl mx-auto"
         />
       </a>
-    )
+    : <a
+        href={url}
+        aria-label={title}
+        class="group max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0 md:w-[var(--coverWidth)] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
+      >
+        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
+        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
+          <Icon
+            name="material-symbols:chevron-right-rounded"
+            class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl"
+          />
+        </div>
+        <ImageWrapper
+          src={image}
+          basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
+          alt="Cover Image of the Post"
+          class="w-full h-full"
+        />
+      </a>
   }
 </div>
 

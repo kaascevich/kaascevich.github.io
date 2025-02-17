@@ -12,8 +12,7 @@ export async function GET(context: APIContext): Promise<Response> {
 
   return rss({
     title: siteConfig.title,
-    description:
-      siteConfig.subtitle === "" ? "No description" : siteConfig.subtitle,
+    description: siteConfig.subtitle ?? "No description",
     site: context.site ?? "https://fuwari.vercel.app",
     items: blog.map((post) => ({
       title: post.data.title,

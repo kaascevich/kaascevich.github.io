@@ -54,7 +54,7 @@ import Testing
 @Suite("Expression evaluation") struct ExpressionEvaluationTests {
   @Test("Single number")
   func singleNumber() {
-    #expect(Expression.number(15).evaluate() == Value.number(15)) // [!code error]
+    #expect(Expression.number(15).evaluate() == Value.number(15))
   }
 }
 ```

@@ -11,67 +11,64 @@ export const siteConfig: SiteConfig = {
   subtitle: "Demo Site",
   lang: "en", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
   themeColor: {
-    hue: 250, // default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-    fixed: false, // hide the theme color picker for visitors
+    hue: 250,
+    fixed: false,
   },
   banner: {
-    enable: false,
-    src: "assets/images/demo-banner.png", // relative to the /src directory. Relative to the /public directory if it starts with '/'
-    position: "center", // equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
+    enable: true,
+    src: "assets/images/banner.png",
+    position: "center",
     credit: {
-      enable: false, // display the credit text of the banner image
-      text: "", // credit text to be displayed
-      url: "", // (Optional) URL link to the original artwork or artist's page
+      enable: true,
+      text: "Basic Apple Guy",
+      url: "https://basicappleguy.com/basicappleblog/strokes",
     },
   },
   toc: {
-    enable: true, // display the table of contents on the right side of the post
-    depth: 3, // maximum heading depth to show in the table, from 1 to 3
+    enable: true,
+    depth: 3,
   },
-  favicon: [
-    // leave this array empty to use the default favicon
-    // {
-    //   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
-    //   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-    //   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-    // }
-  ],
+  favicon: [],
 }
 
 export const navBarConfig: NavBarConfig = {
   links: [
-    LinkPreset.Home,
     LinkPreset.Archive,
     LinkPreset.About,
     {
       name: "GitHub",
-      url: "https://github.com/saicaca/fuwari", // internal links should not include the base path, as it is automatically added
+      url: "https://github.com/kaascevich", // internal links should not include the base path, as it is automatically added
       external: true, // show an external link icon and will open in a new tab
     },
   ],
 }
 
 export const profileConfig: ProfileConfig = {
-  avatar: "assets/images/demo-avatar.png", // relative to the /src directory. Relative to the /public directory if it starts with '/'
-  name: "Lorem Ipsum",
+  avatar: "assets/images/demo-avatar.png",
+  name: "Kaleb Ascevich",
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   links: [
     {
-      name: "Twitter",
-      icon: "fa6-brands:twitter", // visit https://icones.js.org/ for icon codes
+      name: "GitHub",
+      icon: "fa6-brands:github", // visit https://icones.js.org/ for icon codes
       // you will need to install the corresponding icon set if it's not already included
       // `pnpm add @iconify-json/<icon-set-name>`
-      url: "https://twitter.com",
+      url: "https://github.com/kaascevich",
+    },
+    {
+      name: "Discord",
+      icon: `fa6-brands:discord`,
+      url: "https://discord.com/users/1181742723917688882",
     },
     {
       name: "Steam",
       icon: "fa6-brands:steam",
-      url: "https://store.steampowered.com",
+      url: "https://steamcommunity.com/id/macOSisthebestOS/",
     },
     {
-      name: "GitHub",
-      icon: "fa6-brands:github",
-      url: "https://github.com/saicaca/fuwari",
+      name: "Mail",
+      icon: `fa6-regular:envelope`,
+      url: "mailto:cloths-fringe0s@icloud.com",
     },
   ],
 }

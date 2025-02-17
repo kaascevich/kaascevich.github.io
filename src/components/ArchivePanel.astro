@@ -23,9 +23,7 @@ if (Array.isArray(tags) && tags.length > 0) {
 
 if (categories !== undefined && categories.length > 0) {
   posts = posts.filter((post) =>
-    categories.includes(
-      post.data.category === "" ? UNCATEGORIZED : post.data.category,
-    ),
+    categories.includes(post.data.category ?? UNCATEGORIZED),
   )
 }
 

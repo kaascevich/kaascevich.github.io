@@ -67,6 +67,8 @@ let package = Package(
 
 Let's fix this up, and add a dependency on `swift-parsing` while we're at it:
 
+::github{repo="pointfreeco/swift-parsing"}
+
 ```swift
 // swift-tools-version: 6.0
 

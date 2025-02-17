@@ -11,7 +11,7 @@ export function parseDirectiveNode() {
         node.type === "textDirective"
       ) {
         node.data ||= {}
-        const data = node.data
+        const { data } = node
         node.attributes ||= {}
         if (node.children.length > 0 && node.children[0].data?.directiveLabel) {
           // Add a flag to the node to indicate that it has a directive label

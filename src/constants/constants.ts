@@ -4,7 +4,7 @@ export const UNCATEGORIZED = "__uncategorized__"
 
 export const PAGE_SIZE = 8
 
-export const DEFAULT_THEME = "auto" satisfies Theme
+export const DEFAULT_THEME: Theme = "auto"
 
 // Banner height unit: vh
 export const BANNER_HEIGHT = 35

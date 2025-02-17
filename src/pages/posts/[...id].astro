@@ -35,8 +35,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: entry.data.title,
-  description:
-    entry.data.description === "" ? entry.data.title : entry.data.description,
+  description: entry.data.description ?? entry.data.title,
   keywords: entry.data.tags,
   author: {
     "@type": "Person",
@@ -44,15 +43,11 @@ const jsonLd = {
     url: Astro.site,
   },
   datePublished: formatDateToYYYYMMDD(entry.data.published),
-  inLanguage:
-    entry.data.lang === "" ?
-      siteConfig.lang.replace("_", "-")
-    : entry.data.lang.replace("_", "-"),
+  inLanguage: (entry.data.lang ?? siteConfig.lang).replace("_", "-"),
 }
 ---
 
 <MainGridLayout
-  banner={entry.data.image}
   title={entry.data.title}
   description={entry.data.description}
   lang={entry.data.lang}
@@ -65,15 +60,13 @@ const jsonLd = {
     type="application/ld+json"
     set:html={JSON.stringify(jsonLd)}
   />
+
   <div
     class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4"
   >
     <div
       id="post-container"
-      class:list={[
-        "card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ",
-        {},
-      ]}
+      class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full"
     >
       <!-- word count and reading time -->
       <div
@@ -125,18 +118,18 @@ const jsonLd = {
           category={entry.data.category}
         />
         {
-          entry.data.image === "" && (
+          entry.data.image === undefined && (
             <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5" />
           )
         }
       </div>
 
       {
-        entry.data.image !== "" && (
+        entry.data.image !== undefined && (
           <ImageWrapper
             id="post-cover"
             src={entry.data.image}
-            basePath={path.join("content/posts/", getDir(entry.id))}
+            basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
             class="mb-8 rounded-xl banner-container onload-animation"
           />
         )
@@ -162,14 +155,16 @@ const jsonLd = {
     class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"
   >
     <a
-      href={entry.data.nextID === "" ? "#" : getPostUrlByID(entry.data.nextID)}
+      href={entry.data.nextID === undefined ?
+        "#"
+      : getPostUrlByID(entry.data.nextID)}
       class:list={[
         "w-full font-bold overflow-hidden active:scale-95",
-        { "pointer-events-none": entry.data.nextID === "" },
+        { "pointer-events-none": entry.data.nextID === undefined },
       ]}
     >
       {
-        entry.data.nextID !== "" && (
+        entry.data.nextID !== undefined && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
             <Icon
               name="material-symbols:chevron-left-rounded"
@@ -184,14 +179,16 @@ const jsonLd = {
     </a>
 
     <a
-      href={entry.data.prevID === "" ? "#" : getPostUrlByID(entry.data.prevID)}
+      href={entry.data.prevID === undefined ?
+        "#"
+      : getPostUrlByID(entry.data.prevID)}
       class:list={[
         "w-full font-bold overflow-hidden active:scale-95",
-        { "pointer-events-none": entry.data.prevID === "" },
+        { "pointer-events-none": entry.data.prevID === undefined },
       ]}
     >
       {
-        entry.data.prevID !== "" && (
+        entry.data.prevID !== undefined && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
               {entry.data.prevTitle}

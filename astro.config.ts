@@ -10,8 +10,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeComponents from "rehype-components"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
-import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs"
-import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs"
+import { admonitionComponent } from "./src/plugins/rehype-component-admonition.mjs"
+import { githubCardComponent } from "./src/plugins/rehype-component-github-card.mjs"
 
 import {
   remarkDefinitionList,
@@ -90,12 +90,17 @@ export default defineConfig({
         rehypeComponents,
         {
           components: {
-            github: GithubCardComponent,
-            note: (x, y) => AdmonitionComponent(x, y, "note"),
-            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-            important: (x, y) => AdmonitionComponent(x, y, "important"),
-            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+            github: githubCardComponent,
+            note: (properties, children) =>
+              admonitionComponent(properties, children, "note"),
+            tip: (properties, children) =>
+              admonitionComponent(properties, children, "tip"),
+            important: (properties, children) =>
+              admonitionComponent(properties, children, "important"),
+            caution: (properties, children) =>
+              admonitionComponent(properties, children, "caution"),
+            warning: (properties, children) =>
+              admonitionComponent(properties, children, "warning"),
           },
         },
       ],

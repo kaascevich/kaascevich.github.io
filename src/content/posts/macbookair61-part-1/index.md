@@ -1,6 +1,6 @@
 ---
 title: MacBookAir6,1 (part 1)
-published: 2024-09-27
+published: 2024-09-26
 description: Putting far too much effort into an obsolete MacBook
 tags: [Mac, Linux, NixOS]
 category: Tech

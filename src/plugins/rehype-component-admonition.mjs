@@ -10,7 +10,7 @@ import { h } from "hastscript"
  * @param {import("mdast").RootContent[]} children - The children elements of the component.
  * @returns {import("mdast").Parent} The created admonition component.
  */
-export function AdmonitionComponent(properties, children, type) {
+export function admonitionComponent(properties, children, type) {
   if (!Array.isArray(children) || children.length === 0)
     return h(
       "div",

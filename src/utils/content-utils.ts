@@ -51,10 +51,8 @@ export async function getCategoryList(): Promise<Category[]> {
   const allBlogPosts = await getSortedPosts()
 
   const counts = elementCounts(
-    allBlogPosts.flatMap((post) =>
-      post.data.category === "" ?
-        i18n(I18nKey.uncategorized)
-      : post.data.category,
+    allBlogPosts.flatMap(
+      (post) => post.data.category ?? i18n(I18nKey.uncategorized),
     ),
   )
 

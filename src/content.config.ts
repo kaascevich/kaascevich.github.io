@@ -1,12 +1,12 @@
 import { glob } from "astro/loaders"
 import { defineCollection, z } from "astro:content"
 
-function internalOnly(name: string): z.ZodEffects<z.ZodDefault<z.ZodString>> {
+function internalOnly(name: string): z.ZodEffects<z.ZodOptional<z.ZodString>> {
   return z
     .string()
-    .default("")
+    .optional()
     .refine(
-      (value) => value === "",
+      (value) => value === undefined,
       `\`${name}\` is for internal use only and must not be specified`,
     )
 }
@@ -23,7 +23,7 @@ const postsCollection = defineCollection({
   schema: z
     .object({
       /** The title of the post. */
-      title: z.string(),
+      title: z.string().nonempty(),
       /** The date the post was published. */
       published: z.date(),
       /** The date the post was last updated. */
@@ -35,7 +35,7 @@ const postsCollection = defineCollection({
        */
       draft: z.boolean().optional().default(false),
       /** The description of the post. */
-      description: z.string(),
+      description: z.string().nonempty().optional(),
       /**
        * The cover image for the post.
        *
@@ -45,7 +45,7 @@ const postsCollection = defineCollection({
        * - Otherwise, it's interpreted as a path relative to the post's Markdown
        *   file.
        */
-      image: z.string().optional().default(""),
+      image: z.string().nonempty().optional(),
       /**
        * A list of the post's tags.
        *
@@ -60,9 +60,9 @@ const postsCollection = defineCollection({
           "tags array must not contain duplicates",
         ),
       /** The category of the post. */
-      category: z.string().optional().default(""),
+      category: z.string().nonempty().optional(),
       /** The language the post was written in. */
-      lang: z.string().optional().default(""),
+      lang: z.string().nonempty().optional(),
     })
     .readonly()
     .and(internalProperties),

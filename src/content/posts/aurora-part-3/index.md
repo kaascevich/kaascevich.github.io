@@ -42,6 +42,8 @@ let package = Package(
 )
 ```
 
+::github{repo="apple/swift-argument-parser"}
+
 Next, create a new Swift file:
 
 ```console
@@ -179,7 +181,7 @@ import Aurora
   func run() throws {
     while true {
       // ...
-      let parsed = try ExpressionParser().parse(line) // [!code error]
+      let parsed = try ExpressionParser().parse(line)
       dump(parsed)
     }
   }
