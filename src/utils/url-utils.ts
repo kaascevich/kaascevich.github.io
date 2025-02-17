@@ -1,5 +1,5 @@
-import i18nKey from "@i18n/i18nKey"
-import { i18n } from "@i18n/translation"
+import i18nKey from "@/i18n/i18nKey"
+import { i18n } from "@/i18n/translation"
 
 export function pathsEqual(path1: string, path2: string): boolean {
   const normalize = (path: string): string =>

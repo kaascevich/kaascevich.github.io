@@ -4,7 +4,7 @@ import {
   type ProfileConfig,
   type SiteConfig,
   LinkPreset,
-} from "./types/config"
+} from "@/types/config"
 
 export const siteConfig: SiteConfig = {
   title: "Fuwari",

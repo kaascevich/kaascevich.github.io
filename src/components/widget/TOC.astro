@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro"
-import { siteConfig } from "../../config"
+import { siteConfig } from "@/config"
 
 type Props = Readonly<{
   class?: string | undefined
@@ -94,7 +94,7 @@ let heading1Count = 1
       entries.forEach((entry) => {
         const id = entry.target.children[0]?.getAttribute("id")
         const idx = id ? this.headingIdxMap.get(id) : undefined
-        if (idx != undefined) this.active[idx] = entry.isIntersecting
+        if (idx !== undefined) this.active[idx] = entry.isIntersecting
 
         if (
           entry.isIntersecting &&

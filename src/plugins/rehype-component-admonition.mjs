@@ -19,7 +19,7 @@ export function admonitionComponent(properties, children, type) {
     )
 
   let label = null
-  if (properties?.["has-directive-label"]) {
+  if (properties["has-directive-label"]) {
     ;[label] = children // The first child is the label
     children.shift()
     label.tagName = "div" // Change the tag <p> to <div>

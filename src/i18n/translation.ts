@@ -1,12 +1,12 @@
-import { siteConfig } from "../config"
-import type I18nKey from "./i18nKey"
-import { en } from "./languages/en"
-import { es } from "./languages/es"
-import { ja } from "./languages/ja"
-import { ko } from "./languages/ko"
-import { th } from "./languages/th"
-import { zh_CN } from "./languages/zh_CN"
-import { zh_TW } from "./languages/zh_TW"
+import { siteConfig } from "@/config"
+import type I18nKey from "@/i18n/i18nKey"
+import { en } from "@/i18n/languages/en"
+import { es } from "@/i18n/languages/es"
+import { ja } from "@/i18n/languages/ja"
+import { ko } from "@/i18n/languages/ko"
+import { th } from "@/i18n/languages/th"
+import { zh_CN } from "@/i18n/languages/zh_CN"
+import { zh_TW } from "@/i18n/languages/zh_TW"
 
 export type Translation = Readonly<Record<I18nKey, string>>
 
@@ -30,6 +30,5 @@ const map = {
 export type Lang = keyof typeof map
 
 export function i18n(key: I18nKey): string {
-  const lang = siteConfig.lang ?? "en"
-  return map[lang][key]
+  return map[siteConfig.lang][key]
 }

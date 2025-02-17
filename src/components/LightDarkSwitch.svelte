@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { Theme } from "@/types/config"
-  import I18nKey from "@i18n/i18nKey"
-  import { i18n } from "@i18n/translation"
+  import I18nKey from "@/i18n/i18nKey"
+  import { i18n } from "@/i18n/translation"
   import Icon from "@iconify/svelte"
   import {
     applyThemeToDocument,
     getStoredTheme,
     setTheme,
-  } from "@utils/setting-utils.ts"
+  } from "@/utils/setting-utils.ts"
   import { onMount } from "svelte"
 
   const allModes: readonly Theme[] = ["light", "dark", "auto"]

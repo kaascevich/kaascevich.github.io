@@ -1,4 +1,4 @@
-import type { Lang } from "@i18n/translation"
+import type { Lang } from "@/i18n/translation"
 
 /** Site-wide configuration. */
 export type SiteConfig = Readonly<{
@@ -8,7 +8,7 @@ export type SiteConfig = Readonly<{
   subtitle?: string | undefined
 
   /** The primary language of the site. */
-  lang?: Lang | undefined
+  lang: Lang
 
   themeColor: Readonly<{
     /** The default theme hue, from 0 to 360. */

@@ -1,5 +1,5 @@
 import type { Theme } from "@/types/config"
-import { DEFAULT_THEME } from "@constants/constants.ts"
+import { DEFAULT_THEME } from "@/constants/constants.ts"
 
 export function getDefaultHue(): number {
   const fallback = "250"
