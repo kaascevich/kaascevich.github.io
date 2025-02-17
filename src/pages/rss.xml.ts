@@ -12,14 +12,15 @@ export async function GET(context: APIContext): Promise<Response> {
 
   return rss({
     title: siteConfig.title,
-    description: siteConfig.subtitle || "No description",
+    description:
+      siteConfig.subtitle === "" ? "No description" : siteConfig.subtitle,
     site: context.site ?? "https://fuwari.vercel.app",
     items: blog.map((post) => ({
       title: post.data.title,
       pubDate: post.data.published,
-      description: post.data.description || "",
-      link: `/posts/${post.slug}/`,
-      content: sanitizeHtml(parser.render(post.body), {
+      description: post.data.description,
+      link: `/posts/${post.id}/`,
+      content: sanitizeHtml(parser.render(post.body!), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
     })),

@@ -37,7 +37,7 @@ let heading1Count = 1
               },
             ]}
           >
-            {heading.depth === minDepth && heading1Count++}
+            {heading.depth === minDepth && (heading1Count += 1)}
             {heading.depth === minDepth + 1 && (
               <div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]" />
             )}
@@ -112,27 +112,27 @@ let heading1Count = 1
       let min = this.active.length - 1,
         max = 0
       while (i >= 0 && !this.active[i]) {
-        this.tocEntries[i].classList.remove(this.visibleClass)
+        this.tocEntries[i]!.classList.remove(this.visibleClass)
         i--
       }
       while (i >= 0 && this.active[i]) {
-        this.tocEntries[i].classList.add(this.visibleClass)
+        this.tocEntries[i]!.classList.add(this.visibleClass)
         min = Math.min(min, i)
         max = Math.max(max, i)
         i--
       }
       while (i >= 0) {
-        this.tocEntries[i].classList.remove(this.visibleClass)
+        this.tocEntries[i]!.classList.remove(this.visibleClass)
         i--
       }
       let parentOffset = this.tocEl?.getBoundingClientRect().top || 0
       let scrollOffset = this.tocEl?.scrollTop || 0
       let top =
-        this.tocEntries[min].getBoundingClientRect().top -
+        this.tocEntries[min]!.getBoundingClientRect().top -
         parentOffset +
         scrollOffset
       let bottom =
-        this.tocEntries[max].getBoundingClientRect().bottom -
+        this.tocEntries[max]!.getBoundingClientRect().bottom -
         parentOffset +
         scrollOffset
       this.activeIndicator?.setAttribute(
@@ -152,8 +152,8 @@ let heading1Count = 1
       )
       if (!activeHeading.length) return
 
-      const topmost = activeHeading[0]
-      const bottommost = activeHeading[activeHeading.length - 1]
+      const topmost = activeHeading[0]!
+      const bottommost = activeHeading[activeHeading.length - 1]!
       const tocHeight = this.tocEl.clientHeight
 
       let top
@@ -185,8 +185,8 @@ let heading1Count = 1
       if (!this.sections.length) return
 
       for (let i = 0; i < this.sections.length; i++) {
-        let offsetTop = this.sections[i].getBoundingClientRect().top
-        let offsetBottom = this.sections[i].getBoundingClientRect().bottom
+        let offsetTop = this.sections[i]!.getBoundingClientRect().top
+        let offsetBottom = this.sections[i]!.getBoundingClientRect().bottom
 
         if (
           this.isInRange(offsetTop, 0, window.innerHeight) ||
@@ -211,7 +211,7 @@ let heading1Count = 1
         const id = decodeURIComponent(anchor.hash?.substring(1))
         const idx = this.headingIdxMap.get(id)
         if (idx !== undefined) {
-          this.anchorNavTarget = this.headings[idx]
+          this.anchorNavTarget = this.headings[idx]!
         } else {
           this.anchorNavTarget = null
         }
@@ -258,7 +258,7 @@ let heading1Count = 1
       this.sections = new Array(this.tocEntries.length)
       this.headings = new Array(this.tocEntries.length)
       for (let i = 0; i < this.tocEntries.length; i++) {
-        const id = decodeURIComponent(this.tocEntries[i].hash?.substring(1))
+        const id = decodeURIComponent(this.tocEntries[i]!.hash?.substring(1))
         const heading = document.getElementById(id)
         const section = heading?.parentElement
         if (heading instanceof HTMLElement && section instanceof HTMLElement) {

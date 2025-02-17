@@ -1,12 +1,12 @@
 ---
 import path from "node:path"
-import type { CollectionEntry } from "astro:content"
+import { render, type CollectionEntry } from "astro:content"
 import License from "@components/misc/License.astro"
 import Markdown from "@components/misc/Markdown.astro"
 import I18nKey from "@i18n/i18nKey"
 import { i18n } from "@i18n/translation"
 import MainGridLayout from "@layouts/MainGridLayout.astro"
-import { getDir, getPostUrlBySlug } from "@utils/url-utils"
+import { getDir, getPostUrlByID } from "@utils/url-utils"
 import { Icon } from "astro-icon/components"
 import { licenseConfig } from "src/config"
 import PostMetadata from "../../components/PostMeta.astro"
@@ -19,7 +19,7 @@ import type { GetStaticPaths } from "astro"
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogEntries = await getSortedPosts()
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id },
     props: { entry },
   }))
 }
@@ -29,15 +29,14 @@ type Props = {
 }
 
 const { entry } = Astro.props
-const { Content, headings } = await entry.render()
-
-const { remarkPluginFrontmatter } = await entry.render()
+const { Content, headings, remarkPluginFrontmatter } = await render(entry)
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: entry.data.title,
-  description: entry.data.description || entry.data.title,
+  description:
+    entry.data.description === "" ? entry.data.title : entry.data.description,
   keywords: entry.data.tags,
   author: {
     "@type": "Person",
@@ -46,9 +45,9 @@ const jsonLd = {
   },
   datePublished: formatDateToYYYYMMDD(entry.data.published),
   inLanguage:
-    entry.data.lang ?
-      entry.data.lang.replace("_", "-")
-    : siteConfig.lang.replace("_", "-"),
+    entry.data.lang === "" ?
+      siteConfig.lang.replace("_", "-")
+    : entry.data.lang.replace("_", "-"),
 }
 ---
 
@@ -126,14 +125,14 @@ const jsonLd = {
           category={entry.data.category}
         />
         {
-          !entry.data.image && (
+          entry.data.image === "" && (
             <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5" />
           )
         }
       </div>
 
       {
-        entry.data.image && (
+        entry.data.image !== "" && (
           <ImageWrapper
             id="post-cover"
             src={entry.data.image}
@@ -151,7 +150,6 @@ const jsonLd = {
         licenseConfig.enable && (
           <License
             title={entry.data.title}
-            slug={entry.slug}
             pubDate={entry.data.published}
             class="mb-6 rounded-xl license-container onload-animation"
           />
@@ -164,14 +162,14 @@ const jsonLd = {
     class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"
   >
     <a
-      href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
+      href={entry.data.nextID === "" ? "#" : getPostUrlByID(entry.data.nextID)}
       class:list={[
         "w-full font-bold overflow-hidden active:scale-95",
-        { "pointer-events-none": !entry.data.nextSlug },
+        { "pointer-events-none": entry.data.nextID === "" },
       ]}
     >
       {
-        entry.data.nextSlug && (
+        entry.data.nextID !== "" && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
             <Icon
               name="material-symbols:chevron-left-rounded"
@@ -186,14 +184,14 @@ const jsonLd = {
     </a>
 
     <a
-      href={entry.data.prevSlug ? getPostUrlBySlug(entry.data.prevSlug) : "#"}
+      href={entry.data.prevID === "" ? "#" : getPostUrlByID(entry.data.prevID)}
       class:list={[
         "w-full font-bold overflow-hidden active:scale-95",
-        { "pointer-events-none": !entry.data.prevSlug },
+        { "pointer-events-none": entry.data.prevID === "" },
       ]}
     >
       {
-        entry.data.prevSlug && (
+        entry.data.prevID !== "" && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
               {entry.data.prevTitle}

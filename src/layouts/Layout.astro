@@ -4,7 +4,6 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 
 import { profileConfig, siteConfig } from "@/config"
-import type { Theme } from "@/types/config"
 import ConfigCarrier from "@components/ConfigCarrier.astro"
 import {
   BANNER_HEIGHT,
@@ -38,11 +37,7 @@ const isHomePage = pathsEqual(Astro.url.pathname, url("/"))
 
 // define global CSS variables
 const configHue = siteConfig.themeColor.hue
-if (
-  banner === undefined ||
-  typeof banner !== "string" ||
-  banner.trim() === ""
-) {
+if (banner === undefined || banner.trim() === "") {
   banner = siteConfig.banner.src
 }
 
@@ -52,9 +47,9 @@ banner = siteConfig.banner.src
 const enableBanner = siteConfig.banner.enable
 
 const pageTitle =
-  (title ?? "") ?
-    `${title} - ${siteConfig.title}`
-  : `${siteConfig.title} - ${siteConfig.subtitle}`
+  (title ?? "") === "" ?
+    `${siteConfig.title} - ${siteConfig.subtitle}`
+  : `${title} - ${siteConfig.title}`
 
 const favicons: Favicon[] =
   siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons
@@ -106,7 +101,10 @@ const bannerOffset =
           rel="icon"
           href={favicon.src.startsWith("/") ? url(favicon.src) : favicon.src}
           sizes={favicon.sizes}
-          media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
+          media={
+            favicon.theme !== undefined &&
+            `(prefers-color-scheme: ${favicon.theme})`
+          }
         />
       ))
     }
@@ -194,7 +192,6 @@ const bannerOffset =
   define:vars={{
     bannerOffset,
     "banner-height-home": `${BANNER_HEIGHT_HOME}vh`,
-    "banner-height": `${BANNER_HEIGHT}vh`,
   }}
 >
   @tailwind components;
@@ -242,7 +239,6 @@ const bannerOffset =
     BANNER_HEIGHT_HOME,
     BANNER_HEIGHT_EXTEND,
     MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
-    PAGE_WIDTH,
   } from "../constants/constants"
 
   const bannerEnabled = !!document.getElementById("banner-wrapper")

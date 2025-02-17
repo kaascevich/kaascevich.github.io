@@ -108,12 +108,28 @@ export default defineFlatConfig([
         "error",
         { allowNumber: true },
       ],
-      "@typescript-eslint/strict-boolean-expressions": "error",
+      "@typescript-eslint/strict-boolean-expressions": [
+        "error",
+        {
+          allowNumber: false,
+          allowNullableObject: false,
+          allowString: false,
+        },
+      ],
 
       "class-methods-use-this": "off",
       "@typescript-eslint/class-methods-use-this": "error",
       "no-loop-func": "off",
       "@typescript-eslint/no-loop-func": "error",
+
+      // FIXME: turn these back on once the project is cleaned up
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+
+      "@typescript-eslint/prefer-literal-enum-member": "off",
     },
   },
 

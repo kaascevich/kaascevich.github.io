@@ -16,11 +16,11 @@ export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
   })
 
   for (let i = 1; i < sorted.length; i += 1) {
-    sorted[i]!.data.nextSlug = sorted[i - 1]!.slug
+    sorted[i]!.data.nextID = sorted[i - 1]!.id
     sorted[i]!.data.nextTitle = sorted[i - 1]!.data.title
   }
   for (let i = 0; i < sorted.length - 1; i += 1) {
-    sorted[i]!.data.prevSlug = sorted[i + 1]!.slug
+    sorted[i]!.data.prevID = sorted[i + 1]!.id
     sorted[i]!.data.prevTitle = sorted[i + 1]!.data.title
   }
 

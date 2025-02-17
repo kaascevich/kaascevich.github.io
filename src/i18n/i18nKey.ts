@@ -1,4 +1,4 @@
-enum I18nKey {
+const enum I18nKey {
   home = "home",
   about = "about",
   archive = "archive",

@@ -15,16 +15,17 @@ const defaultTranslation = en
 const map: Record<string, Translation> = {
   es,
   en,
-  en_us: en,
-  en_gb: en,
-  en_au: en,
   zh_cn,
   zh_tw,
   ja,
-  ja_jp: ja,
   ko,
-  ko_kr: ko,
   th,
+
+  en_us: en,
+  en_gb: en,
+  en_au: en,
+  ja_jp: ja,
+  ko_kr: ko,
   th_th: th,
 }
 

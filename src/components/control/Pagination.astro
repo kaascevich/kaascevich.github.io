@@ -17,30 +17,46 @@ const VISIBLE = ADJ_DIST * 2 + 1
 
 // for test
 let count = 1
-let l = page.currentPage
-let r = page.currentPage
-while (0 < l - 1 && r + 1 <= page.lastPage && count + 2 <= VISIBLE) {
+let leftmost = page.currentPage
+let rightmost = page.currentPage
+while (
+  0 < leftmost - 1 &&
+  rightmost + 1 <= page.lastPage &&
+  count + 2 <= VISIBLE
+) {
   count += 2
-  l -= 1
-  r += 1
+  leftmost -= 1
+  rightmost += 1
 }
-while (0 < l - 1 && count < VISIBLE) {
+while (0 < leftmost - 1 && count < VISIBLE) {
   count += 1
-  l -= 1
+  leftmost -= 1
 }
-while (r + 1 <= page.lastPage && count < VISIBLE) {
+while (rightmost + 1 <= page.lastPage && count < VISIBLE) {
   count += 1
-  r -= 1
+  rightmost += 1
 }
 
 const pages: number[] = []
-if (l > 1) pages.push(1)
-if (l === 3) pages.push(2)
-if (l > 3) pages.push(HIDDEN)
-for (let i = l; i <= r; i += 1) pages.push(i)
-if (r < page.lastPage - 2) pages.push(HIDDEN)
-if (r === page.lastPage - 2) pages.push(page.lastPage - 1)
-if (r < page.lastPage) pages.push(page.lastPage)
+if (leftmost > 1) {
+  pages.push(1)
+}
+if (leftmost === 3) {
+  pages.push(2)
+} else if (leftmost > 3) {
+  pages.push(HIDDEN)
+}
+for (let i = leftmost; i <= rightmost; i += 1) {
+  pages.push(i)
+}
+if (rightmost < page.lastPage - 2) {
+  pages.push(HIDDEN)
+} else if (rightmost === page.lastPage - 2) {
+  pages.push(page.lastPage - 1)
+}
+if (rightmost < page.lastPage) {
+  pages.push(page.lastPage)
+}
 
 const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
 ---
@@ -48,7 +64,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
 <div class:list={[className, "flex flex-row gap-3 justify-center"]} {style}>
   <a
     href={url(page.url.prev ?? "")}
-    aria-label={page.url.prev ? "Previous Page" : null}
+    aria-label={page.url.prev === undefined ? null : "Previous Page"}
     class:list={[
       "btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11",
       { disabled: page.url.prev === undefined },
