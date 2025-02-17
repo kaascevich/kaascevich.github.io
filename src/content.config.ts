@@ -51,7 +51,14 @@ const postsCollection = defineCollection({
        *
        * This array must not contain duplicates.
        */
-      tags: z.array(z.string()).optional().default([]),
+      tags: z
+        .array(z.string())
+        .optional()
+        .default([])
+        .refine(
+          (tags) => tags.length === new Set(tags).size,
+          "tags array must not contain duplicates",
+        ),
       /** The category of the post. */
       category: z.string().optional().default(""),
       /** The language the post was written in. */

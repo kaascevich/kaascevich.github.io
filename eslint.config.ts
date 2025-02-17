@@ -45,7 +45,7 @@ export default defineFlatConfig([
       "no-new-func": "error",
       "no-new-wrappers": "error",
       "no-param-reassign": "error",
-      "no-plusplus": "error",
+      // "no-plusplus": "error",
       "no-return-assign": "error",
       "no-script-url": "error",
       "no-sequences": "error",

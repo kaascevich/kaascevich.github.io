@@ -1,0 +1,438 @@
+---
+title: Aurora (part 4)
+published: 2025-01-30
+description: Actually, like, doing the math
+tags: [Swift, Aurora, Series]
+category: Programming
+---
+
+We've spent a good while parsing some mathematical expressions -- I think it's
+about time we actually start _evaluating_ those expressions.
+
+## A Quick Bug Fix
+
+First, though, we've got some compiler errors in our tests:
+
+```ansi
+[1m.../Tests/AuroraTests/Parsing/ExpressionParsingTests.swift:26:8: [31merror:[0m[1m type 'Expression.Operation' does not conform to the 'Sendable' protocol[0m
+      @Test("Operators", arguments: [
+[32;1m       ^[0m
+[1m.../Sources/Aurora/Syntax/Expression.swift:5:15: [2mnote:[0m[1m enum 'Operation' does not conform to the 'Sendable' protocol[0m
+  public enum Operation: Equatable {
+[32;1m              ^[0m
+
+...several others just like these...
+```
+
+I don't know how I didn't catch them previously, but they're trivial to fix:
+
+```swift
+// Expression.swift
+public indirect enum Expression: Equatable {
+  // ...
+  public enum Operation: Equatable, Sendable {
+    // ...
+  }
+}
+```
+
+## Setting Up
+
+Before we do anything else, let's add a simple test. Add a new file,
+`Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift`:
+
+```console
+$ mkdir -p Tests/AuroraTests/Evaluation
+$ touch Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift
+```
+
+```swift
+// ExpressionEvaluationTests.swift
+import Testing
+@testable import Aurora
+
+@Suite("Expression evaluation") struct ExpressionEvaluationTests {
+  @Test("Single number")
+  func singleNumber() {
+    #expect(Expression.number(15).evaluate() == Value.number(15)) // [!code error]
+  }
+}
+```
+
+```ansi
+[1m.../Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift:7:49: [31merror:[0m[1m cannot find 'Value' in scope[0m
+    #expect(Expression.number(15).evaluate() == Value.number(15))
+[32;1m                                                ^~~~~[0m
+[1m.../Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift:7:35: [31merror:[0m[1m value of type 'Expression' has no member 'evaluate'[0m
+    #expect(Expression.number(15).evaluate() == Value.number(15))
+[32;1m            ~~~~~~~~~~~~~~~~~~~~~ ^~~~~~~~[0m
+```
+
+Add `Sources/Aurora/Evaluation/Value.swift`:
+
+```console
+$ mkdir -p Sources/Aurora/Evaluation
+$ touch Sources/Aurora/Evaluation/Value.swift
+```
+
+```swift
+// Value.swift
+public enum Value: Equatable {
+  case number(Int)
+}
+```
+
+And `ExpressionEvaluation.swift`:
+
+```console
+$ touch Sources/Aurora/Evaluation/ExpressionEvaluation.swift
+```
+
+```swift
+// ExpressionEvaluation.swift
+extension Expression {
+  public func evaluate() -> Value {
+    switch self {
+      case let .number(number):
+        return .number(number)
+
+      case .operation(_, _, _):
+        fatalError("not yet implemented")
+    }
+  }
+}
+```
+
+```ansi
+[32m✔[0m Test "Single number" passed after 0.001 seconds.
+```
+
+Now let's try evaluating an operation:
+
+```swift
+// ExpressionEvaluationTests.swift
+// ...
+@Suite("Expression evaluation") struct ExpressionEvaluationTests {
+  // ...
+  @Test("Simple operation")
+  func simpleOperation() {
+    #expect(Expression.operation(
+      lhs: .number(1),
+      rhs: .number(2),
+      op: .add
+    ).evaluate() == Value.number(3))
+  }
+}
+```
+
+```ansi
+Aurora/ExpressionEvaluation.swift:8: Fatal error: not yet implemented
+[31;1merror:[0m Exited with unexpected signal code 5
+```
+
+Well, let's implement it, then!
+
+```swift
+// ExpressionEvaluation.swift
+extension Expression {
+  public func evaluate() -> Value {
+    switch self {
+      // ...
+      case let .operation(lhs, rhs, op):
+        let (lhs, rhs) = switch (lhs.evaluate(), rhs.evaluate()) {
+          case let (.number(lhs), .number(rhs)): (lhs, rhs)
+        }
+
+        let operation: (_, _) -> Int = switch op {
+          case .add: (+)
+          case .subtract: (-)
+          case .multiply: (*)
+          case .divide: (/)
+        }
+
+        return .number(operation(lhs, rhs))
+    }
+  }
+}
+```
+
+This might look like a fair bit of stuff, so I'll walk through it:
+1. Recursively call `evaluate()` on `lhs` and `rhs`, and extract `number` values
+   from the results. Since `Value` only has the one case right now, this
+   `switch` expression compiles just fine.
+2. Determine the operator to use to combine the two numbers. Swift's operators
+   are just very fancy functions, so we can assign them to variables just like
+   we can with functions.
+3. Call the operator with `lhs` and `rhs`, and wrap the result in
+   `Value.number`.
+
+```ansi
+[32m✔[0m Test "Simple operation" passed after 0.001 seconds.
+```
+
+Now an even harder test!
+
+```swift
+// ExpressionEvaluationTests.swift
+// ...
+@Suite("Expression evaluation") struct ExpressionEvaluationTests {
+  // ...
+  @Test("Nested operation")
+  func nestedOperation() {
+    #expect(Expression.operation(
+      lhs: .operation(
+        lhs: .operation(
+          lhs: .number(1),
+          rhs: .number(2),
+          op: .add
+        ),
+        rhs: .number(3),
+        op: .multiply
+      ),
+      rhs: .operation(
+        lhs: .number(4),
+        rhs: .number(5),
+        op: .multiply
+      ),
+      op: .subtract
+    ).evaluate() == Value.number(-11))
+  }
+}
+```
+
+```ansi
+[32m✔[0m Test "Nested operation" passed after 0.001 seconds.
+```
+
+Well, would you look at that!
+
+## Evaluating in the REPL
+
+Instead of just dumping the syntax tree when we type an expression in the REPL,
+we should probably evaluate those expressions and output the result of that. But
+I would like to keep the existing behavior around for debugging purposes, so
+we'll go ahead and add a command-line flag.
+
+```swift
+// AuroraCLI.swift
+// ...
+@main struct AuroraCLI: ParsableCommand {
+  // ...
+  @Flag(
+    name: [.customShort("p"), .long],
+    help: "Whether to dump the parsed syntax tree instead of evaluating it."
+  ) var dumpAST = false
+  // ...
+}
+```
+
+Now we can use this flag in the `run()` method:
+
+```swift
+// AuroraCLI.swift
+// ...
+@main struct AuroraCLI: ParsableCommand {
+  // ...
+  func run() {
+    while true {
+      // ...
+      do {
+        let ast = try ExpressionParser().parse(line)
+        if dumpAST {
+          dump(ast)
+        } else {
+          print(ast.evaluate())
+        }
+      } catch {
+        print("!! \(error)")
+      }
+    }
+  }
+}
+```
+
+Actually, let's factor out the contents of that `do` block so we don't end up in
+indentation hell later on:
+
+```swift
+// AuroraCLI.swift
+// ...
+@main struct AuroraCLI: ParsableCommand {
+  // ...
+  func run() {
+    while true {
+      // ...
+      do {
+        try execute(expression: line)
+      } catch {
+        print("!! \(error)")
+      }
+    }
+  }
+
+  func execute(expression: String) throws {
+    let ast = try ExpressionParser().parse(expression)
+    if dumpAST {
+      dump(ast)
+    } else {
+      print(ast.evaluate())
+    }
+  }
+}
+```
+
+Now let's take it for a spin!
+
+```console
+$ swift run
+aurora> 1
+number(1)
+aurora> 1 + 2
+number(3)
+aurora> (14 / 7) * (5 - 3)
+number(4)
+aurora> :quit
+$
+```
+
+Evaluation seems to be working! But we should probably just output the result
+itself, instead of wrapping it in `number()`. This is quite easy to accomplish:
+
+```swift
+// Value.swift
+// ...
+extension Value: CustomStringConvertible {
+  public var description: String {
+    switch self {
+      case let .number(number): "\(number)"
+    }
+  }
+}
+```
+
+We should probably add a test for this. Make a new file,
+`Tests/AuroraTests/Evaluation/ValueTests.swift`:
+
+```console
+$ touch Tests/AuroraTests/Evaluation/ValueTests.swift
+```
+
+```swift
+import Testing
+@testable import Aurora
+
+@Suite("Values") struct ValueTests {
+  @Suite("String representations") struct StringRepresentationTests {
+    @Test("Numbers")
+    func numbers() {
+      #expect(String(describing: Value.number(123)) == "123")
+    }
+  }
+}
+```
+
+```ansi
+[32m✔[0m Test "Numbers" passed after 0.001 seconds.
+```
+
+This _should_ work without any changes to the REPL:
+
+```console
+$ swift run
+aurora> 56
+56
+aurora> 19 - 3
+16
+aurora> 6 * 7
+42
+aurora> :quit
+$
+```
+
+Woohoo!
+
+We should also check that the `--dump-ast` flag works as intended:
+
+```console
+$ swift run aurora --dump-ast
+aurora> 6 / 2
+▿ Aurora.Expression.operation
+  ▿ operation: (3 elements)
+    ▿ lhs: Aurora.Expression.number
+      - number: 6
+    ▿ rhs: Aurora.Expression.number
+      - number: 2
+    - op: Aurora.Expression.Operation.divide
+aurora> :quit
+$
+```
+
+Let's run the full test suite just to make sure we haven't horribly mangled
+anything:
+
+```ansi
+[2m◇[0m Test run started.
+[2m↳ Testing Library Version: 102 (arm64e-apple-macos13.0)[0m
+[2m◇[0m Suite "Expression parsing" started.
+[2m◇[0m Suite "Values" started.
+[2m◇[0m Suite "Expression evaluation" started.
+[2m◇[0m Suite "String representations" started.
+[2m◇[0m Suite "Number parsing" started.
+[2m◇[0m Test "Nested operation" started.
+[2m◇[0m Test "Simple operation" started.
+[2m◇[0m Test "Single number" started.
+[2m◇[0m Test "Numbers" started.
+[2m◇[0m Test "Number with several digits" started.
+[2m◇[0m Suite "Binary expression parsing" started.
+[2m◇[0m Test "One-digit number" started.
+[2m◇[0m Test "Invalid number" started.
+[2m◇[0m Suite "Operators" started.
+[32m✔[0m Test "Single number" passed after 0.001 seconds.
+[32m✔[0m Test "Nested operation" passed after 0.001 seconds.
+[32m✔[0m Test "Numbers" passed after 0.001 seconds.
+[2m◇[0m Test "Expression with whitespace" started.
+[32m✔[0m Test "Simple operation" passed after 0.001 seconds.
+[2m◇[0m Test "Deeply nested expression" started.
+[2m◇[0m Test "Nested expression" started.
+[2m◇[0m Test "Malformed expressions" started.
+[2m◇[0m Test "One plus two" started.
+[32m✔[0m Suite "Expression evaluation" passed after 0.001 seconds.
+[2m◇[0m Test "Invalid operator" started.
+[2m◇[0m Test "Operators" started.
+[32m✔[0m Suite "String representations" passed after 0.001 seconds.
+[2m◇[0m Passing 1 argument string → "" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "1 2" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "5 -" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "/ 4" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "*" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "++" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "- /" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(1 + 2" to "Malformed expressions"
+[2m◇[0m Passing 2 arguments string → "-", result → .subtract to "Operators"
+[2m◇[0m Passing 2 arguments string → "/", result → .divide to "Operators"
+[2m◇[0m Passing 2 arguments string → "*", result → .multiply to "Operators"
+[2m◇[0m Passing 2 arguments string → "+", result → .add to "Operators"
+[32m✔[0m Suite "Values" passed after 0.029 seconds.
+[32m✔[0m Test "One-digit number" passed after 0.029 seconds.
+[32m✔[0m Test "Number with several digits" passed after 0.045 seconds.
+[32m✔[0m Test "Expression with whitespace" passed after 0.046 seconds.
+[32m✔[0m Test "One plus two" passed after 0.057 seconds.
+[32m✔[0m Test "Nested expression" passed after 0.066 seconds.
+[32m✔[0m Test "Invalid number" passed after 0.067 seconds.
+[32m✔[0m Test "Deeply nested expression" passed after 0.066 seconds.
+[32m✔[0m Test "Operators" passed after 0.067 seconds.
+[32m✔[0m Suite "Number parsing" passed after 0.069 seconds.
+[32m✔[0m Test "Malformed expressions" passed after 0.071 seconds.
+[32m✔[0m Test "Invalid operator" passed after 0.071 seconds.
+[32m✔[0m Suite "Operators" passed after 0.072 seconds.
+[32m✔[0m Suite "Binary expression parsing" passed after 0.072 seconds.
+[32m✔[0m Suite "Expression parsing" passed after 0.073 seconds.
+[32m✔[0m Test run with 14 tests passed after 0.073 seconds.
+```
+
+We officially have a very boring command-line calculator app! 🎉
+
+In the next part, I think I'll start working on **variable declarations**.

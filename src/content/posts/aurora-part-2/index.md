@@ -1,0 +1,598 @@
+---
+title: Aurora (part 2)
+published: 2025-01-28
+description: Ne(nesti(nesting)g)t(nesting)ng
+tags: [Swift, Aurora, Series]
+category: Programming
+---
+
+It's time to implement nesting. I'll probably end up covering operator
+precedence in a later part.
+
+## Refactoring
+
+First, though, I want to get the not-yet-a-tree representation separated from
+the parsing. So let's add a new file, `Sources/Aurora/Syntax/Expression.swift`:
+
+```console
+$ mkdir -p Sources/Aurora/Syntax
+$ touch Sources/Aurora/Syntax/Expression.swift
+```
+
+```swift
+// Expression.swift
+enum Expression: Equatable {
+  case number(Int)
+  case operation(lhs: Int, rhs: Int, op: Operation)
+
+  enum Operation: Equatable {
+    case add
+    case subtract
+    case multiply
+    case divide
+  }
+}
+```
+
+Rename `Sources/Aurora/Parsing/Expression.swift` to `ExpressionParsing.swift`,
+and add `Parsable` conformances via extensions:
+
+```console
+$ cd Sources/Aurora/Parsing
+$ mv Expression.swift ExpressionParsing.swift
+```
+
+```swift
+// ExpressionParsing.swift
+import Parsing
+
+extension Expression: Parsable {
+  static var parser: some Parser<Substring, Self> {
+    // ...
+  }
+}
+
+extension Expression.Operation: Parsable {
+  static var parser: some Parser<Substring, Self> {
+    // ...
+  }
+}
+```
+
+For consistency's sake, we'll also rename
+`Tests/AuroraTests/Parsing/ExpressionTests.swift` to
+`ExpressionParsingTests.swift`, and update the suite names accordingly.
+
+```console
+$ cd Tests/AuroraTests/Parsing
+$ mv ExpressionTests.swift ExpressionParsingTests.swift
+```
+
+```swift
+// ExpressionParsingTests.swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  @Suite("Number parsing") struct NumberParsingTests {
+    // ...
+  }
+
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    // ...
+  }
+}
+```
+
+## Representing Nested Expressions
+
+Adding support for nesting to the syntax tree is rather trivial; all we need to
+do is change the `Int` types in `Expression.operation` to `Expression`:
+
+```swift
+// Expression.swift
+indirect enum Expression: Equatable {
+  case number(Int)
+  case operation(lhs: Expression, rhs: Expression, op: Operation)
+
+  enum Operation: Equatable {
+    case add
+    case subtract
+    case multiply
+    case divide
+  }
+}
+```
+
+:::note
+Don't forget to mark the `enum` as `indirect`.
+:::
+
+All we have to do now is update the rest of the code. Starting with
+`ExpressionParsing.swift`:
+
+```swift
+// ExpressionParsing.swift
+// ...
+extension Expression: Parsable {
+  static var parser: some Parser<Substring, Self> {
+    OneOf {
+      Parse {
+        Digits().map(Self.number)
+        Whitespace()
+        Operation.parser
+        Whitespace()
+        Digits().map(Self.number)
+      }.map { (lhs, op, rhs) in
+        Self.operation(lhs: lhs, rhs: rhs, op: op)
+      }
+
+      Digits().map(Self.number)
+    }
+  }
+}
+// ...
+```
+
+`ExpressionParsingTests.swift`:
+
+```swift
+// ExpressionParsingTests.swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    // ...
+    @Test("One plus two")
+    func onePlusTwo() throws {
+      try #expect(Expression(parsing: "1+2") == .operation(
+        lhs: .number(1),
+        rhs: .number(2),
+        op: .add
+      ))
+    }
+    
+    @Test("Expression with whitespace")
+    func expressionWithWhitespace() throws {
+      try #expect(Expression(parsing: "35 / 7") == .operation(
+        lhs: .number(35),
+        rhs: .number(7),
+        op: .divide
+      ))
+    }
+  }
+}
+```
+
+To confirm that we haven't broken anything, let's run the tests:
+
+```ansi
+[32m✔[0m Test run with 5 tests passed after 0.003 seconds.
+```
+
+Brilliant!
+
+## Parenthesized Expressions
+
+Let's start with something a bit more simple, by only allowing expressions
+surrounded in parentheses (unless it's just a plain number, of course).
+
+The obligatory test:
+
+```swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    // ...
+    @Test("Nested expression")
+    func nestedExpression() throws {
+      try #expect(Expression(parsing: "(1 + 2) * 3") == .operation(
+        lhs: .operation(
+          lhs: .number(1),
+          rhs: .number(2),
+          op: .add
+        ),
+        rhs: .number(3),
+        op: .multiply
+      ))
+    }
+  }
+}
+```
+
+```ansi
+[31m✘[0m Test "Nested expression" recorded an issue at ExpressionParsingTests.swift:37:6: Caught error: error: unexpected input
+ --> input:1:1
+1 | (1 + 2) * 3
+  | ^ expected at least 1 digit
+  | ^ expected at least 1 digit
+```
+
+Let's try the obvious first:
+
+```swift
+// ExpressionParsing.swift
+// ...
+extension Expression: Parsable {
+  static var subExpression: some Parser<Substring, Self> {
+    OneOf {
+      Digits().map(Self.number)
+      Parse {
+        "("
+        Whitespace()
+        Self.parser
+        Whitespace()
+        ")"
+      }
+    }
+  }
+
+  static var parser: some Parser<Substring, Self> {
+    OneOf {
+      Parse {
+        subExpression
+        Whitespace()
+        Operation.parser
+        Whitespace()
+        subExpression
+      }.map { (lhs, op, rhs) in
+        Self.operation(lhs: lhs, rhs: rhs, op: op)
+      }
+
+      Digits().map(Self.number)
+    }
+  }
+}
+
+// ...
+```
+
+```ansi
+Building for debugging...
+[8/14] Emitting module CasePaths
+```
+
+Aaaaand it just hangs there. We have successfully managed to throw the Swift
+compiler into an infinite loop. 🎉
+
+I think I know what the issue is: we're using computed properties to make our
+parsers, but by trying to parse an `Expression` within an `Expression`, we're
+inadvertently creating a case of unconditional recursion, and it seems the
+compiler doesn't know to emit a diagnostic in this particular case.
+Unfortunately, the only real solution to this is another refactor.
+
+### Refactoring (again)
+
+What I think I'm going to do is separate parsers into their very own types
+(which is how the Parsing library was intended to be used). So let's start by
+just deleting `Sources/AuroraUtilities/Protocols.swift`, because we aren't gonna
+need that where we're going.
+
+```console
+$ rm Sources/Aurora/Utilities/Protocols.swift
+```
+
+Now let's promote our `extension`s to `struct`s and conform them to `Parser`
+instead of `Parsable`:
+
+```swift
+// ...
+struct ExpressionParser: Parser {
+  // ...
+}
+
+struct OperationParser: Parser {
+  // ...
+}
+```
+
+Let's move `subExpression` to its own type as well:
+
+```swift
+// ...
+struct SubExpressionParser: Parser {
+  var body: some Parser<Substring, Expression> {
+    OneOf {
+      Digits().map(Expression.number)
+      Parse {
+        "("
+        Whitespace()
+        ExpressionParser()
+        Whitespace()
+        ")"
+      }
+    }
+  }
+}
+// ...
+```
+
+Rename the `parser` properties to `body`, and fix references:
+
+```swift
+// ...
+struct ExpressionParser: Parser {
+  var body: some Parser<Substring, Expression> {
+    OneOf {
+      Parse {
+        SubExpressionParser()
+        Whitespace()
+        OperationParser()
+        Whitespace()
+        SubExpressionParser()
+      }.map { (lhs, op, rhs) in
+        Expression.operation(lhs: lhs, rhs: rhs, op: op)
+      }
+
+      Digits().map(Expression.number)
+    }
+  }
+}
+
+// ...
+
+struct OperationParser: Parser {
+  var body: some Parser<Substring, Expression.Operation> {
+    OneOf(output: Expression.Operation.self) {
+      "+".map { .add }
+      "-".map { .subtract }
+      "*".map { .multiply }
+      "/".map { .divide }
+    }
+  }
+}
+```
+
+And now we've got tests to fix:
+
+```swift
+// ExpressionParsingTests.swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  @Suite("Number parsing") struct NumberParsingTests {
+    @Test("One-digit number")
+    func oneDigitNumber() throws {
+      try #expect(ExpressionParser().parse("1") == .number(1))
+    }
+
+    @Test("Number with several digits")
+    func multiDigitNumber() throws {
+      try #expect(ExpressionParser().parse("456") == .number(456))
+    }
+  }
+
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    @Test("Operators", arguments: [/* ... */])
+    func operators(string: Substring, result: Expression.Operation) throws {
+      try #expect(OperationParser().parse(string) == result)
+    }
+
+    @Test("One plus two")
+    func onePlusTwo() throws {
+      try #expect(ExpressionParser().parse("1+2") == .operation(/* ... */))
+    }
+    
+    @Test("Expression with whitespace")
+    func expressionWithWhitespace() throws {
+      try #expect(ExpressionParser().parse("35 / 7") == .operation(/* ... */))
+    }
+
+    @Test("Nested expression")
+    func nestedExpression() throws {
+      try #expect(ExpressionParser().parse("(1 + 2) * 3") == .operation(
+        // ...
+      ))
+    }
+  }
+}
+```
+
+### Parenthesized Expressions (take 2)
+
+Let's try the tests again:
+
+```ansi
+[32m✔[0m Test run with 6 tests passed after 0.008 seconds.
+```
+
+_\*phew\*_.
+
+Now that we know that's working, let's try something more complicated:
+
+```swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    // ...
+    @Test("Deeply nested expression")
+    func deeplyNestedExpression() throws {
+      try #expect(
+        ExpressionParser().parse("(15/3) - (5 * (6 + 2))") == .operation(
+          lhs: .operation(
+            lhs: .number(15),
+            rhs: .number(3),
+            op: .divide
+          ),
+          rhs: .operation(
+            lhs: .number(5),
+            rhs: .operation(
+              lhs: .number(6),
+              rhs: .number(2),
+              op: .add
+            ),
+            op: .multiply
+          ),
+          op: .subtract
+        )
+      )
+    }
+  }
+}
+```
+
+```ansi
+[32m✔[0m Test run with 7 tests passed after 0.006 seconds.
+```
+
+Suh-weet!
+
+## More Tests
+
+To round this off, I'll add some more tests to make sure we're doing things
+correctly.
+
+First, let's wrap `operators(string:result:)` in a new suite,
+`OperatorParsingTests`:
+
+```swift
+// ExpressionTests.swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    @Suite("Operators") struct OperatorParsingTests {
+      @Test("Operators", arguments: [/* ... */])
+      func operators(string: Substring, result: Expression.Operation) throws {
+        try #expect(OperationParser().parse(string) == result)
+      }
+    }
+    // ...
+  }
+}
+```
+
+Now we'll add a test for invalid operators:
+
+```swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    @Suite("Operators") struct OperatorParsingTests {
+      // ...
+      @Test("Invalid operator")
+      func invalidOperator() {
+        #expect(throws: Error.self) {
+          try OperationParser().parse("not an operator")
+        }
+      }
+    }
+    // ...
+  }
+}
+```
+
+```ansi
+[32m✔[0m Test "Invalid operator" passed after 0.022 seconds.
+```
+
+A test for invalid numbers:
+
+```swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  @Suite("Number parsing") struct NumberParsingTests {
+    // ...
+    @Test("Invalid number")
+    func invalidNumber() {
+      #expect(throws: Error.self) {
+        try ExpressionParser().parse("mostDefinitelyNotANumber")
+      }
+    }
+  }
+  // ...
+}
+```
+
+```ansi
+[32m✔[0m Test "Invalid number" passed after 0.007 seconds.
+```
+
+And a test for malformed expressions:
+
+```swift
+// ...
+@Suite("Expression parsing") struct ExpressionParsingTests {
+  // ...
+  @Suite("Binary expression parsing") struct BinaryExpressionParsingTests {
+    // ...
+    @Test("Malformed expressions", arguments: [
+      "", "1 2", "5 -", "/ 4", "*", "++", "- /", "(", ")", ")(", "(1 + 2",
+    ])
+    func malformedExpressions(string: Substring) {
+      #expect(throws: Error.self) {
+        try ExpressionParser().parse(string)
+      }
+    }
+  }
+}
+```
+
+```ansi
+[2m◇[0m Passing 1 argument string → "*" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "/ 4" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "1 2" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "5 -" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "++" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "- /" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(1 + 2" to "Malformed expressions"
+[32m✔[0m Test "Malformed expressions" passed after 0.066 seconds.
+```
+
+And finally, one more full test for good measure:
+
+```ansi
+[2m◇[0m Test run started.
+[2m↳ Testing Library Version: 102 (arm64e-apple-macos13.0)[0m
+[2m◇[0m Suite "Expression parsing" started.
+[2m◇[0m Suite "Number parsing" started.
+[2m◇[0m Suite "Binary expression parsing" started.
+[2m◇[0m Test "One-digit number" started.
+[2m◇[0m Test "Number with several digits" started.
+[2m◇[0m Test "Invalid number" started.
+[2m◇[0m Suite "Operators" started.
+[2m◇[0m Test "Deeply nested expression" started.
+[2m◇[0m Test "Expression with whitespace" started.
+[2m◇[0m Test "One plus two" started.
+[2m◇[0m Test "Malformed expressions" started.
+[2m◇[0m Test "Nested expression" started.
+[2m◇[0m Test "Operators" started.
+[2m◇[0m Test "Invalid operator" started.
+[2m◇[0m Passing 2 arguments string → "-", result → .subtract to "Operators"
+[2m◇[0m Passing 2 arguments string → "/", result → .divide to "Operators"
+[2m◇[0m Passing 2 arguments string → "*", result → .multiply to "Operators"
+[2m◇[0m Passing 2 arguments string → "+", result → .add to "Operators"
+[32m✔[0m Test "One-digit number" passed after 0.005 seconds.
+[32m✔[0m Test "Number with several digits" passed after 0.005 seconds.
+[32m✔[0m Test "One plus two" passed after 0.005 seconds.
+[2m◇[0m Passing 1 argument string → "" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "1 2" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "5 -" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "/ 4" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "*" to "Malformed expressions"
+[32m✔[0m Test "Expression with whitespace" passed after 0.007 seconds.
+[2m◇[0m Passing 1 argument string → "++" to "Malformed expressions"
+[32m✔[0m Test "Deeply nested expression" passed after 0.010 seconds.
+[32m✔[0m Test "Nested expression" passed after 0.010 seconds.
+[2m◇[0m Passing 1 argument string → "- /" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → ")(" to "Malformed expressions"
+[2m◇[0m Passing 1 argument string → "(1 + 2" to "Malformed expressions"
+[32m✔[0m Test "Operators" passed after 0.025 seconds.
+[32m✔[0m Test "Invalid operator" passed after 0.028 seconds.
+[32m✔[0m Suite "Operators" passed after 0.030 seconds.
+[32m✔[0m Test "Invalid number" passed after 0.034 seconds.
+[32m✔[0m Suite "Number parsing" passed after 0.035 seconds.
+[32m✔[0m Test "Malformed expressions" passed after 0.036 seconds.
+[32m✔[0m Suite "Binary expression parsing" passed after 0.037 seconds.
+[32m✔[0m Suite "Expression parsing" passed after 0.037 seconds.
+[32m✔[0m Test run with 10 tests passed after 0.038 seconds.
+```
+
+And this marks the 597th line in this post's Markdown file, so I think I better
+end this post sooner rather than later. **Next up: a simple REPL!**
