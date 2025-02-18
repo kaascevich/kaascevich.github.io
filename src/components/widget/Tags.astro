@@ -1,16 +1,16 @@
 ---
-import WidgetLayout from "@/components/widget/WidgetLayout.astro"
-import ButtonTag from "@/components/control/ButtonTag.astro"
-import { getTagList } from "@/utils/content-utils"
-import { i18n } from "@/i18n/translation"
-import I18nKey from "@/i18n/i18nKey"
-import { url } from "@/utils/url-utils"
+import WidgetLayout from "$/components/widget/WidgetLayout.astro"
+import ButtonTag from "$/components/control/ButtonTag.astro"
+import { getTagList } from "$/utils/content-utils"
+import { i18n } from "$/i18n/translation"
+import I18nKey from "$/i18n/i18nKey"
+import { url } from "$/utils/url-utils"
 
 const tags = await getTagList()
 
 const COLLAPSED_HEIGHT = "7.5rem"
 
-const isCollapsed = tags.length >= 20
+const isCollapsed = tags.size >= 20
 
 type Props = Readonly<{
   class?: string | undefined
@@ -30,12 +30,12 @@ const { class: className, style } = Astro.props
 >
   <div class="flex gap-2 flex-wrap">
     {
-      tags.map((tag) => (
+      [...tags].map(([name]) => (
         <ButtonTag
-          href={url(`/archive/tag/${tag.name}/`)}
-          label={`View all posts with the ${tag.name} tag`}
+          href={url(`/archive/tag/${name}/`)}
+          label={`View all posts with the ${name} tag`}
         >
-          {tag.name}
+          {name}
         </ButtonTag>
       ))
     }

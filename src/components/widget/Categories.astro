@@ -1,18 +1,18 @@
 ---
-import WidgetLayout from "@/components/widget/WidgetLayout.astro"
+import WidgetLayout from "$/components/widget/WidgetLayout.astro"
 
-import { i18n } from "@/i18n/translation"
-import I18nKey from "@/i18n/i18nKey"
-import { getCategoryList } from "@/utils/content-utils"
-import { getCategoryUrl } from "@/utils/url-utils"
-import ButtonLink from "@/components/control/ButtonLink.astro"
+import { i18n } from "$/i18n/translation"
+import I18nKey from "$/i18n/i18nKey"
+import { getCategoryList } from "$/utils/content-utils"
+import { getCategoryUrl } from "$/utils/url-utils"
+import ButtonLink from "$/components/control/ButtonLink.astro"
 
 const categories = await getCategoryList()
 
 const COLLAPSED_HEIGHT = "7.5rem"
 const COLLAPSE_THRESHOLD = 5
 
-const isCollapsed = categories.length >= COLLAPSE_THRESHOLD
+const isCollapsed = categories.size >= COLLAPSE_THRESHOLD
 
 type Props = Readonly<{
   class?: string | undefined
@@ -31,13 +31,13 @@ const { class: className, style } = Astro.props
   {style}
 >
   {
-    categories.map((c) => (
+    [...categories].map(([name, count]) => (
       <ButtonLink
-        url={getCategoryUrl(c.name)}
-        badge={String(c.count)}
-        label={`View all posts in the ${c.name} category`}
+        url={getCategoryUrl(name)}
+        badge={String(count)}
+        label={`View all posts in the ${name} category`}
       >
-        {c.name}
+        {name}
       </ButtonLink>
     ))
   }

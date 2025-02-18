@@ -1,4 +1,4 @@
-import type { Theme } from "@/types/config"
+import type { Theme } from "$/types/config"
 
 export const UNCATEGORIZED = "__uncategorized__"
 

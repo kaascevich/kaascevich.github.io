@@ -1,6 +1,6 @@
-import { siteConfig } from "@/config"
+import { siteConfig } from "$/config"
 import rss from "@astrojs/rss"
-import { getSortedPosts } from "@/utils/content-utils"
+import { getSortedPosts } from "$/utils/content-utils"
 import type { APIContext } from "astro"
 import MarkdownIt from "markdown-it"
 import sanitizeHtml from "sanitize-html"
@@ -13,7 +13,7 @@ export async function GET(context: APIContext): Promise<Response> {
   return rss({
     title: siteConfig.title,
     description: siteConfig.subtitle ?? "No description",
-    site: context.site ?? "https://fuwari.vercel.app",
+    site: context.site ?? siteConfig.url,
     items: blog.map((post) => ({
       title: post.data.title,
       pubDate: post.data.published,

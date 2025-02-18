@@ -1,21 +1,16 @@
 ---
 import { Icon } from "astro-icon/components"
-import DisplaySettings from "@/components/widget/DisplaySettings.svelte"
-import { navBarConfig, siteConfig } from "@/config"
-import NavMenuPanel from "@/components/widget/NavMenuPanel.astro"
-import Search from "@/components/Search.svelte"
-import { LinkPresets } from "@/constants/link-presets"
-import LightDarkSwitch from "@/components/LightDarkSwitch.svelte"
-import { url } from "@/utils/url-utils"
+import DisplaySettings from "$/components/widget/DisplaySettings.svelte"
+import { navbarConfig, siteConfig } from "$/config"
+import NavMenuPanel from "$/components/widget/NavMenuPanel.astro"
+import Search from "$/components/Search.svelte"
+import LightDarkSwitch from "$/components/LightDarkSwitch.svelte"
+import { url } from "$/utils/url-utils"
 
 type Props = {
   class?: string | undefined
 }
 const { class: className } = Astro.props
-
-const links = navBarConfig.links.map((item) =>
-  typeof item === "number" ? LinkPresets[item] : item,
-)
 ---
 
 <div id="navbar" class="z-50 onload-animation">
@@ -45,7 +40,7 @@ const links = navBarConfig.links.map((item) =>
     </a>
     <div class="hidden md:flex">
       {
-        links.map((link) => {
+        navbarConfig.links.map((link) => {
           return (
             <a
               aria-label={link.name}
@@ -94,7 +89,7 @@ const links = navBarConfig.links.map((item) =>
       </button>
     </div>
 
-    <NavMenuPanel {links} />
+    <NavMenuPanel links={navbarConfig.links} />
     <DisplaySettings client:only="svelte" />
   </div>
 </div>

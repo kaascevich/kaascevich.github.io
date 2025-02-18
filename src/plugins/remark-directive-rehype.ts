@@ -15,7 +15,7 @@ export const parseDirectiveNode: RemarkPlugin = () => (tree) => {
       const [firstChild] = node.children
       if (
         firstChild?.type === "paragraph" &&
-        firstChild?.data?.directiveLabel === true
+        firstChild.data?.directiveLabel === true
       ) {
         node.attributes["has-directive-label"] = "true"
       }

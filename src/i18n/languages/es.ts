@@ -1,5 +1,5 @@
-import Key from "@/i18n/i18nKey"
-import type { Translation } from "@/i18n/translation"
+import Key from "$/i18n/i18nKey"
+import type { Translation } from "$/i18n/translation"
 
 export const es: Translation = {
   [Key.home]: "Inicio",

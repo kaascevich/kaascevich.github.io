@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config"
+import siteConfig from "./src/config/site"
 
 import sitemap from "@astrojs/sitemap"
 import svelte from "@astrojs/svelte"
@@ -31,7 +32,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time"
 import shellSession from "@robot-inventor/shell-session-syntax"
 
 export default defineConfig({
-  site: "https://fuwari.vercel.app/",
+  site: siteConfig.url,
   base: "/",
   trailingSlash: "always",
   integrations: [

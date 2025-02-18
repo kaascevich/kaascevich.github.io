@@ -1,7 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content"
-import I18nKey from "@/i18n/i18nKey"
-import { i18n } from "@/i18n/translation"
-import { elementCounts } from "@/utils/array-utils"
+import I18nKey from "$/i18n/i18nKey"
+import { i18n } from "$/i18n/translation"
+import { elementCounts } from "$/utils/array-utils"
 
 export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
   const allBlogPosts = await getCollection(
@@ -9,54 +9,45 @@ export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
     (post) => import.meta.env.DEV || !post.data.draft,
   )
 
-  const sorted = allBlogPosts.sort((a, b) => {
+  const sorted = allBlogPosts.toSorted((a, b) => {
     const dateA = new Date(a.data.published)
     const dateB = new Date(b.data.published)
     return dateA > dateB ? -1 : 1
   })
 
-  for (let i = 1; i < sorted.length; i += 1) {
-    sorted[i]!.data.nextID = sorted[i - 1]!.id
-    sorted[i]!.data.nextTitle = sorted[i - 1]!.data.title
-  }
-  for (let i = 0; i < sorted.length - 1; i += 1) {
-    sorted[i]!.data.prevID = sorted[i + 1]!.id
-    sorted[i]!.data.prevTitle = sorted[i + 1]!.data.title
+  for (const [index, value] of sorted.entries()) {
+    const prev = sorted[index - 1]
+    const next = sorted[index + 1]
+
+    if (prev !== undefined) {
+      value.data.prevID = prev.id
+      value.data.prevTitle = prev.data.title
+    }
+    if (next !== undefined) {
+      value.data.nextID = next.id
+      value.data.nextTitle = next.data.title
+    }
   }
 
   return sorted
 }
 
-export type Tag = Readonly<{
-  name: string
-  count: number
-}>
-
-export async function getTagList(): Promise<readonly Tag[]> {
+export async function getTagList(): Promise<Map<string, number>> {
   const allBlogPosts = await getSortedPosts()
 
-  const counts = elementCounts(allBlogPosts.flatMap((post) => post.data.tags))
-
-  return [...counts.keys()]
-    .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-    .map((key) => ({ name: key, count: counts.get(key)! }))
+  return elementCounts(
+    allBlogPosts
+      .flatMap((post) => post.data.tags)
+      .toSorted((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
+  )
 }
 
-export type Category = Readonly<{
-  name: string
-  count: number
-}>
-
-export async function getCategoryList(): Promise<readonly Category[]> {
+export async function getCategoryList(): Promise<Map<string, number>> {
   const allBlogPosts = await getSortedPosts()
 
-  const counts = elementCounts(
-    allBlogPosts.flatMap(
-      (post) => post.data.category ?? i18n(I18nKey.uncategorized),
-    ),
+  return elementCounts(
+    allBlogPosts
+      .flatMap((post) => post.data.category ?? i18n(I18nKey.uncategorized))
+      .toSorted((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
   )
-
-  return [...counts.keys()]
-    .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-    .map((category) => ({ name: category, count: counts.get(category)! }))
 }

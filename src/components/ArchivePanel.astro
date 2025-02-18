@@ -1,9 +1,9 @@
 ---
-import { UNCATEGORIZED } from "@/constants/constants"
-import I18nKey from "@/i18n/i18nKey"
-import { i18n } from "@/i18n/translation"
-import { getSortedPosts } from "@/utils/content-utils"
-import { getPostUrlByID } from "@/utils/url-utils"
+import { UNCATEGORIZED } from "$/constants/constants"
+import I18nKey from "$/i18n/i18nKey"
+import { i18n } from "$/i18n/translation"
+import { getSortedPosts } from "$/utils/content-utils"
+import { getPostUrlByID } from "$/utils/url-utils"
 
 type Props = Readonly<{
   tags?: readonly string[] | undefined
@@ -31,7 +31,7 @@ const groups = Array.from(
   Map.groupBy(posts, (post) => post.data.published.getFullYear()),
 )
   .map(([year, posts]) => ({ year, posts }))
-  .sort((a, b) => b.year - a.year) // sort by year, descending
+  .toSorted((a, b) => b.year - a.year) // sort by year, descending
 
 function formatDate(date: Date): string {
   const month = (date.getMonth() + 1).toString().padStart(2, "0")

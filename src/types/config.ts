@@ -1,7 +1,22 @@
-import type { Lang } from "@/i18n/translation"
+import type { Lang } from "$/i18n/translation"
+import type { DeepReadonly } from "./misc"
+
+/**
+ * Returns the argument unchanged.
+ *
+ * This is useful for enabling type checking on default exports.
+ *
+ * @param value - Any value.
+ * @returns The argument, unchanged.
+ */
+export function config<T>(value: T): T {
+  return value
+}
 
 /** Site-wide configuration. */
-export type SiteConfig = Readonly<{
+export type SiteConfig = DeepReadonly<{
+  /** The URL of the site. */
+  url: string
   /** The title of the site. */
   title: string
   /** The subtitle of the site. */
@@ -10,14 +25,14 @@ export type SiteConfig = Readonly<{
   /** The primary language of the site. */
   lang: Lang
 
-  themeColor: Readonly<{
+  themeColor: {
     /** The default theme hue, from 0 to 360. */
     hue: number
     /** Whether to hide the theme color picker. */
     fixed: boolean
-  }>
+  }
   /** Configuration for the site-wide banner. */
-  banner: Readonly<{
+  banner: {
     /** Whether to enable the site-wide banner. */
     enable: boolean
     /**
@@ -33,29 +48,29 @@ export type SiteConfig = Readonly<{
      */
     position?: "top" | "center" | "bottom" | undefined
     /** Configuration for the banner attribution link. */
-    credit: Readonly<{
+    credit: {
       /** Whether to show an attribution link for the banner image. */
       enable: boolean
       /** The name of the person who created the banner image. */
       text: string
       /** A link to the original image. */
       url?: string | undefined
-    }>
-  }>
+    }
+  }
   /** Configuration for the table of contents. */
-  toc: Readonly<{
+  toc: {
     /** Whether to show the table of contents on the right side of the page. */
     enable: boolean
     /** The maximum heading depth to show in the table of contents. */
     depth: 1 | 2 | 3
-  }>
+  }
 
   /** A list of favicons to use for the site. */
-  favicon: readonly Favicon[]
+  favicon: Favicon[]
 }>
 
 /** A favicon. */
-export type Favicon = Readonly<{
+export type Favicon = DeepReadonly<{
   /** The path to this favicon, relative to `/public`. */
   src: string
   /**
@@ -68,14 +83,8 @@ export type Favicon = Readonly<{
   sizes?: string | undefined
 }>
 
-/** A built-in navbar link. */
-export enum LinkPreset {
-  Archive,
-  About,
-}
-
 /** A navbar link. */
-export type NavBarLink = Readonly<{
+export type NavBarLink = DeepReadonly<{
   /** The name of this navbar link. */
   name: string
   /** The URL of this navbar link. */
@@ -85,25 +94,32 @@ export type NavBarLink = Readonly<{
 }>
 
 /** Navbar configuration. */
-export type NavBarConfig = Readonly<{
+export type NavBarConfig = DeepReadonly<{
   /** A list of navbar links. */
-  links: readonly (NavBarLink | LinkPreset)[]
+  links: NavBarLink[]
 }>
 
 /** Profile configuration. */
-export type ProfileConfig = Readonly<{
+export type ProfileConfig = DeepReadonly<{
+  /** The path to the author's profile picture. Relative to `/src`. */
   avatar?: string | undefined
+  /** The author's name. */
   name: string
+  /** The author's bio. */
   bio?: string | undefined
-  links: readonly {
+  /** Links to the author's social profiles. */
+  links: {
+    /** The name of this service. */
     name: string
+    /** The URL to the author's profile on this service. */
     url: string
+    /** The icon of this service. */
     icon: string
   }[]
 }>
 
 /** License configuration. */
-export type LicenseConfig = Readonly<{
+export type LicenseConfig = DeepReadonly<{
   /** Whether to enable post licenses. */
   enable: boolean
   /** The name of the license. */

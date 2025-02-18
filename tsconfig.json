@@ -5,14 +5,8 @@
     "strictNullChecks": true,
     "allowJs": true,
     "declaration": true,
-    "plugins": [
-      {
-        "name": "@astrojs/ts-plugin"
-      }
-    ],
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "plugins": [{ "name": "@astrojs/ts-plugin" }],
+    "paths": { "$/*": ["src/*"] }
   },
   "include": ["**/*", ".*"],
   "exclude": ["public/pagefind", "node_modules", "dist", ".astro"]
