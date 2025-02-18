@@ -1,0 +1,18 @@
+---
+title: Mission Control + up arrow key
+published: 2025-02-18
+description: Today I learned something new about Mission Control
+tags: [Mac]
+category: Tech
+---
+
+Fun fact: if you have "Group windows by application" turned on in Mission
+Control settings, you can press the up arrow key while hovering over a window to
+focus on all the windows from that app:
+
+![The Mission Control interface, focusing on all VSCodium windows.][mission-control]
+
+This doesn't seem _particularly_ useful to me, since I personally keep the
+number of open windows to a minimum, but it's something new to me nonetheless.
+
+[mission-control]: mission-control.png
