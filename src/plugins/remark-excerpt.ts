@@ -1,8 +1,9 @@
+import type { RemarkPlugin } from "@astrojs/markdown-remark"
 import { toString } from "mdast-util-to-string"
 
-/* Use the post's first paragraph as the excerpt */
-export function remarkExcerpt() {
-  return (tree, { data }) => {
+export const remarkExcerpt: RemarkPlugin =
+  () =>
+  (tree, { data }) => {
     let excerpt = ""
     for (const node of tree.children) {
       if (node.type !== "paragraph") {
@@ -11,6 +12,5 @@ export function remarkExcerpt() {
       excerpt = toString(node)
       break
     }
-    data.astro.frontmatter.excerpt = excerpt
+    data.astro!.frontmatter!.excerpt = excerpt
   }
-}

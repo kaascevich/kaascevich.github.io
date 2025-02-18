@@ -1,17 +1,19 @@
+import { defineConfig } from "astro/config"
+
 import sitemap from "@astrojs/sitemap"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
 import swup from "@swup/astro"
 import compress from "astro-compress"
 import icon from "astro-icon"
-import { defineConfig } from "astro/config"
+import { pagefind } from "vite-plugin-pagefind"
 
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypeComponents from "rehype-components"
+import rehypeComponents, { type ComponentFunction } from "rehype-components"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
-import { admonitionComponent } from "./src/plugins/rehype-component-admonition.mjs"
-import { githubCardComponent } from "./src/plugins/rehype-component-github-card.mjs"
+import { admonitionComponent } from "./src/plugins/rehype-component-admonition"
+import { githubCardComponent } from "./src/plugins/rehype-component-github-card"
 
 import {
   remarkDefinitionList,
@@ -22,9 +24,9 @@ import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-di
 import remarkMath from "remark-math"
 import remarkSectionize from "remark-sectionize"
 
-import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js"
-import { remarkExcerpt } from "./src/plugins/remark-excerpt.js"
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs"
+import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype"
+import { remarkExcerpt } from "./src/plugins/remark-excerpt"
+import { remarkReadingTime } from "./src/plugins/remark-reading-time"
 
 import shellSession from "@robot-inventor/shell-session-syntax"
 
@@ -90,7 +92,8 @@ export default defineConfig({
         rehypeComponents,
         {
           components: {
-            github: githubCardComponent,
+            github: (properties, children) =>
+              githubCardComponent(properties, children),
             note: (properties, children) =>
               admonitionComponent(properties, children, "note"),
             tip: (properties, children) =>
@@ -101,7 +104,7 @@ export default defineConfig({
               admonitionComponent(properties, children, "caution"),
             warning: (properties, children) =>
               admonitionComponent(properties, children, "warning"),
-          },
+          } satisfies Record<string, ComponentFunction>,
         },
       ],
       [
@@ -152,5 +155,6 @@ export default defineConfig({
         },
       },
     },
+    plugins: [pagefind({ outputDirectory: "dist" })],
   },
 })

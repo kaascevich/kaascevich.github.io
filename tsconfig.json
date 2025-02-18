@@ -15,5 +15,5 @@
     }
   },
   "include": ["**/*", ".*"],
-  "exclude": ["node_modules", ".astro"]
+  "exclude": ["public/pagefind", "node_modules", "dist", ".astro"]
 }

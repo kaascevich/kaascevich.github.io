@@ -1,73 +1,43 @@
 <script lang="ts" module>
+  import type { Pagefind } from "vite-plugin-pagefind/types"
   declare var pagefind: Pagefind
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte"
-  import { url } from "@/utils/url-utils.ts"
+  import type { PagefindSearchFragment } from "vite-plugin-pagefind/types"
   import { i18n } from "@/i18n/translation"
   import I18nKey from "@/i18n/i18nKey"
   import Icon from "@iconify/svelte"
-  import type { Pagefind, PagefindResult } from "@/types/pagefind"
 
   let keywordDesktop = $state("")
   let keywordMobile = $state("")
-  let results: PagefindResult[] = $state([])
+  let results: PagefindSearchFragment[] = $state([])
 
-  const fakeResults: PagefindResult[] = [
-    {
-      url: url("/"),
-      meta: {
-        title: "This is a Fake Search Result",
-      },
-      excerpt:
-        "Because search doesn't work in the <mark>dev</mark> environment.",
-    },
-    {
-      url: url("/"),
-      meta: {
-        title: "If you Want to Test Searching",
-      },
-      excerpt: "Try running <mark>pnpm run preview</mark> instead.",
-    },
-  ]
+  const search = async (keyword: string, isDesktop: boolean) => {
+    let panel = document.getElementById("search-panel")
+    if (panel === null) return
 
-  let search: (
-    keyword: string,
-    isDesktop: boolean,
-  ) => Promise<void> = async () => {}
-
-  onMount(() => {
-    search = async (keyword: string, isDesktop: boolean) => {
-      let panel = document.getElementById("search-panel")
-      if (!panel) return
-
-      if (!keyword && isDesktop) {
-        panel.classList.add("float-panel-closed")
-        return
-      }
-
-      let tempResults = []
-      if (import.meta.env.PROD) {
-        const search = await pagefind.search(keyword)
-        for (const item of search.results) {
-          tempResults.push(await item.data())
-        }
-      } else {
-        tempResults = fakeResults
-      }
-
-      if (!tempResults.length && isDesktop) {
-        panel.classList.add("float-panel-closed")
-        return
-      }
-
-      if (isDesktop) {
-        panel.classList.remove("float-panel-closed")
-      }
-      results = tempResults
+    if (keyword === "" && isDesktop) {
+      panel.classList.add("float-panel-closed")
+      return
     }
-  })
+
+    const tempResults = await Promise.all(
+      (await pagefind.search(keyword)).results.map(
+        async (item) => await item.data(),
+      ),
+    )
+
+    if (tempResults.length === 0 && isDesktop) {
+      panel.classList.add("float-panel-closed")
+      return
+    }
+
+    if (isDesktop) {
+      panel.classList.remove("float-panel-closed")
+    }
+    results = tempResults
+  }
 
   const togglePanel = () =>
     document

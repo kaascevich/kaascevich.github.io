@@ -25,8 +25,7 @@
   }
 
   a:not(.no-styling) {
-    @apply relative bg-none link font-medium text-[var(--primary)]
-        underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
+    @apply relative bg-none link font-medium text-[var(--primary)] underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
 
     &:hover,
     &:active {
@@ -35,7 +34,7 @@
   }
 
   code {
-    @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
+    @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] p-1 rounded-md overflow-hidden;
 
     font-family:
       "Monaspace Radon",
@@ -71,6 +70,10 @@
         display: none;
       }
     }
+  }
+
+  :not(pre) code {
+    @apply relative bottom-[0.05rem];
   }
 
   pre {

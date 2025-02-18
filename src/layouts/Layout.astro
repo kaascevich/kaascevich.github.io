@@ -277,7 +277,7 @@ const bannerOffset =
 
   function initCustomScrollbar() {
     const bodyElement = document.querySelector("body")
-    if (!bodyElement) return
+    if (bodyElement === null) return
     OverlayScrollbars(
       // docs say that a initialization to the body element would affect native
       // functionality like window.scrollTo, but just leave it here for now
@@ -321,7 +321,7 @@ const bannerOffset =
 
   function showBanner() {
     const banner = document.getElementById("banner")
-    if (!banner) {
+    if (banner === null) {
       console.error("Failed to find the banner element")
       return
     }
@@ -349,7 +349,7 @@ const bannerOffset =
       }
       let threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
       let navbar = document.getElementById("navbar-wrapper")
-      if (!navbar || !document.body.classList.contains("lg:is-home")) {
+      if (navbar === null || !document.body.classList.contains("lg:is-home")) {
         return
       }
       if (

@@ -27,3 +27,6 @@ pnpm-lock.yaml
 
 # macOS stuff
 .DS_Store
+
+# pagefind stuff
+/public/pagefind/

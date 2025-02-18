@@ -1,4 +1,4 @@
-/// <reference types="mdast" />
+import type { ElementContent, Element, Properties } from "hast"
 import { h } from "hastscript"
 
 /**
@@ -6,11 +6,14 @@ import { h } from "hastscript"
  *
  * @param {Object} properties - The properties of the component.
  * @param {`${string}/${string}`} properties.repo - The GitHub repository, in the format "owner/repo".
- * @param {import("mdast").RootContent[]} children - The component's children.
- * @returns {import("mdast").Parent} The created component.
+ * @param {ElementContent[]} children - The component's children.
+ * @returns {Element} The created component.
  */
-export function githubCardComponent(properties, children) {
-  if (Array.isArray(children) && children.length !== 0)
+export const githubCardComponent = (
+  properties: Properties & { repo?: `${string}/${string}` | undefined },
+  children: ElementContent[],
+): Element => {
+  if (children.length !== 0 || properties.repo === undefined)
     return h("div", { class: "hidden" }, [
       'Invalid directive. ("github" directive must be leaf type "::github{repo="owner/repo"}")',
     ])

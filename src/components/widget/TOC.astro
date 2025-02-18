@@ -150,7 +150,7 @@ let heading1Count = 1
       const activeHeading = document.querySelectorAll<HTMLDivElement>(
         `#toc .${this.visibleClass}`,
       )
-      if (!activeHeading.length) return
+      if (activeHeading.length === 0) return
 
       const topmost = activeHeading[0]!
       const bottommost = activeHeading[activeHeading.length - 1]!
@@ -182,7 +182,7 @@ let heading1Count = 1
     }
 
     fallback = () => {
-      if (!this.sections.length) return
+      if (this.sections.length === 0) return
 
       for (let i = 0; i < this.sections.length; i++) {
         let offsetTop = this.sections[i]!.getBoundingClientRect().top
@@ -241,7 +241,7 @@ let heading1Count = 1
     init() {
       this.tocEl = document.getElementById("toc-inner-wrapper")
 
-      if (!this.tocEl) return
+      if (this.tocEl === null) return
 
       this.tocEl.addEventListener("click", this.handleAnchorClick, {
         capture: true,
