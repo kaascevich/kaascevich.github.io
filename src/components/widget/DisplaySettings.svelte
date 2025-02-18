@@ -11,11 +11,7 @@
     hue = getDefaultHue()
   }
 
-  $effect(() => {
-    if (hue || hue === 0) {
-      setHue(hue)
-    }
-  })
+  $effect(() => setHue(hue))
 </script>
 
 <div

@@ -16,9 +16,7 @@
   onMount(() => {
     mode = getStoredTheme()
     const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)")
-    const changeThemeWhenSchemeChanged: Parameters<
-      typeof darkModePreference.addEventListener<"change">
-    >[1] = () => applyThemeToDocument(mode)
+    const changeThemeWhenSchemeChanged = () => applyThemeToDocument(mode)
 
     darkModePreference.addEventListener("change", changeThemeWhenSchemeChanged)
     return () =>
@@ -49,9 +47,23 @@
       .querySelector("#light-dark-panel")
       ?.classList.add("float-panel-closed")
   }
+
+  const buttons: Record<Theme, { key: I18nKey; icon: string }> = {
+    light: {
+      key: I18nKey.lightMode,
+      icon: "material-symbols:wb-sunny-outline-rounded",
+    },
+    dark: {
+      key: I18nKey.darkMode,
+      icon: "material-symbols:dark-mode-outline-rounded",
+    },
+    auto: {
+      key: I18nKey.systemMode,
+      icon: "material-symbols:radio-button-partial-outline",
+    },
+  }
 </script>
 
-<!-- z-50 make the panel higher than other float panels -->
 <div class="relative z-50" role="menu" tabindex="-1" onmouseleave={hidePanel}>
   <button
     aria-label="Light/Dark Mode"
@@ -61,24 +73,11 @@
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
-    <div class="absolute" class:opacity-0={mode !== "light"}>
-      <Icon
-        icon="material-symbols:wb-sunny-outline-rounded"
-        class="text-[1.25rem]"
-      />
-    </div>
-    <div class="absolute" class:opacity-0={mode !== "dark"}>
-      <Icon
-        icon="material-symbols:dark-mode-outline-rounded"
-        class="text-[1.25rem]"
-      />
-    </div>
-    <div class="absolute" class:opacity-0={mode !== "auto"}>
-      <Icon
-        icon="material-symbols:radio-button-partial-outline"
-        class="text-[1.25rem]"
-      />
-    </div>
+    {#each Object.entries(buttons) as [theme, { icon }]}
+      <div class="absolute" class:opacity-0={mode !== theme}>
+        <Icon {icon} class="text-[1.25rem]" />
+      </div>
+    {/each}
   </button>
 
   <div
@@ -86,39 +85,16 @@
     class="hidden lg:block absolute transition float-panel-closed top-11 -right-2 pt-5"
   >
     <div class="card-base float-panel p-2">
-      <button
-        class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
-        class:current-theme-btn={mode === "light"}
-        onclick={() => switchScheme("light")}
-      >
-        <Icon
-          icon="material-symbols:wb-sunny-outline-rounded"
-          class="text-[1.25rem] mr-3"
-        />
-        {i18n(I18nKey.lightMode)}
-      </button>
-      <button
-        class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
-        class:current-theme-btn={mode === "dark"}
-        onclick={() => switchScheme("dark")}
-      >
-        <Icon
-          icon="material-symbols:dark-mode-outline-rounded"
-          class="text-[1.25rem] mr-3"
-        />
-        {i18n(I18nKey.darkMode)}
-      </button>
-      <button
-        class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"
-        class:current-theme-btn={mode === "auto"}
-        onclick={() => switchScheme("auto")}
-      >
-        <Icon
-          icon="material-symbols:radio-button-partial-outline"
-          class="text-[1.25rem] mr-3"
-        />
-        {i18n(I18nKey.systemMode)}
-      </button>
+      {#each Object.entries(buttons) as [theme, { key, icon }]}
+        <button
+          class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
+          class:current-theme-btn={mode === theme}
+          onclick={() => switchScheme(theme as Theme)}
+        >
+          <Icon {icon} class="text-[1.25rem] mr-3" />
+          {i18n(key)}
+        </button>
+      {/each}
     </div>
   </div>
 </div>

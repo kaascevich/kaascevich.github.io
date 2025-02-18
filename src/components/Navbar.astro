@@ -101,21 +101,19 @@ const links = navBarConfig.links.map((item) =>
 
 <script>
   function switchTheme() {
-    if (localStorage.theme === "dark") {
+    if (localStorage.getItem("theme") === "dark") {
       document.documentElement.classList.remove("dark")
-      localStorage.theme = "light"
+      localStorage.setItem("theme", "light")
     } else {
       document.documentElement.classList.add("dark")
-      localStorage.theme = "dark"
+      localStorage.setItem("theme", "dark")
     }
   }
 
   function loadButtonScript() {
     document
       .getElementById("scheme-switch")
-      ?.addEventListener("click", function () {
-        switchTheme()
-      })
+      ?.addEventListener("click", switchTheme)
 
     document
       .getElementById("display-settings-switch")
