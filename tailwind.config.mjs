@@ -8,7 +8,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Roboto", "sans-serif", ...defaultTheme.fontFamily.sans],
+        sans: [
+          "Playpen Sans Variable",
+          "sans-serif",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },

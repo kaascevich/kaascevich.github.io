@@ -13,38 +13,30 @@ const currentYear = new Date().getFullYear()
 >
   <div class="transition text-50 text-sm text-center">
     &copy; <span id="copyright-year">{currentYear}</span>
-    {profileConfig.name}. All Rights Reserved. /
+    {profileConfig.name} /
     <a
       class="transition link text-[var(--primary)] font-medium"
       target="_blank"
-      href={url("rss.xml")}
+      href={url("rss.xml")}>RSS</a
     >
-      RSS
-    </a>
     /
     <a
       class="transition link text-[var(--primary)] font-medium"
       target="_blank"
-      href={url("sitemap-index.xml")}
+      href={url("sitemap-index.xml")}>Sitemap</a
     >
-      Sitemap
-    </a>
     <br />
     Powered by
     <a
       class="transition link text-[var(--primary)] font-medium"
       target="_blank"
-      href="https://astro.build"
+      href="https://astro.build">Astro</a
     >
-      Astro
-    </a>
     &
     <a
       class="transition link text-[var(--primary)] font-medium"
       target="_blank"
-      href="https://github.com/saicaca/fuwari"
+      href="https://github.com/saicaca/fuwari">Fuwari</a
     >
-      Fuwari
-    </a>
   </div>
 </div>

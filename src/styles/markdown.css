@@ -38,7 +38,7 @@
     @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
 
     font-family:
-      "JetBrains Mono Variable",
+      "Monaspace Radon",
       ui-monospace,
       SFMono-Regular,
       Menlo,
@@ -47,6 +47,10 @@
       Liberation Mono,
       Courier New,
       monospace;
+    font-feature-settings:
+      "calt", "liga", "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07",
+      "ss08", "ss09";
+
     &:before {
       content: none;
     }

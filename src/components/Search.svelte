@@ -7,23 +7,23 @@
 
   let keywordDesktop = ""
   let keywordMobile = ""
-  let result = []
+  let results = []
 
-  const fakeResult = [
+  const fakeResults = [
     {
       url: url("/"),
       meta: {
-        title: "This Is a Fake Search Result",
+        title: "This is a Fake Search Result",
       },
       excerpt:
-        "Because the search cannot work in the <mark>dev</mark> environment.",
+        "Because search doesn't work in the <mark>dev</mark> environment.",
     },
     {
       url: url("/"),
       meta: {
-        title: "If You Want to Test the Search",
+        title: "If you Want to Test Searching",
       },
-      excerpt: "Try running <mark>npm build && npm preview</mark> instead.",
+      excerpt: "Try running <mark>pnpm run preview</mark> instead.",
     },
   ]
 
@@ -42,17 +42,17 @@
         return
       }
 
-      let arr = []
+      let tempResults = []
       if (import.meta.env.PROD) {
-        const ret = await pagefind.search(keyword)
-        for (const item of ret.results) {
-          arr.push(await item.data())
+        const realResults = await pagefind.search(keyword)
+        for (const item of realResults.results) {
+          tempResults.push(await item.data())
         }
       } else {
-        arr = fakeResult
+        tempResults = fakeResults
       }
 
-      if (!arr.length && isDesktop) {
+      if (!tempResults.length && isDesktop) {
         panel.classList.add("float-panel-closed")
         return
       }
@@ -60,7 +60,7 @@
       if (isDesktop) {
         panel.classList.remove("float-panel-closed")
       }
-      result = arr
+      results = tempResults
     }
   })
 
@@ -123,7 +123,7 @@
   </div>
 
   <!-- search results -->
-  {#each result as item}
+  {#each results as item}
     <a
       href={item.url}
       class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]"

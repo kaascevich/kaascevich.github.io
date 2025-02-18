@@ -7,8 +7,8 @@ import {
 } from "@/types/config"
 
 export const siteConfig: SiteConfig = {
-  title: "Fuwari",
-  subtitle: "Demo Site",
+  title: "Haven",
+  subtitle: "my little home on the internet",
   lang: "en",
   themeColor: {
     hue: 250,
@@ -45,8 +45,8 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
   avatar: "assets/images/demo-avatar.png",
-  name: "Kaleb Ascevich",
-  bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  name: "Kaleb A. Ascevich",
+  bio: "A hobbyist Swift programmer with all the ADHD.",
   links: [
     {
       name: "GitHub",

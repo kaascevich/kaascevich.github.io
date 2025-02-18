@@ -29,9 +29,12 @@ importers:
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.1.2
         version: 5.1.2
-      '@fontsource/roboto':
+      '@fontsource-variable/playpen-sans':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/monaspace-radon':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@iconify-json/fa6-brands':
         specifier: ^1.2.5
         version: 1.2.5
@@ -1260,8 +1263,11 @@ packages:
   '@fontsource-variable/jetbrains-mono@5.1.2':
     resolution: {integrity: sha512-syGEJ/N4FFisAXegxtbe1etYpo2T630dqCbYufPf7Dli/hMKSoSUIm3wK4q5RsGFRxWno1WecfnsgZA1jRK0EQ==}
 
-  '@fontsource/roboto@5.1.1':
-    resolution: {integrity: sha512-XwVVXtERDQIM7HPUIbyDe0FP4SRovpjF7zMI8M7pbqFp3ahLJsJTd18h+E6pkar6UbV3btbwkKjYARr5M+SQow==}
+  '@fontsource-variable/playpen-sans@5.1.1':
+    resolution: {integrity: sha512-uM0JuMDXHuZpu9HZt/VPDEfZKfsrE2qvnfsIiAyCFZ9AKmd93O56PRF2VzWc3si/ly4Yn+3p+mk1VKd3jrWMNA==}
+
+  '@fontsource/monaspace-radon@5.1.0':
+    resolution: {integrity: sha512-zMKiYKAgCjrHsmL/+oU2vU/FkC7Z5b9V2EFlmCtiN7KUX8VVVAwM3D5zBuvyWJRQjKQBtyFDSUWtwOyCzfyrmA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -6791,7 +6797,9 @@ snapshots:
 
   '@fontsource-variable/jetbrains-mono@5.1.2': {}
 
-  '@fontsource/roboto@5.1.1': {}
+  '@fontsource-variable/playpen-sans@5.1.1': {}
+
+  '@fontsource/monaspace-radon@5.1.0': {}
 
   '@humanfs/core@0.19.1': {}
 
