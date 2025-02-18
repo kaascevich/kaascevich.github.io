@@ -4,16 +4,18 @@
   import { getDefaultHue, getHue, setHue } from "@/utils/setting-utils"
   import Icon from "@iconify/svelte"
 
-  let hue = getHue()
+  let hue = $state(getHue())
   const defaultHue = getDefaultHue()
 
   function resetHue() {
     hue = getDefaultHue()
   }
 
-  $: if (hue || hue === 0) {
-    setHue(hue)
-  }
+  $effect(() => {
+    if (hue || hue === 0) {
+      setHue(hue)
+    }
+  })
 </script>
 
 <div
@@ -30,7 +32,7 @@
         class="btn-regular w-7 h-7 rounded-md active:scale-90"
         class:opacity-0={hue === defaultHue}
         class:pointer-events-none={hue === defaultHue}
-        on:click={resetHue}
+        onclick={resetHue}
       >
         <div class="text-[var(--btn-content)]">
           <Icon icon="fa6-solid:arrow-rotate-left" class="text-[0.875rem]" />

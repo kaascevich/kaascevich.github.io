@@ -139,6 +139,7 @@ export default defineConfig({
   vite: {
     build: {
       rollupOptions: {
+        external: "/pagefind/pagefind.js?url",
         onwarn(warning, warn) {
           // temporarily suppress this warning
           if (

@@ -1,7 +1,8 @@
 import type { AstroIntegration } from "@swup/astro"
 
 declare global {
-  type Window = {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  interface Window {
     // type from '@swup/astro' is incorrect
     swup: AstroIntegration
   }

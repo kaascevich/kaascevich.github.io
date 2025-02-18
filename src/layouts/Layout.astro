@@ -49,7 +49,7 @@ const pageTitle =
 const favicons: readonly Favicon[] =
   siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons
 
-const siteLang = lang?.replace("_", "-")
+const siteLang = lang.replace("_", "-")
 
 const bannerOffsetByPosition = {
   top: `${BANNER_HEIGHT_EXTEND}vh`,

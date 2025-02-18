@@ -1,15 +1,20 @@
+<script lang="ts" module>
+  declare var pagefind: Pagefind
+</script>
+
 <script lang="ts">
   import { onMount } from "svelte"
   import { url } from "@/utils/url-utils.ts"
   import { i18n } from "@/i18n/translation"
   import I18nKey from "@/i18n/i18nKey"
   import Icon from "@iconify/svelte"
+  import type { Pagefind, PagefindResult } from "@/types/pagefind"
 
-  let keywordDesktop = ""
-  let keywordMobile = ""
-  let results = []
+  let keywordDesktop = $state("")
+  let keywordMobile = $state("")
+  let results: PagefindResult[] = $state([])
 
-  const fakeResults = [
+  const fakeResults: PagefindResult[] = [
     {
       url: url("/"),
       meta: {
@@ -44,8 +49,8 @@
 
       let tempResults = []
       if (import.meta.env.PROD) {
-        const realResults = await pagefind.search(keyword)
-        for (const item of realResults.results) {
+        const search = await pagefind.search(keyword)
+        for (const item of search.results) {
           tempResults.push(await item.data())
         }
       } else {
@@ -69,8 +74,12 @@
       .getElementById("search-panel")
       ?.classList.toggle("float-panel-closed")
 
-  $: search(keywordDesktop, true)
-  $: search(keywordMobile, false)
+  $effect(() => {
+    search(keywordDesktop, true)
+  })
+  $effect(() => {
+    search(keywordMobile, false)
+  })
 </script>
 
 <!-- search bar for desktop view -->
@@ -85,14 +94,14 @@
   <input
     placeholder={i18n(I18nKey.search)}
     bind:value={keywordDesktop}
-    on:focus={() => search(keywordDesktop, true)}
+    onfocus={() => search(keywordDesktop, true)}
     class="transition-all pl-10 text-sm bg-transparent outline-0 h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50"
   />
 </div>
 
 <!-- toggle btn for phone/tablet view -->
 <button
-  on:click={togglePanel}
+  onclick={togglePanel}
   aria-label="Search Panel"
   id="search-switch"
   class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
