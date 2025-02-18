@@ -135,13 +135,19 @@ const links = navBarConfig.links.map((item) =>
   loadButtonScript()
 </script>
 
-<script is:inline define:vars={{ scriptUrl: url("/pagefind/pagefind.js") }}>
-  async function loadPagefind() {
+<script
+  is:inline
+  define:vars={{
+    scriptUrl: url("/pagefind/pagefind.js"),
+    isProduction: import.meta.env.PROD,
+  }}
+>
+  if (isProduction) {
+    /** @type {import("@/types/pagefind").Pagefind} */
     const pagefind = await import(scriptUrl)
     await pagefind.options({ excerptLength: 20 })
     pagefind.init()
     window.pagefind = pagefind
     pagefind.search("") // speed up the first search
   }
-  loadPagefind()
 </script>

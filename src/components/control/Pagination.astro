@@ -65,7 +65,9 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
 <div class:list={[className, "flex flex-row gap-3 justify-center"]} {style}>
   <a
     href={url(page.url.prev ?? "")}
-    aria-label={page.url.prev === undefined ? null : "Previous Page"}
+    aria-label={page.url.prev === undefined ?
+      "Previous Page (disabled)"
+    : "Previous Page"}
     class:list={[
       "btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11",
       { disabled: page.url.prev === undefined },
@@ -100,7 +102,9 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
   </div>
   <a
     href={url(page.url.next ?? "")}
-    aria-label={page.url.next === undefined ? null : "Next Page"}
+    aria-label={page.url.next === undefined ?
+      "Next Page (disabled)"
+    : "Next Page"}
     class:list={[
       "btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11",
       { disabled: page.url.next === undefined },
