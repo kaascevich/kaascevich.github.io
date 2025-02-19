@@ -91,7 +91,7 @@ MacBook, opened a terminal and ran this:
 
 I don't remember where I got it from, but I found a copy of the needed Wi-Fi
 driver somewhere on the internet, which you can download
-<a download href="@/assets/other/broadcom-sta-dkms_6.30.223.271-23_all.deb">here</a>.
+<a download href="$/assets/other/broadcom-sta-dkms_6.30.223.271-23_all.deb">here</a>.
 I copied it to another spare SD card and mounted it on the newly-Debianized
 MacBook, opened a terminal and ran this:
 
