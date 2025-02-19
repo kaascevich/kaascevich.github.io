@@ -6,14 +6,14 @@ import Markdown from "$/components/misc/Markdown.astro"
 import I18nKey from "$/i18n/i18nKey"
 import { i18n } from "$/i18n/translation"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import { getDir, getPostUrlByID } from "$/utils/url-utils"
+import { getDir, getPostUrlByID } from "$/utils/urls"
 import { Icon } from "astro-icon/components"
 import { licenseConfig } from "src/config"
 import PostMetadata from "$/components/PostMeta.astro"
 import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import { profileConfig, siteConfig } from "$/config"
-import { formatDateToYYYYMMDD } from "$/utils/date-utils"
-import { getSortedPosts } from "$/utils/content-utils"
+import { formatDate } from "$/utils/dates"
+import { getSortedPosts } from "$/utils/content"
 import type { GetStaticPaths } from "astro"
 
 export const getStaticPaths = (async () => {
@@ -42,7 +42,7 @@ const jsonLd = {
     name: profileConfig.name,
     url: Astro.site,
   },
-  datePublished: formatDateToYYYYMMDD(entry.data.published),
+  datePublished: formatDate(entry.data.published),
   inLanguage: (entry.data.lang ?? siteConfig.lang).replace("_", "-"),
 }
 ---
@@ -76,7 +76,7 @@ const jsonLd = {
           <div
             class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
           >
-            <Icon name="material-symbols:notes-rounded" />
+            <Icon name="tabler:align-justified" />
           </div>
           <div class="text-sm">
             {remarkPluginFrontmatter.words}
@@ -87,7 +87,7 @@ const jsonLd = {
           <div
             class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
           >
-            <Icon name="material-symbols:schedule-outline-rounded" />
+            <Icon name="tabler:clock" />
           </div>
           <div class="text-sm">
             {remarkPluginFrontmatter.minutes}
@@ -167,7 +167,7 @@ const jsonLd = {
         entry.data.nextID !== undefined && (
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
             <Icon
-              name="material-symbols:chevron-left-rounded"
+              name="tabler:chevron-left"
               class="text-[2rem] text-[var(--primary)]"
             />
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
@@ -194,7 +194,7 @@ const jsonLd = {
               {entry.data.prevTitle}
             </div>
             <Icon
-              name="material-symbols:chevron-right-rounded"
+              name="tabler:chevron-right"
               class="text-[2rem] text-[var(--primary)]"
             />
           </div>

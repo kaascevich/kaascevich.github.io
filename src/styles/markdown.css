@@ -51,10 +51,10 @@
       "ss08", "ss09";
 
     &:before {
-      content: none;
+      @apply content-none;
     }
     &:after {
-      content: none;
+      @apply content-none;
     }
 
     counter-reset: line;

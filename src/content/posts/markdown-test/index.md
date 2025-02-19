@@ -7,7 +7,29 @@ tags: [Markdown]
 category: Programming
 ---
 
-:::note[This is not my writing.]
+:::note
+This is a note
+:::
+
+:::tip
+This is a tip
+:::
+
+:::important
+This is important
+:::
+
+:::warning
+This is a warning
+:::
+
+:::caution
+This is a caution
+:::
+
+------
+
+:::note[The text below is not my writing.]
 I borrowed it from <https://tailwindcss-typography.vercel.app>, because it's
 honestly the most comprehensive Markdown test I've encountered. I did modify it
 a bit to include some of my own custom styles, though.
@@ -15,8 +37,6 @@ a bit to include some of my own custom styles, though.
 I also do not necessarily condone the opinions stated below. Again: not my
 writing.
 :::
-
-------
 
 ## What to expect from here on out
 

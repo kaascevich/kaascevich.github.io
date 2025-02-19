@@ -6,12 +6,10 @@ import ConfigCarrier from "$/components/ConfigCarrier.astro"
 import {
   BANNER_HEIGHT_EXTEND,
   BANNER_HEIGHT_HOME,
-  DEFAULT_THEME,
+  DEFAULT_COLOR_SCHEME,
   PAGE_WIDTH,
 } from "$/constants/constants"
-import { defaultFavicons } from "$/constants/icon"
-import type { Favicon } from "$/types/config"
-import { url, pathsEqual } from "$/utils/url-utils"
+import { url, pathsEqual } from "$/utils/urls"
 import "katex/dist/katex.css"
 
 type Props = Readonly<{
@@ -45,9 +43,6 @@ const pageTitle =
   title === undefined ?
     `${siteConfig.title} - ${siteConfig.subtitle}`
   : `${title} - ${siteConfig.title}`
-
-const favicons: readonly Favicon[] =
-  siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons
 
 const siteLang = lang.replace("_", "-")
 
@@ -89,35 +84,24 @@ const bannerOffset =
 
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    {
-      favicons.map((favicon) => (
-        <link
-          rel="icon"
-          href={favicon.src.startsWith("/") ? url(favicon.src) : favicon.src}
-          sizes={favicon.sizes}
-          media={
-            favicon.theme === undefined ?
-              undefined
-            : `(prefers-color-scheme: ${favicon.theme})`
-          }
-        />
-      ))
-    }
+    <link rel="icon" href="/favicon.png" sizes="280x280" />
 
-    <!-- set theme before page render to avoid FOUC -->
+    <!-- set color scheme before page render to avoid FOUC -->
     <script
       is:inline
       define:vars={{
-        DEFAULT_THEME,
+        DEFAULT_COLOR_SCHEME,
         BANNER_HEIGHT_EXTEND,
         PAGE_WIDTH,
         configHue,
       }}
     >
-      // load theme from local storage
-      /** @type {import("@/types/config").Theme} */
-      const theme = localStorage.getItem("theme") ?? DEFAULT_THEME
-      switch (theme) {
+      // load color scheme from local storage
+      /** @type {import("@/types/config").ColorScheme} */
+      const colorScheme =
+        localStorage.getItem("colorScheme") ?? DEFAULT_COLOR_SCHEME
+
+      switch (colorScheme) {
         case "light":
           document.documentElement.classList.remove("dark")
           break
@@ -147,7 +131,7 @@ const bannerOffset =
     </script>
 
     <!--
-			define global css variables. this will be applied to <html> and <body>
+			define global CSS variables. this will be applied to <html> and <body>
 		 	(and some other elements, idk why)
 		-->
     <style
@@ -224,11 +208,11 @@ const bannerOffset =
   import { OverlayScrollbars } from "overlayscrollbars"
   import {
     getHue,
-    getStoredTheme,
+    getStoredColorScheme,
     setHue,
-    setTheme,
-  } from "$/utils/setting-utils"
-  import { pathsEqual, url } from "$/utils/url-utils"
+    setColorScheme,
+  } from "$/utils/settings"
+  import { pathsEqual, url } from "$/utils/urls"
   import {
     BANNER_HEIGHT,
     BANNER_HEIGHT_HOME,
@@ -266,9 +250,8 @@ const bannerOffset =
     "search-switch",
   ])
 
-  function loadTheme() {
-    const theme = getStoredTheme()
-    setTheme(theme)
+  function loadColorScheme() {
+    setColorScheme(getStoredColorScheme())
   }
 
   function loadHue() {
@@ -329,7 +312,7 @@ const bannerOffset =
   }
 
   function init() {
-    loadTheme()
+    loadColorScheme()
     loadHue()
     initCustomScrollbar()
     showBanner()

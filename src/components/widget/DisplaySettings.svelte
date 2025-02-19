@@ -1,7 +1,7 @@
 <script lang="ts">
   import { i18n } from "$/i18n/translation"
   import I18nKey from "$/i18n/i18nKey"
-  import { getDefaultHue, getHue, setHue } from "$/utils/setting-utils"
+  import { getDefaultHue, getHue, setHue } from "$/utils/settings"
   import Icon from "@iconify/svelte"
 
   let hue = $state(getHue())
@@ -31,7 +31,7 @@
         onclick={resetHue}
       >
         <div class="text-[var(--btn-content)]">
-          <Icon icon="fa6-solid:arrow-rotate-left" class="text-[0.875rem]" />
+          <Icon icon="tabler:x" class="text-[0.875rem]" />
         </div>
       </button>
     </div>

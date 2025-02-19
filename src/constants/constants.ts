@@ -1,10 +1,10 @@
-import type { Theme } from "$/types/config"
+import type { ColorScheme } from "$/types/config"
 
 export const UNCATEGORIZED = "__uncategorized__"
 
 export const PAGE_SIZE = 8
 
-export const DEFAULT_THEME: Theme = "auto"
+export const DEFAULT_COLOR_SCHEME: ColorScheme = "auto"
 
 // Banner height unit: vh
 export const BANNER_HEIGHT = 35

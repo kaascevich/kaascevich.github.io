@@ -1,5 +1,5 @@
-import type { Theme } from "$/types/config"
-import { DEFAULT_THEME } from "$/constants/constants.ts"
+import type { ColorScheme } from "$/types/config"
+import { DEFAULT_COLOR_SCHEME } from "$/constants/constants.ts"
 
 export function getDefaultHue(): number {
   const fallback = "250"
@@ -19,8 +19,8 @@ export function setHue(hue: number): void {
     ?.style.setProperty("--hue", String(hue))
 }
 
-export function applyThemeToDocument(theme: Theme): void {
-  switch (theme) {
+export function applyColorScheme(colorScheme: ColorScheme): void {
+  switch (colorScheme) {
     case "light":
       document.documentElement.classList.remove("dark")
       break
@@ -37,11 +37,14 @@ export function applyThemeToDocument(theme: Theme): void {
   }
 }
 
-export function setTheme(theme: Theme): void {
-  localStorage.setItem("theme", theme)
-  applyThemeToDocument(theme)
+export function setColorScheme(colorScheme: ColorScheme): void {
+  localStorage.setItem("colorScheme", colorScheme)
+  applyColorScheme(colorScheme)
 }
 
-export function getStoredTheme(): Theme {
-  return (localStorage.getItem("theme") as Theme | null) ?? DEFAULT_THEME
+export function getStoredColorScheme(): ColorScheme {
+  return (
+    (localStorage.getItem("colorScheme") as ColorScheme | null) ??
+    DEFAULT_COLOR_SCHEME
+  )
 }

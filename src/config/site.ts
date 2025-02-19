@@ -23,5 +23,4 @@ export default config<SiteConfig>({
     enable: true,
     depth: 3,
   },
-  favicon: [],
 })

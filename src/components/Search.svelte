@@ -58,7 +58,7 @@
   class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06] dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10"
 >
   <Icon
-    icon="material-symbols:search"
+    icon="tabler:search"
     class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
   />
   <input
@@ -76,7 +76,7 @@
   id="search-switch"
   class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
 >
-  <Icon icon="material-symbols:search" class="text-[1.25rem]" />
+  <Icon icon="tabler:search" class="text-[1.25rem]" />
 </button>
 
 <!-- search panel -->
@@ -90,7 +90,7 @@
     class="flex relative lg:hidden transition-all items-center h-11 rounded-xl bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06] dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10"
   >
     <Icon
-      icon="material-symbols:search"
+      icon="tabler:search"
       class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
     />
     <input
@@ -110,8 +110,8 @@
         class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]"
       >
         {item.meta.title}<Icon
-          icon="fa6-solid:chevron-right"
-          class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"
+          icon="tabler:chevron-right"
+          class="transition translate-x-1 my-auto text-[var(--primary)]"
         />
       </div>
       <div class="transition text-sm text-50">

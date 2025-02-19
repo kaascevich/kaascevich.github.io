@@ -1,6 +1,10 @@
 import type { Properties, ElementContent, Element } from "hast"
 import { h } from "hastscript"
 
+function capitalize(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+}
+
 /**
  * Creates an admonition component.
  *
@@ -31,7 +35,7 @@ export const admonitionComponent = (
   }
 
   return h(`blockquote`, { class: `admonition bdm-${type}` }, [
-    h("span", { class: `bdm-title` }, label ?? type.toUpperCase()),
+    h("span", { class: `bdm-title` }, label ?? capitalize(type)),
     ...children,
   ])
 }

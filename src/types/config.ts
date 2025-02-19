@@ -64,23 +64,6 @@ export type SiteConfig = DeepReadonly<{
     /** The maximum heading depth to show in the table of contents. */
     depth: 1 | 2 | 3
   }
-
-  /** A list of favicons to use for the site. */
-  favicon: Favicon[]
-}>
-
-/** A favicon. */
-export type Favicon = DeepReadonly<{
-  /** The path to this favicon, relative to `/public`. */
-  src: string
-  /**
-   * Whether this favicon is intended for light or dark mode.
-   *
-   * Leave unset if the favicon should be used regardless of the color scheme.
-   */
-  theme?: "light" | "dark" | undefined
-  /** The size of this favicon. */
-  sizes?: string | undefined
 }>
 
 /** A navbar link. */
@@ -128,4 +111,4 @@ export type LicenseConfig = DeepReadonly<{
   url: string
 }>
 
-export type Theme = "light" | "dark" | "auto"
+export type ColorScheme = "light" | "dark" | "auto"

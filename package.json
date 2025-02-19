@@ -26,10 +26,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/playpen-sans": "^5.1.1",
     "@fontsource/monaspace-radon": "^5.1.0",
-    "@iconify-json/fa6-brands": "^1.2.5",
-    "@iconify-json/fa6-regular": "^1.2.3",
-    "@iconify-json/fa6-solid": "^1.2.3",
-    "@iconify-json/material-symbols": "^1.2.14",
+    "@iconify-json/tabler": "^1.2.16",
     "@iconify/svelte": "^4.2.0",
     "@robot-inventor/shell-session-syntax": "^3.0.0",
     "@swup/astro": "^1.5.0",
@@ -64,7 +61,7 @@
     "sanitize-html": "^2.14.0",
     "sharp": "^0.33.5",
     "stylus": "^0.63.0",
-    "svelte": "^5.20.1",
+    "svelte": "^5.20.2",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
@@ -94,5 +91,5 @@
     "typescript-eslint": "^8.24.1",
     "vite-plugin-pagefind": "^1.0.5"
   },
-  "packageManager": "pnpm@9.14.4"
+  "packageManager": "pnpm@10.4.1"
 }

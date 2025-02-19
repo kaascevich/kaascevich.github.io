@@ -2,7 +2,7 @@
 import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import { Icon } from "astro-icon/components"
 import { profileConfig } from "$/config"
-import { url } from "$/utils/url-utils"
+import { url } from "$/utils/urls"
 
 const config = profileConfig
 ---
@@ -17,7 +17,7 @@ const config = profileConfig
       class="absolute transition pointer-events-none group-hover:bg-black/30 group-active:bg-black/50 w-full h-full z-50 flex items-center justify-center"
     >
       <Icon
-        name="fa6-regular:address-card"
+        name="tabler:user-square"
         class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl"
       />
     </div>

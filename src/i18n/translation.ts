@@ -1,4 +1,4 @@
-import { siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import type I18nKey from "$/i18n/i18nKey"
 import { en } from "$/i18n/languages/en"
 import { es } from "$/i18n/languages/es"

@@ -9,18 +9,16 @@ html.is-animating .transition-swup-fade {
 /* fade-in animations for components */
 @keyframes fade-in-up {
   0% {
-    transform: translateY(2rem);
-    opacity: 0;
+    @apply translate-y-8 opacity-0;
   }
   100% {
-    transform: translateY(0);
-    opacity: 1;
+    @apply translate-y-0 opacity-100;
   }
 }
 
 /* Main components */
 .onload-animation {
-  opacity: 0;
+  @apply opacity-0;
   animation: 300ms fade-in-up;
   animation-fill-mode: forwards;
 }
@@ -31,7 +29,7 @@ html.is-animating .transition-swup-fade {
   animation-delay: 100ms;
 }
 #swup-container {
-  outline: none;
+  @apply outline-none;
 }
 #content-wrapper {
   animation-delay: var(--content-delay);

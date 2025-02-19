@@ -1,34 +1,31 @@
 <script lang="ts">
-  import type { Theme } from "$/types/config"
+  import type { ColorScheme } from "$/types/config"
   import I18nKey from "$/i18n/i18nKey"
   import { i18n } from "$/i18n/translation"
   import Icon from "@iconify/svelte"
   import {
-    applyThemeToDocument,
-    getStoredTheme,
-    setTheme,
-  } from "$/utils/setting-utils.ts"
+    applyColorScheme,
+    getStoredColorScheme,
+    setColorScheme,
+  } from "$/utils/settings"
   import { onMount } from "svelte"
 
-  const allModes: readonly Theme[] = ["light", "dark", "auto"]
-  let mode: Theme = $state("auto")
+  const allModes: readonly ColorScheme[] = ["light", "dark", "auto"]
+  let mode: ColorScheme = $state("auto")
 
   onMount(() => {
-    mode = getStoredTheme()
+    mode = getStoredColorScheme()
     const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)")
-    const changeThemeWhenSchemeChanged = () => applyThemeToDocument(mode)
+    const updateColorScheme = () => applyColorScheme(mode)
 
-    darkModePreference.addEventListener("change", changeThemeWhenSchemeChanged)
+    darkModePreference.addEventListener("change", updateColorScheme)
     return () =>
-      darkModePreference.removeEventListener(
-        "change",
-        changeThemeWhenSchemeChanged,
-      )
+      darkModePreference.removeEventListener("change", updateColorScheme)
   })
 
-  function switchScheme(newMode: Theme): void {
+  function switchScheme(newMode: ColorScheme): void {
     mode = newMode
-    setTheme(newMode)
+    setColorScheme(newMode)
   }
 
   function toggleScheme(): void {
@@ -48,18 +45,18 @@
       ?.classList.add("float-panel-closed")
   }
 
-  const buttons: Record<Theme, { key: I18nKey; icon: string }> = {
+  const buttons: Record<ColorScheme, { key: I18nKey; icon: string }> = {
     light: {
       key: I18nKey.lightMode,
-      icon: "material-symbols:wb-sunny-outline-rounded",
+      icon: "tabler:sun",
     },
     dark: {
       key: I18nKey.darkMode,
-      icon: "material-symbols:dark-mode-outline-rounded",
+      icon: "tabler:moon",
     },
     auto: {
       key: I18nKey.systemMode,
-      icon: "material-symbols:radio-button-partial-outline",
+      icon: "tabler:brightness-filled",
     },
   }
 </script>
@@ -73,8 +70,8 @@
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
-    {#each Object.entries(buttons) as [theme, { icon }]}
-      <div class="absolute" class:opacity-0={mode !== theme}>
+    {#each Object.entries(buttons) as [colorScheme, { icon }]}
+      <div class="absolute" class:opacity-0={mode !== colorScheme}>
         <Icon {icon} class="text-[1.25rem]" />
       </div>
     {/each}
@@ -85,11 +82,11 @@
     class="hidden lg:block absolute transition float-panel-closed top-11 -right-2 pt-5"
   >
     <div class="card-base float-panel p-2">
-      {#each Object.entries(buttons) as [theme, { key, icon }]}
+      {#each Object.entries(buttons) as [colorScheme, { key, icon }]}
         <button
           class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
-          class:current-theme-btn={mode === theme}
-          onclick={() => switchScheme(theme as Theme)}
+          class:current-color-scheme-btn={mode === colorScheme}
+          onclick={() => switchScheme(colorScheme as ColorScheme)}
         >
           <Icon {icon} class="text-[1.25rem] mr-3" />
           {i18n(key)}

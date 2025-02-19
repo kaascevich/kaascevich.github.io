@@ -5,7 +5,7 @@ import { navbarConfig, siteConfig } from "$/config"
 import NavMenuPanel from "$/components/widget/NavMenuPanel.astro"
 import Search from "$/components/Search.svelte"
 import LightDarkSwitch from "$/components/LightDarkSwitch.svelte"
-import { url } from "$/utils/url-utils"
+import { url } from "$/utils/urls"
 
 type Props = {
   class?: string | undefined
@@ -31,10 +31,7 @@ const { class: className } = Astro.props
       class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95"
     >
       <div class="flex flex-row text-[var(--primary)] items-center text-md">
-        <Icon
-          name="material-symbols:home-outline-rounded"
-          class="text-[1.75rem] mb-1 mr-2"
-        />
+        <Icon name="tabler:home" class="text-[1.75rem] mr-2" />
         {siteConfig.title}
       </div>
     </a>
@@ -52,8 +49,8 @@ const { class: className } = Astro.props
                 {link.name}
                 {link.external === true && (
                   <Icon
-                    name="fa6-solid:arrow-up-right-from-square"
-                    class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]"
+                    name="tabler:external-link"
+                    class="text-[1.125rem] transition ml-1 text-black/[0.2] dark:text-white/[0.2]"
                   />
                 )}
               </div>
@@ -71,10 +68,7 @@ const { class: className } = Astro.props
             class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90"
             id="display-settings-switch"
           >
-            <Icon
-              name="material-symbols:palette-outline"
-              class="text-[1.25rem]"
-            />
+            <Icon name="tabler:palette" class="text-[1.25rem]" />
           </button>
         )
       }
@@ -85,7 +79,7 @@ const { class: className } = Astro.props
         class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 md:!hidden"
         id="nav-menu-switch"
       >
-        <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]" />
+        <Icon name="tabler:menu-2" class="text-[1.25rem]" />
       </button>
     </div>
 
@@ -95,20 +89,20 @@ const { class: className } = Astro.props
 </div>
 
 <script>
-  function switchTheme() {
-    if (localStorage.getItem("theme") === "dark") {
+  function toggleColorScheme() {
+    if (localStorage.getItem("colorScheme") === "dark") {
       document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
+      localStorage.setItem("colorScheme", "light")
     } else {
       document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
+      localStorage.setItem("colorScheme", "dark")
     }
   }
 
   function loadButtonScript() {
     document
       .getElementById("scheme-switch")
-      ?.addEventListener("click", switchTheme)
+      ?.addEventListener("click", toggleColorScheme)
 
     document
       .getElementById("display-settings-switch")

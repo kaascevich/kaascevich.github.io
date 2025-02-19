@@ -107,17 +107,17 @@ const mainPanelTop =
             >
               <Icon
                 class="text-white/75 text-[1.25rem] mr-1"
-                name="material-symbols:copyright-outline-rounded"
+                name="tabler:copyright"
               />
               <div class="text-white/75 text-xs">
                 {siteConfig.banner.credit.text}
               </div>
               <Icon
                 class:list={[
-                  "transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0",
+                  "transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 opacity-0",
                   { "group-hover:opacity-100": hasBannerLink },
                 ]}
-                name="fa6-solid:arrow-up-right-from-square"
+                name="tabler:external-link"
               />
             </a>
           )
@@ -180,3 +180,14 @@ const mainPanelTop =
     </div>
   </div>
 </Layout>
+
+<style define:vars={{ "end-stop": 0.5, multiplier: 1 / 2 }}>
+  #banner-wrapper {
+    mask-image: linear-gradient(
+      to top,
+      #0000 calc(25% * var(--multiplier) * var(--end-stop)),
+      calc(75% * var(--multiplier) * var(--end-stop)),
+      #000f calc(var(--end-stop) * 100%)
+    );
+  }
+</style>

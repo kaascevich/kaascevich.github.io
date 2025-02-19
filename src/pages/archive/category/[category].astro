@@ -1,5 +1,5 @@
 ---
-import { getCategoryList } from "$/utils/content-utils"
+import { getCategoryList } from "$/utils/content"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
 import ArchivePanel from "$/components/ArchivePanel.astro"
 import { i18n } from "$/i18n/translation"
@@ -8,8 +8,8 @@ import type { GetStaticPaths } from "astro"
 
 export const getStaticPaths = (async () => {
   const categories = await getCategoryList()
-  return categories.map((category) => ({
-    params: { category: category.name },
+  return [...categories].map(([name]) => ({
+    params: { category: name },
   }))
 }) satisfies GetStaticPaths
 

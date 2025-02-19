@@ -1,9 +1,9 @@
 ---
-import { formatDateToYYYYMMDD } from "$/utils/date-utils"
+import { formatDate } from "$/utils/dates"
 import { Icon } from "astro-icon/components"
 import { i18n } from "$/i18n/translation"
 import I18nKey from "$/i18n/i18nKey"
-import { url } from "$/utils/url-utils"
+import { url } from "$/utils/urls"
 
 type Props = Readonly<{
   class: string
@@ -35,13 +35,10 @@ const {
   <!-- publish date -->
   <div class="flex items-center">
     <div class="meta-icon">
-      <Icon
-        name="material-symbols:calendar-today-outline-rounded"
-        class="text-xl"
-      />
+      <Icon name="tabler:calendar-plus" class="text-xl" />
     </div>
     <span class="text-50 text-sm font-medium">
-      {formatDateToYYYYMMDD(published)}
+      {formatDate(published)}
     </span>
   </div>
 
@@ -52,14 +49,9 @@ const {
       updated.getTime() !== published.getTime() && (
         <div class="flex items-center">
           <div class="meta-icon">
-            <Icon
-              name="material-symbols:edit-calendar-outline-rounded"
-              class="text-xl"
-            />
+            <Icon name="tabler:calendar-cog" class="text-xl" />
           </div>
-          <span class="text-50 text-sm font-medium">
-            {formatDateToYYYYMMDD(updated)}
-          </span>
+          <span class="text-50 text-sm font-medium">{formatDate(updated)}</span>
         </div>
       )
   }
@@ -67,7 +59,7 @@ const {
   <!-- categories -->
   <div class="flex items-center">
     <div class="meta-icon">
-      <Icon name="material-symbols:book-2-outline-rounded" class="text-xl" />
+      <Icon name="tabler:category" class="text-xl" />
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       <a
@@ -88,7 +80,7 @@ const {
     ]}
   >
     <div class="meta-icon">
-      <Icon name="material-symbols:tag-rounded" class="text-xl" />
+      <Icon name="tabler:hash" class="text-xl" />
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       {

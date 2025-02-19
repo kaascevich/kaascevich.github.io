@@ -44,11 +44,11 @@ diagnostics_):
 ```ansi
 [1m.../Tests/AuroraTests/Parsing/ExpressionTests.swift:7:17: [31merror:[0m[1m cannot find 'Expression' in scope[0m
     try #expect(Expression(parsing: "1") == .init(value: 1))
-[32;1m                ^~~~~~~~~~[0m
+[32m                ^~~~~~~~~~[0m
 
 [1m.../Tests/AuroraTests/Parsing/ExpressionTests.swift:7:5: [35mwarning:[0m[1m no calls to throwing functions occur within 'try' expression[0m
     try #expect(Expression(parsing: "1") == .init(value: 1))
-[32;1m    ^[0m
+[32m    ^[0m
 ```
 
 :::tip

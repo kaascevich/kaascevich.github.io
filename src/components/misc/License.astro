@@ -1,5 +1,5 @@
 ---
-import { formatDateToYYYYMMDD } from "$/utils/date-utils"
+import { formatDate } from "$/utils/dates"
 import { Icon } from "astro-icon/components"
 import { licenseConfig, profileConfig } from "$/config"
 import { i18n } from "$/i18n/translation"
@@ -42,7 +42,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <div
         class="transition text-black/75 dark:text-white/75 whitespace-nowrap"
       >
-        {formatDateToYYYYMMDD(pubDate)}
+        {formatDate(pubDate)}
       </div>
     </div>
     <div>
@@ -59,7 +59,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     </div>
   </div>
   <Icon
-    name="fa6-brands:creative-commons"
+    name="tabler:creative-commons"
     class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5"
   />
 </div>

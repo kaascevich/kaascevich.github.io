@@ -188,10 +188,18 @@ import Aurora
 }
 ```
 
+:::tip
+The [`dump(_:name:indent:maxDepth:maxItems:)`][dump] function uses reflection to
+get a `struct`'s properties or an `enum`'s active case and associated values,
+then prints that to standard output.
+
+[dump]: https://developer.apple.com/documentation/swift/dump(_:name:indent:maxdepth:maxitems:)
+:::
+
 ```ansi
 [1m.../Sources/AuroraCLI/AuroraCLI.swift:14:24: [31merror:[0m[1m cannot find 'ExpressionParser' in scope[0m
       let parsed = try ExpressionParser.parse(line)
-[32;1m                       ^~~~~~~~~~~~~~~~[0m
+[32m                       ^~~~~~~~~~~~~~~~[0m
 ```
 
 Ah, right, we haven't made anything `public`. Let's go around and fix that,
@@ -223,14 +231,15 @@ Let's try that again.
 ```ansi
 [1m.../Sources/AuroraCLI/AuroraCLI.swift:14:24: [31merror:[0m[1m 'ExpressionParser' initializer is inaccessible due to 'internal' protection level[0m
       let parsed = try ExpressionParser().parse(line)
-[32;1m                       ^~~~~~~~~~~~~~~~[0m
+[32m                       ^~~~~~~~~~~~~~~~[0m
 
 [1mAurora.ExpressionParser (internal):6:14: [2mnote:[0m[1m 'init()' declared here[0m
      internal init()
-[32;1m              ^~~~[0m
+[32m              ^~~~[0m
 ```
 
-Oop, that's a thing. Let's fix that too real quick.
+Oop, that's a thing -- synthesized initializers are `internal` by default. Let's
+fix that too real quick.
 
 ```swift
 // ...

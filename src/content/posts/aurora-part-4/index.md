@@ -16,10 +16,10 @@ First, though, we've got some compiler errors in our tests:
 ```ansi
 [1m.../Tests/AuroraTests/Parsing/ExpressionParsingTests.swift:26:8: [31merror:[0m[1m type 'Expression.Operation' does not conform to the 'Sendable' protocol[0m
       @Test("Operators", arguments: [
-[32;1m       ^[0m
+[32m       ^[0m
 [1m.../Sources/Aurora/Syntax/Expression.swift:5:15: [2mnote:[0m[1m enum 'Operation' does not conform to the 'Sendable' protocol[0m
   public enum Operation: Equatable {
-[32;1m              ^[0m
+[32m              ^[0m
 
 ...several others just like these...
 ```
@@ -62,10 +62,10 @@ import Testing
 ```ansi
 [1m.../Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift:7:49: [31merror:[0m[1m cannot find 'Value' in scope[0m
     #expect(Expression.number(15).evaluate() == Value.number(15))
-[32;1m                                                ^~~~~[0m
+[32m                                                ^~~~~[0m
 [1m.../Tests/AuroraTests/Evaluation/ExpressionEvaluationTests.swift:7:35: [31merror:[0m[1m value of type 'Expression' has no member 'evaluate'[0m
     #expect(Expression.number(15).evaluate() == Value.number(15))
-[32;1m            ~~~~~~~~~~~~~~~~~~~~~ ^~~~~~~~[0m
+[32m            ~~~~~~~~~~~~~~~~~~~~~ ^~~~~~~~[0m
 ```
 
 Add `Sources/Aurora/Evaluation/Value.swift`:
