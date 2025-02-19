@@ -62,7 +62,7 @@ const jsonLd = {
   />
 
   <div
-    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4"
+    class="flex w-full rounded-[--radius-large] overflow-hidden relative mb-4"
   >
     <div
       id="post-container"
@@ -102,7 +102,7 @@ const jsonLd = {
           data-pagefind-body
           data-pagefind-weight="10"
           data-pagefind-meta="title"
-          class="transition w-full block font-bold mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90 md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)] before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
+          class="transition w-full block font-bold mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90 md:before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
         >
           {entry.data.title}
         </div>
@@ -119,7 +119,7 @@ const jsonLd = {
         />
         {
           entry.data.image === undefined && (
-            <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5" />
+            <div class="border-[--line-divider] border-dashed border-b-[1px] mb-5" />
           )
         }
       </div>
@@ -168,7 +168,8 @@ const jsonLd = {
           <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
             <Icon
               name="tabler:chevron-left"
-              class="text-[2rem] text-[var(--primary)]"
+              size="2rem"
+              class="text-[--primary]"
             />
             <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
               {entry.data.nextTitle}
@@ -195,7 +196,8 @@ const jsonLd = {
             </div>
             <Icon
               name="tabler:chevron-right"
-              class="text-[2rem] text-[var(--primary)]"
+              size="2rem"
+              class="text-[--primary]"
             />
           </div>
         )

@@ -35,7 +35,7 @@ const {
   <!-- publish date -->
   <div class="flex items-center">
     <div class="meta-icon">
-      <Icon name="tabler:calendar-plus" class="text-xl" />
+      <Icon name="tabler:calendar-plus" size="1.25rem" />
     </div>
     <span class="text-50 text-sm font-medium">
       {formatDate(published)}
@@ -49,7 +49,7 @@ const {
       updated.getTime() !== published.getTime() && (
         <div class="flex items-center">
           <div class="meta-icon">
-            <Icon name="tabler:calendar-cog" class="text-xl" />
+            <Icon name="tabler:calendar-cog" size="1.25rem" />
           </div>
           <span class="text-50 text-sm font-medium">{formatDate(updated)}</span>
         </div>
@@ -59,13 +59,13 @@ const {
   <!-- categories -->
   <div class="flex items-center">
     <div class="meta-icon">
-      <Icon name="tabler:category" class="text-xl" />
+      <Icon name="tabler:category" size="1.25rem" />
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       <a
         href={url(`/archive/category/${category ?? "uncategorized"}/`)}
         aria-label={`View all posts in the ${category} category`}
-        class="link-lg transition text-50 text-sm font-medium hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"
+        class="link-lg transition text-50 text-sm font-medium hover:text-[--primary] dark:hover:text-[--primary] whitespace-nowrap"
       >
         {category ?? i18n(I18nKey.uncategorized)}
       </a>
@@ -80,7 +80,7 @@ const {
     ]}
   >
     <div class="meta-icon">
-      <Icon name="tabler:hash" class="text-xl" />
+      <Icon name="tabler:hash" size="1.25rem" />
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       {
@@ -90,7 +90,7 @@ const {
               <div
                 class:list={[
                   { hidden: i === 0 },
-                  "mx-1.5 text-[var(--meta-divider)] text-sm",
+                  "mx-1.5 text-[--meta-divider] text-sm",
                 ]}
               >
                 /
@@ -98,7 +98,7 @@ const {
               <a
                 href={url(`/archive/tag/${tag}/`)}
                 aria-label={`View all posts with the ${tag} tag`}
-                class="link-lg transition text-50 text-sm font-medium hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"
+                class="link-lg transition text-50 text-sm font-medium hover:text-[--primary] dark:hover:text-[--primary] whitespace-nowrap"
               >
                 {tag}
               </a>

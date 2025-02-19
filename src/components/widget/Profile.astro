@@ -18,7 +18,8 @@ const config = profileConfig
     >
       <Icon
         name="tabler:user-square"
-        class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl"
+        size="3rem"
+        class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white"
       />
     </div>
     <ImageWrapper
@@ -34,9 +35,7 @@ const config = profileConfig
     >
       {config.name}
     </div>
-    <div
-      class="h-1 w-5 bg-[var(--primary)] mx-auto rounded-full mb-2 transition"
-    >
+    <div class="h-1 w-5 bg-[--primary] mx-auto rounded-full mb-2 transition">
     </div>
     <div class="text-center text-neutral-400 mb-2.5 transition">
       {config.bio}
@@ -52,7 +51,7 @@ const config = profileConfig
               target="_blank"
               class="btn-regular rounded-lg h-10 w-10 active:scale-90"
             >
-              <Icon name={item.icon} class="text-[1.5rem]" />
+              <Icon name={item.icon} size="1.5rem" />
             </a>
           ))
       }
@@ -65,7 +64,7 @@ const config = profileConfig
             target="_blank"
             class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95"
           >
-            <Icon name={config.links[0]!.icon} class="text-[1.5rem]" />
+            <Icon name={config.links[0]!.icon} size="1.5rem" />
             {config.links[0]!.name}
           </a>
         )

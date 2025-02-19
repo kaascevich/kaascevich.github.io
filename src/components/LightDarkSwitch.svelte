@@ -72,7 +72,7 @@
   >
     {#each Object.entries(buttons) as [colorScheme, { icon }]}
       <div class="absolute" class:opacity-0={mode !== colorScheme}>
-        <Icon {icon} class="text-[1.25rem]" />
+        <Icon {icon} height="1.25rem" width="1.25rem" />
       </div>
     {/each}
   </button>
@@ -88,7 +88,7 @@
           class:current-color-scheme-btn={mode === colorScheme}
           onclick={() => switchScheme(colorScheme as ColorScheme)}
         >
-          <Icon {icon} class="text-[1.25rem] mr-3" />
+          <Icon {icon} height="1.25rem" width="1.25rem" class="mr-3" />
           {i18n(key)}
         </button>
       {/each}

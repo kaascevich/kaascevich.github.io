@@ -16,12 +16,12 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
 <div
-  class={`relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 ${className}`}
+  class={`relative transition overflow-hidden bg-[--license-block-bg] py-5 px-6 ${className}`}
 >
   <div class="transition font-bold text-black/75 dark:text-white/75">
     {title}
   </div>
-  <a href={postUrl} class="link text-[var(--primary)]">
+  <a href={postUrl} class="link text-[--primary]">
     {postUrl}
   </a>
   <div class="flex gap-6 mt-2">
@@ -52,7 +52,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <a
         href={licenseConfig.url}
         target="_blank"
-        class="link text-[var(--primary)] whitespace-nowrap"
+        class="link text-[--primary] whitespace-nowrap"
       >
         {licenseConfig.name}
       </a>
@@ -60,6 +60,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   </div>
   <Icon
     name="tabler:creative-commons"
-    class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5"
+    size="15rem"
+    class="transition absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5"
   />
 </div>

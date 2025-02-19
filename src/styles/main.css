@@ -2,7 +2,7 @@
 
 @layer components {
   .card-base {
-    @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
+    @apply rounded-[--radius-large] overflow-hidden bg-[--card-bg] transition;
   }
 
   h1,
@@ -30,7 +30,7 @@
     @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.005)];
   }
   .expand-animation {
-    @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0 before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10;
+    @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[--btn-plain-bg-hover] active:before:bg-[--btn-plain-bg-active] z-0 before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10;
   }
   .link {
     @apply transition rounded-md p-1 -m-1 expand-animation;
@@ -39,39 +39,39 @@
     @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
   }
   .float-panel {
-    @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none;
+    @apply top-[5.25rem] rounded-[--radius-large] overflow-hidden bg-[--float-panel-bg] transition shadow-xl dark:shadow-none;
   }
   .float-panel-closed {
     @apply -translate-y-1 opacity-0 pointer-events-none;
   }
   .search-panel mark {
-    @apply bg-transparent text-[var(--primary)];
+    @apply bg-transparent text-[--primary];
   }
 
   .btn-card {
-    @apply transition flex items-center justify-center bg-[var(--card-bg)] hover:bg-[var(--btn-card-bg-hover)] active:bg-[var(--btn-card-bg-active)];
+    @apply transition flex items-center justify-center bg-[--card-bg] hover:bg-[--btn-card-bg-hover] active:bg-[--btn-card-bg-active];
   }
   .btn-card.disabled {
     @apply pointer-events-none text-black/10 dark:text-white/10;
   }
   .btn-plain {
-    @apply transition relative flex items-center justify-center bg-none text-black/75 hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)];
+    @apply transition relative flex items-center justify-center bg-none text-black/75 hover:text-[--primary] dark:text-white/75 dark:hover:text-[--primary];
     &:not(.scale-animation) {
-      @apply hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)];
+      @apply hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active];
     }
     &.scale-animation {
       @apply expand-animation;
       &.current-color-scheme-btn {
-        @apply before:scale-100 before:opacity-100 before:bg-[var(--btn-plain-bg-hover)] text-[var(--primary)];
+        @apply before:scale-100 before:opacity-100 before:bg-[--btn-plain-bg-hover] text-[--primary];
       }
     }
   }
   .btn-regular {
-    @apply transition flex items-center justify-center bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] text-[var(--btn-content)] dark:text-white/75;
+    @apply transition flex items-center justify-center bg-[--btn-regular-bg] hover:bg-[--btn-regular-bg-hover] active:bg-[--btn-regular-bg-active] text-[--btn-content] dark:text-white/75;
   }
 
   .link-underline {
-    @apply transition underline decoration-2 decoration-dashed decoration-[var(--link-underline)] hover:decoration-[var(--link-hover)] active:decoration-[var(--link-active)] underline-offset-[0.25rem];
+    @apply transition underline decoration-2 decoration-dashed decoration-[--link-underline] hover:decoration-[--link-hover] active:decoration-[--link-active] underline-offset-[0.25rem];
   }
 
   .toc-hide,
@@ -114,10 +114,10 @@
   }
 
   .meta-icon {
-    @apply w-8 h-8 transition rounded-md flex items-center justify-center bg-[var(--btn-regular-bg)] text-[var(--btn-content)] mr-2;
+    @apply w-8 h-8 transition rounded-md flex items-center justify-center bg-[--btn-regular-bg] text-[--btn-content] mr-2;
   }
-  .with-divider {
-    @apply before:content-['/'] before:ml-1.5 before:mr-1.5 before:text-[var(--meta-divider)] before:text-sm before:font-medium before:first-of-type:hidden before:transition;
+  .with-divider::before {
+    @apply content-["/"] ml-1.5 before:mr-1.5 text-[--meta-divider] text-sm font-medium first-of-type:hidden transition;
   }
 
   .btn-regular-dark {
@@ -134,7 +134,7 @@
     @apply opacity-100 fill-white dark:fill-white/75;
   }
   .copy-btn.success .copy-icon {
-    @apply opacity-0 fill-[var(--deep-text)];
+    @apply opacity-0 fill-[--deep-text];
   }
   .copy-btn .success-icon {
     @apply opacity-0;
@@ -150,7 +150,7 @@
 }
 
 ::selection {
-  @apply bg-[var(--selection-bg)];
+  @apply bg-[--selection-bg];
 }
 
 .dash-line {
@@ -158,11 +158,10 @@
 }
 
 .dash-line::before {
-  @apply content-[''] absolute w-[10%] h-full border-l-2 border-dashed border-l-[var(--line-color)] pointer-events-none -translate-y-1/2;
-  left: calc(50% - 1px);
+  @apply content-[""] absolute w-[10%] h-full border-l-2 border-dashed border-l-[--line-color] pointer-events-none -translate-y-1/2 left-[calc(50%-1px)];
   transition: all 300ms;
 }
 
 .collapsed {
-  @apply h-[var(--collapsedHeight)];
+  @apply h-[--collapsedHeight];
 }

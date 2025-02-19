@@ -25,7 +25,7 @@
   }
 
   a:not(.no-styling) {
-    @apply relative bg-none link font-medium text-[var(--primary)] underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
+    @apply relative bg-none link font-medium text-[--primary] underline decoration-[--link-underline] decoration-1 decoration-dashed underline-offset-4;
 
     &:hover,
     &:active {
@@ -34,7 +34,7 @@
   }
 
   code {
-    @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] p-1 rounded-md overflow-hidden;
+    @apply bg-[--inline-code-bg] text-[--inline-code-color] p-1 rounded-md overflow-hidden;
 
     font-family:
       "Monaspace Radon",
@@ -77,14 +77,14 @@
   }
 
   pre {
-    @apply bg-[var(--codeblock-bg)] !important;
+    @apply bg-[--codeblock-bg] !important;
     @apply rounded-xl px-5;
 
     code {
       @apply bg-transparent text-inherit text-sm p-0;
 
       ::selection {
-        @apply bg-[var(--codeblock-selection)];
+        @apply bg-[--codeblock-selection];
       }
     }
   }
@@ -92,7 +92,7 @@
   ul,
   ol {
     li::marker {
-      @apply text-[var(--primary)];
+      @apply text-[--primary];
     }
   }
 
@@ -101,7 +101,7 @@
     font-weight: inherit;
 
     &:before {
-      @apply content-[''] absolute -left-1 block transition bg-[var(--btn-regular-bg)] h-full w-1 rounded-full;
+      @apply content-[''] absolute -left-1 block transition bg-[--btn-regular-bg] h-full w-1 rounded-full;
     }
 
     /* remove the double quotes from default styles */

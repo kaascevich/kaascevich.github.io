@@ -59,7 +59,9 @@
 >
   <Icon
     icon="tabler:search"
-    class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
+    height="1.25rem"
+    width="1.25rem"
+    class="absolute pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
   />
   <input
     placeholder={i18n(I18nKey.search)}
@@ -76,7 +78,7 @@
   id="search-switch"
   class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
 >
-  <Icon icon="tabler:search" class="text-[1.25rem]" />
+  <Icon icon="tabler:search" height="1.25rem" width="1.25rem" />
 </button>
 
 <!-- search panel -->
@@ -91,7 +93,9 @@
   >
     <Icon
       icon="tabler:search"
-      class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
+      height="1.25rem"
+      width="1.25rem"
+      class="absolute pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
     />
     <input
       placeholder="Search"
@@ -104,14 +108,14 @@
   {#each results as item}
     <a
       href={item.url}
-      class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]"
+      class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block rounded-xl text-lg px-3 py-2 hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active]"
     >
       <div
-        class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]"
+        class="transition text-90 inline-flex font-bold group-hover:text-[--primary]"
       >
         {item.meta.title}<Icon
           icon="tabler:chevron-right"
-          class="transition translate-x-1 my-auto text-[var(--primary)]"
+          class="transition translate-x-1 my-auto text-[--primary]"
         />
       </div>
       <div class="transition text-sm text-50">

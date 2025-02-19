@@ -20,7 +20,7 @@
 >
   <div class="flex flex-row gap-2 mb-3 items-center justify-between">
     <div
-      class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)] before:absolute before:-left-3 before:top-[0.33rem]"
+      class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 before:w-1 before:h-4 before:rounded-md before:bg-[--primary] before:absolute before:-left-3 before:top-[0.33rem]"
     >
       {i18n(I18nKey.themeColor)}
       <button
@@ -30,15 +30,15 @@
         class:pointer-events-none={hue === defaultHue}
         onclick={resetHue}
       >
-        <div class="text-[var(--btn-content)]">
-          <Icon icon="tabler:x" class="text-[0.875rem]" />
+        <div class="text-[--btn-content]">
+          <Icon icon="tabler:x" height="0.875rem" width="0.875rem" />
         </div>
       </button>
     </div>
     <div class="flex gap-1">
       <div
         id="hueValue"
-        class="transition bg-[var(--btn-regular-bg)] w-10 h-7 rounded-md flex justify-center font-bold text-sm items-center text-[var(--btn-content)]"
+        class="transition bg-[--btn-regular-bg] w-10 h-7 rounded-md flex justify-center font-bold text-sm items-center text-[--btn-content]"
       >
         {hue}
       </div>
@@ -61,49 +61,23 @@
   </div>
 </div>
 
-<style lang="stylus">
-  #display-setting
-    input[type="range"]
-      -webkit-appearance: none
-      height: 1.5rem
-      background-image: var(--color-selection-bar)
-      transition: background-image 0.15s ease-in-out
+<style>
+  #display-setting {
+    input[type="range"] {
+      @apply appearance-none h-6 transition-[background-image];
+      background-image: var(--color-selection-bar);
 
-      /* input thumb */
-      &::-webkit-slider-thumb
-        -webkit-appearance: none
-        height: 1rem
-        width: 0.5rem
-        border-radius: 0.125rem
-        background: rgba(255, 255, 255, 0.7)
-        box-shadow: none
-        &:hover
-          background: rgba(255, 255, 255, 0.8)
-        &:active
-          background: rgba(255, 255, 255, 0.6)
+      &::-webkit-slider-thumb {
+        @apply appearance-none h-4 w-2 rounded-sm shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+      }
 
-      &::-moz-range-thumb
-        -webkit-appearance: none
-        height: 1rem
-        width: 0.5rem
-        border-radius: 0.125rem
-        border-width: 0
-        background: rgba(255, 255, 255, 0.7)
-        box-shadow: none
-        &:hover
-          background: rgba(255, 255, 255, 0.8)
-        &:active
-          background: rgba(255, 255, 255, 0.6)
+      &::-moz-range-thumb {
+        @apply appearance-none h-4 w-2 rounded-sm border-0 shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+      }
 
-      &::-ms-thumb
-        -webkit-appearance: none
-        height: 1rem
-        width: 0.5rem
-        border-radius: 0.125rem
-        background: rgba(255, 255, 255, 0.7)
-        box-shadow: none
-        &:hover
-          background: rgba(255, 255, 255, 0.8)
-        &:active
-          background: rgba(255, 255, 255, 0.6)
+      &::-ms-thumb {
+        @apply appearance-none h-4 w-2 rounded-sm shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+      }
+    }
+  }
 </style>
