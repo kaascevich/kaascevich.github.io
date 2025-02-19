@@ -140,9 +140,9 @@ const { remarkPluginFrontmatter } = await render(entry)
           />
         </div>
         <ImageWrapper
-          src={image}
+          src={image.source}
           basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
-          alt="Cover Image of the Post"
+          alt={image.alt}
           class="w-full h-full"
         />
       </a>

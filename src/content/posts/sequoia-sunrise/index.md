@@ -2,7 +2,9 @@
 title: Sequoia Sunrise
 published: 2024-09-24
 description: The new best semi-default wallpaper?
-image: sequoia-sunrise.png
+image:
+  source: sequoia-sunrise.png
+  alt: The first frame of an absolutely beautiful wallpaper.
 tags: [Mac]
 category: Tech
 ---

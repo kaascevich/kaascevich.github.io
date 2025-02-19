@@ -29,7 +29,7 @@ This is a caution
 
 ------
 
-:::note[The text below is not my writing.]
+:::note[The text that follows is not my writing.]
 I borrowed it from <https://tailwindcss-typography.vercel.app>, because it's
 honestly the most comprehensive Markdown test I've encountered. I did modify it
 a bit to include some of my own custom styles, though.

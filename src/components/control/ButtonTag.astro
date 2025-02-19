@@ -6,6 +6,12 @@ type Props = Readonly<{
 const { href, label } = Astro.props
 ---
 
-<a {href} aria-label={label} class="btn-regular h-8 text-sm px-3 rounded-lg">
+<a {href} aria-label={label} class="btn-regular">
   <slot />
 </a>
+
+<style>
+  a {
+    @apply h-8 text-sm px-3 rounded-lg;
+  }
+</style>

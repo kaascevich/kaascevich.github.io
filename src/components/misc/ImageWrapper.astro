@@ -8,7 +8,7 @@ type Props = Readonly<{
   id?: string | undefined
   src: string
   class?: string | undefined
-  alt?: string | undefined
+  alt: string
   loading?: "eager" | "lazy" | undefined
   position?: string | undefined
   basePath?: string | undefined
@@ -53,36 +53,22 @@ if (isLocal) {
     img = await file()
   }
 }
-
-const imageClass = "w-full h-full object-cover"
-const imageStyle = `object-position: ${position}`
 ---
 
-<div {id} class:list={[className, "overflow-hidden relative"]}>
-  <div
-    class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"
-  >
-  </div>
+<div {id} class={`image-wrapper ${className}`}>
   {
-    isLocal && img !== undefined && (
-      <Image
-        src={img}
-        alt={alt ?? ""}
-        class={imageClass}
-        style={imageStyle}
-        {loading}
-      />
-    )
-  }
-  {
-    !isLocal && (
-      <img
-        src={isPublic ? url(src) : src}
-        alt={alt ?? ""}
-        class={imageClass}
-        style={imageStyle}
-        {loading}
-      />
-    )
+    isLocal ?
+      img !== undefined && <Image src={img} {alt} {loading} />
+    : <img src={isPublic ? url(src) : src} {alt} {loading} />
   }
 </div>
+
+<style define:vars={{ position }}>
+  .image-wrapper {
+    @apply overflow-hidden relative;
+
+    img {
+      @apply w-full h-full object-cover dark:brightness-90 object-[--position];
+    }
+  }
+</style>

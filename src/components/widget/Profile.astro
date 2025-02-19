@@ -51,7 +51,7 @@ const config = profileConfig
               target="_blank"
               class="btn-regular rounded-lg h-10 w-10 active:scale-90"
             >
-              <Icon name={item.icon} size="1.5rem" />
+              <Icon name={item.icon} size="2rem" class="pt-0.5" />
             </a>
           ))
       }
@@ -62,9 +62,9 @@ const config = profileConfig
             aria-label={config.links[0]!.name}
             href={config.links[0]!.url}
             target="_blank"
-            class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95"
+            class="btn-regular rounded-lg h-10 gap-2 px-2 font-bold active:scale-95"
           >
-            <Icon name={config.links[0]!.icon} size="1.5rem" />
+            <Icon name={config.links[0]!.icon} size="1.75rem" class="pt-0.5" />
             {config.links[0]!.name}
           </a>
         )

@@ -2,13 +2,9 @@
 import { Icon } from "astro-icon/components"
 ---
 
-<div class="back-to-top-wrapper hidden lg:block">
-  <div
-    id="back-to-top-btn"
-    class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition"
-    onclick="backToTop()"
-  >
-    <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]">
+<div class="back-to-top-wrapper">
+  <div id="back-to-top-btn" class="hide" onclick="backToTop()">
+    <button aria-label="Back to Top" class="btn-card">
       <Icon name="tabler:chevron-up" class="mx-auto" />
     </button>
   </div>
@@ -16,11 +12,14 @@ import { Icon } from "astro-icon/components"
 
 <style>
   .back-to-top-wrapper {
-    @apply size-[3.75rem] absolute right-0 top-0 pointer-events-none;
+    @apply size-[3.75rem] absolute right-0 top-0 pointer-events-none hidden lg:block;
   }
 
-  .back-to-top-btn {
-    @apply text-[--primary] text-4xl font-bold border-none fixed bottom-40 opacity-100 cursor-pointer translate-x-20 pointer-events-auto;
+  #back-to-top-btn {
+    @apply text-[--primary] text-4xl font-bold border-none fixed bottom-40 opacity-100 cursor-pointer translate-x-20 pointer-events-auto flex items-center rounded-2xl overflow-hidden transition;
+    button {
+      @apply size-[3.75rem];
+    }
     i {
       @apply text-[1.75rem];
     }

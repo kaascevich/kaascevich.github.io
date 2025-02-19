@@ -45,7 +45,22 @@ const postsCollection = defineCollection({
        * - Otherwise, it's interpreted as a path relative to the post's Markdown
        *   file.
        */
-      image: z.string().nonempty().optional(),
+      image: z
+        .object({
+          /**
+           * The cover image for the post.
+           *
+           * - If this is a URL, the image is fetched from that URL.
+           * - If this is a path relative to `/`, the image is fetched from the site
+           *   root.
+           * - Otherwise, it's interpreted as a path relative to the post's Markdown
+           *   file.
+           */
+          source: z.string().nonempty(),
+          /** The alt text for the image. */
+          alt: z.string(),
+        })
+        .optional(),
       /**
        * A list of the post's tags.
        *
