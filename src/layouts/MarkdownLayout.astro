@@ -1,0 +1,40 @@
+---
+import MainGridLayout from "$/layouts/MainGridLayout.astro"
+import Markdown from "$/components/misc/Markdown.astro"
+
+type Props = Readonly<{
+  frontmatter: Readonly<{
+    title: string
+    description?: string | undefined
+  }>
+}>
+
+const {
+  frontmatter: { title, description = title },
+} = Astro.props
+
+// Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
+// manually.
+if (typeof title !== "string") {
+  throw new TypeError(
+    `invalid \`title\` prop (type \`${typeof title}\` is not assignable to \`string\`)`,
+  )
+}
+if (typeof description !== "string") {
+  throw new TypeError(
+    `invalid \`description\` prop (type \`${typeof description}\` is not assignable to \`string | undefined\`)`,
+  )
+}
+---
+
+<MainGridLayout {title} {description}>
+  <div
+    class="flex w-full rounded-[--radius-large] overflow-hidden relative min-h-32"
+  >
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <Markdown class="mt-2">
+        <slot />
+      </Markdown>
+    </div>
+  </div>
+</MainGridLayout>

@@ -1,5 +1,6 @@
 ---
-layout: "$/layouts/AboutLayout.astro"
+layout: "$/layouts/MarkdownLayout.astro"
+title: About
 ---
 
 # 小さなオンラインホームへようこそ！
@@ -10,7 +11,12 @@ in [Rust], [NixOS], [GarageBand], and Japanese (because all those things
 _clearly_ belong in the same sentence). You'll also occasionally find me
 ranting about other random things.
 
-Here's some basic information about me:
+[Swift]: https://swift.org
+[Rust]: https://rust-lang.org
+[NixOS]: https://nixos.org
+[GarageBand]: https://apple.com/mac/garageband/
+
+## The basics
 
 ```swift
 import Foundation
@@ -23,8 +29,20 @@ struct Me: Person {
     calendar: .current,
     year: 2007, month: 11, day: 9
   ).date!
-  let address = Address(state: .florida, country: .usa)
+  let location = .usa(state: .florida)
 
+  var age: Int {
+    Calendar.current.components(
+      [.year], from: birthday, to: .now
+    ).year!
+  }
+}
+```
+
+## Tech stuff
+
+```swift
+extension Me {
   var langs: [Lang] = [.swift, .rust, .nix]
   let shell = Shell.nushell
 
@@ -57,25 +75,4 @@ struct Me: Person {
     ),
   ]
 }
-
-extension Me {
-  var age: Int {
-    Calendar.current.components(
-      [.year], from: birthday, to: .now
-    ).year!
-  }
-}
 ```
-
-[Swift]: https://swift.org
-[Rust]: https://rust-lang.org
-[NixOS]: https://nixos.org
-[GarageBand]: https://apple.com/mac/garageband/
-
-## Projects
-
-::github{repo="kaascevich/brainflipkit"}
-
-::github{repo="kaascevich/rapid"}
-
-::github{repo="kaascevich/zenny"}

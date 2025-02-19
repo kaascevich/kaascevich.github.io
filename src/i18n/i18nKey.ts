@@ -1,6 +1,7 @@
 const enum I18nKey {
   home = "home",
   about = "about",
+  projects = "projects",
   archive = "archive",
   search = "search",
 

@@ -15,59 +15,52 @@ const { title, pubDate, class: className } = Astro.props
 const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
-<div class={`license-wrapper ${className}`}>
-  <h1>{title}</h1>
-  <a href={postUrl}>{postUrl}</a>
-  <div class="license-details">
+<div
+  class={`relative transition overflow-hidden bg-[--license-block-bg] py-5 px-6 ${className}`}
+>
+  <div class="transition font-bold text-black/75 dark:text-white/75">
+    {title}
+  </div>
+  <a href={postUrl} class="link text-[--primary]">
+    {postUrl}
+  </a>
+  <div class="flex gap-6 mt-2">
     <div>
-      <h2>
+      <div class="transition text-black/30 dark:text-white/30 text-sm">
         {i18n(I18nKey.author)}
-      </h2>
-      {profileConfig.name}
+      </div>
+      <div
+        class="transition text-black/75 dark:text-white/75 whitespace-nowrap"
+      >
+        {profileConfig.name}
+      </div>
     </div>
     <div>
-      <h2>
+      <div class="transition text-black/30 dark:text-white/30 text-sm">
         {i18n(I18nKey.publishedAt)}
-      </h2>
-      {formatDate(pubDate)}
+      </div>
+      <div
+        class="transition text-black/75 dark:text-white/75 whitespace-nowrap"
+      >
+        {formatDate(pubDate)}
+      </div>
     </div>
     <div>
-      <h2>
+      <div class="transition text-black/30 dark:text-white/30 text-sm">
         {i18n(I18nKey.license)}
-      </h2>
-      <a href={licenseConfig.url} target="_blank">
+      </div>
+      <a
+        href={licenseConfig.url}
+        target="_blank"
+        class="link text-[--primary] whitespace-nowrap"
+      >
         {licenseConfig.name}
       </a>
     </div>
   </div>
-  <Icon name="tabler:creative-commons" size="15rem" />
+  <Icon
+    name="tabler:creative-commons"
+    size="15rem"
+    class="transition absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5"
+  />
 </div>
-
-<style>
-  .license-wrapper {
-    @apply relative transition overflow-hidden bg-[--license-block-bg] py-5 px-6;
-    h1 {
-      @apply transition font-bold text-black/75 dark:text-white/75;
-    }
-    a {
-      @apply link text-[--primary];
-    }
-    .license-details {
-      @apply flex flex-col gap-2 mt-2 sm:flex-row sm:gap-6;
-    }
-
-    div {
-      @apply transition text-black/75 dark:text-white/75 whitespace-nowrap;
-      h2 {
-        @apply text-black/30 dark:text-white/30 text-sm;
-      }
-      a {
-        @apply link text-[--primary] !important;
-      }
-    }
-
-    svg {
-      @apply transition absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5;
-    }
-  }
-</style>

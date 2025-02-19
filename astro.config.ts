@@ -38,6 +38,7 @@ export default defineConfig({
   integrations: [
     tailwind({
       nesting: true,
+      applyBaseStyles: false,
     }),
     swup({
       theme: false,

@@ -13,6 +13,10 @@ export default config<NavBarConfig>({
       url: "/about/",
     },
     {
+      name: i18n(I18nKey.projects),
+      url: "/projects/",
+    },
+    {
       name: "GitHub",
       url: "https://github.com/kaascevich",
       external: true,
