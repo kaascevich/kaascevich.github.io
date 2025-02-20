@@ -1,7 +1,7 @@
 ---
 import "@fontsource-variable/playpen-sans"
 import "katex/dist/katex.css"
-import "$/styles/main.css"
+import "$/styles/main.scss"
 
 import { profileConfig, siteConfig } from "$/config"
 import ConfigCarrier from "$/components/ConfigCarrier.astro"
@@ -136,6 +136,7 @@ const bannerOffset =
 		 	(and some other elements, idk why)
 		-->
     <style
+      lang="scss"
       define:vars={{
         configHue,
         "page-width": `${PAGE_WIDTH}rem`,
@@ -168,6 +169,7 @@ const bannerOffset =
 </html>
 
 <style
+  lang="scss"
   is:global
   define:vars={{
     bannerOffset,
@@ -451,7 +453,6 @@ const bannerOffset =
 </script>
 
 <script>
-  import html from "$/utils/templateTags"
   import PhotoSwipeLightbox from "photoswipe/lightbox"
   import "photoswipe/style.css"
 
@@ -462,7 +463,7 @@ const bannerOffset =
     lightbox = new PhotoSwipeLightbox({
       gallery: ".custom-md img, #post-cover img",
       pswpModule: () => photoswipe,
-      closeSVG: html`<svg
+      closeSVG: /*html*/ `<svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
         viewBox="0 -960 960 960"
@@ -473,7 +474,7 @@ const bannerOffset =
           d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"
         />
       </svg>`,
-      zoomSVG: html`<svg
+      zoomSVG: /*html*/ `<svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
         viewBox="0 -960 960 960"

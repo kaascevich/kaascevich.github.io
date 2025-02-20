@@ -61,7 +61,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   #display-setting {
     input[type="range"] {
       @apply appearance-none h-6 transition-[background-image];

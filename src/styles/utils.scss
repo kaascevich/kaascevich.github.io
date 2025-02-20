@@ -1,0 +1,28 @@
+@use "$/styles/theme";
+
+// MARK: Functions
+
+@function spacing($value) {
+  @return calc(theme.$spacing * $value);
+}
+
+// MARK: Mixins
+
+@mixin font($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin before($content: "") {
+  &::before {
+    content: $content;
+    @content;
+  }
+}
+
+@mixin after($content: "") {
+  &::after {
+    content: $content;
+    @content;
+  }
+}

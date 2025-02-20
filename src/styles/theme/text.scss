@@ -1,0 +1,15 @@
+@use "sass:math";
+
+$xs: (0.75rem, math.div(1.25, 0.875));
+$sm: (0.875rem, math.div(1, 0.75));
+$base: (1rem, math.div(1.5, 1));
+$lg: (1.125rem, math.div(1.75, 1.125));
+$xl: (1.25rem, math.div(1.75, 1.25));
+$xl2: (1.5rem, math.div(2, 1.5));
+$xl3: (1.875rem, math.div(2.25, 1.875));
+$xl4: (2.25rem, math.div(2.5, 2.25));
+$xl5: (3rem, 1);
+$xl6: (3.75rem, 1);
+$xl7: (4.5rem, 1);
+$xl8: (6rem, 1);
+$xl9: (8rem, 1);

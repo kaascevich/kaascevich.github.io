@@ -158,5 +158,17 @@ export default defineConfig({
       },
     },
     plugins: [pagefind({ outputDirectory: "dist" })],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: /*scss*/ `
+          @use "$/styles/theme";
+          @use "$/styles/utils" as *;
+          @use "$/styles/variables";
+          @use "$/styles/variants";
+          `.trim(),
+        },
+      },
+    },
   },
 })

@@ -1,3 +1,9 @@
+@use "markdown-extend";
+@use "markdown";
+@use "photoswipe";
+@use "scrollbar";
+@use "transition";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

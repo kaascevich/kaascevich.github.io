@@ -125,7 +125,7 @@
   {/each}
 </div>
 
-<style>
+<style lang="scss">
   input:focus {
     outline: 0;
   }

@@ -25,28 +25,20 @@ const {
 <widget-layout
   data-id={id}
   data-is-collapsed={String(isCollapsed)}
-  class={`pb-4 card-base ${className}`}
+  class={className}
   {style}
 >
-  <div
-    class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2 before:w-1 before:h-4 before:rounded-md before:bg-[--primary] before:absolute before:left-[-16px] before:top-[5.5px]"
-  >
+  <div class="widget-title">
     {name}
   </div>
-  <div
-    {id}
-    class:list={[
-      "collapse-wrapper px-4 overflow-hidden",
-      { collapsed: isCollapsed },
-    ]}
-  >
+  <div {id} class:list={["widget-content", { collapsed: isCollapsed }]}>
     <slot />
   </div>
   {
     isCollapsed === true && (
-      <div class="expand-btn px-4 -mb-2">
-        <button class="btn-plain rounded-lg w-full h-9">
-          <div class="text-[--primary] flex items-center justify-center gap-2 -translate-x-2">
+      <div class="expand-button">
+        <button>
+          <div class="icon-wrapper">
             <Icon name="tabler:dots" size="1.75rem" /> {i18n(I18nKey.more)}
           </div>
         </button>
@@ -55,9 +47,81 @@ const {
   }
 </widget-layout>
 
-<style define:vars={{ collapsedHeight }}>
-  .collapsed {
-    height: var(--collapsedHeight);
+<style lang="scss" define:vars={{ collapsedHeight }}>
+  @use "$/styles/main";
+
+  widget-layout {
+    @extend .card-base;
+    padding-bottom: spacing(4);
+
+    .widget-title {
+      font-weight: theme.$font-weight-bold;
+      @include font(theme.$text-lg...);
+
+      transition: theme.$ease-in-out theme.$transition-duration {
+        property:
+          color, background-color, border-color, text-decoration-color, fill,
+          stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      }
+
+      color: theme.$color-neutral-900;
+      position: relative;
+      margin: {
+        left: spacing(8);
+        top: spacing(4);
+        bottom: spacing(2);
+      }
+
+      @include variants.dark {
+        color: theme.$color-neutral-100;
+      }
+
+      @include variants.before {
+        width: spacing(1);
+        height: spacing(4);
+        border-radius: theme.$radius-md;
+        background-color: var(--primary);
+        position: absolute;
+        left: -16px;
+        top: 5.5px;
+      }
+    }
+
+    .widget-content {
+      padding: {
+        left: spacing(4);
+        right: spacing(4);
+      }
+      overflow: hidden;
+
+      &.collapsed {
+        height: var(--collapsedHeight);
+      }
+    }
+
+    .expand-button {
+      padding: {
+        left: spacing(4);
+        right: spacing(4);
+      }
+      margin-bottom: spacing(-2);
+
+      button {
+        @extend .btn-plain;
+        border-radius: theme.$radius-lg;
+        width: 100%;
+        height: spacing(9);
+
+        .icon-wrapper {
+          color: var(--primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: spacing(2);
+          translate-x: spacing(-2);
+        }
+      }
+    }
   }
 </style>
 
@@ -69,7 +133,7 @@ const {
       if (this.dataset.isCollapsed !== "true") return
 
       const id = this.dataset.id
-      const btn = this.querySelector(".expand-btn")!
+      const btn = this.querySelector(".expand-button")!
       const wrapper = this.querySelector(`#${id}`)!
       btn.addEventListener("click", () => {
         wrapper.classList.remove("collapsed")

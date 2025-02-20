@@ -1,0 +1,22 @@
+@forward "font" as font-*;
+@forward "color" as color-*;
+@forward "breakpoint" as breakpoint-*;
+@forward "container" as container-*;
+@forward "text" as text-*;
+@forward "font-weight" as font-weight-*;
+@forward "tracking" as tracking-*;
+@forward "leading" as leading-*;
+@forward "radius" as radius-*;
+@forward "shadow" as shadow-*;
+@forward "inset-shadow" as inset-shadow-*;
+@forward "drop-shadow" as drop-shadow-*;
+@forward "blur" as blur-*;
+@forward "perspective" as perspective-*;
+@forward "easing";
+@forward "animate" as animate-*;
+
+@use "sass:list";
+
+$spacing: 0.25rem;
+$aspect-video: list.slash(16, 9);
+$transition-duration: 150ms;
