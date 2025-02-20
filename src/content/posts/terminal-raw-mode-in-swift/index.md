@@ -100,7 +100,9 @@ messed up.
 
 :::note
 If you use this in code that isn't isolated to the main actor, you won't be able
-to run `disable()` in a `defer` block.
+to run `disable()` in a `defer` block. This is because you need to use `await`
+to call these functions in that case, and at the time of writing Swift doesn't
+support `await` in `defer` blocks (even if the containing function is `async`).
 :::
 
 [BrainflipKit]: https://github.com/kaascevich/BrainflipKit

@@ -6,12 +6,10 @@ export type Translation = Readonly<Record<I18nKey, string>>
 
 const map = {
   en,
-
-  en_US: en,
-  en_GB: en,
-  en_AU: en,
-} as const satisfies Record<string, Translation>
-
+  "en-US": en,
+  "en-GB": en,
+  "en-AU": en,
+} as const satisfies Record<Intl.UnicodeBCP47LocaleIdentifier, Translation>
 export type Lang = keyof typeof map
 
 export function i18n(key: I18nKey): string {

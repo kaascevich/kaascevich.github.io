@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from "$/config"
 import { UNCATEGORIZED } from "$/constants/constants"
 import I18nKey from "$/i18n/i18nKey"
 import { i18n } from "$/i18n/translation"
@@ -34,9 +35,11 @@ const groups = Array.from(
   .toSorted((a, b) => b.year - a.year) // sort by year, descending
 
 function formatDate(date: Date): string {
-  const month = (date.getMonth() + 1).toString().padStart(2, "0")
-  const day = date.getDate().toString().padStart(2, "0")
-  return `${month}-${day}`
+  const format = new Intl.DateTimeFormat(siteConfig.lang, {
+    month: "numeric",
+    day: "2-digit",
+  })
+  return format.format(date)
 }
 
 function formatTag(tag: readonly string[]): string {
