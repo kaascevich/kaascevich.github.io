@@ -60,6 +60,7 @@
     "remark-sectionize": "^2.1.0",
     "sanitize-html": "^2.14.0",
     "sass": "^1.85.0",
+    "sass-embedded": "^1.85.0",
     "sharp": "^0.33.5",
     "stylus": "^0.63.0",
     "svelte": "^5.20.2",

@@ -1,6 +1,11 @@
+@use "main";
+@use "theme" as *;
+@use "utils" as *;
+@use "variants";
+
 .custom-md {
   h1 {
-    @apply text-3xl;
+    @include font-size($text-xl3);
   }
 
   h1,
@@ -10,35 +15,61 @@
   h5,
   h6 {
     .anchor {
-      @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-0 no-underline !important;
+      @include transition();
+      margin: spacing(-0.5) {
+        left: 0.2ch !important;
+      }
+      padding: spacing(0.5) !important;
+      user-select: none !important;
+      opacity: 0 !important;
+      text-decoration-line: none !important;
 
       .anchor-icon {
-        @apply mx-[0.45ch] !important;
+        margin: {
+          left: 0.45ch !important;
+          right: 0.45ch !important;
+        }
       }
     }
 
     &:hover {
       .anchor {
-        @apply opacity-100 !important;
+        opacity: 1 !important;
       }
     }
   }
 
   a:not(.no-styling) {
-    @apply relative bg-none link font-medium text-[--primary] underline decoration-[--link-underline] decoration-1 decoration-dashed underline-offset-4;
+    @extend .link;
+    position: relative;
+    background-image: none;
+    font-weight: $font-weight-medium;
+    color: var(--primary);
+    text-underline-offset: 4px;
+    text-decoration: {
+      line: underline;
+      color: var(--link-underline);
+      style: dashed;
+      thickness: 1px;
+    }
 
     &:hover,
     &:active {
-      @apply decoration-transparent;
+      text-decoration-color: transparent;
     }
 
     &[data-footnote-ref] {
-      @apply -ml-0.5 no-underline;
+      margin-left: spacing(-0.5);
+      text-decoration-line: none;
     }
   }
 
   code {
-    @apply bg-[--inline-code-bg] text-[--inline-code-color] p-1 rounded-md overflow-hidden;
+    background-color: var(--inline-code-bg);
+    color: var(--inline-code-color);
+    padding: spacing(1);
+    border-radius: $radius-md;
+    overflow: hidden;
 
     font-family:
       "Monaspace Radon",
@@ -54,18 +85,18 @@
       "calt", "liga", "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07",
       "ss08", "ss09";
 
-    &:before {
-      @apply content-none;
-    }
-    &:after {
-      @apply content-none;
-    }
+    @include before(none);
+    @include after(none);
 
     counter-reset: line;
     span.line {
-      &:before {
-        @apply text-white/25 mr-4 w-4 inline-block;
-        content: counter(line);
+      // line numbers
+      @include before(counter(line)) {
+        color: white(0.25);
+        margin-right: spacing(4);
+        width: spacing(4);
+        display: inline-block;
+
         counter-increment: line;
         direction: rtl;
       }
@@ -77,18 +108,26 @@
   }
 
   :not(pre) code {
-    @apply relative bottom-[0.05rem];
+    position: relative;
+    bottom: spacing(0.2);
   }
 
   pre {
-    @apply bg-[--codeblock-bg] !important;
-    @apply rounded-xl px-5;
+    background-color: var(--codeblock-bg) !important;
+    border-radius: $radius-xl;
+    padding: {
+      left: spacing(5);
+      right: spacing(5);
+    }
 
     code {
-      @apply bg-transparent text-inherit text-sm p-0;
+      background-color: transparent;
+      color: inherit;
+      @include font-size($text-sm);
+      padding: 0;
 
       ::selection {
-        @apply bg-[--codeblock-selection];
+        background-color: var(--codeblock-selection);
       }
     }
   }
@@ -96,22 +135,31 @@
   ul,
   ol {
     li::marker {
-      @apply text-[--primary];
+      color: var(--primary);
     }
   }
 
   blockquote {
-    @apply not-italic border-transparent relative;
+    font-style: normal;
+    border-color: transparent;
+    position: relative;
     font-weight: inherit;
 
-    &:before {
-      @apply content-[''] absolute -left-1 block transition bg-[--btn-regular-bg] h-full w-1 rounded-full;
+    @include before {
+      position: absolute;
+      left: spacing(-1);
+      display: block;
+      @include transition();
+      background-color: var(--btn-regular-bg);
+      height: 100%;
+      width: spacing(1);
+      border-radius: 9999px;
     }
 
     /* remove the double quotes from default styles */
-    p:before,
-    p:after {
-      @apply content-none;
+    p {
+      @include before(none);
+      @include after(none);
     }
   }
 }

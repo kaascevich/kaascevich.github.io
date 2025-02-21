@@ -55,7 +55,7 @@ if (isLocal) {
 }
 ---
 
-<div {id} class={`image-wrapper ${className}`}>
+<div {id} class:list={["image-wrapper", className]}>
   {
     isLocal ?
       img !== undefined && <Image src={img} {alt} {loading} />
@@ -64,11 +64,23 @@ if (isLocal) {
 </div>
 
 <style lang="scss" define:vars={{ position }}>
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
   .image-wrapper {
-    @apply overflow-hidden relative;
+    overflow: hidden;
+    position: relative;
 
     img {
-      @apply w-full h-full object-cover dark:brightness-90 object-[--position];
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--position);
+
+      @include variants.dark {
+        filter: brightness(0.9);
+      }
     }
   }
 </style>

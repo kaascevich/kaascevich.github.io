@@ -1,24 +1,31 @@
+@use "theme" as *;
+@use "utils" as *;
+@use "variants";
+
 /* page transition animations with swup */
 html.is-changing .transition-swup-fade {
-  @apply transition-all duration-200;
+  @include transition($properties: all, $duration: 200ms);
 }
 html.is-animating .transition-swup-fade {
-  @apply opacity-0 translate-y-4;
+  opacity: 0;
+  translate: 0 spacing(4);
 }
 
 /* fade-in animations for components */
 @keyframes fade-in-up {
   0% {
-    @apply translate-y-8 opacity-0;
+    translate: 0 spacing(8);
+    opacity: 0;
   }
   100% {
-    @apply translate-y-0 opacity-100;
+    translate: 0 0;
+    opacity: 1;
   }
 }
 
 /* Main components */
 .onload-animation {
-  @apply opacity-0;
+  opacity: 0;
   animation: 300ms fade-in-up;
   animation-fill-mode: forwards;
 }
@@ -29,7 +36,9 @@ html.is-animating .transition-swup-fade {
   animation-delay: 100ms;
 }
 #swup-container {
-  @apply outline-none;
+  outline: 2px solid transparent {
+    offset: 2px;
+  }
 }
 #content-wrapper {
   animation-delay: var(--content-delay);

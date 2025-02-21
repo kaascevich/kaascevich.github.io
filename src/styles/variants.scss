@@ -1,7 +1,9 @@
+@use "theme" as *;
+
 // MARK: Dark Mode
 
 @mixin dark {
-  &:is(.dark *) {
+  :root.dark & {
     @content;
   }
 }
@@ -9,31 +11,31 @@
 // MARK: Responsive Design
 
 @mixin sm {
-  @media (width >= theme.$breakpoint-sm) {
+  @media (width >= $breakpoint-sm) {
     @content;
   }
 }
 
 @mixin md {
-  @media (width >= theme.$breakpoint-md) {
+  @media (width >= $breakpoint-md) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (width >= theme.$breakpoint-lg) {
+  @media (width >= $breakpoint-lg) {
     @content;
   }
 }
 
 @mixin xl {
-  @media (width >= theme.$breakpoint-xl) {
+  @media (width >= $breakpoint-xl) {
     @content;
   }
 }
 
 @mixin xl2 {
-  @media (width >= theme.$breakpoint-xl2) {
+  @media (width >= $breakpoint-xl2) {
     @content;
   }
 }

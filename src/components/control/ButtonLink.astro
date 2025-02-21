@@ -10,25 +10,83 @@ const { badge, url, label } = Astro.props
 
 <a href={url} aria-label={label}>
   <button>
-    <div class="flex items-center justify-between relative mr-2">
-      <div
-        class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis"
-      >
+    <div class="wrapper">
+      <div class="title">
         <slot />
       </div>
-      {
-        badge !== undefined && (
-          <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold text-[--btn-content] dark:text-[--deep-text] bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[--primary] flex items-center justify-center">
-            {badge}
-          </div>
-        )
-      }
+      {badge !== undefined && <div class="badge">{badge}</div>}
     </div>
   </button>
 </a>
 
 <style lang="scss">
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
   button {
-    @apply w-full h-10 rounded-lg bg-none hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active] transition-all pl-2 hover:pl-3 text-neutral-700 hover:text-[--primary] dark:text-neutral-300 dark:hover:text-[--primary];
+    width: 100%;
+    height: spacing(10);
+    border-radius: $radius-lg;
+    background-image: none;
+    @include transition($properties: all);
+    padding-left: spacing(2);
+    color: $color-neutral-700;
+
+    &:active {
+      background-color: var(--btn-plain-bg-active);
+    }
+
+    &:hover {
+      background-color: var(--btn-plain-bg-hover);
+      padding-left: spacing(3);
+      color: var(--primary);
+    }
+
+    @include variants.dark {
+      color: $color-neutral-300;
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-right: spacing(2);
+  }
+
+  .title {
+    overflow: hidden;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsisl;
+  }
+
+  .badge {
+    @include transition();
+    padding: {
+      left: spacing(2);
+      right: spacing(2);
+    }
+    height: spacing(7);
+    margin-left: spacing(4);
+    min-width: spacing(8);
+    border-radius: $radius-lg;
+    @include font-size($text-sm);
+    font-weight: $font-weight-bold;
+    color: var(--btn-content);
+    background-color: oklch(0.95 0.025 var(--hue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include variants.dark {
+      color: var(--deep-text);
+      background-color: var(--primary);
+    }
   }
 </style>

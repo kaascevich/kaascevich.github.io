@@ -14,36 +14,28 @@
   $effect(() => setHue(hue))
 </script>
 
-<div
-  id="display-setting"
-  class="float-panel float-panel-closed absolute transition-all w-80 right-4 px-4 py-4"
->
-  <div class="flex flex-row gap-2 mb-3 items-center justify-between">
-    <div
-      class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 before:w-1 before:h-4 before:rounded-md before:bg-[--primary] before:absolute before:-left-3 before:top-[0.33rem]"
-    >
+<div id="display-settings" class="float-panel-closed">
+  <div class="header">
+    <div class="title">
       {i18n(I18nKey.themeColor)}
       <button
         aria-label="Reset to Default"
-        class="btn-regular w-7 h-7 rounded-md active:scale-90"
         class:opacity-0={hue === defaultHue}
         class:pointer-events-none={hue === defaultHue}
         onclick={resetHue}
       >
-        <div class="text-[--btn-content]">
+        <div class="icon-wrapper">
           <Icon icon="tabler:x" height="0.875rem" width="0.875rem" />
         </div>
       </button>
     </div>
-    <div class="flex gap-1">
-      <div
-        id="hueValue"
-        class="transition bg-[--btn-regular-bg] w-10 h-7 rounded-md flex justify-center font-bold text-sm items-center text-[--btn-content]"
-      >
+    <div class="hue-value-wrapper">
+      <div id="hueValue" class="">
         {hue}
       </div>
     </div>
   </div>
+
   <div
     class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none"
   >
@@ -62,21 +54,120 @@
 </div>
 
 <style lang="scss">
-  #display-setting {
+  @use "sass:math";
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  @mixin slider-thumb {
+    appearance: none;
+    height: spacing(4);
+    width: spacing(2);
+    border-radius: $radius-sm;
+    border-width: 0;
+    box-shadow: $shadow-none;
+    background-color: rgb(255 255 255 / 0.7);
+
+    &:hover {
+      background-color: rgb(255 255 255 / 0.8);
+    }
+    &:active {
+      background-color: rgb(255 255 255 / 0.6);
+    }
+  }
+
+  #display-settings {
+    @extend .float-panel;
+    position: absolute;
+    @include transition($properties: all);
+    width: spacing(80);
+    right: spacing(4);
+    padding: spacing(4);
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      gap: spacing(2);
+      margin-bottom: spacing(3);
+      align-items: center;
+      justify-content: space-between;
+
+      .title {
+        display: flex;
+        gap: spacing(2);
+        font-weight: $font-weight-bold;
+        @include font-size($text-lg);
+        color: $color-neutral-900;
+        @include transition;
+        position: relative;
+        margin-left: spacing(3);
+
+        @include variants.dark {
+          color: $color-neutral-100;
+        }
+
+        @include before {
+          width: spacing(1);
+          height: spacing(4);
+          border-radius: $radius-md;
+          background-color: var(--primary);
+          position: absolute;
+          left: spacing(-3);
+          top: math.div(1rem, 3);
+        }
+      }
+
+      button {
+        @extend .btn-regular;
+        width: spacing(7);
+        height: spacing(7);
+        border-radius: $radius-md;
+        &:active {
+          scale: 0.9;
+        }
+
+        .icon-wrapper {
+          color: var(--btn-content);
+        }
+      }
+
+      .hue-value-wrapper {
+        display: flex;
+        gap: spacing(1);
+
+        #hueValue {
+          @include transition();
+          background-color: var(--btn-regular-bg);
+          width: spacing(10);
+          height: spacing(7);
+          border-radius: $radius-md;
+          display: flex;
+          justify-content: center;
+          font-weight: $font-weight-bold;
+          @include font-size($text-sm);
+          align-items: center;
+          color: var(--btn-content);
+        }
+      }
+    }
+
     input[type="range"] {
-      @apply appearance-none h-6 transition-[background-image];
+      appearance: none;
+      height: spacing(6);
+      @include transition($properties: background-image);
       background-image: var(--color-selection-bar);
 
       &::-webkit-slider-thumb {
-        @apply appearance-none h-4 w-2 rounded-sm shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+        @include slider-thumb();
       }
 
       &::-moz-range-thumb {
-        @apply appearance-none h-4 w-2 rounded-sm border-0 shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+        @include slider-thumb();
       }
 
       &::-ms-thumb {
-        @apply appearance-none h-4 w-2 rounded-sm shadow-none bg-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.8)] active:bg-[rgba(255,255,255,0.6)];
+        @include slider-thumb();
       }
     }
   }

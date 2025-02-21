@@ -11,23 +11,54 @@ import { Icon } from "astro-icon/components"
 </div>
 
 <style lang="scss">
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
   .back-to-top-wrapper {
-    @apply size-[3.75rem] absolute right-0 top-0 pointer-events-none hidden lg:block;
+    width: spacing(15);
+    height: spacing(15);
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+    display: none;
+
+    @include variants.lg {
+      display: block;
+    }
   }
 
   #back-to-top-btn {
-    @apply text-[--primary] text-4xl font-bold border-none fixed bottom-40 opacity-100 cursor-pointer translate-x-20 pointer-events-auto flex items-center rounded-2xl overflow-hidden transition;
+    color: var(--primary);
+    @include font-size($text-xl4);
+    font-weight: $font-weight-bold;
+
+    border-style: none;
+    position: fixed;
+    bottom: spacing(40);
+    opacity: 1;
+    cursor: pointer;
+    translate: spacing(20);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    border-radius: $radius-xl2;
+    overflow: hidden;
+    @include transition();
+
     button {
-      @apply size-[3.75rem];
+      width: spacing(15);
+      height: spacing(15);
     }
-    i {
-      @apply text-[1.75rem];
-    }
+
     &.hide {
-      @apply translate-x-20 scale-90 opacity-0 pointer-events-none;
+      scale: 0.9;
+      opacity: 0;
+      pointer-events: none;
     }
     &:active {
-      @apply translate-x-20 scale-90;
+      scale: 0.9;
     }
   }
 </style>

@@ -49,22 +49,20 @@ const {
 
 <style lang="scss" define:vars={{ collapsedHeight }}>
   @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
 
   widget-layout {
     @extend .card-base;
     padding-bottom: spacing(4);
 
     .widget-title {
-      font-weight: theme.$font-weight-bold;
-      @include font(theme.$text-lg...);
+      font-weight: $font-weight-bold;
+      @include font-size($text-lg);
 
-      transition: theme.$ease-in-out theme.$transition-duration {
-        property:
-          color, background-color, border-color, text-decoration-color, fill,
-          stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-      }
-
-      color: theme.$color-neutral-900;
+      @include transition();
+      color: $color-neutral-900;
       position: relative;
       margin: {
         left: spacing(8);
@@ -73,13 +71,13 @@ const {
       }
 
       @include variants.dark {
-        color: theme.$color-neutral-100;
+        color: $color-neutral-100;
       }
 
-      @include variants.before {
+      @include before {
         width: spacing(1);
         height: spacing(4);
-        border-radius: theme.$radius-md;
+        border-radius: $radius-md;
         background-color: var(--primary);
         position: absolute;
         left: -16px;
@@ -108,7 +106,7 @@ const {
 
       button {
         @extend .btn-plain;
-        border-radius: theme.$radius-lg;
+        border-radius: $radius-lg;
         width: 100%;
         height: spacing(9);
 
@@ -118,7 +116,7 @@ const {
           align-items: center;
           justify-content: center;
           gap: spacing(2);
-          translate-x: spacing(-2);
+          translate: spacing(-2);
         }
       }
     }

@@ -1,8 +1,6 @@
-@use "markdown-extend";
-@use "markdown";
-@use "photoswipe";
-@use "scrollbar";
-@use "transition";
+@use "theme" as *;
+@use "utils" as *;
+@use "variants";
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +8,10 @@
 
 @layer components {
   .card-base {
-    @apply rounded-[--radius-large] overflow-hidden bg-[--card-bg] transition;
+    border-radius: $radius-xl2;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    @include transition();
   }
 
   h1,
@@ -32,59 +33,154 @@
   th,
   td,
   strong {
-    @apply transition;
+    @include transition();
   }
+
   .card-shadow {
-    @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.005)];
+    filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.005));
   }
   .expand-animation {
-    @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[--btn-plain-bg-hover] active:before:bg-[--btn-plain-bg-active] z-0 before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10;
+    position: relative;
+    z-index: 0;
+    @include before {
+      @include transition($function: $ease-out);
+      position: absolute;
+      border-radius: inherit;
+      inset: 0;
+      scale: 0.85;
+      z-index: -10;
+    }
+    &:hover {
+      @include before {
+        background-color: var(--btn-plain-bg-hover);
+        scale: 1;
+      }
+    }
+    &:active {
+      background-image: none;
+      @include before {
+        background-color: var(--btn-plain-bg-active);
+      }
+    }
   }
   .link {
-    @apply transition rounded-md p-1 -m-1 expand-animation;
+    @extend .expand-animation;
+    @include transition();
+    border-radius: $radius-md;
+    padding: spacing(1);
+    margin: spacing(-1);
   }
   .link-lg {
-    @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
+    @extend .expand-animation;
+    @include transition();
+    border-radius: $radius-md;
+    padding: spacing(1.5);
+    margin: spacing(-1.5);
   }
   .float-panel {
-    @apply top-[5.25rem] rounded-[--radius-large] overflow-hidden bg-[--float-panel-bg] transition shadow-xl dark:shadow-none;
+    top: spacing(21);
+    border-radius: $radius-xl2;
+    overflow: hidden;
+    background-color: var(--float-panel-bg);
+    @include transition();
+    box-shadow: $shadow-xl;
+    @include variants.dark {
+      box-shadow: $shadow-none;
+    }
   }
   .float-panel-closed {
-    @apply -translate-y-1 opacity-0 pointer-events-none;
+    translate: 0 spacing(-1);
+    opacity: 0;
+    pointer-events: none;
   }
   .search-panel mark {
-    @apply bg-transparent text-[--primary];
+    background-color: transparent;
+    color: var(--primary);
   }
 
   .btn-card {
-    @apply transition flex items-center justify-center bg-[--card-bg] hover:bg-[--btn-card-bg-hover] active:bg-[--btn-card-bg-active];
+    @include transition();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    &:hover {
+      background-color: var(--btn-card-bg-hover);
+    }
+    &:active {
+      background-color: var(--btn-card-bg-active);
+    }
   }
   .btn-card.disabled {
-    @apply pointer-events-none text-black/10 dark:text-white/10;
+    pointer-events: none;
+    color: black(0.1);
+    @include variants.dark {
+      color: white(0.1);
+    }
   }
   .btn-plain {
-    @apply transition relative flex items-center justify-center bg-none text-black/75 hover:text-[--primary] dark:text-white/75 dark:hover:text-[--primary];
+    @include transition();
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: none;
+
+    color: black(0.75);
+    &:hover {
+      color: var(--primary);
+    }
+    @include variants.dark {
+      color: white(0.75);
+      &:hover {
+        color: var(--primary);
+      }
+    }
+
     &:not(.scale-animation) {
-      @apply hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active];
+      &:hover {
+        background-color: var(--btn-plain-bg-hover);
+      }
+      &:active {
+        background-color: var(--btn-plain-bg-active);
+      }
     }
     &.scale-animation {
-      @apply expand-animation;
+      @extend .expand-animation;
       &.current-color-scheme-btn {
-        @apply before:scale-100 before:opacity-100 before:bg-[--btn-plain-bg-hover] text-[--primary];
+        color: var(--primary);
+        @include before {
+          scale: 1;
+          opacity: 1;
+          background-color: var(--btn-plain-bg-hover);
+        }
       }
     }
   }
   .btn-regular {
-    @apply transition flex items-center justify-center bg-[--btn-regular-bg] hover:bg-[--btn-regular-bg-hover] active:bg-[--btn-regular-bg-active] text-[--btn-content] dark:text-white/75;
-  }
+    @include transition();
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  .link-underline {
-    @apply transition underline decoration-2 decoration-dashed decoration-[--link-underline] hover:decoration-[--link-hover] active:decoration-[--link-active] underline-offset-[0.25rem];
+    background-color: var(--btn-regular-bg);
+    &:hover {
+      background-color: var(--btn-regular-bg-hover);
+    }
+    &:active {
+      background-color: var(--btn-regular-bg-active);
+    }
+
+    color: var(--btn-content);
+    @include variants.dark {
+      color: white(0.75);
+    }
   }
 
   .toc-hide,
   .toc-not-ready {
-    @apply opacity-0 pointer-events-none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   #toc-inner-wrapper {
@@ -102,74 +198,132 @@
     -ms-overflow-style: none;
   }
   .hide-scrollbar::-webkit-scrollbar {
-    @apply hidden;
+    display: none;
+  }
+
+  @mixin text-black-or-white($alpha) {
+    color: black($alpha);
+    @include variants.dark {
+      color: white($alpha);
+    }
   }
 
   .text-90 {
-    @apply text-black/90 dark:text-white/90;
+    @include text-black-or-white(0.9);
   }
   .text-75 {
-    @apply text-black/75 dark:text-white/75;
+    @include text-black-or-white(0.75);
   }
   .text-50 {
-    @apply text-black/50 dark:text-white/50;
+    @include text-black-or-white(0.5);
   }
   .text-30 {
-    @apply text-black/30 dark:text-white/30;
+    @include text-black-or-white(0.3);
   }
   .text-25 {
-    @apply text-black/25 dark:text-white/25;
+    @include text-black-or-white(0.25);
   }
 
   .meta-icon {
-    @apply w-8 h-8 transition rounded-md flex items-center justify-center bg-[--btn-regular-bg] text-[--btn-content] mr-2;
-  }
-  .with-divider::before {
-    @apply content-["/"] ml-1.5 before:mr-1.5 text-[--meta-divider] text-sm font-medium first-of-type:hidden transition;
-  }
-
-  .btn-regular-dark {
-    @apply flex items-center justify-center bg-[oklch(0.45_0.01_var(--hue))] hover:bg-[oklch(0.50_0.01_var(--hue))] active:bg-[oklch(0.55_0.01_var(--hue))] dark:bg-[oklch(0.30_0.02_var(--hue))] dark:hover:bg-[oklch(0.35_0.03_var(--hue))] dark:active:bg-[oklch(0.40_0.03_var(--hue))];
-  }
-  .btn-regular-dark.success {
-    @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))];
+    width: spacing(8);
+    height: spacing(8);
+    @include transition();
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--btn-regular-bg);
+    color: var(--btn-content);
+    margin-right: spacing(2);
   }
 
   .copy-btn-icon {
-    @apply absolute top-1/2 left-1/2 transition -translate-x-1/2 -translate-y-1/2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transition();
+    translate: -50% -50%;
   }
-  .copy-btn .copy-icon {
-    @apply opacity-100 fill-white dark:fill-white/75;
-  }
-  .copy-btn.success .copy-icon {
-    @apply opacity-0 fill-[--deep-text];
-  }
-  .copy-btn .success-icon {
-    @apply opacity-0;
-  }
-  .copy-btn.success .success-icon {
-    @apply opacity-100;
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: with-hue(0.45, 0.01);
+    &:hover {
+      background-color: with-hue(0.5, 0.01);
+    }
+    &:active {
+      background-color: with-hue(0.55, 0.01);
+    }
+    @include variants.dark {
+      background-color: with-hue(0.3, 0.02);
+      &:hover {
+        background-color: with-hue(0.35, 0.03);
+      }
+      &:active {
+        background-color: with-hue(0.4, 0.03);
+      }
+    }
+
+    &.success {
+      background-color: with-hue(0.75, 0.14);
+      @include variants.dark {
+        background-color: with-hue(0.75, 0.14);
+      }
+    }
+
+    .copy-icon {
+      opacity: 1;
+      fill: $color-white;
+      @include variants.dark {
+        fill: white(0.75);
+      }
+    }
+    &.copy-btn.success .copy-icon {
+      opacity: 0;
+      fill: var(--deep-text);
+    }
+
+    .success-icon {
+      opacity: 0;
+    }
+    &.success .success-icon {
+      opacity: 1;
+    }
   }
 }
 
 .custom-md img,
 #post-cover img {
-  @apply cursor-zoom-in;
+  cursor: zoom-in;
 }
 
 ::selection {
-  @apply bg-[--selection-bg];
+  background-color: var(--selection-bg);
 }
 
 .dash-line {
-  @apply relative;
-}
-
-.dash-line::before {
-  @apply content-[""] absolute w-[10%] h-full border-l-2 border-dashed border-l-[--line-color] pointer-events-none -translate-y-1/2 left-[calc(50%-1px)];
-  transition: all 300ms;
+  position: relative;
+  @include before {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    border: {
+      style: dashed;
+      left: {
+        width: 2px;
+        color: var(--line-color);
+      }
+    }
+    pointer-events: none;
+    translate: 0 -50%;
+    left: calc(50% - 1px);
+    transition: all 300ms;
+  }
 }
 
 .collapsed {
-  @apply h-[--collapsedHeight];
+  height: var(--collapsedHeight);
 }

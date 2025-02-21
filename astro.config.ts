@@ -65,8 +65,28 @@ export default defineConfig({
     svelte(),
     sitemap(),
     compress({
-      CSS: false,
-      Image: false,
+      HTML: {
+        "html-minifier-terser": {
+          collapseBooleanAttributes: true,
+          collapseInlineTagWhitespace: true,
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          decodeEntities: true,
+          minifyCSS: true,
+          minifyJS: true,
+          minifyURLs: true,
+          quoteCharacter: '"',
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+        },
+      },
+      JavaScript: {
+        terser: {
+          toplevel: true,
+        },
+      },
       Action: {
         // https://github.com/PlayForm/Compress/issues/376
         Passed: () =>
@@ -158,17 +178,5 @@ export default defineConfig({
       },
     },
     plugins: [pagefind({ outputDirectory: "dist" })],
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: /*scss*/ `
-          @use "$/styles/theme";
-          @use "$/styles/utils" as *;
-          @use "$/styles/variables";
-          @use "$/styles/variants";
-          `.trim(),
-        },
-      },
-    },
   },
 })

@@ -20,3 +20,7 @@
 $spacing: 0.25rem;
 $aspect-video: list.slash(16, 9);
 $transition-duration: 150ms;
+$transition-properties:
+  color, background-color, border-color, text-decoration-color, fill, stroke,
+  opacity, box-shadow, transform, scale, translate, rotate, filter,
+  backdrop-filter;

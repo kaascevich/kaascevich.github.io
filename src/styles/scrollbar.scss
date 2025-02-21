@@ -1,23 +1,31 @@
+@use "theme" as *;
+@use "utils" as *;
+@use "variants";
+
 .scrollbar-base.os-scrollbar {
-  @apply transition-all;
+  @include transition($properties: all);
 
   &.os-scrollbar-horizontal {
-    @apply py-1 px-2 h-4;
+    padding: spacing(1) spacing(2);
+    height: spacing(4);
     .os-scrollbar-track .os-scrollbar-handle {
-      @apply rounded-full h-1;
+      border-radius: 9999px;
+      height: spacing(1);
     }
     &:hover .os-scrollbar-track .os-scrollbar-handle {
-      @apply h-2;
+      height: spacing(2);
     }
   }
 
   &.os-scrollbar-vertical {
-    @apply px-1 py-1 w-4;
+    padding: spacing(1);
+    width: spacing(4);
     .os-scrollbar-track .os-scrollbar-handle {
-      @apply rounded-full w-1;
+      border-radius: 9999px;
+      width: spacing(1);
     }
     &:hover .os-scrollbar-track .os-scrollbar-handle {
-      @apply w-2;
+      width: spacing(2);
     }
   }
 }

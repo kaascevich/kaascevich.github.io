@@ -1,13 +1,37 @@
+@use "theme" as *;
+@use "utils" as *;
+@use "variants";
+
 .pswp__button {
-  @apply transition bg-black/40 hover:bg-black/50 active:bg-black/60 flex items-center justify-center mr-0 w-12 h-12 !important;
+  transition: $ease-in-out $transition-duration !important;
+  transition-property: $transition-properties;
+
+  background-color: black(0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  width: spacing(12);
+  height: spacing(12);
+
+  &:hover {
+    background-color: black(0.5);
+  }
+  &:active {
+    background-color: black(0.6);
+  }
 }
 .pswp__button--zoom,
 .pswp__button--close {
-  @apply mt-4 rounded-xl active:scale-90 !important;
+  margin-top: spacing(4) !important;
+  border-radius: $radius-xl !important;
+  &:active {
+    transform: scale(0.9) !important;
+  }
 }
 .pswp__button--zoom {
-  @apply mr-2.5 !important;
+  margin-right: spacing(2.5) !important;
 }
 .pswp__button--close {
-  @apply mr-4 !important;
+  margin-right: spacing(4) !important;
 }
