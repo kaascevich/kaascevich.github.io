@@ -67,13 +67,13 @@
     border-radius: $radius-sm;
     border-width: 0;
     box-shadow: $shadow-none;
-    background-color: rgb(255 255 255 / 0.7);
 
+    background-color: white(70%);
     &:hover {
-      background-color: rgb(255 255 255 / 0.8);
+      background-color: white(80%);
     }
     &:active {
-      background-color: rgb(255 255 255 / 0.6);
+      background-color: white(60%);
     }
   }
 
@@ -124,7 +124,7 @@
         height: spacing(7);
         border-radius: $radius-md;
         &:active {
-          scale: 0.9;
+          scale: 90%;
         }
 
         .icon-wrapper {

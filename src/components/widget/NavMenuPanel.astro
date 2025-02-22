@@ -1,7 +1,7 @@
 ---
 import type { NavBarLink } from "$/types/config"
 import { Icon } from "astro-icon/components"
-import { url } from "$/utils/urls"
+import { url as getURL } from "$/utils/urls"
 
 type Props = Readonly<{
   links: readonly NavBarLink[]
@@ -10,39 +10,71 @@ type Props = Readonly<{
 const { links } = Astro.props
 ---
 
-<div
-  id="nav-menu-panel"
-  class:list={[
-    "float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2",
-  ]}
->
+<div id="nav-menu-panel" class="float-panel-closed">
   {
-    links.map((link) => (
+    links.map(({ name, url, external = false }) => (
       <a
-        href={link.external === true ? link.url : url(link.url)}
-        class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
-            hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active] transition
-        "
-        target={link.external === true ? "_blank" : null}
+        href={external ? url : getURL(url)}
+        target={external ? "_blank" : null}
       >
-        <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[--primary] group-active:text-[--primary]">
-          {link.name}
-        </div>
-        {link.external === false && (
-          <Icon
-            name="tabler:chevron-right"
-            size="1.25rem"
-            class="transition text-[--primary]"
-          />
-        )}
-        {link.external === true && (
-          <Icon
-            name="tabler:external-link"
-            size="1.25rem"
-            class="transition text-black/25 dark:text-white/25"
-          />
-        )}
+        <div class="title">{name}</div>
+        <Icon
+          name={`tabler:${external ? "external-link" : "chevron-right"}`}
+          size="1.25rem"
+          class={`link-icon-${external ? "external" : "internal"}`}
+        />
       </a>
     ))
   }
 </div>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  #nav-menu-panel {
+    @extend .float-panel;
+    @include transition($properties: all);
+    position: fixed;
+    right: spacing(4);
+    padding: spacing(2);
+
+    a {
+      @include transition();
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: spacing(2) spacing(1) spacing(2) spacing(3);
+      border-radius: $radius-lg;
+      gap: spacing(8);
+      &:hover {
+        background-color: var(--btn-plain-bg-hover);
+      }
+      &:active {
+        background-color: var(--btn-plain-bg-active);
+      }
+
+      .title {
+        @include transition();
+        @include text-plain(75%);
+        font-weight: $font-weight-bold;
+      }
+      &:is(:hover, :active) .title {
+        color: var(--primary);
+      }
+
+      .link-icon {
+        @include transition();
+
+        &-external {
+          @include text-plain(25%);
+        }
+        &-internal {
+          color: var(--primary);
+        }
+      }
+    }
+  }
+</style>

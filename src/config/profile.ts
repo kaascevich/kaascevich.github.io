@@ -7,7 +7,7 @@ export default config<ProfileConfig>({
   links: [
     {
       name: "GitHub",
-      icon: "tabler:brand-github", // https://icones.js.org/
+      icon: "tabler:brand-github", // https://icones.js.org
       url: "https://github.com/kaascevich",
     },
     {

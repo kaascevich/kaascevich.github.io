@@ -21,7 +21,7 @@
       }
       padding: spacing(0.5) !important;
       user-select: none !important;
-      opacity: 0 !important;
+      opacity: 0% !important;
       text-decoration-line: none !important;
 
       .anchor-icon {
@@ -34,12 +34,12 @@
 
     &:hover {
       .anchor {
-        opacity: 1 !important;
+        opacity: 100% !important;
       }
     }
   }
 
-  a:not(.no-styling) {
+  :any-link:not(.no-styling) {
     @extend .link;
     position: relative;
     background-image: none;
@@ -92,7 +92,7 @@
     span.line {
       // line numbers
       @include before(counter(line)) {
-        color: white(0.25);
+        color: white(25%);
         margin-right: spacing(4);
         width: spacing(4);
         display: inline-block;

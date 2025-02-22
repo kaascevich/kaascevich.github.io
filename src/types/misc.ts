@@ -2,9 +2,12 @@
  * Recursively makes all properties in `T` `readonly`.
  *
  * This type differs from the TypeScript `Readonly<T>` builtin in that it also
- * makes all arrays and all properties of objects _inside_ of `T` `readonly`,
- * recursively. This results in a type that is about as immutable as you can get
- * in TypeScript.
+ * makes all arrays and all properties of non-function objects _inside_ of `T`
+ * `readonly`, recursively. This results in a type that is about as immutable as
+ * you can get in TypeScript.
+ *
+ * This type does not affect function properties inside of `T` or its properties
+ * in order to ensure they're still callable as functions.
  *
  * @template T Any type.
  *

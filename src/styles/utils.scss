@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "sass:list";
 @use "theme" as *;
+@use "variants";
 
 // MARK: Functions
 
@@ -61,5 +62,12 @@
 ) {
   transition: $function $duration {
     property: $properties;
+  }
+}
+
+@mixin text-plain($alpha) {
+  color: black($alpha);
+  @include variants.dark {
+    color: white($alpha);
   }
 }

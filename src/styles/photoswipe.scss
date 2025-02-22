@@ -6,7 +6,7 @@
   transition: $ease-in-out $transition-duration !important;
   transition-property: $transition-properties;
 
-  background-color: black(0.4);
+  background-color: black(40%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,10 +15,10 @@
   height: spacing(12);
 
   &:hover {
-    background-color: black(0.5);
+    background-color: black(50%);
   }
   &:active {
-    background-color: black(0.6);
+    background-color: black(60%);
   }
 }
 .pswp__button--zoom,
@@ -26,7 +26,7 @@
   margin-top: spacing(4) !important;
   border-radius: $radius-xl !important;
   &:active {
-    transform: scale(0.9) !important;
+    scale: 90% !important;
   }
 }
 .pswp__button--zoom {

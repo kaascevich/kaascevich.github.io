@@ -14,9 +14,7 @@ let delay = 0
 const interval = 50
 ---
 
-<div
-  class="transition flex flex-col rounded-2xl bg-[--card-bg] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4"
->
+<div class="post-list-wrapper">
   {
     page.data.map((entry) => (
       <PostCard
@@ -36,3 +34,31 @@ const interval = 50
     ))
   }
 </div>
+
+<style lang="scss">
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .post-list-wrapper {
+    @include transition();
+    display: flex;
+    flex-direction: column;
+    border-radius: $radius-xl2;
+    background-color: var(--card-bg);
+    padding: {
+      top: spacing(1);
+      bottom: spacing(1);
+    }
+    margin-bottom: spacing(4);
+
+    @include variants.md {
+      padding: {
+        top: 0;
+        bottom: 0;
+      }
+      background-color: transparent;
+      gap: spacing(4);
+    }
+  }
+</style>

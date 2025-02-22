@@ -63,53 +63,108 @@ if (rightmost < page.lastPage) {
 const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
 ---
 
-<div class:list={[className, "flex flex-row gap-3 justify-center"]} {style}>
+<div class:list={[className, "pagination-wrapper"]} {style}>
   <a
-    href={url(page.url.prev ?? "")}
-    aria-label={page.url.prev === undefined ?
-      "Previous Page (disabled)"
-    : "Previous Page"}
-    class:list={[
-      "btn-card overflow-hidden rounded-lg text-[--primary] w-11 h-11",
-      { disabled: page.url.prev === undefined },
-    ]}
+    href={page.url.prev === undefined ? undefined : url(page.url.prev)}
+    aria-label="previous page"
+    aria-disabled={page.url.prev === undefined}
+    class="previous-page"
   >
     <Icon name="tabler:chevron-left" size="1.75rem" />
   </a>
-  <div
-    class="bg-[--card-bg] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold"
-  >
+  <div class="page-buttons">
     {
-      pages.map((p) => {
-        if (p === HIDDEN) return <Icon name="tabler:dots" class="mx-1" />
-        if (p === page.currentPage)
-          return (
-            <div class="h-11 w-11 rounded-lg bg-[--primary] flex items-center justify-center font-bold text-white dark:text-black/70">
-              {p}
-            </div>
-          )
-        return (
-          <a
+      pages.map((p) =>
+        p === HIDDEN ? <Icon name="tabler:dots" class="hidden-pages" />
+        : p === page.currentPage ? <div class="current-page">{p}</div>
+        : <a
             href={url(getPageUrl(p))}
-            aria-label={`Page ${p}`}
-            class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+            aria-label={`page ${p}`}
+            class="other-page"
           >
             {p}
-          </a>
-        )
-      })
+          </a>,
+      )
     }
   </div>
   <a
-    href={url(page.url.next ?? "")}
-    aria-label={page.url.next === undefined ?
-      "Next Page (disabled)"
-    : "Next Page"}
-    class:list={[
-      "btn-card overflow-hidden rounded-lg text-[--primary] w-11 h-11",
-      { disabled: page.url.next === undefined },
-    ]}
+    href={page.url.next === undefined ? undefined : url(page.url.next)}
+    aria-label="next page"
+    aria-disabled={page.url.next === undefined}
+    class="next-page"
   >
     <Icon name="tabler:chevron-right" size="1.75rem" />
   </a>
 </div>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .pagination-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: spacing(3);
+    justify-content: center;
+  }
+
+  .previous-page,
+  .next-page {
+    @extend .btn-card;
+    overflow: hidden;
+    border-radius: $radius-lg;
+    color: var(--primary);
+    width: spacing(11);
+    height: spacing(11);
+    &:active {
+      scale: 85%;
+    }
+  }
+
+  .page-buttons {
+    background-color: var(--card-bg);
+    display: flex;
+    flex-direction: row;
+    border-radius: $radius-lg;
+    align-items: center;
+    font-weight: $font-weight-bold;
+
+    color: $color-neutral-700;
+    @include variants.dark {
+      color: $color-neutral-300;
+    }
+
+    .hidden-pages {
+      margin-left: spacing(1);
+      margin-right: spacing(1);
+    }
+
+    .current-page,
+    .other-page {
+      height: spacing(11);
+      width: spacing(11);
+      border-radius: $radius-lg;
+    }
+
+    .current-page {
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: $color-white;
+      @include variants.dark {
+        color: black(70%);
+      }
+    }
+    .other-page {
+      @extend .btn-card;
+      overflow: hidden;
+      &:active {
+        scale: 85%;
+      }
+    }
+  }
+</style>

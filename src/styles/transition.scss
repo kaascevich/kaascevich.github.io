@@ -7,7 +7,7 @@ html.is-changing .transition-swup-fade {
   @include transition($properties: all, $duration: 200ms);
 }
 html.is-animating .transition-swup-fade {
-  opacity: 0;
+  opacity: 0%;
   translate: 0 spacing(4);
 }
 
@@ -15,17 +15,17 @@ html.is-animating .transition-swup-fade {
 @keyframes fade-in-up {
   0% {
     translate: 0 spacing(8);
-    opacity: 0;
+    opacity: 0%;
   }
   100% {
     translate: 0 0;
-    opacity: 1;
+    opacity: 100%;
   }
 }
 
 /* Main components */
 .onload-animation {
-  opacity: 0;
+  opacity: 0%;
   animation: 300ms fade-in-up;
   animation-fill-mode: forwards;
 }

@@ -16,7 +16,7 @@ const { href, label } = Astro.props
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  a {
+  :any-link {
     @extend .btn-regular;
     height: spacing(8);
     @include font-size($text-sm);

@@ -57,10 +57,10 @@ $ ip link
 I found this to be rather puzzling. After a whole bunch of internet-ing, though,
 the problem turned out to be rather simple: the official NixOS ISOs don't
 include the `broadcom-sta` driver, which is the only one that supports the
-BCM4360 Wi-Fi card in my particular MacBook. The reason for this omission?
-Licensing.
+BCM4360 Wi-Fi card in my particular MacBook. The reason for this curious
+omission? _drumroll please 🥁_ Licensing drama.
 
-Who would've guessed.
+Well, who would've guessed.
 
 At least it's a relatively simple fix. I created a file called `iso.nix` and
 pasted in something like this:
@@ -87,7 +87,7 @@ Then (with an existing Nix install, of course) I ran this:
 $ sudo nix-build "<nixpkgs/nixos>" -A config.system.build.isoImage -I nixos-config=iso.nix
 Password:
 
-...blah blah blah, fans turn on at full blast for 15 minutes, et cetera...
+...blah blah blah, fans turn on at full blast for 15 minutes, et cetera, et cetera...
 
 $ ls ./result/iso
 nixos-21.11.333823.96b4157790f-x86_64-linux.iso

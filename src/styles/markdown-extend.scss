@@ -4,6 +4,8 @@
 @use "variants";
 
 .custom-md {
+  // MARK: Admonitions
+
   blockquote.admonition {
     .bdm-title {
       display: flex;
@@ -122,6 +124,8 @@
   }
 }
 
+// MARK: GitHub Cards
+
 a.card-github {
   display: block;
   background-color: var(--license-block-bg);
@@ -222,7 +226,7 @@ a.card-github {
   .github-logo {
     font-weight: $font-weight-medium;
     @include font-size($text-sm);
-    opacity: 0.9;
+    opacity: 90%;
 
     @include before(" ") {
       display: inline-block;
@@ -267,6 +271,11 @@ a.card-github {
   .github-logo {
     @include font-size($text-xl);
 
+    display: none;
+    @include variants.md {
+      display: block;
+    }
+
     &::before {
       background-color: var(--tw-prose-headings);
       margin-right: spacing(0);
@@ -277,7 +286,7 @@ a.card-github {
 
 a.card-github.fetch-waiting {
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 70%;
   @include transition($properties: opacity);
 
   .gc-description,
@@ -285,7 +294,7 @@ a.card-github.fetch-waiting {
   .gc-avatar {
     background-color: var(--tw-prose-body);
     color: transparent;
-    opacity: 0.5;
+    opacity: 50%;
     user-select: none;
     animation: pulsate 2s infinite linear;
     @include before {
@@ -300,19 +309,19 @@ a.card-github.fetch-waiting {
 }
 
 a.card-github.fetch-error {
-  opacity: 1;
+  opacity: 100%;
   pointer-events: all;
 }
 
 @keyframes pulsate {
   0% {
-    opacity: 0.15;
+    opacity: 15%;
   }
   50% {
-    opacity: 0.25;
+    opacity: 25%;
   }
   100% {
-    opacity: 0.15;
+    opacity: 15%;
   }
 }
 

@@ -37,7 +37,7 @@
   }
 
   .card-shadow {
-    filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.005));
+    filter: drop-shadow(0 2px 4px black(0.5%));
   }
   .expand-animation {
     position: relative;
@@ -47,13 +47,13 @@
       position: absolute;
       border-radius: inherit;
       inset: 0;
-      scale: 0.85;
+      scale: 85%;
       z-index: -10;
     }
     &:hover {
       @include before {
         background-color: var(--btn-plain-bg-hover);
-        scale: 1;
+        scale: 100%;
       }
     }
     &:active {
@@ -90,7 +90,7 @@
   }
   .float-panel-closed {
     translate: 0 spacing(-1);
-    opacity: 0;
+    opacity: 0%;
     pointer-events: none;
   }
   .search-panel mark {
@@ -110,12 +110,10 @@
     &:active {
       background-color: var(--btn-card-bg-active);
     }
-  }
-  .btn-card.disabled {
-    pointer-events: none;
-    color: black(0.1);
-    @include variants.dark {
-      color: white(0.1);
+
+    &[aria-disabled="true"] {
+      pointer-events: none;
+      @include text-plain(10%);
     }
   }
   .btn-plain {
@@ -126,12 +124,12 @@
     justify-content: center;
     background-image: none;
 
-    color: black(0.75);
+    color: black(75%);
     &:hover {
       color: var(--primary);
     }
     @include variants.dark {
-      color: white(0.75);
+      color: white(75%);
       &:hover {
         color: var(--primary);
       }
@@ -150,8 +148,8 @@
       &.current-color-scheme-btn {
         color: var(--primary);
         @include before {
-          scale: 1;
-          opacity: 1;
+          scale: 100%;
+          opacity: 100%;
           background-color: var(--btn-plain-bg-hover);
         }
       }
@@ -173,13 +171,13 @@
 
     color: var(--btn-content);
     @include variants.dark {
-      color: white(0.75);
+      color: white(75%);
     }
   }
 
   .toc-hide,
   .toc-not-ready {
-    opacity: 0;
+    opacity: 0%;
     pointer-events: none;
   }
 
@@ -187,8 +185,8 @@
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 2rem,
-      black calc(100% - 2rem),
+      black spacing(8),
+      black calc(100% - spacing(8)),
       transparent 100%
     );
   }
@@ -201,27 +199,20 @@
     display: none;
   }
 
-  @mixin text-black-or-white($alpha) {
-    color: black($alpha);
-    @include variants.dark {
-      color: white($alpha);
-    }
-  }
-
   .text-90 {
-    @include text-black-or-white(0.9);
+    @include text-plain(90%);
   }
   .text-75 {
-    @include text-black-or-white(0.75);
+    @include text-plain(75%);
   }
   .text-50 {
-    @include text-black-or-white(0.5);
+    @include text-plain(50%);
   }
   .text-30 {
-    @include text-black-or-white(0.3);
+    @include text-plain(30%);
   }
   .text-25 {
-    @include text-black-or-white(0.25);
+    @include text-plain(25%);
   }
 
   .meta-icon {
@@ -250,47 +241,47 @@
     align-items: center;
     justify-content: center;
 
-    background-color: with-hue(0.45, 0.01);
+    background-color: with-hue(45%, 0.01);
     &:hover {
-      background-color: with-hue(0.5, 0.01);
+      background-color: with-hue(50%, 0.01);
     }
     &:active {
-      background-color: with-hue(0.55, 0.01);
+      background-color: with-hue(55%, 0.01);
     }
     @include variants.dark {
-      background-color: with-hue(0.3, 0.02);
+      background-color: with-hue(30%, 0.02);
       &:hover {
-        background-color: with-hue(0.35, 0.03);
+        background-color: with-hue(35%, 0.03);
       }
       &:active {
-        background-color: with-hue(0.4, 0.03);
+        background-color: with-hue(40%, 0.03);
       }
     }
 
     &.success {
-      background-color: with-hue(0.75, 0.14);
+      background-color: with-hue(75%, 0.14);
       @include variants.dark {
-        background-color: with-hue(0.75, 0.14);
+        background-color: with-hue(75%, 0.14);
       }
     }
 
     .copy-icon {
-      opacity: 1;
+      opacity: 100%;
       fill: $color-white;
       @include variants.dark {
-        fill: white(0.75);
+        fill: white(75%);
       }
     }
     &.copy-btn.success .copy-icon {
-      opacity: 0;
+      opacity: 0%;
       fill: var(--deep-text);
     }
 
     .success-icon {
-      opacity: 0;
+      opacity: 0%;
     }
     &.success .success-icon {
-      opacity: 1;
+      opacity: 100%;
     }
   }
 }
