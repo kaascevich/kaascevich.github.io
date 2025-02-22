@@ -4,6 +4,7 @@
 @use "variants";
 
 .custom-md {
+  word-break: break-word;
   h1 {
     @include font-size($text-xl3);
   }
@@ -15,13 +16,12 @@
   h5,
   h6 {
     .anchor {
-      @include transition();
       margin: spacing(-0.5) {
         left: 0.2ch !important;
       }
       padding: spacing(0.5) !important;
-      user-select: none !important;
-      opacity: 0% !important;
+      user-select: none;
+      opacity: 0%;
       text-decoration-line: none !important;
 
       .anchor-icon {
@@ -34,7 +34,7 @@
 
     &:hover {
       .anchor {
-        opacity: 100% !important;
+        opacity: 100%;
       }
     }
   }
@@ -88,9 +88,9 @@
     @include before(none);
     @include after(none);
 
+    // line numbers
     counter-reset: line;
     span.line {
-      // line numbers
       @include before(counter(line)) {
         color: white(25%);
         margin-right: spacing(4);
@@ -156,7 +156,7 @@
       border-radius: 9999px;
     }
 
-    /* remove the double quotes from default styles */
+    // remove the double quotes from default styles
     p {
       @include before(none);
       @include after(none);

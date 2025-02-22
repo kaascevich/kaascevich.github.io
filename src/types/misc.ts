@@ -6,8 +6,8 @@
  * `readonly`, recursively. This results in a type that is about as immutable as
  * you can get in TypeScript.
  *
- * This type does not affect function properties inside of `T` or its properties
- * in order to ensure they're still callable as functions.
+ * This type does not affect function properties inside of `T` (or properties of
+ * said functions) in order to ensure they're still callable.
  *
  * @template T Any type.
  *

@@ -161,6 +161,9 @@ export default defineConfig({
       langAlias: { plist: "xml" },
     },
   },
+  server: {
+    host: "0.0.0.0",
+  },
   vite: {
     build: {
       rollupOptions: {

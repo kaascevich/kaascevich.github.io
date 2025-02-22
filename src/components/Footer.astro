@@ -4,47 +4,75 @@ import { url } from "$/utils/urls"
 const currentYear = new Date().getFullYear()
 ---
 
-<div
-  class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"
->
-</div>
-<div
-  class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"
->
-  <div class="transition text-50 text-sm text-center">
-    &copy; <span id="copyright-year">{currentYear}</span>
+<div class="footer-border"></div>
+<footer>
+  <div class="footer-content">
+    &copy; {currentYear}
     {profileConfig.name} /
-    <a
-      class="transition link text-[--primary] font-medium"
-      target="_blank"
-      href={url("rss.xml")}>RSS</a
-    >
+    <a target="_blank" href={url("rss.xml")}>RSS</a>
+    /
+    <a target="_blank" href={url("sitemap-index.xml")}>Sitemap</a>
     /
     <a
-      class="transition link text-[--primary] font-medium"
       target="_blank"
-      href={url("sitemap-index.xml")}>Sitemap</a
+      href="https://github.com/kaascevich/kaascevich.github.io"
     >
-    /
-    <a
-      class="transition link text-[--primary] font-medium"
-      target="_blank"
-      href="https://github.com/kaascevich/kaascevich.github.io">Source</a
-    >
+      Source
+    </a>
 
     <br />
 
     Powered by
-    <a
-      class="transition link text-[--primary] font-medium"
-      target="_blank"
-      href="https://astro.build">Astro</a
-    >
+    <a target="_blank" href="https://astro.build">Astro</a>
     &
-    <a
-      class="transition link text-[--primary] font-medium"
-      target="_blank"
-      href="https://github.com/saicaca/fuwari">Fuwari</a
-    >
+    <a target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
   </div>
-</div>
+</footer>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .footer-border {
+    @include transition();
+    margin: spacing(10) spacing(16);
+
+    border: {
+      top-width: 1px;
+      style: dashed;
+      color: black(10%);
+    }
+    @include variants.dark {
+      border-color: white(15%);
+    }
+  }
+
+  footer {
+    @include transition();
+    border-radius: $radius-xl2;
+    marign-bottom: spacing(12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: {
+      left: spacing(6);
+      right: spacing(6);
+      bottom: spacing(6);
+    }
+
+    .footer-content {
+      @include text-plain(50%);
+      @include font-size($text-sm);
+      text-align: center;
+
+      a {
+        @extend .link;
+        color: var(--primary);
+        font-weight: $font-weight-medium;
+      }
+    }
+  }
+</style>
