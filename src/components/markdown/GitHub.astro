@@ -1,0 +1,312 @@
+---
+type Props = {
+  /** A GitHub repository, in the form "owner/repo". */
+  repo: `${string}/${string}`
+}
+const { repo: repository } = Astro.props
+
+const [owner, repo] = repository.split("/")
+
+// collisions aren't super important here
+const cardUuid = `GC${Math.random().toString(36).slice(-6)}`
+---
+
+<a
+  id={`${cardUuid}-card`}
+  class="card-github fetch-waiting no-styling"
+  href={`https://github.com/${repo}`}
+  target="_blank"
+>
+  <div class="titlebar">
+    <div class="titlebar-left">
+      <div class="owner">
+        <div id={`${cardUuid}-avatar`} class="avatar"></div>
+        <div class="user">{owner}</div>
+      </div>
+      /
+      <div class="repo">{repo}</div>
+    </div>
+    <div class="github-logo"></div>
+  </div>
+
+  <div id={`${cardUuid}-description`} class="description">
+    waiting for api.github.com...
+  </div>
+
+  <div class="infobar">
+    <div id={`${cardUuid}-stars`} class="stars">n/a</div>
+    <div id={`${cardUuid}-forks`} class="forks">n/a</div>
+    <div id={`${cardUuid}-license`} class="license">n/a</div>
+    <span id={`${cardUuid}-language`} class="language">Waiting...</span>
+  </div>
+</a>
+
+<script is:inline define:vars={{ repository, cardUuid }}>
+  fetch(`https://api.github.com/repos/${repository}`, {
+    referrerPolicy: "no-referrer",
+  })
+    .then((response) => response.json())
+    .then((/** @type {import("$/types/github").FullRepository} */ data) => {
+      const numberFormatter = Intl.NumberFormat("en-us", {
+        notation: "compact",
+        maximumFractionDigits: 1,
+      })
+
+      document.getElementById(`${cardUuid}-description`).innerText =
+        data.description?.replace(/:\w+:/g, "") ?? "description not set"
+
+      document.getElementById(`${cardUuid}-language`).innerText = data.language
+
+      document.getElementById(`${cardUuid}-forks`).innerText = numberFormatter
+        .format(data.forks)
+        .replaceAll("\u202f", "")
+      document.getElementById(`${cardUuid}-stars`).innerText = numberFormatter
+        .format(data.stargazers_count)
+        .replaceAll("\u202f", "")
+
+      const avatarEl = document.getElementById(`${cardUuid}-avatar`)
+      avatarEl.style.backgroundImage = `url(${data.owner.avatar_url})`
+      avatarEl.style.backgroundColor = "transparent"
+
+      document.getElementById(`${cardUuid}-license`).innerText =
+        data.license?.spdx_id ?? "no license"
+
+      document
+        .getElementById(`${cardUuid}-card`)
+        .classList.remove("fetch-waiting")
+
+      console.log(`[GITHUB-CARD] loaded card for ${repository} | ${cardUuid}`)
+    })
+    .catch((err) => {
+      document.getElementById(`${cardUuid}-card`).classList.add("fetch-error")
+      console.warn(
+        `[GITHUB-CARD] error loading card for ${repository} | ${cardUuid}: ${err}`,
+      )
+    })
+</script>
+
+<style lang="scss">
+  @use "sass:math";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  a.card-github {
+    @include transition();
+    display: block;
+    background-color: var(--license-block-bg);
+    position: relative;
+    margin: spacing(2) spacing(0);
+    padding: spacing(4.5) spacing(4);
+    color: var(--tw-prose-body);
+    border-radius: $radius-xl2;
+    text-decoration-thickness: 0px;
+    text-decoration-line: none;
+
+    @include variants.md {
+      padding: spacing(4.5) spacing(6);
+    }
+
+    &:hover {
+      background-color: var(--btn-regular-bg-hover);
+
+      .titlebar {
+        color: var(--btn-content);
+      }
+
+      .stars,
+      .forks,
+      .license,
+      .description {
+        color: var(--tw-prose-headings);
+        @include before {
+          background-color: var(--tw-prose-headings);
+        }
+      }
+    }
+
+    &:active {
+      scale: 98%;
+      background-color: var(--btn-regular-bg-active);
+    }
+
+    .titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: spacing(2);
+      color: var(--tw-prose-headings);
+      @include font-size($text-lg);
+      font-weight: $font-weight-medium;
+
+      @include variants.md {
+        @include font-size($text-xl);
+      }
+
+      .titlebar-left {
+        display: flex;
+        gap: spacing(2);
+        flex-flow: row nowrap;
+
+        .repo {
+          font-weight: $font-weight-bold;
+        }
+
+        .owner {
+          font-weight: $font-weight-light;
+          position: relative;
+          display: flex;
+          gap: spacing(2);
+          align-items: center;
+          flex-flow: row nowrap;
+
+          .avatar {
+            display: block;
+            overflow: hidden;
+            width: spacing(6);
+            height: spacing(6);
+            background: {
+              color: var(--primary);
+              size: cover;
+            }
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .description {
+      margin-bottom: spacing(3);
+      @include font-size($text-base);
+      font-weight: $font-weight-light;
+      color: var(--tw-prose-body);
+    }
+
+    .infobar {
+      display: flex;
+      gap: spacing(6);
+      color: var(--tw-prose-body);
+      width: fit-content;
+      flex-flow: row nowrap;
+    }
+
+    .language {
+      display: none;
+    }
+
+    .stars,
+    .forks,
+    .license,
+    .github-logo {
+      font-weight: $font-weight-medium;
+      @include font-size($text-sm);
+      opacity: 90%;
+
+      @include before(" ") {
+        display: inline-block;
+        width: 1.3em;
+        height: 1.3em;
+        margin-right: spacing(1);
+        vertical-align: spacing(-1);
+        background-color: var(--tw-prose-body);
+        overflow: visible;
+        @include transition(
+          $properties: (
+            background-color,
+            background,
+          )
+        );
+        font-size: inherit;
+        mask-size: contain;
+        mask-position: center;
+        mask-repeat: no-repeat;
+      }
+    }
+
+    .stars {
+      &::before {
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z'/%3E%3C/svg%3E");
+      }
+    }
+
+    .license {
+      &::before {
+        margin-right: spacing(2);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 21H6a3 3 0 0 1-3-3v-1h10v2a2 2 0 0 0 4 0V5a2 2 0 1 1 2 2h-2m2-4H8a3 3 0 0 0-3 3v11M9 7h4m-4 4h4'/%3E%3C/svg%3E");
+      }
+    }
+
+    .forks {
+      &::before {
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M10 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M5 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0m10 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0'/%3E%3Cpath d='M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V8m-5 4v4'/%3E%3C/g%3E%3C/svg%3E");
+      }
+    }
+
+    .github-logo {
+      @include font-size($text-xl);
+
+      display: none;
+      @include variants.md {
+        display: block;
+      }
+
+      &::before {
+        background-color: var(--tw-prose-headings);
+        margin-right: spacing(0);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2c2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2a4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6c-.6.6-.6 1.2-.5 2V21'/%3E%3C/svg%3E");
+      }
+    }
+  }
+
+  a.card-github.fetch-waiting {
+    pointer-events: none;
+    opacity: 70%;
+    @include transition($properties: opacity);
+
+    .description,
+    .infobar,
+    .avatar {
+      background-color: var(--tw-prose-body);
+      color: transparent;
+      opacity: 50%;
+      user-select: none;
+      animation: pulsate 2s infinite linear;
+      @include before {
+        background-color: transparent;
+      }
+    }
+
+    .description,
+    .infobar {
+      border-radius: $radius-lg;
+    }
+  }
+
+  a.card-github.fetch-error {
+    opacity: 100%;
+    pointer-events: all;
+  }
+
+  @keyframes pulsate {
+    0% {
+      opacity: 15%;
+    }
+    50% {
+      opacity: 25%;
+    }
+    100% {
+      opacity: 15%;
+    }
+  }
+
+  .card-github,
+  .description,
+  .titlebar,
+  .stars,
+  .forks,
+  .license,
+  .avatar,
+  .github-logo {
+    @include transition();
+  }
+</style>

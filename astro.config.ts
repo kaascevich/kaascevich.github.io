@@ -11,21 +11,17 @@ import icon from "astro-icon"
 import { pagefind } from "vite-plugin-pagefind"
 
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypeComponents, { type ComponentFunction } from "rehype-components"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
-import { githubCardComponent } from "./src/plugins/rehype-component-github-card"
 
 import {
   remarkDefinitionList,
   defListHastHandlers,
 } from "remark-definition-list"
-import remarkDirective from "remark-directive"
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives"
 import remarkMath from "remark-math"
 import remarkSectionize from "remark-sectionize"
 
-import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype"
 import { remarkExcerpt } from "./src/plugins/remark-excerpt"
 import { remarkReadingTime } from "./src/plugins/remark-reading-time"
 
@@ -104,22 +100,11 @@ export default defineConfig({
       remarkExcerpt,
       remarkGithubAdmonitionsToDirectives,
       remarkDefinitionList,
-      remarkDirective,
       remarkSectionize,
-      parseDirectiveNode,
     ],
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
-      [
-        rehypeComponents,
-        {
-          components: {
-            github: (properties, children) =>
-              githubCardComponent(properties, children),
-          } satisfies Record<string, ComponentFunction>,
-        },
-      ],
       [
         rehypeAutolinkHeadings,
         {
@@ -153,7 +138,7 @@ export default defineConfig({
     },
   },
   server: {
-    host: "0.0.0.0",
+    // host: "0.0.0.0",
   },
   vite: {
     build: {
