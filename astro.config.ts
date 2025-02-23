@@ -18,7 +18,6 @@ import {
   remarkDefinitionList,
   defListHastHandlers,
 } from "remark-definition-list"
-import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives"
 import remarkMath from "remark-math"
 import remarkSectionize from "remark-sectionize"
 
@@ -98,7 +97,6 @@ export default defineConfig({
       remarkMath,
       remarkReadingTime,
       remarkExcerpt,
-      remarkGithubAdmonitionsToDirectives,
       remarkDefinitionList,
       remarkSectionize,
     ],
