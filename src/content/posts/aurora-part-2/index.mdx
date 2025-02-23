@@ -5,6 +5,7 @@ description: Ne(nesti(nesting)g)t(nesting)ng
 tags: [Swift, Aurora, Series]
 category: Programming
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
 It's time to implement nesting. I'll probably end up covering operator
 precedence in a later part.
@@ -102,9 +103,9 @@ indirect enum Expression: Equatable {
 }
 ```
 
-:::note
+<Callout type="note">
 Don't forget to mark the `enum` as `indirect`.
-:::
+</Callout>
 
 All we have to do now is update the rest of the code. Starting with
 `ExpressionParsing.swift`:

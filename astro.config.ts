@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config"
 import siteConfig from "./src/config/site"
 
 import sitemap from "@astrojs/sitemap"
+import mdx from "@astrojs/mdx"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
 import swup from "@swup/astro"
@@ -13,7 +14,6 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeComponents, { type ComponentFunction } from "rehype-components"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
-import { admonitionComponent } from "./src/plugins/rehype-component-admonition"
 import { githubCardComponent } from "./src/plugins/rehype-component-github-card"
 
 import {
@@ -63,6 +63,7 @@ export default defineConfig({
       },
     }),
     svelte(),
+    mdx(),
     sitemap(),
     compress({
       HTML: {
@@ -116,16 +117,6 @@ export default defineConfig({
           components: {
             github: (properties, children) =>
               githubCardComponent(properties, children),
-            note: (properties, children) =>
-              admonitionComponent(properties, children, "note"),
-            tip: (properties, children) =>
-              admonitionComponent(properties, children, "tip"),
-            important: (properties, children) =>
-              admonitionComponent(properties, children, "important"),
-            caution: (properties, children) =>
-              admonitionComponent(properties, children, "caution"),
-            warning: (properties, children) =>
-              admonitionComponent(properties, children, "warning"),
           } satisfies Record<string, ComponentFunction>,
         },
       ],

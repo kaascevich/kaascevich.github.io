@@ -5,6 +5,7 @@ description: Express yourself
 tags: [Swift, Aurora, Series]
 category: Programming
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
 I think we're gonna start off with mathematical expressions, 'cause what good's
 a programming language if you can't do basic arithmetic?
@@ -51,11 +52,11 @@ diagnostics_):
 [32m    ^[0m
 ```
 
-:::tip
+<Callout type="tip">
 We're gonna get a _lot_ of those "no calls to throwing functions occur within
 'try' expression" warnings, so I'll omit them from here on out to try and reduce
 noise.
-:::
+</Callout>
 
 Let's start by adding the bare minimum code needed for it to compile. For the
 sake of brevity (and so I don't have to keep manually pasting in ANSI escapes so
@@ -153,10 +154,10 @@ extension Parsable {
 }
 ```
 
-:::tip
+<Callout type="tip">
 The `Parsing` library makes it _very_ clear that `Substring` is more performant
 than `String` when parsing, which is why this protocol uses `Substring`s.
-:::
+</Callout>
 
 Let's make `Expression` conform to `Parsable`:
 
@@ -336,11 +337,11 @@ enum Expression: Equatable, Parsable {
 }
 ```
 
-:::important
+<Callout type="important">
 The `operation` parser _must_ come before the `number` parser -- otherwise, the
 `number` parser will _always_ take precedence over the `operation` parser, even
 when a number is followed by an operator.
-:::
+</Callout>
 
 Since the `operation` parser outputs a tuple with the arguments in the wrong
 order, we have to reorder them manually in a closure.

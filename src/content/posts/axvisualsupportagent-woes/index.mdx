@@ -6,14 +6,15 @@ description: Stop. Using. My. Mic.
 tags: [Mac, Bug]
 category: Tech
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
-:::note[Update #2]
+<Callout type="note" title="Update #2">
 **It appears Apple has fixed both of the below issues in macOS 15.2.** I'm
 leaving the below workaround here in case anyone who hasn't yet updated comes
 across this article.
-:::
+</Callout>
 
-:::note[Update #1]
+<Callout type="note" title="Update #2">
 I've found a (temporary) solution to the first problem described in this
 article:
 1. Open Activity Monitor and choose View &rarr; All Processes.
@@ -32,7 +33,7 @@ $ sudo killall coreaudiod
 
 You will need to perform these steps again every time you restart your Mac until
 Apple provides an official fix.
-:::
+</Callout>
 
 ## Issue #1
 

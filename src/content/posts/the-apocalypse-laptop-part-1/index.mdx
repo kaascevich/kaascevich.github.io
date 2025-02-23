@@ -5,11 +5,12 @@ description: I might have just found, like, an actual use for that MacBook
 tags: [Mac, Linux]
 category: Tech
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
-:::note
+<Callout type="note">
 I'm putting the NixOS project on hold. I don't know for how long. Possibly
 indefinitely. We'll see.
-:::
+</Callout>
 
 If you live in the US (like me), you probably know that the federal government
 is in... a bit of a messy state right now. With tensions all over this
@@ -64,11 +65,11 @@ The [live GNOME ISO] was easy enough to flash to an SD card. I stuck it in an
 adapter, stuck that into the MacBook, and stuck my finger onto the option key to
 load the boot picker.
 
-:::note
+<Callout type="note">
 For some odd reason, the boot picker shows _two_ bootable external disks instead
 of just the one. I don't think it matters in the end what you pick, because they
 both seem to boot fine.
-:::
+</Callout>
 
 When booting the card, I chose "Start installer" instead of "Live system",
 because the latter left me with a broken install for some reason. I went through

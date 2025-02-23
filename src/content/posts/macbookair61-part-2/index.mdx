@@ -1,11 +1,12 @@
 ---
 title: MacBookAir6,1 (part 2)
 published: 2024-09-27
-updated: 2024-09-30
+updated: 2025-02-22
 description: 🪩 Disko time!
 tags: [Mac, Linux, NixOS]
 category: Tech
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
 Here's the part of my `macbookair61` NixOS config that handles partitioning:
 
@@ -194,8 +195,18 @@ subvolumes.
   amount of RAM in my MacBook.
 
 To keep my measly 128 gigs of SSD space relatively clear, we pass
-`compress-force=zstd` as a mount option for all subvolumes (except for swap). We
-also pass `noatime` to save SSD writes.
+`compress-force=zstd` as a mount option for all subvolumes (except for swap).
+
+<Callout type="important">
+If you have an SSD (and it's 2025, you either have an SSD now or you won't have
+anything later), you should also pass the `noatime` option to save on
+unnecessary writes. By default, the Linux kernel updates file access times
+_every single time_ a file is opened, which is rather inefficient and isn't even
+all that useful.
+
+Turning access times off is less important for those who are still using HDDs,
+but it still can't hurt.
+</Callout>
 
 [impermanence]: https://github.com/nix-community/impermanence
 [technique]: https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html

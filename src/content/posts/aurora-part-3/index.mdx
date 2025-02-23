@@ -5,6 +5,7 @@ description: Assembling a fairly simple REPL
 tags: [Swift, Aurora, Series]
 category: Programming
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
 Compared to the last two posts, this one should be fairly short.
 
@@ -188,13 +189,13 @@ import Aurora
 }
 ```
 
-:::tip
+<Callout type="tip">
 The [`dump(_:name:indent:maxDepth:maxItems:)`][dump] function uses reflection to
 get a `struct`'s properties or an `enum`'s active case and associated values,
 then prints that to standard output.
 
 [dump]: https://developer.apple.com/documentation/swift/dump(_:name:indent:maxdepth:maxitems:)
-:::
+</Callout>
 
 ```ansi
 [1m.../Sources/AuroraCLI/AuroraCLI.swift:14:24: [31merror:[0m[1m cannot find 'ExpressionParser' in scope[0m

@@ -6,37 +6,38 @@ description: A relatively simple Markdown formatting test
 tags: [Markdown]
 category: Programming
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
-:::note
+<Callout type="note">
 This is a note
-:::
+</Callout>
 
-:::tip
+<Callout type="tip">
 This is a tip
-:::
+</Callout>
 
-:::important
+<Callout type="important">
 This is important
-:::
+</Callout>
 
-:::warning
+<Callout type="warning">
 This is a warning
-:::
+</Callout>
 
-:::caution
+<Callout type="caution">
 This is a caution
-:::
+</Callout>
 
-------
+---
 
-:::note[The text that follows is not my writing.]
-I borrowed it from <https://tailwindcss-typography.vercel.app>, because it's
+<Callout type="note" title="The text that follows is not my writing.">
+I borrowed it from https://tailwindcss-typography.vercel.app, because it's
 honestly the most comprehensive Markdown test I've encountered. I did modify it
 a bit to include some of my own custom styles, though.
 
 I also do not necessarily condone the opinions stated below. Again: not my
 writing.
-:::
+</Callout>
 
 ## What to expect from here on out
 
@@ -171,7 +172,7 @@ we have to carry the burden of at least making it work.
    - I'm not sure if we'll bother styling more than two levels deep.
    - Two is already too much, three is guaranteed to be a bad idea.
    - If you nest four levels deep you belong in prison.
-2. **Two items isn't really a list, three is good though.**
+1. **Two items isn't really a list, three is good though.**
    - Again please don't nest lists if you want people to actually read your
      content.
    - Nobody wants to look at this.
@@ -212,18 +213,18 @@ let's just be happy about that... okay? They can be great for things like FAQs.
 
 Why do you never see elephants hiding in trees?
 : Because they're so good at it. Lorem ipsum dolor sit amet consectetur
-  adipisicing elit. Quas cupiditate laboriosam fugiat.
+adipisicing elit. Quas cupiditate laboriosam fugiat.
 
 What do you call someone with no body and no nose?
 : Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-  voluptas ipsa quia excepturi, quibusdam natus exercitationem sapiente tempore
-  labore voluptatem.
+voluptas ipsa quia excepturi, quibusdam natus exercitationem sapiente tempore
+labore voluptatem.
 
 Why can't you hear a pterodactyl go to the bathroom?
 : Because the pee is silent. Lorem ipsum dolor sit amet, consectetur
-  adipisicing elit. Ipsam, quas voluptatibus ex culpa ipsum, aspernatur
-  blanditiis fugiat ullam magnam suscipit deserunt illum natus facilis atque
-  vero consequatur! Quisquam, debitis error.
+adipisicing elit. Ipsam, quas voluptatibus ex culpa ipsum, aspernatur
+blanditiis fugiat ullam magnam suscipit deserunt illum natus facilis atque
+vero consequatur! Quisquam, debitis error.
 
 ## There are other elements we need to style
 
@@ -235,7 +236,7 @@ mind, they're blue now.
 We even included table styles, check it out:
 
 | Wrestler                | Origin       | Finisher           |
-|-------------------------|--------------|--------------------|
+| ----------------------- | ------------ | ------------------ |
 | Bret "The Hitman" Hart  | Calgary, AB  | Sharpshooter       |
 | Stone Cold Steve Austin | Austin, TX   | Stone Cold Stunner |
 | Randy Savage            | Sarasota, FL | Elbow Drop         |

@@ -5,6 +5,7 @@ description: When the standard library just doesn't quite cut it
 tags: [Swift, C]
 category: Programming
 ---
+import Callout from "$/components/markdown/Callout.astro"
 
 The Swift standard library, while relatively minimal on its own, typically does
 its job and does it very very well. But sometimes, there's just something you
@@ -92,17 +93,18 @@ And here's how you should use it:
 }
 ```
 
-:::important
+<Callout type="important">
 Don't forget to run `TerminalRawMode.disable()` at some point before your app
 exits -- if you forget to do this, your user's terminal will be all kinds of
 messed up.
-:::
+</Callout>
 
-:::note
-If you use this in code that isn't isolated to the main actor, you won't be able
-to run `disable()` in a `defer` block. This is because you need to use `await`
-to call these functions in that case, and at the time of writing Swift doesn't
-support `await` in `defer` blocks (even if the containing function is `async`).
-:::
+<Callout type="note">
+If you use this in code that isn't isolated to the main thread with
+`@MainActor`, you won't be able to run `disable()` in a `defer` block. This is
+because you need to use `await` to call these functions from another thread, and
+at the time of writing Swift doesn't support `await` in `defer` blocks (even if
+the containing function is `async`).
+</Callout>
 
 [BrainflipKit]: https://github.com/kaascevich/BrainflipKit
