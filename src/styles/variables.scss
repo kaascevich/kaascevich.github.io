@@ -18,7 +18,7 @@ $rainbow-dark: linear-gradient(
 
 $variables: (
   --primary: with-hue(70%, 0.14) with-hue(75%, 0.14),
-  --page-bg: with-hue(0.95, 0.01) with-hue(16%, 0.014),
+  --page-bg: with-hue(95%, 0.01) with-hue(16%, 0.014),
   --card-bg: white with-hue(23%, 0.015),
   //
   --btn-content: with-hue(55%, 0.12) with-hue(75%, 0.1),
@@ -53,6 +53,9 @@ $variables: (
   --codeblock-bg: with-hue(20%, 0.015) with-hue(17%, 0.015),
   //
   --license-block-bg: black(3%) var(--codeblock-bg),
+  //
+  --profile-gradient-top: with-hue(70%, 0.14) with-hue(75%, 0.14),
+  --profile-gradient-bottom: with-hue(50%, 0.14) with-hue(55%, 0.14),
   //
   --link-underline: with-hue(93%, 0.04) with-hue(40%, 0.08),
   --link-hover: with-hue(95%, 0.025) with-hue(40%, 0.08),
@@ -96,7 +99,7 @@ $variables: (
   @each $name, $value in $variables {
     #{$name}: list.nth($value, 1);
   }
-  &.dark {
+  &[data-color-scheme="dark"] {
     @each $name, $value in $variables {
       @if list.length($value) > 1 {
         #{$name}: list.nth($value, 2);

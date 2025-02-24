@@ -38,17 +38,11 @@ const interval = 50
     flex-direction: column;
     border-radius: $radius-xl2;
     background-color: var(--card-bg);
-    padding: {
-      top: spacing(1);
-      bottom: spacing(1);
-    }
+    @include padding-y(spacing(1));
     margin-bottom: spacing(4);
 
     @include variants.md {
-      padding: {
-        top: 0;
-        bottom: 0;
-      }
+      @include padding-y(0);
       background-color: transparent;
       gap: spacing(4);
     }

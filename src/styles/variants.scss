@@ -3,7 +3,7 @@
 // MARK: Dark Mode
 
 @mixin dark {
-  :root.dark & {
+  :root[data-color-scheme="dark"] & {
     @content;
   }
 }

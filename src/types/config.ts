@@ -85,7 +85,7 @@ export type NavBarConfig = DeepReadonly<{
 /** Profile configuration. */
 export type ProfileConfig = DeepReadonly<{
   /** The path to the author's profile picture. Relative to `/src`. */
-  avatar?: string | undefined
+  avatar: string
   /** The author's name. */
   name: string
   /** The author's bio. */

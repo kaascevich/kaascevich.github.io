@@ -86,10 +86,7 @@ const {
     }
 
     .widget-content {
-      padding: {
-        left: spacing(4);
-        right: spacing(4);
-      }
+      @include padding-x(spacing(4));
       overflow: hidden;
 
       &.collapsed {
@@ -98,10 +95,7 @@ const {
     }
 
     .expand-button {
-      padding: {
-        left: spacing(4);
-        right: spacing(4);
-      }
+      @include padding-x(spacing(4));
       margin-bottom: spacing(-2);
 
       button {

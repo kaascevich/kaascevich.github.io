@@ -15,10 +15,7 @@
 
   iframe {
     border-radius: $radius-xl;
-    margin: {
-      left: auto;
-      right: auto;
-    }
+    @include margin-x(auto);
     max-width: 100%;
   }
 }

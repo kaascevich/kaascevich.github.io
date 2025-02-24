@@ -59,7 +59,7 @@ const { class: className } = Astro.props
       }
     </div>
     <div class="flex">
-      <Search client:only="svelte" />
+      <Search client:load />
       {
         !siteConfig.themeColor.fixed && (
           <button

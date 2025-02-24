@@ -25,10 +25,7 @@
       text-decoration-line: none !important;
 
       .anchor-icon {
-        margin: {
-          left: 0.45ch !important;
-          right: 0.45ch !important;
-        }
+        @include margin-x(0.45ch !important);
       }
     }
 
@@ -115,10 +112,7 @@
   pre {
     background-color: var(--codeblock-bg) !important;
     border-radius: $radius-xl;
-    padding: {
-      left: spacing(5);
-      right: spacing(5);
-    }
+    @include padding-x(spacing(5));
 
     code {
       background-color: transparent;

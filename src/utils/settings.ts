@@ -20,21 +20,12 @@ export function setHue(hue: number): void {
 }
 
 export function applyColorScheme(colorScheme: ColorScheme): void {
-  switch (colorScheme) {
-    case "light":
-      document.documentElement.classList.remove("dark")
-      break
-    case "dark":
-      document.documentElement.classList.add("dark")
-      break
-    case "auto":
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark")
-      } else {
-        document.documentElement.classList.remove("dark")
-      }
-      break
-  }
+  document.documentElement.dataset.colorScheme =
+    colorScheme === "auto" ?
+      window.matchMedia("(prefers-color-scheme: dark)").matches ?
+        "dark"
+      : "light"
+    : colorScheme
 }
 
 export function setColorScheme(colorScheme: ColorScheme): void {

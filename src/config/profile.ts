@@ -1,7 +1,7 @@
 import { config, type ProfileConfig } from "$/types/config"
 
 export default config<ProfileConfig>({
-  avatar: "assets/images/demo-avatar.png",
+  avatar: "assets/images/me (bg-less).png",
   name: "Kaleb A. Ascevich",
   bio: "A hobbyist Swift programmer with all the ADHD.",
   links: [

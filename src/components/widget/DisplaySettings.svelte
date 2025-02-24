@@ -30,15 +30,13 @@
       </button>
     </div>
     <div class="hue-value-wrapper">
-      <div id="hueValue" class="">
-        {hue}
+      <div id="hue-value">
+        {hue}&deg;
       </div>
     </div>
   </div>
 
-  <div
-    class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none"
-  >
+  <div class="hue-slider-wrapper">
     <input
       aria-label={i18n(I18nKey.themeColor)}
       type="range"
@@ -46,19 +44,17 @@
       max="360"
       bind:value={hue}
       class="slider"
-      id="colorSlider"
       step="5"
-      style="width: 100%"
     />
   </div>
 </div>
 
 <style lang="scss">
   @use "sass:math";
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use "../../styles/main";
+  @use "../../styles/theme" as *;
+  @use "../../styles/utils" as *;
+  @use "../../styles/variants";
 
   @mixin slider-thumb {
     appearance: none;
@@ -136,10 +132,10 @@
         display: flex;
         gap: spacing(1);
 
-        #hueValue {
+        #hue-value {
           @include transition();
           background-color: var(--btn-regular-bg);
-          width: spacing(10);
+          width: spacing(12);
           height: spacing(7);
           border-radius: $radius-md;
           display: flex;
@@ -152,22 +148,36 @@
       }
     }
 
-    input[type="range"] {
-      appearance: none;
+    .hue-slider-wrapper {
+      width: 100%;
       height: spacing(6);
-      @include transition($properties: background-image);
-      background-image: var(--color-selection-bar);
+      @include padding-x(spacing(1));
+      border-radius: $radius-sm;
+      user-select: none;
 
-      &::-webkit-slider-thumb {
-        @include slider-thumb();
+      background-color: oklch(80% 0.1 0deg);
+      @include variants.dark {
+        background-color: oklch(70% 0.1 0deg);
       }
 
-      &::-moz-range-thumb {
-        @include slider-thumb();
-      }
+      input[type="range"] {
+        width: 100%;
+        appearance: none;
+        height: spacing(6);
+        @include transition($properties: background-image);
+        background-image: var(--color-selection-bar);
 
-      &::-ms-thumb {
-        @include slider-thumb();
+        &::-webkit-slider-thumb {
+          @include slider-thumb();
+        }
+
+        &::-moz-range-thumb {
+          @include slider-thumb();
+        }
+
+        &::-ms-thumb {
+          @include slider-thumb();
+        }
       }
     }
   }
