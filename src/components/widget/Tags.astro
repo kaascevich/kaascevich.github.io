@@ -28,7 +28,7 @@ const { class: className, style } = Astro.props
   class={className}
   {style}
 >
-  <div class="flex gap-2 flex-wrap">
+  <ul class="flex gap-2 flex-wrap">
     {
       [...tags].map(([name]) => (
         <ButtonTag
@@ -39,5 +39,5 @@ const { class: className, style } = Astro.props
         </ButtonTag>
       ))
     }
-  </div>
+  </ul>
 </WidgetLayout>

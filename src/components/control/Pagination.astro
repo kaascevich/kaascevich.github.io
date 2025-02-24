@@ -63,7 +63,7 @@ if (rightmost < page.lastPage) {
 const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
 ---
 
-<div class:list={[className, "pagination-wrapper"]} {style}>
+<nav class={className} {style}>
   <a
     href={page.url.prev === undefined ? undefined : url(page.url.prev)}
     aria-label="previous page"
@@ -72,7 +72,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
   >
     <Icon name="tabler:chevron-left" size="1.75rem" />
   </a>
-  <div class="page-buttons">
+  <ol class="page-buttons">
     {
       pages.map((p) =>
         p === HIDDEN ? <Icon name="tabler:dots" class="hidden-pages" />
@@ -86,7 +86,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
           </a>,
       )
     }
-  </div>
+  </ol>
   <a
     href={page.url.next === undefined ? undefined : url(page.url.next)}
     aria-label="next page"
@@ -95,7 +95,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
   >
     <Icon name="tabler:chevron-right" size="1.75rem" />
   </a>
-</div>
+</nav>
 
 <style lang="scss">
   @use "$/styles/main";
@@ -103,7 +103,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  .pagination-wrapper {
+  nav {
     display: flex;
     flex-direction: row;
     gap: spacing(3);

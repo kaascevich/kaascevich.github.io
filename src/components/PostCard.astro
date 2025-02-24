@@ -25,16 +25,18 @@ const coverWidth = "28%"
 const { remarkPluginFrontmatter } = await render(entry)
 ---
 
-<div class:list={["post-card", className]} {style}>
+<article class={className} {style}>
   <div
     class={`pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full md:w-[calc(100%-${
       image === undefined ? "52px" : coverWidth
     }-12px)]`}
   >
-    <a href={url} class="title">
-      {title}
-      <Icon size="2rem" class="title-icon" name="tabler:chevron-right" />
-    </a>
+    <h2>
+      <a href={url}>
+        {title}
+        <Icon size="2rem" name="tabler:chevron-right" />
+      </a>
+    </h2>
 
     <PostMetadata
       {published}
@@ -56,7 +58,7 @@ const { remarkPluginFrontmatter } = await render(entry)
     </div>
 
     <!-- word count and read time  -->
-    <div class="counts">
+    <footer>
       <div>
         {remarkPluginFrontmatter.words}
         {
@@ -78,7 +80,7 @@ const { remarkPluginFrontmatter } = await render(entry)
           )
         }
       </div>
-    </div>
+    </footer>
   </div>
 
   {
@@ -115,7 +117,7 @@ const { remarkPluginFrontmatter } = await render(entry)
         />
       </a>
   }
-</div>
+</article>
 
 <style lang="scss">
   @use "$/styles/main";
@@ -123,7 +125,7 @@ const { remarkPluginFrontmatter } = await render(entry)
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  .post-card {
+  article {
     @extend .card-base;
     @apply flex flex-col-reverse md:flex-col w-full rounded-2xl overflow-hidden relative;
 
@@ -132,10 +134,10 @@ const { remarkPluginFrontmatter } = await render(entry)
       @apply transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] first:border-t-0 md:hidden;
     }
 
-    .title {
+    h2 a {
       @apply transition w-full block font-bold mb-3 text-3xl text-90 hover:text-[--primary] dark:hover:text-[--primary] active:text-[--title-active] dark:active:text-[--title-active] before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[36px] before:left-[18px] before:hidden md:before:block;
 
-      .title-icon {
+      :global(svg) {
         @apply inline text-[--primary] translate-y-0.5 absolute;
 
         @include variants.md {
@@ -144,7 +146,7 @@ const { remarkPluginFrontmatter } = await render(entry)
       }
 
       @include variants.md {
-        &:hover .title-icon {
+        &:hover :global(svg) {
           @apply opacity-100 translate-x-0;
         }
       }
@@ -154,7 +156,7 @@ const { remarkPluginFrontmatter } = await render(entry)
       @apply transition text-75 mb-3.5 pr-4;
     }
 
-    .counts {
+    footer {
       @apply text-sm text-black/30 dark:text-white/30 flex gap-4 transition;
     }
   }

@@ -61,7 +61,7 @@
   href={`https://github.com/${repo}`}
   target="_blank"
 >
-  <div class="titlebar">
+  <header>
     <div class="titlebar-left">
       <div class="owner">
         <div class="avatar"></div>
@@ -70,15 +70,15 @@
       <div class="repo">{repo}</div>
     </div>
     <Icon icon="tabler:brand-github" width="1.5rem" height="1.5rem" />
-  </div>
+  </header>
 
   <div class="description"></div>
 
-  <div class="infobar">
+  <footer>
     <div class="stars"></div>
     <div class="forks"></div>
     <div class="license"></div>
-  </div>
+  </footer>
 </a>
 
 <style lang="scss">
@@ -106,7 +106,7 @@
     &:hover {
       background-color: var(--btn-regular-bg-hover);
 
-      .titlebar {
+      header {
         color: var(--btn-content);
       }
 
@@ -126,7 +126,7 @@
       background-color: var(--btn-regular-bg-active);
     }
 
-    .titlebar {
+    header {
       display: flex;
       justify-content: space-between;
       margin-bottom: spacing(2);
@@ -189,7 +189,7 @@
       color: var(--tw-prose-body);
     }
 
-    .infobar {
+    footer {
       display: flex;
       gap: spacing(6);
       color: var(--tw-prose-body);
@@ -245,7 +245,7 @@
     @include transition($properties: opacity);
 
     .description,
-    .infobar,
+    footer,
     .avatar {
       background-color: var(--tw-prose-body);
       color: transparent;
@@ -258,7 +258,7 @@
     }
 
     .description,
-    .infobar {
+    footer {
       border-radius: $radius-lg;
     }
   }
@@ -282,7 +282,7 @@
 
   .card-github,
   .description,
-  .titlebar,
+  header,
   .stars,
   .forks,
   .license,

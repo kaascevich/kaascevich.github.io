@@ -13,7 +13,7 @@ const { title, type } = Astro.props
 ---
 
 <blockquote class={`bdm-${type}`}>
-  <span class="bdm-title">{title ?? capitalize(type)}</span>
+  <header>{title ?? capitalize(type)}</header>
   <slot />
 </blockquote>
 
@@ -24,7 +24,7 @@ const { title, type } = Astro.props
   @use "$/styles/variants";
 
   blockquote {
-    .bdm-title {
+    header {
       display: flex;
       align-items: center;
       margin-bottom: spacing(-3);
@@ -51,7 +51,7 @@ const { title, type } = Astro.props
         background-color: var(--admonitions-color-tip);
       }
 
-      .bdm-title {
+      header {
         color: var(--admonitions-color-tip);
 
         &::before {
@@ -66,7 +66,7 @@ const { title, type } = Astro.props
         background-color: var(--admonitions-color-note);
       }
 
-      .bdm-title {
+      header {
         color: var(--admonitions-color-note);
 
         &::before {
@@ -81,7 +81,7 @@ const { title, type } = Astro.props
         background-color: var(--admonitions-color-important);
       }
 
-      .bdm-title {
+      header {
         color: var(--admonitions-color-important);
 
         &::before {
@@ -96,7 +96,7 @@ const { title, type } = Astro.props
         background-color: var(--admonitions-color-warning);
       }
 
-      .bdm-title {
+      header {
         color: var(--admonitions-color-warning);
 
         &::before {
@@ -111,7 +111,7 @@ const { title, type } = Astro.props
         background-color: var(--admonitions-color-caution);
       }
 
-      .bdm-title {
+      header {
         color: var(--admonitions-color-caution);
 
         &::before {

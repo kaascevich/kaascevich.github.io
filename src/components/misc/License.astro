@@ -16,33 +16,31 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
 <div class:list={["license-wrapper", className]}>
-  <div class="title">
-    {title}
-  </div>
-  <a href={postUrl} class="url">
-    {postUrl}
-  </a>
+  <hgroup>
+    <header>{title}</header>
+    <a href={postUrl}>{postUrl}</a>
+  </hgroup>
   <div class="details">
     <div>
-      <div class="details-header">
+      <header>
         {i18n(I18nKey.author)}
-      </div>
+      </header>
       <div class="details-text">
         {profileConfig.name}
       </div>
     </div>
     <div>
-      <div class="details-header">
+      <header>
         {i18n(I18nKey.publishedAt)}
-      </div>
+      </header>
       <div class="details-text">
         {formatDate(pubDate)}
       </div>
     </div>
     <div>
-      <div class="details-header">
+      <header>
         {i18n(I18nKey.license)}
-      </div>
+      </header>
       <a href={licenseConfig.url} target="_blank" class="details-link">
         {licenseConfig.name}
       </a>
@@ -63,60 +61,62 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     overflow: hidden;
     background-color: var(--license-block-bg);
     padding: spacing(5) spacing(6);
-  }
 
-  .title {
-    @include transition();
-    @include text-plain(75%);
-    font-weight: $font-weight-bold;
-  }
-  .url {
-    @extend .link;
-    color: var(--primary);
-  }
-
-  .details {
-    display: flex;
-    gap: spacing(6);
-    margin-top: spacing(2);
-
-    flex-direction: column;
-    @include variants.sm {
-      flex-direction: row;
+    hgroup {
+      header {
+        @include transition();
+        @include text-plain(75%);
+        font-weight: $font-weight-bold;
+      }
+      a {
+        @extend .link;
+        color: var(--primary);
+      }
     }
 
-    .details-header {
-      @include transition();
-      @include text-plain(30%);
-      @include font-size($text-sm);
+    .details {
+      display: flex;
+      gap: spacing(6);
+      margin-top: spacing(2);
+
+      flex-direction: column;
+      @include variants.sm {
+        flex-direction: row;
+      }
+
+      header {
+        @include transition();
+        @include text-plain(30%);
+        @include font-size($text-sm);
+      }
+
+      .details-text {
+        @include transition();
+        @include text-plain(75%);
+        white-space: nowrap;
+      }
+      .details-link {
+        @extend .link;
+        color: var(--primary);
+        white-space: nowrap;
+      }
     }
 
-    .details-text {
-      @include transition();
-      @include text-plain(75%);
-      white-space: nowrap;
-    }
-    .details-link {
-      @extend .link;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-  }
-
-  .cc-icon {
-    @include transition($properties: $transition-colors);
-    @include text-plain(5%);
-    position: absolute;
-    pointer-events: none;
-    right: spacing(6);
-    top: 50%;
-    // translate: 0 -50%;
-
-    right: 50%;
-    translate: 50% -50%;
-    @include variants.sm {
+    .cc-icon {
+      @include transition($properties: $transition-colors);
+      @include text-plain(5%);
+      position: absolute;
+      pointer-events: none;
       right: spacing(6);
-      translate: 0 -50%;
+      top: 50%;
+      // translate: 0 -50%;
+
+      right: 50%;
+      translate: 50% -50%;
+      @include variants.sm {
+        right: spacing(6);
+        translate: 0 -50%;
+      }
     }
   }
 </style>

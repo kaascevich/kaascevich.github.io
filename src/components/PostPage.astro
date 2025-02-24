@@ -14,7 +14,7 @@ let delay = 0
 const interval = 50
 ---
 
-<div class="post-list-wrapper">
+<ol class="post-list-wrapper">
   {
     page.data.map((entry) => (
       <PostCard
@@ -25,7 +25,7 @@ const interval = 50
       />
     ))
   }
-</div>
+</ol>
 
 <style lang="scss">
   @use "$/styles/theme" as *;

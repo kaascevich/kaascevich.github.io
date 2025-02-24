@@ -5,10 +5,7 @@ export default config<SiteConfig>({
   title: "Haven",
   subtitle: "my little home on the internet",
   lang: "en",
-  themeColor: {
-    hue: 250,
-    fixed: false,
-  },
+  themeColor: 250,
   banner: {
     enable: true,
     src: "assets/images/banner.png",

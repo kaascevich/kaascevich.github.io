@@ -10,14 +10,14 @@ type Props = Readonly<{
 const { links } = Astro.props
 ---
 
-<div id="nav-menu-panel" class="float-panel-closed">
+<nav id="nav-menu-panel" class="float-panel-closed">
   {
     links.map(({ name, url, external = false }) => (
       <a
         href={external ? url : getURL(url)}
         target={external ? "_blank" : null}
       >
-        <div class="title">{name}</div>
+        <header>{name}</header>
         <Icon
           name={`tabler:${external ? "external-link" : "chevron-right"}`}
           size="1.25rem"
@@ -26,7 +26,7 @@ const { links } = Astro.props
       </a>
     ))
   }
-</div>
+</nav>
 
 <style lang="scss">
   @use "$/styles/main";
@@ -56,12 +56,12 @@ const { links } = Astro.props
         background-color: var(--btn-plain-bg-active);
       }
 
-      .title {
+      header {
         @include transition();
         @include text-plain(75%);
         font-weight: $font-weight-bold;
       }
-      &:is(:hover, :active) .title {
+      &:is(:hover, :active) header {
         color: var(--primary);
       }
 

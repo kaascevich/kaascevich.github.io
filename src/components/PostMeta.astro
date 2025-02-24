@@ -33,26 +33,26 @@ const {
   ]}
 >
   <!-- publish date -->
-  <div class="flex items-center">
+  <time datetime={published.toISOString()} class="flex items-center">
     <div class="meta-icon">
       <Icon name="tabler:calendar-plus" size="1.25rem" />
     </div>
     <span class="text-50 text-sm font-medium">
       {formatDate(published)}
     </span>
-  </div>
+  </time>
 
   <!-- update date -->
   {
     !hideUpdateDate &&
       updated !== undefined &&
       updated.getTime() !== published.getTime() && (
-        <div class="flex items-center">
+        <time datetime={updated.toISOString()} class="flex items-center">
           <div class="meta-icon">
             <Icon name="tabler:calendar-cog" size="1.25rem" />
           </div>
           <span class="text-50 text-sm font-medium">{formatDate(updated)}</span>
-        </div>
+        </time>
       )
   }
 
@@ -82,7 +82,7 @@ const {
     <div class="meta-icon">
       <Icon name="tabler:hash" size="1.25rem" />
     </div>
-    <div class="flex flex-row flex-nowrap items-center">
+    <ul class="flex flex-row flex-nowrap items-center">
       {
         tags.length > 0 ?
           tags.map((tag, i) => (
@@ -108,6 +108,6 @@ const {
             {i18n(I18nKey.noTags)}
           </div>
       }
-    </div>
+    </ul>
   </div>
 </div>

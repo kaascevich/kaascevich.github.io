@@ -4,13 +4,14 @@ import { Icon } from "astro-icon/components"
 
 <div class="back-to-top-wrapper">
   <div id="back-to-top-btn" class="hide" onclick="backToTop()">
-    <button aria-label="Back to Top" class="btn-card">
-      <Icon name="tabler:chevron-up" class="mx-auto" />
+    <button aria-label="Back to Top">
+      <Icon name="tabler:chevron-up" />
     </button>
   </div>
 </div>
 
 <style lang="scss">
+  @use "$/styles/main";
   @use "$/styles/theme" as *;
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
@@ -27,38 +28,42 @@ import { Icon } from "astro-icon/components"
     @include variants.lg {
       display: block;
     }
-  }
 
-  #back-to-top-btn {
-    color: var(--primary);
-    @include font-size($text-xl4);
-    font-weight: $font-weight-bold;
+    #back-to-top-btn {
+      color: var(--primary);
+      @include font-size($text-xl4);
+      font-weight: $font-weight-bold;
 
-    border-style: none;
-    position: fixed;
-    bottom: spacing(40);
-    opacity: 100%;
-    cursor: pointer;
-    translate: spacing(20);
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    border-radius: $radius-xl2;
-    overflow: hidden;
-    @include transition();
+      border-style: none;
+      position: fixed;
+      bottom: spacing(40);
+      opacity: 100%;
+      cursor: pointer;
+      translate: spacing(20);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      border-radius: $radius-xl2;
+      overflow: hidden;
+      @include transition();
 
-    button {
-      width: spacing(15);
-      height: spacing(15);
-    }
+      button {
+        @extend .btn-card;
+        width: spacing(15);
+        height: spacing(15);
+        :global(svg) {
+          @include margin-x(auto);
+        }
+      }
 
-    &.hide {
-      scale: 90%;
-      opacity: 0%;
-      pointer-events: none;
-    }
-    &:active {
-      scale: 90%;
+      &.hide {
+        scale: 90%;
+        opacity: 0%;
+        pointer-events: none;
+      }
+      &:active {
+        scale: 90%;
+      }
     }
   }
 </style>

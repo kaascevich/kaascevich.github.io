@@ -45,7 +45,7 @@ const mainPanelTop =
 <Layout {title} {description} {lang} {setOGTypeArticle}>
   <!-- navbar -->
   <slot slot="head" name="head" />
-  <div
+  <header
     id="top-row"
     class="z-50 pointer-events-none relative transition-all duration-700 max-w-[--page-width] px-0 md:px-4 mx-auto"
   >
@@ -55,7 +55,7 @@ const mainPanelTop =
     >
       <Navbar />
     </div>
-  </div>
+  </header>
 
   <!-- banner -->
   {

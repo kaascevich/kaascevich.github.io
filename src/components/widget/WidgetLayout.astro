@@ -28,9 +28,9 @@ const {
   class={className}
   {style}
 >
-  <div class="widget-title">
+  <header>
     {name}
-  </div>
+  </header>
   <div {id} class:list={["widget-content", { collapsed: isCollapsed }]}>
     <slot />
   </div>
@@ -57,7 +57,7 @@ const {
     @extend .card-base;
     padding-bottom: spacing(4);
 
-    .widget-title {
+    header {
       font-weight: $font-weight-bold;
       @include font-size($text-lg);
 

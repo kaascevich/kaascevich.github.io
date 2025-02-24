@@ -25,12 +25,9 @@ export type SiteConfig = DeepReadonly<{
   /** The primary language of the site. */
   lang: Lang
 
-  themeColor: {
-    /** The default theme hue, from 0 to 360. */
-    hue: number
-    /** Whether to hide the theme color picker. */
-    fixed: boolean
-  }
+  /** The default theme color, from 0 to 360. */
+  themeColor: number
+
   /** Configuration for the site-wide banner. */
   banner: {
     /** Whether to enable the site-wide banner. */

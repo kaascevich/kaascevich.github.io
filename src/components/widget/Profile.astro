@@ -29,7 +29,7 @@ import { url } from "$/utils/urls"
     <div class="separator"></div>
     <div class="bio">{profileConfig.bio}</div>
 
-    <div class="links">
+    <ul class="links">
       {
         profileConfig.links.map((link) => (
           <a
@@ -44,7 +44,7 @@ import { url } from "$/utils/urls"
           </a>
         ))
       }
-    </div>
+    </ul>
   </div>
 </div>
 

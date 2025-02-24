@@ -14,11 +14,11 @@ const { class: className } = Astro.props
 ---
 
 <div id="navbar" class="z-50 onload-animation">
+  <!-- used for onload animation -->
   <div class="absolute h-8 left-0 right-0 -top-8 bg-[--card-bg] transition">
   </div>
 
-  <!-- used for onload animation -->
-  <div
+  <nav
     class:list={[
       className,
       "card-base !overflow-visible max-w-[--page-width] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-4",
@@ -33,45 +33,42 @@ const { class: className } = Astro.props
         {siteConfig.title}
       </div>
     </a>
-    <div class="hidden md:flex">
+    <menu class="hidden md:flex">
       {
-        navbarConfig.links.map((link) => {
-          return (
-            <a
-              aria-label={link.name}
-              href={link.external === true ? link.url : url(link.url)}
-              target={link.external === true ? "_blank" : null}
-              class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
-            >
-              <div class="flex items-center">
-                {link.name}
-                {link.external === true && (
-                  <Icon
-                    name="tabler:external-link"
-                    size="1.125rem"
-                    class="transition ml-1 text-black/[0.2] dark:text-white/[0.2]"
-                  />
-                )}
-              </div>
-            </a>
-          )
-        })
+        navbarConfig.links.map((link) => (
+          <a
+            aria-label={link.name}
+            href={link.external === true ? link.url : url(link.url)}
+            target={link.external === true ? "_blank" : null}
+            class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
+          >
+            <div class="flex items-center">
+              {link.name}
+              {link.external === true && (
+                <Icon
+                  name="tabler:external-link"
+                  size="1.125rem"
+                  class="transition ml-1 text-black/[0.2] dark:text-white/[0.2]"
+                />
+              )}
+            </div>
+          </a>
+        ))
       }
-    </div>
+    </menu>
     <div class="flex">
       <Search client:load />
-      {
-        !siteConfig.themeColor.fixed && (
-          <button
-            aria-label="Display Settings"
-            class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90"
-            id="display-settings-switch"
-          >
-            <Icon name="tabler:palette" size="1.25rem" />
-          </button>
-        )
-      }
+
+      <button
+        aria-label="Display Settings"
+        class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90"
+        id="display-settings-switch"
+      >
+        <Icon name="tabler:palette" size="1.25rem" />
+      </button>
+
       <LightDarkSwitch client:load />
+
       <button
         aria-label="Menu"
         name="Nav Menu"
@@ -84,7 +81,7 @@ const { class: className } = Astro.props
 
     <NavMenuPanel links={navbarConfig.links} />
     <DisplaySettings client:only="svelte" />
-  </div>
+  </nav>
 </div>
 
 <script>
