@@ -69,14 +69,16 @@
     border-radius: $radius-md;
     padding: spacing(1);
     margin: spacing(-1);
+
+    &-lg {
+      @extend .expand-animation;
+      @include transition();
+      border-radius: $radius-md;
+      padding: spacing(1.5);
+      margin: spacing(-1.5);
+    }
   }
-  .link-lg {
-    @extend .expand-animation;
-    @include transition();
-    border-radius: $radius-md;
-    padding: spacing(1.5);
-    margin: spacing(-1.5);
-  }
+
   .float-panel {
     top: spacing(21);
     border-radius: $radius-xl2;
@@ -87,12 +89,14 @@
     @include variants.dark {
       box-shadow: $shadow-none;
     }
+
+    &-closed {
+      translate: 0 spacing(-1);
+      opacity: 0%;
+      pointer-events: none;
+    }
   }
-  .float-panel-closed {
-    translate: 0 spacing(-1);
-    opacity: 0%;
-    pointer-events: none;
-  }
+
   .search-panel mark {
     background-color: transparent;
     color: var(--primary);
@@ -193,10 +197,9 @@
 
   .hide-scrollbar {
     scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .text-90 {

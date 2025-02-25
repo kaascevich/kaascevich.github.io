@@ -1,8 +1,7 @@
 ---
 import { formatDate } from "$/utils/dates"
 import { Icon } from "astro-icon/components"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 import { url } from "$/utils/urls"
 
 type Props = Readonly<{
@@ -10,7 +9,7 @@ type Props = Readonly<{
   published: Date
   updated?: Date | undefined
   tags: readonly string[]
-  category: string | undefined
+  category: string
   hideTagsForMobile?: boolean | undefined
   hideUpdateDate?: boolean | undefined
 }>
@@ -63,11 +62,11 @@ const {
     </div>
     <div class="flex flex-row flex-nowrap items-center">
       <a
-        href={url(`/archive/category/${category ?? "uncategorized"}/`)}
-        aria-label={`View all posts in the ${category} category`}
+        href={url(`/archive/category/${category}/`)}
+        aria-label={strings.alts.category(category)}
         class="link-lg transition text-50 text-sm font-medium hover:text-[--primary] dark:hover:text-[--primary] whitespace-nowrap"
       >
-        {category ?? i18n(I18nKey.uncategorized)}
+        {category}
       </a>
     </div>
   </div>
@@ -97,7 +96,7 @@ const {
               </div>
               <a
                 href={url(`/archive/tag/${tag}/`)}
-                aria-label={`View all posts with the ${tag} tag`}
+                aria-label={strings.alts.tag(tag)}
                 class="link-lg transition text-50 text-sm font-medium hover:text-[--primary] dark:hover:text-[--primary] whitespace-nowrap"
               >
                 {tag}
@@ -105,7 +104,7 @@ const {
             </>
           ))
         : <div class="transition text-50 text-sm font-medium">
-            {i18n(I18nKey.noTags)}
+            {strings.tags.none}
           </div>
       }
     </ul>

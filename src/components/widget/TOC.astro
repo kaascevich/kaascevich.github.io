@@ -142,9 +142,8 @@ let heading1Count = 1
     }
 
     scrollToActiveHeading = () => {
-      // If the TOC widget can accommodate both the topmost
-      // and bottommost items, scroll to the topmost item.
-      // Otherwise, scroll to the bottommost one.
+      // if the TOC widget can accommodate both the topmost and bottommost
+      // items, scroll to the topmost. otherwise, scroll to the bottommost item.
 
       if (this.anchorNavTarget || !this.tocEl) return
       const activeHeading = document.querySelectorAll<HTMLDivElement>(

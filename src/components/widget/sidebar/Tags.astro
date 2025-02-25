@@ -2,15 +2,15 @@
 import WidgetLayout from "$/components/widget/WidgetLayout.astro"
 import ButtonTag from "$/components/control/ButtonTag.astro"
 import { getTagList } from "$/utils/content"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 import { url } from "$/utils/urls"
 
 const tags = await getTagList()
 
 const COLLAPSED_HEIGHT = "7.5rem"
+const COLLAPSE_THRESHOLD = 20
 
-const isCollapsed = tags.size >= 20
+const isCollapsed = tags.size >= COLLAPSE_THRESHOLD
 
 type Props = Readonly<{
   class?: string | undefined
@@ -21,7 +21,7 @@ const { class: className, style } = Astro.props
 ---
 
 <WidgetLayout
-  name={i18n(I18nKey.tags)}
+  name={strings.tags.label}
   id="tags"
   {isCollapsed}
   collapsedHeight={COLLAPSED_HEIGHT}
@@ -33,7 +33,7 @@ const { class: className, style } = Astro.props
       [...tags].map(([name]) => (
         <ButtonTag
           href={url(`/archive/tag/${name}/`)}
-          label={`View all posts with the ${name} tag`}
+          label={strings.alts.tag(name)}
         >
           {name}
         </ButtonTag>

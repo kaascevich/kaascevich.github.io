@@ -5,40 +5,41 @@ export type FullRepository = Repository & {
   subscribers_count: number
   network_count: number
   organization?: User | null
-  parent?: Repository
-  source?: Repository
-  code_of_conduct?: CodeOfConduct
+  parent?: Repository | null
+  source?: Repository | null
+  code_of_conduct?: CodeOfConduct | null
   security_and_analysis?: {
     advanced_security?: {
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
     /** Enable or disable Dependabot security updates for the repository. */
     dependabot_security_updates?: {
       /**
        * The enablement status of Dependabot security updates for the
        * repository.
        */
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
     secret_scanning?: {
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
     secret_scanning_push_protection?: {
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
     secret_scanning_non_provider_patterns?: {
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
     secret_scanning_ai_detection?: {
-      status?: "enabled" | "disabled"
-    }
+      status?: "enabled" | "disabled" | null
+    } | null
   } | null
+
   /**
    * The custom properties that were defined for the repository. The keys are
    * the custom property names, and the values are the corresponding custom
    * property values.
    */
-  custom_properties?: Record<string, unknown>
+  custom_properties?: Record<string, unknown> | null
 }
 
 /** A GitHub user. */
@@ -63,8 +64,8 @@ export type User = {
   received_events_url: string
   type: string
   site_admin: boolean
-  starred_at?: string
-  user_view_type?: string
+  starred_at?: string | null
+  user_view_type?: string | null
 }
 
 /** A repository on GitHub. */
@@ -80,10 +81,10 @@ export type Repository = {
   permissions?: {
     admin: boolean
     pull: boolean
-    triage?: boolean
+    triage?: boolean | null
     push: boolean
-    maintain?: boolean
-  }
+    maintain?: boolean | null
+  } | null
   owner: User
   /** Whether the repository is private or public. */
   private: boolean
@@ -151,8 +152,8 @@ export type Repository = {
    * Whether this repository acts as a template that can be used to generate new
    * repositories.
    */
-  is_template?: boolean
-  topics?: string[]
+  is_template?: boolean | null
+  topics?: string[] | null
   /** Whether issues are enabled. */
   has_issues: boolean
   /** Whether projects are enabled. */
@@ -163,31 +164,31 @@ export type Repository = {
   /** Whether downloads are enabled. */
   has_downloads: boolean
   /** Whether discussions are enabled. */
-  has_discussions?: boolean
+  has_discussions?: boolean | null
   /** Whether the repository is archived. */
   archived: boolean
   /** Whether or not this repository is disabled. */
   disabled: boolean
   /** The repository visibility: public, private, or internal. */
-  visibility?: "public" | "private" | "internal"
+  visibility?: "public" | "private" | "internal" | null
   pushed_at: string | null
   created_at: string | null
   updated_at: string | null
   /** Whether to allow rebase merges for pull requests. */
-  allow_rebase_merge?: boolean
-  temp_clone_token?: string
+  allow_rebase_merge?: boolean | null
+  temp_clone_token?: string | null
   /** Whether to allow squash merges for pull requests. */
-  allow_squash_merge?: boolean
+  allow_squash_merge?: boolean | null
   /** Whether to allow auto-merge to be used on pull requests. */
-  allow_auto_merge?: boolean
+  allow_auto_merge?: boolean | null
   /** Whether to delete head branches when pull requests are merged. */
-  delete_branch_on_merge?: boolean
+  delete_branch_on_merge?: boolean | null
   /**
    * Whether or not a pull request head branch that is behind its base branch
    * can always be updated even if it is not required to be up to date before
    * merging.
    */
-  allow_update_branch?: boolean
+  allow_update_branch?: boolean | null
   /**
    * The default value for a squash merge commit title.
    *
@@ -195,7 +196,7 @@ export type Repository = {
    * - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
    *   or the pull request's title (when more than one commit).
    */
-  squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE"
+  squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | null
   /**
    * The default value for a squash merge commit message.
    *
@@ -203,7 +204,7 @@ export type Repository = {
    * - `COMMIT_MESSAGES` - default to the branch's commit messages.
    * - `BLANK` - default to a blank commit message.
    */
-  squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK"
+  squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | null
   /**
    * The default value for a merge commit title.
    *
@@ -211,7 +212,7 @@ export type Repository = {
    * - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g.,
    *   Merge pull request #123 from branch-name).
    */
-  merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE"
+  merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | null
   /**
    * The default value for a merge commit message.
    *
@@ -219,19 +220,19 @@ export type Repository = {
    * - `PR_BODY` - default to the pull request's body.
    * - `BLANK` - default to a blank commit message.
    */
-  merge_commit_message?: "PR_BODY" | "PR_TITLE" | "BLANK"
+  merge_commit_message?: "PR_BODY" | "PR_TITLE" | "BLANK" | null
   /** Whether to allow merge commits for pull requests. */
-  allow_merge_commit?: boolean
+  allow_merge_commit?: boolean | null
   /** Whether to allow forking this repo. */
-  allow_forking?: boolean
+  allow_forking?: boolean | null
   /** Whether to require contributors to sign off on web-based commits */
-  web_commit_signoff_required?: boolean
+  web_commit_signoff_required?: boolean | null
   open_issues: number
   watchers: number
-  master_branch?: string
-  starred_at?: string
+  master_branch?: string | null
+  starred_at?: string | null
   /** Whether anonymous git access is enabled for this repository. */
-  anonymous_access_enabled?: boolean
+  anonymous_access_enabled?: boolean | null
 }
 
 /** A license. */
@@ -241,7 +242,7 @@ export type License = {
   url: string | null
   spdx_id: string | null
   node_id: string
-  html_url?: string
+  html_url?: string | null
 }
 
 /** A code of conduct. */

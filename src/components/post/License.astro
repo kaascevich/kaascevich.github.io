@@ -2,8 +2,7 @@
 import { formatDate } from "$/utils/dates"
 import { Icon } from "astro-icon/components"
 import { licenseConfig, profileConfig } from "$/config"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 
 type Props = Readonly<{
   title: string
@@ -23,7 +22,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   <div class="details">
     <div>
       <header>
-        {i18n(I18nKey.author)}
+        {strings.license.author}
       </header>
       <div class="details-text">
         {profileConfig.name}
@@ -31,7 +30,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     </div>
     <div>
       <header>
-        {i18n(I18nKey.publishedAt)}
+        {strings.license.publishedAt}
       </header>
       <div class="details-text">
         {formatDate(pubDate)}
@@ -39,7 +38,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     </div>
     <div>
       <header>
-        {i18n(I18nKey.license)}
+        {strings.license.license}
       </header>
       <a href={licenseConfig.url} target="_blank" class="details-link">
         {licenseConfig.name}
@@ -76,12 +75,13 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     .details {
       display: flex;
-      gap: spacing(6);
       margin-top: spacing(2);
 
       flex-direction: column;
+      gap: spacing(3);
       @include variants.sm {
         flex-direction: row;
+        gap: spacing(6);
       }
 
       header {

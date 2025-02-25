@@ -7,7 +7,7 @@
   transition-property: $transition-properties;
 
   background-color: black(40%);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   margin-right: 0;
@@ -20,18 +20,20 @@
   &:active {
     background-color: black(60%);
   }
-}
-.pswp__button--zoom,
-.pswp__button--close {
-  margin-top: spacing(4) !important;
-  border-radius: $radius-xl !important;
-  &:active {
-    scale: 90% !important;
+
+  &--zoom,
+  &--close {
+    margin-top: spacing(4) !important;
+    border-radius: $radius-xl !important;
+    &:active {
+      scale: 90% !important;
+    }
   }
-}
-.pswp__button--zoom {
-  margin-right: spacing(2.5) !important;
-}
-.pswp__button--close {
-  margin-right: spacing(4) !important;
+
+  &--zoom {
+    margin-right: spacing(2.5) !important;
+  }
+  &--close {
+    margin-right: spacing(4) !important;
+  }
 }

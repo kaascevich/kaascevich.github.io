@@ -1,7 +1,6 @@
 ---
 import ArchivePanel from "$/components/ArchivePanel.astro"
-import I18nKey from "$/i18n/i18nKey"
-import { i18n } from "$/i18n/translation"
+import strings from "$/config/strings"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
 import { getSortedPosts } from "$/utils/content"
 import type { GetStaticPaths } from "astro"
@@ -22,9 +21,6 @@ export const getStaticPaths = (async () => {
 const { tag } = Astro.params
 ---
 
-<MainGridLayout
-  title={i18n(I18nKey.archive)}
-  description={i18n(I18nKey.archive)}
->
+<MainGridLayout title={strings.nav.archive} description={strings.nav.archive}>
   <ArchivePanel tags={[tag]} />
 </MainGridLayout>

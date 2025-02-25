@@ -1,11 +1,9 @@
 ---
 import WidgetLayout from "$/components/widget/WidgetLayout.astro"
-
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
-import { getCategoryList } from "$/utils/content"
-import { getCategoryUrl } from "$/utils/urls"
 import ButtonLink from "$/components/control/ButtonLink.astro"
+import { getCategoryList } from "$/utils/content"
+import strings from "$/config/strings"
+import { url } from "$/utils/urls"
 
 const categories = await getCategoryList()
 
@@ -23,7 +21,7 @@ const { class: className, style } = Astro.props
 ---
 
 <WidgetLayout
-  name={i18n(I18nKey.categories)}
+  name={strings.categories.label}
   id="categories"
   {isCollapsed}
   collapsedHeight={COLLAPSED_HEIGHT}
@@ -33,9 +31,9 @@ const { class: className, style } = Astro.props
   {
     [...categories].map(([name, count]) => (
       <ButtonLink
-        url={getCategoryUrl(name)}
+        url={url(`/archive/category/${name}/`)}
         badge={String(count)}
-        label={`View all posts in the ${name} category`}
+        label={strings.alts.category(name)}
       >
         {name}
       </ButtonLink>

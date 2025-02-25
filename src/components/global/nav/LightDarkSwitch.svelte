@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { ColorScheme } from "$/types/config"
-  import I18nKey from "$/i18n/i18nKey"
-  import { i18n } from "$/i18n/translation"
+  import strings from "$/config/strings"
   import Icon from "@iconify/svelte"
   import {
     applyColorScheme,
@@ -45,17 +44,20 @@
       ?.classList.add("float-panel-closed")
   }
 
-  const buttons: Record<ColorScheme, { key: I18nKey; icon: string }> = {
+  const buttons: Record<
+    ColorScheme,
+    { key: keyof typeof strings.theme; icon: string }
+  > = {
     light: {
-      key: I18nKey.lightMode,
+      key: "lightMode",
       icon: "tabler:sun",
     },
     dark: {
-      key: I18nKey.darkMode,
+      key: "darkMode",
       icon: "tabler:moon",
     },
     auto: {
-      key: I18nKey.systemMode,
+      key: "systemMode",
       icon: "tabler:brightness-filled",
     },
   }
@@ -89,7 +91,7 @@
           onclick={() => switchScheme(colorScheme as ColorScheme)}
         >
           <Icon {icon} height="1.25rem" width="1.25rem" class="mr-3" />
-          {i18n(key)}
+          {strings.theme[key]}
         </button>
       {/each}
     </div>

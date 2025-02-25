@@ -12,8 +12,6 @@
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "new-post": "npx ts-node scripts/new-post.ts",
-    "format": "biome format --write ./src",
-    "lint": "biome check --apply ./src",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
@@ -69,7 +67,6 @@
   "devDependencies": {
     "@astrojs/markdown-remark": "^6.1.0",
     "@astrojs/ts-plugin": "^1.10.4",
-    "@biomejs/biome": "1.8.3",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/hast": "^3.0.4",

@@ -1,6 +1,6 @@
 ---
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import Markdown from "$/components/misc/Markdown.astro"
+import Markdown from "$/components/post/Markdown.astro"
 
 type Props = Readonly<{
   frontmatter: Readonly<{
@@ -9,9 +9,7 @@ type Props = Readonly<{
   }>
 }>
 
-const {
-  frontmatter: { title, description = title },
-} = Astro.props
+const { title, description = title } = Astro.props.frontmatter
 
 // Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
 // manually.

@@ -1,40 +1,30 @@
 ---
-import Footer from "$/components/Footer.astro"
-import Navbar from "$/components/Navbar.astro"
-import BackToTop from "$/components/control/BackToTop.astro"
-import SideBar from "$/components/widget/SideBar.astro"
+import Footer from "$/components/global/Footer.astro"
+import Navbar from "$/components/global/nav/Navbar.astro"
+import BackToTop from "$/components/widget/BackToTop.astro"
+import SideBar from "$/components/widget/sidebar/Sidebar.astro"
 import Layout from "$/layouts/Layout.astro"
-import { Icon } from "astro-icon/components"
 import { siteConfig } from "$/config"
 import type { MarkdownHeading } from "astro"
 import TOC from "$/components/widget/TOC.astro"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import {
   BANNER_HEIGHT,
-  BANNER_HEIGHT_EXTEND,
   MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "$/constants/constants"
+import Banner from "$/components/global/Banner.astro"
+import BannerCredit from "$/components/global/BannerCredit.astro"
 
 type Props = Readonly<{
   title?: string | undefined
   description?: string | undefined
-  lang?: string | undefined
   setOGTypeArticle?: boolean | undefined
   headings?: readonly MarkdownHeading[] | undefined
 }>
 
-const {
-  title,
-  description,
-  lang,
-  setOGTypeArticle,
-  headings = [],
-} = Astro.props
+const { title, description, setOGTypeArticle, headings = [] } = Astro.props
 
 const hasBannerCredit =
   siteConfig.banner.enable && siteConfig.banner.credit.enable
-
-const hasBannerLink = Boolean(siteConfig.banner.credit.url)
 
 const mainPanelTop =
   siteConfig.banner.enable ?
@@ -42,7 +32,7 @@ const mainPanelTop =
   : "5.5rem"
 ---
 
-<Layout {title} {description} {lang} {setOGTypeArticle}>
+<Layout {title} {description} {setOGTypeArticle}>
   <!-- navbar -->
   <slot slot="head" name="head" />
   <header
@@ -57,25 +47,7 @@ const mainPanelTop =
     </div>
   </header>
 
-  <!-- banner -->
-  {
-    siteConfig.banner.enable && (
-      <div
-        id="banner-wrapper"
-        class="absolute z-10 w-full transition duration-700 overflow-hidden"
-        style={`top: -${BANNER_HEIGHT_EXTEND}vh`}
-      >
-        <ImageWrapper
-          id="banner"
-          alt="Site banner"
-          loading="eager"
-          class="object-cover h-full transition duration-700 opacity-0 scale-105"
-          src={siteConfig.banner.src}
-          position={siteConfig.banner.position}
-        />
-      </div>
-    )
-  }
+  {siteConfig.banner.enable && <Banner />}
 
   <!-- main content -->
   <!-- pointer-events-none prevents blocking TOC click events -->
@@ -88,38 +60,7 @@ const mainPanelTop =
         id="main-grid"
         class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4"
       >
-        <!-- banner image credit -->
-        {
-          hasBannerCredit && (
-            <a
-              href={siteConfig.banner.credit.url}
-              id="banner-credit"
-              target="_blank"
-              rel="noopener"
-              aria-label="Visit image source"
-              class:list={[
-                "group onload-animation transition-all absolute flex justify-center items-center rounded-full px-3 right-4 -top-[3.25rem] bg-black/60 hover:bg-black/70 h-9",
-                { "hover:pr-9 active:bg-black/80": hasBannerLink },
-              ]}
-            >
-              <Icon
-                class="text-white/75 mr-1"
-                size="1.25rem"
-                name="tabler:copyright"
-              />
-              <div class="text-white/75 text-xs">
-                {siteConfig.banner.credit.text}
-              </div>
-              <Icon
-                class:list={[
-                  "transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 opacity-0",
-                  { "group-hover:opacity-100": hasBannerLink },
-                ]}
-                name="tabler:external-link"
-              />
-            </a>
-          )
-        }
+        {hasBannerCredit && <BannerCredit />}
 
         <SideBar
           class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"
@@ -178,14 +119,3 @@ const mainPanelTop =
     </div>
   </div>
 </Layout>
-
-<style lang="scss" define:vars={{ "end-stop": 0.5, multiplier: 1 / 2 }}>
-  #banner-wrapper {
-    mask-image: linear-gradient(
-      to top,
-      #0000 calc(25% * var(--multiplier) * var(--end-stop)),
-      calc(75% * var(--multiplier) * var(--end-stop)),
-      #000f calc(var(--end-stop) * 100%)
-    );
-  }
-</style>

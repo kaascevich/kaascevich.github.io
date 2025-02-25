@@ -3,11 +3,14 @@ import { Icon } from "astro-icon/components"
 ---
 
 <div class="back-to-top-wrapper">
-  <div id="back-to-top-btn" class="hide" onclick="backToTop()">
-    <button aria-label="Back to Top">
-      <Icon name="tabler:chevron-up" />
-    </button>
-  </div>
+  <button
+    id="back-to-top-btn"
+    class="hide"
+    onclick="backToTop()"
+    aria-label="Back to Top"
+  >
+    <Icon name="tabler:chevron-up" />
+  </button>
 </div>
 
 <style lang="scss">
@@ -34,26 +37,19 @@ import { Icon } from "astro-icon/components"
       @include font-size($text-xl4);
       font-weight: $font-weight-bold;
 
-      border-style: none;
       position: fixed;
       bottom: spacing(40);
       opacity: 100%;
       cursor: pointer;
       translate: spacing(20);
       pointer-events: auto;
-      display: flex;
-      align-items: center;
       border-radius: $radius-xl2;
-      overflow: hidden;
-      @include transition();
 
-      button {
-        @extend .btn-card;
-        width: spacing(15);
-        height: spacing(15);
-        :global(svg) {
-          @include margin-x(auto);
-        }
+      @extend .btn-card;
+      width: spacing(15);
+      height: spacing(15);
+      :global(svg) {
+        @include margin-x(auto);
       }
 
       &.hide {

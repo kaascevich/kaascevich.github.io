@@ -1,19 +1,18 @@
 import { config, type NavBarConfig } from "$/types/config"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 
 export default config<NavBarConfig>({
   links: [
     {
-      name: i18n(I18nKey.archive),
+      name: strings.nav.archive,
       url: "/archive/",
     },
     {
-      name: i18n(I18nKey.about),
+      name: strings.nav.about,
       url: "/about/",
     },
     {
-      name: i18n(I18nKey.projects),
+      name: strings.nav.projects,
       url: "/projects/",
     },
     {

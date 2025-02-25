@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders"
 import { defineCollection, z } from "astro:content"
+import strings from "./config/strings"
 
 function internalOnly(name: string): z.ZodEffects<z.ZodOptional<z.ZodString>> {
   return z
@@ -24,18 +25,23 @@ const postsCollection = defineCollection({
     .object({
       /** The title of the post. */
       title: z.string().nonempty(),
+
       /** The date the post was published. */
       published: z.date(),
+
       /** The date the post was last updated. */
       updated: z.date().optional(),
+
       /**
        * Whether the post is a draft.
        *
        * Draft posts won't be shown in production.
        */
       draft: z.boolean().optional().default(false),
+
       /** The description of the post. */
       description: z.string().nonempty().optional(),
+
       /**
        * The cover image for the post.
        *
@@ -57,10 +63,12 @@ const postsCollection = defineCollection({
            *   file.
            */
           source: z.string().nonempty(),
+
           /** The alt text for the image. */
           alt: z.string(),
         })
         .optional(),
+
       /**
        * A list of the post's tags.
        *
@@ -69,16 +77,14 @@ const postsCollection = defineCollection({
       tags: z
         .array(z.string())
         .readonly()
-        .optional()
         .default([])
         .refine(
           (tags) => tags.length === new Set(tags).size,
           "tags array must not contain duplicates",
         ),
+
       /** The category of the post. */
-      category: z.string().nonempty().optional(),
-      /** The language the post was written in. */
-      lang: z.string().nonempty().optional(),
+      category: z.string().nonempty().default(strings.categories.none),
     })
     .readonly()
     .and(internalProperties),

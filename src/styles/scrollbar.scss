@@ -3,8 +3,6 @@
 @use "variants";
 
 .scrollbar-base.os-scrollbar {
-  @include transition($properties: all);
-
   &.os-scrollbar-horizontal {
     padding: spacing(1) spacing(2);
     height: spacing(4);

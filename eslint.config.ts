@@ -19,13 +19,7 @@ export default defineFlatConfig([
       "no-unreachable-loop": "error",
 
       // suggestions
-      camelcase: [
-        "warn",
-        {
-          // allow language codes
-          allow: [/[a-z]{2}_(?:[a-z]|[A-Z]){2}/.source],
-        },
-      ],
+      camelcase: "warn",
       complexity: ["warn", 15],
       "consistent-return": "error",
       eqeqeq: ["error", "always", { null: "ignore" }],
@@ -80,7 +74,7 @@ export default defineFlatConfig([
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        // projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },

@@ -1,0 +1,60 @@
+---
+import Avatar from "$/components/widget/sidebar/Avatar.astro"
+import ProfileLinks from "$/components/widget/sidebar/ProfileLinks.astro"
+import { profileConfig } from "$/config"
+---
+
+<div class="profile-card">
+  <Avatar />
+
+  <div class="info">
+    <div class="name">{profileConfig.name}</div>
+    <div class="separator"></div>
+    <div class="bio">{profileConfig.bio}</div>
+  </div>
+
+  <ProfileLinks />
+</div>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .profile-card {
+    @extend .card-base;
+    padding: spacing(3);
+
+    .info {
+      @include padding-x(spacing(2));
+
+      .name {
+        font-weight: $font-weight-bold;
+        @include font-size($text-xl);
+        text-align: center;
+        margin-bottom: spacing(1);
+        @include transition();
+        @include variants.dark {
+          color: $color-neutral-50;
+        }
+      }
+
+      .separator {
+        height: spacing(1);
+        width: spacing(10);
+        background-color: var(--primary);
+        margin: spacing(2) auto;
+        border-radius: 9999px;
+        @include transition();
+      }
+
+      .bio {
+        text-align: center;
+        margin-bottom: spacing(2.5);
+        @include transition();
+        color: $color-neutral-400;
+      }
+    }
+  }
+</style>

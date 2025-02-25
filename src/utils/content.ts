@@ -1,6 +1,4 @@
 import { getCollection, type CollectionEntry } from "astro:content"
-import I18nKey from "$/i18n/i18nKey"
-import { i18n } from "$/i18n/translation"
 import { elementCounts } from "$/utils/arrays"
 
 export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
@@ -47,7 +45,7 @@ export async function getCategoryList(): Promise<Map<string, number>> {
 
   return elementCounts(
     allBlogPosts
-      .flatMap((post) => post.data.category ?? i18n(I18nKey.uncategorized))
+      .flatMap((post) => post.data.category)
       .toSorted((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
   )
 }

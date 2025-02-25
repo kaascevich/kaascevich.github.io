@@ -3,6 +3,7 @@ import type { Page } from "astro"
 import { Icon } from "astro-icon/components"
 import { url } from "$/utils/urls"
 import type { CollectionEntry } from "astro:content"
+import strings from "$/config/strings"
 
 type Props = Readonly<{
   page: Page<CollectionEntry<"posts">>
@@ -13,7 +14,6 @@ type Props = Readonly<{
 const { page, class: className, style } = Astro.props
 
 const HIDDEN = -1
-
 const ADJ_DIST = 2
 const VISIBLE = ADJ_DIST * 2 + 1
 
@@ -21,20 +21,16 @@ const VISIBLE = ADJ_DIST * 2 + 1
 let count = 1
 let leftmost = page.currentPage
 let rightmost = page.currentPage
-while (
-  0 < leftmost - 1 &&
-  rightmost + 1 <= page.lastPage &&
-  count + 2 <= VISIBLE
-) {
+while (leftmost > 1 && rightmost < page.lastPage && count + 1 < VISIBLE) {
   count += 2
   leftmost -= 1
   rightmost += 1
 }
-while (0 < leftmost - 1 && count < VISIBLE) {
+while (leftmost > 1 && count < VISIBLE) {
   count += 1
   leftmost -= 1
 }
-while (rightmost + 1 <= page.lastPage && count < VISIBLE) {
+while (rightmost < page.lastPage && count < VISIBLE) {
   count += 1
   rightmost += 1
 }
@@ -79,7 +75,7 @@ const getPageUrl = (p: number): string => (p === 1 ? "/" : `/${p}/`)
         : p === page.currentPage ? <div class="current-page">{p}</div>
         : <a
             href={url(getPageUrl(p))}
-            aria-label={`page ${p}`}
+            aria-label={strings.alts.pageNum(p)}
             class="other-page"
           >
             {p}

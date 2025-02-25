@@ -1,7 +1,5 @@
 import type { ColorScheme } from "$/types/config"
 
-export const UNCATEGORIZED = "__uncategorized__"
-
 export const PAGE_SIZE = 8
 
 export const DEFAULT_COLOR_SCHEME: ColorScheme = "auto"

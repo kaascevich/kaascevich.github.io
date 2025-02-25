@@ -1,10 +1,9 @@
 ---
 import path from "node:path"
-import PostMetadata from "$/components/PostMeta.astro"
+import PostMetadata from "$/components/post/PostMeta.astro"
 import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import { Icon } from "astro-icon/components"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 import { getDir } from "$/utils/urls"
 import { render, type CollectionEntry } from "astro:content"
 
@@ -28,7 +27,7 @@ const { remarkPluginFrontmatter } = await render(entry)
 <article class={className} {style}>
   <div
     class={`pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full md:w-[calc(100%-${
-      image === undefined ? "52px" : coverWidth
+      image === undefined ? "52px" : "var(--coverWidth)"
     }-12px)]`}
   >
     <h2>
@@ -59,27 +58,9 @@ const { remarkPluginFrontmatter } = await render(entry)
 
     <!-- word count and read time  -->
     <footer>
-      <div>
-        {remarkPluginFrontmatter.words}
-        {
-          i18n(
-            remarkPluginFrontmatter.words === 1 ?
-              I18nKey.wordCount
-            : I18nKey.wordsCount,
-          )
-        }
-      </div>
+      <div>{strings.meta.words(remarkPluginFrontmatter.words)}</div>
       |
-      <div>
-        {remarkPluginFrontmatter.minutes}
-        {
-          i18n(
-            remarkPluginFrontmatter.minutes === 1 ?
-              I18nKey.minuteCount
-            : I18nKey.minutesCount,
-          )
-        }
-      </div>
+      <div>{strings.meta.minutes(remarkPluginFrontmatter.minutes)}</div>
     </footer>
   </div>
 
@@ -119,7 +100,7 @@ const { remarkPluginFrontmatter } = await render(entry)
   }
 </article>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ coverWidth }}>
   @use "$/styles/main";
   @use "$/styles/theme" as *;
   @use "$/styles/utils" as *;

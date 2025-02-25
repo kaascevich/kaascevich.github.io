@@ -2,8 +2,7 @@
 import { getCategoryList } from "$/utils/content"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
 import ArchivePanel from "$/components/ArchivePanel.astro"
-import { i18n } from "$/i18n/translation"
-import I18nKey from "$/i18n/i18nKey"
+import strings from "$/config/strings"
 import type { GetStaticPaths } from "astro"
 
 export const getStaticPaths = (async () => {
@@ -16,9 +15,6 @@ export const getStaticPaths = (async () => {
 const { category } = Astro.params
 ---
 
-<MainGridLayout
-  title={i18n(I18nKey.archive)}
-  description={i18n(I18nKey.archive)}
->
+<MainGridLayout title={strings.nav.archive} description={strings.nav.archive}>
   <ArchivePanel categories={[category]} />
 </MainGridLayout>

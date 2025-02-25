@@ -3,29 +3,17 @@ import "@fontsource-variable/playpen-sans"
 import "katex/dist/katex.css"
 import "$/styles/main.scss"
 
-import { profileConfig, siteConfig } from "$/config"
+import { siteConfig } from "$/config"
+import Head from "$/components/global/Head.astro"
 import ConfigCarrier from "$/components/ConfigCarrier.astro"
-import {
-  BANNER_HEIGHT_EXTEND,
-  BANNER_HEIGHT_HOME,
-  DEFAULT_COLOR_SCHEME,
-  PAGE_WIDTH,
-} from "$/constants/constants"
+import { BANNER_HEIGHT_EXTEND, BANNER_HEIGHT_HOME } from "$/constants/constants"
 import { url, pathsEqual } from "$/utils/urls"
 
 type Props = Readonly<{
   title?: string | undefined
   description?: string | undefined
-  lang?: string | undefined
   setOGTypeArticle?: boolean | undefined
 }>
-
-const {
-  title,
-  description,
-  lang = siteConfig.lang,
-  setOGTypeArticle = false,
-} = Astro.props
 
 // apply a class to the body element to decide the height of the banner, only
 // used for initial page load
@@ -35,119 +23,27 @@ const {
 // instead to change the height immediately when a link is clicked.
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"))
 
-// define global CSS variables
-const configHue = siteConfig.themeColor
-
-const enableBanner = siteConfig.banner.enable
-
-const pageTitle =
-  title === undefined ?
-    `${siteConfig.title} - ${siteConfig.subtitle}`
-  : `${title} - ${siteConfig.title}`
-
-const siteLang = lang.replace("_", "-")
-
-const bannerOffsetByPosition = {
+const bannerOffset = {
   top: `${BANNER_HEIGHT_EXTEND}vh`,
   center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
   bottom: "0",
-}
-const bannerOffset =
-  bannerOffsetByPosition[siteConfig.banner.position ?? "center"]
+}[siteConfig.banner.position]
 ---
 
 <!doctype html>
 <html
-  lang={siteLang}
+  lang="en-US"
   class="bg-[--page-bg] transition text-[14px] md:text-[16px]"
   data-overlayscrollbars-initialize
 >
-  <head>
-    <title>{pageTitle}</title>
+  <Head {...Astro.props}>
+    <slot name="head" slot="head" />
+  </Head>
 
-    <meta charset="UTF-8" />
-    <meta name="description" content={description ?? pageTitle} />
-    <meta name="author" content={profileConfig.name} />
-
-    <meta property="og:site_name" content={siteConfig.title} />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description ?? pageTitle} />
-    <meta
-      property="og:type"
-      content={setOGTypeArticle ? "article" : "website"}
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description ?? pageTitle} />
-
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" href="/favicon.png" sizes="280x280" />
-
-    <!-- set color scheme before page render to avoid FOUC -->
-    <script
-      is:inline
-      define:vars={{
-        DEFAULT_COLOR_SCHEME,
-        BANNER_HEIGHT_EXTEND,
-        PAGE_WIDTH,
-        configHue,
-      }}
-    >
-      // load color scheme from local storage
-      /** @type {import("$/types/config").ColorScheme} */
-      const colorScheme =
-        localStorage.getItem("colorScheme") ?? DEFAULT_COLOR_SCHEME
-
-      document.documentElement.dataset.colorScheme =
-        colorScheme === "auto" ?
-          window.matchMedia("(prefers-color-scheme: dark)").matches ?
-            "dark"
-          : "light"
-        : colorScheme
-
-      // load hue from local storage
-      const hue = localStorage.getItem("hue") ?? configHue
-      document.documentElement.style.setProperty("--hue", hue)
-
-      // calculate --banner-height-extend, which needs to be a multiple of 4 to
-      // avoid blurry text
-      let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
-      offset -= offset % 4
-      document.documentElement.style.setProperty(
-        "--banner-height-extend",
-        `${offset}px`,
-      )
-    </script>
-
-    <!--
-			define global CSS variables. this will be applied to <html> and <body>
-		 	(and some other elements, idk why)
-		-->
-    <style
-      lang="scss"
-      define:vars={{
-        configHue,
-        "page-width": `${PAGE_WIDTH}rem`,
-      }}
-    ></style>
-
-    <slot name="head" />
-
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={profileConfig.name}
-      href={`${Astro.site}rss.xml`}
-    />
-  </head>
   <body
     class:list={[
       "min-h-screen transition",
-      { "lg:is-home": isHomePage, "enable-banner": enableBanner },
+      { "lg:is-home": isHomePage, "enable-banner": siteConfig.banner.enable },
     ]}
     data-overlayscrollbars-initialize
   >
@@ -223,15 +119,15 @@ const bannerOffset =
     MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
   } from "$/constants/constants"
 
-  const bannerEnabled = !!document.getElementById("banner-wrapper")
+  const bannerEnabled = document.getElementById("banner-wrapper") !== null
 
   function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
     document.addEventListener("click", (event) => {
-      let panelDom = document.getElementById(panel)
-      let tDom = event.target
+      const panelDom = document.getElementById(panel)
+      const tDom = event.target
       if (!(tDom instanceof Node)) return
       for (let ig of ignores) {
-        let ie = document.getElementById(ig)
+        const ie = document.getElementById(ig)
         if (ie === tDom || ie?.contains(tDom)) {
           return
         }

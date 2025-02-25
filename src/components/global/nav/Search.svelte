@@ -5,8 +5,7 @@
 
 <script lang="ts">
   import type { PagefindSearchFragment } from "vite-plugin-pagefind/types"
-  import { i18n } from "$/i18n/translation"
-  import I18nKey from "$/i18n/i18nKey"
+  import strings from "$/config/strings"
   import Icon from "@iconify/svelte"
 
   let keywordDesktop = $state("")
@@ -64,7 +63,7 @@
     class="absolute pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
   />
   <input
-    placeholder={i18n(I18nKey.search)}
+    placeholder={strings.nav.search}
     bind:value={keywordDesktop}
     onfocus={() => search(keywordDesktop, true)}
     class="transition-all pl-10 text-sm bg-transparent outline-0 h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50"
@@ -98,7 +97,7 @@
       class="absolute pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"
     />
     <input
-      placeholder="Search"
+      placeholder={strings.nav.search}
       bind:value={keywordMobile}
       class="pl-10 absolute inset-0 text-sm bg-transparent outline-0 focus:w-60 text-black/50 dark:text-white/50"
     />

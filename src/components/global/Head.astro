@@ -1,0 +1,100 @@
+---
+import { profileConfig, siteConfig } from "$/config"
+import {
+  BANNER_HEIGHT_EXTEND,
+  DEFAULT_COLOR_SCHEME,
+  PAGE_WIDTH,
+} from "$/constants/constants"
+
+type Props = Readonly<{
+  title?: string | undefined
+  description?: string | undefined
+  setOGTypeArticle?: boolean | undefined
+}>
+
+const { title, description, setOGTypeArticle = false } = Astro.props
+
+// define global CSS variables
+const configHue = siteConfig.themeColor
+
+const pageTitle =
+  title === undefined ?
+    `${siteConfig.title} - ${siteConfig.subtitle}`
+  : `${title} - ${siteConfig.title}`
+---
+
+<head>
+  <title>{pageTitle}</title>
+
+  <meta charset="UTF-8" />
+  <meta name="description" content={description ?? pageTitle} />
+  <meta name="author" content={profileConfig.name} />
+
+  <meta property="og:site_name" content={siteConfig.title} />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description ?? pageTitle} />
+  <meta property="og:type" content={setOGTypeArticle ? "article" : "website"} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description ?? pageTitle} />
+
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" href="/favicon.png" sizes="280x280" />
+
+  <!-- set color scheme early to avoid FOUC -->
+  <script
+    is:inline
+    define:vars={{
+      DEFAULT_COLOR_SCHEME,
+      BANNER_HEIGHT_EXTEND,
+      PAGE_WIDTH,
+      configHue,
+    }}
+  >
+    /** @type {import("$/types/config").ColorScheme} */
+    const colorScheme =
+      localStorage.getItem("colorScheme") ?? DEFAULT_COLOR_SCHEME
+
+    document.documentElement.dataset.colorScheme =
+      colorScheme === "auto" ?
+        window.matchMedia("(prefers-color-scheme: dark)").matches ?
+          "dark"
+        : "light"
+      : colorScheme
+
+    // load hue from local storage
+    const hue = localStorage.getItem("hue") ?? configHue
+    document.documentElement.style.setProperty("--hue", hue)
+
+    // calculate --banner-height-extend, which needs to be a multiple of 4 to
+    // avoid blurry text
+    let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
+    offset -= offset % 4
+    document.documentElement.style.setProperty(
+      "--banner-height-extend",
+      `${offset}px`,
+    )
+  </script>
+
+  <!-- define global CSS variables -->
+  <style
+    lang="scss"
+    define:vars={{
+      configHue,
+      "page-width": `${PAGE_WIDTH}rem`,
+    }}
+  ></style>
+
+  <slot name="head" />
+
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={profileConfig.name}
+    href="/rss.xml"
+  />
+</head>

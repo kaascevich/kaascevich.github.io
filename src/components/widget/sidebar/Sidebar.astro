@@ -1,0 +1,48 @@
+---
+import Profile from "$/components/widget/sidebar/Profile.astro"
+import Tag from "$/components/widget/sidebar/Tags.astro"
+import Categories from "$/components/widget/sidebar/Categories.astro"
+
+type Props = Readonly<{
+  class?: string | undefined
+}>
+
+const { class: className } = Astro.props
+---
+
+<aside id="sidebar" class={className}>
+  <section id="profile-section">
+    <Profile />
+  </section>
+  <section id="sidebar-sticky">
+    <Categories class="onload-animation" style="animation-delay: 150ms" />
+    <Tag class="onload-animation" style="animation-delay: 200ms" />
+  </section>
+</aside>
+
+<style lang="scss">
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #profile-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: spacing(4);
+    margin-bottom: spacing(4);
+  }
+
+  #sidebar-sticky {
+    @include transition($duration: 700ms);
+    display: flex;
+    flex-direction: column;
+    gap: spacing(4);
+    position: sticky;
+    top: spacing(4);
+  }
+</style>

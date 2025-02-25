@@ -1,0 +1,31 @@
+---
+import { BANNER_HEIGHT_EXTEND } from "$/constants/constants"
+import { siteConfig } from "$/config"
+import strings from "$/config/strings"
+
+import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+---
+
+<div id="banner-wrapper" style={`top: -${BANNER_HEIGHT_EXTEND}vh`}>
+  <ImageWrapper
+    id="banner"
+    alt={strings.alts.banner}
+    loading="eager"
+    class="object-cover h-full transition duration-700 opacity-0 scale-105"
+    src={siteConfig.banner.src}
+    position={siteConfig.banner.position}
+  />
+</div>
+
+<style lang="scss" define:vars={{ "end-stop": 0.5, multiplier: 1 / 2 }}>
+  #banner-wrapper {
+    @apply absolute z-10 w-full transition duration-700 overflow-hidden;
+
+    mask-image: linear-gradient(
+      to top,
+      #0000 calc(25% * var(--multiplier) * var(--end-stop)),
+      calc(75% * var(--multiplier) * var(--end-stop)),
+      #000f calc(var(--end-stop) * 100%)
+    );
+  }
+</style>

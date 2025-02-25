@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { i18n } from "$/i18n/translation"
-  import I18nKey from "$/i18n/i18nKey"
+  import strings from "$/config/strings"
   import { getDefaultHue, getHue, setHue } from "$/utils/settings"
   import Icon from "@iconify/svelte"
 
@@ -17,7 +16,7 @@
 <div id="display-settings" class="float-panel-closed">
   <div class="header">
     <div class="title">
-      {i18n(I18nKey.themeColor)}
+      {strings.theme.themeColor}
       <button
         aria-label="Reset to Default"
         class:opacity-0={hue === defaultHue}
@@ -38,7 +37,7 @@
 
   <div class="hue-slider-wrapper">
     <input
-      aria-label={i18n(I18nKey.themeColor)}
+      aria-label={strings.theme.themeColor}
       type="range"
       min="0"
       max="360"
@@ -51,10 +50,10 @@
 
 <style lang="scss">
   @use "sass:math";
-  @use "../../styles/main";
-  @use "../../styles/theme" as *;
-  @use "../../styles/utils" as *;
-  @use "../../styles/variants";
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
 
   @mixin slider-thumb {
     appearance: none;

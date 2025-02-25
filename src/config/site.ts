@@ -4,7 +4,6 @@ export default config<SiteConfig>({
   url: "https://kaascevich.github.io",
   title: "Haven",
   subtitle: "my little home on the internet",
-  lang: "en",
   themeColor: 250,
   banner: {
     enable: true,

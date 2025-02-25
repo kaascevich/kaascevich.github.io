@@ -1,4 +1,3 @@
-import type { Lang } from "$/i18n/translation"
 import type { DeepReadonly } from "./misc"
 
 /**
@@ -6,7 +5,8 @@ import type { DeepReadonly } from "./misc"
  *
  * This is useful for enabling type checking on default exports.
  *
- * @param value - Any value.
+ * @template T The type of the parameter.
+ * @param value Any value.
  * @returns The argument, unchanged.
  */
 export function config<T>(value: T): T {
@@ -20,10 +20,7 @@ export type SiteConfig = DeepReadonly<{
   /** The title of the site. */
   title: string
   /** The subtitle of the site. */
-  subtitle?: string | undefined
-
-  /** The primary language of the site. */
-  lang: Lang
+  subtitle: string
 
   /** The default theme color, from 0 to 360. */
   themeColor: number
@@ -43,7 +40,7 @@ export type SiteConfig = DeepReadonly<{
      *
      * Defaults to `center`.
      */
-    position?: "top" | "center" | "bottom" | undefined
+    position: "top" | "center" | "bottom"
     /** Configuration for the banner attribution link. */
     credit: {
       /** Whether to show an attribution link for the banner image. */
@@ -86,7 +83,7 @@ export type ProfileConfig = DeepReadonly<{
   /** The author's name. */
   name: string
   /** The author's bio. */
-  bio?: string | undefined
+  bio: string
   /** Links to the author's social profiles. */
   links: {
     /** The name of this service. */
@@ -109,3 +106,9 @@ export type LicenseConfig = DeepReadonly<{
 }>
 
 export type ColorScheme = "light" | "dark" | "auto"
+
+/** A list of strings. */
+export type StringList = Record<
+  string,
+  Record<string, string | ((...args: never[]) => string)>
+>

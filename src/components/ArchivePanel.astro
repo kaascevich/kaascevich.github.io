@@ -1,8 +1,5 @@
 ---
-import { siteConfig } from "$/config"
-import { UNCATEGORIZED } from "$/constants/constants"
-import I18nKey from "$/i18n/i18nKey"
-import { i18n } from "$/i18n/translation"
+import strings from "$/config/strings"
 import { getSortedPosts } from "$/utils/content"
 import { getPostUrlByID } from "$/utils/urls"
 
@@ -23,9 +20,7 @@ if (Array.isArray(tags) && tags.length > 0) {
 }
 
 if (categories !== undefined && categories.length > 0) {
-  posts = posts.filter((post) =>
-    categories.includes(post.data.category ?? UNCATEGORIZED),
-  )
+  posts = posts.filter((post) => categories.includes(post.data.category))
 }
 
 const groups = Array.from(
@@ -35,7 +30,7 @@ const groups = Array.from(
   .toSorted((a, b) => b.year - a.year) // sort by year, descending
 
 function formatDate(date: Date): string {
-  const format = new Intl.DateTimeFormat(siteConfig.lang, {
+  const format = new Intl.DateTimeFormat("en-US", {
     month: "numeric",
     day: "2-digit",
   })
@@ -61,10 +56,7 @@ function formatTag(tag: readonly string[]): string {
           </div>
 
           <div class="w-[70%] md:w-[80%] transition text-left text-50">
-            {group.posts.length}
-            {i18n(
-              group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount,
-            )}
+            {strings.meta.posts(group.posts.length)}
           </div>
         </header>
         {group.posts.map((post) => (

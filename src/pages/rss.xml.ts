@@ -12,7 +12,7 @@ export async function GET(context: APIContext): Promise<Response> {
 
   return rss({
     title: siteConfig.title,
-    description: siteConfig.subtitle ?? "No description",
+    description: siteConfig.subtitle,
     site: context.site ?? siteConfig.url,
     items: blog.map((post) => ({
       title: post.data.title,
@@ -23,6 +23,5 @@ export async function GET(context: APIContext): Promise<Response> {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
     })),
-    customData: `<language>${siteConfig.lang}</language>`,
   })
 }

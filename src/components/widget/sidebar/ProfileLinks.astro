@@ -1,0 +1,55 @@
+---
+import { profileConfig } from "$/config"
+import { Icon } from "astro-icon/components"
+---
+
+<ul>
+  {
+    profileConfig.links.map((link) => (
+      <a
+        rel="me"
+        aria-label={link.name}
+        href={link.url}
+        target="_blank"
+        class:list={[profileConfig.links.length === 1 ? "small" : "large"]}
+      >
+        <Icon name={link.icon} size="1.75rem" />
+        {profileConfig.links.length === 1 && link.name}
+      </a>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  ul {
+    display: flex;
+    gap: spacing(2);
+    justify-content: center;
+    margin-bottom: spacing(1);
+
+    a {
+      @extend .btn-regular;
+      border-radius: $radius-lg;
+      height: spacing(10);
+
+      &.small {
+        @include padding-x(spacing(2));
+        font-weight: $font-weight-bold;
+        &:active {
+          scale: 95%;
+        }
+      }
+      &.large {
+        width: spacing(10);
+        &:active {
+          scale: 90%;
+        }
+      }
+    }
+  }
+</style>

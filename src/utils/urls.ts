@@ -1,6 +1,3 @@
-import i18nKey from "$/i18n/i18nKey"
-import { i18n } from "$/i18n/translation"
-
 export function pathsEqual(path1: string, path2: string): boolean {
   const normalize = (path: string): string =>
     path.replace(/^\/|\/$/g, "").toLowerCase()
@@ -14,14 +11,6 @@ function joinUrl(...parts: readonly string[]): string {
 
 export function getPostUrlByID(id: string): string {
   return url(`/posts/${id}/`)
-}
-
-export function getCategoryUrl(category: string): string {
-  return url(
-    `/archive/category/${
-      category === i18n(i18nKey.uncategorized) ? "uncategorized" : category
-    }/`,
-  )
 }
 
 export function getDir(path: string): string {
