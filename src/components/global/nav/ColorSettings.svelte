@@ -10,15 +10,29 @@
     hue = getDefaultHue()
   }
 
+  function togglePanel() {
+    document
+      .getElementById("color-settings")
+      ?.classList.toggle("float-panel-closed")
+  }
+
   $effect(() => setHue(hue))
 </script>
 
-<div id="display-settings" class="float-panel-closed">
-  <div class="header">
+<button
+  aria-label="Color Settings"
+  id="color-settings-switch"
+  onclick={togglePanel}
+>
+  <Icon icon="tabler:palette" height="1.25rem" width="1.25rem" />
+</button>
+
+<div id="color-settings" class="float-panel-closed">
+  <header>
     <div class="title">
       {strings.theme.themeColor}
       <button
-        aria-label="Reset to Default"
+        aria-label="Reset to default"
         class:opacity-0={hue === defaultHue}
         class:pointer-events-none={hue === defaultHue}
         onclick={resetHue}
@@ -33,7 +47,7 @@
         {hue}&deg;
       </div>
     </div>
-  </div>
+  </header>
 
   <div class="hue-slider-wrapper">
     <input
@@ -50,10 +64,10 @@
 
 <style lang="scss">
   @use "sass:math";
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use "../../../styles/main";
+  @use "../../../styles/theme" as *;
+  @use "../../../styles/utils" as *;
+  @use "../../../styles/variants";
 
   @mixin slider-thumb {
     appearance: none;
@@ -72,7 +86,17 @@
     }
   }
 
-  #display-settings {
+  #color-settings-switch {
+    @extend .btn-plain, .scale-animation;
+    border-radius: $radius-lg;
+    height: spacing(11);
+    width: spacing(11);
+    &:active {
+      scale: 90%;
+    }
+  }
+
+  #color-settings {
     @extend .float-panel;
     position: absolute;
     @include transition($properties: all);
@@ -80,7 +104,7 @@
     right: spacing(4);
     padding: spacing(4);
 
-    .header {
+    header {
       display: flex;
       flex-direction: row;
       gap: spacing(2);

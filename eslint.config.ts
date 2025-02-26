@@ -1,10 +1,11 @@
 import { defineFlatConfig } from "eslint-define-config"
 
 import js from "@eslint/js"
-import ts from "typescript-eslint"
+import ts, { type ConfigArray } from "typescript-eslint"
 import eslintPluginAstro from "eslint-plugin-astro"
 import eslintPluginSvelte from "eslint-plugin-svelte"
 import eslintConfigPrettier from "eslint-config-prettier"
+import type { TSConfig } from "node_modules/astro/dist/core/config/tsconfig"
 
 // @ts-expect-error -- oh boy, I really don't wanna get into this right now
 export default defineFlatConfig([
@@ -74,7 +75,7 @@ export default defineFlatConfig([
   {
     languageOptions: {
       parserOptions: {
-        // projectService: true,
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -123,9 +124,10 @@ export default defineFlatConfig([
       "@typescript-eslint/no-unsafe-member-access": "off",
       "@typescript-eslint/no-unsafe-return": "off",
 
+      "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/prefer-literal-enum-member": "off",
     },
-  },
+  } satisfies ConfigArray[number],
 
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginSvelte.configs["flat/recommended"],

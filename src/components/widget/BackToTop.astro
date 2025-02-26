@@ -6,7 +6,7 @@ import { Icon } from "astro-icon/components"
   <button
     id="back-to-top-btn"
     class="hide"
-    onclick="backToTop()"
+    onclick="window.scroll({ top: 0, behavior: 'smooth'})"
     aria-label="Back to Top"
   >
     <Icon name="tabler:chevron-up" />
@@ -63,10 +63,3 @@ import { Icon } from "astro-icon/components"
     }
   }
 </style>
-
-<script is:inline>
-  // @ts-check
-  function backToTop() {
-    window.scroll({ top: 0, behavior: "smooth" })
-  }
-</script>

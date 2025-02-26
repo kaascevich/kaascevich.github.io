@@ -1,8 +1,7 @@
 ---
 import { siteConfig } from "$/config"
+import strings from "$/config/strings"
 import { Icon } from "astro-icon/components"
-
-const hasBannerLink = siteConfig.banner.credit.url !== undefined
 ---
 
 <a
@@ -10,21 +9,59 @@ const hasBannerLink = siteConfig.banner.credit.url !== undefined
   id="banner-credit"
   target="_blank"
   rel="noopener"
-  aria-label="Visit image source"
-  class:list={[
-    "group onload-animation transition-all absolute flex justify-center items-center rounded-full px-3 right-4 -top-[3.25rem] bg-black/60 hover:bg-black/70 h-9",
-    { "hover:pr-9 active:bg-black/80": hasBannerLink },
-  ]}
+  aria-label={strings.alts.bannerCredit}
 >
-  <Icon class="text-white/75 mr-1" size="1.25rem" name="tabler:copyright" />
-  <div class="text-white/75 text-xs">
+  <Icon class="copyright-icon" size="1.25rem" name="tabler:copyright" />
+
+  <div class="credit-text">
     {siteConfig.banner.credit.text}
   </div>
-  <Icon
-    class:list={[
-      "transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 opacity-0",
-      { "group-hover:opacity-100": hasBannerLink },
-    ]}
-    name="tabler:external-link"
-  />
+
+  <Icon class="external-icon" name="tabler:external-link" />
 </a>
+
+<style lang="scss">
+  @use "$/styles/transition";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  #banner-credit {
+    @extend .onload-animation;
+    @include transition($properties: all);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    @include padding-x(spacing(3));
+    right: spacing(4);
+    top: spacing(-13);
+    background-color: black(60%);
+    height: spacing(9);
+
+    &:hover {
+      background-color: black(70%);
+      padding-right: spacing(9);
+      .external-icon {
+        opacity: 100%;
+      }
+    }
+
+    &:active {
+      background-color: black(80%);
+    }
+  }
+
+  .copyright-icon {
+    @apply text-white/75 mr-1;
+  }
+
+  .credit-text {
+    @apply text-white/75 text-xs;
+  }
+
+  .external-icon {
+    @apply transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 opacity-0;
+  }
+</style>

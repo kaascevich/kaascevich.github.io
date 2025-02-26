@@ -43,7 +43,10 @@ const bannerOffset = {
   <body
     class:list={[
       "min-h-screen transition",
-      { "lg:is-home": isHomePage, "enable-banner": siteConfig.banner.enable },
+      {
+        "lg:is-home": isHomePage,
+        "enable-banner": siteConfig.banner !== undefined,
+      },
     ]}
     data-overlayscrollbars-initialize
   >
@@ -118,6 +121,7 @@ const bannerOffset = {
     BANNER_HEIGHT_EXTEND,
     MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
   } from "$/constants/constants"
+  import { siteConfig } from "$/config"
 
   const bannerEnabled = document.getElementById("banner-wrapper") !== null
 
@@ -135,9 +139,9 @@ const bannerOffset = {
       panelDom?.classList.add("float-panel-closed")
     })
   }
-  setClickOutsideToClose("display-settings", [
-    "display-settings",
-    "display-settings-switch",
+  setClickOutsideToClose("color-settings", [
+    "color-settings",
+    "color-settings-switch",
   ])
   setClickOutsideToClose("nav-menu-panel", [
     "nav-menu-panel",
@@ -214,7 +218,9 @@ const bannerOffset = {
     loadColorScheme()
     loadHue()
     initCustomScrollbar()
-    showBanner()
+    if (siteConfig.banner !== undefined) {
+      showBanner()
+    }
   }
 
   /* load settings when entering the site */
@@ -222,7 +228,7 @@ const bannerOffset = {
 
   const setup = () => {
     window.swup.hooks.on("link:click", () => {
-      // remove the delay for the first time page load
+      // remove first load delay
       document.documentElement.style.setProperty("--content-delay", "0ms")
 
       // prevent elements from overlapping the navbar

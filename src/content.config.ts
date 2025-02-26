@@ -40,7 +40,7 @@ const postsCollection = defineCollection({
       draft: z.boolean().optional().default(false),
 
       /** The description of the post. */
-      description: z.string().nonempty().optional(),
+      description: z.string().nonempty(),
 
       /**
        * The cover image for the post.

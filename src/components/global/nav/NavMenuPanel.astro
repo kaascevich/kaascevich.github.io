@@ -10,6 +10,10 @@ type Props = Readonly<{
 const { links } = Astro.props
 ---
 
+<button aria-label="Menu" name="Nav Menu" id="nav-menu-switch">
+  <Icon name="tabler:menu-2" size="1.25rem" />
+</button>
+
 <nav id="nav-menu-panel" class="float-panel-closed">
   {
     links.map(({ name, url, external = false }) => (
@@ -28,11 +32,39 @@ const { links } = Astro.props
   }
 </nav>
 
+<script>
+  function loadButtonScripts() {
+    document
+      .getElementById("nav-menu-switch")
+      ?.addEventListener("click", () =>
+        document
+          .getElementById("nav-menu-panel")
+          ?.classList.toggle("float-panel-closed"),
+      )
+  }
+
+  loadButtonScripts()
+</script>
+
 <style lang="scss">
   @use "$/styles/main";
   @use "$/styles/theme" as *;
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
+
+  #nav-menu-switch {
+    @extend .btn-plain, .scale-animation;
+    border-radius: $radius-lg;
+    height: spacing(11);
+    width: spacing(11);
+    &:active {
+      scale: 90%;
+    }
+
+    @include variants.md {
+      display: none !important;
+    }
+  }
 
   #nav-menu-panel {
     @extend .float-panel;

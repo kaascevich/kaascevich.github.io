@@ -18,8 +18,16 @@ import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 </div>
 
 <style lang="scss" define:vars={{ "end-stop": 0.5, multiplier: 1 / 2 }}>
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
   #banner-wrapper {
-    @apply absolute z-10 w-full transition duration-700 overflow-hidden;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    @include transition($duration: 700ms);
+    overflow: hidden;
 
     mask-image: linear-gradient(
       to top,

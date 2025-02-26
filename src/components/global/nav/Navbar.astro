@@ -1,11 +1,8 @@
 ---
 import { Icon } from "astro-icon/components"
-import DisplaySettings from "$/components/global/nav/DisplaySettings.svelte"
 import { navbarConfig, siteConfig } from "$/config"
-import NavMenuPanel from "$/components/global/nav/NavMenuPanel.astro"
-import Search from "$/components/global/nav/Search.svelte"
-import LightDarkSwitch from "$/components/global/nav/LightDarkSwitch.svelte"
 import { url } from "$/utils/urls"
+import NavExtras from "./NavExtras.astro"
 
 type Props = {
   class?: string | undefined
@@ -56,78 +53,7 @@ const { class: className } = Astro.props
         ))
       }
     </menu>
-    <div class="flex">
-      <Search client:load />
 
-      <button
-        aria-label="Display Settings"
-        class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90"
-        id="display-settings-switch"
-      >
-        <Icon name="tabler:palette" size="1.25rem" />
-      </button>
-
-      <LightDarkSwitch client:load />
-
-      <button
-        aria-label="Menu"
-        name="Nav Menu"
-        class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 md:!hidden"
-        id="nav-menu-switch"
-      >
-        <Icon name="tabler:menu-2" size="1.25rem" />
-      </button>
-    </div>
-
-    <NavMenuPanel links={navbarConfig.links} />
-    <DisplaySettings client:only="svelte" />
+    <NavExtras />
   </nav>
 </div>
-
-<script>
-  function toggleColorScheme() {
-    if (localStorage.getItem("colorScheme") === "dark") {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("colorScheme", "light")
-    } else {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("colorScheme", "dark")
-    }
-  }
-
-  function loadButtonScript() {
-    document
-      .getElementById("scheme-switch")
-      ?.addEventListener("click", toggleColorScheme)
-
-    document
-      .getElementById("display-settings-switch")
-      ?.addEventListener("click", () =>
-        document
-          .getElementById("display-settings")
-          ?.classList.toggle("float-panel-closed"),
-      )
-
-    document
-      .getElementById("nav-menu-switch")
-      ?.addEventListener("click", () =>
-        document
-          .getElementById("nav-menu-panel")
-          ?.classList.toggle("float-panel-closed"),
-      )
-  }
-
-  loadButtonScript()
-</script>
-
-<script is:inline define:vars={{ scriptUrl: url("/pagefind/pagefind.js") }}>
-  async function loadPagefind() {
-    /** @type {import("vite-plugin-pagefind/types").Pagefind} */
-    const pagefind = await import(scriptUrl)
-    await pagefind.options({ excerptLength: 20 })
-    pagefind.init()
-    window.pagefind = pagefind
-    pagefind.search("") // speed up the first search
-  }
-  loadPagefind()
-</script>

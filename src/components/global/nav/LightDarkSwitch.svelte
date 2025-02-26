@@ -44,23 +44,14 @@
       ?.classList.add("float-panel-closed")
   }
 
-  const buttons: Record<
+  const buttons = new Map<
     ColorScheme,
     { key: keyof typeof strings.theme; icon: string }
-  > = {
-    light: {
-      key: "lightMode",
-      icon: "tabler:sun",
-    },
-    dark: {
-      key: "darkMode",
-      icon: "tabler:moon",
-    },
-    auto: {
-      key: "systemMode",
-      icon: "tabler:brightness-filled",
-    },
-  }
+  >([
+    ["light", { key: "lightMode", icon: "tabler:sun" }],
+    ["dark", { key: "darkMode", icon: "tabler:moon" }],
+    ["auto", { key: "systemMode", icon: "tabler:brightness-filled" }],
+  ])
 </script>
 
 <div class="relative z-50" role="menu" tabindex="-1" onmouseleave={hidePanel}>
@@ -72,7 +63,7 @@
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
-    {#each Object.entries(buttons) as [colorScheme, { icon }]}
+    {#each buttons as [colorScheme, { icon }]}
       <div class="absolute" class:opacity-0={mode !== colorScheme}>
         <Icon {icon} height="1.25rem" width="1.25rem" />
       </div>
@@ -84,11 +75,11 @@
     class="hidden lg:block absolute transition float-panel-closed top-11 -right-2 pt-5"
   >
     <div class="card-base float-panel p-2">
-      {#each Object.entries(buttons) as [colorScheme, { key, icon }]}
+      {#each buttons as [colorScheme, { key, icon }]}
         <button
           class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
           class:current-color-scheme-btn={mode === colorScheme}
-          onclick={() => switchScheme(colorScheme as ColorScheme)}
+          onclick={() => switchScheme(colorScheme)}
         >
           <Icon {icon} height="1.25rem" width="1.25rem" class="mr-3" />
           {strings.theme[key]}

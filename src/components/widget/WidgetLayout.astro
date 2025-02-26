@@ -27,9 +27,7 @@ const {
   class={className}
   {style}
 >
-  <header>
-    {name}
-  </header>
+  <header>{name}</header>
   <div {id} class:list={["widget-content", { collapsed: isCollapsed }]}>
     <slot />
   </div>

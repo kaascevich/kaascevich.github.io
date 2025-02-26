@@ -45,5 +45,6 @@ export default {
     category: (category: string) => `All posts categorized under ${category}`,
     profile: "My profile",
     banner: "Site banner",
+    bannerCredit: "Visit image source",
   },
 } satisfies StringList

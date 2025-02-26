@@ -1,10 +1,8 @@
 ---
-import path from "node:path"
-import PostMetadata from "$/components/post/PostMeta.astro"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+import PostMeta from "$/components/post/PostMeta.astro"
+import PostLink from "$/components/post/PostLink.astro"
 import { Icon } from "astro-icon/components"
 import strings from "$/config/strings"
-import { getDir } from "$/utils/urls"
 import { render, type CollectionEntry } from "astro:content"
 
 type Props = Readonly<{
@@ -19,17 +17,13 @@ const { class: className, entry, url, style } = Astro.props
 const { title, published, updated, tags, category, image, description } =
   entry.data
 
-const coverWidth = "28%"
+const coverWidth = image === undefined ? "3.25rem" : "28%"
 
 const { remarkPluginFrontmatter } = await render(entry)
 ---
 
 <article class={className} {style}>
-  <div
-    class={`pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full md:w-[calc(100%-${
-      image === undefined ? "52px" : "var(--coverWidth)"
-    }-12px)]`}
-  >
+  <div class="info-wrapper">
     <h2>
       <a href={url}>
         {title}
@@ -37,23 +31,10 @@ const { remarkPluginFrontmatter } = await render(entry)
       </a>
     </h2>
 
-    <PostMetadata
-      {published}
-      {updated}
-      {tags}
-      {category}
-      hideTagsForMobile={true}
-      class="mb-4"
-    />
+    <PostMeta {published} {updated} {tags} {category} class="mb-4" />
 
-    <!-- description -->
-    <div
-      class:list={[
-        "description",
-        { "line-clamp-2 md:line-clamp-1": description === undefined },
-      ]}
-    >
-      {description ?? remarkPluginFrontmatter.excerpt}
+    <div class="description">
+      {description}
     </div>
 
     <!-- word count and read time  -->
@@ -64,40 +45,7 @@ const { remarkPluginFrontmatter } = await render(entry)
     </footer>
   </div>
 
-  {
-    image === undefined ?
-      <a
-        href={url}
-        aria-label={title}
-        class="!hidden md:!flex btn-regular w-[3.25rem] absolute right-3 top-3 bottom-3 rounded-xl bg-[--enter-btn-bg] hover:bg-[--enter-btn-bg-hover] active:bg-[--enter-btn-bg-active] active:scale-95"
-      >
-        <Icon
-          size="2.25rem"
-          name="tabler:chevron-right"
-          class="transition text-[--primary] mx-auto"
-        />
-      </a>
-    : <a
-        href={url}
-        aria-label={title}
-        class="group max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0 md:w-[--coverWidth] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
-      >
-        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
-        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
-          <Icon
-            size="3rem"
-            name="tabler:chevron-right"
-            class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white"
-          />
-        </div>
-        <ImageWrapper
-          src={image.source}
-          basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
-          alt={image.alt}
-          class="w-full h-full"
-        />
-      </a>
-  }
+  <PostLink {entry} {url} />
 </article>
 
 <style lang="scss" define:vars={{ coverWidth }}>
@@ -108,37 +56,97 @@ const { remarkPluginFrontmatter } = await render(entry)
 
   article {
     @extend .card-base;
-    @apply flex flex-col-reverse md:flex-col w-full rounded-2xl overflow-hidden relative;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    border-radius: $radius-xl2;
+    overflow: hidden;
+    position: relative;
+    @include variants.md {
+      flex-direction: column;
+    }
 
     // post separator
     @include after {
-      @apply transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] first:border-t-0 md:hidden;
+      @include transition();
+      @apply border-t border-dashed mx-6 border-black/10 dark:border-white/[0.15] first:border-t-0 md:hidden;
     }
 
-    h2 a {
-      @apply transition w-full block font-bold mb-3 text-3xl text-90 hover:text-[--primary] dark:hover:text-[--primary] active:text-[--title-active] dark:active:text-[--title-active] before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[36px] before:left-[18px] before:hidden md:before:block;
-
-      :global(svg) {
-        @apply inline text-[--primary] translate-y-0.5 absolute;
-
-        @include variants.md {
-          @apply transition absolute translate-y-0.5 opacity-0 -translate-x-1;
-        }
-      }
+    .info-wrapper {
+      padding: spacing(6);
 
       @include variants.md {
-        &:hover :global(svg) {
-          @apply opacity-100 translate-x-0;
+        padding: {
+          left: spacing(9);
+          right: spacing(2);
+          top: spacing(7);
+        }
+        width: calc(100% - var(--coverWidth) - 12px);
+      }
+
+      h2 a {
+        @include transition();
+        width: 100%;
+        display: block;
+        font-weight: $font-weight-bold;
+        margin-bottom: spacing(3);
+        @include font-size($text-xl3);
+        @include text-plain(90%);
+
+        &:hover {
+          color: var(--primary);
+        }
+        &:active {
+          color: var(--title-active);
+        }
+
+        @include variants.dark {
+          &:hover {
+            color: var(--primary);
+          }
+          &:active {
+            color: var(--title-active);
+          }
+        }
+
+        @apply before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[36px] before:left-[18px] before:hidden md:before:block;
+
+        svg {
+          display: inline;
+          color: var(--primary);
+          translate: 0 spacing(0.5);
+          position: absolute;
+
+          @include variants.md {
+            @include transition();
+            position: absolute;
+            translate: spacing(-1) spacing(0.5);
+            opacity: 0%;
+          }
+        }
+
+        @include variants.md {
+          &:hover svg {
+            opacity: 100%;
+            translate: 0;
+          }
         }
       }
-    }
 
-    .description {
-      @apply transition text-75 mb-3.5 pr-4;
+      .description {
+        @include transition();
+        @include text-plain(75%);
+        margin-bottom: spacing(3.5);
+        padding-right: spacing(4);
+      }
     }
 
     footer {
-      @apply text-sm text-black/30 dark:text-white/30 flex gap-4 transition;
+      @include transition();
+      @include font-size($text-sm);
+      display: flex;
+      gap: spacing(4);
+      @include text-plain(30%);
     }
   }
 </style>

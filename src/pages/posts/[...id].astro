@@ -135,7 +135,7 @@ const jsonLd = {
       </Markdown>
 
       {
-        licenseConfig.enable && (
+        licenseConfig !== undefined && (
           <License
             title={entry.data.title}
             pubDate={entry.data.published}

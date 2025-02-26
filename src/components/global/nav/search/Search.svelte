@@ -7,6 +7,7 @@
   import type { PagefindSearchFragment } from "vite-plugin-pagefind/types"
   import strings from "$/config/strings"
   import Icon from "@iconify/svelte"
+  import SearchResult from "$/components/global/nav/search/SearchResult.svelte"
 
   let keywordDesktop = $state("")
   let keywordMobile = $state("")
@@ -51,7 +52,7 @@
   })
 </script>
 
-<!-- search bar for desktop view -->
+<!-- search bar for desktop -->
 <search
   id="search-bar"
   class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06] dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10"
@@ -70,7 +71,7 @@
   />
 </search>
 
-<!-- toggle btn for phone/tablet view -->
+<!-- toggle button for mobile -->
 <button
   onclick={togglePanel}
   aria-label="Search Panel"
@@ -85,7 +86,7 @@
   id="search-panel"
   class="float-panel float-panel-closed search-panel absolute md:w-[30rem] top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2"
 >
-  <!-- search bar inside panel for phone/tablet -->
+  <!-- search bar inside panel for mobile -->
   <search
     id="search-bar-inside"
     class="flex relative lg:hidden transition-all items-center h-11 rounded-xl bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06] dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10"
@@ -103,25 +104,8 @@
     />
   </search>
 
-  <!-- search results -->
   {#each results as item}
-    <a
-      href={item.url}
-      class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block rounded-xl text-lg px-3 py-2 hover:bg-[--btn-plain-bg-hover] active:bg-[--btn-plain-bg-active]"
-    >
-      <header
-        class="transition text-90 inline-flex font-bold group-hover:text-[--primary]"
-      >
-        {item.meta.title}
-        <Icon
-          icon="tabler:chevron-right"
-          class="transition translate-x-1 my-auto text-[--primary]"
-        />
-      </header>
-      <div class="transition text-sm text-50">
-        {@html item.excerpt}
-      </div>
-    </a>
+    <SearchResult {item} />
   {/each}
 </div>
 

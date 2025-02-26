@@ -10,7 +10,6 @@ type Props = Readonly<{
   updated?: Date | undefined
   tags: readonly string[]
   category: string
-  hideTagsForMobile?: boolean | undefined
   hideUpdateDate?: boolean | undefined
 }>
 
@@ -20,7 +19,6 @@ const {
   updated,
   tags,
   category,
-  hideTagsForMobile = false,
   hideUpdateDate = false,
 } = Astro.props
 ---
@@ -72,12 +70,7 @@ const {
   </div>
 
   <!-- tags -->
-  <div
-    class:list={[
-      "items-center",
-      { flex: !hideTagsForMobile, "hidden md:flex": hideTagsForMobile },
-    ]}
-  >
+  <div class="items-center flex">
     <div class="meta-icon">
       <Icon name="tabler:hash" size="1.25rem" />
     </div>
