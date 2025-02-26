@@ -3,7 +3,7 @@ import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import { Icon } from "astro-icon/components"
 import { url } from "$/utils/urls"
 import strings from "$/config/strings"
-import { profileConfig } from "$/config"
+import siteConfig from "$/config/site"
 ---
 
 <a aria-label="Go to about page" href={url("/about/")} class="avatar">
@@ -11,7 +11,7 @@ import { profileConfig } from "$/config"
     <Icon name="tabler:user-square" />
   </div>
   <ImageWrapper
-    src={profileConfig.avatar}
+    src={siteConfig.profile.avatar}
     alt={strings.alts.profile}
     loading="eager"
   />
@@ -26,32 +26,32 @@ import { profileConfig } from "$/config"
     display: block;
     position: relative;
     margin: spacing(1) auto spacing(3);
-    max-width: spacing(48);
-    overflow: hidden;
     border-radius: $radius-xl;
     background-image: linear-gradient(
       to bottom,
       alpha(var(--profile-gradient-top), 20%),
       alpha(var(--profile-gradient-bottom), 20%)
     );
+    max-width: spacing(48);
+    overflow: hidden;
 
     .icon-wrapper {
       position: absolute;
       @include transition();
-      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
       width: 100%;
       height: 100%;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      pointer-events: none;
 
       svg {
         width: spacing(12);
         height: spacing(12);
         @include transition();
-        opacity: 0%;
         scale: 90%;
+        opacity: 0%;
         color: white;
       }
     }
@@ -86,8 +86,8 @@ import { profileConfig } from "$/config"
       max-width: none;
 
       img {
-        width: 100%;
         margin-top: 0;
+        width: 100%;
       }
     }
   }

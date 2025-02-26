@@ -1,8 +1,9 @@
 ---
 import { Icon } from "astro-icon/components"
-import { navbarConfig, siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import { url } from "$/utils/urls"
-import NavExtras from "./NavExtras.astro"
+import NavExtras from "$/components/global/nav/NavExtras.astro"
+import NavLink from "$/components/global/nav/NavLink.astro"
 
 type Props = {
   class?: string | undefined
@@ -10,50 +11,79 @@ type Props = {
 const { class: className } = Astro.props
 ---
 
-<div id="navbar" class="z-50 onload-animation">
-  <!-- used for onload animation -->
-  <div class="absolute h-8 left-0 right-0 -top-8 bg-[--card-bg] transition">
-  </div>
-
-  <nav
-    class:list={[
-      className,
-      "card-base !overflow-visible max-w-[--page-width] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-4",
-    ]}
-  >
-    <a
-      href={url("/")}
-      class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95"
-    >
-      <div class="flex flex-row text-[--primary] items-center text-md">
-        <Icon name="tabler:home" size="1.75rem" class="mr-2" />
-        {siteConfig.title}
-      </div>
+<div id="navbar">
+  <nav class={className}>
+    <a href={url("/")} class="home-link">
+      <Icon name="tabler:home" size="1.75rem" />
+      {siteConfig.title}
     </a>
-    <menu class="hidden md:flex">
-      {
-        navbarConfig.links.map((link) => (
-          <a
-            aria-label={link.name}
-            href={link.external === true ? link.url : url(link.url)}
-            target={link.external === true ? "_blank" : null}
-            class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
-          >
-            <div class="flex items-center">
-              {link.name}
-              {link.external === true && (
-                <Icon
-                  name="tabler:external-link"
-                  size="1.125rem"
-                  class="transition ml-1 text-black/[0.2] dark:text-white/[0.2]"
-                />
-              )}
-            </div>
-          </a>
-        ))
-      }
+    <menu>
+      {siteConfig.navbar.links.map((link) => <NavLink {link} />)}
     </menu>
 
     <NavExtras />
   </nav>
 </div>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  @keyframes fade-in-down {
+    0% {
+      translate: 0 spacing(-16);
+      opacity: 0%;
+    }
+    100% {
+      translate: 0 0;
+      opacity: 100%;
+    }
+  }
+
+  #navbar {
+    opacity: 0%;
+    z-index: 50;
+    animation: 300ms fade-in-down {
+      fill-mode: forwards;
+      delay: 0ms;
+    }
+
+    nav {
+      @extend .card-base;
+      max-width: var(--page-width);
+      height: spacing(18);
+      overflow: visible !important;
+      border: {
+        top-left-radius: 0 !important;
+        top-right-radius: 0 !important;
+      }
+      @include margin-x(auto);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include padding-x(spacing(4));
+
+      .home-link {
+        @extend .btn-plain, .scale-animation;
+        border-radius: $radius-lg;
+        height: spacing(13);
+        @include padding-x(spacing(5));
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: spacing(2);
+        color: var(--primary) !important;
+        font-weight: $font-weight-bold;
+      }
+
+      menu {
+        display: none;
+        @include variants.md {
+          display: flex;
+        }
+      }
+    }
+  }
+</style>

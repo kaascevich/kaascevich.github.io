@@ -1,5 +1,5 @@
 ---
-import { profileConfig } from "$/config"
+import siteConfig from "$/config/site"
 import { url } from "$/utils/urls"
 const currentYear = new Date().getFullYear()
 ---
@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear()
 <footer>
   <div class="footer-content">
     &copy; {currentYear}
-    {profileConfig.name} /
+    {siteConfig.profile.name} /
     <a target="_blank" href={url("rss.xml")}>RSS</a>
     /
     <a target="_blank" href={url("sitemap-index.xml")}>Sitemap</a>

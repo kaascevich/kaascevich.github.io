@@ -3,7 +3,7 @@ import "@fontsource-variable/playpen-sans"
 import "katex/dist/katex.css"
 import "$/styles/main.scss"
 
-import { siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import Head from "$/components/global/Head.astro"
 import ConfigCarrier from "$/components/ConfigCarrier.astro"
 import { BANNER_HEIGHT_EXTEND, BANNER_HEIGHT_HOME } from "$/constants/constants"
@@ -27,7 +27,7 @@ const bannerOffset = {
   top: `${BANNER_HEIGHT_EXTEND}vh`,
   center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
   bottom: "0",
-}[siteConfig.banner.position]
+}[siteConfig.banner?.position ?? "center"]
 ---
 
 <!doctype html>
@@ -121,7 +121,7 @@ const bannerOffset = {
     BANNER_HEIGHT_EXTEND,
     MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
   } from "$/constants/constants"
-  import { siteConfig } from "$/config"
+  import siteConfig from "$/config/site"
 
   const bannerEnabled = document.getElementById("banner-wrapper") !== null
 

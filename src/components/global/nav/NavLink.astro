@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components"
+import { url } from "$/utils/urls"
+import type { NavBarLink } from "$/types/config"
+
+type Props = {
+  link: NavBarLink
+}
+const { link } = Astro.props
+---
+
+<a
+  aria-label={link.name}
+  href={link.external === true ? link.url : url(link.url)}
+  target={link.external === true ? "_blank" : null}
+>
+  <div class="link-wrapper">
+    {link.name}
+    {link.external === true && <Icon name="tabler:external-link" />}
+  </div>
+</a>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+  a {
+    @extend .btn-plain, .scale-animation;
+    border-radius: $radius-lg;
+    height: spacing(11);
+    font-weight: $font-weight-bold;
+    @include padding-x(spacing(5));
+    &:active {
+      scale: 95%;
+    }
+
+    .link-wrapper {
+      display: flex;
+      align-items: center;
+
+      :global(svg) {
+        @include transition();
+        margin-left: spacing(1);
+        @include text-plain(20%);
+        width: 1.125rem;
+        height: 1.125rem;
+      }
+    }
+  }
+</style>

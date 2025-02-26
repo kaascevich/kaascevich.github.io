@@ -1,14 +1,15 @@
 ---
 import type { MarkdownHeading } from "astro"
-import { siteConfig } from "$/config"
+import type { TOCConfig } from "$/types/config"
 
 type Props = Readonly<{
+  config: TOCConfig
   class?: string | undefined
   headings: readonly MarkdownHeading[]
 }>
 
-const { class: className, headings } = Astro.props
-const maxLevel = siteConfig.toc.depth
+const { config, class: className, headings } = Astro.props
+const maxLevel = config.depth
 
 const minDepth = Math.min(...headings.map((heading) => heading.depth))
 

@@ -1,5 +1,5 @@
 ---
-import ArchivePanel from "$/components/ArchivePanel.astro"
+import ArchivePanel from "$/components/archive/ArchivePanel.astro"
 import strings from "$/config/strings"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
 import { getSortedPosts } from "$/utils/content"
@@ -7,20 +7,13 @@ import type { GetStaticPaths } from "astro"
 
 export const getStaticPaths = (async () => {
   const posts = await getSortedPosts()
-
-  const allTags = posts.reduce((acc, post) => {
-    post.data.tags.forEach((tag) => acc.add(tag))
-    return acc
-  }, new Set<string>())
-
-  return Array.from(allTags).map((tag) => ({
-    params: { tag },
-  }))
+  const allTags = new Set(posts.flatMap((post) => post.data.tags))
+  return [...allTags].map((tag) => ({ params: { tag } }))
 }) satisfies GetStaticPaths
 
 const { tag } = Astro.params
 ---
 
 <MainGridLayout title={strings.nav.archive} description={strings.nav.archive}>
-  <ArchivePanel tags={[tag]} />
+  <ArchivePanel filter={{ type: "tag", tag }} />
 </MainGridLayout>

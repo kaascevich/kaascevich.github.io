@@ -10,17 +10,9 @@ type Props = Readonly<{
   updated?: Date | undefined
   tags: readonly string[]
   category: string
-  hideUpdateDate?: boolean | undefined
 }>
 
-const {
-  class: className,
-  published,
-  updated,
-  tags,
-  category,
-  hideUpdateDate = false,
-} = Astro.props
+const { class: className, published, updated, tags, category } = Astro.props
 ---
 
 <div
@@ -41,16 +33,14 @@ const {
 
   <!-- update date -->
   {
-    !hideUpdateDate &&
-      updated !== undefined &&
-      updated.getTime() !== published.getTime() && (
-        <time datetime={updated.toISOString()} class="flex items-center">
-          <div class="meta-icon">
-            <Icon name="tabler:calendar-cog" size="1.25rem" />
-          </div>
-          <span class="text-50 text-sm font-medium">{formatDate(updated)}</span>
-        </time>
-      )
+    updated !== undefined && updated.getTime() !== published.getTime() && (
+      <time datetime={updated.toISOString()} class="flex items-center">
+        <div class="meta-icon">
+          <Icon name="tabler:calendar-cog" size="1.25rem" />
+        </div>
+        <span class="text-50 text-sm font-medium">{formatDate(updated)}</span>
+      </time>
+    )
   }
 
   <!-- categories -->
@@ -103,3 +93,22 @@ const {
     </ul>
   </div>
 </div>
+
+<style lang="scss">
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .meta-icon {
+    width: spacing(8);
+    height: spacing(8);
+    @include transition();
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--btn-regular-bg);
+    color: var(--btn-content);
+    margin-right: spacing(2);
+  }
+</style>

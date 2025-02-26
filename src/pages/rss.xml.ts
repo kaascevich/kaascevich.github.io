@@ -1,4 +1,4 @@
-import { siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import rss from "@astrojs/rss"
 import { getSortedPosts } from "$/utils/content"
 import type { APIContext } from "astro"

@@ -1,4 +1,4 @@
-import type { StringList } from "$/types/config"
+import type { StringList } from "../types/config"
 
 export default {
   nav: {
@@ -41,6 +41,9 @@ export default {
   },
   alts: {
     pageNum: (page: number) => `Page ${page}`,
+    prevPage: "Previous page",
+    nextPage: "Next page",
+
     tag: (tag: string) => `All posts tagged with ${tag}`,
     category: (category: string) => `All posts categorized under ${category}`,
     profile: "My profile",

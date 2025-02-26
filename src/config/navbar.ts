@@ -1,5 +1,5 @@
-import { config, type NavBarConfig } from "$/types/config"
-import strings from "$/config/strings"
+import { config, type NavBarConfig } from "../types/config"
+import strings from "./strings"
 
 export default config<NavBarConfig>({
   links: [

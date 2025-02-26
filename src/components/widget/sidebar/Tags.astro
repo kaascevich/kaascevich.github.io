@@ -1,11 +1,11 @@
 ---
 import WidgetLayout from "$/components/widget/WidgetLayout.astro"
 import ButtonTag from "$/components/control/ButtonTag.astro"
-import { getTagList } from "$/utils/content"
+import { getTagCounts } from "$/utils/content"
 import strings from "$/config/strings"
 import { url } from "$/utils/urls"
 
-const tags = await getTagList()
+const tags = await getTagCounts()
 
 const COLLAPSED_HEIGHT = "7.5rem"
 const COLLAPSE_THRESHOLD = 20

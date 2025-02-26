@@ -7,8 +7,8 @@ html.is-changing .transition-swup-fade {
   @include transition($properties: all, $duration: 200ms);
 }
 html.is-animating .transition-swup-fade {
-  opacity: 0%;
   translate: 0 spacing(4);
+  opacity: 0%;
 }
 
 /* fade-in animations for components */
@@ -29,9 +29,6 @@ html.is-animating .transition-swup-fade {
   animation: 300ms fade-in-up;
   animation-fill-mode: forwards;
 }
-#navbar {
-  animation-delay: 0ms;
-}
 #sidebar {
   animation-delay: 100ms;
 }
@@ -45,9 +42,6 @@ html.is-animating .transition-swup-fade {
 }
 .footer {
   animation-delay: 250ms;
-}
-#banner-credit {
-  animation-delay: 400ms;
 }
 
 /* Post content */

@@ -1,16 +1,18 @@
 ---
 import { formatDate } from "$/utils/dates"
 import { Icon } from "astro-icon/components"
-import { licenseConfig, profileConfig } from "$/config"
+import siteConfig from "$/config/site"
 import strings from "$/config/strings"
+import type { LicenseConfig } from "$/types/config"
 
 type Props = Readonly<{
+  config: LicenseConfig
   title: string
   pubDate: Date
   class: string
 }>
 
-const { title, pubDate, class: className } = Astro.props
+const { config, title, pubDate, class: className } = Astro.props
 const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
@@ -25,7 +27,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         {strings.license.author}
       </header>
       <div class="details-text">
-        {profileConfig.name}
+        {siteConfig.profile.name}
       </div>
     </div>
     <div>
@@ -40,8 +42,8 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <header>
         {strings.license.license}
       </header>
-      <a href={licenseConfig.url} target="_blank" class="details-link">
-        {licenseConfig.name}
+      <a href={config.url} target="_blank" class="details-link">
+        {config.name}
       </a>
     </div>
   </div>

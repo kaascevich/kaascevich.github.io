@@ -1,11 +1,16 @@
 ---
-import { siteConfig } from "$/config"
 import strings from "$/config/strings"
+import type { BannerCreditConfig } from "$/types/config"
 import { Icon } from "astro-icon/components"
+
+type Props = Readonly<{
+  config: BannerCreditConfig
+}>
+const { config } = Astro.props
 ---
 
 <a
-  href={siteConfig.banner.credit.url}
+  href={config.url}
   id="banner-credit"
   target="_blank"
   rel="noopener"
@@ -14,7 +19,7 @@ import { Icon } from "astro-icon/components"
   <Icon class="copyright-icon" size="1.25rem" name="tabler:copyright" />
 
   <div class="credit-text">
-    {siteConfig.banner.credit.text}
+    {config.text}
   </div>
 
   <Icon class="external-icon" name="tabler:external-link" />
@@ -39,6 +44,7 @@ import { Icon } from "astro-icon/components"
     top: spacing(-13);
     background-color: black(60%);
     height: spacing(9);
+    animation-delay: 400ms;
 
     &:hover {
       background-color: black(70%);

@@ -29,7 +29,7 @@ import shellSession from "@robot-inventor/shell-session-syntax"
 export default defineConfig({
   site: siteConfig.url,
   base: "/",
-  trailingSlash: "always",
+  trailingSlash: "ignore",
   integrations: [
     tailwind({
       nesting: true,

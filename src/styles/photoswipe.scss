@@ -3,14 +3,14 @@
 @use "variants";
 
 .pswp__button {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   transition: $ease-in-out $transition-duration !important;
   transition-property: $transition-properties;
+  margin-right: 0;
 
   background-color: black(40%);
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0;
   width: spacing(12);
   height: spacing(12);
 

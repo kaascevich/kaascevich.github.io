@@ -32,7 +32,7 @@ export type Config = DeepReadonly<{
   /** Configuration for the author's profile. */
   profile: ProfileConfig
   /** Configuration for post licenses. */
-  license: LicenseConfig
+  license?: LicenseConfig | undefined
 }>
 
 /** Configuration for the site-wide banner. */
@@ -100,29 +100,29 @@ export type ProfileConfig = DeepReadonly<{
   bio: string
 
   /** Links to the author's social profiles. */
-  links: {
-    /** The name of this service. */
-    name: string
+  links: ProfileLink[]
+}>
 
-    /** The URL to the author's profile on this service. */
-    url: string
+/** A link to a social profile. */
+export type ProfileLink = DeepReadonly<{
+  /** The name of this service. */
+  name: string
 
-    /** The icon of this service. */
-    icon: string
-  }[]
+  /** The URL to the author's profile on this service. */
+  url: string
+
+  /** The icon of this service. */
+  icon: string
 }>
 
 /** Configuration for post licenses. */
-export type LicenseConfig = DeepReadonly<
-  | {
-      /** The name of the license. */
-      name: string
+export type LicenseConfig = DeepReadonly<{
+  /** The name of the license. */
+  name: string
 
-      /** The URL to the license. */
-      url: string
-    }
-  | undefined
->
+  /** The URL to the license. */
+  url: string
+}>
 
 export type ColorScheme = "light" | "dark" | "auto"
 

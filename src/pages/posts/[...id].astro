@@ -7,10 +7,9 @@ import strings from "$/config/strings"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
 import { getDir, getPostUrlByID } from "$/utils/urls"
 import { Icon } from "astro-icon/components"
-import { licenseConfig } from "src/config"
 import PostMetadata from "$/components/post/PostMeta.astro"
 import ImageWrapper from "$/components/misc/ImageWrapper.astro"
-import { profileConfig } from "$/config"
+import siteConfig from "$/config/site"
 import { formatDate } from "$/utils/dates"
 import { getSortedPosts } from "$/utils/content"
 import type { GetStaticPaths } from "astro"
@@ -34,11 +33,11 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: entry.data.title,
-  description: entry.data.description ?? entry.data.title,
+  description: entry.data.description,
   keywords: entry.data.tags,
   author: {
     "@type": "Person",
-    name: profileConfig.name,
+    name: siteConfig.profile.name,
     url: Astro.site,
   },
   datePublished: formatDate(entry.data.published),
@@ -135,8 +134,9 @@ const jsonLd = {
       </Markdown>
 
       {
-        licenseConfig !== undefined && (
+        siteConfig.license !== undefined && (
           <License
+            config={siteConfig.license}
             title={entry.data.title}
             pubDate={entry.data.published}
             class="mb-6 rounded-xl license-container onload-animation"

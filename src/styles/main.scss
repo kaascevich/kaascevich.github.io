@@ -9,8 +9,8 @@
 @layer components {
   .card-base {
     border-radius: $radius-xl2;
-    overflow: hidden;
     background-color: var(--card-bg);
+    overflow: hidden;
     @include transition();
   }
 
@@ -45,15 +45,15 @@
     @include before {
       @include transition($function: $ease-out);
       position: absolute;
-      border-radius: inherit;
-      inset: 0;
       scale: 85%;
       z-index: -10;
+      inset: 0;
+      border-radius: inherit;
     }
     &:hover {
       @include before {
-        background-color: var(--btn-plain-bg-hover);
         scale: 100%;
+        background-color: var(--btn-plain-bg-hover);
       }
     }
     &:active {
@@ -66,24 +66,24 @@
   .link {
     @extend .expand-animation;
     @include transition();
+    margin: spacing(-1);
     border-radius: $radius-md;
     padding: spacing(1);
-    margin: spacing(-1);
 
     &-lg {
       @extend .expand-animation;
       @include transition();
+      margin: spacing(-1.5);
       border-radius: $radius-md;
       padding: spacing(1.5);
-      margin: spacing(-1.5);
     }
   }
 
   .float-panel {
     top: spacing(21);
     border-radius: $radius-xl2;
-    overflow: hidden;
     background-color: var(--float-panel-bg);
+    overflow: hidden;
     @include transition();
     box-shadow: $shadow-xl;
     @include variants.dark {
@@ -105,8 +105,8 @@
   .btn-card {
     @include transition();
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     background-color: var(--card-bg);
     &:hover {
       background-color: var(--btn-card-bg-hover);
@@ -122,10 +122,10 @@
   }
   .btn-plain {
     @include transition();
-    position: relative;
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: center;
+    align-items: center;
     background-image: none;
 
     color: black(75%);
@@ -162,18 +162,18 @@
   .btn-regular {
     @include transition();
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     background-color: var(--btn-regular-bg);
+
+    color: var(--btn-content);
     &:hover {
       background-color: var(--btn-regular-bg-hover);
     }
     &:active {
       background-color: var(--btn-regular-bg-active);
     }
-
-    color: var(--btn-content);
     @include variants.dark {
       color: white(75%);
     }
@@ -202,9 +202,6 @@
     }
   }
 
-  .text-90 {
-    @include text-plain(90%);
-  }
   .text-75 {
     @include text-plain(75%);
   }
@@ -213,22 +210,6 @@
   }
   .text-30 {
     @include text-plain(30%);
-  }
-  .text-25 {
-    @include text-plain(25%);
-  }
-
-  .meta-icon {
-    width: spacing(8);
-    height: spacing(8);
-    @include transition();
-    border-radius: $radius-md;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--btn-regular-bg);
-    color: var(--btn-content);
-    margin-right: spacing(2);
   }
 
   .copy-btn-icon {
@@ -241,8 +222,8 @@
 
   .copy-btn {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     background-color: with-hue(45%, 0.01);
     &:hover {
@@ -302,8 +283,12 @@
   position: relative;
   @include before {
     position: absolute;
+    left: calc(50% - 1px);
+    translate: 0 -50%;
+    transition: all 300ms;
     width: 10%;
     height: 100%;
+    pointer-events: none;
     border: {
       style: dashed;
       left: {
@@ -311,10 +296,6 @@
         color: var(--line-color);
       }
     }
-    pointer-events: none;
-    translate: 0 -50%;
-    left: calc(50% - 1px);
-    transition: all 300ms;
   }
 }
 

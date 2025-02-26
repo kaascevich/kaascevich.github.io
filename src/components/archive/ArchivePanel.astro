@@ -1,0 +1,49 @@
+---
+import { getSortedPosts } from "$/utils/content"
+import type { PostsForYear } from "$/types/content"
+import ArchiveGroup from "$/components/archive/ArchiveGroup.astro"
+
+type Filter = Readonly<
+  { type: "tag"; tag: string } | { type: "category"; category: string }
+>
+
+type Props = Readonly<{
+  filter?: Filter | undefined
+}>
+const { filter } = Astro.props
+
+let posts = await getSortedPosts()
+
+switch (filter?.type) {
+  case "tag":
+    posts = posts.filter((post) => post.data.tags.includes(filter.tag))
+    break
+  case "category":
+    posts = posts.filter((post) => post.data.category === filter.category)
+    break
+  case undefined:
+    break
+}
+
+const groups: PostsForYear[] = Array.from(
+  Map.groupBy(posts, (post) => post.data.published.getFullYear()),
+)
+  .map(([year, posts]) => ({ year, posts }))
+  .toSorted((a, b) => b.year - a.year) // sort by year, descending
+---
+
+<ol>
+  {groups.map((group) => <ArchiveGroup {group} />)}
+</ol>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  ol {
+    @extend .card-base;
+    padding: spacing(6) spacing(8);
+  }
+</style>

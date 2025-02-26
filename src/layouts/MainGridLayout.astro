@@ -4,7 +4,7 @@ import Navbar from "$/components/global/nav/Navbar.astro"
 import BackToTop from "$/components/widget/BackToTop.astro"
 import SideBar from "$/components/widget/sidebar/Sidebar.astro"
 import Layout from "$/layouts/Layout.astro"
-import { siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import type { MarkdownHeading } from "astro"
 import TOC from "$/components/widget/TOC.astro"
 import {
@@ -44,7 +44,7 @@ const mainPanelTop =
     </div>
   </header>
 
-  {siteConfig.banner !== undefined && <Banner />}
+  {siteConfig.banner !== undefined && <Banner config={siteConfig.banner} />}
 
   <!-- main content -->
   <!-- pointer-events-none prevents blocking TOC click events -->
@@ -57,7 +57,11 @@ const mainPanelTop =
         id="main-grid"
         class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4"
       >
-        {siteConfig.banner?.credit !== undefined && <BannerCredit />}
+        {
+          siteConfig.banner?.credit !== undefined && (
+            <BannerCredit config={siteConfig.banner.credit} />
+          )
+        }
 
         <SideBar
           class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"
@@ -103,7 +107,7 @@ const mainPanelTop =
             >
               <div id="toc" class="w-full h-full transition-swup-fade ">
                 <div class="h-8 w-full" />
-                <TOC {headings} />
+                <TOC config={siteConfig.toc} {headings} />
                 <div class="h-8 w-full" />
               </div>
             </div>

@@ -5,7 +5,6 @@ import ts, { type ConfigArray } from "typescript-eslint"
 import eslintPluginAstro from "eslint-plugin-astro"
 import eslintPluginSvelte from "eslint-plugin-svelte"
 import eslintConfigPrettier from "eslint-config-prettier"
-import type { TSConfig } from "node_modules/astro/dist/core/config/tsconfig"
 
 // @ts-expect-error -- oh boy, I really don't wanna get into this right now
 export default defineFlatConfig([

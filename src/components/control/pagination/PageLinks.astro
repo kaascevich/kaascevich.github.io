@@ -1,0 +1,110 @@
+---
+import { Icon } from "astro-icon/components"
+import { url } from "$/utils/urls"
+import strings from "$/config/strings"
+import type { PageLinkLayout } from "$/utils/pages"
+
+type Props = Readonly<{
+  pageLinks: PageLinkLayout
+  current: number
+}>
+
+const { pageLinks, current } = Astro.props
+
+const getPageUrl = (p: number): string => url(p === 1 ? "/" : `/${p}/`)
+---
+
+<ol>
+  {
+    pageLinks[0] !== null && (
+      <>
+        <a
+          href={getPageUrl(pageLinks[0])}
+          aria-label={strings.alts.pageNum(pageLinks[0])}
+          class="other-page"
+        >
+          {pageLinks[0]}
+        </a>
+        <Icon name="tabler:dots" class="hidden-pages" />
+      </>
+    )
+  }
+  {
+    pageLinks[1].map((page) =>
+      page === null ? <Icon name="tabler:dots" class="hidden-pages" />
+      : page === current ? <div class="current-page">{page}</div>
+      : <a
+          href={getPageUrl(page)}
+          aria-label={strings.alts.pageNum(page)}
+          class="other-page"
+        >
+          {page}
+        </a>,
+    )
+  }
+  {
+    pageLinks[2] !== null && (
+      <>
+        <Icon name="tabler:dots" class="hidden-pages" />
+        <a
+          href={getPageUrl(pageLinks[2])}
+          aria-label={strings.alts.pageNum(pageLinks[2])}
+          class="other-page"
+        >
+          {pageLinks[2]}
+        </a>
+      </>
+    )
+  }
+</ol>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  ol {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: $radius-lg;
+    background-color: var(--card-bg);
+
+    color: $color-neutral-700;
+    font-weight: $font-weight-bold;
+    @include variants.dark {
+      color: $color-neutral-300;
+    }
+  }
+
+  .hidden-pages {
+    @include margin-x(spacing(1));
+  }
+
+  .current-page,
+  .other-page {
+    border-radius: $radius-lg;
+    width: spacing(11);
+    height: spacing(11);
+  }
+
+  .current-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+
+    color: white;
+    @include variants.dark {
+      color: black(70%);
+    }
+  }
+  .other-page {
+    @extend .btn-card;
+    overflow: hidden;
+    &:active {
+      scale: 85%;
+    }
+  }
+</style>

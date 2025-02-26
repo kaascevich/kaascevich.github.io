@@ -1,9 +1,13 @@
 ---
 import { BANNER_HEIGHT_EXTEND } from "$/constants/constants"
-import { siteConfig } from "$/config"
 import strings from "$/config/strings"
-
+import type { BannerConfig } from "$/types/config"
 import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+
+type Props = Readonly<{
+  config: BannerConfig
+}>
+const { config } = Astro.props
 ---
 
 <div id="banner-wrapper" style={`top: -${BANNER_HEIGHT_EXTEND}vh`}>
@@ -12,8 +16,8 @@ import ImageWrapper from "$/components/misc/ImageWrapper.astro"
     alt={strings.alts.banner}
     loading="eager"
     class="object-cover h-full transition duration-700 opacity-0 scale-105"
-    src={siteConfig.banner.src}
-    position={siteConfig.banner.position}
+    src={config.src}
+    position={config.position}
   />
 </div>
 

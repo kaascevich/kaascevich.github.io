@@ -16,12 +16,12 @@
   h5,
   h6 {
     .anchor {
+      opacity: 0%;
       margin: spacing(-0.5) {
         left: 0.2ch !important;
       }
       padding: spacing(0.5) !important;
       user-select: none;
-      opacity: 0%;
       text-decoration-line: none !important;
 
       .anchor-icon {
@@ -40,8 +40,8 @@
     @extend .link;
     position: relative;
     background-image: none;
-    font-weight: $font-weight-medium;
     color: var(--primary);
+    font-weight: $font-weight-medium;
     text-underline-offset: 4px;
     text-decoration: {
       line: underline;
@@ -62,11 +62,11 @@
   }
 
   code {
-    background-color: var(--inline-code-bg);
-    color: var(--inline-code-color);
-    padding: spacing(1);
     border-radius: $radius-md;
+    background-color: var(--inline-code-bg);
+    padding: spacing(1);
     overflow: hidden;
+    color: var(--inline-code-color);
 
     font-family:
       "Monaspace Radon",
@@ -89,12 +89,12 @@
     counter-reset: line;
     span.line {
       @include before(counter(line)) {
-        color: white(25%);
-        margin-right: spacing(4);
-        width: spacing(4);
         display: inline-block;
 
         counter-increment: line;
+        margin-right: spacing(4);
+        width: spacing(4);
+        color: white(25%);
         direction: rtl;
       }
       &:last-child:empty,
@@ -110,8 +110,8 @@
   }
 
   pre {
-    background-color: var(--codeblock-bg) !important;
     border-radius: $radius-xl;
+    background-color: var(--codeblock-bg) !important;
     @include padding-x(spacing(5));
 
     code {
@@ -134,20 +134,20 @@
   }
 
   blockquote {
-    font-style: normal;
-    border-color: transparent;
     position: relative;
+    border-color: transparent;
+    font-style: normal;
     font-weight: inherit;
 
     @include before {
+      display: block;
       position: absolute;
       left: spacing(-1);
-      display: block;
       @include transition();
-      background-color: var(--btn-regular-bg);
-      height: 100%;
-      width: spacing(1);
       border-radius: 9999px;
+      background-color: var(--btn-regular-bg);
+      width: spacing(1);
+      height: 100%;
     }
 
     // remove the double quotes from default styles

@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon/components"
+import { url as getURL } from "$/utils/urls"
+
+type Props = Readonly<{
+  url: string | undefined
+  label: string
+  icon: string
+}>
+
+const { url, label, icon } = Astro.props
+---
+
+<a
+  href={url === undefined ? undefined : getURL(url)}
+  aria-label={label}
+  aria-disabled={url === undefined}
+>
+  <Icon name={icon} size="1.75rem" />
+</a>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  a {
+    @extend .btn-card;
+    border-radius: $radius-lg;
+    width: spacing(11);
+    height: spacing(11);
+    overflow: hidden;
+    color: var(--primary);
+    &:active {
+      scale: 85%;
+    }
+  }
+</style>

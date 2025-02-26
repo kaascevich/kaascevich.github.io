@@ -1,5 +1,5 @@
 ---
-import { profileConfig, siteConfig } from "$/config"
+import siteConfig from "$/config/site"
 import {
   BANNER_HEIGHT_EXTEND,
   DEFAULT_COLOR_SCHEME,
@@ -28,7 +28,7 @@ const pageTitle =
 
   <meta charset="UTF-8" />
   <meta name="description" content={description ?? pageTitle} />
-  <meta name="author" content={profileConfig.name} />
+  <meta name="author" content={siteConfig.profile.name} />
 
   <meta property="og:site_name" content={siteConfig.title} />
   <meta property="og:url" content={Astro.url} />
@@ -94,7 +94,7 @@ const pageTitle =
   <link
     rel="alternate"
     type="application/rss+xml"
-    title={profileConfig.name}
+    title={siteConfig.profile.name}
     href="/rss.xml"
   />
 </head>

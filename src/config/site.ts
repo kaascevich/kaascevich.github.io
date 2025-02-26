@@ -1,22 +1,25 @@
-import { config, type SiteConfig } from "../types/config"
+import licenseConfig from "./license"
+import navbarConfig from "./navbar"
+import profileConfig from "./profile"
+import { config, type Config } from "../types/config"
 
-export default config<SiteConfig>({
+export default config<Config>({
   url: "https://kaascevich.github.io",
   title: "Haven",
   subtitle: "my little home on the internet",
   themeColor: 250,
   banner: {
-    enable: true,
     src: "assets/images/banner.png",
     position: "center",
     credit: {
-      enable: true,
       text: "Basic Apple Guy",
       url: "https://basicappleguy.com/basicappleblog/strokes",
     },
   },
   toc: {
-    enable: true,
     depth: 3,
   },
+  navbar: navbarConfig,
+  profile: profileConfig,
+  license: licenseConfig,
 })

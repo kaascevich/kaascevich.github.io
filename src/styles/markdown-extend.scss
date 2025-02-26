@@ -9,8 +9,10 @@
   }
 
   hr {
-    border-color: var(--line-divider);
-    border-style: dashed;
+    border: {
+      style: dashed;
+      color: var(--line-divider);
+    }
   }
 
   iframe {

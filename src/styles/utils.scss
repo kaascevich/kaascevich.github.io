@@ -26,8 +26,8 @@
 
 @mixin margin-x($left, $right: $left) {
   margin: {
-    left: $left;
     right: $right;
+    left: $left;
   }
 }
 
@@ -40,8 +40,8 @@
 
 @mixin padding-x($left, $right: $left) {
   padding: {
-    left: $left;
     right: $right;
+    left: $left;
   }
 }
 

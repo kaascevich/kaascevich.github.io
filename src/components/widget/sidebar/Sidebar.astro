@@ -1,5 +1,6 @@
 ---
-import Profile from "$/components/widget/sidebar/Profile.astro"
+import siteConfig from "$/config/site"
+import Profile from "$/components/widget/sidebar/profile/Profile.astro"
 import Tag from "$/components/widget/sidebar/Tags.astro"
 import Categories from "$/components/widget/sidebar/Categories.astro"
 
@@ -12,7 +13,7 @@ const { class: className } = Astro.props
 
 <aside id="sidebar" class={className}>
   <section id="profile-section">
-    <Profile />
+    <Profile config={siteConfig.profile} />
   </section>
   <section id="sidebar-sticky">
     <Categories class="onload-animation" style="animation-delay: 150ms" />
@@ -32,17 +33,17 @@ const { class: className } = Astro.props
   #profile-section {
     display: flex;
     flex-direction: column;
-    width: 100%;
     gap: spacing(4);
     margin-bottom: spacing(4);
+    width: 100%;
   }
 
   #sidebar-sticky {
     @include transition($duration: 700ms);
     display: flex;
-    flex-direction: column;
-    gap: spacing(4);
     position: sticky;
     top: spacing(4);
+    flex-direction: column;
+    gap: spacing(4);
   }
 </style>
