@@ -7,8 +7,8 @@ import type { GetStaticPaths } from "astro"
 
 export const getStaticPaths = (async () => {
   const posts = await getSortedPosts()
-  const allTags = new Set(posts.flatMap((post) => post.data.tags))
-  return [...allTags].map((tag) => ({ params: { tag } }))
+  const tags = new Set(posts.flatMap((post) => post.data.tags))
+  return Array.from(tags, (tag) => ({ params: { tag } }))
 }) satisfies GetStaticPaths
 
 const { tag } = Astro.params

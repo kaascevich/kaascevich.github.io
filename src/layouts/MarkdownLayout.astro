@@ -14,9 +14,7 @@ const { title, description = title } = Astro.props.frontmatter
 // Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
 // manually.
 if (typeof title !== "string") {
-  throw new TypeError(
-    `invalid \`title\` prop (type \`${typeof title}\` is not assignable to \`string\`)`,
-  )
+  throw new TypeError(`invalid \`title\` prop (type \`${typeof title}\` is not assignable to \`string\`)`)
 }
 if (typeof description !== "string") {
   throw new TypeError(

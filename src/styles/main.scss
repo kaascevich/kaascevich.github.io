@@ -139,23 +139,12 @@
       }
     }
 
-    &:not(.scale-animation) {
+    &:not(.expand-animation) {
       &:hover {
         background-color: var(--btn-plain-bg-hover);
       }
       &:active {
         background-color: var(--btn-plain-bg-active);
-      }
-    }
-    &.scale-animation {
-      @extend .expand-animation;
-      &.current-color-scheme-btn {
-        color: var(--primary);
-        @include before {
-          scale: 100%;
-          opacity: 100%;
-          background-color: var(--btn-plain-bg-hover);
-        }
       }
     }
   }
@@ -270,8 +259,7 @@
   }
 }
 
-.custom-md img,
-#post-cover img {
+:is(.custom-md, #post-cover) img {
   cursor: zoom-in;
 }
 

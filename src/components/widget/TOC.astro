@@ -73,7 +73,7 @@ let heading1Count = 1
 
 <script>
   class TableOfContents extends HTMLElement {
-    tocEl: HTMLElement | null = null
+    tocElement: HTMLElement | null = null
     visibleClass = "visible"
     observer: IntersectionObserver
     anchorNavTarget: HTMLElement | null = null
@@ -95,39 +95,44 @@ let heading1Count = 1
       entries.forEach((entry) => {
         const id = entry.target.children[0]?.getAttribute("id")
         const idx = id ? this.headingIdxMap.get(id) : undefined
-        if (idx !== undefined) this.active[idx] = entry.isIntersecting
+        if (idx !== undefined) {
+          this.active[idx] = entry.isIntersecting
+        }
 
         if (
           entry.isIntersecting &&
           this.anchorNavTarget === entry.target.firstChild
-        )
+        ) {
           this.anchorNavTarget = null
+        }
       })
 
-      if (!this.active.includes(true)) this.fallback()
+      if (!this.active.includes(true)) {
+        this.fallback()
+      }
       this.update()
     }
 
     toggleActiveHeading = () => {
       let i = this.active.length - 1
-      let min = this.active.length - 1,
-        max = 0
+      let min = this.active.length - 1
+      let max = 0
       while (i >= 0 && !this.active[i]) {
         this.tocEntries[i]!.classList.remove(this.visibleClass)
-        i--
+        i -= 1
       }
       while (i >= 0 && this.active[i]) {
         this.tocEntries[i]!.classList.add(this.visibleClass)
         min = Math.min(min, i)
         max = Math.max(max, i)
-        i--
+        i -= 1
       }
       while (i >= 0) {
         this.tocEntries[i]!.classList.remove(this.visibleClass)
-        i--
+        i -= 1
       }
-      let parentOffset = this.tocEl?.getBoundingClientRect().top || 0
-      let scrollOffset = this.tocEl?.scrollTop || 0
+      let parentOffset = this.tocElement?.getBoundingClientRect().top ?? 0
+      let scrollOffset = this.tocElement?.scrollTop ?? 0
       let top =
         this.tocEntries[min]!.getBoundingClientRect().top -
         parentOffset +
@@ -146,15 +151,20 @@ let heading1Count = 1
       // if the TOC widget can accommodate both the topmost and bottommost
       // items, scroll to the topmost. otherwise, scroll to the bottommost item.
 
-      if (this.anchorNavTarget || !this.tocEl) return
+      if (this.anchorNavTarget || !this.tocElement) {
+        return
+      }
+
       const activeHeading = document.querySelectorAll<HTMLDivElement>(
         `#toc .${this.visibleClass}`,
       )
-      if (activeHeading.length === 0) return
+      if (activeHeading.length === 0) {
+        return
+      }
 
       const topmost = activeHeading[0]!
       const bottommost = activeHeading[activeHeading.length - 1]!
-      const tocHeight = this.tocEl.clientHeight
+      const tocHeight = this.tocElement.clientHeight
 
       let top
       if (
@@ -165,7 +175,7 @@ let heading1Count = 1
         top = topmost.offsetTop - 32
       else top = bottommost.offsetTop - tocHeight * 0.8
 
-      this.tocEl.scrollTo({
+      this.tocElement.scrollTo({
         top,
         left: 0,
         behavior: "smooth",
@@ -175,16 +185,14 @@ let heading1Count = 1
     update = () => {
       requestAnimationFrame(() => {
         this.toggleActiveHeading()
-        // requestAnimationFrame(() => {
         this.scrollToActiveHeading()
-        // });
       })
     }
 
     fallback = () => {
       if (this.sections.length === 0) return
 
-      for (let i = 0; i < this.sections.length; i++) {
+      for (let i = 0; i < this.sections.length; i += 1) {
         let offsetTop = this.sections[i]!.getBoundingClientRect().top
         let offsetBottom = this.sections[i]!.getBoundingClientRect().bottom
 
@@ -194,7 +202,9 @@ let heading1Count = 1
           (offsetTop < 0 && offsetBottom > window.innerHeight)
         ) {
           this.markActiveHeading(i)
-        } else if (offsetTop > window.innerHeight) break
+        } else if (offsetTop > window.innerHeight) {
+          break
+        }
       }
     }
 
@@ -207,43 +217,38 @@ let heading1Count = 1
         .composedPath()
         .find((element) => element instanceof HTMLAnchorElement)
 
+      if (1) {
+      }
+
       if (anchor) {
-        const id = decodeURIComponent(anchor.hash?.substring(1))
+        const id = decodeURIComponent(anchor.hash.substring(1))
         const idx = this.headingIdxMap.get(id)
-        if (idx !== undefined) {
-          this.anchorNavTarget = this.headings[idx]!
-        } else {
-          this.anchorNavTarget = null
-        }
+        this.anchorNavTarget = idx !== undefined ? this.headings[idx]! : null
       }
     }
 
-    isInRange(value: number, min: number, max: number) {
+    isInRange(value: number, min: number, max: number): boolean {
       return min < value && value < max
     }
 
     connectedCallback() {
-      // wait for the onload animation to finish, which makes the `getBoundingClientRect` return correct values
       const element = document.querySelector(".prose")
       if (element) {
-        element.addEventListener(
-          "animationend",
-          () => {
-            this.init()
-          },
-          { once: true },
-        )
+        element.addEventListener("animationend", () => this.init(), {
+          once: true,
+        })
       } else {
         console.warn("Animation element not found")
       }
     }
 
     init() {
-      this.tocEl = document.getElementById("toc-inner-wrapper")
+      this.tocElement = document.getElementById("toc-inner-wrapper")
+      if (this.tocElement === null) {
+        return
+      }
 
-      if (this.tocEl === null) return
-
-      this.tocEl.addEventListener("click", this.handleAnchorClick, {
+      this.tocElement.addEventListener("click", this.handleAnchorClick, {
         capture: true,
       })
 
@@ -252,13 +257,14 @@ let heading1Count = 1
       this.tocEntries = Array.from(
         document.querySelectorAll<HTMLAnchorElement>("#toc a[href^='#']"),
       )
-
-      if (this.tocEntries.length === 0) return
+      if (this.tocEntries.length === 0) {
+        return
+      }
 
       this.sections = new Array(this.tocEntries.length)
       this.headings = new Array(this.tocEntries.length)
       for (let i = 0; i < this.tocEntries.length; i++) {
-        const id = decodeURIComponent(this.tocEntries[i]!.hash?.substring(1))
+        const id = decodeURIComponent(this.tocEntries[i]!.hash.substring(1))
         const heading = document.getElementById(id)
         const section = heading?.parentElement
         if (heading instanceof HTMLElement && section instanceof HTMLElement) {
@@ -278,7 +284,7 @@ let heading1Count = 1
     disconnectedCallback() {
       this.sections.forEach((section) => this.observer.unobserve(section))
       this.observer.disconnect()
-      this.tocEl?.removeEventListener("click", this.handleAnchorClick)
+      this.tocElement?.removeEventListener("click", this.handleAnchorClick)
     }
   }
 

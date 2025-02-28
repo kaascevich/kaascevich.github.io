@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type { Pagefind } from "vite-plugin-pagefind/types"
-  declare var pagefind: Pagefind
+  declare let pagefind: Pagefind
 </script>
 
 <script lang="ts">
@@ -13,9 +13,11 @@
   let keywordMobile = $state("")
   let results: PagefindSearchFragment[] = $state([])
 
-  const search = async (keyword: string, isDesktop: boolean) => {
-    let panel = document.getElementById("search-panel")
-    if (panel === null) return
+  const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
+    const panel = document.getElementById("search-panel")
+    if (panel === null) {
+      return
+    }
 
     if (keyword === "" && isDesktop) {
       panel.classList.add("float-panel-closed")
@@ -39,16 +41,17 @@
     results = tempResults
   }
 
-  const togglePanel = () =>
+  const togglePanel = (): void => {
     document
       .getElementById("search-panel")
       ?.classList.toggle("float-panel-closed")
+  }
 
   $effect(() => {
-    search(keywordDesktop, true)
+    void search(keywordDesktop, true)
   })
   $effect(() => {
-    search(keywordMobile, false)
+    void search(keywordMobile, false)
   })
 </script>
 
@@ -76,7 +79,7 @@
   onclick={togglePanel}
   aria-label="Search Panel"
   id="search-switch"
-  class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
+  class="btn-plain expand-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90"
 >
   <Icon icon="tabler:search" height="1.25rem" width="1.25rem" />
 </button>

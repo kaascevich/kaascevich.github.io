@@ -1,6 +1,0 @@
-# ignore artifacts
-.astro
-dist
-
-# ignore MDX (prettier support for MDX is... wonky)
-**/*.mdx

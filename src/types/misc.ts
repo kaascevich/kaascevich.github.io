@@ -29,6 +29,6 @@
  * deepReadonly.arr[1] = 42    // error: index signature only permits reading
  */
 export type DeepReadonly<T> =
-  T extends (...args: unknown[]) => unknown ? T
-  : T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-  : T
+  T extends (...args: never[]) => unknown ? T
+    : T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+      : T

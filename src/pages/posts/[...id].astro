@@ -1,14 +1,10 @@
 ---
-import path from "node:path"
 import { render, type CollectionEntry } from "astro:content"
 import License from "$/components/post/License.astro"
 import Markdown from "$/components/post/Markdown.astro"
-import strings from "$/config/strings"
+import PostHeader from "$/components/post/PostHeader.astro"
+import PostPagination from "$/components/post/PostPagination.astro"
 import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import { getDir, getPostUrlByID } from "$/utils/urls"
-import { Icon } from "astro-icon/components"
-import PostMetadata from "$/components/post/PostMeta.astro"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
 import siteConfig from "$/config/site"
 import { formatDate } from "$/utils/dates"
 import { getSortedPosts } from "$/utils/content"
@@ -44,90 +40,12 @@ const jsonLd = {
 } as const
 ---
 
-<MainGridLayout
-  title={entry.data.title}
-  description={entry.data.description}
-  setOGTypeArticle={true}
-  {headings}
->
-  <script
-    is:inline
-    slot="head"
-    type="application/ld+json"
-    set:html={JSON.stringify(jsonLd)}
-  />
+<MainGridLayout title={entry.data.title} description={entry.data.description} setOGTypeArticle={true} {headings}>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-  <div class="flex w-full rounded-2xl overflow-hidden relative mb-4">
-    <div
-      id="post-container"
-      class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full"
-      data-pagefind-body
-    >
-      <!-- word count and reading time -->
-      <div
-        class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation"
-      >
-        <div class="flex flex-row items-center">
-          <div
-            class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
-          >
-            <Icon name="tabler:align-justified" />
-          </div>
-          <div class="text-sm">
-            {strings.meta.words(remarkPluginFrontmatter.words)}
-          </div>
-        </div>
-        <div class="flex flex-row items-center">
-          <div
-            class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
-          >
-            <Icon name="tabler:clock" />
-          </div>
-          <div class="text-sm">
-            {strings.meta.minutes(remarkPluginFrontmatter.minutes)}
-          </div>
-        </div>
-      </div>
-
-      <!-- title -->
-      <h1 class="relative onload-animation">
-        <div
-          data-pagefind-body
-          data-pagefind-weight="10"
-          data-pagefind-meta="title"
-          class="transition w-full block font-bold mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90 md:before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
-        >
-          {entry.data.title}
-        </div>
-      </h1>
-
-      <!-- metadata -->
-      <div class="onload-animation">
-        <PostMetadata
-          class="mb-5"
-          published={entry.data.published}
-          updated={entry.data.updated}
-          tags={entry.data.tags}
-          category={entry.data.category}
-        />
-        {
-          entry.data.image === undefined && (
-            <div class="border-[--line-divider] border-dashed border-b-[1px] mb-5" />
-          )
-        }
-      </div>
-
-      {
-        entry.data.image !== undefined && (
-          <ImageWrapper
-            id="post-cover"
-            src={entry.data.image.source}
-            alt={entry.data.image.alt}
-            basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
-            class="mb-8 rounded-xl banner-container onload-animation"
-          />
-        )
-      }
+  <div class="post-container-wrapper">
+    <div id="post-container" data-pagefind-body>
+      <PostHeader {entry} wordCount={remarkPluginFrontmatter.words} readingTime={remarkPluginFrontmatter.minutes} />
 
       <Markdown class="mb-6 markdown-content onload-animation">
         <Content />
@@ -146,46 +64,33 @@ const jsonLd = {
     </div>
   </div>
 
-  <nav
-    class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"
-  >
-    {
-      entry.data.nextID !== undefined && (
-        <a
-          href={getPostUrlByID(entry.data.nextID)}
-          class="w-full font-bold overflow-hidden active:scale-95 max-w-[calc(50%-0.5rem)]"
-        >
-          <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
-            <Icon
-              name="tabler:chevron-left"
-              size="2rem"
-              class="text-[--primary]"
-            />
-            <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-              {entry.data.nextTitle}
-            </div>
-          </div>
-        </a>
-      )
-    }
-    {
-      entry.data.prevID !== undefined && (
-        <a
-          href={getPostUrlByID(entry.data.prevID)}
-          class="w-full font-bold overflow-hidden active:scale-95 max-w-[calc(50%-0.5rem)]"
-        >
-          <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
-            <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-              {entry.data.prevTitle}
-            </div>
-            <Icon
-              name="tabler:chevron-right"
-              size="2rem"
-              class="text-[--primary]"
-            />
-          </div>
-        </a>
-      )
-    }
-  </nav>
+  <PostPagination {entry} />
 </MainGridLayout>
+
+<style lang="scss">
+  @use "$/styles/main";
+  @use "$/styles/theme" as *;
+  @use "$/styles/utils" as *;
+  @use "$/styles/variants";
+
+  .post-container-wrapper {
+    display: flex;
+    position: relative;
+    margin-bottom: spacing(4);
+    border-radius: $radius-xl2;
+    width: 100%;
+    overflow: hidden;
+
+    #post-container {
+      @extend .card-base;
+      position: relative;
+      z-index: 10;
+      padding: spacing(6) spacing(6) spacing(4);
+      width: 100%;
+
+      @include variants.md {
+        @include padding-x(spacing(9));
+      }
+    }
+  }
+</style>

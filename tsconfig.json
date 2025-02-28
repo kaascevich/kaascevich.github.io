@@ -2,11 +2,12 @@
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "baseUrl": ".",
-    "strictNullChecks": true,
+    "paths": { "$/*": ["src/*"] },
     "allowJs": true,
+    "checkJs": true,
+    "strictNullChecks": true,
     "declaration": true,
-    "plugins": [{ "name": "@astrojs/ts-plugin" }],
-    "paths": { "$/*": ["src/*"] }
+    "plugins": [{ "name": "@astrojs/ts-plugin" }]
   },
   "include": ["**/*", ".*"],
   "exclude": ["public/pagefind", "node_modules", "dist", ".astro"]

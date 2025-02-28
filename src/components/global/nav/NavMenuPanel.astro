@@ -53,10 +53,10 @@ const { links } = Astro.props
   @use "$/styles/variants";
 
   #nav-menu-switch {
-    @extend .btn-plain, .scale-animation;
+    @extend .btn-plain, .expand-animation;
     border-radius: $radius-lg;
-    height: spacing(11);
     width: spacing(11);
+    height: spacing(11);
     &:active {
       scale: 90%;
     }
@@ -78,9 +78,9 @@ const { links } = Astro.props
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: spacing(2) spacing(1) spacing(2) spacing(3);
-      border-radius: $radius-lg;
       gap: spacing(8);
+      border-radius: $radius-lg;
+      padding: spacing(2) spacing(1) spacing(2) spacing(3);
       &:hover {
         background-color: var(--btn-plain-bg-hover);
       }

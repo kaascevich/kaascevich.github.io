@@ -16,7 +16,7 @@ const { config } = Astro.props
   rel="noopener"
   aria-label={strings.alts.bannerCredit}
 >
-  <Icon class="copyright-icon" size="1.25rem" name="tabler:copyright" />
+  <Icon class="copyright-icon" name="tabler:copyright" />
 
   <div class="credit-text">
     {config.text}
@@ -34,17 +34,17 @@ const { config } = Astro.props
   #banner-credit {
     @extend .onload-animation;
     @include transition($properties: all);
-    position: absolute;
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
     border-radius: 9999px;
     @include padding-x(spacing(3));
-    right: spacing(4);
     top: spacing(-13);
+    right: spacing(4);
+    animation-delay: 400ms;
     background-color: black(60%);
     height: spacing(9);
-    animation-delay: 400ms;
 
     &:hover {
       background-color: black(70%);
@@ -61,13 +61,20 @@ const { config } = Astro.props
 
   .copyright-icon {
     @apply text-white/75 mr-1;
+    width: spacing(5);
+    height: spacing(5);
   }
 
   .credit-text {
-    @apply text-white/75 text-xs;
+    color: white(75%);
+    @include font-size($text-xs);
   }
 
   .external-icon {
-    @apply transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 opacity-0;
+    @include transition();
+    position: absolute;
+    right: spacing(4);
+    opacity: 0%;
+    color: with-hue(75%, 0.14);
   }
 </style>

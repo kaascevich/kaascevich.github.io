@@ -8,7 +8,10 @@ const { class: className } = Astro.props
 ---
 
 <div
-  class=`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`
+  class:list={[
+    "prose dark:prose-invert prose-base !max-w-none custom-md",
+    className,
+  ]}
 >
   <slot />
 </div>
@@ -19,29 +22,29 @@ const { class: className } = Astro.props
 
   document.addEventListener("DOMContentLoaded", addPreCopyButton)
 
-  function addPreCopyButton(): void {
+  function addPreCopyButton() {
     observer.disconnect()
 
-    let codeBlocks = Array.from(document.querySelectorAll("pre"))
-
+    const codeBlocks = Array.from(document.querySelectorAll("pre"))
     for (const codeBlock of codeBlocks) {
       if (
         codeBlock.parentElement?.nodeName === "DIV" &&
-        codeBlock.parentElement?.classList.contains("code-block")
-      )
+        codeBlock.parentElement.classList.contains("code-block")
+      ) {
         continue
+      }
 
-      let wrapper = document.createElement("div")
+      const wrapper = document.createElement("div")
       wrapper.className = "relative code-block"
 
-      let copyButton = document.createElement("button")
+      const copyButton = document.createElement("button")
       copyButton.className =
         "copy-btn absolute active:scale-90 h-8 w-8 top-2 right-2 opacity-75 text-sm p-1.5 rounded-lg transition-all ease-in-out"
 
-      codeBlock.setAttribute("tabindex", "0")
+      codeBlock.tabIndex = 0
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
 
-      let copyIcon = `<svg
+      const copyIcon = `<svg
         class="copy-btn-icon copy-icon"
         xmlns="http://www.w3.org/2000/svg"
         height="20px"
@@ -63,7 +66,7 @@ const { class: className } = Astro.props
           />
         </g>
       </svg>`
-      let successIcon = `<svg
+      const successIcon = `<svg
         class="copy-btn-icon success-icon"
         xmlns="http://www.w3.org/2000/svg"
         height="20px"
@@ -79,14 +82,16 @@ const { class: className } = Astro.props
       wrapper.appendChild(codeBlock)
       wrapper.appendChild(copyButton)
 
-      let timeout: ReturnType<typeof setTimeout>
+      let timeout: ReturnType<typeof setTimeout> | undefined = undefined
       copyButton.addEventListener("click", async () => {
-        if (timeout) {
+        if (timeout !== undefined) {
           clearTimeout(timeout)
         }
 
-        const text = codeBlock?.querySelector("code")?.innerText
-        if (text === undefined) return
+        const text = codeBlock.querySelector("code")?.innerText
+        if (text === undefined) {
+          return
+        }
 
         await navigator.clipboard.writeText(text)
         copyButton.classList.add("success")

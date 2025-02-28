@@ -1,7 +1,7 @@
-import postcssImport from "postcss-import"
-import postcssNesting from "tailwindcss/nesting/index.js"
-import tailwindcss from "tailwindcss"
 import type { Config } from "postcss-load-config"
+import postcssImport from "postcss-import"
+import tailwindcss from "tailwindcss"
+import postcssNesting from "tailwindcss/nesting/index.js"
 
 const config: Config = {
   plugins: {

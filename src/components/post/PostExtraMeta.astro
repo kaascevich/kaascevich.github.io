@@ -1,0 +1,40 @@
+---
+import strings from "$/config/strings"
+import { Icon } from "astro-icon/components"
+
+type Props = Readonly<{
+  wordCount: number
+  readingTime: number
+  class?: string | undefined
+}>
+
+const { wordCount, readingTime, class: className } = Astro.props
+---
+
+<div
+  class:list={[
+    "flex flex-row text-black/30 dark:text-white/30 gap-5",
+    className,
+  ]}
+>
+  <div class="flex flex-row items-center">
+    <div
+      class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
+    >
+      <Icon name="tabler:align-justified" />
+    </div>
+    <div class="text-sm">
+      {strings.meta.words(wordCount)}
+    </div>
+  </div>
+  <div class="flex flex-row items-center">
+    <div
+      class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"
+    >
+      <Icon name="tabler:clock" />
+    </div>
+    <div class="text-sm">
+      {strings.meta.minutes(readingTime)}
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
+import { config, type Config } from "../types/config"
 import licenseConfig from "./license"
 import navbarConfig from "./navbar"
 import profileConfig from "./profile"
-import { config, type Config } from "../types/config"
 
 export default config<Config>({
   url: "https://kaascevich.github.io",

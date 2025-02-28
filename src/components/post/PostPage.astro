@@ -14,7 +14,7 @@ let delay = 0
 const interval = 50
 ---
 
-<ol class="post-list-wrapper">
+<ol>
   {
     page.data.map((entry) => (
       <PostCard
@@ -32,7 +32,7 @@ const interval = 50
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  .post-list-wrapper {
+  ol {
     @include transition();
     display: flex;
     flex-direction: column;

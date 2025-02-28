@@ -10,9 +10,17 @@ type Props = Readonly<{
   updated?: Date | undefined
   tags: readonly string[]
   category: string
+  compactOnMobile?: boolean | undefined
 }>
 
-const { class: className, published, updated, tags, category } = Astro.props
+const {
+  class: className,
+  published,
+  updated,
+  tags,
+  category,
+  compactOnMobile = false,
+} = Astro.props
 ---
 
 <div
@@ -34,7 +42,13 @@ const { class: className, published, updated, tags, category } = Astro.props
   <!-- update date -->
   {
     updated !== undefined && updated.getTime() !== published.getTime() && (
-      <time datetime={updated.toISOString()} class="flex items-center">
+      <time
+        datetime={updated.toISOString()}
+        class:list={[
+          "flex items-center",
+          { "hidden md:flex": compactOnMobile },
+        ]}
+      >
         <div class="meta-icon">
           <Icon name="tabler:calendar-cog" size="1.25rem" />
         </div>
@@ -60,7 +74,9 @@ const { class: className, published, updated, tags, category } = Astro.props
   </div>
 
   <!-- tags -->
-  <div class="items-center flex">
+  <div
+    class:list={["items-center flex", { "hidden md:flex": compactOnMobile }]}
+  >
     <div class="meta-icon">
       <Icon name="tabler:hash" size="1.25rem" />
     </div>
@@ -103,12 +119,12 @@ const { class: className, published, updated, tags, category } = Astro.props
     width: spacing(8);
     height: spacing(8);
     @include transition();
-    border-radius: $radius-md;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin-right: spacing(2);
+    border-radius: $radius-md;
     background-color: var(--btn-regular-bg);
     color: var(--btn-content);
-    margin-right: spacing(2);
   }
 </style>

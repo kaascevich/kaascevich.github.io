@@ -55,7 +55,7 @@ if (isLocal) {
 }
 ---
 
-<div {id} class:list={["image-wrapper", className]}>
+<div {id} class={className}>
   {
     img === undefined ?
       <img src={isPublic ? url(src) : src} {alt} {loading} />
@@ -68,9 +68,9 @@ if (isLocal) {
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  .image-wrapper {
-    overflow: hidden;
+  div {
     position: relative;
+    overflow: hidden;
 
     img {
       width: 100%;

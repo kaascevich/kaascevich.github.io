@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components"
 ---
 
-<div class="back-to-top-wrapper">
+<div>
   <button
     id="back-to-top-btn"
     class="hide"
@@ -19,14 +19,14 @@ import { Icon } from "astro-icon/components"
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
 
-  .back-to-top-wrapper {
+  div {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: spacing(15);
     height: spacing(15);
-    position: absolute;
-    right: 0;
-    top: 0;
     pointer-events: none;
-    display: none;
 
     @include variants.lg {
       display: block;
@@ -35,15 +35,15 @@ import { Icon } from "astro-icon/components"
     #back-to-top-btn {
       color: var(--primary);
       @include font-size($text-xl4);
-      font-weight: $font-weight-bold;
 
       position: fixed;
       bottom: spacing(40);
+      translate: spacing(20);
       opacity: 100%;
       cursor: pointer;
-      translate: spacing(20);
-      pointer-events: auto;
       border-radius: $radius-xl2;
+      pointer-events: auto;
+      font-weight: $font-weight-bold;
 
       @extend .btn-card;
       width: spacing(15);

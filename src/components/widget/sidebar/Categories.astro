@@ -29,7 +29,7 @@ const { class: className, style } = Astro.props
   {style}
 >
   {
-    [...categories].map(([name, count]) => (
+    Array.from(categories, ([name, count]) => (
       <ButtonLink
         url={url(`/archive/category/${name}/`)}
         badge={String(count)}

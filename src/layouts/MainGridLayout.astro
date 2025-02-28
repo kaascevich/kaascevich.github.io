@@ -7,10 +7,7 @@ import Layout from "$/layouts/Layout.astro"
 import siteConfig from "$/config/site"
 import type { MarkdownHeading } from "astro"
 import TOC from "$/components/widget/TOC.astro"
-import {
-  BANNER_HEIGHT,
-  MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
-} from "$/constants/constants"
+import { BANNER_HEIGHT, MAIN_PANEL_OVERLAPS_BANNER_HEIGHT } from "$/constants/constants"
 import Banner from "$/components/global/Banner.astro"
 import BannerCredit from "$/components/global/BannerCredit.astro"
 
@@ -24,9 +21,7 @@ type Props = Readonly<{
 const { title, description, setOGTypeArticle, headings = [] } = Astro.props
 
 const mainPanelTop =
-  siteConfig.banner === undefined ?
-    "5.5rem"
-  : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
+  siteConfig.banner === undefined ? "5.5rem" : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 ---
 
 <Layout {title} {description} {setOGTypeArticle}>
@@ -36,10 +31,7 @@ const mainPanelTop =
     id="top-row"
     class="z-50 pointer-events-none relative transition-all duration-700 max-w-[--page-width] px-0 md:px-4 mx-auto"
   >
-    <div
-      id="navbar-wrapper"
-      class="pointer-events-auto sticky top-0 transition-all"
-    >
+    <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all">
       <Navbar />
     </div>
   </header>
@@ -48,30 +40,20 @@ const mainPanelTop =
 
   <!-- main content -->
   <!-- pointer-events-none prevents blocking TOC click events -->
-  <div
-    class="absolute w-full z-30 pointer-events-none"
-    style=`top: ${mainPanelTop}`
-  >
+  <div class="absolute w-full z-30 pointer-events-none" style=`top: ${mainPanelTop}`>
     <div class="relative max-w-[--page-width] mx-auto pointer-events-auto">
       <div
         id="main-grid"
         class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4"
       >
-        {
-          siteConfig.banner?.credit !== undefined && (
-            <BannerCredit config={siteConfig.banner.credit} />
-          )
-        }
+        {siteConfig.banner?.credit !== undefined && <BannerCredit config={siteConfig.banner.credit} />}
 
         <SideBar
           class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"
         />
 
         <!-- overflow-hidden prevents long text from breaking the layout-->
-        <main
-          id="swup-container"
-          class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden"
-        >
+        <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden">
           <div id="content-wrapper" class="onload-animation">
             <slot />
             <div class="footer col-span-2 onload-animation hidden lg:block">

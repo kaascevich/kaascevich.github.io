@@ -1,30 +1,25 @@
-import { defineConfig } from "astro/config"
-import siteConfig from "./src/config/site"
-
-import sitemap from "@astrojs/sitemap"
 import mdx from "@astrojs/mdx"
+import sitemap from "@astrojs/sitemap"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
+import shellSession from "@robot-inventor/shell-session-syntax"
 import swup from "@swup/astro"
 import compress from "astro-compress"
 import icon from "astro-icon"
-import { pagefind } from "vite-plugin-pagefind"
-
+import { defineConfig } from "astro/config"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeKatex from "rehype-katex"
 import rehypeSlug from "rehype-slug"
-
 import {
-  remarkDefinitionList,
   defListHastHandlers,
+  remarkDefinitionList,
 } from "remark-definition-list"
 import remarkMath from "remark-math"
 import remarkSectionize from "remark-sectionize"
-
+import { pagefind } from "vite-plugin-pagefind"
+import siteConfig from "./src/config/site"
 import { remarkExcerpt } from "./src/plugins/remark-excerpt"
 import { remarkReadingTime } from "./src/plugins/remark-reading-time"
-
-import shellSession from "@robot-inventor/shell-session-syntax"
 
 export default defineConfig({
   site: siteConfig.url,
@@ -41,12 +36,6 @@ export default defineConfig({
       // the default value `transition-` cause transition delay
       // when the Tailwind class `transition-all` is used
       containers: ["main", "#toc"],
-      smoothScrolling: true,
-      cache: true,
-      preload: true,
-      accessibility: true,
-      updateHead: true,
-      updateBodyClass: false,
       globalInstance: true,
     }),
     icon({
@@ -71,7 +60,7 @@ export default defineConfig({
           minifyCSS: true,
           minifyJS: true,
           minifyURLs: true,
-          quoteCharacter: '"',
+          quoteCharacter: "\"",
           removeAttributeQuotes: true,
           removeComments: true,
           removeScriptTypeAttributes: true,
@@ -85,10 +74,8 @@ export default defineConfig({
       },
       Action: {
         // https://github.com/PlayForm/Compress/issues/376
-        Passed: () =>
-          new Promise((resolve) => {
-            resolve(true)
-          }),
+        // eslint-disable-next-line require-await
+        Passed: async () => new Promise((resolve) => resolve(true)),
       },
     }),
   ],
@@ -114,7 +101,7 @@ export default defineConfig({
             type: "element",
             tagName: "span",
             properties: {
-              className: ["anchor-icon"],
+              "className": ["anchor-icon"],
               "data-pagefind-ignore": true,
             },
             children: [
@@ -142,15 +129,22 @@ export default defineConfig({
     build: {
       rollupOptions: {
         external: "/pagefind/pagefind.js?url",
-        onwarn(warning, warn) {
-          // temporarily suppress this warning
+        onwarn: (warning, handler) => {
           if (
-            warning.message.includes("is dynamically imported by") &&
-            warning.message.includes("but also statically imported by")
+            warning.message.includes("is dynamically imported by")
+            && warning.message.includes("but also statically imported by")
           ) {
             return
           }
-          warn(warning)
+
+          if (
+            warning.code === "css_unused_selector"
+            || warning.code === "vite-plugin-svelte-preprocess-many-dependencies"
+          ) {
+            return
+          }
+
+          handler(warning)
         },
       },
     },

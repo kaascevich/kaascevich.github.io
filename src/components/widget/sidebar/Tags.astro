@@ -30,7 +30,7 @@ const { class: className, style } = Astro.props
 >
   <ul class="flex gap-2 flex-wrap">
     {
-      [...tags].map(([name]) => (
+      Array.from(tags, ([name]) => (
         <ButtonTag
           href={url(`/archive/tag/${name}/`)}
           label={strings.alts.tag(name)}

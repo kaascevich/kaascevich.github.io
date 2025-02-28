@@ -2,14 +2,21 @@ import { vitePreprocess } from "@astrojs/svelte"
 
 export default {
   preprocess: [vitePreprocess({ script: true, style: true })],
+
+  /**
+   * @typedef {{ code: string }} Warning
+   *
+   * @param {Warning} warning
+   * @param {(warning: Warning) => void} handler
+   */
   onwarn: (warning, handler) => {
     if (
-      ![
-        "css_unused_selector",
-        "vite-plugin-svelte-preprocess-many-dependencies",
-      ].includes(warning.code)
+      warning.code === "css_unused_selector" ||
+      warning.code === "vite-plugin-svelte-preprocess-many-dependencies"
     ) {
-      handler(warning)
+      return
     }
+
+    handler(warning)
   },
 }

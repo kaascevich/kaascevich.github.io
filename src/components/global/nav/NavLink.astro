@@ -14,7 +14,7 @@ const { link } = Astro.props
   href={link.external === true ? link.url : url(link.url)}
   target={link.external === true ? "_blank" : null}
 >
-  <div class="link-wrapper">
+  <div>
     {link.name}
     {link.external === true && <Icon name="tabler:external-link" />}
   </div>
@@ -26,7 +26,7 @@ const { link } = Astro.props
   @use "$/styles/utils" as *;
   @use "$/styles/variants";
   a {
-    @extend .btn-plain, .scale-animation;
+    @extend .btn-plain, .expand-animation;
     border-radius: $radius-lg;
     height: spacing(11);
     font-weight: $font-weight-bold;
@@ -35,7 +35,7 @@ const { link } = Astro.props
       scale: 95%;
     }
 
-    .link-wrapper {
+    div {
       display: flex;
       align-items: center;
 

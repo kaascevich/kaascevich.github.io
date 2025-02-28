@@ -2,6 +2,7 @@
 
 import fs from "node:fs"
 import path from "node:path"
+import process from "node:process"
 import slugify from "slugify"
 
 function getDate(): string {
@@ -16,8 +17,7 @@ function getDate(): string {
 // first arg is execPath, second arg is path to script file
 const [, , title] = process.argv
 if (title === undefined) {
-  console.error(
-    "error: no title argument provided\nusage: pnpm run new-post <title>",
+  console.error( "error: no title argument provided\nusage: pnpm run new-post <title>",
   )
   process.exit(1)
 }

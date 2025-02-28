@@ -31,8 +31,8 @@ const getPageUrl = (p: number): string => url(p === 1 ? "/" : `/${p}/`)
   }
   {
     pageLinks[1].map((page) =>
-      page === null ? <Icon name="tabler:dots" class="hidden-pages" />
-      : page === current ? <div class="current-page">{page}</div>
+      page === current ?
+        <div class="current-page">{page}</div>
       : <a
           href={getPageUrl(page)}
           aria-label={strings.alts.pageNum(page)}

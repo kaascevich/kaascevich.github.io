@@ -13,7 +13,9 @@
   let card: HTMLElement | undefined = $state()
 
   onMount(async () => {
-    if (card === undefined) return
+    if (card === undefined) {
+      return
+    }
 
     try {
       const response = await fetch(
@@ -22,13 +24,13 @@
       )
       const data: FullRepository = await response.json()
 
-      const numberFormatter = Intl.NumberFormat("en-us", {
+      const numberFormatter = new Intl.NumberFormat("en-us", {
         notation: "compact",
         maximumFractionDigits: 1,
       })
 
       card.querySelector<HTMLElement>(".description")!.innerText =
-        data.description?.replace(/:\w+:/g, "") ?? "description not set"
+        data.description?.replace(/:\w+:/g, "") ?? "<description not set>"
 
       card.querySelector<HTMLElement>(".forks")!.innerText = numberFormatter
         .format(data.forks)
@@ -38,9 +40,9 @@
         .format(data.stargazers_count)
         .replaceAll("\u202f", "")
 
-      const avatarEl = card.querySelector<HTMLElement>(".avatar")!
-      avatarEl.style.backgroundImage = `url(${data.owner.avatar_url})`
-      avatarEl.style.backgroundColor = "transparent"
+      const avatar = card.querySelector<HTMLElement>(".avatar")!
+      avatar.style.backgroundImage = `url(${data.owner.avatar_url})`
+      avatar.style.backgroundColor = "transparent"
 
       card.querySelector<HTMLElement>(".license")!.innerText =
         data.license?.spdx_id ?? "no license"
@@ -50,14 +52,14 @@
       console.log(`[GITHUB-CARD] loaded card for ${repository}`)
     } catch (err) {
       card.classList.add("fetch-error")
-      console.warn(`[GITHUB-CARD] error loading card for ${repository}: ${err}`)
+      console.warn(`[GITHUB-CARD] error loading card for ${repository}: ${String(err)}`)
     }
   })
 </script>
 
 <a
   bind:this={card}
-  class="card-github fetch-waiting no-styling"
+  class="fetch-waiting no-styling"
   href={`https://github.com/${repo}`}
   target="_blank"
 >
@@ -69,7 +71,7 @@
       </div>
       <div class="repo">{repo}</div>
     </div>
-    <Icon icon="tabler:brand-github" width="1.5rem" height="1.5rem" />
+    <Icon icon="tabler:brand-github" />
   </header>
 
   <div class="description"></div>
@@ -87,17 +89,17 @@
   @use "../../styles/utils" as *;
   @use "../../styles/variants";
 
-  a.card-github {
+  a {
     @include transition();
     display: block;
-    background-color: var(--license-block-bg);
     position: relative;
     margin: spacing(2) spacing(0);
+    border-radius: $radius-xl2;
+    background-color: var(--license-block-bg);
     padding: spacing(4.5) spacing(4);
     color: var(--tw-prose-body);
-    border-radius: $radius-xl2;
-    text-decoration-thickness: 0px;
     text-decoration-line: none;
+    text-decoration-thickness: 0px;
 
     @include variants.md {
       padding: spacing(4.5) spacing(6);
@@ -140,36 +142,36 @@
 
       .titlebar-left {
         display: flex;
-        gap: spacing(1);
         flex-flow: column nowrap;
+        gap: spacing(1);
         @include variants.md {
-          gap: spacing(2);
           flex-flow: row nowrap;
+          gap: spacing(2);
         }
 
         .owner {
-          font-weight: $font-weight-light;
-          position: relative;
           display: flex;
-          gap: spacing(2);
-          align-items: center;
+          position: relative;
           flex-flow: row nowrap;
+          align-items: center;
+          gap: spacing(2);
+          font-weight: $font-weight-light;
 
           .avatar {
             display: block;
-            overflow: hidden;
+            border-radius: 50%;
             width: spacing(6);
             height: spacing(6);
+            overflow: hidden;
             background: {
               color: var(--primary);
               size: cover;
             }
-            border-radius: 50%;
           }
 
           @include after("/") {
-            font-weight: $font-weight-normal;
             display: none;
+            font-weight: $font-weight-normal;
             @include variants.md {
               display: block;
             }
@@ -180,21 +182,26 @@
           font-weight: $font-weight-bold;
         }
       }
+
+      :global(svg) {
+        width: spacing(6);
+        height: spacing(6);
+      }
     }
 
     .description {
       margin-bottom: spacing(3);
       @include font-size($text-base);
-      font-weight: $font-weight-light;
       color: var(--tw-prose-body);
+      font-weight: $font-weight-light;
     }
 
     footer {
       display: flex;
-      gap: spacing(6);
-      color: var(--tw-prose-body);
-      width: fit-content;
       flex-flow: row nowrap;
+      gap: spacing(6);
+      width: fit-content;
+      color: var(--tw-prose-body);
     }
 
     .stars,
@@ -206,11 +213,11 @@
 
       @include before(" ") {
         display: inline-block;
+        vertical-align: spacing(-1);
+        margin-right: spacing(1);
+        background-color: var(--tw-prose-body);
         width: 1.3em;
         height: 1.3em;
-        margin-right: spacing(1);
-        vertical-align: spacing(-1);
-        background-color: var(--tw-prose-body);
         overflow: visible;
         @include transition(
           $properties: (
@@ -218,10 +225,10 @@
             background,
           )
         );
-        font-size: inherit;
-        mask-size: contain;
         mask-position: center;
+        mask-size: contain;
         mask-repeat: no-repeat;
+        font-size: inherit;
       }
     }
 
@@ -230,8 +237,8 @@
     }
 
     .license::before {
-      margin-right: spacing(2);
       mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 21H6a3 3 0 0 1-3-3v-1h10v2a2 2 0 0 0 4 0V5a2 2 0 1 1 2 2h-2m2-4H8a3 3 0 0 0-3 3v11M9 7h4m-4 4h4'/%3E%3C/svg%3E");
+      margin-right: spacing(2);
     }
 
     .forks::before {
@@ -240,18 +247,18 @@
   }
 
   a.card-github.fetch-waiting {
-    pointer-events: none;
     opacity: 70%;
+    pointer-events: none;
     @include transition($properties: opacity);
 
     .description,
     footer,
     .avatar {
+      opacity: 50%;
+      animation: pulsate 2s infinite linear;
       background-color: var(--tw-prose-body);
       color: transparent;
-      opacity: 50%;
       user-select: none;
-      animation: pulsate 2s infinite linear;
       @include before {
         background-color: transparent;
       }

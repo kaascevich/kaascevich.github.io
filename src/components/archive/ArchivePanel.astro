@@ -12,24 +12,23 @@ type Props = Readonly<{
 }>
 const { filter } = Astro.props
 
-let posts = await getSortedPosts()
-
-switch (filter?.type) {
-  case "tag":
-    posts = posts.filter((post) => post.data.tags.includes(filter.tag))
-    break
-  case "category":
-    posts = posts.filter((post) => post.data.category === filter.category)
-    break
-  case undefined:
-    break
-}
+const posts = (await getSortedPosts()).filter((post) => {
+  if (filter === undefined) {
+    return true
+  }
+  
+  switch (filter.type) {
+    case "tag":
+      return post.data.tags.includes(filter.tag)
+    case "category":
+      return post.data.category === filter.category
+  }
+})
 
 const groups: PostsForYear[] = Array.from(
   Map.groupBy(posts, (post) => post.data.published.getFullYear()),
-)
-  .map(([year, posts]) => ({ year, posts }))
-  .toSorted((a, b) => b.year - a.year) // sort by year, descending
+  ([year, posts]) => ({ year, posts }),
+).toSorted((a, b) => b.year - a.year) // sort by year, descending
 ---
 
 <ol>

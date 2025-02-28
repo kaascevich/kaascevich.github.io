@@ -51,16 +51,16 @@ const currentYear = new Date().getFullYear()
 
   footer {
     @include transition();
-    border-radius: $radius-xl2;
-    marign-bottom: spacing(12);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin-bottom: spacing(12);
+    border-radius: $radius-xl2;
     padding: {
-      left: spacing(6);
       right: spacing(6);
       bottom: spacing(6);
+      left: spacing(6);
     }
 
     .footer-content {

@@ -59,9 +59,9 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   .license-wrapper {
     @include transition();
     position: relative;
-    overflow: hidden;
     background-color: var(--license-block-bg);
     padding: spacing(5) spacing(6);
+    overflow: hidden;
 
     hgroup {
       header {
@@ -77,10 +77,10 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     .details {
       display: flex;
-      margin-top: spacing(2);
 
       flex-direction: column;
       gap: spacing(3);
+      margin-top: spacing(2);
       @include variants.sm {
         flex-direction: row;
         gap: spacing(6);
@@ -108,13 +108,13 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       @include transition($properties: $transition-colors);
       @include text-plain(5%);
       position: absolute;
-      pointer-events: none;
-      right: spacing(6);
       top: 50%;
+      right: spacing(6);
       // translate: 0 -50%;
 
       right: 50%;
       translate: 50% -50%;
+      pointer-events: none;
       @include variants.sm {
         right: spacing(6);
         translate: 0 -50%;

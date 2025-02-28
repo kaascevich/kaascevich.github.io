@@ -7,7 +7,7 @@ function internalOnly(name: string): z.ZodEffects<z.ZodOptional<z.ZodString>> {
     .string()
     .optional()
     .refine(
-      (value) => value === undefined,
+      value => value === undefined,
       `\`${name}\` is for internal use only and must not be specified`,
     )
 }
@@ -42,25 +42,18 @@ const postsCollection = defineCollection({
       /** The description of the post. */
       description: z.string().nonempty(),
 
-      /**
-       * The cover image for the post.
-       *
-       * - If this is a URL, the image is fetched from that URL.
-       * - If this is a path relative to `/`, the image is fetched from the site
-       *   root.
-       * - Otherwise, it's interpreted as a path relative to the post's Markdown
-       *   file.
-       */
+      /** The cover image for the post. */
       image: z
         .object({
           /**
            * The cover image for the post.
            *
-           * - If this is a URL, the image is fetched from that URL.
-           * - If this is a path relative to `/`, the image is fetched from the site
-           *   root.
-           * - Otherwise, it's interpreted as a path relative to the post's Markdown
-           *   file.
+           * - If this is a URL (with protocol), the image is fetched from that
+           *   URL.
+           * - If this is an absolute path (relative to `/`), the image is
+           *   fetched from the site root.
+           * - Otherwise, it's interpreted as a path relative to the post's
+           *   Markdown file.
            */
           source: z.string().nonempty(),
 
@@ -79,7 +72,7 @@ const postsCollection = defineCollection({
         .readonly()
         .default([])
         .refine(
-          (tags) => tags.length === new Set(tags).size,
+          tags => tags.length === new Set(tags).size,
           "tags array must not contain duplicates",
         ),
 

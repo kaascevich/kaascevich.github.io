@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from "astro:content"
+import path from "node:path"
+import { getDir } from "$/utils/urls"
+import PostMeta from "$/components/post/PostMeta.astro"
+import PostExtraMeta from "$/components/post/PostExtraMeta.astro"
+import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+
+type Props = Readonly<{
+  entry: CollectionEntry<"posts">
+  wordCount: number
+  readingTime: number
+}>
+
+const { entry, wordCount, readingTime } = Astro.props
+---
+
+<PostExtraMeta
+  {wordCount}
+  {readingTime}
+  class="mb-3 transition onload-animation"
+/>
+
+<!-- title -->
+<h1 class="relative onload-animation">
+  <div
+    data-pagefind-body
+    data-pagefind-weight="10"
+    data-pagefind-meta="title"
+    class="transition w-full block font-bold mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90 md:before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
+  >
+    {entry.data.title}
+  </div>
+</h1>
+
+<!-- metadata -->
+<div class="onload-animation">
+  <PostMeta
+    class="mb-5"
+    published={entry.data.published}
+    updated={entry.data.updated}
+    tags={entry.data.tags}
+    category={entry.data.category}
+  />
+  {
+    entry.data.image === undefined && (
+      <div class="border-[--line-divider] border-dashed border-b-[1px] mb-5" />
+    )
+  }
+</div>
+
+{
+  entry.data.image !== undefined && (
+    <ImageWrapper
+      id="post-cover"
+      src={entry.data.image.source}
+      alt={entry.data.image.alt}
+      basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
+      class="mb-8 rounded-xl banner-container onload-animation"
+    />
+  )
+}

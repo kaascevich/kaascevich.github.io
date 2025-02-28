@@ -3,7 +3,6 @@ import siteConfig from "$/config/site"
 import {
   BANNER_HEIGHT_EXTEND,
   DEFAULT_COLOR_SCHEME,
-  PAGE_WIDTH,
 } from "$/constants/constants"
 
 type Props = Readonly<{
@@ -13,9 +12,6 @@ type Props = Readonly<{
 }>
 
 const { title, description, setOGTypeArticle = false } = Astro.props
-
-// define global CSS variables
-const configHue = siteConfig.themeColor
 
 const pageTitle =
   title === undefined ?
@@ -51,8 +47,7 @@ const pageTitle =
     define:vars={{
       DEFAULT_COLOR_SCHEME,
       BANNER_HEIGHT_EXTEND,
-      PAGE_WIDTH,
-      configHue,
+      configHue: siteConfig.themeColor,
     }}
   >
     /** @type {import("$/types/config").ColorScheme} */
@@ -79,15 +74,6 @@ const pageTitle =
       `${offset}px`,
     )
   </script>
-
-  <!-- define global CSS variables -->
-  <style
-    lang="scss"
-    define:vars={{
-      configHue,
-      "page-width": `${PAGE_WIDTH}rem`,
-    }}
-  ></style>
 
   <slot name="head" />
 

@@ -1,5 +1,5 @@
-import { getCollection, type CollectionEntry } from "astro:content"
 import { elementCounts } from "$/utils/arrays"
+import { type CollectionEntry, getCollection } from "astro:content"
 
 export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
   const allBlogPosts = await getCollection(

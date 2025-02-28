@@ -60,12 +60,12 @@ const {
       @include font-size($text-lg);
 
       @include transition();
-      color: $color-neutral-900;
       position: relative;
+      color: $color-neutral-900;
       margin: {
-        left: spacing(8);
         top: spacing(4);
         bottom: spacing(2);
+        left: spacing(8);
       }
 
       @include variants.dark {
@@ -73,13 +73,13 @@ const {
       }
 
       @include before {
-        width: spacing(1);
-        height: spacing(4);
+        position: absolute;
+        top: 5.5px;
+        left: -16px;
         border-radius: $radius-md;
         background-color: var(--primary);
-        position: absolute;
-        left: -16px;
-        top: 5.5px;
+        width: spacing(1);
+        height: spacing(4);
       }
     }
 
@@ -103,12 +103,12 @@ const {
         height: spacing(9);
 
         .icon-wrapper {
-          color: var(--primary);
           display: flex;
-          align-items: center;
           justify-content: center;
+          align-items: center;
           gap: spacing(2);
           translate: spacing(-2);
+          color: var(--primary);
         }
       }
     }
@@ -120,13 +120,15 @@ const {
     constructor() {
       super()
 
-      if (this.dataset.isCollapsed !== "true") return
+      if (this.dataset.isCollapsed !== "true") {
+        return
+      }
 
       const id = this.dataset.id
-      const btn = this.querySelector(".expand-button")!
-      const wrapper = this.querySelector(`#${id}`)!
-      btn.addEventListener("click", () => {
-        wrapper.classList.remove("collapsed")
+      const btn = this.querySelector(".expand-button")
+      const wrapper = this.querySelector(`#${id}`)
+      btn?.addEventListener("click", () => {
+        wrapper?.classList.remove("collapsed")
         btn.classList.add("hidden")
       })
     }

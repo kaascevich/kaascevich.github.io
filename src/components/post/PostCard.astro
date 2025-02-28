@@ -2,8 +2,8 @@
 import PostMeta from "$/components/post/PostMeta.astro"
 import PostLink from "$/components/post/PostLink.astro"
 import { Icon } from "astro-icon/components"
-import strings from "$/config/strings"
 import { render, type CollectionEntry } from "astro:content"
+import PostExtraMeta from "./PostExtraMeta.astro"
 
 type Props = Readonly<{
   class?: string | undefined
@@ -31,17 +31,24 @@ const { remarkPluginFrontmatter } = await render(entry)
       </a>
     </h2>
 
-    <PostMeta {published} {updated} {tags} {category} class="mb-4" />
+    <PostMeta
+      {published}
+      {updated}
+      {tags}
+      {category}
+      compactOnMobile={true}
+      class="mb-4"
+    />
 
     <div class="description">
       {description}
     </div>
 
-    <!-- word count and read time  -->
     <footer>
-      <div>{strings.meta.words(remarkPluginFrontmatter.words)}</div>
-      |
-      <div>{strings.meta.minutes(remarkPluginFrontmatter.minutes)}</div>
+      <PostExtraMeta
+        wordCount={remarkPluginFrontmatter.words}
+        readingTime={remarkPluginFrontmatter.minutes}
+      />
     </footer>
   </div>
 
@@ -57,11 +64,11 @@ const { remarkPluginFrontmatter } = await render(entry)
   article {
     @extend .card-base;
     display: flex;
-    flex-direction: column-reverse;
-    width: 100%;
-    border-radius: $radius-xl2;
-    overflow: hidden;
     position: relative;
+    flex-direction: column-reverse;
+    border-radius: $radius-xl2;
+    width: 100%;
+    overflow: hidden;
     @include variants.md {
       flex-direction: column;
     }
@@ -76,20 +83,20 @@ const { remarkPluginFrontmatter } = await render(entry)
       padding: spacing(6);
 
       @include variants.md {
-        padding: {
-          left: spacing(9);
-          right: spacing(2);
-          top: spacing(7);
-        }
         width: calc(100% - var(--coverWidth) - 12px);
+        padding: {
+          top: spacing(7);
+          right: spacing(2);
+          left: spacing(9);
+        }
       }
 
       h2 a {
         @include transition();
-        width: 100%;
         display: block;
-        font-weight: $font-weight-bold;
         margin-bottom: spacing(3);
+        width: 100%;
+        font-weight: $font-weight-bold;
         @include font-size($text-xl3);
         @include text-plain(90%);
 
@@ -113,22 +120,22 @@ const { remarkPluginFrontmatter } = await render(entry)
 
         svg {
           display: inline;
-          color: var(--primary);
-          translate: 0 spacing(0.5);
           position: absolute;
+          translate: 0;
+          color: var(--primary);
 
           @include variants.md {
             @include transition();
             position: absolute;
-            translate: spacing(-1) spacing(0.5);
+            translate: spacing(-1);
             opacity: 0%;
           }
         }
 
         @include variants.md {
           &:hover svg {
-            opacity: 100%;
             translate: 0;
+            opacity: 100%;
           }
         }
       }
@@ -143,10 +150,6 @@ const { remarkPluginFrontmatter } = await render(entry)
 
     footer {
       @include transition();
-      @include font-size($text-sm);
-      display: flex;
-      gap: spacing(4);
-      @include text-plain(30%);
     }
   }
 </style>

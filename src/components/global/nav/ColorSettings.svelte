@@ -1,22 +1,24 @@
 <script lang="ts">
   import strings from "$/config/strings"
-  import { getDefaultHue, getHue, setHue } from "$/utils/settings"
+  import siteConfig from "$/config/site"
+  import { getHue, setHue } from "$/utils/settings"
   import Icon from "@iconify/svelte"
 
   let hue = $state(getHue())
-  const defaultHue = getDefaultHue()
 
-  function resetHue() {
-    hue = getDefaultHue()
+  function resetHue(): void {
+    hue = siteConfig.themeColor
   }
 
-  function togglePanel() {
+  function togglePanel(): void {
     document
       .getElementById("color-settings")
       ?.classList.toggle("float-panel-closed")
   }
 
-  $effect(() => setHue(hue))
+  $effect(() => {
+    setHue(hue)
+  })
 </script>
 
 <button
@@ -33,12 +35,11 @@
       {strings.theme.themeColor}
       <button
         aria-label="Reset to default"
-        class:opacity-0={hue === defaultHue}
-        class:pointer-events-none={hue === defaultHue}
+        class={{ inactive: hue === siteConfig.themeColor }}
         onclick={resetHue}
       >
         <div class="icon-wrapper">
-          <Icon icon="tabler:x" height="0.875rem" width="0.875rem" />
+          <Icon icon="tabler:x" />
         </div>
       </button>
     </div>
@@ -71,13 +72,13 @@
 
   @mixin slider-thumb {
     appearance: none;
-    height: spacing(4);
-    width: spacing(2);
-    border-radius: $radius-sm;
-    border-width: 0;
     box-shadow: $shadow-none;
+    border-width: 0;
+    border-radius: $radius-sm;
 
     background-color: white(70%);
+    width: spacing(2);
+    height: spacing(4);
     &:hover {
       background-color: white(80%);
     }
@@ -87,10 +88,10 @@
   }
 
   #color-settings-switch {
-    @extend .btn-plain, .scale-animation;
+    @extend .btn-plain, .expand-animation;
     border-radius: $radius-lg;
-    height: spacing(11);
     width: spacing(11);
+    height: spacing(11);
     &:active {
       scale: 90%;
     }
@@ -100,17 +101,17 @@
     @extend .float-panel;
     position: absolute;
     @include transition($properties: all);
-    width: spacing(80);
     right: spacing(4);
     padding: spacing(4);
+    width: spacing(80);
 
     header {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       gap: spacing(2);
       margin-bottom: spacing(3);
-      align-items: center;
-      justify-content: space-between;
 
       .title {
         display: flex;
@@ -127,27 +128,37 @@
         }
 
         @include before {
-          width: spacing(1);
-          height: spacing(4);
+          position: absolute;
+          top: math.div(1rem, 3);
+          left: spacing(-3);
           border-radius: $radius-md;
           background-color: var(--primary);
-          position: absolute;
-          left: spacing(-3);
-          top: math.div(1rem, 3);
+          width: spacing(1);
+          height: spacing(4);
         }
       }
 
       button {
         @extend .btn-regular;
+        border-radius: $radius-md;
         width: spacing(7);
         height: spacing(7);
-        border-radius: $radius-md;
         &:active {
           scale: 90%;
         }
 
         .icon-wrapper {
           color: var(--btn-content);
+
+          :global(svg) {
+            width: spacing(3.5);
+            height: spacing(3.5);
+          }
+        }
+
+        &.inactive {
+          opacity: 0;
+          pointer-events: none;
         }
       }
 
@@ -157,12 +168,12 @@
 
         #hue-value {
           @include transition();
+          display: flex;
+          justify-content: center;
+          border-radius: $radius-md;
           background-color: var(--btn-regular-bg);
           width: spacing(12);
           height: spacing(7);
-          border-radius: $radius-md;
-          display: flex;
-          justify-content: center;
           font-weight: $font-weight-bold;
           @include font-size($text-sm);
           align-items: center;
@@ -176,16 +187,16 @@
       height: spacing(6);
       @include padding-x(spacing(1));
       border-radius: $radius-sm;
-      user-select: none;
 
       background-color: oklch(80% 0.1 0deg);
+      user-select: none;
       @include variants.dark {
         background-color: oklch(70% 0.1 0deg);
       }
 
       input[type="range"] {
-        width: 100%;
         appearance: none;
+        width: 100%;
         height: spacing(6);
         @include transition($properties: background-image);
         background-image: var(--color-selection-bar);
@@ -193,11 +204,9 @@
         &::-webkit-slider-thumb {
           @include slider-thumb();
         }
-
         &::-moz-range-thumb {
           @include slider-thumb();
         }
-
         &::-ms-thumb {
           @include slider-thumb();
         }

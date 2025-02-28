@@ -2,7 +2,10 @@ import type { Page } from "astro"
 import type { CollectionEntry } from "astro:content"
 
 function range(first: number, last: number): number[] {
-  return [...Array(last - first + 1).keys()].map((n) => n + first)
+  return Array.from(
+    Array.from({ length: last - first + 1 }).keys(),
+    n => n + first,
+  )
 }
 
 export type PageLinkLayout = [1 | null, number[], number | null]
