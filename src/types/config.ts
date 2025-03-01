@@ -21,8 +21,8 @@ export type Config = DeepReadonly<{
   title: string
   /** The subtitle of the site. */
   subtitle: string
-  /** The default theme color, from 0 to 360. */
-  themeColor: number
+  /** The default hue, from 0 to 360. */
+  defaultHue: number
   /** Configuration for the site-wide banner. */
   banner?: BannerConfig | undefined
   /** Configuration for the table of contents on the right side of the page. */

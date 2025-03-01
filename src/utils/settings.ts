@@ -5,7 +5,7 @@ import { DEFAULT_COLOR_SCHEME } from '$/constants/constants.ts'
 
 export function getHue(): number {
   const stored = localStorage.getItem('hue')
-  return stored === null ? siteConfig.themeColor : Number.parseInt(stored)
+  return stored === null ? siteConfig.defaultHue : Number.parseInt(stored)
 }
 
 export function setHue(hue: number): void {

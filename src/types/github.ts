@@ -89,6 +89,7 @@ export type Repository = {
   /** Whether the repository is private or public. */
   private: boolean
   html_url: string
+  /** A short description of the repository. */
   description: string | null
   fork: boolean
   url: string
@@ -133,6 +134,7 @@ export type Repository = {
   mirror_url: string | null
   hooks_url: string
   svn_url: string
+  /** A URL with more information about the repository. */
   homepage: string | null
   language: string | null
   forks_count: number

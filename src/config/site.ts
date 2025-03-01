@@ -7,7 +7,7 @@ export default config<Config>({
   url: 'https://kaascevich.github.io',
   title: 'Haven',
   subtitle: 'my little home on the internet',
-  themeColor: 250,
+  defaultHue: 250,
   banner: {
     src: 'assets/images/banner.png',
     position: 'center',

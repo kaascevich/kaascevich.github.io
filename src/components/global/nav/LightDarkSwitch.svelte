@@ -1,5 +1,6 @@
 <script lang='ts'>
   import type { ColorScheme } from '$/types/config'
+
   import strings from '$/config/strings'
   import {
     applyColorScheme,
@@ -15,7 +16,7 @@
   onMount(() => {
     mode = getStoredColorScheme()
     const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)')
-    const updateColorScheme = (): void => {
+    const updateColorScheme = () => {
       applyColorScheme(mode)
     }
 

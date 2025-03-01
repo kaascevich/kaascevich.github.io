@@ -3,23 +3,6 @@ import { defineCollection, z } from 'astro:content'
 
 import strings from './config/strings'
 
-function internalOnly(name: string): z.ZodEffects<z.ZodOptional<z.ZodString>> {
-  return z
-    .string()
-    .optional()
-    .refine(
-      (value) => value === undefined,
-      `\`${name}\` is for internal use only and must not be specified`,
-    )
-}
-
-const internalProperties = z.object({
-  prevTitle: internalOnly('prevTitle'),
-  prevID: internalOnly('prevID'),
-  nextTitle: internalOnly('nextTitle'),
-  nextID: internalOnly('nextID'),
-})
-
 const postsCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z
@@ -80,8 +63,7 @@ const postsCollection = defineCollection({
       /** The category of the post. */
       category: z.string().nonempty().default(strings.categories.none),
     })
-    .readonly()
-    .and(internalProperties),
+    .readonly(),
 })
 
 export const collections = {

@@ -1,5 +1,6 @@
 <script lang='ts'>
   import type { FullRepository } from '$/types/github'
+
   import Icon from '@iconify/svelte'
   import { onMount } from 'svelte'
 

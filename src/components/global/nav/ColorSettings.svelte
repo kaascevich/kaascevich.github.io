@@ -7,7 +7,7 @@
   let hue = $state(getHue())
 
   function resetHue(): void {
-    hue = siteConfig.themeColor
+    hue = siteConfig.defaultHue
   }
 
   function togglePanel(): void {
@@ -36,7 +36,7 @@
       {strings.theme.themeColor}
       <button
         aria-label='Reset to default'
-        class={{ inactive: hue === siteConfig.themeColor }}
+        class={{ inactive: hue === siteConfig.defaultHue }}
         onclick={resetHue}
       >
         <div class='icon-wrapper'>

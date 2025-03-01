@@ -2,21 +2,27 @@
 import type { CollectionEntry } from 'astro:content'
 import { getPostUrlByID } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
+import { getSortedPosts } from '$/utils/content'
 
 type Props = Readonly<{
   entry: CollectionEntry<'posts'>
 }>
 
 const { entry } = Astro.props
+
+const allPosts = await getSortedPosts()
+const index = allPosts.findIndex((other) => other.id === entry.id)
+const prevEntry = allPosts[index - 1]
+const nextEntry = allPosts[index + 1]
 ---
 
 <nav
   class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"
 >
   {
-    entry.data.nextID !== undefined && (
+    nextEntry !== undefined && (
       <a
-        href={getPostUrlByID(entry.data.nextID)}
+        href={getPostUrlByID(nextEntry.id)}
         class="w-full font-bold overflow-hidden active:scale-95 max-w-[calc(50%-0.5rem)]"
       >
         <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4">
@@ -26,21 +32,21 @@ const { entry } = Astro.props
             class="text-[--primary]"
           />
           <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-            {entry.data.nextTitle}
+            {nextEntry.data.title}
           </div>
         </div>
       </a>
     )
   }
   {
-    entry.data.prevID !== undefined && (
+    prevEntry !== undefined && (
       <a
-        href={getPostUrlByID(entry.data.prevID)}
+        href={getPostUrlByID(prevEntry.id)}
         class="w-full font-bold overflow-hidden active:scale-95 max-w-[calc(50%-0.5rem)]"
       >
         <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
           <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-            {entry.data.prevTitle}
+            {prevEntry.data.title}
           </div>
           <Icon
             name="tabler:chevron-right"
