@@ -1,11 +1,11 @@
 ---
-import { getPostUrlByID } from "$/utils/urls"
-import PostCard from "$/components/post/PostCard.astro"
-import type { Page } from "astro"
-import type { CollectionEntry } from "astro:content"
+import { getPostUrlByID } from '$/utils/urls'
+import PostCard from '$/components/post/PostCard.astro'
+import type { Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 
 type Props = Readonly<{
-  page: Page<CollectionEntry<"posts">>
+  page: Page<CollectionEntry<'posts'>>
 }>
 
 const { page } = Astro.props
@@ -28,9 +28,9 @@ const interval = 50
 </ol>
 
 <style lang="scss">
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   ol {
     @include transition();

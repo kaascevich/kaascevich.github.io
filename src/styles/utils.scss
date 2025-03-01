@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "sass:list";
-@use "sass:meta";
-@use "theme" as *;
-@use "variants";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:meta';
+@use 'theme' as *;
+@use 'variants';
 
 // MARK: Layout
 
@@ -10,14 +10,14 @@
   @return calc($spacing * $value);
 }
 
-@mixin before($content: "") {
+@mixin before($content: '') {
   &::before {
     content: $content;
     @content;
   }
 }
 
-@mixin after($content: "") {
+@mixin after($content: '') {
   &::after {
     content: $content;
     @content;
@@ -103,7 +103,7 @@
   $properties: $transition-properties,
   $function: $ease-in-out,
   $duration: $transition-duration,
-  $important: ""
+  $important: ''
 ) {
   transition: $function $duration {
     property: $properties;

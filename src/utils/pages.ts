@@ -1,17 +1,17 @@
-import type { Page } from "astro"
-import type { CollectionEntry } from "astro:content"
+import type { Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 
 function range(first: number, last: number): number[] {
   return Array.from(
     Array.from({ length: last - first + 1 }).keys(),
-    n => n + first,
+    (n) => n + first,
   )
 }
 
 export type PageLinkLayout = [1 | null, number[], number | null]
 
 export function pageLinkLayout(
-  page: Page<CollectionEntry<"posts">>,
+  page: Page<CollectionEntry<'posts'>>,
 ): PageLinkLayout {
   const INCLUSION_THRESHOLD = 2
   const VISIBLE = INCLUSION_THRESHOLD * 2 + 1

@@ -1,26 +1,27 @@
-import { glob } from "astro/loaders"
-import { defineCollection, z } from "astro:content"
-import strings from "./config/strings"
+import { glob } from 'astro/loaders'
+import { defineCollection, z } from 'astro:content'
+
+import strings from './config/strings'
 
 function internalOnly(name: string): z.ZodEffects<z.ZodOptional<z.ZodString>> {
   return z
     .string()
     .optional()
     .refine(
-      value => value === undefined,
+      (value) => value === undefined,
       `\`${name}\` is for internal use only and must not be specified`,
     )
 }
 
 const internalProperties = z.object({
-  prevTitle: internalOnly("prevTitle"),
-  prevID: internalOnly("prevID"),
-  nextTitle: internalOnly("nextTitle"),
-  nextID: internalOnly("nextID"),
+  prevTitle: internalOnly('prevTitle'),
+  prevID: internalOnly('prevID'),
+  nextTitle: internalOnly('nextTitle'),
+  nextID: internalOnly('nextID'),
 })
 
 const postsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z
     .object({
       /** The title of the post. */
@@ -72,8 +73,8 @@ const postsCollection = defineCollection({
         .readonly()
         .default([])
         .refine(
-          tags => tags.length === new Set(tags).size,
-          "tags array must not contain duplicates",
+          (tags) => tags.length === new Set(tags).size,
+          'tags array must not contain duplicates',
         ),
 
       /** The category of the post. */

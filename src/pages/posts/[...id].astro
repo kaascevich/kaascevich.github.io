@@ -1,14 +1,14 @@
 ---
-import { render, type CollectionEntry } from "astro:content"
-import License from "$/components/post/License.astro"
-import Markdown from "$/components/post/Markdown.astro"
-import PostHeader from "$/components/post/PostHeader.astro"
-import PostPagination from "$/components/post/PostPagination.astro"
-import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import siteConfig from "$/config/site"
-import { formatDate } from "$/utils/dates"
-import { getSortedPosts } from "$/utils/content"
-import type { GetStaticPaths } from "astro"
+import { render, type CollectionEntry } from 'astro:content'
+import License from '$/components/post/License.astro'
+import Markdown from '$/components/post/Markdown.astro'
+import PostHeader from '$/components/post/PostHeader.astro'
+import PostPagination from '$/components/post/PostPagination.astro'
+import MainGridLayout from '$/layouts/MainGridLayout.astro'
+import siteConfig from '$/config/site'
+import { formatDate } from '$/utils/dates'
+import { getSortedPosts } from '$/utils/content'
+import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getSortedPosts()
@@ -19,20 +19,20 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 
 type Props = Readonly<{
-  entry: CollectionEntry<"posts">
+  entry: CollectionEntry<'posts'>
 }>
 
 const { entry }: Props = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
   headline: entry.data.title,
   description: entry.data.description,
   keywords: entry.data.tags,
   author: {
-    "@type": "Person",
+    '@type': 'Person',
     name: siteConfig.profile.name,
     url: Astro.site,
   },
@@ -40,12 +40,26 @@ const jsonLd = {
 } as const
 ---
 
-<MainGridLayout title={entry.data.title} description={entry.data.description} setOGTypeArticle={true} {headings}>
-  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<MainGridLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  setOGTypeArticle={true}
+  {headings}
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
 
   <div class="post-container-wrapper">
     <div id="post-container" data-pagefind-body>
-      <PostHeader {entry} wordCount={remarkPluginFrontmatter.words} readingTime={remarkPluginFrontmatter.minutes} />
+      <PostHeader
+        {entry}
+        wordCount={remarkPluginFrontmatter.words}
+        readingTime={remarkPluginFrontmatter.minutes}
+      />
 
       <Markdown class="mb-6 markdown-content onload-animation">
         <Content />
@@ -68,10 +82,10 @@ const jsonLd = {
 </MainGridLayout>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .post-container-wrapper {
     display: flex;

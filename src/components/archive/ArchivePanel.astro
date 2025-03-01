@@ -1,10 +1,10 @@
 ---
-import { getSortedPosts } from "$/utils/content"
-import type { PostsForYear } from "$/types/content"
-import ArchiveGroup from "$/components/archive/ArchiveGroup.astro"
+import { getSortedPosts } from '$/utils/content'
+import type { PostsForYear } from '$/types/content'
+import ArchiveGroup from '$/components/archive/ArchiveGroup.astro'
 
 type Filter = Readonly<
-  { type: "tag"; tag: string } | { type: "category"; category: string }
+  { type: 'tag'; tag: string } | { type: 'category'; category: string }
 >
 
 type Props = Readonly<{
@@ -16,11 +16,11 @@ const posts = (await getSortedPosts()).filter((post) => {
   if (filter === undefined) {
     return true
   }
-  
+
   switch (filter.type) {
-    case "tag":
+    case 'tag':
       return post.data.tags.includes(filter.tag)
-    case "category":
+    case 'category':
       return post.data.category === filter.category
   }
 })
@@ -36,10 +36,10 @@ const groups: PostsForYear[] = Array.from(
 </ol>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   ol {
     @extend .card-base;

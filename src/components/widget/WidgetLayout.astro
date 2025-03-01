@@ -1,6 +1,6 @@
 ---
-import { Icon } from "astro-icon/components"
-import strings from "$/config/strings"
+import { Icon } from 'astro-icon/components'
+import strings from '$/config/strings'
 
 type Props = Readonly<{
   id: string
@@ -28,7 +28,7 @@ const {
   {style}
 >
   <header>{name}</header>
-  <div {id} class:list={["widget-content", { collapsed: isCollapsed }]}>
+  <div {id} class:list={['widget-content', { collapsed: isCollapsed }]}>
     <slot />
   </div>
   {
@@ -46,10 +46,10 @@ const {
 </widget-layout>
 
 <style lang="scss" define:vars={{ collapsedHeight }}>
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   widget-layout {
     @extend .card-base;
@@ -120,19 +120,19 @@ const {
     constructor() {
       super()
 
-      if (this.dataset.isCollapsed !== "true") {
+      if (this.dataset.isCollapsed !== 'true') {
         return
       }
 
       const id = this.dataset.id
-      const btn = this.querySelector(".expand-button")
+      const btn = this.querySelector('.expand-button')
       const wrapper = this.querySelector(`#${id}`)
-      btn?.addEventListener("click", () => {
-        wrapper?.classList.remove("collapsed")
-        btn.classList.add("hidden")
+      btn?.addEventListener('click', () => {
+        wrapper?.classList.remove('collapsed')
+        btn.classList.add('hidden')
       })
     }
   }
 
-  customElements.define("widget-layout", WidgetLayout)
+  customElements.define('widget-layout', WidgetLayout)
 </script>

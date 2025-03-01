@@ -1,12 +1,12 @@
 ---
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
-import { Icon } from "astro-icon/components"
-import { url } from "$/utils/urls"
-import strings from "$/config/strings"
-import siteConfig from "$/config/site"
+import ImageWrapper from '$/components/misc/ImageWrapper.astro'
+import { Icon } from 'astro-icon/components'
+import { url } from '$/utils/urls'
+import strings from '$/config/strings'
+import siteConfig from '$/config/site'
 ---
 
-<a aria-label="Go to about page" href={url("/about/")} class="avatar">
+<a aria-label="Go to about page" href={url('/about/')} class="avatar">
   <div class="icon-wrapper">
     <Icon name="tabler:user-square" />
   </div>
@@ -18,9 +18,9 @@ import siteConfig from "$/config/site"
 </a>
 
 <style lang="scss">
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .avatar {
     display: block;

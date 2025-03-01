@@ -1,9 +1,11 @@
-import { elementCounts } from "$/utils/arrays"
-import { type CollectionEntry, getCollection } from "astro:content"
+import type { CollectionEntry } from 'astro:content'
 
-export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
+import { elementCounts } from '$/utils/arrays'
+import { getCollection } from 'astro:content'
+
+export async function getSortedPosts(): Promise<CollectionEntry<'posts'>[]> {
   const allBlogPosts = await getCollection(
-    "posts",
+    'posts',
     (post) => import.meta.env.DEV || !post.data.draft,
   )
 

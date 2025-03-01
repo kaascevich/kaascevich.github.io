@@ -1,13 +1,13 @@
 ---
-import type { Page } from "astro"
-import type { CollectionEntry } from "astro:content"
-import strings from "$/config/strings"
-import PageButton from "$/components/control/pagination/PageButton.astro"
-import { pageLinkLayout } from "$/utils/pages"
-import PageLinks from "$/components/control/pagination/PageLinks.astro"
+import type { Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+import strings from '$/config/strings'
+import PageButton from '$/components/control/pagination/PageButton.astro'
+import { pageLinkLayout } from '$/utils/pages'
+import PageLinks from '$/components/control/pagination/PageLinks.astro'
 
 type Props = Readonly<{
-  page: Page<CollectionEntry<"posts">>
+  page: Page<CollectionEntry<'posts'>>
   class?: string | undefined
   style?: string | undefined
 }>
@@ -32,10 +32,10 @@ const pageLinks = pageLinkLayout(page)
 </nav>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   nav {
     display: flex;

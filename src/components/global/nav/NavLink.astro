@@ -1,18 +1,18 @@
 ---
-import { Icon } from "astro-icon/components"
-import { url } from "$/utils/urls"
-import type { NavBarLink } from "$/types/config"
+import { Icon } from 'astro-icon/components'
+import { url } from '$/utils/urls'
+import type { NavBarLink } from '$/types/config'
 
-type Props = {
+type Props = Readonly<{
   link: NavBarLink
-}
+}>
 const { link } = Astro.props
 ---
 
 <a
   aria-label={link.name}
   href={link.external === true ? link.url : url(link.url)}
-  target={link.external === true ? "_blank" : null}
+  target={link.external === true ? '_blank' : null}
 >
   <div>
     {link.name}
@@ -21,10 +21,10 @@ const { link } = Astro.props
 </a>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
   a {
     @extend .btn-plain, .expand-animation;
     border-radius: $radius-lg;

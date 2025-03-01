@@ -1,11 +1,11 @@
 ---
-import Search from "$/components/global/nav/search/Search.svelte"
-import LightDarkSwitch from "$/components/global/nav/LightDarkSwitch.svelte"
-import NavMenuPanel from "$/components/global/nav/NavMenuPanel.astro"
-import ColorSettings from "$/components/global/nav/ColorSettings.svelte"
+import Search from '$/components/global/nav/search/Search.svelte'
+import LightDarkSwitch from '$/components/global/nav/LightDarkSwitch.svelte'
+import NavMenuPanel from '$/components/global/nav/NavMenuPanel.astro'
+import ColorSettings from '$/components/global/nav/ColorSettings.svelte'
 
-import siteConfig from "$/config/site"
-import { url } from "$/utils/urls"
+import siteConfig from '$/config/site'
+import { url } from '$/utils/urls'
 ---
 
 <div class="nav-extras">
@@ -15,23 +15,24 @@ import { url } from "$/utils/urls"
   <NavMenuPanel links={siteConfig.navbar.links} />
 </div>
 
-<script is:inline define:vars={{ scriptUrl: url("/pagefind/pagefind.js") }}>
+<script is:inline define:vars={{ scriptUrl: url('/pagefind/pagefind.js') }}>
+  // @ts-nocheck
   async function loadPagefind() {
     /** @type {import("vite-plugin-pagefind/types").Pagefind} */
     const pagefind = await import(scriptUrl)
     await pagefind.options({ excerptLength: 20 })
     pagefind.init()
     window.pagefind = pagefind
-    pagefind.search("") // speed up the first search
+    pagefind.search('') // speed up the first search
   }
   loadPagefind()
 </script>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .nav-extras {
     display: flex;

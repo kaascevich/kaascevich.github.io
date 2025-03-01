@@ -1,9 +1,9 @@
-@use "theme" as *;
+@use 'theme' as *;
 
 // MARK: Dark Mode
 
 @mixin dark {
-  :root[data-color-scheme="dark"] & {
+  :root[data-color-scheme='dark'] & {
     @content;
   }
 }

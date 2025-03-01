@@ -1,6 +1,6 @@
 ---
-import type { MarkdownHeading } from "astro"
-import type { TOCConfig } from "$/types/config"
+import type { MarkdownHeading } from 'astro'
+import type { TOCConfig } from '$/types/config'
 
 type Props = Readonly<{
   config: TOCConfig
@@ -14,11 +14,11 @@ const maxLevel = config.depth
 const minDepth = Math.min(...headings.map((heading) => heading.depth))
 
 const removeTailingHash = (text: string): string =>
-  text.endsWith("#") ? text.substring(0, text.length - 1) : text
+  text.endsWith('#') ? text.substring(0, text.length - 1) : text
 let heading1Count = 1
 ---
 
-<table-of-contents class:list={[className, "group"]}>
+<table-of-contents class:list={[className, 'group']}>
   {
     headings
       .filter((heading) => heading.depth < minDepth + maxLevel)
@@ -29,12 +29,12 @@ let heading1Count = 1
         >
           <div
             class:list={[
-              "transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold",
+              'transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold',
               {
-                "bg-[--toc-badge-bg] text-[--btn-content]":
+                'bg-[--toc-badge-bg] text-[--btn-content]':
                   heading.depth === minDepth,
-                "ml-4": heading.depth === minDepth + 1,
-                "ml-8": heading.depth === minDepth + 2,
+                'ml-4': heading.depth === minDepth + 1,
+                'ml-8': heading.depth === minDepth + 2,
               },
             ]}
           >
@@ -48,11 +48,11 @@ let heading1Count = 1
           </div>
           <div
             class:list={[
-              "transition text-sm",
+              'transition text-sm',
               {
-                "text-50":
+                'text-50':
                   heading.depth === minDepth || heading.depth === minDepth + 1,
-                "text-30": heading.depth === minDepth + 2,
+                'text-30': heading.depth === minDepth + 2,
               },
             ]}
           >
@@ -65,7 +65,7 @@ let heading1Count = 1
     id="active-indicator"
     class:list={[
       { hidden: headings.length === 0 },
-      "-z-10 absolute bg-[--toc-btn-hover] left-0 right-0 rounded-xl transition-all group-hover:bg-transparent border-2 border-[--toc-btn-hover] group-hover:border-[--toc-btn-active] border-dashed",
+      '-z-10 absolute bg-[--toc-btn-hover] left-0 right-0 rounded-xl transition-all group-hover:bg-transparent border-2 border-[--toc-btn-hover] group-hover:border-[--toc-btn-active] border-dashed',
     ]}
   >
   </div>
@@ -74,7 +74,7 @@ let heading1Count = 1
 <script>
   class TableOfContents extends HTMLElement {
     tocElement: HTMLElement | null = null
-    visibleClass = "visible"
+    visibleClass = 'visible'
     observer: IntersectionObserver
     anchorNavTarget: HTMLElement | null = null
     headingIdxMap = new Map<string, number>()
@@ -93,7 +93,7 @@ let heading1Count = 1
 
     markVisibleSection = (entries: readonly IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        const id = entry.target.children[0]?.getAttribute("id")
+        const id = entry.target.children[0]?.getAttribute('id')
         const idx = id ? this.headingIdxMap.get(id) : undefined
         if (idx !== undefined) {
           this.active[idx] = entry.isIntersecting
@@ -142,7 +142,7 @@ let heading1Count = 1
         parentOffset +
         scrollOffset
       this.activeIndicator?.setAttribute(
-        "style",
+        'style',
         `top: ${top}px; height: ${bottom - top}px`,
       )
     }
@@ -178,7 +178,7 @@ let heading1Count = 1
       this.tocElement.scrollTo({
         top,
         left: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       })
     }
 
@@ -232,27 +232,27 @@ let heading1Count = 1
     }
 
     connectedCallback() {
-      const element = document.querySelector(".prose")
+      const element = document.querySelector('.prose')
       if (element) {
-        element.addEventListener("animationend", () => this.init(), {
+        element.addEventListener('animationend', () => this.init(), {
           once: true,
         })
       } else {
-        console.warn("Animation element not found")
+        console.warn('Animation element not found')
       }
     }
 
     init() {
-      this.tocElement = document.getElementById("toc-inner-wrapper")
+      this.tocElement = document.getElementById('toc-inner-wrapper')
       if (this.tocElement === null) {
         return
       }
 
-      this.tocElement.addEventListener("click", this.handleAnchorClick, {
+      this.tocElement.addEventListener('click', this.handleAnchorClick, {
         capture: true,
       })
 
-      this.activeIndicator = document.getElementById("active-indicator")
+      this.activeIndicator = document.getElementById('active-indicator')
 
       this.tocEntries = Array.from(
         document.querySelectorAll<HTMLAnchorElement>("#toc a[href^='#']"),
@@ -284,9 +284,9 @@ let heading1Count = 1
     disconnectedCallback() {
       this.sections.forEach((section) => this.observer.unobserve(section))
       this.observer.disconnect()
-      this.tocElement?.removeEventListener("click", this.handleAnchorClick)
+      this.tocElement?.removeEventListener('click', this.handleAnchorClick)
     }
   }
 
-  customElements.define("table-of-contents", TableOfContents)
+  customElements.define('table-of-contents', TableOfContents)
 </script>

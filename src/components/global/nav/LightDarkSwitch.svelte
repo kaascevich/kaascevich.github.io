@@ -1,27 +1,27 @@
-<script lang="ts">
-  import type { ColorScheme } from "$/types/config"
-  import strings from "$/config/strings"
-  import Icon from "@iconify/svelte"
+<script lang='ts'>
+  import type { ColorScheme } from '$/types/config'
+  import strings from '$/config/strings'
   import {
     applyColorScheme,
     getStoredColorScheme,
     setColorScheme,
-  } from "$/utils/settings"
-  import { onMount } from "svelte"
+  } from '$/utils/settings'
+  import Icon from '@iconify/svelte'
+  import { onMount } from 'svelte'
 
-  const allModes: readonly ColorScheme[] = ["light", "dark", "auto"]
-  let mode: ColorScheme = $state("auto")
+  const allModes: readonly ColorScheme[] = ['light', 'dark', 'auto']
+  let mode: ColorScheme = $state('auto')
 
   onMount(() => {
     mode = getStoredColorScheme()
-    const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)")
+    const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)')
     const updateColorScheme = (): void => {
       applyColorScheme(mode)
     }
 
-    darkModePreference.addEventListener("change", updateColorScheme)
+    darkModePreference.addEventListener('change', updateColorScheme)
     return () => {
-      darkModePreference.removeEventListener("change", updateColorScheme)
+      darkModePreference.removeEventListener('change', updateColorScheme)
     }
   })
 
@@ -37,29 +37,30 @@
 
   function showPanel(): void {
     document
-      .querySelector("#scheme-panel")
-      ?.classList.remove("float-panel-closed")
+      .querySelector('#scheme-panel')
+      ?.classList
+      .remove('float-panel-closed')
   }
 
   function hidePanel(): void {
-    document.querySelector("#scheme-panel")?.classList.add("float-panel-closed")
+    document.querySelector('#scheme-panel')?.classList.add('float-panel-closed')
   }
 
   const buttons = new Map<
     ColorScheme,
-    { key: keyof typeof strings.theme; icon: string }
+    { key: keyof typeof strings.theme, icon: string }
   >([
-    ["light", { key: "lightMode", icon: "tabler:sun" }],
-    ["dark", { key: "darkMode", icon: "tabler:moon" }],
-    ["auto", { key: "systemMode", icon: "tabler:brightness-filled" }],
+    ['light', { key: 'lightMode', icon: 'tabler:sun' }],
+    ['dark', { key: 'darkMode', icon: 'tabler:moon' }],
+    ['auto', { key: 'systemMode', icon: 'tabler:brightness-filled' }],
   ])
 </script>
 
-<div role="menu" tabindex="-1" onmouseleave={hidePanel}>
+<div role='menu' tabindex='-1' onmouseleave={hidePanel}>
   <button
-    aria-label="Light/Dark Mode"
-    role="menuitem"
-    id="scheme-switch"
+    aria-label='Light/Dark Mode'
+    role='menuitem'
+    id='scheme-switch'
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
@@ -70,11 +71,11 @@
     {/each}
   </button>
 
-  <div id="scheme-panel" class="float-panel-closed">
+  <div id='scheme-panel' class='float-panel-closed'>
     <div>
       {#each buttons as [colorScheme, { key, icon }]}
         <button
-          class={{ "current-scheme-btn": mode === colorScheme }}
+          class={{ 'current-scheme-btn': mode === colorScheme }}
           onclick={() => {
             switchScheme(colorScheme)
           }}
@@ -87,7 +88,7 @@
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   // @use "../../../styles/main";
   @use "../../../styles/theme" as *;
   @use "../../../styles/utils" as *;

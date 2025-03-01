@@ -1,53 +1,54 @@
-import type { StringList } from "../types/config"
+import type { StringList } from '../types/config'
+
+function count(num: number, singular: string, plural: string): string {
+  return `${num} ${num === 1 ? singular : plural}`
+}
 
 export default {
   nav: {
-    home: "Home",
-    about: "About",
-    projects: "Projects",
-    archive: "Archive",
-    search: "Search",
+    home: 'Home',
+    about: 'About',
+    projects: 'Projects',
+    archive: 'Archive',
+    search: 'Search',
   },
   tags: {
-    label: "Tags",
-    none: "No tags",
+    label: 'Tags',
+    none: 'No tags',
   },
   categories: {
-    label: "Categories",
-    none: "Uncategorized",
+    label: 'Categories',
+    none: 'Uncategorized',
   },
   widget: {
-    more: "More",
+    more: 'More',
   },
   meta: {
-    words: (wordCount: number) =>
-      `${wordCount} ${wordCount === 1 ? "word" : "words"}`,
-    minutes: (readingTime: number) =>
-      `${readingTime} ${readingTime === 1 ? "minute" : "minutes"}`,
-    posts: (postCount: number) =>
-      `${postCount} ${postCount === 1 ? "post" : "posts"}`,
+    words: (wordCount: number) => count(wordCount, 'word', 'words'),
+    minutes: (readingTime: number) => count(readingTime, 'minute', 'minutes'),
+    posts: (postCount: number) => count(postCount, 'post', 'posts'),
   },
   theme: {
-    themeColor: "Theme Color",
+    themeColor: 'Theme Color',
 
-    lightMode: "Light",
-    darkMode: "Dark",
-    systemMode: "System",
+    lightMode: 'Light',
+    darkMode: 'Dark',
+    systemMode: 'System',
   },
   license: {
-    author: "Author",
-    publishedAt: "Published at",
-    license: "License",
+    author: 'Author',
+    publishedAt: 'Published at',
+    license: 'License',
   },
   alts: {
     pageNum: (page: number) => `Page ${page}`,
-    prevPage: "Previous page",
-    nextPage: "Next page",
+    prevPage: 'Previous page',
+    nextPage: 'Next page',
 
     tag: (tag: string) => `All posts tagged with ${tag}`,
     category: (category: string) => `All posts categorized under ${category}`,
-    profile: "My profile",
-    banner: "Site banner",
-    bannerCredit: "Visit image source",
+    profile: 'My profile',
+    banner: 'Site banner',
+    bannerCredit: 'Visit image source',
   },
 } satisfies StringList

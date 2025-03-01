@@ -1,6 +1,6 @@
 ---
-import siteConfig from "$/config/site"
-import { url } from "$/utils/urls"
+import siteConfig from '$/config/site'
+import { url } from '$/utils/urls'
 const currentYear = new Date().getFullYear()
 ---
 
@@ -9,9 +9,9 @@ const currentYear = new Date().getFullYear()
   <div class="footer-content">
     &copy; {currentYear}
     {siteConfig.profile.name} /
-    <a target="_blank" href={url("rss.xml")}>RSS</a>
+    <a target="_blank" href={url('rss.xml')}>RSS</a>
     /
-    <a target="_blank" href={url("sitemap-index.xml")}>Sitemap</a>
+    <a target="_blank" href={url('sitemap-index.xml')}>Sitemap</a>
     /
     <a
       target="_blank"
@@ -30,10 +30,10 @@ const currentYear = new Date().getFullYear()
 </footer>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .footer-border {
     @include transition();

@@ -1,11 +1,11 @@
 ---
-import Avatar from "$/components/widget/sidebar/profile/Avatar.astro"
-import ProfileLinks from "$/components/widget/sidebar/profile/ProfileLinks.astro"
-import type { ProfileConfig } from "$/types/config"
+import Avatar from '$/components/widget/sidebar/profile/Avatar.astro'
+import ProfileLinks from '$/components/widget/sidebar/profile/ProfileLinks.astro'
+import type { ProfileConfig } from '$/types/config'
 
-type Props = {
+type Props = Readonly<{
   config: ProfileConfig
-}
+}>
 const { config } = Astro.props
 ---
 
@@ -22,10 +22,10 @@ const { config } = Astro.props
 </div>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .profile-card {
     @extend .card-base;

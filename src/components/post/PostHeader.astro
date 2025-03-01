@@ -1,13 +1,13 @@
 ---
-import type { CollectionEntry } from "astro:content"
-import path from "node:path"
-import { getDir } from "$/utils/urls"
-import PostMeta from "$/components/post/PostMeta.astro"
-import PostExtraMeta from "$/components/post/PostExtraMeta.astro"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+import type { CollectionEntry } from 'astro:content'
+import path from 'node:path'
+import { getDir } from '$/utils/urls'
+import PostMeta from '$/components/post/PostMeta.astro'
+import PostExtraMeta from '$/components/post/PostExtraMeta.astro'
+import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 type Props = Readonly<{
-  entry: CollectionEntry<"posts">
+  entry: CollectionEntry<'posts'>
   wordCount: number
   readingTime: number
 }>
@@ -55,7 +55,7 @@ const { entry, wordCount, readingTime } = Astro.props
       id="post-cover"
       src={entry.data.image.source}
       alt={entry.data.image.alt}
-      basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
+      basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
       class="mb-8 rounded-xl banner-container onload-animation"
     />
   )

@@ -1,6 +1,7 @@
-import type { RemarkPlugin } from "@astrojs/markdown-remark"
-import { toString } from "mdast-util-to-string"
-import getReadingTime from "reading-time"
+import type { RemarkPlugin } from '@astrojs/markdown-remark'
+
+import { toString } from 'mdast-util-to-string'
+import getReadingTime from 'reading-time'
 
 export const remarkReadingTime: RemarkPlugin = () => (tree, { data }) => {
   if (data.astro?.frontmatter === undefined) {

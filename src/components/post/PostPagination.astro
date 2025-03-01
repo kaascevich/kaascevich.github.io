@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content"
-import { getPostUrlByID } from "$/utils/urls"
-import { Icon } from "astro-icon/components"
+import type { CollectionEntry } from 'astro:content'
+import { getPostUrlByID } from '$/utils/urls'
+import { Icon } from 'astro-icon/components'
 
 type Props = Readonly<{
-  entry: CollectionEntry<"posts">
+  entry: CollectionEntry<'posts'>
 }>
 
 const { entry } = Astro.props

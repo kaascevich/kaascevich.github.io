@@ -1,8 +1,8 @@
 ---
-import { BANNER_HEIGHT_EXTEND } from "$/constants/constants"
-import strings from "$/config/strings"
-import type { BannerConfig } from "$/types/config"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+import { BANNER_HEIGHT_EXTEND } from '$/constants/constants'
+import strings from '$/config/strings'
+import type { BannerConfig } from '$/types/config'
+import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 type Props = Readonly<{
   config: BannerConfig
@@ -21,10 +21,10 @@ const { config } = Astro.props
   />
 </div>
 
-<style lang="scss" define:vars={{ "end-stop": 0.5, multiplier: 1 / 2 }}>
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+<style lang="scss" define:vars={{ 'end-stop': 0.5, multiplier: 1 / 2 }}>
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   #banner-wrapper {
     position: absolute;

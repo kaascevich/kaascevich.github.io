@@ -1,18 +1,18 @@
 ---
-import type { GetStaticPaths, Page } from "astro"
-import PostPage from "$/components/post/PostPage.astro"
-import Pagination from "$/components/control/pagination/Pagination.astro"
-import { PAGE_SIZE } from "$/constants/constants"
-import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import { getSortedPosts } from "$/utils/content"
-import type { CollectionEntry } from "astro:content"
+import type { GetStaticPaths, Page } from 'astro'
+import PostPage from '$/components/post/PostPage.astro'
+import Pagination from '$/components/control/pagination/Pagination.astro'
+import { PAGE_SIZE } from '$/constants/constants'
+import MainGridLayout from '$/layouts/MainGridLayout.astro'
+import { getSortedPosts } from '$/utils/content'
+import type { CollectionEntry } from 'astro:content'
 
 export const getStaticPaths = (async ({ paginate }) => {
   return paginate(await getSortedPosts(), { pageSize: PAGE_SIZE })
 }) satisfies GetStaticPaths
 
 type Props = Readonly<{
-  page: Page<CollectionEntry<"posts">>
+  page: Page<CollectionEntry<'posts'>>
 }>
 
 const { page } = Astro.props

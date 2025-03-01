@@ -1,14 +1,14 @@
-<script lang="ts">
-  import Icon from "@iconify/svelte"
-  import type { FullRepository } from "$/types/github"
-  import { onMount } from "svelte"
+<script lang='ts'>
+  import type { FullRepository } from '$/types/github'
+  import Icon from '@iconify/svelte'
+  import { onMount } from 'svelte'
 
-  type Props = {
+  type Props = Readonly<{
     /** A GitHub repository, in the form "owner/repo". */
     repo: `${string}/${string}`
-  }
+  }>
   const { repo: repository }: Props = $props()
-  const [owner, repo] = repository.split("/")
+  const [owner, repo] = repository.split('/')
 
   let card: HTMLElement | undefined = $state()
 
@@ -20,38 +20,36 @@
     try {
       const response = await fetch(
         `https://api.github.com/repos/${repository}`,
-        { referrerPolicy: "no-referrer" },
+        { referrerPolicy: 'no-referrer' },
       )
       const data: FullRepository = await response.json()
 
-      const numberFormatter = new Intl.NumberFormat("en-us", {
-        notation: "compact",
+      const numberFormatter = new Intl.NumberFormat('en-us', {
+        notation: 'compact',
         maximumFractionDigits: 1,
       })
 
-      card.querySelector<HTMLElement>(".description")!.innerText =
-        data.description?.replace(/:\w+:/g, "") ?? "<description not set>"
+      card.querySelector<HTMLElement>('.description')!.textContent
+        = data.description?.replace(/:\w+:/g, '') ?? '<description not set>'
 
-      card.querySelector<HTMLElement>(".forks")!.innerText = numberFormatter
+      card.querySelector<HTMLElement>('.forks')!.textContent = numberFormatter
         .format(data.forks)
-        .replaceAll("\u202f", "")
+        .replaceAll('\u202F', '')
 
-      card.querySelector<HTMLElement>(".stars")!.innerText = numberFormatter
+      card.querySelector<HTMLElement>('.stars')!.textContent = numberFormatter
         .format(data.stargazers_count)
-        .replaceAll("\u202f", "")
+        .replaceAll('\u202F', '')
 
-      const avatar = card.querySelector<HTMLElement>(".avatar")!
+      const avatar = card.querySelector<HTMLElement>('.avatar')!
       avatar.style.backgroundImage = `url(${data.owner.avatar_url})`
-      avatar.style.backgroundColor = "transparent"
+      avatar.style.backgroundColor = 'transparent'
 
-      card.querySelector<HTMLElement>(".license")!.innerText =
-        data.license?.spdx_id ?? "no license"
+      card.querySelector<HTMLElement>('.license')!.textContent
+        = data.license?.spdx_id ?? 'no license'
 
-      card.classList.remove("fetch-waiting")
-
-      console.log(`[GITHUB-CARD] loaded card for ${repository}`)
+      card.classList.remove('fetch-waiting')
     } catch (err) {
-      card.classList.add("fetch-error")
+      card.classList.add('fetch-error')
       console.warn(`[GITHUB-CARD] error loading card for ${repository}: ${String(err)}`)
     }
   })
@@ -59,31 +57,31 @@
 
 <a
   bind:this={card}
-  class="fetch-waiting no-styling"
+  class='fetch-waiting no-styling'
   href={`https://github.com/${repo}`}
-  target="_blank"
+  target='_blank'
 >
   <header>
-    <div class="titlebar-left">
-      <div class="owner">
-        <div class="avatar"></div>
-        <div class="user">{owner}</div>
+    <div class='titlebar-left'>
+      <div class='owner'>
+        <div class='avatar'></div>
+        <div class='user'>{owner}</div>
       </div>
-      <div class="repo">{repo}</div>
+      <div class='repo'>{repo}</div>
     </div>
-    <Icon icon="tabler:brand-github" />
+    <Icon icon='tabler:brand-github' />
   </header>
 
-  <div class="description"></div>
+  <div class='description'></div>
 
   <footer>
-    <div class="stars"></div>
-    <div class="forks"></div>
-    <div class="license"></div>
+    <div class='stars'></div>
+    <div class='forks'></div>
+    <div class='license'></div>
   </footer>
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use "sass:math";
   @use "../../styles/theme" as *;
   @use "../../styles/utils" as *;

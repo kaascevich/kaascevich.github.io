@@ -1,12 +1,12 @@
 ---
-import path from "node:path"
-import type { CollectionEntry } from "astro:content"
-import { getDir } from "$/utils/urls"
-import { Icon } from "astro-icon/components"
-import ImageWrapper from "$/components/misc/ImageWrapper.astro"
+import path from 'node:path'
+import type { CollectionEntry } from 'astro:content'
+import { getDir } from '$/utils/urls'
+import { Icon } from 'astro-icon/components'
+import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 type Props = Readonly<{
-  entry: CollectionEntry<"posts">
+  entry: CollectionEntry<'posts'>
   url: string
 }>
 
@@ -15,7 +15,7 @@ const { title, image } = entry.data
 ---
 
 {
-  image === undefined ?
+  image === undefined ? (
     <a
       href={url}
       aria-label={title}
@@ -27,7 +27,8 @@ const { title, image } = entry.data
         class="transition text-[--primary] mx-auto"
       />
     </a>
-  : <a
+  ) : (
+    <a
       href={url}
       aria-label={title}
       class="group max-h-[20vh] md:max-h-none mx-4 mt-4 -mb-2 md:mb-0 md:mx-0 md:mt-0 md:w-[--coverWidth] relative md:absolute md:top-3 md:bottom-3 md:right-3 rounded-xl overflow-hidden active:scale-95"
@@ -42,9 +43,10 @@ const { title, image } = entry.data
       </div>
       <ImageWrapper
         src={image.source}
-        basePath={path.join("content/posts/", getDir(`${entry.id}/`))}
+        basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
         alt={image.alt}
         class="w-full h-full"
       />
     </a>
+  )
 }

@@ -1,20 +1,18 @@
 ---
-import { getCategoryCounts } from "$/utils/content"
-import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import ArchivePanel from "$/components/archive/ArchivePanel.astro"
-import strings from "$/config/strings"
-import type { GetStaticPaths } from "astro"
+import { getCategoryCounts } from '$/utils/content'
+import MainGridLayout from '$/layouts/MainGridLayout.astro'
+import ArchivePanel from '$/components/archive/ArchivePanel.astro'
+import strings from '$/config/strings'
+import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async () => {
   const categories = await getCategoryCounts()
-  return Array.from(categories, ([name]) => ({
-    params: { category: name },
-  }))
+  return Array.from(categories, ([category]) => ({ params: { category } }))
 }) satisfies GetStaticPaths
 
 const { category } = Astro.params
 ---
 
 <MainGridLayout title={strings.nav.archive} description={strings.nav.archive}>
-  <ArchivePanel filter={{ type: "category", category }} />
+  <ArchivePanel filter={{ type: 'category', category }} />
 </MainGridLayout>

@@ -1,7 +1,7 @@
 ---
-import type { NavBarLink } from "$/types/config"
-import { Icon } from "astro-icon/components"
-import { url as getURL } from "$/utils/urls"
+import type { NavBarLink } from '$/types/config'
+import { Icon } from 'astro-icon/components'
+import { url as getURL } from '$/utils/urls'
 
 type Props = Readonly<{
   links: readonly NavBarLink[]
@@ -19,13 +19,13 @@ const { links } = Astro.props
     links.map(({ name, url, external = false }) => (
       <a
         href={external ? url : getURL(url)}
-        target={external ? "_blank" : null}
+        target={external ? '_blank' : null}
       >
         <header>{name}</header>
         <Icon
-          name={`tabler:${external ? "external-link" : "chevron-right"}`}
+          name={`tabler:${external ? 'external-link' : 'chevron-right'}`}
           size="1.25rem"
-          class={`link-icon-${external ? "external" : "internal"}`}
+          class={`link-icon-${external ? 'external' : 'internal'}`}
         />
       </a>
     ))
@@ -35,11 +35,11 @@ const { links } = Astro.props
 <script>
   function loadButtonScripts() {
     document
-      .getElementById("nav-menu-switch")
-      ?.addEventListener("click", () =>
+      .getElementById('nav-menu-switch')
+      ?.addEventListener('click', () =>
         document
-          .getElementById("nav-menu-panel")
-          ?.classList.toggle("float-panel-closed"),
+          .getElementById('nav-menu-panel')
+          ?.classList.toggle('float-panel-closed'),
       )
   }
 
@@ -47,10 +47,10 @@ const { links } = Astro.props
 </script>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   #nav-menu-switch {
     @extend .btn-plain, .expand-animation;

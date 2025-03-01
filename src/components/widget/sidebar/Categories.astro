@@ -1,13 +1,13 @@
 ---
-import WidgetLayout from "$/components/widget/WidgetLayout.astro"
-import ButtonLink from "$/components/control/ButtonLink.astro"
-import { getCategoryCounts } from "$/utils/content"
-import strings from "$/config/strings"
-import { url } from "$/utils/urls"
+import WidgetLayout from '$/components/widget/WidgetLayout.astro'
+import ButtonLink from '$/components/control/ButtonLink.astro'
+import { getCategoryCounts } from '$/utils/content'
+import strings from '$/config/strings'
+import { url } from '$/utils/urls'
 
 const categories = await getCategoryCounts()
 
-const COLLAPSED_HEIGHT = "7.5rem"
+const COLLAPSED_HEIGHT = '7.5rem'
 const COLLAPSE_THRESHOLD = 5
 
 const isCollapsed = categories.size >= COLLAPSE_THRESHOLD

@@ -1,6 +1,6 @@
 ---
-import type { ProfileLink } from "$/types/config"
-import { Icon } from "astro-icon/components"
+import type { ProfileLink } from '$/types/config'
+import { Icon } from 'astro-icon/components'
 
 type Props = Readonly<{
   links: readonly ProfileLink[]
@@ -16,7 +16,7 @@ const { links } = Astro.props
         aria-label={link.name}
         href={link.url}
         target="_blank"
-        class:list={[links.length === 1 ? "small" : "large"]}
+        class:list={[links.length === 1 ? 'small' : 'large']}
       >
         <Icon name={link.icon} size="1.75rem" />
         {links.length === 1 && link.name}
@@ -26,10 +26,10 @@ const { links } = Astro.props
 </ul>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   ul {
     display: flex;

@@ -1,24 +1,25 @@
-<script lang="ts">
-  import Icon from "@iconify/svelte"
-  import type { PagefindSearchFragment } from "vite-plugin-pagefind/types"
+<script lang='ts'>
+  import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
+  import Icon from '@iconify/svelte'
 
-  type Props = {
+  type Props = Readonly<{
     item: PagefindSearchFragment
-  }
+  }>
   const { item }: Props = $props()
 </script>
 
 <a href={item.url}>
   <header>
     {item.meta.title}
-    <Icon icon="tabler:chevron-right" />
+    <Icon icon='tabler:chevron-right' />
   </header>
-  <div class="excerpt">
+  <div class='excerpt'>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html item.excerpt}
   </div>
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use "../../../../styles/theme" as *;
   @use "../../../../styles/utils" as *;
   @use "../../../../styles/variants";

@@ -1,13 +1,14 @@
-import type { APIContext } from "astro"
-import siteConfig from "$/config/site"
-import { getSortedPosts } from "$/utils/content"
-import rss from "@astrojs/rss"
-import MarkdownIt from "markdown-it"
-import sanitizeHtml from "sanitize-html"
+import type { APIRoute } from 'astro'
+
+import siteConfig from '$/config/site'
+import { getSortedPosts } from '$/utils/content'
+import rss from '@astrojs/rss'
+import MarkdownIt from 'markdown-it'
+import sanitizeHtml from 'sanitize-html'
 
 const parser = new MarkdownIt()
 
-export async function GET(context: APIContext): Promise<Response> {
+export const GET: APIRoute = async (context) => {
   const posts = await getSortedPosts()
 
   return rss({
@@ -19,8 +20,9 @@ export async function GET(context: APIContext): Promise<Response> {
       pubDate: post.data.published,
       description: post.data.description,
       link: `/posts/${post.id}/`,
+      categories: post.data.tags as string[],
       content: sanitizeHtml(parser.render(post.body!), {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
       }),
     })),
   })

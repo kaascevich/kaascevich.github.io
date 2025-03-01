@@ -3,12 +3,12 @@ function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 
-type Props = {
+type Props = Readonly<{
   /** The title for this callout. Defaults to the callout type. */
   title?: string | undefined
   /** The callout type. */
-  type: "tip" | "note" | "important" | "warning" | "caution"
-}
+  type: 'tip' | 'note' | 'important' | 'warning' | 'caution'
+}>
 const { title, type } = Astro.props
 ---
 
@@ -18,10 +18,10 @@ const { title, type } = Astro.props
 </blockquote>
 
 <style lang="scss">
-  @use "sass:math";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use 'sass:math';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   blockquote {
     $callouts: (
@@ -62,7 +62,7 @@ const { title, type } = Astro.props
       margin-bottom: spacing(-3);
       font-weight: $font-weight-bold;
 
-      @include before(" ") {
+      @include before(' ') {
         display: inline-block;
         translate: 0 spacing(math.div(1, 8));
         margin-right: spacing(2.5);

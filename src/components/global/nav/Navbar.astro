@@ -1,19 +1,19 @@
 ---
-import { Icon } from "astro-icon/components"
-import siteConfig from "$/config/site"
-import { url } from "$/utils/urls"
-import NavExtras from "$/components/global/nav/NavExtras.astro"
-import NavLink from "$/components/global/nav/NavLink.astro"
+import { Icon } from 'astro-icon/components'
+import siteConfig from '$/config/site'
+import { url } from '$/utils/urls'
+import NavExtras from '$/components/global/nav/NavExtras.astro'
+import NavLink from '$/components/global/nav/NavLink.astro'
 
-type Props = {
+type Props = Readonly<{
   class?: string | undefined
-}
+}>
 const { class: className } = Astro.props
 ---
 
 <div id="navbar">
   <nav class={className}>
-    <a href={url("/")} class="home-link">
+    <a href={url('/')} class="home-link">
       <Icon name="tabler:home" size="1.75rem" />
       {siteConfig.title}
     </a>
@@ -26,10 +26,10 @@ const { class: className } = Astro.props
 </div>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   @keyframes fade-in-down {
     0% {

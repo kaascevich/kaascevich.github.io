@@ -10,7 +10,7 @@ export type FullRepository = Repository & {
   code_of_conduct?: CodeOfConduct | null
   security_and_analysis?: {
     advanced_security?: {
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
     /** Enable or disable Dependabot security updates for the repository. */
     dependabot_security_updates?: {
@@ -18,19 +18,19 @@ export type FullRepository = Repository & {
        * The enablement status of Dependabot security updates for the
        * repository.
        */
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
     secret_scanning?: {
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
     secret_scanning_push_protection?: {
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
     secret_scanning_non_provider_patterns?: {
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
     secret_scanning_ai_detection?: {
-      status?: "enabled" | "disabled" | null
+      status?: 'enabled' | 'disabled' | null
     } | null
   } | null
 
@@ -170,7 +170,7 @@ export type Repository = {
   /** Whether or not this repository is disabled. */
   disabled: boolean
   /** The repository visibility: public, private, or internal. */
-  visibility?: "public" | "private" | "internal" | null
+  visibility?: 'public' | 'private' | 'internal' | null
   pushed_at: string | null
   created_at: string | null
   updated_at: string | null
@@ -196,7 +196,7 @@ export type Repository = {
    * - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
    *   or the pull request's title (when more than one commit).
    */
-  squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | null
+  squash_merge_commit_title?: 'PR_TITLE' | 'COMMIT_OR_PR_TITLE' | null
   /**
    * The default value for a squash merge commit message.
    *
@@ -204,7 +204,7 @@ export type Repository = {
    * - `COMMIT_MESSAGES` - default to the branch's commit messages.
    * - `BLANK` - default to a blank commit message.
    */
-  squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | null
+  squash_merge_commit_message?: 'PR_BODY' | 'COMMIT_MESSAGES' | 'BLANK' | null
   /**
    * The default value for a merge commit title.
    *
@@ -212,7 +212,7 @@ export type Repository = {
    * - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g.,
    *   Merge pull request #123 from branch-name).
    */
-  merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | null
+  merge_commit_title?: 'PR_TITLE' | 'MERGE_MESSAGE' | null
   /**
    * The default value for a merge commit message.
    *
@@ -220,7 +220,7 @@ export type Repository = {
    * - `PR_BODY` - default to the pull request's body.
    * - `BLANK` - default to a blank commit message.
    */
-  merge_commit_message?: "PR_BODY" | "PR_TITLE" | "BLANK" | null
+  merge_commit_message?: 'PR_BODY' | 'PR_TITLE' | 'BLANK' | null
   /** Whether to allow merge commits for pull requests. */
   allow_merge_commit?: boolean | null
   /** Whether to allow forking this repo. */

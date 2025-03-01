@@ -1,6 +1,6 @@
-@use "theme" as *;
-@use "utils" as *;
-@use "variants";
+@use 'theme' as *;
+@use 'utils' as *;
+@use 'variants';
 
 @tailwind base;
 @tailwind components;
@@ -115,7 +115,7 @@
       background-color: var(--btn-card-bg-active);
     }
 
-    &[aria-disabled="true"] {
+    &[aria-disabled='true'] {
       pointer-events: none;
       @include text-plain(10%);
     }

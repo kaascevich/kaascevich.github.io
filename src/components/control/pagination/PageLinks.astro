@@ -1,8 +1,8 @@
 ---
-import { Icon } from "astro-icon/components"
-import { url } from "$/utils/urls"
-import strings from "$/config/strings"
-import type { PageLinkLayout } from "$/utils/pages"
+import { Icon } from 'astro-icon/components'
+import { url } from '$/utils/urls'
+import strings from '$/config/strings'
+import type { PageLinkLayout } from '$/utils/pages'
 
 type Props = Readonly<{
   pageLinks: PageLinkLayout
@@ -11,7 +11,7 @@ type Props = Readonly<{
 
 const { pageLinks, current } = Astro.props
 
-const getPageUrl = (p: number): string => url(p === 1 ? "/" : `/${p}/`)
+const getPageUrl = (p: number): string => url(p === 1 ? '/' : `/${p}/`)
 ---
 
 <ol>
@@ -31,15 +31,17 @@ const getPageUrl = (p: number): string => url(p === 1 ? "/" : `/${p}/`)
   }
   {
     pageLinks[1].map((page) =>
-      page === current ?
+      page === current ? (
         <div class="current-page">{page}</div>
-      : <a
+      ) : (
+        <a
           href={getPageUrl(page)}
           aria-label={strings.alts.pageNum(page)}
           class="other-page"
         >
           {page}
-        </a>,
+        </a>
+      ),
     )
   }
   {
@@ -59,10 +61,10 @@ const getPageUrl = (p: number): string => url(p === 1 ? "/" : `/${p}/`)
 </ol>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   ol {
     display: flex;

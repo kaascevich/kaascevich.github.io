@@ -1,6 +1,6 @@
-@use "theme" as *;
-@use "utils" as *;
-@use "variants";
+@use 'theme' as *;
+@use 'utils' as *;
+@use 'variants';
 
 /* page transition animations with swup */
 html.is-changing .transition-swup-fade {

@@ -1,16 +1,16 @@
 ---
-import "@fontsource-variable/playpen-sans"
-import "katex/dist/katex.css"
-import "$/styles/main.scss"
+import '@fontsource-variable/playpen-sans'
+import 'katex/dist/katex.css'
+import '$/styles/main.scss'
 
-import siteConfig from "$/config/site"
-import Head from "$/components/global/Head.astro"
+import siteConfig from '$/config/site'
+import Head from '$/components/global/Head.astro'
 import {
   BANNER_HEIGHT_EXTEND,
   BANNER_HEIGHT_HOME,
   PAGE_WIDTH,
-} from "$/constants/constants"
-import { url, pathsEqual } from "$/utils/urls"
+} from '$/constants/constants'
+import { url, pathsEqual } from '$/utils/urls'
 
 type Props = Readonly<{
   title?: string | undefined
@@ -24,13 +24,13 @@ type Props = Readonly<{
 // Swup can update the body for each page visit, but it's after the page
 // transition, causing a delay for banner height change. so we use Swup hooks
 // instead to change the height immediately when a link is clicked.
-const isHomePage = pathsEqual(Astro.url.pathname, url("/"))
+const isHomePage = pathsEqual(Astro.url.pathname, url('/'))
 
 const bannerOffset = {
   top: `${BANNER_HEIGHT_EXTEND}vh`,
   center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
-  bottom: "0",
-}[siteConfig.banner?.position ?? "center"]
+  bottom: '0',
+}[siteConfig.banner?.position ?? 'center']
 ---
 
 <!doctype html>
@@ -45,7 +45,7 @@ const bannerOffset = {
       lang="scss"
       define:vars={{
         configHue: siteConfig.themeColor,
-        "page-width": `${PAGE_WIDTH}rem`,
+        'page-width': `${PAGE_WIDTH}rem`,
       }}
     ></style>
 
@@ -54,10 +54,10 @@ const bannerOffset = {
 
   <body
     class:list={[
-      "min-h-screen transition",
+      'min-h-screen transition',
       {
-        "lg:is-home": isHomePage,
-        "enable-banner": siteConfig.banner !== undefined,
+        'lg:is-home': isHomePage,
+        'enable-banner': siteConfig.banner !== undefined,
       },
     ]}
     data-overlayscrollbars-initialize
@@ -77,12 +77,12 @@ const bannerOffset = {
   is:global
   define:vars={{
     bannerOffset,
-    "banner-height-home": `${BANNER_HEIGHT_HOME}vh`,
+    'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
   }}
 >
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   @tailwind components;
   @layer components {
@@ -117,27 +117,27 @@ const bannerOffset = {
 </style>
 
 <script>
-  import "overlayscrollbars/overlayscrollbars.css"
-  import { OverlayScrollbars } from "overlayscrollbars"
+  import 'overlayscrollbars/overlayscrollbars.css'
+  import { OverlayScrollbars } from 'overlayscrollbars'
   import {
     getHue,
     getStoredColorScheme,
     setHue,
     setColorScheme,
-  } from "$/utils/settings"
-  import { pathsEqual, url } from "$/utils/urls"
+  } from '$/utils/settings'
+  import { pathsEqual, url } from '$/utils/urls'
   import {
     BANNER_HEIGHT,
     BANNER_HEIGHT_HOME,
     BANNER_HEIGHT_EXTEND,
     MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
-  } from "$/constants/constants"
-  import siteConfig from "$/config/site"
+  } from '$/constants/constants'
+  import siteConfig from '$/config/site'
 
-  const bannerEnabled = document.getElementById("banner-wrapper") !== null
+  const bannerEnabled = document.getElementById('banner-wrapper') !== null
 
   function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
-    document.addEventListener("click", (event) => {
+    document.addEventListener('click', (event) => {
       const panelDom = document.getElementById(panel)
       const target = event.target
       if (!(target instanceof Node)) {
@@ -149,21 +149,21 @@ const bannerOffset = {
           return
         }
       }
-      panelDom?.classList.add("float-panel-closed")
+      panelDom?.classList.add('float-panel-closed')
     })
   }
-  setClickOutsideToClose("color-settings", [
-    "color-settings",
-    "color-settings-switch",
+  setClickOutsideToClose('color-settings', [
+    'color-settings',
+    'color-settings-switch',
   ])
-  setClickOutsideToClose("nav-menu-panel", [
-    "nav-menu-panel",
-    "nav-menu-switch",
+  setClickOutsideToClose('nav-menu-panel', [
+    'nav-menu-panel',
+    'nav-menu-switch',
   ])
-  setClickOutsideToClose("search-panel", [
-    "search-panel",
-    "search-bar",
-    "search-switch",
+  setClickOutsideToClose('search-panel', [
+    'search-panel',
+    'search-bar',
+    'search-switch',
   ])
 
   function loadColorScheme() {
@@ -190,19 +190,19 @@ const bannerOffset = {
       },
       {
         scrollbars: {
-          theme: "scrollbar-base scrollbar-auto py-1",
-          autoHide: "move",
+          theme: 'scrollbar-base scrollbar-auto py-1',
+          autoHide: 'move',
           autoHideDelay: 500,
           autoHideSuspend: false,
         },
       },
     )
 
-    for (const element of document.querySelectorAll("pre")) {
+    for (const element of document.querySelectorAll('pre')) {
       OverlayScrollbars(element, {
         scrollbars: {
-          theme: "scrollbar-base scrollbar-dark px-2",
-          autoHide: "leave",
+          theme: 'scrollbar-base scrollbar-dark px-2',
+          autoHide: 'leave',
           autoHideDelay: 500,
           autoHideSuspend: false,
         },
@@ -210,23 +210,23 @@ const bannerOffset = {
     }
 
     for (const element of document.querySelectorAll<HTMLElement>(
-      ".katex-display",
+      '.katex-display',
     )) {
       OverlayScrollbars(element, {
         scrollbars: {
-          theme: "scrollbar-base scrollbar-auto py-1",
+          theme: 'scrollbar-base scrollbar-auto py-1',
         },
       })
     }
   }
 
   function showBanner() {
-    const banner = document.getElementById("banner")
+    const banner = document.getElementById('banner')
     if (banner === null) {
-      console.error("failed to find the banner element")
+      console.error('failed to find the banner element')
       return
     }
-    banner.classList.remove("opacity-0", "scale-105")
+    banner.classList.remove('opacity-0', 'scale-105')
   }
 
   function init() {
@@ -242,9 +242,9 @@ const bannerOffset = {
   init()
 
   const setup = () => {
-    window.swup.hooks.on("link:click", () => {
+    window.swup.hooks.on('link:click', () => {
       // remove first load delay
-      document.documentElement.style.setProperty("--content-delay", "0ms")
+      document.documentElement.style.setProperty('--content-delay', '0ms')
 
       // prevent elements from overlapping the navbar
       if (!bannerEnabled) {
@@ -252,9 +252,9 @@ const bannerOffset = {
       }
 
       const threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
-      const navbar = document.getElementById("navbar-wrapper")
+      const navbar = document.getElementById('navbar-wrapper')
 
-      if (navbar === null || !document.body.classList.contains("lg:is-home")) {
+      if (navbar === null || !document.body.classList.contains('lg:is-home')) {
         return
       }
 
@@ -262,48 +262,48 @@ const bannerOffset = {
         document.body.scrollTop >= threshold ||
         document.documentElement.scrollTop >= threshold
       ) {
-        navbar.classList.add("navbar-hidden")
+        navbar.classList.add('navbar-hidden')
       }
     })
-    window.swup.hooks.on("content:replace", initCustomScrollbar)
-    window.swup.hooks.on("visit:start", (visit: { to: { url: string } }) => {
+    window.swup.hooks.on('content:replace', initCustomScrollbar)
+    window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
       // change banner height immediately when a link is clicked
       const bodyElement = document.body!
-      if (pathsEqual(visit.to.url, url("/"))) {
-        bodyElement.classList.add("lg:is-home")
+      if (pathsEqual(visit.to.url, url('/'))) {
+        bodyElement.classList.add('lg:is-home')
       } else {
-        bodyElement.classList.remove("lg:is-home")
+        bodyElement.classList.remove('lg:is-home')
       }
 
       // increase page height during transition to keep scroll animation from jumping
-      document.getElementById("page-height-extend")?.classList.remove("hidden")
+      document.getElementById('page-height-extend')?.classList.remove('hidden')
 
       // hide the TOC while scrolling back to top
-      document.getElementById("toc-wrapper")?.classList.add("toc-not-ready")
+      document.getElementById('toc-wrapper')?.classList.add('toc-not-ready')
     })
-    window.swup.hooks.on("page:view", () => {
+    window.swup.hooks.on('page:view', () => {
       // hide the temp high element when the transition is done
-      document.getElementById("page-height-extend")?.classList.remove("hidden")
+      document.getElementById('page-height-extend')?.classList.remove('hidden')
     })
-    window.swup.hooks.on("visit:end", () => {
+    window.swup.hooks.on('visit:end', () => {
       setTimeout(() => {
-        document.getElementById("page-height-extend")?.classList.add("hidden")
+        document.getElementById('page-height-extend')?.classList.add('hidden')
 
         document
-          .getElementById("toc-wrapper")
-          ?.classList.remove("toc-not-ready")
+          .getElementById('toc-wrapper')
+          ?.classList.remove('toc-not-ready')
       }, 200)
     })
   }
   if (window.swup?.hooks) {
     setup()
   } else {
-    document.addEventListener("swup:enable", setup)
+    document.addEventListener('swup:enable', setup)
   }
 
-  const backToTopBtn = document.getElementById("back-to-top-btn")
-  const toc = document.getElementById("toc-wrapper")
-  const navbar = document.getElementById("navbar-wrapper")
+  const backToTopBtn = document.getElementById('back-to-top-btn')
+  const toc = document.getElementById('toc-wrapper')
+  const navbar = document.getElementById('navbar-wrapper')
   function scrollFunction() {
     const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 
@@ -312,9 +312,9 @@ const bannerOffset = {
         document.body.scrollTop > bannerHeight ||
         document.documentElement.scrollTop > bannerHeight
       ) {
-        backToTopBtn.classList.remove("hide")
+        backToTopBtn.classList.remove('hide')
       } else {
-        backToTopBtn.classList.add("hide")
+        backToTopBtn.classList.add('hide')
       }
     }
 
@@ -327,9 +327,9 @@ const bannerOffset = {
         document.body.scrollTop > bannerHeight ||
         document.documentElement.scrollTop > bannerHeight
       ) {
-        toc.classList.remove("toc-hide")
+        toc.classList.remove('toc-hide')
       } else {
-        toc.classList.add("toc-hide")
+        toc.classList.add('toc-hide')
       }
     }
     if (navbar !== null) {
@@ -337,12 +337,10 @@ const bannerOffset = {
       const MAIN_PANEL_EXCESS_HEIGHT = MAIN_PANEL_OVERLAPS_BANNER_HEIGHT * 16 // the height the main panel overlaps the banner
 
       const bannerHeight =
-        (
-          document.body.classList.contains("lg:is-home") &&
-          window.innerWidth >= 1024
-        ) ?
-          BANNER_HEIGHT_HOME
-        : BANNER_HEIGHT
+        document.body.classList.contains('lg:is-home') &&
+        window.innerWidth >= 1024
+          ? BANNER_HEIGHT_HOME
+          : BANNER_HEIGHT
 
       const threshold =
         window.innerHeight * (bannerHeight / 100) -
@@ -354,9 +352,9 @@ const bannerOffset = {
         document.body.scrollTop >= threshold ||
         document.documentElement.scrollTop >= threshold
       ) {
-        navbar.classList.add("navbar-hidden")
+        navbar.classList.add('navbar-hidden')
       } else {
-        navbar.classList.remove("navbar-hidden")
+        navbar.classList.remove('navbar-hidden')
       }
     }
   }
@@ -367,22 +365,22 @@ const bannerOffset = {
     let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
     offset -= offset % 4
     document.documentElement.style.setProperty(
-      "--banner-height-extend",
+      '--banner-height-extend',
       `${offset}px`,
     )
   }
 </script>
 
 <script>
-  import PhotoSwipeLightbox from "photoswipe/lightbox"
-  import "photoswipe/style.css"
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  import 'photoswipe/style.css'
 
   let lightbox: PhotoSwipeLightbox | undefined = undefined
-  const photoswipe = import("photoswipe")
+  const photoswipe = import('photoswipe')
 
   function createPhotoSwipe() {
     lightbox = new PhotoSwipeLightbox({
-      gallery: ".custom-md img, #post-cover img",
+      gallery: '.custom-md img, #post-cover img',
       pswpModule: () => photoswipe,
       closeSVG: `<svg
         xmlns="http://www.w3.org/2000/svg"
@@ -410,12 +408,12 @@ const bannerOffset = {
       wheelToZoom: true,
       arrowPrev: false,
       arrowNext: false,
-      imageClickAction: "close",
-      tapAction: "close",
-      doubleTapAction: "zoom",
+      imageClickAction: 'close',
+      tapAction: 'close',
+      doubleTapAction: 'zoom',
     })
 
-    lightbox.addFilter("domItemData", (itemData, element) => {
+    lightbox.addFilter('domItemData', (itemData, element) => {
       if (element instanceof HTMLImageElement) {
         itemData.src = element.src
 
@@ -435,9 +433,9 @@ const bannerOffset = {
     if (!lightbox) {
       createPhotoSwipe()
     }
-    window.swup.hooks.on("page:view", () => createPhotoSwipe())
+    window.swup.hooks.on('page:view', () => createPhotoSwipe())
 
-    window.swup.hooks.on("content:replace", () => lightbox?.destroy(), {
+    window.swup.hooks.on('content:replace', () => lightbox?.destroy(), {
       before: true,
     })
   }
@@ -445,6 +443,6 @@ const bannerOffset = {
   if (window.swup) {
     setup()
   } else {
-    document.addEventListener("swup:enable", setup)
+    document.addEventListener('swup:enable', setup)
   }
 </script>

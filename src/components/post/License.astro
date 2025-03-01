@@ -1,9 +1,9 @@
 ---
-import { formatDate } from "$/utils/dates"
-import { Icon } from "astro-icon/components"
-import siteConfig from "$/config/site"
-import strings from "$/config/strings"
-import type { LicenseConfig } from "$/types/config"
+import { formatDate } from '$/utils/dates'
+import { Icon } from 'astro-icon/components'
+import siteConfig from '$/config/site'
+import strings from '$/config/strings'
+import type { LicenseConfig } from '$/types/config'
 
 type Props = Readonly<{
   config: LicenseConfig
@@ -16,7 +16,7 @@ const { config, title, pubDate, class: className } = Astro.props
 const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
-<div class:list={["license-wrapper", className]}>
+<div class:list={['license-wrapper', className]}>
   <hgroup>
     <header>{title}</header>
     <a href={postUrl}>{postUrl}</a>
@@ -51,10 +51,10 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 </div>
 
 <style lang="scss">
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   .license-wrapper {
     @include transition();

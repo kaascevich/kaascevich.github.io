@@ -1,8 +1,8 @@
 ---
-import siteConfig from "$/config/site"
-import Profile from "$/components/widget/sidebar/profile/Profile.astro"
-import Tag from "$/components/widget/sidebar/Tags.astro"
-import Categories from "$/components/widget/sidebar/Categories.astro"
+import siteConfig from '$/config/site'
+import Profile from '$/components/widget/sidebar/profile/Profile.astro'
+import Tag from '$/components/widget/sidebar/Tags.astro'
+import Categories from '$/components/widget/sidebar/Categories.astro'
 
 type Props = Readonly<{
   class?: string | undefined
@@ -22,9 +22,9 @@ const { class: className } = Astro.props
 </aside>
 
 <style lang="scss">
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   #sidebar {
     width: 100%;

@@ -1,8 +1,8 @@
-<script lang="ts">
-  import strings from "$/config/strings"
-  import siteConfig from "$/config/site"
-  import { getHue, setHue } from "$/utils/settings"
-  import Icon from "@iconify/svelte"
+<script lang='ts'>
+  import siteConfig from '$/config/site'
+  import strings from '$/config/strings'
+  import { getHue, setHue } from '$/utils/settings'
+  import Icon from '@iconify/svelte'
 
   let hue = $state(getHue())
 
@@ -12,8 +12,9 @@
 
   function togglePanel(): void {
     document
-      .getElementById("color-settings")
-      ?.classList.toggle("float-panel-closed")
+      .getElementById('color-settings')
+      ?.classList
+      .toggle('float-panel-closed')
   }
 
   $effect(() => {
@@ -22,48 +23,48 @@
 </script>
 
 <button
-  aria-label="Color Settings"
-  id="color-settings-switch"
+  aria-label='Color Settings'
+  id='color-settings-switch'
   onclick={togglePanel}
 >
-  <Icon icon="tabler:palette" height="1.25rem" width="1.25rem" />
+  <Icon icon='tabler:palette' height='1.25rem' width='1.25rem' />
 </button>
 
-<div id="color-settings" class="float-panel-closed">
+<div id='color-settings' class='float-panel-closed'>
   <header>
-    <div class="title">
+    <div class='title'>
       {strings.theme.themeColor}
       <button
-        aria-label="Reset to default"
+        aria-label='Reset to default'
         class={{ inactive: hue === siteConfig.themeColor }}
         onclick={resetHue}
       >
-        <div class="icon-wrapper">
-          <Icon icon="tabler:x" />
+        <div class='icon-wrapper'>
+          <Icon icon='tabler:x' />
         </div>
       </button>
     </div>
-    <div class="hue-value-wrapper">
-      <div id="hue-value">
+    <div class='hue-value-wrapper'>
+      <div id='hue-value'>
         {hue}&deg;
       </div>
     </div>
   </header>
 
-  <div class="hue-slider-wrapper">
+  <div class='hue-slider-wrapper'>
     <input
       aria-label={strings.theme.themeColor}
-      type="range"
-      min="0"
-      max="360"
+      type='range'
+      min='0'
+      max='360'
       bind:value={hue}
-      class="slider"
-      step="5"
+      class='slider'
+      step='5'
     />
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use "sass:math";
   @use "../../../styles/main";
   @use "../../../styles/theme" as *;

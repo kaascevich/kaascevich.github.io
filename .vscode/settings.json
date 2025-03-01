@@ -49,5 +49,11 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "[mdx]": {
+    "editor.defaultFormatter": "unifiedjs.vscode-mdx"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
 }

@@ -1,6 +1,6 @@
 ---
-import strings from "$/config/strings"
-import { Icon } from "astro-icon/components"
+import strings from '$/config/strings'
+import { Icon } from 'astro-icon/components'
 
 type Props = Readonly<{
   wordCount: number
@@ -13,7 +13,7 @@ const { wordCount, readingTime, class: className } = Astro.props
 
 <div
   class:list={[
-    "flex flex-row text-black/30 dark:text-white/30 gap-5",
+    'flex flex-row text-black/30 dark:text-white/30 gap-5',
     className,
   ]}
 >

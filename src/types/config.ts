@@ -1,4 +1,4 @@
-import type { DeepReadonly } from "./misc"
+import type { DeepReadonly } from './misc'
 
 /**
  * Returns the argument unchanged.
@@ -49,7 +49,7 @@ export type BannerConfig = DeepReadonly<{
    *
    * Defaults to `center`.
    */
-  position: "top" | "center" | "bottom"
+  position: 'top' | 'center' | 'bottom'
 
   /** Configuration for the banner attribution link. */
   credit?: BannerCreditConfig | undefined
@@ -124,7 +124,7 @@ export type LicenseConfig = DeepReadonly<{
   url: string
 }>
 
-export type ColorScheme = "light" | "dark" | "auto"
+export type ColorScheme = 'light' | 'dark' | 'auto'
 
 /** A list of strings. */
 export type StringList = Record<

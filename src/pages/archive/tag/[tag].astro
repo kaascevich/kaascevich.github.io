@@ -1,19 +1,18 @@
 ---
-import ArchivePanel from "$/components/archive/ArchivePanel.astro"
-import strings from "$/config/strings"
-import MainGridLayout from "$/layouts/MainGridLayout.astro"
-import { getSortedPosts } from "$/utils/content"
-import type { GetStaticPaths } from "astro"
+import ArchivePanel from '$/components/archive/ArchivePanel.astro'
+import strings from '$/config/strings'
+import MainGridLayout from '$/layouts/MainGridLayout.astro'
+import { getTagCounts } from '$/utils/content'
+import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async () => {
-  const posts = await getSortedPosts()
-  const tags = new Set(posts.flatMap((post) => post.data.tags))
-  return Array.from(tags, (tag) => ({ params: { tag } }))
+  const tags = await getTagCounts()
+  return Array.from(tags, ([tag]) => ({ params: { tag } }))
 }) satisfies GetStaticPaths
 
 const { tag } = Astro.params
 ---
 
 <MainGridLayout title={strings.nav.archive} description={strings.nav.archive}>
-  <ArchivePanel filter={{ type: "tag", tag }} />
+  <ArchivePanel filter={{ type: 'tag', tag }} />
 </MainGridLayout>

@@ -1,12 +1,12 @@
 ---
-layout: "$/layouts/MarkdownLayout.astro"
+layout: '$/layouts/MarkdownLayout.astro'
 title: Projects
 ---
-import Callouts from "$/components/markdown/Callout.astro"
-import GitHub from "$/components/markdown/GitHub.svelte"
+import Callouts from '$/components/markdown/Callout.astro'
+import GitHub from '$/components/markdown/GitHub.astro'
 
 # Projects
 
-<GitHub client:visible repo="kaascevich/brainflipkit"/>
-<GitHub client:visible repo="kaascevich/rapid"/>
-<GitHub client:visible repo="kaascevich/zenny"/>
+<GitHub repo="kaascevich/brainflipkit"/>
+<GitHub repo="kaascevich/rapid"/>
+<GitHub repo="kaascevich/zenny"/>

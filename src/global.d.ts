@@ -1,4 +1,4 @@
-import type { AstroIntegration } from "@swup/astro"
+import type { AstroIntegration } from '@swup/astro'
 
 declare global {
   // eslint-disable-next-line ts/consistent-type-definitions

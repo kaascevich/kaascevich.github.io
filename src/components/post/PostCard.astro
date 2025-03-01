@@ -1,13 +1,13 @@
 ---
-import PostMeta from "$/components/post/PostMeta.astro"
-import PostLink from "$/components/post/PostLink.astro"
-import { Icon } from "astro-icon/components"
-import { render, type CollectionEntry } from "astro:content"
-import PostExtraMeta from "./PostExtraMeta.astro"
+import PostMeta from '$/components/post/PostMeta.astro'
+import PostLink from '$/components/post/PostLink.astro'
+import { Icon } from 'astro-icon/components'
+import { render, type CollectionEntry } from 'astro:content'
+import PostExtraMeta from './PostExtraMeta.astro'
 
 type Props = Readonly<{
   class?: string | undefined
-  entry: CollectionEntry<"posts">
+  entry: CollectionEntry<'posts'>
   url: string
   style: string
 }>
@@ -17,7 +17,7 @@ const { class: className, entry, url, style } = Astro.props
 const { title, published, updated, tags, category, image, description } =
   entry.data
 
-const coverWidth = image === undefined ? "3.25rem" : "28%"
+const coverWidth = image === undefined ? '3.25rem' : '28%'
 
 const { remarkPluginFrontmatter } = await render(entry)
 ---
@@ -56,10 +56,10 @@ const { remarkPluginFrontmatter } = await render(entry)
 </article>
 
 <style lang="scss" define:vars={{ coverWidth }}>
-  @use "$/styles/main";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   article {
     @extend .card-base;

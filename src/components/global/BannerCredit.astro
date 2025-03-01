@@ -1,7 +1,7 @@
 ---
-import strings from "$/config/strings"
-import type { BannerCreditConfig } from "$/types/config"
-import { Icon } from "astro-icon/components"
+import strings from '$/config/strings'
+import type { BannerCreditConfig } from '$/types/config'
+import { Icon } from 'astro-icon/components'
 
 type Props = Readonly<{
   config: BannerCreditConfig
@@ -26,10 +26,10 @@ const { config } = Astro.props
 </a>
 
 <style lang="scss">
-  @use "$/styles/transition";
-  @use "$/styles/theme" as *;
-  @use "$/styles/utils" as *;
-  @use "$/styles/variants";
+  @use '$/styles/transition';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
 
   #banner-credit {
     @extend .onload-animation;

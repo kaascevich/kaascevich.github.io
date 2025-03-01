@@ -1,19 +1,19 @@
-import { config, type Config } from "../types/config"
-import licenseConfig from "./license"
-import navbarConfig from "./navbar"
-import profileConfig from "./profile"
+import { config, type Config } from '../types/config'
+import licenseConfig from './license'
+import navbarConfig from './navbar'
+import profileConfig from './profile'
 
 export default config<Config>({
-  url: "https://kaascevich.github.io",
-  title: "Haven",
-  subtitle: "my little home on the internet",
+  url: 'https://kaascevich.github.io',
+  title: 'Haven',
+  subtitle: 'my little home on the internet',
   themeColor: 250,
   banner: {
-    src: "assets/images/banner.png",
-    position: "center",
+    src: 'assets/images/banner.png',
+    position: 'center',
     credit: {
-      text: "Basic Apple Guy",
-      url: "https://basicappleguy.com/basicappleblog/strokes",
+      text: 'Basic Apple Guy',
+      url: 'https://basicappleguy.com/basicappleblog/strokes',
     },
   },
   toc: {
