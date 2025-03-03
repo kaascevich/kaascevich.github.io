@@ -2,9 +2,9 @@
 import type { ProfileLink } from '$/types/config'
 import { Icon } from 'astro-icon/components'
 
-type Props = Readonly<{
+interface Props {
   links: readonly ProfileLink[]
-}>
+}
 const { links } = Astro.props
 ---
 

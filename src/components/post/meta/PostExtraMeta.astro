@@ -1,0 +1,35 @@
+---
+import strings from '$/config/strings'
+import PostExtraMetaItem from '$/components/post/meta/PostExtraMetaItem.astro'
+
+interface Props {
+  wordCount: number
+  readingTime: number
+  class?: string | undefined
+}
+
+const { wordCount, readingTime, class: className } = Astro.props
+---
+
+<div class={className}>
+  <PostExtraMetaItem
+    icon="tabler:align-justified"
+    text={strings.meta.words(wordCount)}
+  />
+  <PostExtraMetaItem
+    icon="tabler:clock"
+    text={strings.meta.minutes(readingTime)}
+  />
+</div>
+
+<style lang="scss">
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: spacing(5);
+  }
+</style>

@@ -2,12 +2,12 @@
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import Markdown from '$/components/post/Markdown.astro'
 
-type Props = Readonly<{
+interface Props {
   frontmatter: Readonly<{
     title: string
     description?: string | undefined
   }>
-}>
+}
 
 const { title, description = title } = Astro.props.frontmatter
 

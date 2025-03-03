@@ -3,9 +3,9 @@ import strings from '$/config/strings'
 import type { BannerCreditConfig } from '$/types/config'
 import { Icon } from 'astro-icon/components'
 
-type Props = Readonly<{
+interface Props {
   config: BannerCreditConfig
-}>
+}
 const { config } = Astro.props
 ---
 
@@ -60,7 +60,8 @@ const { config } = Astro.props
   }
 
   .copyright-icon {
-    @apply text-white/75 mr-1;
+    color: white(75%);
+    margin-right: spacing(1);
     width: spacing(5);
     height: spacing(5);
   }

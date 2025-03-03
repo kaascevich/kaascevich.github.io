@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  text: string
+  icon: string
+}
+const { text, icon } = Astro.props
+---
+
+<div class="meta-item">
+  <div class="icon-wrapper">
+    <Icon name={icon} />
+  </div>
+  <div class="text">
+    {text}
+  </div>
+</div>
+
+<style lang="scss">
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  .meta-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @include text-plain(40%);
+
+    .icon-wrapper {
+      @include transition();
+      height: spacing(6);
+      width: spacing(6);
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: spacing(2);
+      @include text-plain(50%);
+
+      background-color: black(5%);
+      @include variants.dark {
+        background-color: white(10%);
+      }
+    }
+
+    .text {
+      @include font-size($text-sm);
+    }
+  }
+</style>

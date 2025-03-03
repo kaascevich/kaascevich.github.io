@@ -5,10 +5,10 @@ import { getDir } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
-type Props = Readonly<{
+interface Props {
   entry: CollectionEntry<'posts'>
   url: string
-}>
+}
 
 const { entry, url } = Astro.props
 const { title, image } = entry.data

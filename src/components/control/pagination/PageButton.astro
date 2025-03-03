@@ -2,11 +2,11 @@
 import { Icon } from 'astro-icon/components'
 import { url as getURL } from '$/utils/urls'
 
-type Props = Readonly<{
+interface Props {
   url: string | undefined
   label: string
   icon: string
-}>
+}
 
 const { url, label, icon } = Astro.props
 ---

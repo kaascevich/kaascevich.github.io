@@ -3,9 +3,9 @@ import { Icon } from 'astro-icon/components'
 import { url } from '$/utils/urls'
 import type { NavBarLink } from '$/types/config'
 
-type Props = Readonly<{
+interface Props {
   link: NavBarLink
-}>
+}
 const { link } = Astro.props
 ---
 
@@ -25,6 +25,7 @@ const { link } = Astro.props
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
+
   a {
     @extend .btn-plain, .expand-animation;
     border-radius: $radius-lg;

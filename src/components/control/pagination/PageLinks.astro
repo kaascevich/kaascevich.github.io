@@ -4,10 +4,10 @@ import { url } from '$/utils/urls'
 import strings from '$/config/strings'
 import type { PageLinkLayout } from '$/utils/pages'
 
-type Props = Readonly<{
+interface Props {
   pageLinks: PageLinkLayout
   current: number
-}>
+}
 
 const { pageLinks, current } = Astro.props
 

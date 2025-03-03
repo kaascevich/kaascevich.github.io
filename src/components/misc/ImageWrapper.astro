@@ -4,7 +4,7 @@ import { Image } from 'astro:assets'
 import { url } from '$/utils/urls'
 import type { ImageMetadata } from 'astro'
 
-type Props = Readonly<{
+interface Props {
   id?: string | undefined
   src: string
   class?: string | undefined
@@ -12,7 +12,7 @@ type Props = Readonly<{
   loading?: 'eager' | 'lazy' | undefined
   position?: 'top' | 'center' | 'bottom' | undefined
   basePath?: string | undefined
-}>
+}
 
 const {
   id,

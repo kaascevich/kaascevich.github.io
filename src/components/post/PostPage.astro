@@ -4,9 +4,9 @@ import PostCard from '$/components/post/PostCard.astro'
 import type { Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-type Props = Readonly<{
+interface Props {
   page: Page<CollectionEntry<'posts'>>
-}>
+}
 
 const { page } = Astro.props
 

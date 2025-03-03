@@ -1,5 +1,3 @@
-import type { DeepReadonly } from './misc'
-
 /**
  * Returns the argument unchanged.
  *
@@ -14,120 +12,128 @@ export function config<T>(value: T): T {
 }
 
 /** Site-wide configuration. */
-export type Config = DeepReadonly<{
+export interface Config {
   /** The URL of the site. */
-  url: string
+  readonly url: string
+
   /** The title of the site. */
-  title: string
+  readonly title: string
+
   /** The subtitle of the site. */
-  subtitle: string
+  readonly subtitle: string
+
   /** The default hue, from 0 to 360. */
-  defaultHue: number
+  readonly defaultHue: number
+
   /** Configuration for the site-wide banner. */
-  banner?: BannerConfig | undefined
+  readonly banner?: BannerConfig | undefined
+
   /** Configuration for the table of contents on the right side of the page. */
-  toc?: TOCConfig | undefined
+  readonly toc?: TOCConfig | undefined
+
   /** Configuration for the navbar. */
-  navbar: NavBarConfig
+  readonly navbar: NavBarConfig
+
   /** Configuration for the author's profile. */
-  profile: ProfileConfig
+  readonly profile: ProfileConfig
+
   /** Configuration for post licenses. */
-  license?: LicenseConfig | undefined
-}>
+  readonly license?: LicenseConfig | undefined
+}
 
 /** Configuration for the site-wide banner. */
-export type BannerConfig = DeepReadonly<{
+export interface BannerConfig {
   /**
    * The path to the banner image.
    *
    * Relative to `/src`, or to `/public` if it's an absolute path.
    */
-  src: string
+  readonly src: string
 
   /**
    * The value of the banner's `object-position` property.
    *
    * Defaults to `center`.
    */
-  position: 'top' | 'center' | 'bottom'
+  readonly position: 'top' | 'center' | 'bottom'
 
   /** Configuration for the banner attribution link. */
-  credit?: BannerCreditConfig | undefined
-}>
+  readonly credit?: BannerCreditConfig | undefined
+}
 
 /** Configuration for the banner attribution link. */
-export type BannerCreditConfig = DeepReadonly<{
+export interface BannerCreditConfig {
   /** The name of the person who created the banner image. */
-  text: string
+  readonly text: string
 
   /** A link to the original image. */
-  url: string
-}>
+  readonly url: string
+}
 
 /** Configuration for the table of contents on the right side of the page. */
-export type TOCConfig = DeepReadonly<{
+export interface TOCConfig {
   /** The maximum heading depth to show in the table of contents. */
-  depth: 1 | 2 | 3
-}>
+  readonly depth: 1 | 2 | 3
+}
 
 /** A navbar link. */
-export type NavBarLink = DeepReadonly<{
+export interface NavBarLink {
   /** The name of this navbar link. */
-  name: string
+  readonly name: string
 
   /** The URL of this navbar link. */
-  url: string
+  readonly url: string
 
   /** Whether this navbar link leads to an external site. */
-  external?: boolean | undefined
-}>
+  readonly external?: boolean | undefined
+}
 
 /** Configuration for the navbar. */
-export type NavBarConfig = DeepReadonly<{
+export interface NavBarConfig {
   /** A list of navbar links. */
-  links: NavBarLink[]
-}>
+  readonly links: readonly NavBarLink[]
+}
 
 /** Configuration for the author's profile. */
-export type ProfileConfig = DeepReadonly<{
+export interface ProfileConfig {
   /** The path to the author's profile picture. Relative to `/src`. */
-  avatar: string
+  readonly avatar: string
 
   /** The author's name. */
-  name: string
+  readonly name: string
 
   /** The author's bio. */
-  bio: string
+  readonly bio: string
 
   /** Links to the author's social profiles. */
-  links: ProfileLink[]
-}>
+  readonly links: readonly ProfileLink[]
+}
 
 /** A link to a social profile. */
-export type ProfileLink = DeepReadonly<{
+export interface ProfileLink {
   /** The name of this service. */
-  name: string
+  readonly name: string
 
   /** The URL to the author's profile on this service. */
-  url: string
+  readonly url: string
 
   /** The icon of this service. */
-  icon: string
-}>
+  readonly icon: string
+}
 
 /** Configuration for post licenses. */
-export type LicenseConfig = DeepReadonly<{
+export interface LicenseConfig {
   /** The name of the license. */
-  name: string
+  readonly name: string
 
   /** The URL to the license. */
-  url: string
-}>
+  readonly url: string
+}
 
 export type ColorScheme = 'light' | 'dark' | 'auto'
 
 /** A list of strings. */
-export type StringList = Record<
+export type StringList = Readonly<Record<
   string,
-  Record<string, string | ((...args: never[]) => string)>
->
+  Readonly<Record<string, string | ((...args: never[]) => string)>>
+>>

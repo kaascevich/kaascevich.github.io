@@ -3,13 +3,13 @@ import { getSortedPosts } from '$/utils/content'
 import type { PostsForYear } from '$/types/content'
 import ArchiveGroup from '$/components/archive/ArchiveGroup.astro'
 
-type Filter = Readonly<
-  { type: 'tag'; tag: string } | { type: 'category'; category: string }
->
+type Filter =
+  | { type: 'tag'; tag: string }
+  | { type: 'category'; category: string }
 
-type Props = Readonly<{
+interface Props {
   filter?: Filter | undefined
-}>
+}
 const { filter } = Astro.props
 
 const posts = (await getSortedPosts()).filter((post) => {

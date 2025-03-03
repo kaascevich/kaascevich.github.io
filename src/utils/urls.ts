@@ -1,5 +1,5 @@
 export function pathsEqual(path1: string, path2: string): boolean {
-  const normalize = (path: string): string =>
+  const normalize = (path: string) =>
     path.replace(/^\/|\/$/g, '').toLowerCase()
 
   return normalize(path1) === normalize(path2)

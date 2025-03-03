@@ -128,7 +128,8 @@
           color: $color-neutral-100;
         }
 
-        @include before {
+        &::before {
+          content: "";
           position: absolute;
           top: math.div(1rem, 3);
           left: spacing(-3);

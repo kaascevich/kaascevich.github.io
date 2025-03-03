@@ -14,12 +14,12 @@ import {
 import Banner from '$/components/global/Banner.astro'
 import BannerCredit from '$/components/global/BannerCredit.astro'
 
-type Props = Readonly<{
+interface Props {
   title?: string | undefined
   description?: string | undefined
   setOGTypeArticle?: boolean | undefined
   headings?: readonly MarkdownHeading[] | undefined
-}>
+}
 
 const { title, description, setOGTypeArticle, headings = [] } = Astro.props
 

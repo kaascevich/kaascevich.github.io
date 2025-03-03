@@ -1,11 +1,11 @@
 ---
 import GitHubSvelte from '$/components/markdown/_GitHub.svelte'
 
-type Props = Readonly<{
-  /** A GitHub repository, in the form "owner/repo". */
-  repo: `${string}/${string}`
-}>
-const { repo } = Astro.props
+interface Props {
+  owner: string
+  repo: string
+}
+const { owner, repo } = Astro.props
 ---
 
-<GitHubSvelte client:visible {repo} />
+<GitHubSvelte client:visible {owner} {repo} />

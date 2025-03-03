@@ -6,6 +6,7 @@
 
 <script lang='ts'>
   import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
+
   import SearchResult from '$/components/global/nav/search/SearchResult.svelte'
   import strings from '$/config/strings'
   import Icon from '@iconify/svelte'
@@ -14,7 +15,7 @@
   let keywordMobile = $state('')
   let results: PagefindSearchFragment[] = $state([])
 
-  const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
+  async function search(keyword: string, isDesktop: boolean): Promise<void> {
     const panel = document.getElementById('search-panel')
     if (panel === null) {
       return
@@ -42,7 +43,7 @@
     results = tempResults
   }
 
-  const togglePanel = (): void => {
+  function togglePanel(): void {
     document
       .getElementById('search-panel')
       ?.classList

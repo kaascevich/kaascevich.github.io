@@ -4,14 +4,14 @@ import { Icon } from 'astro-icon/components'
 import strings from '$/config/strings'
 import { url } from '$/utils/urls'
 
-type Props = Readonly<{
+interface Props {
   class: string
   published: Date
   updated?: Date | undefined
   tags: readonly string[]
   category: string
   compactOnMobile?: boolean | undefined
-}>
+}
 
 const {
   class: className,

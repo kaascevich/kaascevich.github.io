@@ -12,10 +12,10 @@ const COLLAPSE_THRESHOLD = 20
 
 const isCollapsed = tags.size >= COLLAPSE_THRESHOLD
 
-type Props = Readonly<{
+interface Props {
   class?: string | undefined
   style?: string | undefined
-}>
+}
 
 const { class: className, style } = Astro.props
 ---

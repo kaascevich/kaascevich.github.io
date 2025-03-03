@@ -1,29 +1,20 @@
 <script lang='ts'>
-  import type { FullRepository } from '$/types/github'
-
   import Icon from '@iconify/svelte'
+  import { Octokit } from 'octokit'
   import { onMount } from 'svelte'
 
-  type Props = Readonly<{
-    /** A GitHub repository, in the form "owner/repo". */
-    repo: `${string}/${string}`
-  }>
-  const { repo: repository }: Props = $props()
-  const [owner, repo] = repository.split('/')
+  interface Props {
+    owner: string
+    repo: string
+  }
+  const { owner, repo }: Props = $props()
 
-  let card: HTMLElement | undefined = $state()
+  let card: HTMLElement
 
   onMount(async () => {
-    if (card === undefined) {
-      return
-    }
-
     try {
-      const response = await fetch(
-        `https://api.github.com/repos/${repository}`,
-        { referrerPolicy: 'no-referrer' },
-      )
-      const data: FullRepository = await response.json()
+      const octokit = new Octokit()
+      const { data } = await octokit.rest.repos.get({ owner, repo })
 
       const numberFormatter = new Intl.NumberFormat('en-us', {
         notation: 'compact',
@@ -34,7 +25,7 @@
         = data.description?.replace(/:\w+:/g, '') ?? '<description not set>'
 
       card.querySelector<HTMLElement>('.forks')!.textContent = numberFormatter
-        .format(data.forks)
+        .format(data.forks_count)
         .replaceAll('\u202F', '')
 
       card.querySelector<HTMLElement>('.stars')!.textContent = numberFormatter
@@ -46,12 +37,12 @@
       avatar.style.backgroundColor = 'transparent'
 
       card.querySelector<HTMLElement>('.license')!.textContent
-        = data.license?.spdx_id ?? 'no license'
+        = data.license?.spdx_id ?? 'None'
 
       card.classList.remove('fetch-waiting')
     } catch (err) {
       card.classList.add('fetch-error')
-      console.warn(`[GITHUB-CARD] error loading card for ${repository}: ${String(err)}`)
+      console.warn(`[GITHUB-CARD] error loading card for ${owner}/${repo}: ${String(err)}`)
     }
   })
 </script>
@@ -70,10 +61,10 @@
       </div>
       <div class='repo'>{repo}</div>
     </div>
-    <Icon icon='tabler:brand-github' />
+    <Icon icon='tabler:brand-github' class='github-logo' />
   </header>
 
-  <div class='description'></div>
+  <div class='description'>Waiting for the GitHub API...</div>
 
   <footer>
     <div class='stars'></div>
@@ -109,6 +100,10 @@
 
       header {
         color: var(--btn-content);
+
+        :global(svg) {
+          color: var(--tw-prose-headings);
+        }
       }
 
       .stars,
@@ -116,7 +111,8 @@
       .license,
       .description {
         color: var(--tw-prose-headings);
-        @include before {
+        &::before {
+          content: '';
           background-color: var(--tw-prose-headings);
         }
       }
@@ -168,7 +164,8 @@
             }
           }
 
-          @include after("/") {
+          &::after {
+            content: "/";
             display: none;
             font-weight: $font-weight-normal;
             @include variants.md {
@@ -182,7 +179,7 @@
         }
       }
 
-      :global(svg) {
+      :global(.github-logo) {
         width: spacing(6);
         height: spacing(6);
       }
@@ -210,7 +207,8 @@
       @include font-size($text-sm);
       opacity: 90%;
 
-      @include before(" ") {
+      &::before {
+        content: ' ';
         display: inline-block;
         vertical-align: spacing(-1);
         margin-right: spacing(1);
@@ -245,7 +243,7 @@
     }
   }
 
-  a.card-github.fetch-waiting {
+  a.fetch-waiting {
     opacity: 70%;
     pointer-events: none;
     @include transition($properties: opacity);
@@ -258,18 +256,18 @@
       background-color: var(--tw-prose-body);
       color: transparent;
       user-select: none;
-      @include before {
+      &::before {
+        content: '';
         background-color: transparent;
       }
     }
 
-    .description,
-    footer {
+    .description, footer {
       border-radius: $radius-lg;
     }
   }
 
-  a.card-github.fetch-error {
+  a.fetch-error {
     opacity: 100%;
     pointer-events: all;
   }
@@ -286,14 +284,7 @@
     }
   }
 
-  .card-github,
-  .description,
-  header,
-  .stars,
-  .forks,
-  .license,
-  .avatar,
-  .github-logo {
+  a, .description, header, footer {
     @include transition();
   }
 </style>

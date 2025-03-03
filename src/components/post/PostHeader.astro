@@ -2,15 +2,15 @@
 import type { CollectionEntry } from 'astro:content'
 import path from 'node:path'
 import { getDir } from '$/utils/urls'
-import PostMeta from '$/components/post/PostMeta.astro'
-import PostExtraMeta from '$/components/post/PostExtraMeta.astro'
+import PostMeta from '$/components/post/meta/PostMeta.astro'
+import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
-type Props = Readonly<{
+interface Props {
   entry: CollectionEntry<'posts'>
   wordCount: number
   readingTime: number
-}>
+}
 
 const { entry, wordCount, readingTime } = Astro.props
 ---

@@ -5,12 +5,12 @@ import siteConfig from '$/config/site'
 import strings from '$/config/strings'
 import type { LicenseConfig } from '$/types/config'
 
-type Props = Readonly<{
+interface Props {
   config: LicenseConfig
   title: string
   pubDate: Date
   class: string
-}>
+}
 
 const { config, title, pubDate, class: className } = Astro.props
 const postUrl = decodeURIComponent(Astro.url.toString())
@@ -42,7 +42,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <header>
         {strings.license.license}
       </header>
-      <a href={config.url} target="_blank" class="details-link">
+      <a href={config.url} target="_blank" class="details-link" rel="license">
         {config.name}
       </a>
     </div>

@@ -3,12 +3,12 @@ function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 
-type Props = Readonly<{
+interface Props {
   /** The title for this callout. Defaults to the callout type. */
   title?: string | undefined
   /** The callout type. */
   type: 'tip' | 'note' | 'important' | 'warning' | 'caution'
-}>
+}
 const { title, type } = Astro.props
 ---
 
@@ -40,13 +40,13 @@ const { title, type } = Astro.props
       $color: var(--admonitions-color-#{$type});
       &.bdm-#{$type} {
         // left border
-        @include before {
+        &::before {
+          content: '';
           background-color: $color;
         }
 
         header {
           color: $color;
-
           &::before {
             scale: 137.5%;
             mask-image: url($icon);
@@ -62,7 +62,8 @@ const { title, type } = Astro.props
       margin-bottom: spacing(-3);
       font-weight: $font-weight-bold;
 
-      @include before(' ') {
+      &::before {
+        content: '';
         display: inline-block;
         translate: 0 spacing(math.div(1, 8));
         margin-right: spacing(2.5);

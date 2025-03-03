@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 
-export type PostsForYear = {
+export interface PostsForYear {
   year: number
   posts: CollectionEntry<'posts'>[]
 }

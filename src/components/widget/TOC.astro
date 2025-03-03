@@ -2,11 +2,11 @@
 import type { MarkdownHeading } from 'astro'
 import type { TOCConfig } from '$/types/config'
 
-type Props = Readonly<{
+interface Props {
   config: TOCConfig
   class?: string | undefined
   headings: readonly MarkdownHeading[]
-}>
+}
 
 const { config, class: className, headings } = Astro.props
 const maxLevel = config.depth
@@ -15,6 +15,7 @@ const minDepth = Math.min(...headings.map((heading) => heading.depth))
 
 const removeTailingHash = (text: string): string =>
   text.endsWith('#') ? text.substring(0, text.length - 1) : text
+
 let heading1Count = 1
 ---
 
@@ -131,13 +132,13 @@ let heading1Count = 1
         this.tocEntries[i]!.classList.remove(this.visibleClass)
         i -= 1
       }
-      let parentOffset = this.tocElement?.getBoundingClientRect().top ?? 0
-      let scrollOffset = this.tocElement?.scrollTop ?? 0
-      let top =
+      const parentOffset = this.tocElement?.getBoundingClientRect().top ?? 0
+      const scrollOffset = this.tocElement?.scrollTop ?? 0
+      const top =
         this.tocEntries[min]!.getBoundingClientRect().top -
         parentOffset +
         scrollOffset
-      let bottom =
+      const bottom =
         this.tocEntries[max]!.getBoundingClientRect().bottom -
         parentOffset +
         scrollOffset
@@ -193,8 +194,8 @@ let heading1Count = 1
       if (this.sections.length === 0) return
 
       for (let i = 0; i < this.sections.length; i += 1) {
-        let offsetTop = this.sections[i]!.getBoundingClientRect().top
-        let offsetBottom = this.sections[i]!.getBoundingClientRect().bottom
+        const offsetTop = this.sections[i]!.getBoundingClientRect().top
+        const offsetBottom = this.sections[i]!.getBoundingClientRect().bottom
 
         if (
           this.isInRange(offsetTop, 0, window.innerHeight) ||
@@ -232,14 +233,9 @@ let heading1Count = 1
     }
 
     connectedCallback() {
-      const element = document.querySelector('.prose')
-      if (element) {
-        element.addEventListener('animationend', () => this.init(), {
-          once: true,
-        })
-      } else {
-        console.warn('Animation element not found')
-      }
+      document
+        .querySelector('.prose')
+        ?.addEventListener('animationend', () => this.init(), { once: true })
     }
 
     init() {

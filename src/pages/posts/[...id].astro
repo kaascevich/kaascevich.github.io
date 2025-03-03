@@ -18,9 +18,9 @@ export const getStaticPaths = (async () => {
   }))
 }) satisfies GetStaticPaths
 
-type Props = Readonly<{
+interface Props {
   entry: CollectionEntry<'posts'>
-}>
+}
 
 const { entry }: Props = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)

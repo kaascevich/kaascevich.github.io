@@ -63,15 +63,13 @@ import siteConfig from '$/config/site'
       }
     }
 
-    &:hover {
-      .icon-wrapper {
+    &:hover .icon-wrapper {
         background-color: black(30%);
         svg {
           scale: 100%;
           opacity: 100%;
         }
       }
-    }
 
     img {
       @include margin-x(auto);

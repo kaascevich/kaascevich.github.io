@@ -54,13 +54,11 @@ export default antfu(
     typescript: {
       tsconfigPath: 'tsconfig.json',
       overrides: {
-        'ts/consistent-type-definitions': ['error', 'type'],
-        'ts/consistent-type-exports': 'error',
-        'ts/consistent-type-imports': 'error',
+        // 'ts/consistent-type-exports': 'error',
+        // 'ts/consistent-type-imports': 'error',
         'ts/method-signature-style': 'error',
-        'ts/no-non-null-assertion': 'off',
         'ts/no-useless-empty-export': 'error',
-        'ts/prefer-destructuring': 'error',
+        // 'ts/prefer-destructuring': 'error',
         'ts/prefer-readonly': 'error',
         'ts/prefer-ts-expect-error': 'error',
         'ts/restrict-template-expressions': ['error', { allowNumber: true }],

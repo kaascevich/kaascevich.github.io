@@ -1,9 +1,9 @@
 ---
-type Props = Readonly<{
+interface Props {
   badge?: string | undefined
   url?: string | undefined
   label?: string | undefined
-}>
+}
 
 const { badge, url, label } = Astro.props
 ---

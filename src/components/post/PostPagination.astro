@@ -4,9 +4,9 @@ import { getPostUrlByID } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
 import { getSortedPosts } from '$/utils/content'
 
-type Props = Readonly<{
+interface Props {
   entry: CollectionEntry<'posts'>
-}>
+}
 
 const { entry } = Astro.props
 
@@ -31,7 +31,7 @@ const nextEntry = allPosts[index + 1]
             size="2rem"
             class="text-[--primary]"
           />
-          <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
+          <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%-3rem)] text-black/75 dark:text-white/75">
             {nextEntry.data.title}
           </div>
         </div>
@@ -45,7 +45,7 @@ const nextEntry = allPosts[index + 1]
         class="w-full font-bold overflow-hidden active:scale-95 max-w-[calc(50%-0.5rem)]"
       >
         <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4">
-          <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
+          <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%-3rem)] text-black/75 dark:text-white/75">
             {prevEntry.data.title}
           </div>
           <Icon

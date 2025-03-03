@@ -30,9 +30,7 @@ export default defineConfig({
     }),
     swup({
       theme: false,
-      animationClass: 'transition-swup-', // see https://swup.js.org/options/#animationselector
-      // the default value `transition-` cause transition delay
-      // when the Tailwind class `transition-all` is used
+      animationClass: 'transition-swup-',
       containers: ['main', '#toc'],
       globalInstance: true,
     }),
@@ -70,11 +68,6 @@ export default defineConfig({
           toplevel: true,
         },
       },
-      Action: {
-        // https://github.com/PlayForm/Compress/issues/376
-        // eslint-disable-next-line require-await
-        Passed: async () => new Promise((resolve) => resolve(true)),
-      },
     }),
   ],
   markdown: {
@@ -88,29 +81,21 @@ export default defineConfig({
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'append',
-          properties: {
-            className: ['anchor'],
-          },
-          content: {
-            type: 'element',
-            tagName: 'span',
-            properties: {
-              'className': ['anchor-icon'],
-              'data-pagefind-ignore': true,
-            },
-            children: [
-              {
-                type: 'text',
-                value: '#',
-              },
-            ],
-          },
+      [rehypeAutolinkHeadings, {
+        behavior: 'append',
+        properties: {
+          className: ['anchor'],
         },
-      ],
+        content: {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            'className': ['anchor-icon'],
+            'data-pagefind-ignore': true,
+          },
+          children: [{ type: 'text', value: '#' }],
+        },
+      }],
     ],
     remarkRehype: {
       handlers: { ...defListHastHandlers },
@@ -119,9 +104,6 @@ export default defineConfig({
       langs: [shellSession],
       langAlias: { plist: 'xml' },
     },
-  },
-  server: {
-    // host: "0.0.0.0",
   },
   vite: {
     build: {
@@ -140,5 +122,8 @@ export default defineConfig({
       },
     },
     plugins: [pagefind({ outputDirectory: 'dist' })],
+  },
+  experimental: {
+    contentIntellisense: true,
   },
 })

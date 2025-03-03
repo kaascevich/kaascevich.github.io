@@ -6,11 +6,11 @@ import PageButton from '$/components/control/pagination/PageButton.astro'
 import { pageLinkLayout } from '$/utils/pages'
 import PageLinks from '$/components/control/pagination/PageLinks.astro'
 
-type Props = Readonly<{
+interface Props {
   page: Page<CollectionEntry<'posts'>>
   class?: string | undefined
   style?: string | undefined
-}>
+}
 
 const { page, class: className, style } = Astro.props
 

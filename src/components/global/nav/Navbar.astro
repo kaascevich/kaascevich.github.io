@@ -5,9 +5,9 @@ import { url } from '$/utils/urls'
 import NavExtras from '$/components/global/nav/NavExtras.astro'
 import NavLink from '$/components/global/nav/NavLink.astro'
 
-type Props = Readonly<{
+interface Props {
   class?: string | undefined
-}>
+}
 const { class: className } = Astro.props
 ---
 
@@ -76,6 +76,9 @@ const { class: className } = Astro.props
         gap: spacing(2);
         color: var(--primary) !important;
         font-weight: $font-weight-bold;
+        &:active {
+          scale: 95%;
+        }
       }
 
       menu {

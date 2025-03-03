@@ -2,14 +2,14 @@
 import { Icon } from 'astro-icon/components'
 import strings from '$/config/strings'
 
-type Props = Readonly<{
+interface Props {
   id: string
   name?: string | undefined
   isCollapsed?: boolean | undefined
   collapsedHeight?: string | undefined
   class?: string | undefined
   style?: string | undefined
-}>
+}
 
 const {
   id,
@@ -72,7 +72,8 @@ const {
         color: $color-neutral-100;
       }
 
-      @include before {
+      &::before {
+        content: '';
         position: absolute;
         top: 5.5px;
         left: -16px;

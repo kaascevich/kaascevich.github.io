@@ -5,11 +5,11 @@ import {
   DEFAULT_COLOR_SCHEME,
 } from '$/constants/constants'
 
-type Props = Readonly<{
+interface Props {
   title?: string | undefined
   description?: string | undefined
   setOGTypeArticle?: boolean | undefined
-}>
+}
 
 const { title, description, setOGTypeArticle = false } = Astro.props
 
@@ -67,13 +67,12 @@ const pageTitle =
     const hue = localStorage.getItem('hue') ?? configHue
     document.documentElement.style.setProperty('--hue', hue)
 
-    // calculate --banner-height-extend, which needs to be a multiple of 4 to
-    // avoid blurry text
-    let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
-    offset -= offset % 4
+    // --banner-height-extend needs to be a multiple of 4 to avoid blurry text
+    const offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
+    const boundedOffset = offset - (offset % 4)
     document.documentElement.style.setProperty(
       '--banner-height-extend',
-      `${offset}px`,
+      `${boundedOffset}px`,
     )
   </script>
 

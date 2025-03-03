@@ -2,6 +2,10 @@ import type { Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
 function range(first: number, last: number): number[] {
+  if (!Number.isInteger(first) || !Number.isInteger(last)) {
+    throw new TypeError("arguments to `range` must be integers")
+  }
+
   return Array.from(
     Array.from({ length: last - first + 1 }).keys(),
     (n) => n + first,

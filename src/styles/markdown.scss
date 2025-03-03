@@ -73,13 +73,15 @@
       "calt", "liga", "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07",
       "ss08", "ss09";
 
-    @include before(none);
-    @include after(none);
+    &::before, &::after {
+      content: none;
+    }
 
     // line numbers
     counter-reset: line;
     span.line {
-      @include before(counter(line)) {
+      &::before {
+        content: counter(line);
         display: inline-block;
 
         counter-increment: line;
@@ -128,7 +130,8 @@
     font-style: normal;
     font-weight: inherit;
 
-    @include before {
+    &::before {
+      content: "";
       display: block;
       position: absolute;
       left: spacing(-1);
@@ -140,9 +143,8 @@
     }
 
     // remove the double quotes from default styles
-    p {
-      @include before(none);
-      @include after(none);
+    p::before, p::after {
+      content: none;
     }
   }
 }

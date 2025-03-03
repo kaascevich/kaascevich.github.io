@@ -1,10 +1,11 @@
 <script lang='ts'>
   import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
+
   import Icon from '@iconify/svelte'
 
-  type Props = Readonly<{
+  interface Props {
     item: PagefindSearchFragment
-  }>
+  }
   const { item }: Props = $props()
 </script>
 

@@ -4,9 +4,9 @@ import Profile from '$/components/widget/sidebar/profile/Profile.astro'
 import Tag from '$/components/widget/sidebar/Tags.astro'
 import Categories from '$/components/widget/sidebar/Categories.astro'
 
-type Props = Readonly<{
+interface Props {
   class?: string | undefined
-}>
+}
 
 const { class: className } = Astro.props
 ---

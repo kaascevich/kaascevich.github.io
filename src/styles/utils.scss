@@ -10,20 +10,6 @@
   @return calc($spacing * $value);
 }
 
-@mixin before($content: '') {
-  &::before {
-    content: $content;
-    @content;
-  }
-}
-
-@mixin after($content: '') {
-  &::after {
-    content: $content;
-    @content;
-  }
-}
-
 @mixin margin-x($left, $right: $left) {
   margin: {
     right: $right;

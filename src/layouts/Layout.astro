@@ -12,11 +12,11 @@ import {
 } from '$/constants/constants'
 import { url, pathsEqual } from '$/utils/urls'
 
-type Props = Readonly<{
+interface Props {
   title?: string | undefined
   description?: string | undefined
   setOGTypeArticle?: boolean | undefined
-}>
+}
 
 // apply a class to the body element to decide the height of the banner, only
 // used for initial page load
@@ -34,11 +34,7 @@ const bannerOffset = {
 ---
 
 <!doctype html>
-<html
-  lang="en-US"
-  class="bg-[--page-bg] transition text-[14px] md:text-[16px]"
-  data-overlayscrollbars-initialize
->
+<html lang="en-US" data-overlayscrollbars-initialize>
   <Head {...Astro.props}>
     <!-- define global CSS variables -->
     <style
@@ -53,24 +49,42 @@ const bannerOffset = {
   </Head>
 
   <body
-    class:list={[
-      'min-h-screen transition',
-      {
-        'lg:is-home': isHomePage,
-        'enable-banner': siteConfig.banner !== undefined,
-      },
-    ]}
+    class:list={{
+      'is-home': isHomePage,
+      'enable-banner': siteConfig.banner !== undefined,
+    }}
     data-overlayscrollbars-initialize
   >
     <slot />
 
     <!--
-			increase page height during transition to prevent scroll animation from
-			jumping
-		-->
+      increase page height during transition to prevent scroll animation from
+      jumping
+    -->
     <div id="page-height-extend" class="hidden h-[300vh]"></div>
   </body>
 </html>
+
+<style lang="scss">
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  html {
+    background-color: var(--page-bg);
+    @include transition();
+
+    font-size: 14px;
+    @include variants.md {
+      font-size: 16px;
+    }
+
+    body {
+      min-height: 100vh;
+      @include transition();
+    }
+  }
+</style>
 
 <style
   lang="scss"
@@ -87,31 +101,41 @@ const bannerOffset = {
   @tailwind components;
   @layer components {
     .enable-banner {
-      &.is-home #banner-wrapper {
-        @apply h-[--banner-height-home] translate-y-[--banner-height-extend];
-      }
       #banner-wrapper {
-        @apply h-[--banner-height-home];
-      }
-
-      &.is-home #banner {
-        @apply h-[--banner-height-home] translate-y-0;
+        height: var(--banner-height-home);
       }
       #banner {
-        @apply h-[--banner-height-home] translate-y-[--bannerOffset];
-      }
-      &.is-home #main-grid {
-        @apply translate-y-[--banner-height-extend];
+        height: var(--banner-height-home);
+        @apply translate-y-[--bannerOffset];
       }
       #top-row {
-        @apply h-[calc(var(--banner-height-home)_-_4.5rem)] transition-all duration-300;
+        height: calc(var(--banner-height-home) - 4.5rem);
+        @include transition($properties: all, $duration: 300ms);
       }
-      &.is-home #sidebar-sticky {
-        @apply top-[calc(1rem_-_var(--banner-height-extend))];
+
+      @include variants.lg {
+        &.is-home {
+          #banner-wrapper {
+            height: var(--banner-height-home);
+            @apply translate-y-[--banner-height-extend];
+          }
+          #banner {
+            height: var(--banner-height-home);
+            @apply translate-y-0;
+          }
+          #main-grid {
+            @apply translate-y-[--banner-height-extend];
+          }
+          #sidebar-sticky {
+            top: calc(1rem - var(--banner-height-extend));
+          }
+        }
       }
     }
+
     .navbar-hidden {
-      @apply opacity-0 -translate-y-16;
+      opacity: 0%;
+      @apply -translate-y-16;
     }
   }
 </style>
@@ -136,20 +160,22 @@ const bannerOffset = {
 
   const bannerEnabled = document.getElementById('banner-wrapper') !== null
 
-  function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
+  function setClickOutsideToClose(
+    panel: string,
+    ignores: readonly string[],
+  ): void {
     document.addEventListener('click', (event) => {
-      const panelDom = document.getElementById(panel)
-      const target = event.target
-      if (!(target instanceof Node)) {
+      if (!(event.target instanceof Node)) {
         return
       }
+
       for (const ignored of ignores) {
         const element = document.getElementById(ignored)
-        if (element === target || element?.contains(target)) {
+        if (element === event.target || element?.contains(event.target)) {
           return
         }
       }
-      panelDom?.classList.add('float-panel-closed')
+      document.getElementById(panel)?.classList.add('float-panel-closed')
     })
   }
   setClickOutsideToClose('color-settings', [
@@ -166,15 +192,15 @@ const bannerOffset = {
     'search-switch',
   ])
 
-  function loadColorScheme() {
+  function loadColorScheme(): void {
     setColorScheme(getStoredColorScheme())
   }
 
-  function loadHue() {
+  function loadHue(): void {
     setHue(getHue())
   }
 
-  function initCustomScrollbar() {
+  function initCustomScrollbar(): void {
     if (document.body === null) {
       return
     }
@@ -220,16 +246,13 @@ const bannerOffset = {
     }
   }
 
-  function showBanner() {
-    const banner = document.getElementById('banner')
-    if (banner === null) {
-      console.error('failed to find the banner element')
-      return
-    }
-    banner.classList.remove('opacity-0', 'scale-105')
+  function showBanner(): void {
+    document
+      .getElementById('banner')
+      ?.classList.remove('opacity-0', 'scale-105')
   }
 
-  function init() {
+  function init(): void {
     loadColorScheme()
     loadHue()
     initCustomScrollbar()
@@ -241,7 +264,7 @@ const bannerOffset = {
   /* load settings when entering the site */
   init()
 
-  const setup = () => {
+  function setup(): void {
     window.swup.hooks.on('link:click', () => {
       // remove first load delay
       document.documentElement.style.setProperty('--content-delay', '0ms')
@@ -254,7 +277,7 @@ const bannerOffset = {
       const threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
       const navbar = document.getElementById('navbar-wrapper')
 
-      if (navbar === null || !document.body.classList.contains('lg:is-home')) {
+      if (navbar === null || !document.body.classList.contains('is-home')) {
         return
       }
 
@@ -266,13 +289,13 @@ const bannerOffset = {
       }
     })
     window.swup.hooks.on('content:replace', initCustomScrollbar)
-    window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
+    window.swup.hooks.on('visit:start', (visit) => {
       // change banner height immediately when a link is clicked
       const bodyElement = document.body!
       if (pathsEqual(visit.to.url, url('/'))) {
-        bodyElement.classList.add('lg:is-home')
+        bodyElement.classList.add('is-home')
       } else {
-        bodyElement.classList.remove('lg:is-home')
+        bodyElement.classList.remove('is-home')
       }
 
       // increase page height during transition to keep scroll animation from jumping
@@ -295,6 +318,7 @@ const bannerOffset = {
       }, 200)
     })
   }
+
   if (window.swup?.hooks) {
     setup()
   } else {
@@ -304,7 +328,7 @@ const bannerOffset = {
   const backToTopBtn = document.getElementById('back-to-top-btn')
   const toc = document.getElementById('toc-wrapper')
   const navbar = document.getElementById('navbar-wrapper')
-  function scrollFunction() {
+  function scrollFunction(): void {
     const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 
     if (backToTopBtn !== null) {
@@ -334,11 +358,12 @@ const bannerOffset = {
     }
     if (navbar !== null) {
       const NAVBAR_HEIGHT = 72
-      const MAIN_PANEL_EXCESS_HEIGHT = MAIN_PANEL_OVERLAPS_BANNER_HEIGHT * 16 // the height the main panel overlaps the banner
+
+      // the height the main panel overlaps the banner
+      const MAIN_PANEL_EXCESS_HEIGHT = MAIN_PANEL_OVERLAPS_BANNER_HEIGHT * 16
 
       const bannerHeight =
-        document.body.classList.contains('lg:is-home') &&
-        window.innerWidth >= 1024
+        document.body.classList.contains('is-home') && window.innerWidth >= 1024
           ? BANNER_HEIGHT_HOME
           : BANNER_HEIGHT
 
@@ -361,12 +386,12 @@ const bannerOffset = {
   window.onscroll = scrollFunction
 
   window.onresize = () => {
-    // calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
-    let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
-    offset -= offset % 4
+    // --banner-height-extend needs to be a multiple of 4 to avoid blurry text
+    const offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
+    const boundedOffset = offset - (offset % 4)
     document.documentElement.style.setProperty(
       '--banner-height-extend',
-      `${offset}px`,
+      `${boundedOffset}px`,
     )
   }
 </script>
@@ -378,7 +403,7 @@ const bannerOffset = {
   let lightbox: PhotoSwipeLightbox | undefined = undefined
   const photoswipe = import('photoswipe')
 
-  function createPhotoSwipe() {
+  function createPhotoSwipe(): void {
     lightbox = new PhotoSwipeLightbox({
       gallery: '.custom-md img, #post-cover img',
       pswpModule: () => photoswipe,
@@ -429,7 +454,7 @@ const bannerOffset = {
     lightbox.init()
   }
 
-  const setup = () => {
+  function setup(): void {
     if (!lightbox) {
       createPhotoSwipe()
     }

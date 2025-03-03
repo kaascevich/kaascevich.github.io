@@ -1,16 +1,16 @@
 ---
-import PostMeta from '$/components/post/PostMeta.astro'
+import PostMeta from '$/components/post/meta/PostMeta.astro'
 import PostLink from '$/components/post/PostLink.astro'
 import { Icon } from 'astro-icon/components'
 import { render, type CollectionEntry } from 'astro:content'
-import PostExtraMeta from './PostExtraMeta.astro'
+import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
 
-type Props = Readonly<{
+interface Props {
   class?: string | undefined
   entry: CollectionEntry<'posts'>
   url: string
   style: string
-}>
+}
 
 const { class: className, entry, url, style } = Astro.props
 
@@ -74,9 +74,24 @@ const { remarkPluginFrontmatter } = await render(entry)
     }
 
     // post separator
-    @include after {
+    &:not(:first-child)::after {
+      content: '';
+
       @include transition();
-      @apply border-t border-dashed mx-6 border-black/10 dark:border-white/[0.15] first:border-t-0 md:hidden;
+      @include margin-x(spacing(6));
+      border: {
+        top-width: 1px;
+        style: dashed;
+        color: black(10%);
+      }
+
+      @include variants.dark {
+        border-color: white(15%);
+      }
+
+      @include variants.md {
+        display: none;
+      }
     }
 
     .info-wrapper {
@@ -116,7 +131,21 @@ const { remarkPluginFrontmatter } = await render(entry)
           }
         }
 
-        @apply before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[36px] before:left-[18px] before:hidden md:before:block;
+        &::before {
+          content: '';
+          width: spacing(1);
+          height: spacing(5);
+          border-radius: $radius-md;
+          background-color: var(--primary);
+          position: absolute;
+          top: spacing(9);
+          left: spacing(4.5);
+
+          display: none;
+          @include variants.md {
+            display: block;
+          }
+        }
 
         svg {
           display: inline;

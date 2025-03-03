@@ -11,9 +11,9 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(await getSortedPosts(), { pageSize: PAGE_SIZE })
 }) satisfies GetStaticPaths
 
-type Props = Readonly<{
+interface Props {
   page: Page<CollectionEntry<'posts'>>
-}>
+}
 
 const { page } = Astro.props
 ---

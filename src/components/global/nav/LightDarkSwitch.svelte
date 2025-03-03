@@ -16,9 +16,7 @@
   onMount(() => {
     mode = getStoredColorScheme()
     const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)')
-    const updateColorScheme = () => {
-      applyColorScheme(mode)
-    }
+    const updateColorScheme = () => applyColorScheme(mode)
 
     darkModePreference.addEventListener('change', updateColorScheme)
     return () => {
@@ -161,7 +159,8 @@
 
           &.current-scheme-btn {
             color: var(--primary) !important;
-            @include before {
+            &::before {
+              content: '';
               scale: 100%;
               opacity: 100%;
               background-color: var(--btn-plain-bg-hover);

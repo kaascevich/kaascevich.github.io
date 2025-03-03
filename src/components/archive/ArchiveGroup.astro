@@ -3,9 +3,9 @@ import type { PostsForYear } from '$/types/content'
 import ArchiveHeader from '$/components/archive/ArchiveHeader.astro'
 import ArchiveItem from '$/components/archive/ArchiveItem.astro'
 
-type Props = Readonly<{
+interface Props {
   group: PostsForYear
-}>
+}
 const { group } = Astro.props
 ---
 

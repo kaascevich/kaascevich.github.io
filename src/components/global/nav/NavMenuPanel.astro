@@ -3,9 +3,9 @@ import type { NavBarLink } from '$/types/config'
 import { Icon } from 'astro-icon/components'
 import { url as getURL } from '$/utils/urls'
 
-type Props = Readonly<{
+interface Props {
   links: readonly NavBarLink[]
-}>
+}
 
 const { links } = Astro.props
 ---
@@ -24,7 +24,6 @@ const { links } = Astro.props
         <header>{name}</header>
         <Icon
           name={`tabler:${external ? 'external-link' : 'chevron-right'}`}
-          size="1.25rem"
           class={`link-icon-${external ? 'external' : 'internal'}`}
         />
       </a>
@@ -33,7 +32,7 @@ const { links } = Astro.props
 </nav>
 
 <script>
-  function loadButtonScripts() {
+  function loadButtonScripts(): void {
     document
       .getElementById('nav-menu-switch')
       ?.addEventListener('click', () =>
@@ -99,11 +98,15 @@ const { links } = Astro.props
 
       .link-icon {
         @include transition();
+        height: spacing(5);
+        width: spacing(5);
 
         &-external {
+          @extend .link-icon;
           @include text-plain(25%);
         }
         &-internal {
+          @extend .link-icon;
           color: var(--primary);
         }
       }

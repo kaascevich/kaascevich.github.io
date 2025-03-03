@@ -43,38 +43,32 @@ struct Me: Person {
 
 ## Tech stuff
 
-```swift
-extension Me {
-  var langs: [Lang] = [.swift, .rust, .nix]
-  let shell = Shell.nushell
+### Software
 
-  var apps: [_: [App]] = [
-    "ide": ["Xcode", "VSCodium"],
-    "term": ["iTerm2"],
-    "music": ["Apple Music"],
-    "browser": ["Safari"],
-  ]
-  var devices: [_: (any Device, [OS])] = [
-    "Kaleb's MacBook": (
-      Mac(.macbookAir, 10, 1),
-      [.macOS]
-    ),
-    "macbookair61": (
-      Mac(.macbookAir, 6, 1),
-      [.linux(distro: "Debian")]
-    ),
-    "zenbook": (
-      PC(.laptop, "ASUS"),
-      [.linux(distro: "Bazzite")]
-    ),
-    "imacg4": (
-      Mac(.powerMac, 4, 2),
-      [.macOS, .macOS]
-    ),
-    "Kaleb's Ally": (
-      PC(.handheld, "ASUS"),
-      [.linux(distro: "Bazzite")]
-    ),
-  ]
-}
-```
+- **Languages:** [Swift], [Rust], [Nix]
+- **IDEs:** [Xcode], [VSCodium]
+- **Terminals:** [iTerm2]
+- **Shells:** [Nushell]
+- **Browsers:** [Safari], [Firefox]
+
+[Swift]: https://swift.org
+[Rust]: https://rust-lang.org
+[Nix]: https://nixos.org
+[Xcode]: https://developer.apple.com/xcode/
+[VSCodium]: https://vscodium.com
+[iTerm2]: https://iterm2.com
+[Nushell]: https://nushell.sh
+[Safari]: https://apple.com/safari/
+[Firefox]: https://mozilla.org/firefox/
+
+### Hardware
+
+| Type                            | OS       | RAM    | Storage | Use                      |
+|---------------------------------|----------|--------|---------|--------------------------|
+| M1 MacBook Air 13"              | macOS 16 | 8 GB   | 256 GB  | Daily driver             |
+| Early 2014 MacBook Air 11"      | Debian   | 4 GB   | 256 GB  | Low-tech Linux thing     |
+| ASUS Zenbook something-or-other | NixOS    | 16 GB  | 1 TB    | Mid-tech Linux thing     |
+| ASUS ROG Ally[^1]               | Bazzite  | 16 GB  | 512 GB  | Gaming                   |
+| iMac G4 15"                     | Mac OS 9 | 256 MB | 40 GB   | A random prop on my desk |
+
+[^1]: This counts as a computer, right?

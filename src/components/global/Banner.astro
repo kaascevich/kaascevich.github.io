@@ -4,9 +4,9 @@ import strings from '$/config/strings'
 import type { BannerConfig } from '$/types/config'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
-type Props = Readonly<{
+interface Props {
   config: BannerConfig
-}>
+}
 const { config } = Astro.props
 ---
 

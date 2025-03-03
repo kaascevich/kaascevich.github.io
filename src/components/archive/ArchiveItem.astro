@@ -2,9 +2,9 @@
 import { getPostUrlByID } from '$/utils/urls'
 import type { CollectionEntry } from 'astro:content'
 
-type Props = Readonly<{
+interface Props {
   post: CollectionEntry<'posts'>
-}>
+}
 const { post } = Astro.props
 
 function formatDate(date: Date): string {

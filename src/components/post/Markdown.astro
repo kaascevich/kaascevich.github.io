@@ -1,9 +1,9 @@
 ---
 import '@fontsource/monaspace-radon'
 
-type Props = Readonly<{
+interface Props {
   class: string
-}>
+}
 const { class: className } = Astro.props
 ---
 
@@ -22,7 +22,7 @@ const { class: className } = Astro.props
 
   document.addEventListener('DOMContentLoaded', addPreCopyButton)
 
-  function addPreCopyButton() {
+  function addPreCopyButton(): void {
     observer.disconnect()
 
     const codeBlocks = Array.from(document.querySelectorAll('pre'))
