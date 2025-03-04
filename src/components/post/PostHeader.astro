@@ -22,31 +22,21 @@ const { entry, wordCount, readingTime } = Astro.props
 />
 
 <!-- title -->
-<h1 class="relative onload-animation">
+<h1>
   <div
     data-pagefind-body
     data-pagefind-weight="10"
     data-pagefind-meta="title"
-    class="transition w-full block font-bold mb-3 text-3xl md:text-[2.25rem]/[2.75rem] text-black/90 dark:text-white/90 md:before:w-1 before:h-5 before:rounded-md before:bg-[--primary] before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
+    class="title-wrapper"
   >
     {entry.data.title}
   </div>
 </h1>
 
 <!-- metadata -->
-<div class="onload-animation">
-  <PostMeta
-    class="mb-5"
-    published={entry.data.published}
-    updated={entry.data.updated}
-    tags={entry.data.tags}
-    category={entry.data.category}
-  />
-  {
-    entry.data.image === undefined && (
-      <div class="border-[--line-divider] border-dashed border-b-[1px] mb-5" />
-    )
-  }
+<div class="meta-wrapper">
+  <PostMeta {entry} class="mb-5" />
+  {entry.data.image === undefined && <hr />}
 </div>
 
 {
@@ -60,3 +50,57 @@ const { entry, wordCount, readingTime } = Astro.props
     />
   )
 }
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/transition';
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  h1 {
+    @extend .onload-animation;
+    position: relative;
+
+    .title-wrapper {
+      @include text-plain(90%);
+      @include transition();
+      width: 100%;
+      display: block;
+      font-weight: $font-weight-bold;
+      margin-bottom: spacing(3);
+      @include font-size($text-xl3);
+
+      @include variants.md {
+        font-size: 2.25rem;
+        line-height: 2.75rem;
+      }
+
+      @include variants.md {
+        &::before {
+          content: '';
+          width: spacing(1);
+          height: spacing(5);
+          border-radius: $radius-md;
+          background-color: var(--primary);
+          position: absolute;
+          top: spacing(3);
+          left: spacing(-4.5);
+        }
+      }
+    }
+  }
+
+  .meta-wrapper {
+    @extend .onload-animation;
+
+    hr {
+      border: {
+        color: var(--line-divider);
+        style: dashed;
+        bottom-width: 1px;
+      }
+      margin-bottom: spacing(5);
+    }
+  }
+</style>

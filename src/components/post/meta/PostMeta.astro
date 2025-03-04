@@ -1,4 +1,6 @@
 ---
+import type { CollectionEntry } from 'astro:content'
+
 import strings from '$/config/strings'
 import { url } from '$/utils/urls'
 
@@ -8,21 +10,12 @@ import MetaLink from '$/components/post/meta/MetaLink.astro'
 
 interface Props {
   class: string
-  published: Date
-  updated?: Date | undefined
-  tags: readonly string[]
-  category: string
+  entry: CollectionEntry<'posts'>
   compactOnMobile?: boolean | undefined
 }
 
-const {
-  class: className,
-  published,
-  updated,
-  tags,
-  category,
-  compactOnMobile = false,
-} = Astro.props
+const { class: className, entry, compactOnMobile = false } = Astro.props
+const { published, updated, category, tags } = entry.data
 
 const showUpdated =
   updated !== undefined && updated.getTime() !== published.getTime()

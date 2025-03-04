@@ -1,0 +1,80 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import { getPostUrlByID } from '$/utils/urls'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  entry: CollectionEntry<'posts'>
+  type: 'next' | 'prev'
+}
+
+const { entry, type } = Astro.props
+
+const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
+---
+
+<a href={getPostUrlByID(entry.id)} class={type}>
+  <div class="link-wrapper !justify-start">
+    <Icon name={icon} />
+    <div class="title">{entry.data.title}</div>
+  </div>
+</a>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  a {
+    width: 100%;
+    font-weight: $font-weight-bold;
+    overflow: hidden;
+    max-width: 100%;
+
+    @include variants.md {
+      max-width: calc(50% - spacing(2));;
+    }
+
+    &:active {
+      scale: 95%;
+    }
+
+    .link-wrapper {
+      @extend .btn-card;
+      border-radius: $radius-xl2;
+      width: 100%;
+      height: spacing(15);
+      max-width: 100%;
+      padding-left: spacing(4);
+      padding-right: spacing(4);
+      display: flex;
+      align-items: center;
+      gap: spacing(4);
+
+      .title {
+        @include text-plain(75%);
+        overflow: hidden;
+        @include transition();
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: calc(100% - spacing(12));
+      }
+
+      :global(svg) {
+        width: spacing(8);
+        height: spacing(8);
+        color: var(--primary);
+      }
+    }
+
+    &.next .link-wrapper {
+      flex-direction: row;
+    }
+
+    &.prev .link-wrapper {
+      flex-direction: row-reverse;
+    }
+  }
+</style>

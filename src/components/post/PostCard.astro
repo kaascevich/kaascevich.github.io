@@ -31,14 +31,7 @@ const { remarkPluginFrontmatter } = await render(entry)
       </a>
     </h2>
 
-    <PostMeta
-      {published}
-      {updated}
-      {tags}
-      {category}
-      compactOnMobile={true}
-      class="mb-4"
-    />
+    <PostMeta {entry} compactOnMobile={true} class="mb-4" />
 
     <div class="description">
       {description}

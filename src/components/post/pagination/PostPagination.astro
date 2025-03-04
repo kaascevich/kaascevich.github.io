@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getSortedPosts } from '$/utils/content'
+import PaginationLink from '$/components/post/pagination/PaginationLink.astro'
+
+interface Props {
+  entry: CollectionEntry<'posts'>
+}
+
+const { entry } = Astro.props
+
+const allPosts = await getSortedPosts()
+const index = allPosts.findIndex((other) => other.id === entry.id)
+const prevEntry = allPosts[index - 1]
+const nextEntry = allPosts[index + 1]
+---
+
+<nav>
+  {nextEntry !== undefined && <PaginationLink entry={nextEntry} type="next" />}
+  {prevEntry !== undefined && <PaginationLink entry={prevEntry} type="prev" />}
+</nav>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: spacing(4);
+    gap: spacing(4);
+    overflow: hidden;
+    width: 100%;
+
+    @include variants.md {
+      flex-direction: row;
+    }
+  }
+</style>
