@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  icon: string
+  hideOnMobile?: boolean | undefined
+}
+
+const { icon, hideOnMobile = false } = Astro.props
+---
+
+<div class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]}>
+  <div class="meta-icon">
+    <Icon name={icon} />
+  </div>
+  <span class="meta-content">
+    <slot />
+  </span>
+</div>
+
+<style lang="scss">
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+
+    &.mobile-hidden {
+      display: none;
+      @include variants.md {
+        display: flex;
+      }
+    }
+
+    .meta-icon {
+      width: spacing(8);
+      height: spacing(8);
+      @include transition();
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: spacing(2);
+      border-radius: $radius-md;
+      background-color: var(--btn-regular-bg);
+      color: var(--btn-content);
+
+      :global(svg) {
+        width: spacing(5);
+        height: spacing(5);
+      }
+    }
+
+    .meta-content {
+      @include text-plain(50%);
+      @include font-size($text-sm);
+      font-weight: $font-weight-medium;
+    }
+  }
+</style>

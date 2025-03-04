@@ -20,40 +20,164 @@ function formatTag(tag: readonly string[]): string {
 }
 ---
 
-<a
-  href={getPostUrlByID(post.id)}
-  aria-label={post.data.title}
-  class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
->
-  <div class="flex flex-row justify-start items-center h-full">
+<a href={getPostUrlByID(post.id)} aria-label={post.data.title}>
+  <div class="item-wrapper">
     <!-- date -->
-    <time
-      datetime={post.data.published.toISOString()}
-      class="w-[15%] md:w-[10%] transition ext-sm text-right text-50"
-    >
+    <time datetime={post.data.published.toISOString()}>
       {formatDate(post.data.published)}
     </time>
 
     <!-- dot and line -->
-    <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
-      <div
-        class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5 bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[--primary] outline outline-4 z-50 outline-[--card-bg] group-hover:outline-[--btn-plain-bg-hover] group-active:outline-[--btn-plain-bg-active]"
-      >
-      </div>
+    <div class="separator">
+      <div></div>
     </div>
 
     <!-- post title -->
-    <div
-      class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold group-hover:translate-x-1 transition-all group-hover:text-[--primary] text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
-    >
+    <div class="title">
       {post.data.title}
     </div>
 
     <!-- tag list -->
-    <div
-      class="hidden md:block md:w-[15%] text-left text-sm transition whitespace-nowrap overflow-ellipsis overflow-hidden text-30"
-    >
+    <div class="tag-list">
       {formatTag(post.data.tags)}
     </div>
   </div>
 </a>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  %dash-line {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc(50% - 1px);
+      translate: 0 -50%;
+      transition: all 300ms;
+      width: 10%;
+      height: 100%;
+      pointer-events: none;
+      border: {
+        style: dashed;
+        left: {
+          width: 2px;
+          color: var(--line-color);
+        }
+      }
+    }
+  }
+
+  a {
+    @extend .btn-plain;
+    display: block !important;
+    height: spacing(10);
+    width: 100%;
+    border-radius: $radius-lg;
+
+    &:hover {
+      color: initial;
+    }
+
+    .item-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+    }
+
+    time {
+      width: 15%;
+      @include transition();
+      text-align: right;
+      @include text-plain(50%);
+
+      @include variants.md {
+        width: 10%;
+      }
+    }
+
+    .separator {
+      @extend %dash-line;
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 15%;
+      height: 100%;
+
+      @include variants.md {
+        width: 10%;
+      }
+
+      div {
+        @include transition($properties: all);
+        margin-left: auto;
+        margin-right: auto;
+        width: spacing(1);
+        height: spacing(1);
+        border-radius: $radius-sm;
+        background-color: with-hue(50%, 0.05);
+        outline: {
+          style: solid;
+          width: 4px;
+          color: var(--card-bg);
+        }
+        z-index: 50;
+      }
+    }
+
+    .title {
+      width: 70%;
+      text-align: left;
+      font-weight: $font-weight-bold;
+      @include transition($properties: all);
+      @include text-plain(75%);
+      padding-right: spacing(8);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      @include variants.md {
+        width: 60%;
+        max-width: 60%;
+      }
+    }
+
+    .tag-list {
+      display: none;
+      text-align: left;
+      @include font-size($text-sm);
+      @include transition();
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      @include text-plain(30%);
+
+      @include variants.md {
+        display: block;
+        width: 20%;
+      }
+    }
+
+    &:hover {
+      .title {
+        translate: spacing(1);
+        color: var(--primary) !important;
+      }
+
+      .separator div {
+        height: spacing(5);
+        background-color: var(--primary);
+        outline-color: var(--btn-plain-bg-hover);
+      }
+    }
+
+    &:active .separator div {
+      outline-color: var(--btn-plain-bg-active);
+    }
+  }
+</style>

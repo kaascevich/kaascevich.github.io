@@ -71,12 +71,13 @@ const { group } = Astro.props
 
     .count {
       width: 70%;
-      @include variants.md {
-        width: 80%;
-      }
       @include transition();
       text-align: left;
       @include text-plain(50%);
+
+      @include variants.md {
+        width: 80%;
+      }
     }
   }
 </style>

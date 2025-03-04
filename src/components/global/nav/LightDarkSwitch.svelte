@@ -88,7 +88,7 @@
 </div>
 
 <style lang='scss'>
-  // @use "../../../styles/main";
+  @use "../../../styles/main";
   @use "../../../styles/theme" as *;
   @use "../../../styles/utils" as *;
   @use "../../../styles/variants";
@@ -98,8 +98,7 @@
     z-index: 50;
 
     button#scheme-switch {
-      // @extend .btn-plain, .expand-animation;
-      @apply btn-plain expand-animation;
+      @extend .btn-plain, .expand-animation;
       position: relative;
       border-radius: $radius-lg;
       width: spacing(11);
@@ -134,16 +133,14 @@
       }
 
       > div {
-        // @extend .card-base, .float-panel;
-        @apply card-base float-panel;
+        @extend .card-base, .float-panel;
         padding: spacing(2);
 
         button {
-          // @extend .btn-plain, .expand-animation;
-          @apply btn-plain expand-animation;
+          @extend .btn-plain, .expand-animation;
           @include transition();
           display: flex;
-          justify-content: start !important;
+          justify-content: flex-start !important;
           align-items: center;
           border-radius: $radius-lg;
           width: 100%;

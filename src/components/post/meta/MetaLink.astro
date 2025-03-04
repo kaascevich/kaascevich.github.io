@@ -1,0 +1,42 @@
+---
+interface Props {
+  href: string
+  label: string
+}
+const { href, label } = Astro.props
+---
+
+<a {href} aria-label={label}>
+  <slot />
+</a>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  %link-lg {
+    @extend .expand-animation;
+    @include transition();
+    margin: spacing(-1.5);
+    border-radius: $radius-md;
+    padding: spacing(1.5);
+  }
+
+  a {
+    @extend %link-lg;
+    @include transition();
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--primary);
+    }
+
+    @include variants.dark {
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+</style>

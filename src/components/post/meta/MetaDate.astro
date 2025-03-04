@@ -1,0 +1,17 @@
+---
+import { formatDate } from '$/utils/dates'
+import MetaItem from '$/components/post/meta/MetaItem.astro'
+
+interface Props {
+  icon: string
+  date: Date
+}
+
+const { icon, date } = Astro.props
+---
+
+<MetaItem {icon}>
+  <time datetime={date.toISOString()}>
+    {formatDate(date)}
+  </time>
+</MetaItem>
