@@ -28,7 +28,7 @@ const { config } = Astro.props
   @use '$/styles/variants';
 
   .profile-card {
-    @extend .card-base;
+    @extend %card-base;
     padding: spacing(3);
 
     .info {

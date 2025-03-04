@@ -7,13 +7,6 @@
 @tailwind utilities;
 
 @layer components {
-  .card-base {
-    border-radius: $radius-xl2;
-    background-color: var(--card-bg);
-    overflow: hidden;
-    @include transition();
-  }
-
   h1,
   h2,
   h3,
@@ -61,13 +54,6 @@
       }
     }
   }
-  .link {
-    @extend .expand-animation;
-    @include transition();
-    margin: spacing(-1);
-    border-radius: $radius-md;
-    padding: spacing(1);
-  }
 
   .float-panel {
     top: spacing(21);
@@ -103,53 +89,6 @@
     &[aria-disabled='true'] {
       pointer-events: none;
       @include text-plain(10%);
-    }
-  }
-  .btn-plain {
-    @include transition();
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    background-image: none;
-
-    color: black(75%);
-    &:hover {
-      color: var(--primary);
-    }
-    @include variants.dark {
-      color: white(75%);
-      &:hover {
-        color: var(--primary);
-      }
-    }
-
-    &:not(.expand-animation) {
-      &:hover {
-        background-color: var(--btn-plain-bg-hover);
-      }
-      &:active {
-        background-color: var(--btn-plain-bg-active);
-      }
-    }
-  }
-  .btn-regular {
-    @include transition();
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--btn-regular-bg);
-
-    color: var(--btn-content);
-    &:hover {
-      background-color: var(--btn-regular-bg-hover);
-    }
-    &:active {
-      background-color: var(--btn-regular-bg-active);
-    }
-    @include variants.dark {
-      color: white(75%);
     }
   }
 

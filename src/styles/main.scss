@@ -2,7 +2,7 @@
 @use 'utils' as *;
 @use 'variants';
 
-.card-base {
+%card-base {
   border-radius: $radius-xl2;
   background-color: var(--card-bg);
   overflow: hidden;
@@ -56,7 +56,7 @@ strong {
     }
   }
 }
-.link {
+%link {
   @extend .expand-animation;
   @include transition();
   margin: spacing(-1);
@@ -100,7 +100,7 @@ strong {
     @include text-plain(10%);
   }
 }
-.btn-plain {
+%btn-plain {
   @include transition();
   display: flex;
   position: relative;
@@ -128,7 +128,7 @@ strong {
     }
   }
 }
-.btn-regular {
+%btn-regular {
   @include transition();
   display: flex;
   justify-content: center;

@@ -179,7 +179,7 @@
   // MARK: Mobile
 
   #search-switch {
-    @extend .btn-plain, .expand-animation;
+    @extend %btn-plain, .expand-animation;
     border-radius: $radius-lg;
     width: spacing(11);
     height: spacing(11);

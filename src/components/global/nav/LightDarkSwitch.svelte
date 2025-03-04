@@ -98,7 +98,7 @@
     z-index: 50;
 
     button#scheme-switch {
-      @extend .btn-plain, .expand-animation;
+      @extend %btn-plain, .expand-animation;
       position: relative;
       border-radius: $radius-lg;
       width: spacing(11);
@@ -133,11 +133,11 @@
       }
 
       > div {
-        @extend .card-base, .float-panel;
+        @extend %card-base, .float-panel;
         padding: spacing(2);
 
         button {
-          @extend .btn-plain, .expand-animation;
+          @extend %btn-plain, .expand-animation;
           @include transition();
           display: flex;
           justify-content: flex-start !important;

@@ -70,7 +70,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         font-weight: $font-weight-bold;
       }
       a {
-        @extend .link;
+        @extend %link;
         color: var(--primary);
       }
     }
@@ -98,7 +98,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         white-space: nowrap;
       }
       .details-link {
-        @extend .link;
+        @extend %link;
         color: var(--primary);
         white-space: nowrap;
       }

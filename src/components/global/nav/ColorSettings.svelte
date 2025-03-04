@@ -89,7 +89,7 @@
   }
 
   #color-settings-switch {
-    @extend .btn-plain, .expand-animation;
+    @extend %btn-plain, .expand-animation;
     border-radius: $radius-lg;
     width: spacing(11);
     height: spacing(11);
@@ -141,7 +141,7 @@
       }
 
       button {
-        @extend .btn-regular;
+        @extend %btn-regular;
         border-radius: $radius-md;
         width: spacing(7);
         height: spacing(7);

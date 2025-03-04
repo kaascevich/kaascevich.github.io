@@ -52,7 +52,7 @@ const {
   @use '$/styles/variants';
 
   widget-layout {
-    @extend .card-base;
+    @extend %card-base;
     padding-bottom: spacing(4);
 
     header {
@@ -98,7 +98,7 @@ const {
       margin-bottom: spacing(-2);
 
       button {
-        @extend .btn-plain;
+        @extend %btn-plain;
         border-radius: $radius-lg;
         width: 100%;
         height: spacing(9);

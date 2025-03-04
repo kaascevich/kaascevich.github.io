@@ -62,7 +62,7 @@ const { remarkPluginFrontmatter } = await render(entry)
   @use '$/styles/variants';
 
   article {
-    @extend .card-base;
+    @extend %card-base;
     display: flex;
     position: relative;
     flex-direction: column-reverse;

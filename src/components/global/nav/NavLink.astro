@@ -27,7 +27,7 @@ const { link } = Astro.props
   @use '$/styles/variants';
 
   a {
-    @extend .btn-plain, .expand-animation;
+    @extend %btn-plain, .expand-animation;
     border-radius: $radius-lg;
     height: spacing(11);
     font-weight: $font-weight-bold;
