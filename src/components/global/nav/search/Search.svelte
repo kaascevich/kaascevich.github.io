@@ -69,7 +69,7 @@
 </search>
 
 <!-- toggle button for mobile -->
-<button onclick={togglePanel} aria-label='Search Panel' id='search-switch'>
+<button onclick={togglePanel} aria-label={strings.nav.search} id='search-switch'>
   <Icon icon='tabler:search' />
 </button>
 

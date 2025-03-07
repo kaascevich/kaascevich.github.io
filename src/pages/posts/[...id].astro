@@ -9,6 +9,8 @@ import siteConfig from '$/config/site'
 import { formatDate } from '$/utils/dates'
 import { getSortedPosts } from '$/utils/content'
 import type { GetStaticPaths } from 'astro'
+import type { WithContext, BlogPosting } from 'schema-dts'
+import strings from '$/config/strings'
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getSortedPosts()
@@ -25,19 +27,29 @@ interface Props {
 const { entry }: Props = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)
 
-const jsonLd = {
+const jsonLd: WithContext<BlogPosting> = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+
   headline: entry.data.title,
   description: entry.data.description,
   keywords: entry.data.tags,
+  inLanguage: 'en-US',
   author: {
     '@type': 'Person',
     name: siteConfig.profile.name,
-    url: Astro.site,
+    url: siteConfig.url,
   },
+
   datePublished: formatDate(entry.data.published),
-} as const
+  dateModified: formatDate(entry.data.updated ?? entry.data.published),
+
+  wordCount: remarkPluginFrontmatter.wordCount,
+  timeRequired: strings.meta.minutes(remarkPluginFrontmatter.readingTime),
+
+  copyrightYear: new Date().getFullYear(),
+  license: siteConfig.license?.url,
+}
 ---
 
 <MainGridLayout

@@ -1,9 +1,9 @@
 import type { Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-function range(first: number, last: number): number[] {
+function range(first: number, last: number): readonly number[] {
   if (!Number.isInteger(first) || !Number.isInteger(last)) {
-    throw new TypeError("arguments to `range` must be integers")
+    throw new TypeError('arguments to `range` must be integers')
   }
 
   return Array.from(
@@ -12,7 +12,7 @@ function range(first: number, last: number): number[] {
   )
 }
 
-export type PageLinkLayout = [1 | null, number[], number | null]
+export type PageLinkLayout = readonly [1 | null, readonly number[], number | null]
 
 export function pageLinkLayout(
   page: Page<CollectionEntry<'posts'>>,

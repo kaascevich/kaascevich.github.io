@@ -13,9 +13,9 @@ export function getPostUrlByID(id: string): string {
   return url(`/posts/${id}/`)
 }
 
-export function getDir(path: string): string {
+export function getDir(path: string): `${string}/` {
   const lastSlashIndex = path.lastIndexOf('/')
-  return lastSlashIndex < 0 ? '/' : path.substring(0, lastSlashIndex + 1)
+  return lastSlashIndex < 0 ? '/' : path.substring(0, lastSlashIndex + 1) as `${string}/`
 }
 
 export function url(path: string): string {

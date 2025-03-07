@@ -1,14 +1,22 @@
-import type { ColorScheme } from '$/types/config'
+import type { ColorScheme, Hue } from '$/types/config'
 
 import siteConfig from '$/config/site'
 import { DEFAULT_COLOR_SCHEME } from '$/constants/constants.ts'
 
-export function getHue(): number {
-  const stored = localStorage.getItem('hue')
-  return stored === null ? siteConfig.defaultHue : Number.parseInt(stored)
+function isValidHue(value: number | null): value is Hue {
+  return value !== null && value >= 0 && value < 360
 }
 
-export function setHue(hue: number): void {
+function isValidColorScheme(value: string | null): value is ColorScheme {
+  return value !== null && ['light', 'dark', 'auto'].includes(value)
+}
+
+export function getHue(): Hue {
+  const stored = Number.parseInt(localStorage.getItem('hue') ?? 'NaN')
+  return isValidHue(stored) ? stored : siteConfig.defaultHue
+}
+
+export function setHue(hue: Hue): void {
   localStorage.setItem('hue', String(hue))
   document.documentElement.style.setProperty('--hue', String(hue))
 }
@@ -28,8 +36,6 @@ export function setColorScheme(colorScheme: ColorScheme): void {
 }
 
 export function getStoredColorScheme(): ColorScheme {
-  return (
-    (localStorage.getItem('colorScheme') as ColorScheme | null)
-    ?? DEFAULT_COLOR_SCHEME
-  )
+  const stored = localStorage.getItem('colorScheme')
+  return isValidColorScheme(stored) ? stored : DEFAULT_COLOR_SCHEME
 }

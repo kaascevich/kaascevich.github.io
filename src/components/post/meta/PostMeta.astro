@@ -11,7 +11,7 @@ import MetaLink from '$/components/post/meta/MetaLink.astro'
 interface Props {
   class: string
   entry: CollectionEntry<'posts'>
-  compactOnMobile?: boolean | undefined
+  compactOnMobile?: boolean
 }
 
 const { class: className, entry, compactOnMobile = false } = Astro.props

@@ -2,6 +2,7 @@
 import type { NavBarLink } from '$/types/config'
 import { Icon } from 'astro-icon/components'
 import { url as getURL } from '$/utils/urls'
+import strings from '$/config/strings'
 
 interface Props {
   links: readonly NavBarLink[]
@@ -10,7 +11,7 @@ interface Props {
 const { links } = Astro.props
 ---
 
-<button aria-label="Menu" name="Nav Menu" id="nav-menu-switch">
+<button aria-label={strings.alts.navMenu} id="nav-menu-switch">
   <Icon name="tabler:menu-2" size="1.25rem" />
 </button>
 
@@ -32,17 +33,13 @@ const { links } = Astro.props
 </nav>
 
 <script>
-  function loadButtonScripts(): void {
-    document
-      .getElementById('nav-menu-switch')
-      ?.addEventListener('click', () =>
-        document
-          .getElementById('nav-menu-panel')
-          ?.classList.toggle('float-panel-closed'),
-      )
-  }
-
-  loadButtonScripts()
+  document
+    .getElementById('nav-menu-switch')
+    ?.addEventListener('click', () =>
+      document
+        .getElementById('nav-menu-panel')
+        ?.classList.toggle('float-panel-closed'),
+    )
 </script>
 
 <style lang="scss">

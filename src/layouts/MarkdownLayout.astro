@@ -5,30 +5,48 @@ import Markdown from '$/components/post/Markdown.astro'
 interface Props {
   frontmatter: Readonly<{
     title: string
-    description?: string | undefined
+    description?: string
   }>
 }
 
 const { title, description = title } = Astro.props.frontmatter
 
+// function invalidProp<
+//   Name extends string,
+//   Expected extends string,
+//   Actual extends string
+// >(name: Name, expected: Expected, actual: Actual) {
+//   return `invalid '${name}' prop (type '${actual}' is not assignable to '${expected}')` as const
+// }
+
+class InvalidPropError extends TypeError {
+  constructor(
+    readonly propName: string,
+    readonly expectedType: string,
+    readonly actualType: string
+  ) {
+    super()
+  }
+
+  override get message() {
+    return `invalid '${this.propName}' prop (type '${this.actualType}' is not assignable to '${this.expectedType}')` as const
+  }
+}
+
 // Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
 // manually.
 if (typeof title !== 'string') {
-  throw new TypeError(
-    `invalid \`title\` prop (type \`${typeof title}\` is not assignable to \`string\`)`,
-  )
+  throw new InvalidPropError("title", "string", typeof title)
 }
 if (typeof description !== 'string') {
-  throw new TypeError(
-    `invalid \`description\` prop (type \`${typeof description}\` is not assignable to \`string | undefined\`)`,
-  )
+  throw new InvalidPropError("description", "string", typeof description)
 }
 ---
 
 <MainGridLayout {title} {description}>
   <div class="outer-wrapper">
     <div class="inner-wrapper">
-      <Markdown class="mt-2">
+      <Markdown class="markdown">
         <slot />
       </Markdown>
     </div>
@@ -55,6 +73,10 @@ if (typeof description !== 'string') {
       padding: spacing(6) spacing(9);
       position: relative;
       width: 100%;
+
+      :global(.markdown) {
+        margin-top: spacing(2);
+      }
     }
   }
 </style>

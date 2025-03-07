@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro'
 
 import siteConfig from '$/config/site'
 import { getSortedPosts } from '$/utils/content'
+import { getPostUrlByID } from '$/utils/urls'
 import rss from '@astrojs/rss'
 import MarkdownIt from 'markdown-it'
 import sanitizeHtml from 'sanitize-html'
@@ -19,7 +20,7 @@ export const GET: APIRoute = async (context) => {
       title: post.data.title,
       pubDate: post.data.published,
       description: post.data.description,
-      link: `/posts/${post.id}/`,
+      link: getPostUrlByID(post.id),
       categories: post.data.tags as string[],
       content: sanitizeHtml(parser.render(post.body!), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),

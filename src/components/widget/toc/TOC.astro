@@ -4,7 +4,7 @@ import type { TOCConfig } from '$/types/config'
 
 interface Props {
   config: TOCConfig
-  class?: string | undefined
+  class?: string
   headings: readonly MarkdownHeading[]
 }
 const { config, class: className, headings: _headings } = Astro.props

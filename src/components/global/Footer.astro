@@ -1,14 +1,17 @@
 ---
 import siteConfig from '$/config/site'
+import strings from '$/config/strings'
 import { url } from '$/utils/urls'
 const currentYear = new Date().getFullYear()
 ---
 
-<div class="footer-border"></div>
+<hr />
 <footer>
   <div class="footer-content">
-    &copy; {currentYear}
-    {siteConfig.profile.name} /
+    {strings.license.copyright(currentYear, siteConfig.profile.name)}
+
+    <br />
+
     <a target="_blank" href={url('rss.xml')}>RSS</a>
     /
     <a target="_blank" href={url('sitemap-index.xml')}>Sitemap</a>
@@ -35,7 +38,7 @@ const currentYear = new Date().getFullYear()
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
-  .footer-border {
+  hr {
     @include transition();
     margin: spacing(10) spacing(16);
 

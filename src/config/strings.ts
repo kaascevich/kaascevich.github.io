@@ -1,7 +1,11 @@
 import type { StringList } from '../types/config'
 
-function count(num: number, singular: string, plural: string): string {
-  return `${num} ${num === 1 ? singular : plural}`
+function count<Singular extends string, Plural extends string>(
+  num: number,
+  singular: Singular,
+  plural: Plural,
+) {
+  return `${num} ${num === 1 ? singular : plural}` as const
 }
 
 export default {
@@ -39,16 +43,27 @@ export default {
     author: 'Author',
     publishedAt: 'Published at',
     license: 'License',
+    copyright: (year: number, name: string) => `\u00A9 ${year} ${name}` as const,
   },
   alts: {
-    pageNum: (page: number) => `Page ${page}`,
     prevPage: 'Previous page',
     nextPage: 'Next page',
+    pageNum: (page: number) => `Page ${page}` as const,
 
-    tag: (tag: string) => `All posts tagged with ${tag}`,
-    category: (category: string) => `All posts categorized under ${category}`,
+    tag: (tag: string) => `All posts tagged with ${tag}` as const,
+    category: (category: string) => `All posts categorized under ${category}` as const,
+
+    goToAbout: 'Go to about page',
     profile: 'My profile',
+
     banner: 'Site banner',
     bannerCredit: 'Visit image source',
+
+    hueSettings: 'Color settings',
+    resetHue: 'Reset to default',
+    themeButton: 'Switch theme',
+
+    backToTop: 'Back to top',
+    navMenuButton: 'Nav menu',
   },
-} satisfies StringList
+} as const satisfies StringList

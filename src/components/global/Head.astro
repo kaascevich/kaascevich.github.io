@@ -6,17 +6,17 @@ import {
 } from '$/constants/constants'
 
 interface Props {
-  title?: string | undefined
-  description?: string | undefined
-  setOGTypeArticle?: boolean | undefined
+  title?: string
+  description?: string
+  setOGTypeArticle?: boolean
 }
 
 const { title, description, setOGTypeArticle = false } = Astro.props
 
 const pageTitle =
   title === undefined
-    ? `${siteConfig.title} - ${siteConfig.subtitle}`
-    : `${title} - ${siteConfig.title}`
+    ? `${siteConfig.title} - ${siteConfig.subtitle}` as const
+    : `${title} - ${siteConfig.title}` as const
 ---
 
 <head>

@@ -57,7 +57,7 @@
 
 <div role='menu' tabindex='-1' onmouseleave={hidePanel}>
   <button
-    aria-label='Light/Dark Mode'
+    aria-label={strings.alts.themeButton}
     role='menuitem'
     id='scheme-switch'
     onclick={toggleScheme}

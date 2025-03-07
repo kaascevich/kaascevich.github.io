@@ -1,3 +1,5 @@
+import type { NumsUpTo } from "./misc"
+
 /**
  * Returns the argument unchanged.
  *
@@ -22,14 +24,14 @@ export interface Config {
   /** The subtitle of the site. */
   readonly subtitle: string
 
-  /** The default hue, from 0 to 360. */
-  readonly defaultHue: number
+  /** The default hue, from 0 to 359. */
+  readonly defaultHue: Hue
 
   /** Configuration for the site-wide banner. */
-  readonly banner?: BannerConfig | undefined
+  readonly banner?: BannerConfig
 
   /** Configuration for the table of contents on the right side of the page. */
-  readonly toc?: TOCConfig | undefined
+  readonly toc?: TOCConfig
 
   /** Configuration for the navbar. */
   readonly navbar: NavBarConfig
@@ -38,7 +40,7 @@ export interface Config {
   readonly profile: ProfileConfig
 
   /** Configuration for post licenses. */
-  readonly license?: LicenseConfig | undefined
+  readonly license?: LicenseConfig
 }
 
 /** Configuration for the site-wide banner. */
@@ -58,7 +60,7 @@ export interface BannerConfig {
   readonly position: 'top' | 'center' | 'bottom'
 
   /** Configuration for the banner attribution link. */
-  readonly credit?: BannerCreditConfig | undefined
+  readonly credit?: BannerCreditConfig
 }
 
 /** Configuration for the banner attribution link. */
@@ -85,7 +87,7 @@ export interface NavBarLink {
   readonly url: string
 
   /** Whether this navbar link leads to an external site. */
-  readonly external?: boolean | undefined
+  readonly external?: boolean
 }
 
 /** Configuration for the navbar. */
@@ -131,6 +133,8 @@ export interface LicenseConfig {
 }
 
 export type ColorScheme = 'light' | 'dark' | 'auto'
+
+export type Hue = NumsUpTo<360>[number]
 
 /** A list of strings. */
 export type StringList = Readonly<Record<

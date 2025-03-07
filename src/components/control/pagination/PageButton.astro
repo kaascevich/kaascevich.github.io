@@ -16,7 +16,7 @@ const { url, label, icon } = Astro.props
   aria-label={label}
   aria-disabled={url === undefined}
 >
-  <Icon name={icon} size="1.75rem" />
+  <Icon name={icon} />
 </a>
 
 <style lang="scss">
@@ -34,6 +34,11 @@ const { url, label, icon } = Astro.props
     color: var(--primary);
     &:active {
       scale: 85%;
+    }
+
+    :global(svg) {
+      width: spacing(7);
+      height: spacing(7);
     }
   }
 </style>

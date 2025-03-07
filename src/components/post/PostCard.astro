@@ -6,7 +6,7 @@ import { render, type CollectionEntry } from 'astro:content'
 import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
 
 interface Props {
-  class?: string | undefined
+  class?: string
   entry: CollectionEntry<'posts'>
   url: string
   style: string
@@ -14,8 +14,7 @@ interface Props {
 
 const { class: className, entry, url, style } = Astro.props
 
-const { title, published, updated, tags, category, image, description } =
-  entry.data
+const { title, image, description } = entry.data
 
 const coverWidth = image === undefined ? '3.25rem' : '28%'
 

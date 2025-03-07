@@ -11,7 +11,9 @@ interface Props {
 
 const { pageLinks, current } = Astro.props
 
-const getPageUrl = (p: number): string => url(p === 1 ? '/' : `/${p}/`)
+function getPageUrl(p: number): string {
+  return url(p === 1 ? '/' : `/${p}/`)
+}
 ---
 
 <ol>

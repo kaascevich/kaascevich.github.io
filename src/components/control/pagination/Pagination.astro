@@ -8,8 +8,8 @@ import PageLinks from '$/components/control/pagination/PageLinks.astro'
 
 interface Props {
   page: Page<CollectionEntry<'posts'>>
-  class?: string | undefined
-  style?: string | undefined
+  class?: string
+  style?: string
 }
 
 const { page, class: className, style } = Astro.props

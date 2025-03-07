@@ -15,18 +15,18 @@ import Banner from '$/components/global/Banner.astro'
 import BannerCredit from '$/components/global/BannerCredit.astro'
 
 interface Props {
-  title?: string | undefined
-  description?: string | undefined
-  setOGTypeArticle?: boolean | undefined
-  headings?: readonly MarkdownHeading[] | undefined
+  title?: string
+  description?: string
+  setOGTypeArticle?: boolean
+  headings?: readonly MarkdownHeading[]
 }
 
 const { title, description, setOGTypeArticle, headings } = Astro.props
 
 const mainPanelTop =
   siteConfig.banner === undefined
-    ? '5.5rem'
-    : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
+    ? ('5.5rem' as const)
+    : (`calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)` as const)
 ---
 
 <Layout {title} {description} {setOGTypeArticle}>

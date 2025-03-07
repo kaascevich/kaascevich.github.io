@@ -13,9 +13,9 @@ import {
 import { url, pathsEqual } from '$/utils/urls'
 
 interface Props {
-  title?: string | undefined
-  description?: string | undefined
-  setOGTypeArticle?: boolean | undefined
+  title?: string
+  description?: string
+  setOGTypeArticle?: boolean
 }
 
 // apply a class to the body element to decide the height of the banner, only
@@ -26,11 +26,13 @@ interface Props {
 // instead to change the height immediately when a link is clicked.
 const isHomePage = pathsEqual(Astro.url.pathname, url('/'))
 
-const bannerOffset = {
-  top: `${BANNER_HEIGHT_EXTEND}vh`,
-  center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
-  bottom: '0',
-}[siteConfig.banner?.position ?? 'center']
+const bannerOffset = (
+  {
+    top: `${BANNER_HEIGHT_EXTEND}vh`,
+    center: `${BANNER_HEIGHT_EXTEND / 4}vh`,
+    bottom: '0',
+  } as const
+)[siteConfig.banner?.position ?? 'center']
 ---
 
 <!doctype html>
@@ -41,7 +43,7 @@ const bannerOffset = {
       lang="scss"
       define:vars={{
         configHue: siteConfig.defaultHue,
-        'page-width': `${PAGE_WIDTH}rem`,
+        'page-width': `${PAGE_WIDTH}rem` as const,
       }}
     ></style>
 

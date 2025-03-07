@@ -5,7 +5,7 @@ import siteConfig from '$/config/site'
 import TOC from '$/components/widget/toc/TOC.astro'
 
 interface Props {
-  headings?: readonly MarkdownHeading[] | undefined
+  headings?: readonly MarkdownHeading[]
 }
 const { headings = [] } = Astro.props
 ---

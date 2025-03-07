@@ -23,7 +23,7 @@
 </script>
 
 <button
-  aria-label='Color Settings'
+  aria-label={strings.alts.hueSettings}
   id='color-settings-switch'
   onclick={togglePanel}
 >
@@ -35,7 +35,7 @@
     <div class='title'>
       {strings.theme.themeColor}
       <button
-        aria-label='Reset to default'
+        aria-label={strings.alts.resetHue}
         class={{ inactive: hue === siteConfig.defaultHue }}
         onclick={resetHue}
       >
@@ -56,10 +56,8 @@
       aria-label={strings.theme.themeColor}
       type='range'
       min='0'
-      max='360'
+      max='359'
       bind:value={hue}
-      class='slider'
-      step='5'
     />
   </div>
 </div>
