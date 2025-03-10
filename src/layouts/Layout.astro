@@ -10,7 +10,7 @@ import {
   BANNER_HEIGHT_HOME,
   PAGE_WIDTH,
 } from '$/constants/constants'
-import { url, pathsEqual } from '$/utils/urls'
+import { pathsEqual } from '$/utils/urls'
 
 interface Props {
   title?: string
@@ -24,7 +24,7 @@ interface Props {
 // Swup can update the body for each page visit, but it's after the page
 // transition, causing a delay for banner height change. so we use Swup hooks
 // instead to change the height immediately when a link is clicked.
-const isHomePage = pathsEqual(Astro.url.pathname, url('/'))
+const isHomePage = pathsEqual(Astro.url.pathname, '/')
 
 const bannerOffset = (
   {
@@ -151,7 +151,7 @@ const bannerOffset = (
     setHue,
     setColorScheme,
   } from '$/utils/settings'
-  import { pathsEqual, url } from '$/utils/urls'
+  import { pathsEqual } from '$/utils/urls'
   import {
     BANNER_HEIGHT,
     BANNER_HEIGHT_HOME,
@@ -162,10 +162,7 @@ const bannerOffset = (
 
   const bannerEnabled = document.getElementById('banner-wrapper') !== null
 
-  function setClickOutsideToClose(
-    panel: string,
-    ignores: readonly string[],
-  ): void {
+  function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
     document.addEventListener('click', (event) => {
       if (!(event.target instanceof Node)) {
         return
@@ -194,15 +191,15 @@ const bannerOffset = (
     'search-switch',
   ])
 
-  function loadColorScheme(): void {
+  function loadColorScheme() {
     setColorScheme(getStoredColorScheme())
   }
 
-  function loadHue(): void {
+  function loadHue() {
     setHue(getHue())
   }
 
-  function initCustomScrollbar(): void {
+  function initCustomScrollbar() {
     if (document.body === null) {
       return
     }
@@ -248,13 +245,13 @@ const bannerOffset = (
     }
   }
 
-  function showBanner(): void {
+  function showBanner() {
     document
       .getElementById('banner')
       ?.classList.remove('opacity-0', 'scale-105')
   }
 
-  function init(): void {
+  function init() {
     loadColorScheme()
     loadHue()
     initCustomScrollbar()
@@ -266,7 +263,7 @@ const bannerOffset = (
   /* load settings when entering the site */
   init()
 
-  function setup(): void {
+  function setup() {
     window.swup.hooks.on('link:click', () => {
       // remove first load delay
       document.documentElement.style.setProperty('--content-delay', '0ms')
@@ -294,7 +291,7 @@ const bannerOffset = (
     window.swup.hooks.on('visit:start', (visit) => {
       // change banner height immediately when a link is clicked
       const bodyElement = document.body!
-      if (pathsEqual(visit.to.url, url('/'))) {
+      if (pathsEqual(visit.to.url, '/')) {
         bodyElement.classList.add('is-home')
       } else {
         bodyElement.classList.remove('is-home')
@@ -330,7 +327,7 @@ const bannerOffset = (
   const backToTopBtn = document.getElementById('back-to-top-btn')
   const toc = document.getElementById('toc-wrapper')
   const navbar = document.getElementById('navbar-wrapper')
-  function scrollFunction(): void {
+  function scrollFunction() {
     const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 
     if (backToTopBtn !== null) {
@@ -405,7 +402,7 @@ const bannerOffset = (
   let lightbox: PhotoSwipeLightbox | undefined = undefined
   const photoswipe = import('photoswipe')
 
-  function createPhotoSwipe(): void {
+  function createPhotoSwipe() {
     lightbox = new PhotoSwipeLightbox({
       gallery: '.custom-md img, #post-cover img',
       pswpModule: () => photoswipe,
@@ -456,7 +453,7 @@ const bannerOffset = (
     lightbox.init()
   }
 
-  function setup(): void {
+  function setup() {
     if (!lightbox) {
       createPhotoSwipe()
     }

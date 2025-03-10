@@ -1,12 +1,11 @@
 ---
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 import { Icon } from 'astro-icon/components'
-import { url } from '$/utils/urls'
 import strings from '$/config/strings'
 import siteConfig from '$/config/site'
 ---
 
-<a aria-label={strings.alts.goToAbout} href={url('/about/')} class="avatar">
+<a aria-label={strings.alts.goToAbout} href="/about/" class="avatar">
   <div class="icon-wrapper">
     <Icon name="tabler:user-square" />
   </div>

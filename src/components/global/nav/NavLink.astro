@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components'
-import { url } from '$/utils/urls'
 import type { NavBarLink } from '$/types/config'
 
 interface Props {
@@ -11,7 +10,7 @@ const { link } = Astro.props
 
 <a
   aria-label={link.name}
-  href={link.external === true ? link.url : url(link.url)}
+  href={link.url}
   target={link.external === true ? '_blank' : null}
 >
   <div>

@@ -11,14 +11,6 @@ interface Props {
 
 const { title, description = title } = Astro.props.frontmatter
 
-// function invalidProp<
-//   Name extends string,
-//   Expected extends string,
-//   Actual extends string
-// >(name: Name, expected: Expected, actual: Actual) {
-//   return `invalid '${name}' prop (type '${actual}' is not assignable to '${expected}')` as const
-// }
-
 class InvalidPropError extends TypeError {
   constructor(
     readonly propName: string,

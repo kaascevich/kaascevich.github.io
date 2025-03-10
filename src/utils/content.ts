@@ -16,7 +16,7 @@ export async function getSortedPosts(): Promise<CollectionEntry<'posts'>[]> {
   })
 }
 
-export async function getTagCounts(): Promise<Map<string, number>> {
+export async function getTagCounts() {
   const allPosts = await getSortedPosts()
 
   return elementCounts(
@@ -26,7 +26,7 @@ export async function getTagCounts(): Promise<Map<string, number>> {
   )
 }
 
-export async function getCategoryCounts(): Promise<Map<string, number>> {
+export async function getCategoryCounts() {
   const allPosts = await getSortedPosts()
 
   return elementCounts(

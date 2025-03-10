@@ -21,16 +21,7 @@ const { headings = [] } = Astro.props
             { 'toc-hide': siteConfig.banner !== undefined },
           ]}
         >
-          <div
-            id="toc-inner-wrapper"
-            class="fixed top-14 w-[--toc-width] h-[calc(100vh-20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar"
-          >
-            <div id="toc" class="w-full h-full transition-swup-fade ">
-              <div class="h-8 w-full" />
-              <TOC config={siteConfig.toc} {headings} />
-              <div class="h-8 w-full" />
-            </div>
-          </div>
+          <TOC config={siteConfig.toc} {headings} />
         </div>
       )
     }

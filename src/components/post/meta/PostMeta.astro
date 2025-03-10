@@ -2,7 +2,6 @@
 import type { CollectionEntry } from 'astro:content'
 
 import strings from '$/config/strings'
-import { url } from '$/utils/urls'
 
 import MetaItem from '$/components/post/meta/MetaItem.astro'
 import MetaDate from '$/components/post/meta/MetaDate.astro'
@@ -27,7 +26,7 @@ const showUpdated =
 
   <MetaItem icon="tabler:category">
     <MetaLink
-      href={url(`/archive/category/${category}/`)}
+      href={`/archive/category/${category}/`}
       label={strings.alts.category(category)}
     >
       {category}
@@ -43,7 +42,7 @@ const showUpdated =
           tags.map((tag) => (
             <li>
               <MetaLink
-                href={url(`/archive/tag/${tag}/`)}
+                href={`/archive/tag/${tag}/`}
                 label={strings.alts.tag(tag)}
               >
                 {tag}

@@ -43,15 +43,19 @@ export default {
     author: 'Author',
     publishedAt: 'Published at',
     license: 'License',
-    copyright: (year: number, name: string) => `\u00A9 ${year} ${name}` as const,
+    copyright: (year: number, name: string) =>
+      `\u00A9 ${year} ${name}` as const,
   },
   alts: {
     prevPage: 'Previous page',
     nextPage: 'Next page',
-    pageNum: (page: number) => `Page ${page}` as const,
+    pageNum: (page: number) =>
+      `Page ${page}` as const,
 
-    tag: (tag: string) => `All posts tagged with ${tag}` as const,
-    category: (category: string) => `All posts categorized under ${category}` as const,
+    tag: (tag: string) =>
+      `All posts tagged with ${tag}` as const,
+    category: (category: string) =>
+      `All posts categorized under ${category}` as const,
 
     goToAbout: 'Go to about page',
     profile: 'My profile',

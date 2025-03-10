@@ -5,7 +5,6 @@ import NavMenuPanel from '$/components/global/nav/NavMenuPanel.astro'
 import ColorSettings from '$/components/global/nav/ColorSettings.svelte'
 
 import siteConfig from '$/config/site'
-import { url } from '$/utils/urls'
 ---
 
 <div class="nav-extras">
@@ -15,11 +14,11 @@ import { url } from '$/utils/urls'
   <NavMenuPanel links={siteConfig.navbar.links} />
 </div>
 
-<script is:inline define:vars={{ scriptUrl: url('/pagefind/pagefind.js') }}>
+<script is:inline>
   // @ts-nocheck
   async function loadPagefind() {
     /** @type {import("vite-plugin-pagefind/types").Pagefind} */
-    const pagefind = await import(scriptUrl)
+    const pagefind = await import('/pagefind/pagefind.js')
     await pagefind.options({ excerptLength: 20 })
     pagefind.init()
     window.pagefind = pagefind

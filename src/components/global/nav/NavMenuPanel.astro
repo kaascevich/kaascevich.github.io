@@ -1,7 +1,6 @@
 ---
 import type { NavBarLink } from '$/types/config'
 import { Icon } from 'astro-icon/components'
-import { url as getURL } from '$/utils/urls'
 import strings from '$/config/strings'
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 const { links } = Astro.props
 ---
 
-<button aria-label={strings.alts.navMenu} id="nav-menu-switch">
+<button aria-label={strings.alts.navMenuButton} id="nav-menu-switch">
   <Icon name="tabler:menu-2" size="1.25rem" />
 </button>
 
@@ -19,7 +18,7 @@ const { links } = Astro.props
   {
     links.map(({ name, url, external = false }) => (
       <a
-        href={external ? url : getURL(url)}
+        href={url}
         target={external ? '_blank' : null}
       >
         <header>{name}</header>

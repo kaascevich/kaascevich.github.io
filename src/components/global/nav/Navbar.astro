@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
 import siteConfig from '$/config/site'
-import { url } from '$/utils/urls'
 import NavExtras from '$/components/global/nav/NavExtras.astro'
 import NavLink from '$/components/global/nav/NavLink.astro'
 
@@ -13,7 +12,7 @@ const { class: className } = Astro.props
 
 <div id="navbar">
   <nav class={className}>
-    <a href={url('/')} class="home-link">
+    <a href="/" class="home-link">
       <Icon name="tabler:home" size="1.75rem" />
       {siteConfig.title}
     </a>

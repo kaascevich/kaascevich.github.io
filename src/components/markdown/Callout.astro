@@ -1,5 +1,5 @@
 ---
-function capitalize<T extends string>(string: T): Capitalize<T> {
+function capitalize<T extends string>(string: T) {
   // https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#capitalizestringtype
   // this is exactly how the `Capitalize` type is implemented under the hood
   return (string.charAt(0).toUpperCase() + string.slice(1)) as Capitalize<T>

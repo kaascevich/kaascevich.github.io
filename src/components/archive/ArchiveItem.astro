@@ -7,7 +7,7 @@ interface Props {
 }
 const { post } = Astro.props
 
-function formatDate(date: Date): string {
+function formatDate(date: Date) {
   const format = new Intl.DateTimeFormat('en-US', {
     month: 'numeric',
     day: '2-digit',
@@ -15,7 +15,7 @@ function formatDate(date: Date): string {
   return format.format(date)
 }
 
-function formatTag(tag: readonly string[]): string {
+function formatTag(tag: readonly string[]) {
   return tag.map((t) => `#${t}`).join(' ')
 }
 ---

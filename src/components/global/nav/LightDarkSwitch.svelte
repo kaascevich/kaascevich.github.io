@@ -24,25 +24,25 @@
     }
   })
 
-  function switchScheme(newMode: ColorScheme): void {
+  function switchScheme(newMode: ColorScheme) {
     mode = newMode
     setColorScheme(newMode)
   }
 
-  function toggleScheme(): void {
+  function toggleScheme() {
     const currentModeIndex = allModes.findIndex((m) => m === mode)
     switchScheme(allModes[(currentModeIndex + 1) % allModes.length]!)
   }
 
-  function showPanel(): void {
+  function showPanel() {
     document
-      .querySelector('#scheme-panel')
+      .getElementById('scheme-panel')
       ?.classList
       .remove('float-panel-closed')
   }
 
-  function hidePanel(): void {
-    document.querySelector('#scheme-panel')?.classList.add('float-panel-closed')
+  function hidePanel() {
+    document.getElementById('scheme-panel')?.classList.add('float-panel-closed')
   }
 
   const buttons = new Map<

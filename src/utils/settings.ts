@@ -16,12 +16,12 @@ export function getHue(): Hue {
   return isValidHue(stored) ? stored : siteConfig.defaultHue
 }
 
-export function setHue(hue: Hue): void {
+export function setHue(hue: Hue) {
   localStorage.setItem('hue', String(hue))
   document.documentElement.style.setProperty('--hue', String(hue))
 }
 
-export function applyColorScheme(colorScheme: ColorScheme): void {
+export function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.dataset.colorScheme
     = colorScheme === 'auto'
       ? window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -30,12 +30,12 @@ export function applyColorScheme(colorScheme: ColorScheme): void {
       : colorScheme
 }
 
-export function setColorScheme(colorScheme: ColorScheme): void {
+export function setColorScheme(colorScheme: ColorScheme) {
   localStorage.setItem('colorScheme', colorScheme)
   applyColorScheme(colorScheme)
 }
 
-export function getStoredColorScheme(): ColorScheme {
+export function getStoredColorScheme() {
   const stored = localStorage.getItem('colorScheme')
   return isValidColorScheme(stored) ? stored : DEFAULT_COLOR_SCHEME
 }

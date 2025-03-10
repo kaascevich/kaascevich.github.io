@@ -68,6 +68,7 @@ export default antfu(
         }],
 
         'ts/no-unused-vars': 'off',
+        "ts/explicit-function-return-type": 'off',
       },
     },
     stylistic: {

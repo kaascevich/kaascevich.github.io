@@ -125,11 +125,10 @@ const {
         return
       }
 
-      const id = this.dataset.id
-      const btn = this.querySelector('.expand-button')
-      const wrapper = this.querySelector(`#${id}`)
-      btn?.addEventListener('click', () => {
-        wrapper?.classList.remove('collapsed')
+      const btn = this.querySelector('.expand-button')!
+      const wrapper = document.getElementById(this.dataset.id!)!
+      btn.addEventListener('click', () => {
+        wrapper.classList.remove('collapsed')
         btn.classList.add('hidden')
       })
     }

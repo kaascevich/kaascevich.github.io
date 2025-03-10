@@ -21,14 +21,14 @@
         maximumFractionDigits: 1,
       })
 
-      card.querySelector<HTMLElement>('.description')!.textContent
+      card.querySelector('.description')!.textContent
         = data.description?.replace(/:\w+:/g, '') ?? '<description not set>'
 
-      card.querySelector<HTMLElement>('.forks')!.textContent = numberFormatter
+      card.querySelector('.forks')!.textContent = numberFormatter
         .format(data.forks_count)
         .replaceAll('\u202F', '')
 
-      card.querySelector<HTMLElement>('.stars')!.textContent = numberFormatter
+      card.querySelector('.stars')!.textContent = numberFormatter
         .format(data.stargazers_count)
         .replaceAll('\u202F', '')
 
@@ -36,7 +36,7 @@
       avatar.style.backgroundImage = `url(${data.owner.avatar_url})`
       avatar.style.backgroundColor = 'transparent'
 
-      card.querySelector<HTMLElement>('.license')!.textContent
+      card.querySelector('.license')!.textContent
         = data.license?.spdx_id ?? 'None'
 
       card.classList.remove('fetch-waiting')

@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components'
-import { url } from '$/utils/urls'
 import strings from '$/config/strings'
 import type { PageLinkLayout } from '$/utils/pages'
 
@@ -11,8 +10,8 @@ interface Props {
 
 const { pageLinks, current } = Astro.props
 
-function getPageUrl(p: number): string {
-  return url(p === 1 ? '/' : `/${p}/`)
+function getPageUrl<Page extends number>(page: Page) {
+  return page === 1 ? '/' : `/${page}/` as const
 }
 ---
 

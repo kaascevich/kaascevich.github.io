@@ -22,11 +22,10 @@ const { class: className } = Astro.props
 
   document.addEventListener('DOMContentLoaded', addPreCopyButton)
 
-  function addPreCopyButton(): void {
+  function addPreCopyButton() {
     observer.disconnect()
 
-    const codeBlocks = Array.from(document.querySelectorAll('pre'))
-    for (const codeBlock of codeBlocks) {
+    for (const codeBlock of document.querySelectorAll('pre')) {
       if (
         codeBlock.parentElement?.nodeName === 'DIV' &&
         codeBlock.parentElement.classList.contains('code-block')

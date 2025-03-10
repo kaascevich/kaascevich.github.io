@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components'
-import { url as getURL } from '$/utils/urls'
 
 interface Props {
   url: string | undefined
@@ -12,7 +11,7 @@ const { url, label, icon } = Astro.props
 ---
 
 <a
-  href={url === undefined ? undefined : getURL(url)}
+  href={url}
   aria-label={label}
   aria-disabled={url === undefined}
 >

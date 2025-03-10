@@ -3,7 +3,6 @@ import WidgetLayout from '$/components/widget/WidgetLayout.astro'
 import ButtonTag from '$/components/control/ButtonTag.astro'
 import { getTagCounts } from '$/utils/content'
 import strings from '$/config/strings'
-import { url } from '$/utils/urls'
 
 const tags = await getTagCounts()
 
@@ -32,7 +31,7 @@ const { class: className, style } = Astro.props
     {
       Array.from(tags, ([name]) => (
         <ButtonTag
-          href={url(`/archive/tag/${name}/`)}
+          href={`/archive/tag/${name}/`}
           label={strings.alts.tag(name)}
         >
           {name}

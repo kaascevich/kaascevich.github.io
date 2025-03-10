@@ -15,7 +15,7 @@
   let keywordMobile = $state('')
   let results: PagefindSearchFragment[] = $state([])
 
-  async function search(keyword: string, isDesktop: boolean): Promise<void> {
+  async function search(keyword: string, isDesktop: boolean) {
     const panel = document.getElementById('search-panel')
     if (panel === null) {
       return
@@ -43,7 +43,7 @@
     results = tempResults
   }
 
-  function togglePanel(): void {
+  function togglePanel() {
     document
       .getElementById('search-panel')
       ?.classList

@@ -9,7 +9,7 @@ import type { NumsUpTo } from "./misc"
  * @param value Any value.
  * @returns The argument, unchanged.
  */
-export function config<T>(value: T): T {
+export function config<T>(value: T) {
   return value
 }
 

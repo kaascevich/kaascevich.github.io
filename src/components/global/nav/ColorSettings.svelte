@@ -6,11 +6,11 @@
 
   let hue = $state(getHue())
 
-  function resetHue(): void {
+  function resetHue() {
     hue = siteConfig.defaultHue
   }
 
-  function togglePanel(): void {
+  function togglePanel() {
     document
       .getElementById('color-settings')
       ?.classList
