@@ -21,12 +21,12 @@ interface Props {
   headings?: readonly MarkdownHeading[]
 }
 
-const { title, description, setOGTypeArticle, headings } = Astro.props
+const { title, description, setOGTypeArticle, headings = [] } = Astro.props
 
 const mainPanelTop =
   siteConfig.banner === undefined
-    ? ('5.5rem' as const)
-    : (`calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)` as const)
+    ? '5.5rem'
+    : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 ---
 
 <Layout {title} {description} {setOGTypeArticle}>

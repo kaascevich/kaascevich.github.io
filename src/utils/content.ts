@@ -1,3 +1,4 @@
+import type { PostsForYear } from '$/types/content'
 import type { CollectionEntry } from 'astro:content'
 
 import { elementCounts } from '$/utils/arrays'
@@ -34,4 +35,16 @@ export async function getCategoryCounts() {
       .flatMap((post) => post.data.category)
       .toSorted((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
   )
+}
+
+export async function groupPostsByYear(
+  posts?: CollectionEntry<'posts'>[] | undefined,
+): Promise<PostsForYear[]> {
+  const allPosts = posts ?? await getSortedPosts()
+  const groups = Array.from(
+    Map.groupBy(allPosts, (post) => post.data.published.getFullYear()),
+    ([year, posts]) => ({ year, posts }),
+  )
+
+  return groups.toSorted((a, b) => b.year - a.year) // sort by year, descending
 }

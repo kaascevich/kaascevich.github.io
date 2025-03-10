@@ -81,7 +81,7 @@ const { class: className } = Astro.props
       wrapper.appendChild(codeBlock)
       wrapper.appendChild(copyButton)
 
-      let timeout: ReturnType<typeof setTimeout> | undefined = undefined
+      let timeout: ReturnType<typeof setTimeout> | undefined
       copyButton.addEventListener('click', async () => {
         if (timeout !== undefined) {
           clearTimeout(timeout)

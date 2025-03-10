@@ -4,12 +4,12 @@ import ButtonLink from '$/components/control/ButtonLink.astro'
 import { getCategoryCounts } from '$/utils/content'
 import strings from '$/config/strings'
 
-const categories = await getCategoryCounts()
+const categories = Array.from(await getCategoryCounts())
 
 const COLLAPSED_HEIGHT = '7.5rem'
 const COLLAPSE_THRESHOLD = 5
 
-const isCollapsed = categories.size >= COLLAPSE_THRESHOLD
+const isCollapsed = categories.length >= COLLAPSE_THRESHOLD
 
 interface Props {
   class?: string
@@ -28,13 +28,13 @@ const { class: className, style } = Astro.props
   {style}
 >
   {
-    Array.from(categories, ([name, count]) => (
+    categories.map(([category, count]) => (
       <ButtonLink
-        url={`/archive/category/${name}/`}
+        url={`/archive/category/${category}/`}
         badge={String(count)}
-        label={strings.alts.category(name)}
+        label={strings.alts.category(category)}
       >
-        {name}
+        {category}
       </ButtonLink>
     ))
   }

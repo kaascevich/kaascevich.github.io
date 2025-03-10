@@ -86,11 +86,6 @@ no Wi-Fi -- let's fix that.
 ### We need the internet to download the internet
 
 I don't remember where I got it from, but I found a copy of the needed Wi-Fi
-driver somewhere on the internet, which you can download [here][driver]. I
-copied it to another spare SD card and mounted it on the newly-Debianized
-MacBook, opened a terminal and ran this:
-
-I don't remember where I got it from, but I found a copy of the needed Wi-Fi
 driver somewhere on the internet, which you can download
 <a download href="$/assets/other/broadcom-sta-dkms_6.30.223.271-23_all.deb">here</a>.
 I copied it to another spare SD card and mounted it on the newly-Debianized
@@ -99,7 +94,7 @@ MacBook, opened a terminal and ran this:
 ```console
 $ cd /media/username/diskname # replace username and diskname as needed
 $ sudo dpkg -i broadcom-sta-dkms_6.30.223.271-23_all.deb
-sudo: password for username: 
+sudo: password for username:
 Unpacking broadcom-sta-dkms (6.30.223.271-23) over (6.30.223.271-23) ...
 Setting up broadcom-sta-dkms (6.30.223.271-23) ...
 Loading new broadcom-sta-dkms-6.30.223.271 DKMS files...
@@ -128,12 +123,10 @@ The only piece of hardware that doesn't work at all on Linux is the FaceTime
 camera, but since this is a laptop for the apocalypse, that's probably a good
 thing.
 
-In [the next part][next], I'll work on actually turning this thing into an
-excellent offline library (to the furthest extent I can with only ~115GB to work
-with).
+In the next part, I'll work on actually turning this thing into an excellent
+offline library (to the furthest extent I can with only ~115GB to work with).
 
 [driver]: /public/assets/other/broadcom-sta-dkms_6.30.223.271-23_all.deb
-[next]: /posts/the-apocalypse-laptop-part-2
 
 [^1]: I don't _like_ horror stories.
 [^2]: I'd rather use [Startpage](https://startpage.com), but Ecosia is what

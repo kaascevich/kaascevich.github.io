@@ -1,0 +1,83 @@
+---
+interface Props {
+  id: string
+  text: string
+  depth: 1 | 2
+  h1Index: number
+}
+const { id, text, depth, h1Index } = Astro.props
+---
+
+<a href={`#${id}`} class={`depth-${depth}`}>
+  <div class="marker">
+    {depth === 1 ? h1Index : <div class="dot" />}
+  </div>
+  <div class="title">
+    {text.replace(/#$/g, '')}
+  </div>
+</a>
+
+<style lang="scss">
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  a {
+    @include transition();
+    position: relative;
+    width: 100%;
+    min-height: spacing(9);
+    padding: spacing(2);
+    display: flex;
+    gap: spacing(2);
+    border-radius: $radius-xl;
+
+    &:hover {
+      background-color: var(--toc-btn-hover);
+    }
+    &:active {
+      background-color: var(--toc-btn-active);
+    }
+
+    .marker {
+      @include transition();
+      width: spacing(5);
+      height: spacing(5);
+      border-radius: $radius-lg;
+      @include font-size($text-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: $font-weight-bold;
+    }
+
+    .title {
+      @include transition();
+      @include font-size($text-sm);
+      @include text-plain(50%);
+    }
+  }
+
+  a {
+    &.depth-1 {
+      .marker {
+        background-color: var(--toc-badge-bg);
+        color: var(--btn-content);
+      }
+    }
+
+    &.depth-2 {
+      .marker {
+        margin-left: spacing(4);
+
+        .dot {
+          width: spacing(2);
+          height: spacing(2);
+          border-radius: spacing(0.75);
+          background-color: var(--toc-badge-bg);
+        }
+      }
+    }
+  }
+</style>

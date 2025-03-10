@@ -4,12 +4,12 @@ import ButtonTag from '$/components/control/ButtonTag.astro'
 import { getTagCounts } from '$/utils/content'
 import strings from '$/config/strings'
 
-const tags = await getTagCounts()
+const tags = Array.from(await getTagCounts())
 
 const COLLAPSED_HEIGHT = '7.5rem'
 const COLLAPSE_THRESHOLD = 20
 
-const isCollapsed = tags.size >= COLLAPSE_THRESHOLD
+const isCollapsed = tags.length >= COLLAPSE_THRESHOLD
 
 interface Props {
   class?: string
@@ -29,12 +29,9 @@ const { class: className, style } = Astro.props
 >
   <ul class="flex gap-2 flex-wrap">
     {
-      Array.from(tags, ([name]) => (
-        <ButtonTag
-          href={`/archive/tag/${name}/`}
-          label={strings.alts.tag(name)}
-        >
-          {name}
+      tags.map(([tag]) => (
+        <ButtonTag href={`/archive/tag/${tag}/`} label={strings.alts.tag(tag)}>
+          {tag}
         </ButtonTag>
       ))
     }

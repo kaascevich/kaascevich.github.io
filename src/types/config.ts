@@ -1,4 +1,4 @@
-import type { NumsUpTo } from "./misc"
+import type { NumsUpTo } from './misc'
 
 /**
  * Returns the argument unchanged.
@@ -75,7 +75,7 @@ export interface BannerCreditConfig {
 /** Configuration for the table of contents on the right side of the page. */
 export interface TOCConfig {
   /** The maximum heading depth to show in the table of contents. */
-  readonly depth: 1 | 2 | 3
+  readonly depth: 1 | 2
 }
 
 /** A navbar link. */

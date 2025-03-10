@@ -19,7 +19,7 @@ export default config<Config>({
     },
   },
   toc: {
-    depth: 3,
+    depth: 2,
   },
   navbar: navbarConfig,
   profile: profileConfig,

@@ -98,13 +98,6 @@
     pointer-events: none;
   }
 
-  .hide-scrollbar {
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
   .text-50 {
     @include text-plain(50%);
   }

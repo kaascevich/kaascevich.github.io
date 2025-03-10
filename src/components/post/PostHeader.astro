@@ -95,11 +95,7 @@ const { entry, wordCount, readingTime } = Astro.props
     @extend .onload-animation;
 
     hr {
-      border: {
-        color: var(--line-divider);
-        style: dashed;
-        bottom-width: 1px;
-      }
+      border: 1px dashed var(--line-divider);
       margin-bottom: spacing(5);
     }
   }
