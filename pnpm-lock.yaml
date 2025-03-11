@@ -125,6 +125,9 @@ importers:
       remark-sectionize:
         specifier: ^2.1.0
         version: 2.1.0
+      remeda:
+        specifier: ^2.21.1
+        version: 2.21.1
       sanitize-html:
         specifier: ^2.14.0
         version: 2.14.0
@@ -5388,6 +5391,9 @@ packages:
 
   remark-stringify@11.0.0:
     resolution: {integrity: sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw==}
+
+  remeda@2.21.1:
+    resolution: {integrity: sha512-7I3JaB+geXL0Vq8V3TEwX6mMlWUCv18OdweAovYKiwDCbjKYf1DIHB58B6z8K7juPuZ1whwj79fOvUaHHHjbew==}
 
   request-light@0.5.8:
     resolution: {integrity: sha512-3Zjgh+8b5fhRJBQZoy+zbVKpAQGLyka0MPgW3zruTF4dFFJ8Fqcfu9YsAvi/rvdcaTeWG3MkbZv4WKxAn/84Lg==}
@@ -13113,6 +13119,10 @@ snapshots:
       '@types/mdast': 4.0.4
       mdast-util-to-markdown: 2.1.2
       unified: 11.0.5
+
+  remeda@2.21.1:
+    dependencies:
+      type-fest: 4.37.0
 
   request-light@0.5.8: {}
 

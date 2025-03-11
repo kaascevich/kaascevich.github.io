@@ -1,18 +1,20 @@
 ---
-import type { GetStaticPaths, Page } from 'astro'
+import type { GetStaticPathsOptions, GetStaticPathsResult, Page } from 'astro'
 import PostPage from '$/components/post/PostPage.astro'
 import Pagination from '$/components/control/pagination/Pagination.astro'
 import { PAGE_SIZE } from '$/constants/constants'
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import { getSortedPosts } from '$/utils/content'
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return paginate(await getSortedPosts(), { pageSize: PAGE_SIZE })
-}) satisfies GetStaticPaths
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  return paginate(await getSortedPosts(), {
+    pageSize: PAGE_SIZE,
+  }) satisfies GetStaticPathsResult
+}
 
 interface Props {
-  page: Page<CollectionEntry<'posts'>>
+  page: Page<Post>
 }
 
 const { page } = Astro.props

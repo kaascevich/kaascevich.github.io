@@ -21,13 +21,9 @@ export function setHue(hue: Hue) {
   document.documentElement.style.setProperty('--hue', String(hue))
 }
 
-export function applyColorScheme(colorScheme: ColorScheme) {
-  document.documentElement.dataset.colorScheme
-    = colorScheme === 'auto'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-      : colorScheme
+export function getColorScheme() {
+  const stored = localStorage.getItem('colorScheme')
+  return isValidColorScheme(stored) ? stored : DEFAULT_COLOR_SCHEME
 }
 
 export function setColorScheme(colorScheme: ColorScheme) {
@@ -35,7 +31,11 @@ export function setColorScheme(colorScheme: ColorScheme) {
   applyColorScheme(colorScheme)
 }
 
-export function getStoredColorScheme() {
-  const stored = localStorage.getItem('colorScheme')
-  return isValidColorScheme(stored) ? stored : DEFAULT_COLOR_SCHEME
+export function applyColorScheme(colorScheme: ColorScheme) {
+  document.documentElement.dataset.colorScheme
+    = colorScheme === 'auto'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+      : colorScheme
 }

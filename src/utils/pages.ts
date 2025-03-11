@@ -1,23 +1,15 @@
+import type { Post } from '$/types/content'
 import type { Page } from 'astro'
-import type { CollectionEntry } from 'astro:content'
 
-function range(first: number, last: number) {
-  if (!Number.isInteger(first) || !Number.isInteger(last)) {
-    throw new TypeError('arguments to `range` must be integers')
-  }
-
-  return Array.from(
-    Array.from({ length: last - first + 1 }).keys(),
-    (n) => n + first,
-  )
-}
+import * as R from 'remeda'
 
 export type PageLinkLayout = ReturnType<typeof pageLinkLayout>
 
 export function pageLinkLayout(
-  page: Page<CollectionEntry<'posts'>>,
+  page: Page<Post>,
 ) {
   const INCLUSION_THRESHOLD = 2
+  // `INCLUSION_THRESHOLD` per side, plus the current page
   const VISIBLE = INCLUSION_THRESHOLD * 2 + 1
 
   const first = 1
@@ -46,7 +38,7 @@ export function pageLinkLayout(
 
   const leftPage = leftmost > first + INCLUSION_THRESHOLD ? first : null
   const rightPage = rightmost < last - INCLUSION_THRESHOLD ? last : null
-  const middlePages = range(leftmost, rightmost)
+  const middlePages = R.range(leftmost, rightmost + 1)
 
   return [leftPage, middlePages, rightPage] as const
 }

@@ -1,5 +1,10 @@
 ---
-import { render, type CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
+import type { GetStaticPathsResult } from 'astro'
+import type { WithContext, BlogPosting } from 'schema-dts'
+
+import * as R from 'remeda'
+import { render } from 'astro:content'
 import License from '$/components/post/License.astro'
 import Markdown from '$/components/post/Markdown.astro'
 import PostHeader from '$/components/post/PostHeader.astro'
@@ -8,20 +13,17 @@ import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import siteConfig from '$/config/site'
 import { formatDate } from '$/utils/dates'
 import { getSortedPosts } from '$/utils/content'
-import type { GetStaticPaths } from 'astro'
-import type { WithContext, BlogPosting } from 'schema-dts'
 import strings from '$/config/strings'
 
-export const getStaticPaths = (async () => {
-  const blogEntries = await getSortedPosts()
-  return blogEntries.map((entry) => ({
+export async function getStaticPaths() {
+  return R.map(await getSortedPosts(), (entry) => ({
     params: { id: entry.id },
     props: { entry },
-  }))
-}) satisfies GetStaticPaths
+  })) satisfies GetStaticPathsResult
+}
 
 interface Props {
-  entry: CollectionEntry<'posts'>
+  entry: Post
 }
 
 const { entry }: Props = Astro.props
@@ -116,6 +118,15 @@ const jsonLd: WithContext<BlogPosting> = {
 
       @include variants.md {
         @include padding-x(spacing(9));
+      }
+    }
+  }
+
+  #post-container > {
+    $delays: (1: 0ms, 2: 50ms, 3: 100ms, 4: 175ms, 5: 250ms, 6: 325ms);
+    @each $index, $delay in $delays {
+      :global(:nth-child(#{$index})) {
+        animation-delay: calc(var(--content-delay) + #{$delay});
       }
     }
   }

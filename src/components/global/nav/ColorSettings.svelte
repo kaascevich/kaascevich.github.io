@@ -27,7 +27,7 @@
   id='color-settings-switch'
   onclick={togglePanel}
 >
-  <Icon icon='tabler:palette' height='1.25rem' width='1.25rem' />
+  <Icon icon='tabler:palette' />
 </button>
 
 <div id='color-settings' class='float-panel-closed'>
@@ -93,6 +93,11 @@
     height: spacing(11);
     &:active {
       scale: 90%;
+    }
+
+    svg {
+      width: spacing(5);
+      height: spacing(5);
     }
   }
 

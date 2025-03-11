@@ -1,22 +1,25 @@
 ---
+import type { Post } from '$/types/content'
+
+import * as R from 'remeda'
 import { getPostUrlByID } from '$/utils/urls'
-import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  post: CollectionEntry<'posts'>
+  post: Post
 }
 const { post } = Astro.props
 
-function formatDate(date: Date) {
-  const format = new Intl.DateTimeFormat('en-US', {
-    month: 'numeric',
-    day: '2-digit',
-  })
-  return format.format(date)
-}
+const formatDate = new Intl.DateTimeFormat('en-US', {
+  month: 'numeric',
+  day: '2-digit',
+}).format
 
-function formatTag(tag: readonly string[]) {
-  return tag.map((t) => `#${t}`).join(' ')
+function formatTagList<T extends readonly string[]>(tags: T) {
+  return R.pipe(
+    tags,
+    R.map((x) => `#${x}` as const),
+    R.join(' '),
+  )
 }
 ---
 
@@ -39,7 +42,7 @@ function formatTag(tag: readonly string[]) {
 
     <!-- tag list -->
     <div class="tag-list">
-      {formatTag(post.data.tags)}
+      {formatTagList(post.data.tags)}
     </div>
   </div>
 </a>

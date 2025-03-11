@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro'
 
+import * as R from 'remeda'
+
 const userAgents = [
   'AI2Bot',
   'Ai2Bot-Dolma',
@@ -49,8 +51,14 @@ const userAgents = [
   'YouBot',
 ] as const
 
-const robotsTxt = `
-${userAgents.map((userAgent) => `User-agent: ${userAgent}`).join('')}
+const userAgentDirectives = R.pipe(
+  userAgents,
+  R.map((x) => `User-agent: ${x as string}` as const),
+  R.join('\n'),
+)
+
+const robotsTxt = `\
+${userAgentDirectives}
 Disallow: /
 
 User-agent: *
@@ -60,7 +68,7 @@ Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
 ` as const
 
 export const GET: APIRoute = () =>
-  new Response(robotsTxt.trim(), {
+  new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
     },

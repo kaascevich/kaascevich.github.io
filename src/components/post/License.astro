@@ -47,7 +47,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       </a>
     </div>
   </div>
-  <Icon name="tabler:creative-commons" size="15rem" class="cc-icon" />
+  <Icon name="tabler:creative-commons" class="cc-icon" />
 </div>
 
 <style lang="scss">
@@ -107,6 +107,8 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     .cc-icon {
       @include transition($properties: $transition-colors);
       @include text-plain(5%);
+      width: spacing(60);
+      height: spacing(60);
       position: absolute;
       top: 50%;
       right: spacing(6);

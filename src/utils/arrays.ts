@@ -1,7 +1,11 @@
-export function elementCounts<K>(array: readonly K[]) {
-  const counts = new Map<K, number>()
-  for (const item of array) {
-    counts.set(item, (counts.get(item) ?? 0) + 1)
-  }
-  return counts
+import * as R from 'remeda'
+
+export function elementCounts<Items extends readonly PropertyKey[]>(array: Items) {
+  return R.pipe(
+    array,
+    R.countBy(R.identity()),
+
+    R.entries(),
+    (x) => new Map(x),
+  )
 }

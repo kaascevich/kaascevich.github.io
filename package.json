@@ -55,6 +55,7 @@
     "remark-definition-list": "^2.0.0",
     "remark-math": "^6.0.0",
     "remark-sectionize": "^2.1.0",
+    "remeda": "^2.21.1",
     "sanitize-html": "^2.14.0",
     "sass": "^1.85.1",
     "sass-embedded": "^1.85.1",

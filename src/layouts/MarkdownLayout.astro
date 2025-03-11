@@ -15,23 +15,25 @@ class InvalidPropError extends TypeError {
   constructor(
     readonly propName: string,
     readonly expectedType: string,
-    readonly actualType: string
+    readonly actualType: string,
   ) {
     super()
   }
 
   override get message() {
-    return `invalid '${this.propName}' prop (type '${this.actualType}' is not assignable to '${this.expectedType}')` as const
+    return `\
+invalid '${this.propName}' prop (type '${this.actualType}' \
+is not assignable to '${this.expectedType}')` as const
   }
 }
 
 // Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
 // manually.
 if (typeof title !== 'string') {
-  throw new InvalidPropError("title", "string", typeof title)
+  throw new InvalidPropError('title', 'string', typeof title)
 }
 if (typeof description !== 'string') {
-  throw new InvalidPropError("description", "string", typeof description)
+  throw new InvalidPropError('description', 'string', typeof description)
 }
 ---
 

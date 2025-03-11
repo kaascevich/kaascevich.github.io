@@ -32,14 +32,8 @@ const mainPanelTop =
 <Layout {title} {description} {setOGTypeArticle}>
   <!-- navbar -->
   <slot slot="head" name="head" />
-  <header
-    id="top-row"
-    class="z-50 pointer-events-none relative transition-all duration-700 max-w-[--page-width] px-0 md:px-4 mx-auto"
-  >
-    <div
-      id="navbar-wrapper"
-      class="pointer-events-auto sticky top-0 transition-all"
-    >
+  <header id="top-row">
+    <div id="navbar-wrapper">
       <Navbar />
     </div>
   </header>
@@ -49,14 +43,11 @@ const mainPanelTop =
   <!-- main content -->
   <!-- pointer-events-none prevents blocking TOC click events -->
   <div
-    class="absolute w-full z-30 pointer-events-none"
+    class="main-outer-wrapper"
     style={`top: ${mainPanelTop}`}
   >
-    <div class="relative max-w-[--page-width] mx-auto pointer-events-auto">
-      <div
-        id="main-grid"
-        class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-0 md:px-4"
-      >
+    <div class="main-inner-wrapper">
+      <div id="main-grid">
         {
           siteConfig.banner?.credit !== undefined && (
             <BannerCredit config={siteConfig.banner.credit} />
@@ -68,19 +59,16 @@ const mainPanelTop =
         />
 
         <!-- overflow-hidden prevents long text from breaking the layout-->
-        <main
-          id="swup-container"
-          class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden"
-        >
-          <div id="content-wrapper" class="onload-animation">
+        <main id="swup-container" class="transition-swup-fade">
+          <div id="content-wrapper">
             <slot />
-            <div class="footer col-span-2 onload-animation hidden lg:block">
+            <div class="footer-mobile">
               <Footer />
             </div>
           </div>
         </main>
 
-        <div class="footer col-span-2 onload-animation block lg:hidden">
+        <div class="footer-desktop">
           <Footer />
         </div>
       </div>
@@ -91,3 +79,114 @@ const mainPanelTop =
 
   <TOCWrapper {headings} />
 </Layout>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/transition';
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  #top-row {
+    @include transition($properties: all, $duration: 700ms);
+    z-index: 50;
+    pointer-events: none;
+    position: relative;
+    max-width: var(--page-width);
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include variants.md {
+      padding-left: spacing(4);
+      padding-right: spacing(4);
+    }
+
+    #navbar-wrapper {
+      @include transition($properties: all);
+      pointer-events: auto;
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .main-outer-wrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 30;
+    pointer-events: none;
+
+    .main-inner-wrapper {
+      position: relative;
+      max-width: var(--page-width);
+      margin-left: auto;
+      margin-right: auto;
+      pointer-events: auto;
+
+      #main-grid {
+        @include transition($duration: 700ms);
+        width: 100%;
+        left: 0;
+        right: 0;
+        display: grid;
+        grid-template-columns: spacing(70) auto;
+        grid-template-rows: auto 1fr auto;
+        gap: spacing(4);
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include variants.md {
+          padding-left: spacing(4);
+          padding-right: spacing(4);
+        }
+
+        @include variants.lg {
+          grid-template-rows: auto;
+        }
+      }
+    }
+  }
+
+  main {
+    overflow: hidden;
+    grid-column: span 2 / span 2;
+    outline: 2px solid transparent {
+      offset: 2px;
+    }
+
+    @include variants.lg {
+      grid-column: span 1 / span 1;
+    }
+
+    #content-wrapper {
+      @extend .onload-animation;
+      animation-delay: var(--content-delay);
+    }
+  }
+
+  .footer {
+    @extend .onload-animation;
+    animation-delay: 250ms;
+    grid-column: span 2 / span 2;
+
+    &-desktop, &-mobile {
+      @extend .footer;
+    }
+
+    &-desktop {
+      display: block;
+      @include variants.lg {
+        display: none;
+      }
+    }
+    &-mobile {
+      display: none;
+      @include variants.lg {
+        display: block;
+      }
+    }
+  }
+</style>

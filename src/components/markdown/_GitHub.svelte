@@ -19,17 +19,15 @@
       const numberFormatter = new Intl.NumberFormat('en-us', {
         notation: 'compact',
         maximumFractionDigits: 1,
-      })
+      }).format
 
       card.querySelector('.description')!.textContent
         = data.description?.replace(/:\w+:/g, '') ?? '<description not set>'
 
-      card.querySelector('.forks')!.textContent = numberFormatter
-        .format(data.forks_count)
+      card.querySelector('.forks')!.textContent = numberFormatter(data.forks_count)
         .replaceAll('\u202F', '')
 
-      card.querySelector('.stars')!.textContent = numberFormatter
-        .format(data.stargazers_count)
+      card.querySelector('.stars')!.textContent = numberFormatter(data.stargazers_count)
         .replaceAll('\u202F', '')
 
       const avatar = card.querySelector<HTMLElement>('.avatar')!
@@ -42,7 +40,7 @@
       card.classList.remove('fetch-waiting')
     } catch (err) {
       card.classList.add('fetch-error')
-      console.warn(`[GITHUB-CARD] error loading card for ${owner}/${repo}: ${String(err)}`)
+      console.warn(`Error loading GitHub card for ${owner}/${repo}: ${String(err)}`)
     }
   })
 </script>

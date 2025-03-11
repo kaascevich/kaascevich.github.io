@@ -132,12 +132,14 @@ export interface LicenseConfig {
   readonly url: string
 }
 
-export type ColorScheme = 'light' | 'dark' | 'auto'
+export const colorSchemes = ['light', 'dark', 'auto'] as const
+export type ColorScheme = typeof colorSchemes[number]
 
 export type Hue = NumsUpTo<360>[number]
 
+type Stringable = string | ((...args: never[]) => string)
+
 /** A list of strings. */
-export type StringList = Readonly<Record<
-  string,
-  Readonly<Record<string, string | ((...args: never[]) => string)>>
->>
+export interface StringList {
+  readonly [key: string]: Stringable | StringList
+}

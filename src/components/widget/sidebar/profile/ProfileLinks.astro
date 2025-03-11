@@ -10,16 +10,16 @@ const { links } = Astro.props
 
 <ul>
   {
-    links.map((link) => (
+    links.map(({ name, url, icon }) => (
       <a
         rel="me"
-        aria-label={link.name}
-        href={link.url}
+        aria-label={name}
+        href={url}
         target="_blank"
         class:list={[links.length === 1 ? 'small' : 'large']}
       >
-        <Icon name={link.icon} size="1.75rem" />
-        {links.length === 1 && link.name}
+        <Icon name={icon} />
+        {links.length === 1 && name}
       </a>
     ))
   }
@@ -41,6 +41,11 @@ const { links } = Astro.props
       @extend %btn-regular;
       border-radius: $radius-lg;
       height: spacing(10);
+
+      svg {
+        width: spacing(7);
+        height: spacing(7);
+      }
 
       &.small {
         @include padding-x(spacing(2));

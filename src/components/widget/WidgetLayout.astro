@@ -36,7 +36,7 @@ const {
       <div class="expand-button">
         <button>
           <div class="icon-wrapper">
-            <Icon name="tabler:dots" size="1.75rem" />
+            <Icon name="tabler:dots" />
             {strings.widget.more}
           </div>
         </button>
@@ -110,6 +110,11 @@ const {
           gap: spacing(2);
           translate: spacing(-2);
           color: var(--primary);
+
+          svg {
+            width: spacing(7);
+            height: spacing(7);
+          }
         }
       }
     }

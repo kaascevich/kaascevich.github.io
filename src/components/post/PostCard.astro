@@ -1,24 +1,24 @@
 ---
+import type { Post } from '$/types/content'
+
 import PostMeta from '$/components/post/meta/PostMeta.astro'
 import PostLink from '$/components/post/PostLink.astro'
 import { Icon } from 'astro-icon/components'
-import { render, type CollectionEntry } from 'astro:content'
+import { render } from 'astro:content'
 import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
 
 interface Props {
   class?: string
-  entry: CollectionEntry<'posts'>
+  entry: Post
   url: string
   style: string
 }
-
 const { class: className, entry, url, style } = Astro.props
 
 const { title, image, description } = entry.data
+const { remarkPluginFrontmatter } = await render(entry)
 
 const coverWidth = image === undefined ? '3.25rem' : '28%'
-
-const { remarkPluginFrontmatter } = await render(entry)
 ---
 
 <article class={className} {style}>
@@ -26,7 +26,7 @@ const { remarkPluginFrontmatter } = await render(entry)
     <h2>
       <a href={url}>
         {title}
-        <Icon size="2rem" name="tabler:chevron-right" />
+        <Icon name="tabler:chevron-right" />
       </a>
     </h2>
 
@@ -142,6 +142,8 @@ const { remarkPluginFrontmatter } = await render(entry)
         svg {
           display: inline;
           position: absolute;
+          width: spacing(8);
+          height: spacing(8);
           translate: 0;
           color: var(--primary);
 

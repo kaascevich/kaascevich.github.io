@@ -1,13 +1,13 @@
 ---
 import type { Page } from 'astro'
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 import strings from '$/config/strings'
 import PageButton from '$/components/control/pagination/PageButton.astro'
 import { pageLinkLayout } from '$/utils/pages'
 import PageLinks from '$/components/control/pagination/PageLinks.astro'
 
 interface Props {
-  page: Page<CollectionEntry<'posts'>>
+  page: Page<Post>
   class?: string
   style?: string
 }

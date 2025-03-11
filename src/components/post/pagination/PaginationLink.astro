@@ -1,11 +1,11 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 
 import { getPostUrlByID } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
 
 interface Props {
-  entry: CollectionEntry<'posts'>
+  entry: Post
   type: 'next' | 'prev'
 }
 
@@ -34,7 +34,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
     max-width: 100%;
 
     @include variants.md {
-      max-width: calc(50% - spacing(2));;
+      max-width: calc(50% - spacing(2));
     }
 
     &:active {

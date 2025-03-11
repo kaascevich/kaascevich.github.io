@@ -11,7 +11,7 @@ const { links } = Astro.props
 ---
 
 <button aria-label={strings.alts.navMenuButton} id="nav-menu-switch">
-  <Icon name="tabler:menu-2" size="1.25rem" />
+  <Icon name="tabler:menu-2" />
 </button>
 
 <nav id="nav-menu-panel" class="float-panel-closed">
@@ -58,6 +58,12 @@ const { links } = Astro.props
 
     @include variants.md {
       display: none !important;
+    }
+
+
+    :global(svg) {
+      width: spacing(5);
+      height: spacing(5);
     }
   }
 

@@ -2,19 +2,19 @@
   import type { ColorScheme } from '$/types/config'
 
   import strings from '$/config/strings'
+  import { colorSchemes } from '$/types/config'
   import {
     applyColorScheme,
-    getStoredColorScheme,
+    getColorScheme,
     setColorScheme,
   } from '$/utils/settings'
   import Icon from '@iconify/svelte'
   import { onMount } from 'svelte'
 
-  const allModes: readonly ColorScheme[] = ['light', 'dark', 'auto']
   let mode: ColorScheme = $state('auto')
 
   onMount(() => {
-    mode = getStoredColorScheme()
+    mode = getColorScheme()
     const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)')
     const updateColorScheme = () => applyColorScheme(mode)
 
@@ -30,8 +30,8 @@
   }
 
   function toggleScheme() {
-    const currentModeIndex = allModes.findIndex((m) => m === mode)
-    switchScheme(allModes[(currentModeIndex + 1) % allModes.length]!)
+    const currentIndex = colorSchemes.findIndex((m) => m === mode)
+    switchScheme(colorSchemes[(currentIndex + 1) % colorSchemes.length]!)
   }
 
   function showPanel() {
@@ -45,13 +45,10 @@
     document.getElementById('scheme-panel')?.classList.add('float-panel-closed')
   }
 
-  const buttons = new Map<
-    ColorScheme,
-    { key: keyof typeof strings.theme, icon: string }
-  >([
-    ['light', { key: 'lightMode', icon: 'tabler:sun' }],
-    ['dark', { key: 'darkMode', icon: 'tabler:moon' }],
-    ['auto', { key: 'systemMode', icon: 'tabler:brightness-filled' }],
+  const icons = new Map<ColorScheme, string>([
+    ['light', 'tabler:sun'],
+    ['dark', 'tabler:moon'],
+    ['auto', 'tabler:brightness-filled'],
   ])
 </script>
 
@@ -63,7 +60,7 @@
     onclick={toggleScheme}
     onmouseenter={showPanel}
   >
-    {#each buttons as [colorScheme, { icon }]}
+    {#each icons as [colorScheme, icon]}
       <div class={{ inactive: mode !== colorScheme }}>
         <Icon {icon} />
       </div>
@@ -71,19 +68,17 @@
   </button>
 
   <div id='scheme-panel' class='float-panel-closed'>
-    <div>
-      {#each buttons as [colorScheme, { key, icon }]}
+    <menu>
+      {#each icons as [colorScheme, icon]}
         <button
           class={{ 'current-scheme-btn': mode === colorScheme }}
-          onclick={() => {
-            switchScheme(colorScheme)
-          }}
+          onclick={() => switchScheme(colorScheme)}
         >
           <Icon {icon} />
-          {strings.theme[key]}
+          {strings.theme.colorScheme[colorScheme]}
         </button>
       {/each}
-    </div>
+    </menu>
   </div>
 </div>
 
@@ -132,7 +127,7 @@
         display: block;
       }
 
-      > div {
+      menu {
         @extend %card-base, .float-panel;
         padding: spacing(2);
 

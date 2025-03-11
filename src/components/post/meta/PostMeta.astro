@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 
 import strings from '$/config/strings'
 
@@ -9,7 +9,7 @@ import MetaLink from '$/components/post/meta/MetaLink.astro'
 
 interface Props {
   class: string
-  entry: CollectionEntry<'posts'>
+  entry: Post
   compactOnMobile?: boolean
 }
 

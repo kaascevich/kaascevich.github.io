@@ -1,12 +1,12 @@
 ---
 import path from 'node:path'
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 import { getDir } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 interface Props {
-  entry: CollectionEntry<'posts'>
+  entry: Post
   url: string
 }
 

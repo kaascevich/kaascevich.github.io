@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import type { Post } from '$/types/content'
 import path from 'node:path'
 import { getDir } from '$/utils/urls'
 import PostMeta from '$/components/post/meta/PostMeta.astro'
@@ -7,7 +7,7 @@ import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 interface Props {
-  entry: CollectionEntry<'posts'>
+  entry: Post
   wordCount: number
   readingTime: number
 }

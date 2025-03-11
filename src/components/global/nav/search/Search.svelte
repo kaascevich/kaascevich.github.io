@@ -10,6 +10,7 @@
   import SearchResult from '$/components/global/nav/search/SearchResult.svelte'
   import strings from '$/config/strings'
   import Icon from '@iconify/svelte'
+  import * as R from 'remeda'
 
   let keywordDesktop = $state('')
   let keywordMobile = $state('')
@@ -26,21 +27,20 @@
       return
     }
 
-    const tempResults = await Promise.all(
-      (await pagefind.search(keyword)).results.map(
-        async (item) => await item.data(),
-      ),
+    results = await R.pipe(
+      await pagefind.search(keyword),
+      R.prop('results'),
+      R.map((x) => x.data()),
+      (x) => Promise.all(x),
     )
 
-    if (tempResults.length === 0 && isDesktop) {
-      panel.classList.add('float-panel-closed')
-      return
-    }
-
     if (isDesktop) {
-      panel.classList.remove('float-panel-closed')
+      if (results.length === 0) {
+        panel.classList.add('float-panel-closed')
+      } else {
+        panel.classList.remove('float-panel-closed')
+      }
     }
-    results = tempResults
   }
 
   function togglePanel() {
@@ -51,10 +51,10 @@
   }
 
   $effect(() => {
-    void search(keywordDesktop, true)
+    search(keywordDesktop, true)
   })
   $effect(() => {
-    void search(keywordMobile, false)
+    search(keywordMobile, false)
   })
 </script>
 

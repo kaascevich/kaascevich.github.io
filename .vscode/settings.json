@@ -55,5 +55,10 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[astro]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never"
+    }
   }
 }

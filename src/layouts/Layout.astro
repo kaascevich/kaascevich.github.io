@@ -147,7 +147,7 @@ const bannerOffset = (
   import { OverlayScrollbars } from 'overlayscrollbars'
   import {
     getHue,
-    getStoredColorScheme,
+    getColorScheme,
     setHue,
     setColorScheme,
   } from '$/utils/settings'
@@ -192,7 +192,7 @@ const bannerOffset = (
   ])
 
   function loadColorScheme() {
-    setColorScheme(getStoredColorScheme())
+    setColorScheme(getColorScheme())
   }
 
   function loadHue() {
@@ -454,7 +454,7 @@ const bannerOffset = (
   }
 
   function setup() {
-    if (!lightbox) {
+    if (lightbox === undefined) {
       createPhotoSwipe()
     }
     window.swup.hooks.on('page:view', () => createPhotoSwipe())

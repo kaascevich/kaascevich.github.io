@@ -1,4 +1,4 @@
-import type { StringList } from '../types/config'
+import type { ColorScheme, StringList } from '../types/config'
 
 function count<Singular extends string, Plural extends string>(
   num: number,
@@ -35,9 +35,11 @@ export default {
   theme: {
     themeColor: 'Theme Color',
 
-    lightMode: 'Light',
-    darkMode: 'Dark',
-    systemMode: 'System',
+    colorScheme: {
+      light: 'Light',
+      dark: 'Dark',
+      auto: 'System',
+    } satisfies Record<ColorScheme, unknown>,
   },
   license: {
     author: 'Author',
