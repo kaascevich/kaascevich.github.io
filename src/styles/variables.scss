@@ -8,7 +8,7 @@ $rainbow-light: linear-gradient(
 );
 $rainbow-dark: linear-gradient(
   to right in oklch longer hue,
-  oklch(70% 0.1 0),
+  oklch(70% 0.1 0deg),
   oklch(70% 0.1 359deg)
 );
 
@@ -50,9 +50,10 @@ $variables: (
   --inline-code-color: var(--btn-content),
   --selection-bg: with-hue(90%, 0.05) with-hue(40%, 0.08),
   --codeblock-selection: with-hue(40%, 0.08),
-  --codeblock-bg: with-hue(20%, 0.015) with-hue(17%, 0.015),
+  --codeblock-bg: black(3%) with-hue(17%, 0.015),
+  --line-number: black(25%) white(25%),
   //
-  --license-block-bg: black(3%) var(--codeblock-bg),
+  --license-block-bg: var(--codeblock-bg),
   //
   --profile-gradient-top: with-hue(70%, 0.14) with-hue(75%, 0.14),
   --profile-gradient-bottom: with-hue(50%, 0.14) with-hue(55%, 0.14),
@@ -82,11 +83,11 @@ $variables: (
   --display-light-icon: 1 0,
   --display-dark-icon: 0 1,
   //
-  --admonitions-color-tip: oklch(70% 0.14 180) oklch(75% 0.14 180),
-  --admonitions-color-note: oklch(70% 0.14 250) oklch(75% 0.14 250),
-  --admonitions-color-important: oklch(70% 0.14 310) oklch(75% 0.14 310),
-  --admonitions-color-warning: oklch(70% 0.14 60) oklch(75% 0.14 60),
-  --admonitions-color-caution: oklch(60% 0.2 25) oklch(65% 0.2 25),
+  --admonitions-color-tip: oklch(70% 0.14 180deg) oklch(75% 0.14 180deg),
+  --admonitions-color-note: oklch(70% 0.14 250deg) oklch(75% 0.14 250deg),
+  --admonitions-color-important: oklch(70% 0.14 310deg) oklch(75% 0.14 310deg),
+  --admonitions-color-warning: oklch(70% 0.14 60deg) oklch(75% 0.14 60deg),
+  --admonitions-color-caution: oklch(60% 0.2 25deg) oklch(65% 0.2 25deg),
   //
   --toc-badge-bg: with-hue(90%, 0.045) var(--btn-regular-bg),
   --toc-btn-hover: with-hue(92%, 0.015) with-hue(22%, 0.02),

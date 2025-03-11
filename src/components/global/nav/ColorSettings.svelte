@@ -95,7 +95,7 @@
       scale: 90%;
     }
 
-    svg {
+    :global(svg) {
       width: spacing(5);
       height: spacing(5);
     }

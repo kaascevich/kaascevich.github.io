@@ -82,13 +82,14 @@
     counter-reset: line;
     span.line {
       &::before {
+        @include transition();
         content: counter(line);
         display: inline-block;
 
         counter-increment: line;
         margin-right: spacing(4);
         width: spacing(4);
-        color: white(25%);
+        color: var(--line-number);
         direction: rtl;
       }
       &:last-child:empty,

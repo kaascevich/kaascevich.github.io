@@ -103,6 +103,10 @@ export default defineConfig({
     shikiConfig: {
       langs: [shellSession],
       langAlias: { plist: 'xml' },
+      themes: {
+        light: 'catppuccin-latte',
+        dark: 'catppuccin-macchiato',
+      },
     },
   },
   vite: {
