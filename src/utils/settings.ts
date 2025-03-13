@@ -2,6 +2,7 @@ import type { ColorScheme, Hue } from '$/types/config'
 
 import siteConfig from '$/config/site'
 import { DEFAULT_COLOR_SCHEME } from '$/constants/constants.ts'
+import * as R from 'remeda'
 
 function isValidHue(value: number | null): value is Hue {
   return value !== null && value >= 0 && value < 360
@@ -12,7 +13,10 @@ function isValidColorScheme(value: string | null): value is ColorScheme {
 }
 
 export function getHue(): Hue {
-  const stored = Number.parseInt(localStorage.getItem('hue') ?? 'NaN')
+  const stored = R.pipe(
+    localStorage.getItem('hue') ?? 'NaN',
+    Number.parseInt,
+  )
   return isValidHue(stored) ? stored : siteConfig.defaultHue
 }
 

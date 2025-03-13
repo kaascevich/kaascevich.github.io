@@ -55,49 +55,51 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
   %dash-line {
     position: relative;
+
     &::before {
       content: '';
+
       position: absolute;
       left: calc(50% - 1px);
-      translate: 0 -50%;
-      transition: all 300ms;
+
       width: 10%;
       height: 100%;
+
+      transition: all 300ms;
+
+      border-left-width: 2px;
+      border-style: dashed;
+      border-left-color: var(--line-color);
+
       pointer-events: none;
-      border: {
-        style: dashed;
-        left: {
-          width: 2px;
-          color: var(--line-color);
-        }
-      }
+      translate: 0 -50%;
     }
   }
 
   a {
     @extend %btn-plain;
-    display: block !important;
-    height: spacing(10);
-    width: 100%;
-    border-radius: $radius-lg;
 
-    &:hover {
-      color: initial;
-    }
+    display: block !important;
+    width: 100%;
+    height: spacing(10);
+
+    border-radius: $radius-lg;
 
     .item-wrapper {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: flex-start;
       height: 100%;
     }
 
     time {
-      width: 15%;
-      @include transition();
-      text-align: right;
+      @include transition;
       @include text-plain(50%);
+
+      width: 15%;
+
+      text-align: right;
 
       @include variants.md {
         width: 10%;
@@ -106,9 +108,11 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
     .separator {
       @extend %dash-line;
+
       display: flex;
-      align-items: center;
+
       position: relative;
+      align-items: center;
       width: 15%;
       height: 100%;
 
@@ -118,31 +122,34 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       div {
         @include transition($properties: all);
-        margin-left: auto;
-        margin-right: auto;
+
+        z-index: 50;
+
         width: spacing(1);
         height: spacing(1);
+        margin-right: auto;
+        margin-left: auto;
+
         border-radius: $radius-sm;
+
+        outline: 4px solid var(--card-bg);
+
         background-color: with-hue(50%, 0.05);
-        outline: {
-          style: solid;
-          width: 4px;
-          color: var(--card-bg);
-        }
-        z-index: 50;
       }
     }
 
     .title {
-      width: 70%;
-      text-align: left;
-      font-weight: $font-weight-bold;
       @include transition($properties: all);
       @include text-plain(75%);
+
+      width: 70%;
       padding-right: spacing(8);
-      white-space: nowrap;
-      text-overflow: ellipsis;
       overflow: hidden;
+
+      font-weight: $font-weight-bold;
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       @include variants.md {
         width: 60%;
@@ -151,14 +158,17 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     }
 
     .tag-list {
-      display: none;
-      text-align: left;
+      @include transition;
       @include font-size($text-sm);
-      @include transition();
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
       @include text-plain(30%);
+
+      display: none;
+      overflow: hidden;
+
+      text-align: left;
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
 
       @include variants.md {
         display: block;
@@ -167,15 +177,20 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     }
 
     &:hover {
+      color: initial;
+
       .title {
         translate: spacing(1);
+
         color: var(--primary) !important;
       }
 
       .separator div {
         height: spacing(5);
-        background-color: var(--primary);
+
         outline-color: var(--btn-plain-bg-hover);
+
+        background-color: var(--primary);
       }
     }
 

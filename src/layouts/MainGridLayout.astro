@@ -54,11 +54,8 @@ const mainPanelTop =
           )
         }
 
-        <SideBar
-          class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"
-        />
+        <SideBar class="sidebar" />
 
-        <!-- overflow-hidden prevents long text from breaking the layout-->
         <main id="swup-container" class="transition-swup-fade">
           <div id="content-wrapper">
             <slot />
@@ -89,70 +86,91 @@ const mainPanelTop =
 
   #top-row {
     @include transition($properties: all, $duration: 700ms);
-    z-index: 50;
-    pointer-events: none;
     position: relative;
+
+    z-index: 50;
     max-width: var(--page-width);
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 0;
+
+    pointer-events: none;
 
     @include variants.md {
-      padding-left: spacing(4);
       padding-right: spacing(4);
+      padding-left: spacing(4);
     }
 
     #navbar-wrapper {
       @include transition($properties: all);
-      pointer-events: auto;
       position: sticky;
       top: 0;
+
+      pointer-events: auto;
     }
   }
 
   .main-outer-wrapper {
     position: absolute;
-    width: 100%;
     z-index: 30;
+    width: 100%;
+
     pointer-events: none;
 
     .main-inner-wrapper {
       position: relative;
       max-width: var(--page-width);
-      margin-left: auto;
       margin-right: auto;
+      margin-left: auto;
+
       pointer-events: auto;
 
       #main-grid {
         @include transition($duration: 700ms);
-        width: 100%;
-        left: 0;
-        right: 0;
         display: grid;
+        right: 0;
+        left: 0;
         grid-template-columns: spacing(70) auto;
         grid-template-rows: auto 1fr auto;
-        gap: spacing(4);
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: auto;
+
+        width: 100%;
         margin-right: auto;
+        margin-left: auto;
+        padding-right: 0;
+        padding-left: 0;
+        gap: spacing(4);
 
         @include variants.md {
-          padding-left: spacing(4);
           padding-right: spacing(4);
+          padding-left: spacing(4);
         }
 
         @include variants.lg {
           grid-template-rows: auto;
+        }
+
+        :global(.sidebar) {
+          @extend %onload-animation;
+          grid-column: span 2 / span 2;
+          grid-row: 2 / 3;
+
+          margin-bottom: spacing(4);
+
+          @include variants.lg {
+            grid-column: span 1 / span 1;
+            grid-row: 1 / 2;
+            max-width: spacing(70)l
+          }
         }
       }
     }
   }
 
   main {
-    overflow: hidden;
     grid-column: span 2 / span 2;
+    overflow: hidden;
+
     outline: 2px solid transparent {
       offset: 2px;
     }
@@ -162,31 +180,37 @@ const mainPanelTop =
     }
 
     #content-wrapper {
-      @extend .onload-animation;
+      @extend %onload-animation;
+
       animation-delay: var(--content-delay);
     }
   }
 
-  .footer {
-    @extend .onload-animation;
-    animation-delay: 250ms;
+  %footer {
+    @extend %onload-animation;
+
     grid-column: span 2 / span 2;
 
-    &-desktop, &-mobile {
-      @extend .footer;
-    }
+    animation-delay: 250ms;
+  }
 
-    &-desktop {
-      display: block;
-      @include variants.lg {
-        display: none;
-      }
-    }
-    &-mobile {
+  .footer-desktop {
+    @extend %footer;
+
+    display: block;
+
+    @include variants.lg {
       display: none;
-      @include variants.lg {
-        display: block;
-      }
+    }
+  }
+
+  .footer-mobile {
+    @extend %footer;
+
+    display: none;
+
+    @include variants.lg {
+      display: block;
     }
   }
 </style>

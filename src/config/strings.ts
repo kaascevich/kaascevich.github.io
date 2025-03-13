@@ -48,6 +48,16 @@ export default {
     copyright: (year: number, name: string) =>
       `\u00A9 ${year} ${name}` as const,
   },
+  github: {
+    loading: 'Waiting for the GitHub API...',
+
+    starCount: (stars: number) => count(stars, 'star', 'stars'),
+    forkCount: (forks: number) => count(forks, 'fork', 'forks'),
+    license: (license: string) => `License: ${license}` as const,
+
+    noDescription: 'No description',
+    noLicense: 'No license',
+  },
   alts: {
     prevPage: 'Previous page',
     nextPage: 'Next page',

@@ -2,38 +2,44 @@
 @use 'utils' as *;
 @use 'variants';
 
+// stylelint-disable-next-line selector-class-pattern
 .pswp__button {
   display: flex !important;
-  justify-content: center;
   align-items: center;
-  transition: $ease-in-out $transition-duration !important;
-  transition-property: $transition-properties;
-  margin-right: 0;
-
-  background-color: black(40%);
+  justify-content: center;
   width: spacing(12);
   height: spacing(12);
+  margin-right: 0;
+
+  transition: $ease-in-out $transition-duration !important;
+  transition-property: $transition-properties;
+
+  background-color: black(40%);
 
   &:hover {
     background-color: black(50%);
   }
+
   &:active {
     background-color: black(60%);
-  }
-
-  &--zoom,
-  &--close {
-    margin-top: spacing(4) !important;
-    border-radius: $radius-xl !important;
-    &:active {
-      scale: 90% !important;
-    }
   }
 
   &--zoom {
     margin-right: spacing(2.5) !important;
   }
+
   &--close {
     margin-right: spacing(4) !important;
+  }
+
+  &--zoom,
+  &--close {
+    margin-top: spacing(4) !important;
+
+    border-radius: $radius-xl !important;
+
+    &:active {
+      scale: 90% !important;
+    }
   }
 }

@@ -57,6 +57,8 @@ const userAgentDirectives = R.pipe(
   R.join('\n'),
 )
 
+const sitemapURL = new URL('sitemap-index.xml', import.meta.env.SITE).href
+
 const robotsTxt = `\
 ${userAgentDirectives}
 Disallow: /
@@ -64,7 +66,7 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
+Sitemap: ${sitemapURL}
 ` as const
 
 export const GET: APIRoute = () =>

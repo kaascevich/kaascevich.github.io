@@ -9,15 +9,15 @@
   }
 
   hr {
-    border: {
-      style: dashed;
-      color: var(--line-divider);
-    }
+    border-style: dashed;
+    border-color: var(--line-divider);
   }
 
   iframe {
-    border-radius: $radius-xl;
-    @include margin-x(auto);
     max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    border-radius: $radius-xl;
   }
 }

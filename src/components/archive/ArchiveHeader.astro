@@ -23,6 +23,7 @@ const { group } = Astro.props
 </header>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
@@ -30,50 +31,59 @@ const { group } = Astro.props
   header {
     display: flex;
     flex-direction: row;
-    width: 100%;
     align-items: center;
+    width: 100%;
     height: spacing(15);
 
     .year {
-      width: 15%;
-      @include transition();
+      @include transition;
       @include font-size($text-xl);
-      font-weight: $font-weight-bold;
-      text-align: right;
       @include text-plain(75%);
 
+      width: 15%;
+
+      font-weight: $font-weight-bold;
+      text-align: right;
+
       @include variants.md {
-        width: 10%;
         @include font-size($text-xl2);
+
+        width: 10%;
       }
     }
 
     .dot-wrapper {
       width: 15%;
+
       @include variants.md {
         width: 10%;
       }
 
       .dot {
-        height: spacing(3);
-        width: spacing(3);
-        background-image: none;
-        border-radius: 9999px;
-        outline: {
-          style: solid;
-          color: var(--primary);
-          offset: -2px;
-        }
-        @include margin-x(auto);
         z-index: 50;
+
+        width: spacing(3);
+        height: spacing(3);
+        margin-right: auto;
+        margin-left: auto;
+
+        border-radius: 9999px;
+        outline-color: var(--primary);
+        outline-offset: -2px;
+
+        outline-style: solid;
+
+        background-image: none;
       }
     }
 
     .count {
-      width: 70%;
-      @include transition();
-      text-align: left;
+      @include transition;
       @include text-plain(50%);
+
+      width: 70%;
+
+      text-align: left;
 
       @include variants.md {
         width: 80%;

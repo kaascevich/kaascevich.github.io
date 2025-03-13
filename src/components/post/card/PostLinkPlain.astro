@@ -1,0 +1,68 @@
+---
+import type { Post } from '$/types/content'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  entry: Post
+  url: string
+}
+
+const { entry, url } = Astro.props
+const { title } = entry.data
+---
+
+<a
+  href={url}
+  aria-label={title}
+  class=""
+>
+  <Icon
+    size="2.25rem"
+    name="tabler:chevron-right"
+  />
+</a>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  a {
+    @extend %btn-regular;
+
+    display: none !important;
+    position: absolute;
+    top: spacing(3);
+    right: spacing(3);
+    bottom: spacing(3);
+    align-items: center;
+    justify-content: center;
+    width: spacing(13);
+
+    border-radius: $radius-xl;
+
+    background-color: var(--enter-btn-bg);
+
+    @include variants.md {
+      display: flex !important;
+    }
+
+    &:hover {
+      background-color: var(--enter-btn-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--enter-btn-bg-active);
+      scale: 95%;
+    }
+
+    :global(svg) {
+      @include transition;
+      margin-right: auto;
+      margin-left: auto;
+
+      color: var(--primary);
+    }
+  }
+</style>

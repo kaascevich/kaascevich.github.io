@@ -15,29 +15,40 @@ const { config } = Astro.props
     id="banner"
     alt={strings.alts.banner}
     loading="eager"
-    class="object-cover h-full transition duration-700 opacity-0 scale-105"
     src={config.src}
     position={config.position}
   />
 </div>
 
 <style lang="scss" define:vars={{ 'end-stop': 0.5, multiplier: 1 / 2 }}>
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   #banner-wrapper {
+    @include transition($duration: 700ms);
+
     position: absolute;
     z-index: 10;
     width: 100%;
-    @include transition($duration: 700ms);
     overflow: hidden;
-
     mask-image: linear-gradient(
       to top,
       #0000 calc(25% * var(--multiplier) * var(--end-stop)),
       calc(75% * var(--multiplier) * var(--end-stop)),
-      #000f calc(var(--end-stop) * 100%)
+      black calc(var(--end-stop) * 100%)
     );
+
+    :global(#banner) {
+      @include transition($duration: 700ms);
+
+      object-fit: cover;
+
+      height: 100%;
+
+      opacity: 0%;
+      scale: 105%;
+    }
   }
 </style>

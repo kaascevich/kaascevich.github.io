@@ -33,53 +33,64 @@ const { class: className } = Astro.props
   @keyframes fade-in-down {
     0% {
       translate: 0 spacing(-16);
+
       opacity: 0%;
     }
+
     100% {
       translate: 0 0;
+
       opacity: 100%;
     }
   }
 
   #navbar {
-    opacity: 0%;
     z-index: 50;
-    animation: 300ms fade-in-down {
-      fill-mode: forwards;
-      delay: 0ms;
-    }
+
+    animation: 300ms fade-in-down;
+    animation-fill-mode: forwards;
+
+    animation-delay: 0ms;
+
+    opacity: 0%;
 
     nav {
       @extend %card-base;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       max-width: var(--page-width);
       height: spacing(18);
+      margin-right: auto;
+      margin-left: auto;
+      padding-right: spacing(4);
+      padding-left: spacing(4);
       overflow: visible !important;
-      border: {
-        top-left-radius: 0 !important;
-        top-right-radius: 0 !important;
-      }
-      @include margin-x(auto);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      @include padding-x(spacing(4));
+
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
 
       .home-link {
-        @extend %btn-plain, .expand-animation;
-        border-radius: $radius-lg;
-        height: spacing(13);
-        @include padding-x(spacing(5));
+        @extend %btn-plain, %expand-animation;
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: spacing(2);
+        height: spacing(13);
+        padding-right: spacing(5);
+        padding-left: spacing(5);
+
+        border-radius: $radius-lg;
+
         color: var(--primary) !important;
         font-weight: $font-weight-bold;
+        gap: spacing(2);
+
         &:active {
           scale: 95%;
         }
 
-        :global(svg) {
+        svg {
           width: spacing(7);
           height: spacing(7);
         }
@@ -87,6 +98,7 @@ const { class: className } = Astro.props
 
       menu {
         display: none;
+
         @include variants.md {
           display: flex;
         }

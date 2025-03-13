@@ -17,8 +17,20 @@ const nextEntry = allPosts[index + 1]
 ---
 
 <nav>
-  {nextEntry !== undefined && <PaginationLink entry={nextEntry} type="next" />}
-  {prevEntry !== undefined && <PaginationLink entry={prevEntry} type="prev" />}
+  {
+    nextEntry !== undefined ? (
+      <PaginationLink entry={nextEntry} type="next" />
+    ) : (
+      <div class="spacer" />
+    )
+  }
+  {
+    prevEntry !== undefined ? (
+      <PaginationLink entry={prevEntry} type="prev" />
+    ) : (
+      <div class="spacer" />
+    )
+  }
 </nav>
 
 <style lang="scss">
@@ -31,13 +43,17 @@ const nextEntry = allPosts[index + 1]
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: spacing(4);
-    gap: spacing(4);
-    overflow: hidden;
     width: 100%;
+    margin-bottom: spacing(4);
+    overflow: hidden;
+    gap: spacing(4);
 
     @include variants.md {
       flex-direction: row;
+    }
+
+    .spacer {
+      visibility: hidden;
     }
   }
 </style>

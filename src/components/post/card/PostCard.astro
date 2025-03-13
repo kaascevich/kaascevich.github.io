@@ -2,7 +2,7 @@
 import type { Post } from '$/types/content'
 
 import PostMeta from '$/components/post/meta/PostMeta.astro'
-import PostLink from '$/components/post/PostLink.astro'
+import PostLink from '$/components/post/card/PostLink.astro'
 import { Icon } from 'astro-icon/components'
 import { render } from 'astro:content'
 import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
@@ -30,7 +30,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       </a>
     </h2>
 
-    <PostMeta {entry} compactOnMobile={true} class="mb-4" />
+    <PostMeta {entry} compactOnMobile={true} class="meta-items" />
 
     <div class="description">
       {description}
@@ -47,7 +47,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
   <PostLink {entry} {url} />
 </article>
 
-<style lang="scss" define:vars={{ coverWidth }}>
+<style lang="scss" define:vars={{ 'cover-width': coverWidth }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -55,27 +55,32 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
   article {
     @extend %card-base;
+
     display: flex;
     position: relative;
     flex-direction: column-reverse;
-    border-radius: $radius-xl2;
     width: 100%;
     overflow: hidden;
+
+    border-radius: $radius-xl2;
+
     @include variants.md {
       flex-direction: column;
     }
 
     // post separator
     &:not(:first-child)::after {
+      @include transition;
+
       content: '';
 
-      @include transition();
-      @include margin-x(spacing(6));
-      border: {
-        top-width: 1px;
-        style: dashed;
-        color: black(10%);
-      }
+      margin-right: spacing(6);
+
+      margin-left: spacing(6);
+
+      border-top-width: 1px;
+      border-style: dashed;
+      border-color: black(10%);
 
       @include variants.dark {
         border-color: white(15%);
@@ -90,26 +95,27 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       padding: spacing(6);
 
       @include variants.md {
-        width: calc(100% - var(--coverWidth) - 12px);
-        padding: {
-          top: spacing(7);
-          right: spacing(2);
-          left: spacing(9);
-        }
+        width: calc(100% - var(--cover-width) - 12px);
+        padding-top: spacing(7);
+        padding-right: spacing(2);
+        padding-left: spacing(9);
       }
 
       h2 a {
-        @include transition();
-        display: block;
-        margin-bottom: spacing(3);
-        width: 100%;
-        font-weight: $font-weight-bold;
+        @include transition;
         @include font-size($text-xl3);
         @include text-plain(90%);
+
+        display: block;
+        width: 100%;
+        margin-bottom: spacing(3);
+
+        font-weight: $font-weight-bold;
 
         &:hover {
           color: var(--primary);
         }
+
         &:active {
           color: var(--title-active);
         }
@@ -118,6 +124,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           &:hover {
             color: var(--primary);
           }
+
           &:active {
             color: var(--title-active);
           }
@@ -125,15 +132,18 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
         &::before {
           content: '';
-          width: spacing(1);
-          height: spacing(5);
-          border-radius: $radius-md;
-          background-color: var(--primary);
+
+          display: none;
           position: absolute;
           top: spacing(9);
           left: spacing(4.5);
+          width: spacing(1);
+          height: spacing(5);
 
-          display: none;
+          border-radius: $radius-md;
+
+          background-color: var(--primary);
+
           @include variants.md {
             display: block;
           }
@@ -145,12 +155,14 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           width: spacing(8);
           height: spacing(8);
           translate: 0;
+
           color: var(--primary);
 
           @include variants.md {
-            @include transition();
-            position: absolute;
+            @include transition;
+
             translate: spacing(-1);
+
             opacity: 0%;
           }
         }
@@ -158,21 +170,27 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         @include variants.md {
           &:hover svg {
             translate: 0;
+
             opacity: 100%;
           }
         }
       }
 
+      :global(.meta-items) {
+        margin-bottom: spacing(4);
+      }
+
       .description {
-        @include transition();
+        @include transition;
         @include text-plain(75%);
+
         margin-bottom: spacing(3.5);
         padding-right: spacing(4);
       }
     }
 
     footer {
-      @include transition();
+      @include transition;
     }
   }
 </style>

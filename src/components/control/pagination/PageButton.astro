@@ -25,17 +25,21 @@ const { url, label, icon } = Astro.props
   @use '$/styles/variants';
 
   a {
-    @extend .btn-card;
-    border-radius: $radius-lg;
+    @extend %btn-card;
+
     width: spacing(11);
     height: spacing(11);
     overflow: hidden;
+
+    border-radius: $radius-lg;
+
     color: var(--primary);
+
     &:active {
       scale: 85%;
     }
 
-    :global(svg) {
+    svg {
       width: spacing(7);
       height: spacing(7);
     }

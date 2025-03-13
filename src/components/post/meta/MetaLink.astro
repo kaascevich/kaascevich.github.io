@@ -17,16 +17,18 @@ const { href, label } = Astro.props
   @use '$/styles/variants';
 
   %link-lg {
-    @extend .expand-animation;
-    @include transition();
+    @extend %expand-animation;
+    @include transition;
+
     margin: spacing(-1.5);
-    border-radius: $radius-md;
     padding: spacing(1.5);
+
+    border-radius: $radius-md;
   }
 
   a {
     @extend %link-lg;
-    @include transition();
+    @include transition;
     white-space: nowrap;
 
     &:hover {

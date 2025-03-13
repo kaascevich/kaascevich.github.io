@@ -13,10 +13,8 @@ const { link } = Astro.props
   href={link.url}
   target={link.external === true ? '_blank' : null}
 >
-  <div>
-    {link.name}
-    {link.external === true && <Icon name="tabler:external-link" />}
-  </div>
+  {link.name}
+  {link.external === true && <Icon name="tabler:external-link" />}
 </a>
 
 <style lang="scss">
@@ -26,26 +24,30 @@ const { link } = Astro.props
   @use '$/styles/variants';
 
   a {
-    @extend %btn-plain, .expand-animation;
-    border-radius: $radius-lg;
+    @extend %btn-plain, %expand-animation;
+
+    display: flex;
+    align-items: center;
+
     height: spacing(11);
+    padding-right: spacing(5);
+    padding-left: spacing(5);
+
+    border-radius: $radius-lg;
+
     font-weight: $font-weight-bold;
-    @include padding-x(spacing(5));
+
     &:active {
       scale: 95%;
     }
 
-    div {
-      display: flex;
-      align-items: center;
+    svg {
+      @include transition;
+      @include text-plain(20%);
+      width: 1.125rem;
+      height: 1.125rem;
 
-      :global(svg) {
-        @include transition();
-        margin-left: spacing(1);
-        @include text-plain(20%);
-        width: 1.125rem;
-        height: 1.125rem;
-      }
+      margin-left: spacing(1);
     }
   }
 </style>

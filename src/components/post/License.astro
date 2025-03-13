@@ -57,48 +57,57 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   @use '$/styles/variants';
 
   .license-wrapper {
-    @include transition();
+    @include transition;
+
     position: relative;
-    background-color: var(--license-block-bg);
     padding: spacing(5) spacing(6);
     overflow: hidden;
 
+    background-color: var(--license-block-bg);
+
     hgroup {
       header {
-        @include transition();
+        @include transition;
         @include text-plain(75%);
+
         font-weight: $font-weight-bold;
       }
+
       a {
         @extend %link;
+
         color: var(--primary);
       }
     }
 
     .details {
       display: flex;
-
       flex-direction: column;
       gap: spacing(3);
+
       margin-top: spacing(2);
+
       @include variants.sm {
         flex-direction: row;
         gap: spacing(6);
       }
 
       header {
-        @include transition();
+        @include transition;
         @include text-plain(30%);
         @include font-size($text-sm);
       }
 
       .details-text {
-        @include transition();
+        @include transition;
         @include text-plain(75%);
+
         white-space: nowrap;
       }
+
       .details-link {
         @extend %link;
+
         color: var(--primary);
         white-space: nowrap;
       }
@@ -107,16 +116,17 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     .cc-icon {
       @include transition($properties: $transition-colors);
       @include text-plain(5%);
-      width: spacing(60);
-      height: spacing(60);
+
       position: absolute;
       top: 50%;
-      right: spacing(6);
-      // translate: 0 -50%;
-
       right: 50%;
-      translate: 50% -50%;
+
+      width: spacing(60);
+      height: spacing(60);
+
       pointer-events: none;
+      translate: 50% -50%;
+
       @include variants.sm {
         right: spacing(6);
         translate: 0 -50%;

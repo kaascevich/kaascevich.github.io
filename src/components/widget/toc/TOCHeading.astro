@@ -18,51 +18,56 @@ const { id, text, depth, h1Index } = Astro.props
 </a>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   a {
-    @include transition();
+    @include transition;
+    display: flex;
     position: relative;
     width: 100%;
     min-height: spacing(9);
     padding: spacing(2);
-    display: flex;
-    gap: spacing(2);
+
     border-radius: $radius-xl;
+    gap: spacing(2);
 
     &:hover {
       background-color: var(--toc-btn-hover);
     }
+
     &:active {
       background-color: var(--toc-btn-active);
     }
 
     .marker {
-      @include transition();
-      width: spacing(5);
-      height: spacing(5);
-      border-radius: $radius-lg;
+      @include transition;
       @include font-size($text-xs);
+
       display: flex;
+      flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      width: spacing(5);
+      height: spacing(5);
+
+      border-radius: $radius-lg;
+
       font-weight: $font-weight-bold;
     }
 
     .title {
-      @include transition();
+      @include transition;
       @include font-size($text-sm);
       @include text-plain(50%);
     }
-  }
 
-  a {
     &.depth-1 {
       .marker {
         background-color: var(--toc-badge-bg);
+
         color: var(--btn-content);
       }
     }
@@ -74,7 +79,9 @@ const { id, text, depth, h1Index } = Astro.props
         .dot {
           width: spacing(2);
           height: spacing(2);
+
           border-radius: spacing(0.75);
+
           background-color: var(--toc-badge-bg);
         }
       }

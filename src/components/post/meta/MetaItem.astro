@@ -19,6 +19,7 @@ const { icon, hideOnMobile = false } = Astro.props
 </div>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
@@ -29,24 +30,29 @@ const { icon, hideOnMobile = false } = Astro.props
 
     &.mobile-hidden {
       display: none;
+
       @include variants.md {
         display: flex;
       }
     }
 
     .meta-icon {
+      @include transition;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       width: spacing(8);
       height: spacing(8);
-      @include transition();
-      display: flex;
-      justify-content: center;
-      align-items: center;
       margin-right: spacing(2);
+
       border-radius: $radius-md;
+
       background-color: var(--btn-regular-bg);
+
       color: var(--btn-content);
 
-      :global(svg) {
+      svg {
         width: spacing(5);
         height: spacing(5);
       }
@@ -55,6 +61,7 @@ const { icon, hideOnMobile = false } = Astro.props
     .meta-content {
       @include text-plain(50%);
       @include font-size($text-sm);
+
       font-weight: $font-weight-medium;
     }
   }

@@ -1,0 +1,105 @@
+---
+import path from 'node:path'
+import type { Post } from '$/types/content'
+import { getDir } from '$/utils/urls'
+import { Icon } from 'astro-icon/components'
+import ImageWrapper from '$/components/misc/ImageWrapper.astro'
+
+interface Props {
+  entry: Post
+  image: NonNullable<Post['data']['image']>
+  url: string
+}
+
+const { entry, image, url } = Astro.props
+---
+
+<a href={url} aria-label={entry.data.title}>
+  <div class="icon-wrapper">
+    <Icon name="tabler:chevron-right" />
+  </div>
+
+  <ImageWrapper
+    src={image.source}
+    basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
+    alt={image.alt}
+    class="image"
+  />
+</a>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  a {
+    position: relative;
+
+    max-height: 20vh;
+    margin: spacing(4) spacing(4) spacing(-2);
+    overflow: hidden;
+
+    border-radius: $radius-xl;
+
+    @include variants.md {
+      position: absolute;
+      top: spacing(3);
+      right: spacing(3);
+      bottom: spacing(3);
+      width: var(--cover-width);
+      max-height: none;
+      margin: 0;
+    }
+
+    &:hover {
+      .icon-wrapper :global(svg) {
+        opacity: 100%;
+        scale: 100%;
+      }
+
+      :global(.image) {
+        filter: brightness(70%);
+      }
+    }
+
+    &:active {
+      scale: 95%;
+
+      :global(.image) {
+        filter: brightness(50%);
+      }
+    }
+
+    .icon-wrapper {
+      display: flex;
+
+      position: absolute;
+      z-index: 20;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      pointer-events: none;
+
+      :global(svg) {
+        @include transition;
+
+        width: spacing(12);
+        height: spacing(12);
+
+        opacity: 0%;
+        scale: 50%;
+
+        color: white;
+      }
+    }
+
+    :global(.image) {
+      @include transition;
+      width: 100%;
+      height: 100%;
+    }
+  }
+</style>

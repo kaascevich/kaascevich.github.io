@@ -4,49 +4,23 @@
 @use 'theme' as *;
 @use 'variants';
 
-// MARK: Layout
+/* MARK: Layout */
 
 @function spacing($value) {
   @return calc($spacing * $value);
 }
 
-@mixin margin-x($left, $right: $left) {
-  margin: {
-    right: $right;
-    left: $left;
-  }
-}
-
-@mixin margin-y($top, $bottom: $top) {
-  margin: {
-    top: $top;
-    bottom: $bottom;
-  }
-}
-
-@mixin padding-x($left, $right: $left) {
-  padding: {
-    right: $right;
-    left: $left;
-  }
-}
-
-@mixin padding-y($top, $bottom: $top) {
-  padding: {
-    top: $top;
-    bottom: $bottom;
-  }
-}
-
-// MARK: Colors
+/* MARK: Colors */
 
 @function alpha($color, $alpha) {
-  // make sure Sass knows this is a color value
+  /* make sure Sass knows this is a color value */
   @if meta.type-of($color) == color {
     @return color.change($color, $alpha: $alpha);
   } @else {
-    // this isn't a color Sass can handle, so fall back to CSS builtins
-    // defaulting to oklch because that's primarily what I'm using on this site
+    /*
+     * this isn't a color Sass can handle, so fall back to CSS builtins
+     * defaulting to oklch because that's primarily what I'm using on this site
+     */
     @return oklch(from $color l c h / $alpha);
   }
 }
@@ -65,21 +39,24 @@
 
 @mixin text-plain($alpha) {
   color: black($alpha);
+
   @include variants.dark {
     color: white($alpha);
   }
 }
 
-// MARK: Mixins
+/* MARK: Mixins */
 
 @mixin font-size($font-size, $line-height: null) {
   @if $line-height {
     font-size: $font-size;
     line-height: $line-height;
   } @else {
-    // if there is no $line-height parameter, assume that $font-size is a
-    // 2-element list (we do this so we can use a single variable to describe a
-    // font size and a line height)
+    /*
+     * if there is no $line-height parameter, assume that $font-size is a
+     * 2-element list (we do this so we can use a single variable to describe a
+     * font size and a line height)
+     */
     font-size: list.nth($font-size, 1);
     line-height: list.nth($font-size, 2);
   }

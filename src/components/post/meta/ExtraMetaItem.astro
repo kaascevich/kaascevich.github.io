@@ -18,28 +18,33 @@ const { text, icon } = Astro.props
 </div>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   .meta-item {
+    @include text-plain(40%);
+
     display: flex;
     flex-direction: row;
     align-items: center;
-    @include text-plain(40%);
 
     .icon-wrapper {
-      @include transition();
-      height: spacing(6);
-      width: spacing(6);
-      border-radius: $radius-md;
+      @include transition;
+      @include text-plain(50%);
+
       display: flex;
       align-items: center;
       justify-content: center;
+      width: spacing(6);
+      height: spacing(6);
       margin-right: spacing(2);
-      @include text-plain(50%);
+
+      border-radius: $radius-md;
 
       background-color: black(5%);
+
       @include variants.dark {
         background-color: white(10%);
       }

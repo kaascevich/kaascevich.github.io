@@ -31,7 +31,9 @@
 
   function toggleScheme() {
     const currentIndex = colorSchemes.findIndex((m) => m === mode)
-    switchScheme(colorSchemes[(currentIndex + 1) % colorSchemes.length]!)
+    const nextIndex = (currentIndex + 1) % colorSchemes.length
+    const nextScheme = colorSchemes[nextIndex]!
+    switchScheme(nextScheme)
   }
 
   function showPanel() {
@@ -93,11 +95,14 @@
     z-index: 50;
 
     button#scheme-switch {
-      @extend %btn-plain, .expand-animation;
+      @extend %btn-plain, %expand-animation;
+
       position: relative;
-      border-radius: $radius-lg;
       width: spacing(11);
       height: spacing(11);
+
+      border-radius: $radius-lg;
+
       &:active {
         scale: 90%;
       }
@@ -108,6 +113,7 @@
         &.inactive {
           opacity: 0%;
         }
+
         :global(svg) {
           width: spacing(5);
           height: spacing(5);
@@ -116,34 +122,41 @@
     }
 
     #scheme-panel {
-      position: absolute;
-      @include transition();
       display: none;
+      position: absolute;
       top: spacing(11);
       right: spacing(-2);
       padding-top: spacing(5);
+
+      @include transition;
 
       @include variants.lg {
         display: block;
       }
 
       menu {
-        @extend %card-base, .float-panel;
+        @extend %card-base, %float-panel;
+
         padding: spacing(2);
 
         button {
-          @extend %btn-plain, .expand-animation;
-          @include transition();
+          @extend %btn-plain, %expand-animation;
+          @include transition;
+
           display: flex;
-          justify-content: flex-start !important;
           align-items: center;
-          border-radius: $radius-lg;
+          justify-content: flex-start !important;
           width: 100%;
           height: spacing(9);
-          white-space: nowrap;
-          @include padding-x(spacing(3));
           margin-bottom: spacing(0.5);
+          padding-right: spacing(3);
+
+          padding-left: spacing(3);
+
+          border-radius: $radius-lg;
+
           font-weight: $font-weight-medium;
+          white-space: nowrap;
 
           &:active {
             scale: 95%;
@@ -151,18 +164,20 @@
 
           &.current-scheme-btn {
             color: var(--primary) !important;
+
             &::before {
               content: '';
               scale: 100%;
+
               opacity: 100%;
               background-color: var(--btn-plain-bg-hover);
             }
           }
 
           :global(svg) {
-            margin-right: spacing(3);
             width: spacing(5);
             height: spacing(5);
+            margin-right: spacing(3);
           }
         }
       }

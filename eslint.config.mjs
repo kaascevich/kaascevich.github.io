@@ -10,7 +10,7 @@ export default antfu(
   {
     lessOpinionated: true,
     formatters: {
-      css: true,
+      css: false, // let Stylelint handle this
       html: true,
       xml: true,
       svg: true,
@@ -39,7 +39,7 @@ export default antfu(
         'no-multi-assign': 'error',
         'no-negated-condition': 'error',
         'no-param-reassign': 'error',
-        // "no-plusplus": "error",
+        'no-plusplus': 'error',
         'no-return-assign': 'error',
         'no-script-url': 'error',
         'no-useless-concat': 'error',
@@ -67,8 +67,8 @@ export default antfu(
           allowString: false,
         }],
 
-        'ts/no-unused-vars': 'off',
-        'ts/explicit-function-return-type': 'off',
+        'ts/no-unused-vars': 'off', // handled by the compiler
+        'ts/explicit-function-return-type': 'off', // so we can infer stupidly-specific return types
       },
     },
     stylistic: {
@@ -76,6 +76,10 @@ export default antfu(
         'style/arrow-parens': ['error', 'always'],
         'style/brace-style': ['error', '1tbs'],
         'style/jsx-wrap-multilines': ['off'],
+
+        // setting this to 'off' will disable linter errors (which is helpful
+        // for those lines that are gonna be too long no matter what you do),
+        // but it'll still let the formatter wrap lines when feasible
         'style/max-len': ['off', 80, {
           ignoreStrings: true,
           ignoreTemplateLiterals: true,

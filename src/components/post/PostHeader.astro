@@ -11,15 +11,10 @@ interface Props {
   wordCount: number
   readingTime: number
 }
-
 const { entry, wordCount, readingTime } = Astro.props
 ---
 
-<PostExtraMeta
-  {wordCount}
-  {readingTime}
-  class="mb-3 transition onload-animation"
-/>
+<PostExtraMeta {wordCount} {readingTime} class="extra-meta" />
 
 <!-- title -->
 <h1>
@@ -35,7 +30,7 @@ const { entry, wordCount, readingTime } = Astro.props
 
 <!-- metadata -->
 <div class="meta-wrapper">
-  <PostMeta {entry} class="mb-5" />
+  <PostMeta {entry} class="meta-items" />
   {entry.data.image === undefined && <hr />}
 </div>
 
@@ -46,7 +41,6 @@ const { entry, wordCount, readingTime } = Astro.props
       src={entry.data.image.source}
       alt={entry.data.image.alt}
       basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
-      class="mb-8 rounded-xl banner-container onload-animation"
     />
   )
 }
@@ -58,17 +52,28 @@ const { entry, wordCount, readingTime } = Astro.props
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
+  :global(.extra-meta) {
+    @extend %onload-animation;
+    @include transition;
+
+    margin-bottom: spacing(3);
+  }
+
   h1 {
-    @extend .onload-animation;
+    @extend %onload-animation;
+
     position: relative;
 
     .title-wrapper {
       @include text-plain(90%);
-      @include transition();
-      width: 100%;
+      @include transition;
+
       display: block;
-      font-weight: $font-weight-bold;
+      width: 100%;
       margin-bottom: spacing(3);
+
+      font-weight: $font-weight-bold;
+
       @include font-size($text-xl3);
 
       @include variants.md {
@@ -79,24 +84,40 @@ const { entry, wordCount, readingTime } = Astro.props
       @include variants.md {
         &::before {
           content: '';
-          width: spacing(1);
-          height: spacing(5);
-          border-radius: $radius-md;
-          background-color: var(--primary);
+
           position: absolute;
           top: spacing(3);
           left: spacing(-4.5);
+          width: spacing(1);
+          height: spacing(5);
+
+          border-radius: $radius-md;
+
+          background-color: var(--primary);
         }
       }
     }
   }
 
   .meta-wrapper {
-    @extend .onload-animation;
+    @extend %onload-animation;
 
-    hr {
-      border: 1px dashed var(--line-divider);
+    :global(.meta-items) {
       margin-bottom: spacing(5);
     }
+
+    hr {
+      margin-bottom: spacing(5);
+
+      border: 1px dashed var(--line-divider);
+    }
+  }
+
+  :global(#post-cover) {
+    @extend %onload-animation;
+
+    margin-bottom: spacing(8);
+
+    border-radius: $radius-xl;
   }
 </style>

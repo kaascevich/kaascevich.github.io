@@ -18,9 +18,12 @@ const { href, label } = Astro.props
 
   :any-link {
     @extend %btn-regular;
-    height: spacing(8);
     @include font-size($text-sm);
-    @include padding-x(spacing(3));
+
+    height: spacing(8);
+    padding-right: spacing(3);
+    padding-left: spacing(3);
+
     border-radius: $radius-lg;
   }
 </style>

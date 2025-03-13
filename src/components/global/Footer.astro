@@ -38,40 +38,42 @@ const currentYear = new Date().getFullYear()
   @use '$/styles/variants';
 
   hr {
-    @include transition();
+    @include transition;
+
     margin: spacing(10) spacing(16);
 
-    border: {
-      top-width: 1px;
-      style: dashed;
-      color: black(10%);
-    }
+    border-top-width: 1px;
+    border-style: dashed;
+    border-color: black(10%);
+
     @include variants.dark {
       border-color: white(15%);
     }
   }
 
   footer {
-    @include transition();
+    @include transition;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-bottom: spacing(12);
+    padding-right: spacing(6);
+    padding-bottom: spacing(6);
+    padding-left: spacing(6);
+
     border-radius: $radius-xl2;
-    padding: {
-      right: spacing(6);
-      bottom: spacing(6);
-      left: spacing(6);
-    }
 
     .footer-content {
       @include text-plain(50%);
       @include font-size($text-sm);
+
       text-align: center;
 
       a {
         @extend %link;
+
         color: var(--primary);
         font-weight: $font-weight-medium;
       }

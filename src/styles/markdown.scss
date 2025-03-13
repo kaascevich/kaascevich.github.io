@@ -5,6 +5,7 @@
 
 .custom-md {
   word-break: break-word;
+
   h1 {
     @include font-size($text-xl3);
   }
@@ -15,17 +16,23 @@
   h4,
   h5,
   h6 {
+    // MARK: Heading Anchors
     .anchor {
-      opacity: 0%;
-      margin: spacing(-0.5) {
-        left: 0.2ch !important;
-      }
+      margin: spacing(-0.5);
+      margin-left: 0.2ch !important;
       padding: spacing(0.5) !important;
-      user-select: none;
+
+      transition-delay: 50ms !important;
+
+      opacity: 0%;
+
       text-decoration-line: none !important;
 
+      user-select: none;
+
       .anchor-icon {
-        @include margin-x(0.45ch !important);
+        margin-right: 0.45ch !important;
+        margin-left: 0.45ch !important;
       }
     }
 
@@ -36,17 +43,15 @@
 
   :any-link:not(.no-styling) {
     @extend %link;
+
     position: relative;
+
     background-image: none;
+
     color: var(--primary);
     font-weight: $font-weight-medium;
+    text-decoration: underline dashed var(--link-underline) 1px;
     text-underline-offset: 4px;
-    text-decoration: {
-      line: underline;
-      color: var(--link-underline);
-      style: dashed;
-      thickness: 1px;
-    }
 
     &:hover,
     &:active {
@@ -55,20 +60,26 @@
 
     &[data-footnote-ref] {
       margin-left: spacing(-0.5);
+
       text-decoration-line: none;
     }
   }
 
   code {
-    border-radius: $radius-md;
-    background-color: var(--inline-code-bg);
     padding: spacing(1);
     overflow: hidden;
-    color: var(--inline-code-color);
 
+    border-radius: $radius-md;
+
+    background-color: var(--inline-code-bg);
+
+    color: var(--inline-code-color);
     font-family:
       'Monaspace Radon', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
+
+    // MARK: Line Numbers
+    counter-reset: line;
     font-feature-settings:
       'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07',
       'ss08', 'ss09';
@@ -78,43 +89,57 @@
       content: none;
     }
 
-    // line numbers
-    counter-reset: line;
     span.line {
       &::before {
-        @include transition();
+        @include transition;
+
         content: counter(line);
+
         display: inline-block;
+        width: spacing(4);
+        margin-right: spacing(4);
+
+        color: var(--line-number);
 
         counter-increment: line;
-        margin-right: spacing(4);
-        width: spacing(4);
-        color: var(--line-number);
         direction: rtl;
       }
+
       &:last-child:empty,
       &:last-child:has(> span:empty:only-child) {
         display: none;
       }
+    }
+
+    // italics don't look very good with my code font (Monaspace Radon)
+    [style*='italic'] {
+      font-style: normal !important;
     }
   }
 
   :not(pre) code {
     position: relative;
     bottom: spacing(0.2);
+
     font-weight: $font-weight-medium;
   }
 
   pre {
+    padding-right: spacing(5);
+    padding-left: spacing(5);
+
     border-radius: $radius-xl;
+
     background-color: var(--codeblock-bg) !important;
-    @include padding-x(spacing(5));
 
     code {
-      background-color: transparent;
-      color: inherit;
       @include font-size($text-sm);
+
       padding: 0;
+
+      background-color: transparent;
+
+      color: inherit;
 
       ::selection {
         background-color: var(--codeblock-selection);
@@ -128,23 +153,29 @@
 
   blockquote {
     position: relative;
+
     border-color: transparent;
+
     font-style: normal;
     font-weight: inherit;
 
     &::before {
+      @include transition;
+
       content: '';
+
       display: block;
       position: absolute;
       left: spacing(-1);
-      @include transition();
-      border-radius: 9999px;
-      background-color: var(--btn-regular-bg);
       width: spacing(1);
       height: 100%;
+
+      border-radius: 9999px;
+
+      background-color: var(--btn-regular-bg);
     }
 
-    // remove the double quotes from default styles
+    // remove the double quotes
     p::before,
     p::after {
       content: none;

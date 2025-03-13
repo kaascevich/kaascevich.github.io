@@ -99,58 +99,71 @@
   }
 
   #search-panel {
-    @extend .float-panel;
+    @extend %float-panel;
+
     position: absolute;
     top: spacing(20);
-    left: spacing(4);
     right: spacing(4);
+    left: spacing(4);
     padding: spacing(2);
+
     border-radius: $radius-xl2;
+
     box-shadow: $shadow-xl2;
 
     @include variants.md {
-      width: spacing(120);
       left: unset;
+      width: spacing(120);
     }
 
     :global(mark) {
       background-color: transparent;
+
       color: var(--primary);
     }
   }
 
   search {
     @include transition($properties: all);
+
     align-items: center;
     height: spacing(11);
 
     background-color: black(4%);
+
     &:hover, &:focus-within {
       background-color: black(6%);
     }
 
     @include variants.dark {
       background-color: white(5%);
+
       &:hover, &:focus-within {
         background-color: white(10%);
       }
     }
 
     :global(svg) {
-      position: absolute;
-      pointer-events: none;
-      margin: auto spacing(3);
       @include transition;
+      @include text-plain(30%);
+
+      position: absolute;
       width: spacing(5);
       height: spacing(5);
-      @include text-plain(30%);
+      margin: auto spacing(3);
+
+      pointer-events: none;
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     input {
       @include text-plain(50%);
-      padding-left: spacing(10);
       @include font-size($text-sm);
-      outline-width: 0px;
+
+      padding-left: spacing(10);
+
+      outline-width: 0;
+
       background-color: transparent;
     }
   }
@@ -160,6 +173,7 @@
   #search-bar {
     display: none;
     margin-right: spacing(2);
+
     border-radius: $radius-lg;
 
     @include variants.lg {
@@ -168,8 +182,10 @@
 
     input {
       @include transition($properties: all);
-      height: 100%;
       width: spacing(40);
+
+      height: 100%;
+
       &:active, &:focus {
         width: spacing(60);
       }
@@ -179,10 +195,11 @@
   // MARK: Mobile
 
   #search-switch {
-    @extend %btn-plain, .expand-animation;
-    border-radius: $radius-lg;
+    @extend %btn-plain, %expand-animation;
     width: spacing(11);
     height: spacing(11);
+
+    border-radius: $radius-lg;
 
     &:active {
       scale: 90%;
@@ -201,12 +218,14 @@
   #search-bar-inside {
     display: flex;
     position: relative;
+
     border-radius: $radius-xl;
 
     @include variants.lg {
       display: none;
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     input {
       position: absolute;
       inset: 0;

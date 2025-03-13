@@ -23,24 +23,20 @@ const {
   basePath = '/',
 } = Astro.props
 
-const isLocal = !(
-  src.startsWith('/') ||
-  src.startsWith('http') ||
-  src.startsWith('https') ||
-  src.startsWith('data:')
-)
+const isRemote = src.match(/^(?:\/|(?:https?|data):).*/g)
 
-// TODO: temporary workaround for images dynamic import
+// FIXME: temporary workaround for images dynamic import
 // https://github.com/withastro/astro/issues/3373
-let img: ImageMetadata | undefined
-if (isLocal) {
+const img = await (() => {
+  if (isRemote) {
+    return null
+  }
+
   const files = import.meta.glob<ImageMetadata>('../../**', {
     import: 'default',
   })
 
-  const normalizedPath = path
-    .normalize(path.join('../../', basePath, src))
-    .replace('\\', '/')
+  const normalizedPath = path.join('../../', basePath, src).replace('\\', '/')
 
   const file = files[normalizedPath]
   if (file === undefined) {
@@ -49,14 +45,14 @@ if (isLocal) {
     )
   }
 
-  img = await file()
-}
+  return file()
+})()
 ---
 
 <div {id} class={className}>
   {
-    img === undefined ? (
-      <img src={src} {alt} {loading} />
+    img === null ? (
+      <img {src} {alt} {loading} />
     ) : (
       <Image src={img} {alt} {loading} />
     )
@@ -64,6 +60,7 @@ if (isLocal) {
 </div>
 
 <style lang="scss" define:vars={{ position }}>
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';

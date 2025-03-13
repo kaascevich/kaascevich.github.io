@@ -8,6 +8,7 @@
   // autofix
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
     "source.organizeImports": "never"
   },
 
@@ -25,13 +26,11 @@
     { "rule": "*semi", "severity": "off", "fixable": true }
   ],
 
-  // enable eslint for all supported languages
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "vue",
     "html",
     "markdown",
     "json",
@@ -40,14 +39,14 @@
     "yaml",
     "toml",
     "xml",
-    "gql",
-    "graphql",
+    "astro",
+    "svelte"
+  ],
+  "stylelint.validate": [
+    "css",
+    "scss",
     "astro",
     "svelte",
-    "css",
-    "less",
-    "scss",
-    "pcss",
     "postcss"
   ],
   "[mdx]": {
@@ -61,4 +60,8 @@
       "source.fixAll.eslint": "never"
     }
   }
+  // "[scss]": {
+  //   "editor.defaultFormatter": "stylelint.vscode-stylelint",
+  //   "editor.formatOnSave": true
+  // }
 }

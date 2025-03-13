@@ -9,25 +9,21 @@ const tags = Array.from(await getTagCounts())
 const COLLAPSED_HEIGHT = '7.5rem'
 const COLLAPSE_THRESHOLD = 20
 
-const isCollapsed = tags.length >= COLLAPSE_THRESHOLD
-
 interface Props {
   class?: string
-  style?: string
 }
 
-const { class: className, style } = Astro.props
+const { class: className } = Astro.props
 ---
 
 <WidgetLayout
   name={strings.tags.label}
   id="tags"
-  {isCollapsed}
+  isCollapsed={tags.length >= COLLAPSE_THRESHOLD}
   collapsedHeight={COLLAPSED_HEIGHT}
   class={className}
-  {style}
 >
-  <ul class="flex gap-2 flex-wrap">
+  <ul>
     {
       tags.map(([tag]) => (
         <ButtonTag href={`/archive/tag/${tag}/`} label={strings.alts.tag(tag)}>
@@ -37,3 +33,17 @@ const { class: className, style } = Astro.props
     }
   </ul>
 </WidgetLayout>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  ul {
+    display: flex;
+    gap: spacing(2);
+
+    flex-wrap: wrap;
+  }
+</style>

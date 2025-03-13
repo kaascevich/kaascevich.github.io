@@ -71,41 +71,51 @@ function getPageUrl<Page extends number>(page: Page) {
     display: flex;
     flex-direction: row;
     align-items: center;
+
     border-radius: $radius-lg;
+
     background-color: var(--card-bg);
 
     color: $color-neutral-700;
     font-weight: $font-weight-bold;
+
     @include variants.dark {
       color: $color-neutral-300;
     }
   }
 
   .hidden-pages {
-    @include margin-x(spacing(1));
+    margin-right: spacing(1);
+    margin-left: spacing(1);
   }
 
   .current-page,
   .other-page {
-    border-radius: $radius-lg;
     width: spacing(11);
     height: spacing(11);
+
+    border-radius: $radius-lg;
   }
 
   .current-page {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     background-color: var(--primary);
 
     color: white;
+
     @include variants.dark {
       color: black(70%);
     }
   }
+
   .other-page {
-    @extend .btn-card;
+    @extend %btn-card;
+
     overflow: hidden;
+
     &:active {
       scale: 85%;
     }

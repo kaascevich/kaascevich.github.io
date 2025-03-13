@@ -15,7 +15,6 @@
 @forward 'easing';
 @forward 'animate' as animate-*;
 @forward 'transition' as transition-*;
-
 @use 'sass:list';
 
 $spacing: 0.25rem;

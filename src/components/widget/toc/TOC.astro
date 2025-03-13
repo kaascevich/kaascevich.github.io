@@ -47,12 +47,14 @@ let heading1Count = 1
 </div>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   %hide-scrollbar {
     scrollbar-width: none;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -60,14 +62,12 @@ let heading1Count = 1
 
   #toc-inner-wrapper {
     @extend %hide-scrollbar;
+
     position: fixed;
     top: spacing(14);
     width: var(--toc-width);
     height: calc(100vh - spacing(80));
-    overflow: {
-      x: hidden;
-      y: scroll;
-    }
+    overflow: hidden scroll;
 
     mask-image: linear-gradient(
       to bottom,
@@ -90,19 +90,22 @@ let heading1Count = 1
 
   #active-indicator {
     @include transition($properties: all);
+
     position: absolute;
-    left: 0;
-    right: 0;
     z-index: -10;
+    right: 0;
+    left: 0;
+
+    border: 2px dashed var(--toc-btn-hover);
+    border-radius: $radius-xl;
+
     background-color: var(--toc-btn-hover);
-    border: 2px dashed var(--toc-btn-hover) {
-      radius: $radius-xl;
-    }
   }
 
   table-of-contents:hover #active-indicator {
-    background-color: transparent;
     border-color: var(--toc-btn-active);
+
+    background-color: transparent;
   }
 </style>
 
@@ -121,7 +124,7 @@ let heading1Count = 1
     readonly tocElement = document.getElementById('toc-inner-wrapper')!
     readonly observer: IntersectionObserver
     anchorNavTarget: HTMLElement | null = null
-    tocEntries: TOCEntry[] = []
+    entries: TOCEntry[] = []
 
     constructor() {
       super()
@@ -131,45 +134,41 @@ let heading1Count = 1
       )
     }
 
-    markVisibleSection(entries: readonly IntersectionObserverEntry[]) {
-      for (const entry of entries) {
-        const id = entry.target.children[0]?.id
-        const tocEntry = this.tocEntries.find((tocEntry) => tocEntry.id === id)
-        if (tocEntry !== undefined) {
-          tocEntry.isActive = entry.isIntersecting
+    markVisibleSection(
+      intersectionEntries: readonly IntersectionObserverEntry[],
+    ) {
+      for (const { target, isIntersecting } of intersectionEntries) {
+        const id = target.children[0]?.id
+        const entry = this.entries.find((entry) => entry.id === id)
+        if (entry !== undefined) {
+          entry.isActive = isIntersecting
         }
 
-        if (
-          entry.isIntersecting &&
-          this.anchorNavTarget === entry.target.firstChild
-        ) {
+        if (isIntersecting && this.anchorNavTarget === target.firstChild) {
           this.anchorNavTarget = null
         }
       }
 
-      if (!this.tocEntries.some((entry) => entry.isActive)) {
+      if (!this.entries.some((entry) => entry.isActive)) {
         this.fallback()
       }
       this.update()
     }
 
     toggleActiveHeading() {
-      // find the index of the last element that's active...
-      const max = this.tocEntries.findLastIndex((entry) => entry.isActive)
-      // ...then find the index of the last element where all the elements after
-      // it (until `max`) are active
-      const min = this.tocEntries
-        .slice(0, max + 1)
-        .findLastIndex((entry) => !entry.isActive) + 1
+      const indicator = document.getElementById('active-indicator')!
 
-      // so, for example, if we have [false, true, false, true, true, true, false],
-      // `max` will be 5, and `min` will be 3
+      const first = this.entries.find((entry) => entry.isActive)
+      const last = this.entries.findLast((entry) => entry.isActive)
 
-      if (min < 0 || max < 0) {
+      if (first === undefined || last === undefined) {
+        indicator.style.opacity = '0%'
         return
       }
 
-      for (const entry of this.tocEntries) {
+      indicator.style.opacity = '100%'
+
+      for (const entry of this.entries) {
         if (entry.isActive) {
           entry.anchor.classList.add('visible')
         } else {
@@ -181,13 +180,11 @@ let heading1Count = 1
       const scrollOffset = this.tocElement.scrollTop
       const offset = parentOffset - scrollOffset
 
-      const top = this.tocEntries[min]!.anchor.getBoundingClientRect().top
-      const bottom = this.tocEntries[max]!.anchor.getBoundingClientRect().bottom
+      const top = first.anchor.getBoundingClientRect().top
+      const bottom = last.anchor.getBoundingClientRect().bottom
 
-      document.getElementById('active-indicator')!.style.top =
-        `${top - offset}px`
-      document.getElementById('active-indicator')!.style.height =
-        `${bottom - top}px`
+      indicator.style.top = `${top - offset}px`
+      indicator.style.height = `${bottom - top}px`
     }
 
     scrollToActiveHeading() {
@@ -200,6 +197,7 @@ let heading1Count = 1
 
       const activeHeadings =
         document.querySelectorAll<HTMLElement>('#toc .visible')
+
       if (activeHeadings.length === 0) {
         return
       }
@@ -230,7 +228,7 @@ let heading1Count = 1
     }
 
     fallback() {
-      for (const entry of this.tocEntries) {
+      for (const entry of this.entries) {
         const offsetTop = entry.section.getBoundingClientRect().top
         const offsetBottom = entry.section.getBoundingClientRect().bottom
 
@@ -253,7 +251,7 @@ let heading1Count = 1
 
       if (anchor !== undefined) {
         const id = decodeURIComponent(anchor.hash.substring(1))
-        const entry = this.tocEntries.find((entry) => entry.id === id)
+        const entry = this.entries.find((entry) => entry.id === id)
         this.anchorNavTarget = entry?.heading ?? null
       }
     }
@@ -268,12 +266,10 @@ let heading1Count = 1
       this.tocElement.addEventListener(
         'click',
         this.handleAnchorClick.bind(this),
-        {
-          capture: true,
-        },
+        { capture: true },
       )
 
-      this.tocEntries = R.pipe(
+      this.entries = R.pipe(
         document.querySelectorAll<HTMLAnchorElement>("#toc a[href^='#']"),
         (x) => Array.from(x),
         R.map((anchor) => {
@@ -285,14 +281,14 @@ let heading1Count = 1
         }),
       )
 
-      this.tocEntries.forEach(({ section }) => this.observer.observe(section))
+      this.entries.forEach(({ section }) => this.observer.observe(section))
 
       this.fallback()
       this.update()
     }
 
     disconnectedCallback() {
-      this.tocEntries.forEach(({ section }) => this.observer.unobserve(section))
+      this.entries.forEach(({ section }) => this.observer.unobserve(section))
       this.observer.disconnect()
       this.tocElement.removeEventListener(
         'click',

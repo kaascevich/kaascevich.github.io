@@ -23,8 +23,25 @@ const { page } = Astro.props
 <MainGridLayout>
   <PostPage {page} />
   <Pagination
-    class="mx-auto onload-animation"
+    class="pagination"
     {page}
-    style={`animation-delay: calc(var(--content-delay) + ${page.data.length * 50}ms)`}
+    style={`--pagination-delay: ${page.data.length * 50}ms`}
   />
 </MainGridLayout>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/transition';
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  :global(.pagination) {
+    @extend %onload-animation;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    animation-delay: calc(var(--content-delay) + var(--pagination-delay));
+  }
+</style>

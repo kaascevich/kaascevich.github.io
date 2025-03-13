@@ -8,7 +8,6 @@ interface Props {
   isCollapsed?: boolean
   collapsedHeight?: string
   class?: string
-  style?: string
 }
 
 const {
@@ -17,7 +16,6 @@ const {
   isCollapsed,
   collapsedHeight,
   class: className,
-  style,
 } = Astro.props
 ---
 
@@ -25,7 +23,6 @@ const {
   data-id={id}
   data-is-collapsed={String(isCollapsed)}
   class={className}
-  {style}
 >
   <header>{name}</header>
   <div {id} class:list={['widget-content', { collapsed: isCollapsed }]}>
@@ -33,19 +30,17 @@ const {
   </div>
   {
     isCollapsed === true && (
-      <div class="expand-button">
-        <button>
-          <div class="icon-wrapper">
-            <Icon name="tabler:dots" />
-            {strings.widget.more}
-          </div>
-        </button>
-      </div>
+      <button class="expand">
+        <div class="icon-wrapper">
+          <Icon name="tabler:dots" />
+          {strings.widget.more}
+        </div>
+      </button>
     )
   }
 </widget-layout>
 
-<style lang="scss" define:vars={{ collapsedHeight }}>
+<style lang="scss" define:vars={{ 'collapsed-height': collapsedHeight }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -53,20 +48,21 @@ const {
 
   widget-layout {
     @extend %card-base;
+
     padding-bottom: spacing(4);
 
     header {
-      font-weight: $font-weight-bold;
+      @include transition;
       @include font-size($text-lg);
 
-      @include transition();
       position: relative;
+      margin-top: spacing(4);
+      margin-bottom: spacing(2);
+      margin-left: spacing(8);
+
       color: $color-neutral-900;
-      margin: {
-        top: spacing(4);
-        bottom: spacing(2);
-        left: spacing(8);
-      }
+
+      font-weight: $font-weight-bold;
 
       @include variants.dark {
         color: $color-neutral-100;
@@ -74,47 +70,52 @@ const {
 
       &::before {
         content: '';
+
         position: absolute;
         top: 5.5px;
         left: -16px;
-        border-radius: $radius-md;
-        background-color: var(--primary);
         width: spacing(1);
         height: spacing(4);
+
+        border-radius: $radius-md;
+
+        background-color: var(--primary);
       }
     }
 
     .widget-content {
-      @include padding-x(spacing(4));
+      padding-right: spacing(4);
+      padding-left: spacing(4);
       overflow: hidden;
 
       &.collapsed {
-        height: var(--collapsedHeight);
+        height: var(--collapsed-height);
       }
     }
 
-    .expand-button {
-      @include padding-x(spacing(4));
+    button.expand {
+      @extend %btn-plain;
+
+      width: stretch;
+      height: spacing(9);
+      margin-right: spacing(4);
       margin-bottom: spacing(-2);
+      margin-left: spacing(4);
 
-      button {
-        @extend %btn-plain;
-        border-radius: $radius-lg;
-        width: 100%;
-        height: spacing(9);
+      border-radius: $radius-lg;
 
-        .icon-wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: spacing(2);
-          translate: spacing(-2);
-          color: var(--primary);
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-          svg {
-            width: spacing(7);
-            height: spacing(7);
-          }
+        color: var(--primary);
+        gap: spacing(2);
+        translate: spacing(-2);
+
+        svg {
+          width: spacing(7);
+          height: spacing(7);
         }
       }
     }
@@ -130,11 +131,11 @@ const {
         return
       }
 
-      const btn = this.querySelector('.expand-button')!
+      const btn = this.querySelector<HTMLButtonElement>('.expand')!
       const wrapper = document.getElementById(this.dataset.id!)!
       btn.addEventListener('click', () => {
         wrapper.classList.remove('collapsed')
-        btn.classList.add('hidden')
+        btn.style.display = 'none'
       })
     }
   }

@@ -21,26 +21,50 @@
 </a>
 
 <style lang='scss'>
+  @use "../../../../styles/main";
   @use "../../../../styles/theme" as *;
   @use "../../../../styles/utils" as *;
   @use "../../../../styles/variants";
 
   a {
-    @include transition();
-    display: block;
-    border-radius: $radius-xl;
+    @include transition;
     @include font-size($text-lg);
+
+    display: block;
     padding: spacing(2) spacing(3);
+
+    border-radius: $radius-xl;
 
     &:first-of-type {
       margin-top: spacing(2);
+
       @include variants.lg {
         margin-top: 0;
       }
     }
 
+    header {
+      @include transition;
+      @include text-plain(90%);
+
+      display: inline flex;
+
+      font-weight: $font-weight-bold;
+
+      :global(svg) {
+        @include transition;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        color: var(--primary);
+
+        translate: spacing(1);
+      }
+    }
+
     &:hover {
       background-color: var(--btn-plain-bg-hover);
+
       header {
         color: var(--primary);
       }
@@ -50,22 +74,8 @@
       background-color: var(--btn-plain-bg-active);
     }
 
-    header {
-      @include transition();
-      @include text-plain(90%);
-      display: inline flex;
-      font-weight: $font-weight-bold;
-
-      :global(svg) {
-        @include transition();
-        translate: spacing(1);
-        @include margin-y(auto);
-        color: var(--primary);
-      }
-    }
-
     .excerpt {
-      @include transition();
+      @include transition;
       @include font-size($text-sm);
       @include text-plain(50%);
     }

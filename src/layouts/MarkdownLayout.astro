@@ -55,18 +55,21 @@ if (typeof description !== 'string') {
 
   .outer-wrapper {
     display: flex;
-    width: 100%;
-    border-radius: $radius-xl2;
-    overflow: hidden;
     position: relative;
+    width: 100%;
     min-height: spacing(32);
+    overflow: hidden;
+
+    border-radius: $radius-xl2;
 
     .inner-wrapper {
       @extend %card-base;
-      z-index: 10;
-      padding: spacing(6) spacing(9);
+
       position: relative;
+
+      z-index: 10;
       width: 100%;
+      padding: spacing(6) spacing(9);
 
       :global(.markdown) {
         margin-top: spacing(2);

@@ -10,32 +10,33 @@ interface Props {
   description?: string
   setOGTypeArticle?: boolean
 }
-
-const { title, description, setOGTypeArticle = false } = Astro.props
+const { title, setOGTypeArticle = false } = Astro.props
 
 const pageTitle =
   title === undefined
-    ? `${siteConfig.title} - ${siteConfig.subtitle}` as const
-    : `${title} - ${siteConfig.title}` as const
+    ? (`${siteConfig.title} - ${siteConfig.subtitle}` as const)
+    : (`${title} - ${siteConfig.title}` as const)
+
+const description = Astro.props.description ?? pageTitle
 ---
 
 <head>
   <title>{pageTitle}</title>
 
   <meta charset="UTF-8" />
-  <meta name="description" content={description ?? pageTitle} />
+  <meta name="description" content={description} />
   <meta name="author" content={siteConfig.profile.name} />
 
   <meta property="og:site_name" content={siteConfig.title} />
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content={description ?? pageTitle} />
+  <meta property="og:description" content={description} />
   <meta property="og:type" content={setOGTypeArticle ? 'article' : 'website'} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={Astro.url} />
   <meta name="twitter:title" content={pageTitle} />
-  <meta name="twitter:description" content={description ?? pageTitle} />
+  <meta name="twitter:description" content={description} />
 
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
@@ -47,14 +48,15 @@ const pageTitle =
     define:vars={{
       DEFAULT_COLOR_SCHEME,
       BANNER_HEIGHT_EXTEND,
-      configHue: siteConfig.defaultHue,
+      defaultHue: siteConfig.defaultHue,
     }}
   >
     // @ts-nocheck
+    /** @import {ColorScheme} from '$/types/config' */
 
-    /** @type {import("$/types/config").ColorScheme} */
-    const colorScheme =
-      localStorage.getItem('colorScheme') ?? DEFAULT_COLOR_SCHEME
+    /** @type {ColorScheme} */
+    const colorScheme = localStorage.getItem('colorScheme')
+      ?? DEFAULT_COLOR_SCHEME
 
     document.documentElement.dataset.colorScheme =
       colorScheme === 'auto'
@@ -64,7 +66,9 @@ const pageTitle =
         : colorScheme
 
     // load hue from local storage
-    const hue = localStorage.getItem('hue') ?? configHue
+
+    const hue = Number(localStorage.getItem('hue'))
+      ?? /** @type {number} */ (defaultHue)
     document.documentElement.style.setProperty('--hue', hue)
 
     // --banner-height-extend needs to be a multiple of 4 to avoid blurry text

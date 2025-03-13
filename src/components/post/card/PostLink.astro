@@ -1,0 +1,19 @@
+---
+import type { Post } from '$/types/content'
+import PostLinkPlain from '$/components/post/card/PostLinkPlain.astro'
+import PostLinkImage from '$/components/post/card/PostLinkImage.astro'
+
+interface Props {
+  entry: Post
+  url: string
+}
+const { entry, url } = Astro.props
+---
+
+{
+  entry.data.image === undefined ? (
+    <PostLinkPlain {entry} {url} />
+  ) : (
+    <PostLinkImage {entry} image={entry.data.image} {url} />
+  )
+}

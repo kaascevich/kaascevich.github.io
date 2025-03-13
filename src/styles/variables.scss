@@ -11,11 +11,6 @@ $rainbow-dark: linear-gradient(
   oklch(70% 0.1 0deg),
   oklch(70% 0.1 359deg)
 );
-
-:root {
-  --content-delay: 150ms;
-}
-
 $variables: (
   --primary: with-hue(70%, 0.14) with-hue(75%, 0.14),
   --page-bg: with-hue(95%, 0.01) with-hue(16%, 0.014),
@@ -46,9 +41,11 @@ $variables: (
   --line-color: black(10%) white(10%),
   --meta-divider: black(20%) white(20%),
   //
+  --caret-color: with-hue(75%, 0.08) with-hue(70%, 0.08),
+  //
   --inline-code-bg: var(--btn-regular-bg),
   --inline-code-color: var(--btn-content),
-  --selection-bg: with-hue(90%, 0.05) with-hue(40%, 0.08),
+  --selection-bg: with-hue(90%, 0.05) with-hue(70%, 0.08),
   --codeblock-selection: with-hue(40%, 0.08),
   --codeblock-bg: black(3%) with-hue(17%, 0.015),
   --line-number: black(25%) white(25%),
@@ -97,9 +94,12 @@ $variables: (
 );
 
 :root {
+  --content-delay: 150ms;
+
   @each $name, $value in $variables {
     #{$name}: list.nth($value, 1);
   }
+
   &[data-color-scheme='dark'] {
     @each $name, $value in $variables {
       @if list.length($value) > 1 {

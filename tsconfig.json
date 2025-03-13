@@ -6,8 +6,8 @@
     "allowJs": true,
     "checkJs": true,
     "strictNullChecks": true,
-    "declaration": true,
     "exactOptionalPropertyTypes": false,
+    "declaration": true,
     "plugins": [{ "name": "@astrojs/ts-plugin" }]
   },
   "include": ["**/*", ".*"],

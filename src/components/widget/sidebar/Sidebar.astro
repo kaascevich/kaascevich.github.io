@@ -12,17 +12,19 @@ const { class: className } = Astro.props
 ---
 
 <aside id="sidebar" class={className}>
-  <section id="profile-section">
+  <section class="profile">
     <Profile config={siteConfig.profile} />
   </section>
-  <section id="sidebar-sticky">
-    <Categories class="onload-animation" style="animation-delay: 150ms" />
-    <Tag class="onload-animation" style="animation-delay: 200ms" />
+  <section class="sticky">
+    <Categories class="categories" />
+    <Tag class="tags" />
   </section>
 </aside>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
+  @use '$/styles/transition';
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
@@ -30,20 +32,33 @@ const { class: className } = Astro.props
     width: 100%;
   }
 
-  #profile-section {
+  section.profile {
     display: flex;
     flex-direction: column;
-    gap: spacing(4);
-    margin-bottom: spacing(4);
     width: 100%;
+    margin-bottom: spacing(4);
+    gap: spacing(4);
   }
 
-  #sidebar-sticky {
+  section.sticky {
     @include transition($duration: 700ms);
+
     display: flex;
     position: sticky;
     top: spacing(4);
     flex-direction: column;
     gap: spacing(4);
+
+    :global(.categories, .tags) {
+      @extend %onload-animation;
+    }
+
+    :global(.categories) {
+      animation-delay: 150ms;
+    }
+
+    :global(.tags) {
+      animation-delay: 200ms;
+    }
   }
 </style>

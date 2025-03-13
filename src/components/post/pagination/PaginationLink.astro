@@ -15,7 +15,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
 ---
 
 <a href={getPostUrlByID(entry.id)} class={type}>
-  <div class="link-wrapper !justify-start">
+  <div class="link-wrapper">
     <Icon name={icon} />
     <div class="title">{entry.data.title}</div>
   </div>
@@ -29,9 +29,10 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
 
   a {
     width: 100%;
-    font-weight: $font-weight-bold;
-    overflow: hidden;
     max-width: 100%;
+    overflow: hidden;
+
+    font-weight: $font-weight-bold;
 
     @include variants.md {
       max-width: calc(50% - spacing(2));
@@ -42,29 +43,36 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
     }
 
     .link-wrapper {
-      @extend .btn-card;
-      border-radius: $radius-xl2;
-      width: 100%;
-      height: spacing(15);
-      max-width: 100%;
-      padding-left: spacing(4);
-      padding-right: spacing(4);
+      @extend %btn-card;
+
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 100%;
+      height: spacing(15);
+      padding-right: spacing(4);
+      padding-left: spacing(4);
+
+      border-radius: $radius-xl2;
       gap: spacing(4);
 
       .title {
+        @include transition;
         @include text-plain(75%);
+
+        max-width: calc(100% - spacing(12));
+
         overflow: hidden;
-        @include transition();
+
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: calc(100% - spacing(12));
       }
 
-      :global(svg) {
+      svg {
         width: spacing(8);
         height: spacing(8);
+
         color: var(--primary);
       }
     }

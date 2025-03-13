@@ -4,7 +4,7 @@ import type { Post } from '$/types/content'
 
 import * as R from 'remeda'
 import { getPostUrlByID } from '$/utils/urls'
-import PostCard from '$/components/post/PostCard.astro'
+import PostCard from '$/components/post/card/PostCard.astro'
 
 interface Props {
   page: Page<Post>
@@ -24,7 +24,7 @@ const entriesWithDelays = R.pipe(
       <PostCard
         {entry}
         url={getPostUrlByID(entry.id)}
-        class="onload-animation"
+        class="post-card"
         style={`animation-delay: calc(var(--content-delay) + ${delay}ms);`}
       />
     ))
@@ -32,23 +32,35 @@ const entriesWithDelays = R.pipe(
 </ol>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
+  @use '$/styles/transition';
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   ol {
-    @include transition();
+    @include transition;
+
     display: flex;
     flex-direction: column;
-    border-radius: $radius-xl2;
-    background-color: var(--card-bg);
-    @include padding-y(spacing(1));
     margin-bottom: spacing(4);
+    padding-top: spacing(1);
+    padding-bottom: spacing(1);
+
+    border-radius: $radius-xl2;
+
+    background-color: var(--card-bg);
 
     @include variants.md {
-      @include padding-y(0);
+      padding-top: 0;
+      padding-bottom: 0;
       gap: spacing(4);
+
       background-color: transparent;
+    }
+
+    :global(.post-card) {
+      @extend %onload-animation;
     }
   }
 </style>

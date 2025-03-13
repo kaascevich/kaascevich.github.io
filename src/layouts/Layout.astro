@@ -2,6 +2,7 @@
 import '@fontsource-variable/playpen-sans'
 import 'katex/dist/katex.css'
 import '$/styles/tailwind.scss'
+import '$/styles/main.scss'
 
 import siteConfig from '$/config/site'
 import Head from '$/components/global/Head.astro'
@@ -45,7 +46,9 @@ const bannerOffset = (
         configHue: siteConfig.defaultHue,
         'page-width': `${PAGE_WIDTH}rem` as const,
       }}
-    ></style>
+    >
+      /* empty */
+    </style>
 
     <slot name="head" slot="head" />
   </Head>
@@ -63,27 +66,31 @@ const bannerOffset = (
       increase page height during transition to prevent scroll animation from
       jumping
     -->
-    <div id="page-height-extend" class="hidden h-[300vh]"></div>
+    <div id="page-height-extend"></div>
   </body>
 </html>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   html {
+    @include transition;
+
     background-color: var(--page-bg);
-    @include transition();
 
     font-size: 14px;
+
     @include variants.md {
       font-size: 16px;
     }
 
     body {
+      @include transition;
+
       min-height: 100vh;
-      @include transition();
     }
   }
 </style>
@@ -96,49 +103,62 @@ const bannerOffset = (
     'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
   }}
 >
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
-  @tailwind components;
-  @layer components {
-    .enable-banner {
-      #banner-wrapper {
-        height: var(--banner-height-home);
-      }
-      #banner {
-        height: var(--banner-height-home);
-        @apply translate-y-[--bannerOffset];
-      }
-      #top-row {
-        height: calc(var(--banner-height-home) - 4.5rem);
-        @include transition($properties: all, $duration: 300ms);
-      }
+  .enable-banner {
+    #banner-wrapper {
+      height: var(--banner-height-home);
+    }
 
-      @include variants.lg {
-        &.is-home {
-          #banner-wrapper {
-            height: var(--banner-height-home);
-            @apply translate-y-[--banner-height-extend];
-          }
-          #banner {
-            height: var(--banner-height-home);
-            @apply translate-y-0;
-          }
-          #main-grid {
-            @apply translate-y-[--banner-height-extend];
-          }
-          #sidebar-sticky {
-            top: calc(1rem - var(--banner-height-extend));
-          }
+    #banner {
+      @apply translate-y-[--bannerOffset];
+
+      height: var(--banner-height-home);
+    }
+
+    #top-row {
+      @include transition($properties: all, $duration: 300ms);
+
+      height: calc(var(--banner-height-home) - 4.5rem);
+    }
+
+    @include variants.lg {
+      &.is-home {
+        #banner-wrapper {
+          @apply translate-y-[--banner-height-extend];
+
+          height: var(--banner-height-home);
+        }
+
+        #banner {
+          @apply translate-y-0;
+
+          height: var(--banner-height-home);
+        }
+
+        #main-grid {
+          @apply translate-y-[--banner-height-extend];
+        }
+
+        section.sticky {
+          top: calc(1rem - var(--banner-height-extend));
         }
       }
     }
+  }
 
-    .navbar-hidden {
-      opacity: 0%;
-      @apply -translate-y-16;
-    }
+  .navbar-hidden {
+    @apply -translate-y-16;
+
+    opacity: 0%;
+  }
+
+  #page-height-extend {
+    display: none;
+    height: 300vh;
   }
 </style>
 
@@ -246,9 +266,8 @@ const bannerOffset = (
   }
 
   function showBanner() {
-    document
-      .getElementById('banner')
-      ?.classList.remove('opacity-0', 'scale-105')
+    document.getElementById('banner')!.style.opacity = '100%'
+    document.getElementById('banner')!.style.scale = '100%'
   }
 
   function init() {
@@ -400,12 +419,11 @@ const bannerOffset = (
   import 'photoswipe/style.css'
 
   let lightbox: PhotoSwipeLightbox | undefined = undefined
-  const photoswipe = import('photoswipe')
 
   function createPhotoSwipe() {
     lightbox = new PhotoSwipeLightbox({
       gallery: '.custom-md img, #post-cover img',
-      pswpModule: () => photoswipe,
+      pswpModule: async () => await import('photoswipe'),
       closeSVG: `<svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"

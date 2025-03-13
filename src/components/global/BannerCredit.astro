@@ -26,29 +26,48 @@ const { config } = Astro.props
 </a>
 
 <style lang="scss">
-  @use '$/styles/transition';
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
+  @use '$/styles/transition';
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   #banner-credit {
-    @extend .onload-animation;
+    @extend %onload-animation;
     @include transition($properties: all);
+
     display: flex;
     position: absolute;
-    justify-content: center;
-    align-items: center;
-    border-radius: 9999px;
-    @include padding-x(spacing(3));
     top: spacing(-13);
     right: spacing(4);
-    animation-delay: 400ms;
-    background-color: black(60%);
+    align-items: center;
+    justify-content: center;
     height: spacing(9);
+    padding-right: spacing(3);
+    padding-left: spacing(3);
+
+    animation-delay: 400ms;
+
+    border-radius: 9999px;
+
+    background-color: black(60%);
+
+    .external-icon {
+      @include transition;
+
+      position: absolute;
+      right: spacing(4);
+
+      opacity: 0%;
+
+      color: with-hue(75%, 0.14);
+    }
 
     &:hover {
-      background-color: black(70%);
       padding-right: spacing(9);
+
+      background-color: black(70%);
+
       .external-icon {
         opacity: 100%;
       }
@@ -60,22 +79,16 @@ const { config } = Astro.props
   }
 
   .copyright-icon {
-    color: white(75%);
-    margin-right: spacing(1);
     width: spacing(5);
     height: spacing(5);
+    margin-right: spacing(1);
+
+    color: white(75%);
   }
 
   .credit-text {
-    color: white(75%);
     @include font-size($text-xs);
-  }
 
-  .external-icon {
-    @include transition();
-    position: absolute;
-    right: spacing(4);
-    opacity: 0%;
-    color: with-hue(75%, 0.14);
+    color: white(75%);
   }
 </style>

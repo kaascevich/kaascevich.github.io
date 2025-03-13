@@ -10,19 +10,16 @@ interface Props {
 const { headings } = Astro.props
 ---
 
-<div class="absolute w-full z-0 hidden 2xl:block">
-  <div class="relative max-w-[--page-width] mx-auto">
+<div class="outer-wrapper">
+  <div class="inner-wrapper">
     {
       siteConfig.toc === undefined || headings.length === 0 ? (
-        // #toc needs to exist for Swup to work normally
+        // #toc needs to exist for Swup to work properly
         <div id="toc" />
       ) : (
         <div
           id="toc-wrapper"
-          class:list={[
-            'hidden lg:block transition absolute top-0 -right-[--toc-width] w-[--toc-width] items-center',
-            { 'toc-hide': siteConfig.banner !== undefined },
-          ]}
+          class:list={{ 'toc-hide': siteConfig.banner !== undefined }}
         >
           <TOC config={siteConfig.toc} {headings} />
         </div>
@@ -30,3 +27,43 @@ const { headings } = Astro.props
     }
   </div>
 </div>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  .outer-wrapper {
+    display: none;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+
+    @include variants.xl2 {
+      display: block;
+    }
+
+    .inner-wrapper {
+      position: relative;
+      max-width: var(--page-width);
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  #toc-wrapper {
+    @include transition;
+
+    display: none;
+    position: absolute;
+    top: 0;
+    right: calc(var(--toc-width) * -1);
+    align-items: center;
+    width: var(--toc-width);
+
+    @include variants.lg {
+      display: block;
+    }
+  }
+</style>

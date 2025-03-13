@@ -48,10 +48,12 @@ const { links } = Astro.props
   @use '$/styles/variants';
 
   #nav-menu-switch {
-    @extend %btn-plain, .expand-animation;
-    border-radius: $radius-lg;
+    @extend %btn-plain, %expand-animation;
     width: spacing(11);
     height: spacing(11);
+
+    border-radius: $radius-lg;
+
     &:active {
       scale: 90%;
     }
@@ -61,56 +63,67 @@ const { links } = Astro.props
     }
 
 
-    :global(svg) {
+    svg {
       width: spacing(5);
       height: spacing(5);
     }
   }
 
   #nav-menu-panel {
-    @extend .float-panel;
+    @extend %float-panel;
     @include transition($properties: all);
+
     position: fixed;
     right: spacing(4);
     padding: spacing(2);
 
     a {
-      @include transition();
+      @include transition;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: spacing(8);
-      border-radius: $radius-lg;
+      justify-content: space-between;
       padding: spacing(2) spacing(1) spacing(2) spacing(3);
+
+      border-radius: $radius-lg;
+      gap: spacing(8);
+
       &:hover {
         background-color: var(--btn-plain-bg-hover);
       }
+
       &:active {
         background-color: var(--btn-plain-bg-active);
       }
 
       header {
-        @include transition();
+        @include transition;
         @include text-plain(75%);
+
         font-weight: $font-weight-bold;
       }
+
       &:is(:hover, :active) header {
         color: var(--primary);
       }
 
-      .link-icon {
-        @include transition();
-        height: spacing(5);
+      %link-icon {
+        @include transition;
+
         width: spacing(5);
 
-        &-external {
-          @extend .link-icon;
-          @include text-plain(25%);
-        }
-        &-internal {
-          @extend .link-icon;
-          color: var(--primary);
-        }
+        height: spacing(5);
+      }
+
+      .link-icon-external {
+        @extend %link-icon;
+        @include text-plain(25%);
+      }
+
+      .link-icon-internal {
+        @extend %link-icon;
+
+        color: var(--primary);
       }
     }
   }

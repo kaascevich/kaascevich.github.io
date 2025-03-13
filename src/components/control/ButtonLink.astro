@@ -20,17 +20,22 @@ const { badge, url, label } = Astro.props
 </a>
 
 <style lang="scss">
+  @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
   button {
+    @include transition($properties: all);
+
     width: 100%;
     height: spacing(10);
-    border-radius: $radius-lg;
-    background-image: none;
-    @include transition($properties: all);
     padding-left: spacing(2);
+
+    border-radius: $radius-lg;
+
+    background-image: none;
+
     color: $color-neutral-700;
 
     &:active {
@@ -38,13 +43,16 @@ const { badge, url, label } = Astro.props
     }
 
     &:hover {
-      background-color: var(--btn-plain-bg-hover);
       padding-left: spacing(3);
+
+      background-color: var(--btn-plain-bg-hover);
+
       color: var(--primary);
     }
 
     @include variants.dark {
       color: $color-neutral-300;
+
       &:hover {
         color: var(--primary);
       }
@@ -53,37 +61,44 @@ const { badge, url, label } = Astro.props
 
   .wrapper {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
-    position: relative;
     margin-right: spacing(2);
   }
 
   .title {
     overflow: hidden;
+
     text-align: left;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    text-overflow: ellipsisl;
   }
 
   .badge {
-    @include transition();
-    @include padding-x(spacing(2));
-    height: spacing(7);
-    margin-left: spacing(4);
-    min-width: spacing(8);
-    border-radius: $radius-lg;
+    @include transition;
     @include font-size($text-sm);
-    font-weight: $font-weight-bold;
-    color: var(--btn-content);
-    background-color: oklch(0.95 0.025 var(--hue));
+
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: spacing(8);
+    height: spacing(7);
+    margin-left: spacing(4);
+    padding-right: spacing(2);
+    padding-left: spacing(2);
+
+    border-radius: $radius-lg;
+
+    background-color: oklch(95% 0.025 var(--hue));
+
+    color: var(--btn-content);
+    font-weight: $font-weight-bold;
 
     @include variants.dark {
-      color: var(--deep-text);
       background-color: var(--primary);
+
+      color: var(--deep-text);
     }
   }
 </style>
