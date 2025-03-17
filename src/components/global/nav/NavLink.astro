@@ -29,9 +29,8 @@ const { link } = Astro.props
     display: flex;
     align-items: center;
 
-    height: spacing(11);
-    padding-right: spacing(5);
-    padding-left: spacing(5);
+    block-size: spacing(11);
+    padding-inline: spacing(5);
 
     border-radius: $radius-lg;
 
@@ -44,10 +43,10 @@ const { link } = Astro.props
     svg {
       @include transition;
       @include text-plain(20%);
-      width: 1.125rem;
-      height: 1.125rem;
+      block-size: spacing(4.5);
+      inline-size: spacing(4.5);
 
-      margin-left: spacing(1);
+      margin-inline-start: spacing(1);
     }
   }
 </style>

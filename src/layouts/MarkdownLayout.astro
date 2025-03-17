@@ -56,8 +56,8 @@ if (typeof description !== 'string') {
   .outer-wrapper {
     display: flex;
     position: relative;
-    width: 100%;
-    min-height: spacing(32);
+    min-block-size: spacing(32);
+    inline-size: 100%;
     overflow: hidden;
 
     border-radius: $radius-xl2;
@@ -68,11 +68,11 @@ if (typeof description !== 'string') {
       position: relative;
 
       z-index: 10;
-      width: 100%;
+      inline-size: 100%;
       padding: spacing(6) spacing(9);
 
       :global(.markdown) {
-        margin-top: spacing(2);
+        margin-block-start: spacing(2);
       }
     }
   }

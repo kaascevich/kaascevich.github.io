@@ -42,7 +42,8 @@ const currentYear = new Date().getFullYear()
 
     margin: spacing(10) spacing(16);
 
-    border-top-width: 1px;
+    border-block-start-width: 1px;
+
     border-style: dashed;
     border-color: black(10%);
 
@@ -58,10 +59,9 @@ const currentYear = new Date().getFullYear()
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: spacing(12);
-    padding-right: spacing(6);
-    padding-bottom: spacing(6);
-    padding-left: spacing(6);
+    margin-block-end: spacing(12);
+    padding-block-end: spacing(6);
+    padding-inline: spacing(6);
 
     border-radius: $radius-xl2;
 

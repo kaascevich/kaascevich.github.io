@@ -28,14 +28,14 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
   @use '$/styles/variants';
 
   a {
-    width: 100%;
-    max-width: 100%;
+    inline-size: 100%;
+    max-inline-size: 100%;
     overflow: hidden;
 
     font-weight: $font-weight-bold;
 
     @include variants.md {
-      max-width: calc(50% - spacing(2));
+      max-inline-size: calc(50% - spacing(2));
     }
 
     &:active {
@@ -48,11 +48,10 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 100%;
-      max-width: 100%;
-      height: spacing(15);
-      padding-right: spacing(4);
-      padding-left: spacing(4);
+      block-size: spacing(15);
+      inline-size: 100%;
+      max-inline-size: 100%;
+      padding-inline: spacing(4);
 
       border-radius: $radius-xl2;
       gap: spacing(4);
@@ -61,7 +60,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
         @include transition;
         @include text-plain(75%);
 
-        max-width: calc(100% - spacing(12));
+        max-inline-size: calc(100% - spacing(12));
 
         overflow: hidden;
 
@@ -70,8 +69,8 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
       }
 
       svg {
-        width: spacing(8);
-        height: spacing(8);
+        block-size: spacing(8);
+        inline-size: spacing(8);
 
         color: var(--primary);
       }

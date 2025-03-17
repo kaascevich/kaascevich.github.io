@@ -98,8 +98,8 @@
       @extend %btn-plain, %expand-animation;
 
       position: relative;
-      width: spacing(11);
-      height: spacing(11);
+      block-size: spacing(11);
+      inline-size: spacing(11);
 
       border-radius: $radius-lg;
 
@@ -115,8 +115,8 @@
         }
 
         :global(svg) {
-          width: spacing(5);
-          height: spacing(5);
+          block-size: spacing(5);
+          inline-size: spacing(5);
         }
       }
     }
@@ -124,9 +124,10 @@
     #scheme-panel {
       display: none;
       position: absolute;
-      top: spacing(11);
-      right: spacing(-2);
-      padding-top: spacing(5);
+      inset-block-start: spacing(11);
+      inset-inline-end: spacing(-2);
+
+      padding-block-start: spacing(5);
 
       @include transition;
 
@@ -146,12 +147,10 @@
           display: flex;
           align-items: center;
           justify-content: flex-start !important;
-          width: 100%;
-          height: spacing(9);
-          margin-bottom: spacing(0.5);
-          padding-right: spacing(3);
-
-          padding-left: spacing(3);
+          block-size: spacing(9);
+          inline-size: 100%;
+          margin-block-end: spacing(0.5);
+          padding-inline: spacing(3);
 
           border-radius: $radius-lg;
 
@@ -175,9 +174,9 @@
           }
 
           :global(svg) {
-            width: spacing(5);
-            height: spacing(5);
-            margin-right: spacing(3);
+            block-size: spacing(5);
+            inline-size: spacing(5);
+            margin-inline-end: spacing(3);
           }
         }
       }

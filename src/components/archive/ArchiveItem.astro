@@ -60,18 +60,19 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       content: '';
 
       position: absolute;
-      left: calc(50% - 1px);
+      block-size: 100%;
 
-      width: 10%;
-      height: 100%;
+      inline-size: 10%;
 
       transition: all 300ms;
 
-      border-left-width: 2px;
       border-style: dashed;
-      border-left-color: var(--line-color);
 
       pointer-events: none;
+      inset-inline-start: calc(50% - 1px);
+
+      border-inline-start-width: 2px;
+      border-inline-start-color: var(--line-color);
       translate: 0 -50%;
     }
   }
@@ -80,8 +81,8 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     @extend %btn-plain;
 
     display: block !important;
-    width: 100%;
-    height: spacing(10);
+    block-size: spacing(10);
+    inline-size: 100%;
 
     border-radius: $radius-lg;
 
@@ -90,19 +91,19 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
-      height: 100%;
+      block-size: 100%;
     }
 
     time {
       @include transition;
       @include text-plain(50%);
 
-      width: 15%;
+      inline-size: 15%;
 
-      text-align: right;
+      text-align: end;
 
       @include variants.md {
-        width: 10%;
+        inline-size: 10%;
       }
     }
 
@@ -113,22 +114,21 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       position: relative;
       align-items: center;
-      width: 15%;
-      height: 100%;
+      block-size: 100%;
+      inline-size: 15%;
 
       @include variants.md {
-        width: 10%;
+        inline-size: 10%;
       }
 
       div {
         @include transition($properties: all);
 
         z-index: 50;
+        block-size: spacing(1);
 
-        width: spacing(1);
-        height: spacing(1);
-        margin-right: auto;
-        margin-left: auto;
+        inline-size: spacing(1);
+        margin-inline: auto;
 
         border-radius: $radius-sm;
 
@@ -142,18 +142,18 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       @include transition($properties: all);
       @include text-plain(75%);
 
-      width: 70%;
-      padding-right: spacing(8);
+      inline-size: 70%;
+      padding-inline-end: spacing(8);
       overflow: hidden;
 
       font-weight: $font-weight-bold;
-      text-align: left;
+      text-align: start;
       text-overflow: ellipsis;
       white-space: nowrap;
 
       @include variants.md {
-        width: 60%;
-        max-width: 60%;
+        inline-size: 60%;
+        max-inline-size: 60%;
       }
     }
 
@@ -165,14 +165,14 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       display: none;
       overflow: hidden;
 
-      text-align: left;
+      text-align: start;
       text-overflow: ellipsis;
 
       white-space: nowrap;
 
       @include variants.md {
         display: block;
-        width: 20%;
+        inline-size: 20%;
       }
     }
 
@@ -186,7 +186,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       }
 
       .separator div {
-        height: spacing(5);
+        block-size: spacing(5);
 
         outline-color: var(--btn-plain-bg-hover);
 

@@ -36,10 +36,10 @@
     border-radius: $radius-xl;
 
     &:first-of-type {
-      margin-top: spacing(2);
+      margin-block-start: spacing(2);
 
       @include variants.lg {
-        margin-top: 0;
+        margin-block-start: 0;
       }
     }
 
@@ -53,12 +53,9 @@
 
       :global(svg) {
         @include transition;
-        margin-top: auto;
-        margin-bottom: auto;
+        margin-block: auto;
 
         color: var(--primary);
-
-        translate: spacing(1);
       }
     }
 

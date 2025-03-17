@@ -105,8 +105,8 @@ const jsonLd: WithContext<BlogPosting> = {
   .post-container-wrapper {
     display: flex;
     position: relative;
-    width: 100%;
-    margin-bottom: spacing(4);
+    inline-size: 100%;
+    margin-block-end: spacing(4);
     overflow: hidden;
 
     border-radius: $radius-xl2;
@@ -116,24 +116,23 @@ const jsonLd: WithContext<BlogPosting> = {
 
       position: relative;
       z-index: 10;
-      width: 100%;
+      inline-size: 100%;
       padding: spacing(6) spacing(6) spacing(4);
 
       @include variants.md {
-        padding-right: spacing(9);
-        padding-left: spacing(9);
+        padding-inline: spacing(9);
       }
 
       :global(.markdown-content) {
         @extend %onload-animation;
 
-        margin-bottom: spacing(6);
+        margin-block-end: spacing(6);
       }
 
       :global(.license-container) {
         @extend %onload-animation;
 
-        margin-bottom: spacing(6);
+        margin-block-end: spacing(6);
 
         border-radius: $radius-xl;
       }

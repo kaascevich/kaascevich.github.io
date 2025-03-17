@@ -85,14 +85,13 @@ function getPageUrl<Page extends number>(page: Page) {
   }
 
   .hidden-pages {
-    margin-right: spacing(1);
-    margin-left: spacing(1);
+    margin-inline: spacing(1);
   }
 
   .current-page,
   .other-page {
-    width: spacing(11);
-    height: spacing(11);
+    block-size: spacing(11);
+    inline-size: spacing(11);
 
     border-radius: $radius-lg;
   }

@@ -30,10 +30,12 @@ html.is-animating .transition-swup-fade {
 
 /* main components */
 %onload-animation {
-  animation: 300ms fade-in-up;
+  animation-name: fade-in-up;
+  animation-duration: 300ms;
 
   opacity: 0%;
   animation-fill-mode: forwards;
+
 }
 
 #sidebar {

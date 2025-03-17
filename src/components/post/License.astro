@@ -85,7 +85,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       flex-direction: column;
       gap: spacing(3);
 
-      margin-top: spacing(2);
+      margin-block-start: spacing(2);
 
       @include variants.sm {
         flex-direction: row;
@@ -118,18 +118,19 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       @include text-plain(5%);
 
       position: absolute;
-      top: 50%;
-      right: 50%;
+      block-size: spacing(60);
+      inline-size: spacing(60);
+      inset-block-end: 50%;
+      inset-inline-end: 50%;
 
-      width: spacing(60);
-      height: spacing(60);
+      translate: 50% 50%;
 
       pointer-events: none;
-      translate: 50% -50%;
 
       @include variants.sm {
-        right: spacing(6);
-        translate: 0 -50%;
+        inset-inline-end: spacing(6);
+
+        translate: 0 50%;
       }
     }
   }

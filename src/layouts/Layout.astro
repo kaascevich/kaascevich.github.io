@@ -90,7 +90,7 @@ const bannerOffset = (
     body {
       @include transition;
 
-      min-height: 100vh;
+      min-block-size: 100vh;
     }
   }
 </style>
@@ -99,7 +99,7 @@ const bannerOffset = (
   lang="scss"
   is:global
   define:vars={{
-    bannerOffset,
+    'banner-offset': bannerOffset,
     'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
   }}
 >
@@ -110,55 +110,55 @@ const bannerOffset = (
 
   .enable-banner {
     #banner-wrapper {
-      height: var(--banner-height-home);
+      block-size: var(--banner-height-home);
     }
 
     #banner {
-      @apply translate-y-[--bannerOffset];
+      translate: 0 var(--banner-offset);
 
-      height: var(--banner-height-home);
+      block-size: var(--banner-height-home);
     }
 
     #top-row {
       @include transition($properties: all, $duration: 300ms);
 
-      height: calc(var(--banner-height-home) - 4.5rem);
+      block-size: calc(var(--banner-height-home) - 4.5rem);
     }
 
     @include variants.lg {
       &.is-home {
         #banner-wrapper {
-          @apply translate-y-[--banner-height-extend];
+          translate: 0 var(--banner-height-extend);
 
-          height: var(--banner-height-home);
+          block-size: var(--banner-height-home);
         }
 
         #banner {
-          @apply translate-y-0;
+          translate: 0 0;
 
-          height: var(--banner-height-home);
+          block-size: var(--banner-height-home);
         }
 
         #main-grid {
-          @apply translate-y-[--banner-height-extend];
+          translate: 0 var(--banner-height-extend);
         }
 
         section.sticky {
-          top: calc(1rem - var(--banner-height-extend));
+          inset-block-start: calc(1rem - var(--banner-height-extend));
         }
       }
     }
   }
 
   .navbar-hidden {
-    @apply -translate-y-16;
+    translate: 0 spacing(-16);
 
     opacity: 0%;
   }
 
   #page-height-extend {
     display: none;
-    height: 300vh;
+    block-size: 300vh;
   }
 </style>
 
@@ -422,7 +422,7 @@ const bannerOffset = (
 
   function createPhotoSwipe() {
     lightbox = new PhotoSwipeLightbox({
-      gallery: '.custom-md img, #post-cover img',
+      gallery: 'article.markdown img, #post-cover img',
       pswpModule: async () => await import('photoswipe'),
       closeSVG: `<svg
         xmlns="http://www.w3.org/2000/svg"

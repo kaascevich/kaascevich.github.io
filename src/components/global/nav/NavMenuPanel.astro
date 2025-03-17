@@ -49,8 +49,8 @@ const { links } = Astro.props
 
   #nav-menu-switch {
     @extend %btn-plain, %expand-animation;
-    width: spacing(11);
-    height: spacing(11);
+    block-size: spacing(11);
+    inline-size: spacing(11);
 
     border-radius: $radius-lg;
 
@@ -64,8 +64,8 @@ const { links } = Astro.props
 
 
     svg {
-      width: spacing(5);
-      height: spacing(5);
+      block-size: spacing(5);
+      inline-size: spacing(5);
     }
   }
 
@@ -74,7 +74,8 @@ const { links } = Astro.props
     @include transition($properties: all);
 
     position: fixed;
-    right: spacing(4);
+    inset-inline-end: spacing(4);
+
     padding: spacing(2);
 
     a {
@@ -110,9 +111,9 @@ const { links } = Astro.props
       %link-icon {
         @include transition;
 
-        width: spacing(5);
+        block-size: spacing(5);
 
-        height: spacing(5);
+        inline-size: spacing(5);
       }
 
       .link-icon-external {

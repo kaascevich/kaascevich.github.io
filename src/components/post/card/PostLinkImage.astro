@@ -36,7 +36,7 @@ const { entry, image, url } = Astro.props
   a {
     position: relative;
 
-    max-height: 20vh;
+    max-block-size: 20vh;
     margin: spacing(4) spacing(4) spacing(-2);
     overflow: hidden;
 
@@ -44,12 +44,12 @@ const { entry, image, url } = Astro.props
 
     @include variants.md {
       position: absolute;
-      top: spacing(3);
-      right: spacing(3);
-      bottom: spacing(3);
-      width: var(--cover-width);
-      max-height: none;
+      max-block-size: none;
+
+      inline-size: var(--cover-width);
       margin: 0;
+      inset-block: spacing(3);
+      inset-inline-end: spacing(3);
     }
 
     &:hover {
@@ -78,28 +78,28 @@ const { entry, image, url } = Astro.props
       z-index: 20;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      block-size: 100%;
+      inline-size: 100%;
 
       pointer-events: none;
 
       :global(svg) {
         @include transition;
+        block-size: spacing(12);
 
-        width: spacing(12);
-        height: spacing(12);
+        inline-size: spacing(12);
 
         opacity: 0%;
-        scale: 50%;
 
         color: white;
+        scale: 50%;
       }
     }
 
     :global(.image) {
       @include transition;
-      width: 100%;
-      height: 100%;
+      block-size: 100%;
+      inline-size: 100%;
     }
   }
 </style>

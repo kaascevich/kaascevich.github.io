@@ -26,9 +26,9 @@ const { url, label, icon } = Astro.props
 
   a {
     @extend %btn-card;
+    block-size: spacing(11);
 
-    width: spacing(11);
-    height: spacing(11);
+    inline-size: spacing(11);
     overflow: hidden;
 
     border-radius: $radius-lg;
@@ -40,8 +40,8 @@ const { url, label, icon } = Astro.props
     }
 
     svg {
-      width: spacing(7);
-      height: spacing(7);
+      block-size: spacing(7);
+      inline-size: spacing(7);
     }
   }
 </style>

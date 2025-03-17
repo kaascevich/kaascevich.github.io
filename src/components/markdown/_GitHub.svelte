@@ -155,7 +155,7 @@
 
       display: flex;
       justify-content: space-between;
-      margin-bottom: spacing(2);
+      margin-block-end: spacing(2);
 
       color: var(--tw-prose-headings);
       font-weight: $font-weight-medium;
@@ -185,8 +185,8 @@
 
           .avatar {
             display: block;
-            width: spacing(6);
-            height: spacing(6);
+            block-size: spacing(6);
+            inline-size: spacing(6);
             overflow: hidden;
 
             border-radius: 50%;
@@ -214,15 +214,15 @@
       }
 
       :global(.github-logo) {
-        width: spacing(6);
-        height: spacing(6);
+        block-size: spacing(6);
+        inline-size: spacing(6);
       }
     }
 
     .description {
       @include font-size($text-base);
 
-      margin-bottom: spacing(3);
+      margin-block-end: spacing(3);
 
       color: var(--tw-prose-body);
       font-weight: $font-weight-light;
@@ -233,7 +233,7 @@
       flex-flow: row nowrap;
       gap: spacing(6);
 
-      width: fit-content;
+      inline-size: fit-content;
 
       color: var(--tw-prose-body);
     }
@@ -245,6 +245,7 @@
 
       display: flex;
       flex-direction: row;
+      align-items: center;
 
       opacity: 90%;
 
@@ -257,14 +258,12 @@
             background,
           )
         );
-        width: spacing(5);
-        height: spacing(5);
-        margin-right: spacing(1);
+        block-size: spacing(5);
+        inline-size: spacing(5);
+        margin-inline-end: spacing(1);
         overflow: visible;
 
         font-size: inherit;
-
-        translate: 0 spacing(-0.5);
       }
     }
   }
@@ -279,7 +278,10 @@
     .description,
     footer,
     .avatar {
-      animation: pulsate 2s infinite linear;
+      animation-name: pulsate;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
 
       opacity: 50%;
       background-color: var(--tw-prose-body);

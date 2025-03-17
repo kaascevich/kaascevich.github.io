@@ -5,32 +5,32 @@
 .os-scrollbar {
   &.scrollbar-base {
     &.os-scrollbar-horizontal {
-      height: spacing(4);
+      block-size: spacing(4);
       padding: spacing(1) spacing(2);
 
       .os-scrollbar-track .os-scrollbar-handle {
-        height: spacing(1);
+        block-size: spacing(1);
 
         border-radius: 9999px;
       }
 
       &:hover .os-scrollbar-track .os-scrollbar-handle {
-        height: spacing(2);
+        block-size: spacing(2);
       }
     }
 
     &.os-scrollbar-vertical {
-      width: spacing(4);
+      inline-size: spacing(4);
       padding: spacing(1);
 
       .os-scrollbar-track .os-scrollbar-handle {
-        width: spacing(1);
+        inline-size: spacing(1);
 
         border-radius: 9999px;
       }
 
       &:hover .os-scrollbar-track .os-scrollbar-handle {
-        width: spacing(2);
+        inline-size: spacing(2);
       }
     }
   }

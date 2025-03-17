@@ -27,10 +27,10 @@ const { badge, url, label } = Astro.props
 
   button {
     @include transition($properties: all);
+    block-size: spacing(10);
 
-    width: 100%;
-    height: spacing(10);
-    padding-left: spacing(2);
+    inline-size: 100%;
+    padding-inline-start: spacing(2);
 
     border-radius: $radius-lg;
 
@@ -43,7 +43,7 @@ const { badge, url, label } = Astro.props
     }
 
     &:hover {
-      padding-left: spacing(3);
+      padding-inline-start: spacing(3);
 
       background-color: var(--btn-plain-bg-hover);
 
@@ -64,13 +64,13 @@ const { badge, url, label } = Astro.props
     position: relative;
     align-items: center;
     justify-content: space-between;
-    margin-right: spacing(2);
+    margin-inline-end: spacing(2);
   }
 
   .title {
     overflow: hidden;
 
-    text-align: left;
+    text-align: start;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -82,11 +82,10 @@ const { badge, url, label } = Astro.props
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: spacing(8);
-    height: spacing(7);
-    margin-left: spacing(4);
-    padding-right: spacing(2);
-    padding-left: spacing(2);
+    block-size: spacing(7);
+    min-inline-size: spacing(8);
+    margin-inline-start: spacing(4);
+    padding-inline: spacing(2);
 
     border-radius: $radius-lg;
 

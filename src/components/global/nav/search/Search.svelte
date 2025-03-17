@@ -102,9 +102,9 @@
     @extend %float-panel;
 
     position: absolute;
-    top: spacing(20);
-    right: spacing(4);
-    left: spacing(4);
+    inset-block-start: spacing(20);
+    inset-inline: spacing(4);
+
     padding: spacing(2);
 
     border-radius: $radius-xl2;
@@ -112,8 +112,9 @@
     box-shadow: $shadow-xl2;
 
     @include variants.md {
-      left: unset;
-      width: spacing(120);
+      inset-inline-start: unset;
+
+      inline-size: spacing(120);
     }
 
     :global(mark) {
@@ -127,7 +128,7 @@
     @include transition($properties: all);
 
     align-items: center;
-    height: spacing(11);
+    block-size: spacing(11);
 
     background-color: black(4%);
 
@@ -148,8 +149,8 @@
       @include text-plain(30%);
 
       position: absolute;
-      width: spacing(5);
-      height: spacing(5);
+      block-size: spacing(5);
+      inline-size: spacing(5);
       margin: auto spacing(3);
 
       pointer-events: none;
@@ -160,7 +161,7 @@
       @include text-plain(50%);
       @include font-size($text-sm);
 
-      padding-left: spacing(10);
+      padding-inline-start: spacing(10);
 
       outline-width: 0;
 
@@ -172,7 +173,7 @@
 
   #search-bar {
     display: none;
-    margin-right: spacing(2);
+    margin-inline-end: spacing(2);
 
     border-radius: $radius-lg;
 
@@ -182,12 +183,12 @@
 
     input {
       @include transition($properties: all);
-      width: spacing(40);
 
-      height: 100%;
+      block-size: 100%;
+      inline-size: spacing(40);
 
       &:active, &:focus {
-        width: spacing(60);
+        inline-size: spacing(60);
       }
     }
   }
@@ -196,8 +197,8 @@
 
   #search-switch {
     @extend %btn-plain, %expand-animation;
-    width: spacing(11);
-    height: spacing(11);
+    block-size: spacing(11);
+    inline-size: spacing(11);
 
     border-radius: $radius-lg;
 
@@ -210,8 +211,8 @@
     }
 
     :global(svg) {
-      width: spacing(5);
-      height: spacing(5);
+      block-size: spacing(5);
+      inline-size: spacing(5);
     }
   }
 

@@ -3,7 +3,7 @@
 @use 'utils' as *;
 @use 'variants';
 
-.custom-md {
+article.markdown {
   word-break: break-word;
 
   h1 {
@@ -19,7 +19,7 @@
     // MARK: Heading Anchors
     .anchor {
       margin: spacing(-0.5);
-      margin-left: 0.2ch !important;
+      margin-inline-start: 0.2ch !important;
       padding: spacing(0.5) !important;
 
       transition-delay: 50ms !important;
@@ -31,8 +31,7 @@
       user-select: none;
 
       .anchor-icon {
-        margin-right: 0.45ch !important;
-        margin-left: 0.45ch !important;
+        margin-inline: 0.45ch !important;
       }
     }
 
@@ -59,7 +58,7 @@
     }
 
     &[data-footnote-ref] {
-      margin-left: spacing(-0.5);
+      margin-inline-start: spacing(-0.5);
 
       text-decoration-line: none;
     }
@@ -96,13 +95,13 @@
         content: counter(line);
 
         display: inline-block;
-        width: spacing(4);
-        margin-right: spacing(4);
+        inline-size: spacing(4);
+        margin-inline-end: spacing(4);
 
         color: var(--line-number);
+        text-align: end;
 
         counter-increment: line;
-        direction: rtl;
       }
 
       &:last-child:empty,
@@ -119,14 +118,13 @@
 
   :not(pre) code {
     position: relative;
-    bottom: spacing(0.2);
+    inset-block-end: spacing(0.2);
 
     font-weight: $font-weight-medium;
   }
 
   pre {
-    padding-right: spacing(5);
-    padding-left: spacing(5);
+    padding-inline: spacing(5);
 
     border-radius: $radius-xl;
 
@@ -166,13 +164,14 @@
 
       display: block;
       position: absolute;
-      left: spacing(-1);
-      width: spacing(1);
-      height: 100%;
+      block-size: 100%;
+
+      inline-size: spacing(1);
 
       border-radius: 9999px;
 
       background-color: var(--btn-regular-bg);
+      inset-inline-start: spacing(-1);
     }
 
     // remove the double quotes
@@ -180,5 +179,21 @@
     p::after {
       content: none;
     }
+  }
+
+  img {
+    border-radius: $radius-xl;
+  }
+
+  hr {
+    border-style: dashed;
+    border-color: var(--line-divider);
+  }
+
+  iframe {
+    max-inline-size: 100%;
+    margin-inline: auto;
+
+    border-radius: $radius-xl;
   }
 }

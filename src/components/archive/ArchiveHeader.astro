@@ -32,40 +32,39 @@ const { group } = Astro.props
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
-    height: spacing(15);
+    block-size: spacing(15);
+    inline-size: 100%;
 
     .year {
       @include transition;
       @include font-size($text-xl);
       @include text-plain(75%);
 
-      width: 15%;
+      inline-size: 15%;
 
       font-weight: $font-weight-bold;
-      text-align: right;
+      text-align: end;
 
       @include variants.md {
         @include font-size($text-xl2);
 
-        width: 10%;
+        inline-size: 10%;
       }
     }
 
     .dot-wrapper {
-      width: 15%;
+      inline-size: 15%;
 
       @include variants.md {
-        width: 10%;
+        inline-size: 10%;
       }
 
       .dot {
         z-index: 50;
 
-        width: spacing(3);
-        height: spacing(3);
-        margin-right: auto;
-        margin-left: auto;
+        block-size: spacing(3);
+        inline-size: spacing(3);
+        margin-inline: auto;
 
         border-radius: 9999px;
         outline-color: var(--primary);
@@ -81,12 +80,12 @@ const { group } = Astro.props
       @include transition;
       @include text-plain(50%);
 
-      width: 70%;
+      inline-size: 70%;
 
-      text-align: left;
+      text-align: start;
 
       @include variants.md {
-        width: 80%;
+        inline-size: 80%;
       }
     }
   }

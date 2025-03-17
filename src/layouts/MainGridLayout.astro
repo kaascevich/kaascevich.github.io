@@ -44,7 +44,7 @@ const mainPanelTop =
   <!-- pointer-events-none prevents blocking TOC click events -->
   <div
     class="main-outer-wrapper"
-    style={`top: ${mainPanelTop}`}
+    style={`inset-block-start: ${mainPanelTop}`}
   >
     <div class="main-inner-wrapper">
       <div id="main-grid">
@@ -89,23 +89,20 @@ const mainPanelTop =
     position: relative;
 
     z-index: 50;
-    max-width: var(--page-width);
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 0;
-    padding-left: 0;
+    max-inline-size: var(--page-width);
+    margin-inline: auto;
+    padding-inline: 0;
 
     pointer-events: none;
 
     @include variants.md {
-      padding-right: spacing(4);
-      padding-left: spacing(4);
+      padding-inline: spacing(4);
     }
 
     #navbar-wrapper {
       @include transition($properties: all);
       position: sticky;
-      top: 0;
+      inset-block-start: 0;
 
       pointer-events: auto;
     }
@@ -114,36 +111,32 @@ const mainPanelTop =
   .main-outer-wrapper {
     position: absolute;
     z-index: 30;
-    width: 100%;
+    inline-size: 100%;
 
     pointer-events: none;
 
     .main-inner-wrapper {
       position: relative;
-      max-width: var(--page-width);
-      margin-right: auto;
-      margin-left: auto;
+      max-inline-size: var(--page-width);
+      margin-inline: auto;
 
       pointer-events: auto;
 
       #main-grid {
         @include transition($duration: 700ms);
         display: grid;
-        right: 0;
-        left: 0;
+        inset-inline: 0;
+
         grid-template-columns: spacing(70) auto;
         grid-template-rows: auto 1fr auto;
 
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-        padding-right: 0;
-        padding-left: 0;
+        inline-size: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
         gap: spacing(4);
 
         @include variants.md {
-          padding-right: spacing(4);
-          padding-left: spacing(4);
+          padding-inline: spacing(4);
         }
 
         @include variants.lg {
@@ -155,12 +148,12 @@ const mainPanelTop =
           grid-column: span 2 / span 2;
           grid-row: 2 / 3;
 
-          margin-bottom: spacing(4);
+          margin-block-end: spacing(4);
 
           @include variants.lg {
             grid-column: span 1 / span 1;
             grid-row: 1 / 2;
-            max-width: spacing(70)l
+            max-inline-size: spacing(70)l
           }
         }
       }

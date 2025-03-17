@@ -7,9 +7,9 @@
   display: flex !important;
   align-items: center;
   justify-content: center;
-  width: spacing(12);
-  height: spacing(12);
-  margin-right: 0;
+  block-size: spacing(12);
+  inline-size: spacing(12);
+  margin-inline-end: 0;
 
   transition: $ease-in-out $transition-duration !important;
   transition-property: $transition-properties;
@@ -25,16 +25,16 @@
   }
 
   &--zoom {
-    margin-right: spacing(2.5) !important;
+    margin-inline-end: spacing(2.5) !important;
   }
 
   &--close {
-    margin-right: spacing(4) !important;
+    margin-inline-end: spacing(4) !important;
   }
 
   &--zoom,
   &--close {
-    margin-top: spacing(4) !important;
+    margin-block-start: spacing(4) !important;
 
     border-radius: $radius-xl !important;
 

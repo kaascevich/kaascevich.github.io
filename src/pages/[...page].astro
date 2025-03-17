@@ -38,9 +38,7 @@ const { page } = Astro.props
 
   :global(.pagination) {
     @extend %onload-animation;
-
-    margin-right: auto;
-    margin-left: auto;
+    margin-inline: auto;
 
     animation-delay: calc(var(--content-delay) + var(--pagination-delay));
   }

@@ -41,10 +41,10 @@ const { icon, hideOnMobile = false } = Astro.props
       display: flex;
       align-items: center;
       justify-content: center;
+      block-size: spacing(8);
 
-      width: spacing(8);
-      height: spacing(8);
-      margin-right: spacing(2);
+      inline-size: spacing(8);
+      margin-inline-end: spacing(2);
 
       border-radius: $radius-md;
 
@@ -53,8 +53,8 @@ const { icon, hideOnMobile = false } = Astro.props
       color: var(--btn-content);
 
       svg {
-        width: spacing(5);
-        height: spacing(5);
+        block-size: spacing(5);
+        inline-size: spacing(5);
       }
     }
 

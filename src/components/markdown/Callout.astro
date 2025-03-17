@@ -30,7 +30,6 @@ const calloutIcons: Record<CalloutType, string> = {
 </blockquote>
 
 <style lang="scss">
-  @use 'sass:math';
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -57,17 +56,15 @@ const calloutIcons: Record<CalloutType, string> = {
     header {
       display: flex;
       align-items: center;
-      margin-bottom: spacing(-3);
+      margin-block-end: spacing(-3);
 
       font-weight: $font-weight-bold;
 
       svg {
         display: inline-block;
-        translate: 0 spacing(math.div(1, 8));
-
-        width: spacing(5);
-        height: spacing(5);
-        margin-right: spacing(1.5);
+        block-size: spacing(5);
+        inline-size: spacing(5);
+        margin-inline-end: spacing(1.5);
         overflow: visible;
 
         font-size: inherit;

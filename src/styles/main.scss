@@ -90,7 +90,8 @@ strong {
 %float-panel {
   @include transition;
 
-  top: spacing(21);
+  inset-block-start: spacing(21);
+
   overflow: hidden;
 
   border-radius: $radius-xl2;
@@ -202,11 +203,6 @@ strong {
 
 .copy-btn-icon {
   @include transition;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
 }
 
 .copy-btn {
@@ -267,7 +263,7 @@ strong {
   }
 }
 
-:is(.custom-md, #post-cover) img {
+:is(article.markdown, #post-cover) img {
   cursor: zoom-in;
 }
 

@@ -66,8 +66,8 @@
   @use "../../../styles/variants";
 
   @mixin slider-thumb {
-    width: spacing(2);
-    height: spacing(4);
+    block-size: spacing(4);
+    inline-size: spacing(2);
 
     border-width: 0;
     border-radius: $radius-sm;
@@ -87,8 +87,8 @@
 
   #color-settings-switch {
     @extend %btn-plain, %expand-animation;
-    width: spacing(11);
-    height: spacing(11);
+    block-size: spacing(11);
+    inline-size: spacing(11);
 
     border-radius: $radius-lg;
 
@@ -97,8 +97,8 @@
     }
 
     :global(svg) {
-      width: spacing(5);
-      height: spacing(5);
+      block-size: spacing(5);
+      inline-size: spacing(5);
     }
   }
 
@@ -107,8 +107,9 @@
     @include transition($properties: all);
 
     position: absolute;
-    right: spacing(4);
-    width: spacing(80);
+    inset-inline-end: spacing(4);
+
+    inline-size: spacing(80);
     padding: spacing(4);
 
     header {
@@ -116,7 +117,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: spacing(3);
+      margin-block-end: spacing(3);
       gap: spacing(2);
 
       .title {
@@ -125,7 +126,7 @@
 
         display: flex;
         position: relative;
-        margin-left: spacing(3);
+        margin-inline-start: spacing(3);
 
         color: $color-neutral-900;
         font-weight: $font-weight-bold;
@@ -139,21 +140,22 @@
           content: "";
 
           position: absolute;
-          top: math.div(1rem, 3);
-          left: spacing(-3);
-          width: spacing(1);
-          height: spacing(4);
+          block-size: spacing(4);
+
+          inline-size: spacing(1);
 
           border-radius: $radius-md;
 
           background-color: var(--primary);
+          inset-block-start: math.div(1rem, 3);
+          inset-inline-start: spacing(-3);
         }
       }
 
       button.reset {
         @extend %btn-regular;
-        width: spacing(7);
-        height: spacing(7);
+        block-size: spacing(7);
+        inline-size: spacing(7);
 
         border-radius: $radius-md;
 
@@ -162,8 +164,8 @@
         }
 
         :global(svg) {
-          width: spacing(3.5);
-          height: spacing(3.5);
+          block-size: spacing(3.5);
+          inline-size: spacing(3.5);
 
           color: var(--btn-content);
         }
@@ -180,8 +182,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: spacing(12);
-        height: spacing(7);
+        block-size: spacing(7);
+        inline-size: spacing(12);
 
         border-radius: $radius-md;
 
@@ -193,10 +195,9 @@
     }
 
     .hue-slider-wrapper {
-      width: 100%;
-      height: spacing(6);
-      padding-right: spacing(1);
-      padding-left: spacing(1);
+      block-size: spacing(6);
+      inline-size: 100%;
+      padding-inline: spacing(1);
 
       border-radius: $radius-sm;
 
@@ -210,13 +211,13 @@
 
       input[type="range"] {
         @include transition($properties: background-image);
+        block-size: spacing(6);
 
-        appearance: none;
-
-        width: 100%;
-        height: spacing(6);
+        inline-size: 100%;
 
         background-image: var(--color-selection-bar);
+
+        appearance: none;
 
         &::-webkit-slider-thumb {
           @include slider-thumb;

@@ -25,7 +25,7 @@ import siteConfig from '$/config/site'
   .avatar {
     display: block;
     position: relative;
-    max-width: spacing(48);
+    max-inline-size: spacing(48);
     margin: spacing(1) auto spacing(3);
     overflow: hidden;
 
@@ -46,21 +46,21 @@ import siteConfig from '$/config/site'
       z-index: 50;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      block-size: 100%;
+      inline-size: 100%;
 
       pointer-events: none;
 
       svg {
         @include transition;
+        block-size: spacing(12);
 
-        width: spacing(12);
-        height: spacing(12);
-        scale: 90%;
+        inline-size: spacing(12);
 
         opacity: 0%;
 
         color: white;
+        scale: 90%;
       }
     }
 
@@ -83,22 +83,20 @@ import siteConfig from '$/config/site'
     }
 
     img {
-      height: 100%;
-      margin-right: auto;
-      margin-left: auto;
+      block-size: 100%;
+      margin-inline: auto;
     }
   }
 
   @include variants.lg {
     .avatar {
-      max-width: none;
-      margin-top: 0;
-      margin-right: 0;
-      margin-left: 0;
+      max-inline-size: none;
+      margin-block-start: 0;
+      margin-inline: 0;
 
       img {
-        width: 100%;
-        margin-top: 0;
+        inline-size: 100%;
+        margin-block-start: 0;
       }
     }
   }

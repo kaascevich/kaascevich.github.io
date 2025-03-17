@@ -7,9 +7,15 @@ interface Props {
 const { class: className } = Astro.props
 ---
 
-<div class:list={['prose dark:prose-invert prose-base !max-w-none custom-md', className]}>
+<article class:list={['prose dark:prose-invert prose-base markdown', className]}>
   <slot />
 </div>
+
+<style lang="scss">
+  article {
+    max-inline-size: none !important;
+  }
+</style>
 
 <script>
   const observer = new MutationObserver(addPreCopyButton)

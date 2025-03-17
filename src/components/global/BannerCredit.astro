@@ -38,13 +38,13 @@ const { config } = Astro.props
 
     display: flex;
     position: absolute;
-    top: spacing(-13);
-    right: spacing(4);
+    inset-block-start: spacing(-13);
+    inset-inline-end: spacing(4);
+
     align-items: center;
     justify-content: center;
-    height: spacing(9);
-    padding-right: spacing(3);
-    padding-left: spacing(3);
+    block-size: spacing(9);
+    padding-inline: spacing(3);
 
     animation-delay: 400ms;
 
@@ -53,10 +53,10 @@ const { config } = Astro.props
     background-color: black(60%);
 
     .external-icon {
-      @include transition;
+      @include transition($properties: opacity);
 
       position: absolute;
-      right: spacing(4);
+      inset-inline-end: spacing(4);
 
       opacity: 0%;
 
@@ -64,7 +64,7 @@ const { config } = Astro.props
     }
 
     &:hover {
-      padding-right: spacing(9);
+      padding-inline-end: spacing(9);
 
       background-color: black(70%);
 
@@ -79,9 +79,9 @@ const { config } = Astro.props
   }
 
   .copyright-icon {
-    width: spacing(5);
-    height: spacing(5);
-    margin-right: spacing(1);
+    block-size: spacing(5);
+    inline-size: spacing(5);
+    margin-inline-end: spacing(1);
 
     color: white(75%);
   }

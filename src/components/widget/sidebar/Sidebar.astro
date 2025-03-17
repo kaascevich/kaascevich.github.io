@@ -29,14 +29,14 @@ const { class: className } = Astro.props
   @use '$/styles/variants';
 
   #sidebar {
-    width: 100%;
+    inline-size: 100%;
   }
 
   section.profile {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-bottom: spacing(4);
+    inline-size: 100%;
+    margin-block-end: spacing(4);
     gap: spacing(4);
   }
 
@@ -45,7 +45,8 @@ const { class: className } = Astro.props
 
     display: flex;
     position: sticky;
-    top: spacing(4);
+    inset-block-start: spacing(4);
+
     flex-direction: column;
     gap: spacing(4);
 

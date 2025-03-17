@@ -27,8 +27,8 @@ const { id, text, depth, h1Index } = Astro.props
     @include transition;
     display: flex;
     position: relative;
-    width: 100%;
-    min-height: spacing(9);
+    min-block-size: spacing(9);
+    inline-size: 100%;
     padding: spacing(2);
 
     border-radius: $radius-xl;
@@ -50,8 +50,8 @@ const { id, text, depth, h1Index } = Astro.props
       flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      width: spacing(5);
-      height: spacing(5);
+      block-size: spacing(5);
+      inline-size: spacing(5);
 
       border-radius: $radius-lg;
 
@@ -74,11 +74,11 @@ const { id, text, depth, h1Index } = Astro.props
 
     &.depth-2 {
       .marker {
-        margin-left: spacing(4);
+        margin-inline-start: spacing(4);
 
         .dot {
-          width: spacing(2);
-          height: spacing(2);
+          block-size: spacing(2);
+          inline-size: spacing(2);
 
           border-radius: spacing(0.75);
 

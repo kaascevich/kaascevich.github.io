@@ -62,7 +62,16 @@ const showUpdated =
   @use '$/styles/variants';
 
   .meta-items {
-    @apply flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: spacing(2) spacing(4);
+
+    color: $color-neutral-500;
+
+    @include variants.dark {
+      color: $color-neutral-400;
+    }
   }
 
   ul {

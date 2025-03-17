@@ -56,7 +56,7 @@ const { entry, wordCount, readingTime } = Astro.props
     @extend %onload-animation;
     @include transition;
 
-    margin-bottom: spacing(3);
+    margin-block-end: spacing(3);
   }
 
   h1 {
@@ -69,8 +69,8 @@ const { entry, wordCount, readingTime } = Astro.props
       @include transition;
 
       display: block;
-      width: 100%;
-      margin-bottom: spacing(3);
+      inline-size: 100%;
+      margin-block-end: spacing(3);
 
       font-weight: $font-weight-bold;
 
@@ -78,7 +78,7 @@ const { entry, wordCount, readingTime } = Astro.props
 
       @include variants.md {
         font-size: 2.25rem;
-        line-height: 2.75rem;
+        line-block-size: 2.75rem;
       }
 
       @include variants.md {
@@ -86,14 +86,15 @@ const { entry, wordCount, readingTime } = Astro.props
           content: '';
 
           position: absolute;
-          top: spacing(3);
-          left: spacing(-4.5);
-          width: spacing(1);
-          height: spacing(5);
+          block-size: spacing(5);
+
+          inline-size: spacing(1);
 
           border-radius: $radius-md;
 
           background-color: var(--primary);
+          inset-block-start: spacing(3);
+          inset-inline-start: spacing(-4.5);
         }
       }
     }
@@ -103,11 +104,11 @@ const { entry, wordCount, readingTime } = Astro.props
     @extend %onload-animation;
 
     :global(.meta-items) {
-      margin-bottom: spacing(5);
+      margin-block-end: spacing(5);
     }
 
     hr {
-      margin-bottom: spacing(5);
+      margin-block-end: spacing(5);
 
       border: 1px dashed var(--line-divider);
     }
@@ -116,7 +117,7 @@ const { entry, wordCount, readingTime } = Astro.props
   :global(#post-cover) {
     @extend %onload-animation;
 
-    margin-bottom: spacing(8);
+    margin-block-end: spacing(8);
 
     border-radius: $radius-xl;
   }

@@ -33,12 +33,12 @@ const { title } = entry.data
 
     display: none !important;
     position: absolute;
-    top: spacing(3);
-    right: spacing(3);
-    bottom: spacing(3);
+    inset-block: spacing(3);
+    inset-inline-end: spacing(3);
+
     align-items: center;
     justify-content: center;
-    width: spacing(13);
+    inline-size: spacing(13);
 
     border-radius: $radius-xl;
 
@@ -59,8 +59,7 @@ const { title } = entry.data
 
     :global(svg) {
       @include transition;
-      margin-right: auto;
-      margin-left: auto;
+      margin-inline: auto;
 
       color: var(--primary);
     }

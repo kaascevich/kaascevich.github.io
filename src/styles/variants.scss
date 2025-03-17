@@ -11,7 +11,7 @@
 // MARK: Responsive Design
 
 @mixin sm {
-  @media (min-width: $breakpoint-sm) {
+  @media (width >= $breakpoint-sm) {
     @content;
   }
 }
