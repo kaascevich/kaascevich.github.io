@@ -30,8 +30,11 @@ const { config } = Astro.props
     @include transition($duration: 700ms);
 
     position: absolute;
+
     z-index: 10;
+
     inline-size: 100%;
+
     overflow: hidden;
     mask-image: linear-gradient(
       to top,
@@ -42,13 +45,13 @@ const { config } = Astro.props
 
     :global(#banner) {
       @include transition($duration: 700ms);
+      scale: 105%;
 
-      object-fit: cover;
+      opacity: 0%;
 
       block-size: 100%;
 
-      opacity: 0%;
-      scale: 105%;
+      object-fit: cover;
     }
   }
 </style>

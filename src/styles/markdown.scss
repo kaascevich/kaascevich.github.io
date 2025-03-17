@@ -16,15 +16,20 @@ article.markdown {
   h4,
   h5,
   h6 {
+    &:hover .anchor {
+      opacity: 100%;
+    }
+
     // MARK: Heading Anchors
     .anchor {
-      margin: spacing(-0.5);
-      margin-inline-start: 0.2ch !important;
-      padding: spacing(0.5) !important;
-
       transition-delay: 50ms !important;
 
       opacity: 0%;
+
+      margin: spacing(-0.5);
+      margin-inline-start: 0.2ch !important;
+
+      padding: spacing(0.5) !important;
 
       text-decoration-line: none !important;
 
@@ -33,10 +38,6 @@ article.markdown {
       .anchor-icon {
         margin-inline: 0.45ch !important;
       }
-    }
-
-    &:hover .anchor {
-      opacity: 100%;
     }
   }
 
@@ -47,9 +48,11 @@ article.markdown {
 
     background-image: none;
 
-    color: var(--primary);
-    font-weight: $font-weight-medium;
     text-decoration: underline dashed var(--link-underline) 1px;
+
+    color: var(--primary);
+
+    font-weight: $font-weight-medium;
     text-underline-offset: 4px;
 
     &:hover,
@@ -65,14 +68,16 @@ article.markdown {
   }
 
   code {
-    padding: spacing(1);
-    overflow: hidden;
-
     border-radius: $radius-md;
 
     background-color: var(--inline-code-bg);
 
+    padding: spacing(1);
+
+    overflow: hidden;
+
     color: var(--inline-code-color);
+
     font-family:
       'Monaspace Radon', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
@@ -92,14 +97,17 @@ article.markdown {
       &::before {
         @include transition;
 
-        content: counter(line);
+        display: inline flow-root;
 
-        display: inline-block;
-        inline-size: spacing(4);
         margin-inline-end: spacing(4);
 
-        color: var(--line-number);
+        inline-size: spacing(4);
+
         text-align: end;
+
+        color: var(--line-number);
+
+        content: counter(line);
 
         counter-increment: line;
       }
@@ -124,18 +132,18 @@ article.markdown {
   }
 
   pre {
-    padding-inline: spacing(5);
-
     border-radius: $radius-xl;
 
     background-color: var(--codeblock-bg) !important;
 
+    padding-inline: spacing(5);
+
     code {
       @include font-size($text-sm);
 
-      padding: 0;
-
       background-color: transparent;
+
+      padding: 0;
 
       color: inherit;
 
@@ -154,24 +162,24 @@ article.markdown {
 
     border-color: transparent;
 
-    font-style: normal;
     font-weight: inherit;
+    font-style: normal;
 
     &::before {
       @include transition;
 
-      content: '';
-
-      display: block;
+      display: block flow;
       position: absolute;
-      block-size: 100%;
-
-      inline-size: spacing(1);
+      inset-inline-start: spacing(-1);
 
       border-radius: 9999px;
 
       background-color: var(--btn-regular-bg);
-      inset-inline-start: spacing(-1);
+
+      block-size: 100%;
+      inline-size: spacing(1);
+
+      content: '';
     }
 
     // remove the double quotes
@@ -187,13 +195,15 @@ article.markdown {
 
   hr {
     border-style: dashed;
+
     border-color: var(--line-divider);
   }
 
   iframe {
-    max-inline-size: 100%;
     margin-inline: auto;
 
     border-radius: $radius-xl;
+
+    max-inline-size: 100%;
   }
 }

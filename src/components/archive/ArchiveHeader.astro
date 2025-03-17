@@ -29,9 +29,12 @@ const { group } = Astro.props
   @use '$/styles/variants';
 
   header {
-    display: flex;
+    display: block flex;
+
     flex-direction: row;
+
     align-items: center;
+
     block-size: spacing(15);
     inline-size: 100%;
 
@@ -42,8 +45,9 @@ const { group } = Astro.props
 
       inline-size: 15%;
 
-      font-weight: $font-weight-bold;
       text-align: end;
+
+      font-weight: $font-weight-bold;
 
       @include variants.md {
         @include font-size($text-xl2);
@@ -55,24 +59,25 @@ const { group } = Astro.props
     .dot-wrapper {
       inline-size: 15%;
 
-      @include variants.md {
-        inline-size: 10%;
-      }
-
       .dot {
         z-index: 50;
 
-        block-size: spacing(3);
-        inline-size: spacing(3);
         margin-inline: auto;
 
-        border-radius: 9999px;
-        outline-color: var(--primary);
         outline-offset: -2px;
-
         outline-style: solid;
+        outline-color: var(--primary);
+
+        border-radius: 9999px;
 
         background-image: none;
+
+        block-size: spacing(3);
+        inline-size: spacing(3);
+      }
+
+      @include variants.md {
+        inline-size: 10%;
       }
     }
 

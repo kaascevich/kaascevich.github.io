@@ -13,31 +13,24 @@ html.is-animating .transition-swup-fade {
   opacity: 0%;
 }
 
-/* fade-in animations for components */
-@keyframes fade-in-up {
-  0% {
-    translate: 0 spacing(8);
-
-    opacity: 0%;
-  }
-
-  100% {
-    translate: 0 0;
-
-    opacity: 100%;
-  }
-}
-
-/* main components */
 %onload-animation {
+  opacity: 0%;
+
   animation-name: fade-in-up;
   animation-duration: 300ms;
-
-  opacity: 0%;
   animation-fill-mode: forwards;
 
-}
+  @keyframes fade-in-up {
+    0% {
+      translate: 0 spacing(8);
 
-#sidebar {
-  animation-delay: 100ms;
+      opacity: 0%;
+    }
+
+    100% {
+      translate: 0 0;
+
+      opacity: 100%;
+    }
+  }
 }

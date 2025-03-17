@@ -41,9 +41,10 @@ const { class: className } = Astro.props
   @use '$/styles/variants';
 
   ul {
-    display: flex;
-    gap: spacing(2);
+    display: block flex;
 
     flex-wrap: wrap;
+
+    gap: spacing(2);
   }
 </style>

@@ -64,11 +64,12 @@ let heading1Count = 1
     @extend %hide-scrollbar;
 
     position: fixed;
-    block-size: calc(100vh - spacing(80));
-
-    inline-size: var(--toc-width);
-    overflow: hidden scroll;
     inset-block-start: spacing(14);
+
+    block-size: calc(100vh - spacing(80));
+    inline-size: var(--toc-width);
+
+    overflow: hidden scroll;
 
     mask-image: linear-gradient(
       to bottom,
@@ -93,10 +94,12 @@ let heading1Count = 1
     @include transition($properties: all);
 
     position: absolute;
-    z-index: -10;
     inset-inline: 0;
 
+    z-index: -10;
+
     border: 2px dashed var(--toc-btn-hover);
+
     border-radius: $radius-xl;
 
     background-color: var(--toc-btn-hover);

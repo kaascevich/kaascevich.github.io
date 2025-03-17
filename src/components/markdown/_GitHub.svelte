@@ -108,22 +108,23 @@
   a {
     @include transition;
 
-    display: block;
+    display: block flow;
     position: relative;
-    margin: spacing(2) spacing(0);
-    padding: spacing(4.5) spacing(4);
+
+    margin-block: spacing(2);
+    margin-inline: 0;
 
     border-radius: $radius-xl2;
 
     background-color: var(--license-block-bg);
 
-    color: var(--tw-prose-body);
-    text-decoration-line: none;
-    text-decoration-thickness: 0;
+    padding-block: spacing(4.5);
+    padding-inline: spacing(4);
 
-    @include variants.md {
-      padding: spacing(4.5) spacing(6);
-    }
+    text-decoration-line: none;
+
+    color: var(--tw-prose-body);
+    text-decoration-thickness: 0;
 
     &:hover {
       background-color: var(--btn-regular-bg-hover);
@@ -153,69 +154,80 @@
     header {
       @include font-size($text-lg);
 
-      display: flex;
+      display: block flex;
+
       justify-content: space-between;
+
       margin-block-end: spacing(2);
 
       color: var(--tw-prose-headings);
+
       font-weight: $font-weight-medium;
 
-      @include variants.md {
-        @include font-size($text-xl);
-      }
-
       .titlebar-left {
-        display: flex;
+        display: block flex;
+
         flex-flow: column nowrap;
+
         gap: spacing(1);
 
-        @include variants.md {
-          flex-flow: row nowrap;
-          gap: spacing(2);
-        }
-
         .owner {
-          display: flex;
+          display: block flex;
           position: relative;
+
           flex-flow: row nowrap;
-          align-items: center;
+
           gap: spacing(2);
+
+          align-items: center;
 
           font-weight: $font-weight-light;
 
+          &::after {
+            display: none;
+
+            font-weight: $font-weight-normal;
+
+            content: "/";
+
+            @include variants.md {
+              display: block flow;
+            }
+          }
+
           .avatar {
-            display: block;
-            block-size: spacing(6);
-            inline-size: spacing(6);
-            overflow: hidden;
+            display: block flow;
 
             border-radius: 50%;
 
             background-color: var(--primary);
             background-size: cover;
-          }
 
-          &::after {
-            content: "/";
+            block-size: spacing(6);
+            inline-size: spacing(6);
 
-            display: none;
-
-            font-weight: $font-weight-normal;
-
-            @include variants.md {
-              display: block;
-            }
+            overflow: hidden;
           }
         }
 
         .repo {
           font-weight: $font-weight-bold;
         }
+
+        @include variants.md {
+          flex-flow: row nowrap;
+
+          gap: spacing(2);
+        }
       }
 
       :global(.github-logo) {
         block-size: spacing(6);
         inline-size: spacing(6);
+      }
+
+      @include variants.md {
+        @include font-size($text-xl);
       }
     }
 
@@ -225,12 +237,15 @@
       margin-block-end: spacing(3);
 
       color: var(--tw-prose-body);
+
       font-weight: $font-weight-light;
     }
 
     footer {
-      display: flex;
+      display: block flex;
+
       flex-flow: row nowrap;
+
       gap: spacing(6);
 
       inline-size: fit-content;
@@ -243,8 +258,10 @@
     .license {
       @include font-size($text-sm);
 
-      display: flex;
+      display: block flex;
+
       flex-direction: row;
+
       align-items: center;
 
       opacity: 90%;
@@ -258,42 +275,49 @@
             background,
           )
         );
+        margin-inline-end: spacing(1);
+
         block-size: spacing(5);
         inline-size: spacing(5);
-        margin-inline-end: spacing(1);
+
         overflow: visible;
 
         font-size: inherit;
       }
     }
+
+    @include variants.md {
+      padding-block: spacing(4.5);
+      padding-inline: spacing(6);
+    }
   }
 
   a.fetch-waiting {
+    @include transition($properties: opacity);
     opacity: 70%;
 
     pointer-events: none;
 
-    @include transition($properties: opacity);
-
     .description,
     footer,
     .avatar {
+      opacity: 50%;
+
+      background-color: var(--tw-prose-body);
+
       animation-name: pulsate;
       animation-duration: 2s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-
-      opacity: 50%;
-      background-color: var(--tw-prose-body);
 
       color: transparent;
 
       user-select: none;
 
       &::before {
-        content: '';
-
         background-color: transparent;
+
+        content: '';
       }
     }
 

@@ -40,31 +40,36 @@ const calloutIcons: Record<CalloutType, string> = {
       $color: var(--admonitions-color-#{$type});
 
       &.bdm-#{$type} {
-        header {
-          color: $color;
-        }
-
         // left border
         &::before {
-          content: '';
-
           background-color: $color;
+
+          content: '';
+        }
+
+        header {
+          color: $color;
         }
       }
     }
 
     header {
-      display: flex;
+      display: block flex;
+
       align-items: center;
+
       margin-block-end: spacing(-3);
 
       font-weight: $font-weight-bold;
 
       svg {
-        display: inline-block;
+        display: inline flow-root;
+
+        margin-inline-end: spacing(1.5);
+
         block-size: spacing(5);
         inline-size: spacing(5);
-        margin-inline-end: spacing(1.5);
+
         overflow: visible;
 
         font-size: inherit;

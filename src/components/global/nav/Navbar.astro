@@ -45,45 +45,53 @@ const { class: className } = Astro.props
   }
 
   #navbar {
+    opacity: 0%;
     z-index: 50;
 
     animation-name: fade-in-down;
-
     animation-duration: 300ms;
-
     animation-delay: 0ms;
-
-    opacity: 0%;
     animation-fill-mode: forwards;
 
     nav {
       @extend %card-base;
 
-      display: flex;
+      display: block flex;
+
       align-items: center;
       justify-content: space-between;
-      block-size: spacing(18);
-      max-inline-size: var(--page-width);
+
       margin-inline: auto;
-      padding-inline: spacing(4);
-      overflow: visible !important;
 
       border-start-start-radius: 0 !important;
       border-start-end-radius: 0 !important;
 
+      padding-inline: spacing(4);
+
+      block-size: spacing(18);
+      max-inline-size: var(--page-width);
+
+      overflow: visible !important;
+
       .home-link {
         @extend %btn-plain, %expand-animation;
-        display: flex;
+        display: block flex;
+
         flex-direction: row;
+
+        gap: spacing(2);
+
         align-items: center;
-        block-size: spacing(13);
-        padding-inline: spacing(5);
 
         border-radius: $radius-lg;
 
+        padding-inline: spacing(5);
+
+        block-size: spacing(13);
+
         color: var(--primary) !important;
+
         font-weight: $font-weight-bold;
-        gap: spacing(2);
 
         &:active {
           scale: 95%;
@@ -99,7 +107,7 @@ const { class: className } = Astro.props
         display: none;
 
         @include variants.md {
-          display: flex;
+          display: block flex;
         }
       }
     }

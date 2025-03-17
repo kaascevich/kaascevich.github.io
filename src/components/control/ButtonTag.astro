@@ -20,9 +20,10 @@ const { href, label } = Astro.props
     @extend %btn-regular;
     @include font-size($text-sm);
 
-    block-size: spacing(8);
+    border-radius: $radius-lg;
+
     padding-inline: spacing(3);
 
-    border-radius: $radius-lg;
+    block-size: spacing(8);
   }
 </style>

@@ -17,15 +17,17 @@ const { entry, wordCount, readingTime } = Astro.props
 <PostExtraMeta {wordCount} {readingTime} class="extra-meta" />
 
 <!-- title -->
-<h1>
-  <div
+<h1 data-pagefind-body
+data-pagefind-weight="10"
+data-pagefind-meta="title">
+  <!-- <div
     data-pagefind-body
     data-pagefind-weight="10"
     data-pagefind-meta="title"
     class="title-wrapper"
-  >
+  > -->
     {entry.data.title}
-  </div>
+  <!-- </div> -->
 </h1>
 
 <!-- metadata -->
@@ -61,41 +63,37 @@ const { entry, wordCount, readingTime } = Astro.props
 
   h1 {
     @extend %onload-animation;
+    @include text-plain(90%);
+    @include transition;
+    @include font-size($text-xl3);
 
+    display: block flow;
     position: relative;
 
-    .title-wrapper {
-      @include text-plain(90%);
-      @include transition;
+    margin-block-end: spacing(3);
 
-      display: block;
-      inline-size: 100%;
-      margin-block-end: spacing(3);
+    inline-size: 100%;
 
-      font-weight: $font-weight-bold;
+    font-weight: $font-weight-bold;
 
-      @include font-size($text-xl3);
+    @include variants.md {
+      @include font-size($text-xl4);
+    }
 
-      @include variants.md {
-        font-size: 2.25rem;
-        line-block-size: 2.75rem;
-      }
+    @include variants.md {
+      &::before {
+        position: absolute;
+        inset-block-start: spacing(2);
+        inset-inline-start: spacing(-4.5);
 
-      @include variants.md {
-        &::before {
-          content: '';
+        border-radius: $radius-md;
 
-          position: absolute;
-          block-size: spacing(5);
+        background-color: var(--primary);
 
-          inline-size: spacing(1);
+        block-size: spacing(5);
+        inline-size: spacing(1);
 
-          border-radius: $radius-md;
-
-          background-color: var(--primary);
-          inset-block-start: spacing(3);
-          inset-inline-start: spacing(-4.5);
-        }
+        content: '';
       }
     }
   }

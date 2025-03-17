@@ -75,7 +75,7 @@ const jsonLd: WithContext<BlogPosting> = {
         readingTime={remarkPluginFrontmatter.minutes}
       />
 
-      <Markdown class="markdown-content">
+      <Markdown>
         <Content />
       </Markdown>
 
@@ -85,7 +85,7 @@ const jsonLd: WithContext<BlogPosting> = {
             config={siteConfig.license}
             title={entry.data.title}
             pubDate={entry.data.published}
-            class="license-container"
+            class="license"
           />
         )
       }
@@ -103,38 +103,45 @@ const jsonLd: WithContext<BlogPosting> = {
   @use '$/styles/variants';
 
   .post-container-wrapper {
-    display: flex;
+    display: block flex;
     position: relative;
-    inline-size: 100%;
+
     margin-block-end: spacing(4);
-    overflow: hidden;
 
     border-radius: $radius-xl2;
+
+    inline-size: 100%;
+
+    overflow: hidden;
 
     #post-container {
       @extend %card-base;
 
       position: relative;
+
       z-index: 10;
+
+      padding-block: spacing(6) spacing(4);
+      padding-inline: spacing(6);
+
       inline-size: 100%;
-      padding: spacing(6) spacing(6) spacing(4);
 
-      @include variants.md {
-        padding-inline: spacing(9);
-      }
-
-      :global(.markdown-content) {
+      :global(article.markdown) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
       }
 
-      :global(.license-container) {
+      :global(.license) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
 
         border-radius: $radius-xl;
+      }
+
+      @include variants.md {
+        padding-inline: spacing(9);
       }
     }
   }

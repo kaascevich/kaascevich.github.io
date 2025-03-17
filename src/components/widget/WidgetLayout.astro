@@ -55,36 +55,38 @@ const {
       @include transition;
       @include font-size($text-lg);
 
+      @include variants.dark {
+        color: gray(97%);
+      }
+
       position: relative;
+
       margin-block: spacing(4) spacing(2);
       margin-inline-start: spacing(8);
 
-      color: $color-neutral-900;
+      color: gray(20.5%);
 
       font-weight: $font-weight-bold;
 
-      @include variants.dark {
-        color: $color-neutral-100;
-      }
-
       &::before {
-        content: '';
-
         position: absolute;
-        block-size: spacing(4);
-
-        inline-size: spacing(1);
+        inset-block-start: 5.5px;
+        inset-inline-start: -16px;
 
         border-radius: $radius-md;
 
         background-color: var(--primary);
-        inset-block-start: 5.5px;
-        inset-inline-start: -16px;
+
+        block-size: spacing(4);
+        inline-size: spacing(1);
+
+        content: '';
       }
     }
 
     .widget-content {
       padding-inline: spacing(4);
+
       overflow: hidden;
 
       &.collapsed {
@@ -94,23 +96,25 @@ const {
 
     button.expand {
       @extend %btn-plain;
-      block-size: spacing(9);
-
-      inline-size: stretch;
       margin-block-end: spacing(-2);
       margin-inline: spacing(4);
 
       border-radius: $radius-lg;
 
+      block-size: spacing(9);
+      inline-size: stretch;
+
       .icon-wrapper {
-        display: flex;
+        display: block flex;
         position: relative;
         left: spacing(-2);
+
+        gap: spacing(2);
+
         align-items: center;
         justify-content: center;
 
         color: var(--primary);
-        gap: spacing(2);
 
         svg {
           block-size: spacing(7);

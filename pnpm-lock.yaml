@@ -65,6 +65,12 @@ importers:
       '@rollup/plugin-yaml':
         specifier: ^4.1.2
         version: 4.1.2(rollup@2.79.2)
+      '@stylelint-types/stylelint-order':
+        specifier: ^6.0.4
+        version: 6.0.4(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))
+      '@stylelint-types/stylelint-scss':
+        specifier: ^6.5.0
+        version: 6.5.0(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))
       '@swup/astro':
         specifier: ^1.5.0
         version: 1.5.0(ts-node@10.9.2(@types/node@22.13.10)(typescript@5.8.2))
@@ -224,6 +230,9 @@ importers:
       stylelint:
         specifier: ^16.15.0
         version: 16.15.0(typescript@5.8.2)
+      stylelint-config-concentric-order:
+        specifier: ^5.2.1
+        version: 5.2.1(stylelint@16.15.0(typescript@5.8.2))
       stylelint-config-html:
         specifier: ^1.1.0
         version: 1.1.0(postcss-html@1.8.0)(stylelint@16.15.0(typescript@5.8.2))
@@ -233,6 +242,9 @@ importers:
       stylelint-config-standard-scss:
         specifier: ^14.0.0
         version: 14.0.0(postcss@8.5.3)(stylelint@16.15.0(typescript@5.8.2))
+      stylelint-define-config:
+        specifier: ^16.15.0
+        version: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
       stylelint-order:
         specifier: ^6.0.4
         version: 6.0.4(stylelint@16.15.0(typescript@5.8.2))
@@ -2021,6 +2033,26 @@ packages:
     resolution: {integrity: sha512-X67V4cCgM0Sz50bP8GbVzmiL8DHC2IXvdKcsN7DlxHyf+/T4d9GveeGukwha5Fx3MuYeGZWKag7TFL2ZY4w54A==}
     engines: {node: '>=18.0.0'}
 
+  '@stylelint-types/stylelint-order@6.0.4':
+    resolution: {integrity: sha512-KiwDbjvlFYQm9O1onomzZRLaEZjWZusnXvnEDwFGwN4fs2sq7MwbL6VAVt3UtmsAVt0R20xKEGKbxk0ojzdMmA==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>=8.6.0'}
+    peerDependencies:
+      stylelint: '>=16.0.0'
+      stylelint-define-config: '>=1.0.0'
+    peerDependenciesMeta:
+      stylelint:
+        optional: true
+
+  '@stylelint-types/stylelint-scss@6.5.0':
+    resolution: {integrity: sha512-G0JjA520unkSYrPmINZQnnqCZbOCzV8BYf0ZLOW6aCy4LiNOAewrn1gx4jOXrZuXKQ8wyzHEJWSdP5pi2aOy7w==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>=8.6.0'}
+    peerDependencies:
+      stylelint: '>=16.0.0'
+      stylelint-define-config: '>=1.0.0'
+    peerDependenciesMeta:
+      stylelint:
+        optional: true
+
   '@stylistic/eslint-plugin@4.2.0':
     resolution: {integrity: sha512-8hXezgz7jexGHdo5WN6JBEIPHCSFyyU4vgbxevu4YLVS5vl+sxqAAGyXSzfNDyR6xMNSH5H1x67nsXcYMOHtZA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2934,6 +2966,9 @@ packages:
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+
+  csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
   data-view-buffer@1.0.2:
     resolution: {integrity: sha512-EmKO5V3OLXh1rtK2wgXRansaK1/mtVdTUEiEI0W8RkvgT05kfxaH29PliLnpLP73yYO6142Q72QNa8Wx/A5CqQ==}
@@ -6091,6 +6126,9 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
 
+  stylelint-config-concentric-order@5.2.1:
+    resolution: {integrity: sha512-nDB8vXwp5O8857+xJSBIYJ1I3ZysuUQ1Zxi/MzkZK8Lp/FYsrVBY8ygZ7Fly0WBr0r1W8vtUy+PKlN4Kfq4DLQ==}
+
   stylelint-config-html@1.1.0:
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
     engines: {node: ^12 || >=14}
@@ -6135,6 +6173,12 @@ packages:
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.1.0
+
+  stylelint-define-config@16.15.0:
+    resolution: {integrity: sha512-nzHX9ZpI/k4A7izGYPS79xLAf2HyGvYkk/UXMgsQ7ZQEvkOZpQt4Aca4Qn5DYqNmWnqNlW5E3wK+qUmdR3vdxg==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>=8.6.0'}
+    peerDependencies:
+      stylelint: '>=16.0.0'
 
   stylelint-order@6.0.4:
     resolution: {integrity: sha512-0UuKo4+s1hgQ/uAxlYU4h0o0HS4NiQDud0NAUNI0aa8FJdmYHA5ZZTFHiV5FpmE3071e9pZx5j0QpVJW5zOCUA==}
@@ -8853,6 +8897,18 @@ snapshots:
 
   '@slidev/types@0.47.5': {}
 
+  '@stylelint-types/stylelint-order@6.0.4(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))':
+    dependencies:
+      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
+    optionalDependencies:
+      stylelint: 16.15.0(typescript@5.8.2)
+
+  '@stylelint-types/stylelint-scss@6.5.0(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))':
+    dependencies:
+      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
+    optionalDependencies:
+      stylelint: 16.15.0(typescript@5.8.2)
+
   '@stylistic/eslint-plugin@4.2.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
       '@typescript-eslint/utils': 8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
@@ -10174,6 +10230,8 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
+
+  csstype@3.1.3: {}
 
   data-view-buffer@1.0.2:
     dependencies:
@@ -14135,6 +14193,12 @@ snapshots:
       postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
+  stylelint-config-concentric-order@5.2.1(stylelint@16.15.0(typescript@5.8.2)):
+    dependencies:
+      stylelint-order: 6.0.4(stylelint@16.15.0(typescript@5.8.2))
+    transitivePeerDependencies:
+      - stylelint
+
   stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.15.0(typescript@5.8.2)):
     dependencies:
       postcss-html: 1.8.0
@@ -14171,6 +14235,11 @@ snapshots:
     dependencies:
       stylelint: 16.15.0(typescript@5.8.2)
       stylelint-config-recommended: 14.0.1(stylelint@16.15.0(typescript@5.8.2))
+
+  stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)):
+    dependencies:
+      csstype: 3.1.3
+      stylelint: 16.15.0(typescript@5.8.2)
 
   stylelint-order@6.0.4(stylelint@16.15.0(typescript@5.8.2)):
     dependencies:

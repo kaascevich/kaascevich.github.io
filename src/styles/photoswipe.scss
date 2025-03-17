@@ -4,17 +4,20 @@
 
 // stylelint-disable-next-line selector-class-pattern
 .pswp__button {
-  display: flex !important;
+  display: block flex !important;
+
   align-items: center;
   justify-content: center;
-  block-size: spacing(12);
-  inline-size: spacing(12);
-  margin-inline-end: 0;
 
-  transition: $ease-in-out $transition-duration !important;
+  transition: ease-in-out $transition-duration !important;
   transition-property: $transition-properties;
 
+  margin-inline-end: 0;
+
   background-color: black(40%);
+
+  block-size: spacing(12);
+  inline-size: spacing(12);
 
   &:hover {
     background-color: black(50%);

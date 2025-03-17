@@ -25,30 +25,33 @@ const { icon, hideOnMobile = false } = Astro.props
   @use '$/styles/variants';
 
   .meta-item {
-    display: flex;
+    display: block flex;
+
     align-items: center;
 
     &.mobile-hidden {
       display: none;
 
       @include variants.md {
-        display: flex;
+        display: block flex;
       }
     }
 
     .meta-icon {
       @include transition;
-      display: flex;
+      display: block flex;
+
       align-items: center;
       justify-content: center;
-      block-size: spacing(8);
 
-      inline-size: spacing(8);
       margin-inline-end: spacing(2);
 
       border-radius: $radius-md;
 
       background-color: var(--btn-regular-bg);
+
+      block-size: spacing(8);
+      inline-size: spacing(8);
 
       color: var(--btn-content);
 

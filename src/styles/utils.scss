@@ -26,11 +26,15 @@
 }
 
 @function white($alpha) {
-  @return rgba(255, 255, 255, $alpha);
+  @return oklch(100% 0% none / $alpha);
 }
 
 @function black($alpha) {
-  @return rgba(0, 0, 0, $alpha);
+  @return oklch(0% 0% none / $alpha);
+}
+
+@function gray($lightness) {
+  @return oklch($lightness 0% none);
 }
 
 @function with-hue($lightness, $chroma) {
@@ -49,26 +53,27 @@
 
 @mixin font-size($font-size, $line-height: null) {
   @if $line-height {
-    font-size: $font-size;
     line-height: $line-height;
+
+    font-size: $font-size;
   } @else {
     /*
      * if there is no $line-height parameter, assume that $font-size is a
      * 2-element list (we do this so we can use a single variable to describe a
      * font size and a line height)
      */
-    font-size: list.nth($font-size, 1);
     line-height: list.nth($font-size, 2);
+
+    font-size: list.nth($font-size, 1);
   }
 }
 
 @mixin transition(
   $properties: $transition-properties,
-  $function: $ease-in-out,
-  $duration: $transition-duration,
-  $important: ''
+  $function: ease-in-out,
+  $duration: $transition-duration
 ) {
-  transition: $function $duration {
-    property: $properties;
-  }
+  transition-duration: $duration;
+  transition-property: $properties;
+  transition-timing-function: $function;
 }

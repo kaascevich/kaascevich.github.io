@@ -68,20 +68,22 @@ function getPageUrl<Page extends number>(page: Page) {
   @use '$/styles/variants';
 
   ol {
-    display: flex;
+    @include variants.dark {
+      color: gray(87%);
+    }
+    display: block flex;
+
     flex-direction: row;
+
     align-items: center;
 
     border-radius: $radius-lg;
 
     background-color: var(--card-bg);
 
-    color: $color-neutral-700;
-    font-weight: $font-weight-bold;
+    color: gray(37.1%);
 
-    @include variants.dark {
-      color: $color-neutral-300;
-    }
+    font-weight: $font-weight-bold;
   }
 
   .hidden-pages {
@@ -90,24 +92,24 @@ function getPageUrl<Page extends number>(page: Page) {
 
   .current-page,
   .other-page {
+    border-radius: $radius-lg;
+
     block-size: spacing(11);
     inline-size: spacing(11);
-
-    border-radius: $radius-lg;
   }
 
   .current-page {
-    display: flex;
+    @include variants.dark {
+      color: black(70%);
+    }
+    display: block flex;
+
     align-items: center;
     justify-content: center;
 
     background-color: var(--primary);
 
     color: white;
-
-    @include variants.dark {
-      color: black(70%);
-    }
   }
 
   .other-page {

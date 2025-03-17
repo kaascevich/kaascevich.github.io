@@ -16,7 +16,7 @@ const { config, title, pubDate, class: className } = Astro.props
 const postUrl = decodeURIComponent(Astro.url.toString())
 ---
 
-<div class:list={['license-wrapper', className]}>
+<div class:list={['license', className]}>
   <hgroup>
     <header>{title}</header>
     <a href={postUrl}>{postUrl}</a>
@@ -56,14 +56,17 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
-  .license-wrapper {
+  .license {
     @include transition;
 
     position: relative;
-    padding: spacing(5) spacing(6);
-    overflow: hidden;
 
     background-color: var(--license-block-bg);
+
+    padding-block: spacing(5);
+    padding-inline: spacing(6);
+
+    overflow: hidden;
 
     hgroup {
       header {
@@ -81,16 +84,13 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     }
 
     .details {
-      display: flex;
+      display: block flex;
+
       flex-direction: column;
+
       gap: spacing(3);
 
       margin-block-start: spacing(2);
-
-      @include variants.sm {
-        flex-direction: row;
-        gap: spacing(6);
-      }
 
       header {
         @include transition;
@@ -107,9 +107,14 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       .details-link {
         @extend %link;
-
-        color: var(--primary);
         white-space: nowrap;
+        color: var(--primary);
+      }
+
+      @include variants.sm {
+        flex-direction: row;
+
+        gap: spacing(6);
       }
     }
 
@@ -118,12 +123,13 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       @include text-plain(5%);
 
       position: absolute;
-      block-size: spacing(60);
-      inline-size: spacing(60);
       inset-block-end: 50%;
       inset-inline-end: 50%;
 
       translate: 50% 50%;
+
+      block-size: spacing(60);
+      inline-size: spacing(60);
 
       pointer-events: none;
 

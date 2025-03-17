@@ -37,17 +37,21 @@ const { headings } = Astro.props
   .outer-wrapper {
     display: none;
     position: absolute;
-    z-index: 0;
-    inline-size: 100%;
 
-    @include variants.xl2 {
-      display: block;
-    }
+    z-index: 0;
+
+    inline-size: 100%;
 
     .inner-wrapper {
       position: relative;
-      max-inline-size: var(--page-width);
+
       margin-inline: auto;
+
+      max-inline-size: var(--page-width);
+    }
+
+    @include variants.xl2 {
+      display: block flow;
     }
   }
 
@@ -60,10 +64,11 @@ const { headings } = Astro.props
     inset-inline-end: calc(var(--toc-width) * -1);
 
     align-items: center;
+
     inline-size: var(--toc-width);
 
     @include variants.lg {
-      display: block;
+      display: block flow;
     }
   }
 </style>

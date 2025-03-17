@@ -1,18 +1,18 @@
 ---
 import '@fontsource/monaspace-radon'
-
-interface Props {
-  class: string
-}
-const { class: className } = Astro.props
 ---
 
-<article class:list={['prose dark:prose-invert prose-base markdown', className]}>
+<article class="prose prose-base dark:prose-invert markdown">
   <slot />
 </div>
 
 <style lang="scss">
-  article {
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants';
+
+  article.markdown {
     max-inline-size: none !important;
   }
 </style>

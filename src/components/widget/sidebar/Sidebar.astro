@@ -3,15 +3,9 @@ import siteConfig from '$/config/site'
 import Profile from '$/components/widget/sidebar/profile/Profile.astro'
 import Tag from '$/components/widget/sidebar/Tags.astro'
 import Categories from '$/components/widget/sidebar/Categories.astro'
-
-interface Props {
-  class?: string
-}
-
-const { class: className } = Astro.props
 ---
 
-<aside id="sidebar" class={className}>
+<aside class="sidebar">
   <section class="profile">
     <Profile config={siteConfig.profile} />
   </section>
@@ -28,26 +22,33 @@ const { class: className } = Astro.props
   @use '$/styles/utils' as *;
   @use '$/styles/variants';
 
-  #sidebar {
+  aside.sidebar {
     inline-size: 100%;
+
+    animation-delay: 100ms;
   }
 
   section.profile {
-    display: flex;
+    display: block flex;
+
     flex-direction: column;
-    inline-size: 100%;
-    margin-block-end: spacing(4);
+
     gap: spacing(4);
+
+    margin-block-end: spacing(4);
+
+    inline-size: 100%;
   }
 
   section.sticky {
     @include transition($duration: 700ms);
 
-    display: flex;
+    display: block flex;
     position: sticky;
     inset-block-start: spacing(4);
 
     flex-direction: column;
+
     gap: spacing(4);
 
     :global(.categories, .tags) {

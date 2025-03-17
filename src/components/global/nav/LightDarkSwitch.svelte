@@ -92,16 +92,18 @@
 
   [role="menu"] {
     position: relative;
+
     z-index: 50;
 
     button#scheme-switch {
       @extend %btn-plain, %expand-animation;
 
       position: relative;
-      block-size: spacing(11);
-      inline-size: spacing(11);
 
       border-radius: $radius-lg;
+
+      block-size: spacing(11);
+      inline-size: spacing(11);
 
       &:active {
         scale: 90%;
@@ -122,18 +124,13 @@
     }
 
     #scheme-panel {
+      @include transition;
       display: none;
       position: absolute;
       inset-block-start: spacing(11);
       inset-inline-end: spacing(-2);
 
       padding-block-start: spacing(5);
-
-      @include transition;
-
-      @include variants.lg {
-        display: block;
-      }
 
       menu {
         @extend %card-base, %float-panel;
@@ -144,18 +141,23 @@
           @extend %btn-plain, %expand-animation;
           @include transition;
 
-          display: flex;
+          display: block flex;
+
           align-items: center;
           justify-content: flex-start !important;
-          block-size: spacing(9);
-          inline-size: 100%;
+
           margin-block-end: spacing(0.5);
-          padding-inline: spacing(3);
 
           border-radius: $radius-lg;
 
-          font-weight: $font-weight-medium;
+          padding-inline: spacing(3);
+
+          block-size: spacing(9);
+          inline-size: 100%;
+
           white-space: nowrap;
+
+          font-weight: $font-weight-medium;
 
           &:active {
             scale: 95%;
@@ -165,20 +167,27 @@
             color: var(--primary) !important;
 
             &::before {
-              content: '';
               scale: 100%;
 
               opacity: 100%;
+
               background-color: var(--btn-plain-bg-hover);
+
+              content: '';
             }
           }
 
           :global(svg) {
+            margin-inline-end: spacing(3);
+
             block-size: spacing(5);
             inline-size: spacing(5);
-            margin-inline-end: spacing(3);
           }
         }
+      }
+
+      @include variants.lg {
+        display: block flow;
       }
     }
   }

@@ -32,18 +32,20 @@ const { links } = Astro.props
   @use '$/styles/variants';
 
   ul {
-    display: flex;
-    justify-content: center;
+    display: block flex;
+
     gap: spacing(2);
+
+    justify-content: center;
 
     margin-block-end: spacing(1);
 
     a {
       @extend %btn-regular;
 
-      block-size: spacing(10);
-
       border-radius: $radius-lg;
+
+      block-size: spacing(10);
 
       svg {
         block-size: spacing(7);

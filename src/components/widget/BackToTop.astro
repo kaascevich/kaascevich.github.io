@@ -23,40 +23,46 @@ import { Icon } from 'astro-icon/components'
   div {
     display: none;
     position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
 
     block-size: spacing(15);
     inline-size: spacing(15);
 
     pointer-events: none;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-
-    @include variants.lg {
-      display: block;
-    }
 
     #back-to-top-btn {
       @extend %btn-card;
-      @include font-size($text-xl4);
 
       position: fixed;
-      block-size: spacing(15);
-      inline-size: spacing(15);
+      inset-block-end: spacing(40);
 
-      border-radius: $radius-xl2;
+      translate: spacing(20);
 
       opacity: 100%;
 
-      color: var(--primary);
-      font-weight: $font-weight-bold;
+      border-radius: $radius-xl2;
 
       cursor: pointer;
+
+      block-size: spacing(15);
+      inline-size: spacing(15);
+
+      color: var(--primary);
+
+      font-weight: $font-weight-bold;
+
       pointer-events: auto;
-      inset-block-end: spacing(40);
-      translate: spacing(20);
+
+      &:active {
+        scale: 90%;
+      }
 
       svg {
         margin-inline: auto;
+
+        block-size: spacing(8);
+        inline-size: spacing(8);
       }
 
       &.hide {
@@ -66,10 +72,10 @@ import { Icon } from 'astro-icon/components'
 
         pointer-events: none;
       }
+    }
 
-      &:active {
-        scale: 90%;
-      }
+    @include variants.lg {
+      display: block flow;
     }
   }
 

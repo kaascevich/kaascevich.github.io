@@ -56,34 +56,30 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
   article {
     @extend %card-base;
 
-    display: flex;
+    display: block flex;
     position: relative;
+
     flex-direction: column-reverse;
-    inline-size: 100%;
-    overflow: hidden;
 
     border-radius: $radius-xl2;
 
-    @include variants.md {
-      flex-direction: column;
-    }
+    inline-size: 100%;
+
+    overflow: hidden;
 
     // post separator
     &:not(:first-child)::after {
       @include transition;
 
-      content: '';
+      @include variants.dark {
+        border-block-start-color: white(15%);
+      }
 
       margin-inline: spacing(6);
 
-      border-block-start-width: 1px;
+      border-block-start: 1px dashed black(10%);
 
-      border-style: dashed;
-      border-color: black(10%);
-
-      @include variants.dark {
-        border-color: white(15%);
-      }
+      content: '';
 
       @include variants.md {
         display: none;
@@ -93,30 +89,10 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
     .info-wrapper {
       padding: spacing(6);
 
-      @include variants.md {
-        inline-size: calc(100% - var(--cover-width) - 12px);
-        padding-block-start: spacing(7);
-        padding-inline: spacing(9) spacing(2);
-      }
-
       h2 a {
         @include transition;
         @include font-size($text-xl3);
         @include text-plain(90%);
-
-        display: block;
-        inline-size: 100%;
-        margin-block-end: spacing(3);
-
-        font-weight: $font-weight-bold;
-
-        &:hover {
-          color: var(--primary);
-        }
-
-        &:active {
-          color: var(--title-active);
-        }
 
         @include variants.dark {
           &:hover {
@@ -128,34 +104,52 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           }
         }
 
-        &::before {
-          content: '';
+        display: block flow;
 
+        margin-block-end: spacing(3);
+
+        inline-size: 100%;
+
+        font-weight: $font-weight-bold;
+
+        &::before {
           display: none;
           position: absolute;
-          block-size: spacing(5);
-
-          inline-size: spacing(1);
+          inset-block-start: spacing(9);
+          inset-inline-start: spacing(4.5);
 
           border-radius: $radius-md;
 
           background-color: var(--primary);
-          inset-block-start: spacing(9);
-          inset-inline-start: spacing(4.5);
+
+          block-size: spacing(5);
+          inline-size: spacing(1);
+
+          content: '';
 
           @include variants.md {
-            display: block;
+            display: block flow;
           }
         }
 
+        &:hover {
+          color: var(--primary);
+        }
+
+        &:active {
+          color: var(--title-active);
+        }
+
         svg {
-          display: inline;
+          display: inline flow;
           position: absolute;
+
+          translate: 0;
+
           block-size: spacing(8);
           inline-size: spacing(8);
 
           color: var(--primary);
-          translate: 0;
 
           @include variants.md {
             @include transition;
@@ -184,12 +178,24 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         @include text-plain(75%);
 
         margin-block-end: spacing(3.5);
+
         padding-inline-end: spacing(4);
+      }
+
+      @include variants.md {
+        padding-block-start: spacing(7);
+        padding-inline: spacing(9) spacing(2);
+
+        inline-size: calc(100% - var(--cover-width) - 12px);
       }
     }
 
     footer {
       @include transition;
+    }
+
+    @include variants.md {
+      flex-direction: column;
     }
   }
 </style>

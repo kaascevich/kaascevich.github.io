@@ -62,21 +62,25 @@ const showUpdated =
   @use '$/styles/variants';
 
   .meta-items {
-    display: flex;
+    @include variants.dark {
+      color: gray(70.8%);
+    }
+    display: block flex;
+
     flex-wrap: wrap;
-    align-items: center;
+
     gap: spacing(2) spacing(4);
 
-    color: $color-neutral-500;
+    align-items: center;
 
-    @include variants.dark {
-      color: $color-neutral-400;
-    }
+    color: gray(55.6%);
   }
 
   ul {
-    display: flex;
+    display: block flex;
+
     flex-flow: row nowrap;
+
     align-items: center;
 
     white-space: nowrap;
@@ -86,10 +90,10 @@ const showUpdated =
     }
 
     li + li::before {
-      content: ' /';
-
-      color: var(--meta-divider);
       white-space: pre;
+      color: var(--meta-divider);
+
+      content: ' /';
     }
   }
 </style>

@@ -2,7 +2,7 @@
 import Footer from '$/components/global/Footer.astro'
 import Navbar from '$/components/global/nav/Navbar.astro'
 import BackToTop from '$/components/widget/BackToTop.astro'
-import SideBar from '$/components/widget/sidebar/Sidebar.astro'
+import Sidebar from '$/components/widget/sidebar/Sidebar.astro'
 import Layout from '$/layouts/Layout.astro'
 import siteConfig from '$/config/site'
 import type { MarkdownHeading } from 'astro'
@@ -54,7 +54,7 @@ const mainPanelTop =
           )
         }
 
-        <SideBar class="sidebar" />
+        <Sidebar />
 
         <main id="swup-container" class="transition-swup-fade">
           <div id="content-wrapper">
@@ -89,15 +89,14 @@ const mainPanelTop =
     position: relative;
 
     z-index: 50;
-    max-inline-size: var(--page-width);
+
     margin-inline: auto;
+
     padding-inline: 0;
 
-    pointer-events: none;
+    max-inline-size: var(--page-width);
 
-    @include variants.md {
-      padding-inline: spacing(4);
-    }
+    pointer-events: none;
 
     #navbar-wrapper {
       @include transition($properties: all);
@@ -106,34 +105,60 @@ const mainPanelTop =
 
       pointer-events: auto;
     }
+
+    @include variants.md {
+      padding-inline: spacing(4);
+    }
   }
 
   .main-outer-wrapper {
     position: absolute;
+
     z-index: 30;
+
     inline-size: 100%;
 
     pointer-events: none;
 
     .main-inner-wrapper {
       position: relative;
-      max-inline-size: var(--page-width);
+
       margin-inline: auto;
+
+      max-inline-size: var(--page-width);
 
       pointer-events: auto;
 
       #main-grid {
         @include transition($duration: 700ms);
-        display: grid;
+        display: block grid;
         inset-inline: 0;
 
-        grid-template-columns: spacing(70) auto;
         grid-template-rows: auto 1fr auto;
+        grid-template-columns: spacing(70) auto;
+
+        gap: spacing(4);
+
+        margin-inline: auto;
+
+        padding-inline: 0;
 
         inline-size: 100%;
-        margin-inline: auto;
-        padding-inline: 0;
-        gap: spacing(4);
+
+        :global(aside.sidebar) {
+          @extend %onload-animation;
+          grid-row: 2 / 3;
+          grid-column: span 2 / span 2;
+
+          margin-block-end: spacing(4);
+
+          @include variants.lg {
+            grid-row: 1 / 2;
+            grid-column: span 1 / span 1;
+
+            max-inline-size: spacing(70)l
+          }
+        }
 
         @include variants.md {
           padding-inline: spacing(4);
@@ -142,40 +167,26 @@ const mainPanelTop =
         @include variants.lg {
           grid-template-rows: auto;
         }
-
-        :global(.sidebar) {
-          @extend %onload-animation;
-          grid-column: span 2 / span 2;
-          grid-row: 2 / 3;
-
-          margin-block-end: spacing(4);
-
-          @include variants.lg {
-            grid-column: span 1 / span 1;
-            grid-row: 1 / 2;
-            max-inline-size: spacing(70)l
-          }
-        }
       }
     }
   }
 
   main {
     grid-column: span 2 / span 2;
+
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
     overflow: hidden;
-
-    outline: 2px solid transparent {
-      offset: 2px;
-    }
-
-    @include variants.lg {
-      grid-column: span 1 / span 1;
-    }
 
     #content-wrapper {
       @extend %onload-animation;
 
       animation-delay: var(--content-delay);
+    }
+
+    @include variants.lg {
+      grid-column: span 1 / span 1;
     }
   }
 
@@ -190,7 +201,7 @@ const mainPanelTop =
   .footer-desktop {
     @extend %footer;
 
-    display: block;
+    display: block flow;
 
     @include variants.lg {
       display: none;
@@ -203,7 +214,7 @@ const mainPanelTop =
     display: none;
 
     @include variants.lg {
-      display: block;
+      display: block flow;
     }
   }
 </style>

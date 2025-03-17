@@ -27,43 +27,46 @@ const { badge, url, label } = Astro.props
 
   button {
     @include transition($properties: all);
-    block-size: spacing(10);
 
-    inline-size: 100%;
-    padding-inline-start: spacing(2);
+    @include variants.dark {
+      color: gray(87%);
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
 
     border-radius: $radius-lg;
 
     background-image: none;
 
-    color: $color-neutral-700;
+    padding-inline-start: spacing(2);
+
+    block-size: spacing(10);
+    inline-size: 100%;
+
+    color: gray(37.1%);
 
     &:active {
       background-color: var(--btn-plain-bg-active);
     }
 
     &:hover {
-      padding-inline-start: spacing(3);
-
       background-color: var(--btn-plain-bg-hover);
 
+      padding-inline-start: spacing(3);
+
       color: var(--primary);
-    }
-
-    @include variants.dark {
-      color: $color-neutral-300;
-
-      &:hover {
-        color: var(--primary);
-      }
     }
   }
 
   .wrapper {
-    display: flex;
+    display: block flex;
     position: relative;
+
     align-items: center;
     justify-content: space-between;
+
     margin-inline-end: spacing(2);
   }
 
@@ -72,6 +75,7 @@ const { badge, url, label } = Astro.props
 
     text-align: start;
     text-overflow: ellipsis;
+
     white-space: nowrap;
   }
 
@@ -79,25 +83,30 @@ const { badge, url, label } = Astro.props
     @include transition;
     @include font-size($text-sm);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    block-size: spacing(7);
-    min-inline-size: spacing(8);
-    margin-inline-start: spacing(4);
-    padding-inline: spacing(2);
-
-    border-radius: $radius-lg;
-
-    background-color: oklch(95% 0.025 var(--hue));
-
-    color: var(--btn-content);
-    font-weight: $font-weight-bold;
-
     @include variants.dark {
       background-color: var(--primary);
 
       color: var(--deep-text);
     }
+
+    display: block flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-inline-start: spacing(4);
+
+    border-radius: $radius-lg;
+
+    background-color: oklch(95% 6.25% var(--hue));
+
+    padding-inline: spacing(2);
+
+    block-size: spacing(7);
+    min-inline-size: spacing(8);
+
+    color: var(--btn-content);
+
+    font-weight: $font-weight-bold;
   }
 </style>

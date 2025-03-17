@@ -36,26 +36,20 @@ const { entry, image, url } = Astro.props
   a {
     position: relative;
 
-    max-block-size: 20vh;
-    margin: spacing(4) spacing(4) spacing(-2);
-    overflow: hidden;
+    margin-block: spacing(4) spacing(-2);
+    margin-inline: spacing(4);
 
     border-radius: $radius-xl;
 
-    @include variants.md {
-      position: absolute;
-      max-block-size: none;
+    max-block-size: 20vh;
 
-      inline-size: var(--cover-width);
-      margin: 0;
-      inset-block: spacing(3);
-      inset-inline-end: spacing(3);
-    }
+    overflow: hidden;
 
     &:hover {
       .icon-wrapper :global(svg) {
-        opacity: 100%;
         scale: 100%;
+
+        opacity: 100%;
       }
 
       :global(.image) {
@@ -72,12 +66,14 @@ const { entry, image, url } = Astro.props
     }
 
     .icon-wrapper {
-      display: flex;
-
+      display: block flex;
       position: absolute;
-      z-index: 20;
+
       align-items: center;
       justify-content: center;
+
+      z-index: 20;
+
       block-size: 100%;
       inline-size: 100%;
 
@@ -85,14 +81,14 @@ const { entry, image, url } = Astro.props
 
       :global(svg) {
         @include transition;
-        block-size: spacing(12);
-
-        inline-size: spacing(12);
+        scale: 50%;
 
         opacity: 0%;
 
+        block-size: spacing(12);
+        inline-size: spacing(12);
+
         color: white;
-        scale: 50%;
       }
     }
 
@@ -100,6 +96,17 @@ const { entry, image, url } = Astro.props
       @include transition;
       block-size: 100%;
       inline-size: 100%;
+    }
+
+    @include variants.md {
+      position: absolute;
+      inset-block: spacing(3);
+      inset-inline-end: spacing(3);
+
+      margin: 0;
+
+      max-block-size: none;
+      inline-size: var(--cover-width);
     }
   }
 </style>

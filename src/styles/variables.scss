@@ -3,63 +3,63 @@
 
 $rainbow-light: linear-gradient(
   to right in oklch longer hue,
-  oklch(80% 0.1 0deg),
-  oklch(80% 0.1 359deg)
+  oklch(80% 25% 0deg),
+  oklch(80% 25% 359deg)
 );
 $rainbow-dark: linear-gradient(
   to right in oklch longer hue,
-  oklch(70% 0.1 0deg),
-  oklch(70% 0.1 359deg)
+  oklch(70% 25% 0deg),
+  oklch(70% 25% 359deg)
 );
 $variables: (
-  --primary: with-hue(70%, 0.14) with-hue(75%, 0.14),
-  --page-bg: with-hue(95%, 0.01) with-hue(16%, 0.014),
-  --card-bg: white with-hue(23%, 0.015),
+  --primary: with-hue(70%, 35%) with-hue(75%, 35%),
+  --page-bg: with-hue(95%, 2.5%) with-hue(16%, 3.5%),
+  --card-bg: white with-hue(23%, 3.75%),
   //
-  --btn-content: with-hue(55%, 0.12) with-hue(75%, 0.1),
+  --btn-content: with-hue(55%, 30%) with-hue(75%, 25%),
   //
-  --btn-regular-bg: with-hue(95%, 0.025) with-hue(33%, 0.035),
-  --btn-regular-bg-hover: with-hue(90%, 0.05) with-hue(38%, 0.04),
-  --btn-regular-bg-active: with-hue(85%, 0.08) with-hue(43%, 0.045),
+  --btn-regular-bg: with-hue(95%, 6.25%) with-hue(33%, 8.75%),
+  --btn-regular-bg-hover: with-hue(90%, 12.5%) with-hue(38%, 10%),
+  --btn-regular-bg-active: with-hue(85%, 20%) with-hue(43%, 11.25%),
   //
-  --btn-plain-bg-hover: with-hue(95%, 0.025) with-hue(30%, 0.035),
-  --btn-plain-bg-active: with-hue(98%, 0.01) with-hue(27%, 0.025),
+  --btn-plain-bg-hover: with-hue(95%, 6.25%) with-hue(30%, 8.75%),
+  --btn-plain-bg-active: with-hue(98%, 2.5%) with-hue(27%, 6.25%),
   //
-  --btn-card-bg-hover: with-hue(98%, 0.005) with-hue(30%, 0.03),
-  --btn-card-bg-active: with-hue(90%, 0.03) with-hue(35%, 0.035),
+  --btn-card-bg-hover: with-hue(98%, 1.25%) with-hue(30%, 7.5%),
+  --btn-card-bg-active: with-hue(90%, 7.5%) with-hue(35%, 8.75%),
   //
   --enter-btn-bg: var(--btn-regular-bg),
   --enter-btn-bg-hover: var(--btn-regular-bg-hover),
   --enter-btn-bg-active: var(--btn-regular-bg-active),
   //
-  --deep-text: with-hue(25%, 0.02),
+  --deep-text: with-hue(25%, 5%),
   //
-  --title-active: with-hue(60%, 0.1),
+  --title-active: with-hue(60%, 25%),
   //
   --line-divider: black(20%) white(20%),
   //
   --line-color: black(10%) white(10%),
   --meta-divider: black(20%) white(20%),
   //
-  --caret-color: with-hue(75%, 0.08) with-hue(70%, 0.08),
+  --caret-color: with-hue(75%, 20%) with-hue(70%, 20%),
   //
   --inline-code-bg: var(--btn-regular-bg),
   --inline-code-color: var(--btn-content),
-  --selection-bg: with-hue(90%, 0.05) with-hue(70%, 0.08),
-  --codeblock-selection: with-hue(40%, 0.08),
-  --codeblock-bg: black(3%) with-hue(17%, 0.015),
+  --selection-bg: with-hue(90%, 12.5%) with-hue(70%, 20%),
+  --codeblock-selection: with-hue(40%, 20%),
+  --codeblock-bg: black(3%) with-hue(17%, 3.75%),
   --line-number: black(25%) white(25%),
   //
   --license-block-bg: var(--codeblock-bg),
   //
-  --profile-gradient-top: with-hue(70%, 0.14) with-hue(75%, 0.14),
-  --profile-gradient-bottom: with-hue(50%, 0.14) with-hue(55%, 0.14),
+  --profile-gradient-top: with-hue(70%, 35%) with-hue(75%, 35%),
+  --profile-gradient-bottom: with-hue(50%, 35%) with-hue(55%, 35%),
   //
-  --link-underline: with-hue(93%, 0.04) with-hue(40%, 0.08),
-  --link-hover: with-hue(95%, 0.025) with-hue(40%, 0.08),
-  --link-active: with-hue(90%, 0.05) with-hue(35%, 0.07),
+  --link-underline: with-hue(93%, 10%) with-hue(40%, 20%),
+  --link-hover: with-hue(95%, 6.25%) with-hue(40%, 20%),
+  --link-active: with-hue(90%, 12.5%) with-hue(35%, 17.5%),
   //
-  --float-panel-bg: white with-hue(19%, 0.015),
+  --float-panel-bg: white with-hue(19%, 3.75%),
   //
   --scrollbar-bg-light: black(40%),
   --scrollbar-bg-hover-light: black(50%),
@@ -80,17 +80,17 @@ $variables: (
   --display-light-icon: 1 0,
   --display-dark-icon: 0 1,
   //
-  --admonitions-color-tip: oklch(70% 0.14 180deg) oklch(75% 0.14 180deg),
-  --admonitions-color-note: oklch(70% 0.14 250deg) oklch(75% 0.14 250deg),
-  --admonitions-color-important: oklch(70% 0.14 310deg) oklch(75% 0.14 310deg),
-  --admonitions-color-warning: oklch(70% 0.14 60deg) oklch(75% 0.14 60deg),
-  --admonitions-color-caution: oklch(60% 0.2 25deg) oklch(65% 0.2 25deg),
+  --admonitions-color-tip: oklch(70% 35% 180deg) oklch(75% 35% 180deg),
+  --admonitions-color-note: oklch(70% 35% 250deg) oklch(75% 35% 250deg),
+  --admonitions-color-important: oklch(70% 35% 310deg) oklch(75% 35% 310deg),
+  --admonitions-color-warning: oklch(70% 35% 60deg) oklch(75% 35% 60deg),
+  --admonitions-color-caution: oklch(60% 50% 25deg) oklch(65% 50% 25deg),
   //
-  --toc-badge-bg: with-hue(90%, 0.045) var(--btn-regular-bg),
-  --toc-btn-hover: with-hue(92%, 0.015) with-hue(22%, 0.02),
-  --toc-btn-active: with-hue(90%, 0.015) with-hue(25%, 0.02),
+  --toc-badge-bg: with-hue(90%, 11.25%) var(--btn-regular-bg),
+  --toc-btn-hover: with-hue(92%, 3.75%) with-hue(22%, 5%),
+  --toc-btn-active: with-hue(90%, 3.75%) with-hue(25%, 5%),
   --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem),
-  --toc-item-active: with-hue(70%, 0.13) with-hue(35%, 0.07),
+  --toc-item-active: with-hue(70%, 32.5%) with-hue(35%, 17.5%),
 );
 
 :root {

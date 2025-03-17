@@ -30,32 +30,18 @@
     @include transition;
     @include font-size($text-lg);
 
-    display: block;
-    padding: spacing(2) spacing(3);
+    display: block flow;
 
     border-radius: $radius-xl;
+
+    padding-block: spacing(2);
+    padding-inline: spacing(3);
 
     &:first-of-type {
       margin-block-start: spacing(2);
 
       @include variants.lg {
         margin-block-start: 0;
-      }
-    }
-
-    header {
-      @include transition;
-      @include text-plain(90%);
-
-      display: inline flex;
-
-      font-weight: $font-weight-bold;
-
-      :global(svg) {
-        @include transition;
-        margin-block: auto;
-
-        color: var(--primary);
       }
     }
 
@@ -69,6 +55,25 @@
 
     &:active {
       background-color: var(--btn-plain-bg-active);
+    }
+
+    header {
+      @include transition;
+      @include text-plain(90%);
+
+      display: inline flex;
+
+      font-weight: $font-weight-bold;
+
+      :global(svg) {
+        @include transition;
+
+        translate: spacing(1);
+
+        margin-block: auto;
+
+        color: var(--primary);
+      }
     }
 
     .excerpt {

@@ -105,36 +105,27 @@
     inset-block-start: spacing(20);
     inset-inline: spacing(4);
 
-    padding: spacing(2);
-
     border-radius: $radius-xl2;
 
     box-shadow: $shadow-xl2;
 
-    @include variants.md {
-      inset-inline-start: unset;
-
-      inline-size: spacing(120);
-    }
+    padding: spacing(2);
 
     :global(mark) {
       background-color: transparent;
 
       color: var(--primary);
     }
+
+    @include variants.md {
+      inset-inline-start: unset;
+
+      inline-size: spacing(120);
+    }
   }
 
   search {
     @include transition($properties: all);
-
-    align-items: center;
-    block-size: spacing(11);
-
-    background-color: black(4%);
-
-    &:hover, &:focus-within {
-      background-color: black(6%);
-    }
 
     @include variants.dark {
       background-color: white(5%);
@@ -144,14 +135,27 @@
       }
     }
 
+    align-items: center;
+
+    background-color: black(4%);
+
+    block-size: spacing(11);
+
+    &:hover, &:focus-within {
+      background-color: black(6%);
+    }
+
     :global(svg) {
       @include transition;
       @include text-plain(30%);
 
       position: absolute;
+
+      margin-block: auto;
+      margin-inline: spacing(3);
+
       block-size: spacing(5);
       inline-size: spacing(5);
-      margin: auto spacing(3);
 
       pointer-events: none;
     }
@@ -161,11 +165,11 @@
       @include text-plain(50%);
       @include font-size($text-sm);
 
-      padding-inline-start: spacing(10);
-
       outline-width: 0;
 
       background-color: transparent;
+
+      padding-inline-start: spacing(10);
     }
   }
 
@@ -173,13 +177,10 @@
 
   #search-bar {
     display: none;
+
     margin-inline-end: spacing(2);
 
     border-radius: $radius-lg;
-
-    @include variants.lg {
-      display: flex;
-    }
 
     input {
       @include transition($properties: all);
@@ -191,45 +192,50 @@
         inline-size: spacing(60);
       }
     }
+
+    @include variants.lg {
+      display: block flex;
+    }
   }
 
   // MARK: Mobile
 
   #search-switch {
     @extend %btn-plain, %expand-animation;
-    block-size: spacing(11);
-    inline-size: spacing(11);
 
     border-radius: $radius-lg;
 
+    block-size: spacing(11);
+    inline-size: spacing(11);
+
     &:active {
       scale: 90%;
-    }
-
-    @include variants.lg {
-      display: none !important;
     }
 
     :global(svg) {
       block-size: spacing(5);
       inline-size: spacing(5);
     }
+
+    @include variants.lg {
+      display: none !important;
+    }
   }
 
   #search-bar-inside {
-    display: flex;
+    display: block flex;
     position: relative;
 
     border-radius: $radius-xl;
-
-    @include variants.lg {
-      display: none;
-    }
 
     /* stylelint-disable-next-line no-descending-specificity */
     input {
       position: absolute;
       inset: 0;
+    }
+
+    @include variants.lg {
+      display: none;
     }
   }
 </style>

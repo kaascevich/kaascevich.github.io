@@ -40,7 +40,7 @@ if (typeof description !== 'string') {
 <MainGridLayout {title} {description}>
   <div class="outer-wrapper">
     <div class="inner-wrapper">
-      <Markdown class="markdown">
+      <Markdown>
         <slot />
       </Markdown>
     </div>
@@ -54,13 +54,15 @@ if (typeof description !== 'string') {
   @use '$/styles/variants';
 
   .outer-wrapper {
-    display: flex;
+    display: block flex;
     position: relative;
-    min-block-size: spacing(32);
-    inline-size: 100%;
-    overflow: hidden;
 
     border-radius: $radius-xl2;
+
+    min-block-size: spacing(32);
+    inline-size: 100%;
+
+    overflow: hidden;
 
     .inner-wrapper {
       @extend %card-base;
@@ -68,10 +70,13 @@ if (typeof description !== 'string') {
       position: relative;
 
       z-index: 10;
-      inline-size: 100%;
-      padding: spacing(6) spacing(9);
 
-      :global(.markdown) {
+      padding-block: spacing(6);
+      padding-inline: spacing(9);
+
+      inline-size: 100%;
+
+      :global(article.markdown) {
         margin-block-start: spacing(2);
       }
     }

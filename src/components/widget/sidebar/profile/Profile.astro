@@ -39,28 +39,31 @@ const { config } = Astro.props
         @include transition;
         @include font-size($text-xl);
 
+        @include variants.dark {
+          color: gray(98.5%);
+        }
+
         margin-block-end: spacing(1);
 
-        font-weight: $font-weight-bold;
         text-align: center;
 
-        @include variants.dark {
-          color: $color-neutral-50;
-        }
+        font-weight: $font-weight-bold;
       }
 
       hr {
         @include transition;
-        block-size: spacing(1);
 
-        inline-size: spacing(10);
-
-        margin: spacing(2) auto;
+        margin-block: spacing(2);
+        margin-inline: auto;
 
         border-style: none;
+
         border-radius: 9999px;
 
         background-color: var(--primary);
+
+        block-size: spacing(1);
+        inline-size: spacing(10);
       }
 
       .bio {
@@ -68,8 +71,9 @@ const { config } = Astro.props
 
         margin-block-end: spacing(2.5);
 
-        color: $color-neutral-400;
         text-align: center;
+
+        color: gray(70.8%);
       }
     }
   }

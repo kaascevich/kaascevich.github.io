@@ -1,8 +1,0 @@
-@use 'sass:list';
-
-$duration: 150ms;
-$colors:
-  color, background-color, border-color, text-decoration-color, fill, stroke,
-  filter, backdrop-filter, opacity, shadow;
-$transform: transform, scale, translate, rotate;
-$properties: list.join($colors, $transform);

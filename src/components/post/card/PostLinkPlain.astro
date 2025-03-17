@@ -38,23 +38,21 @@ const { title } = entry.data
 
     align-items: center;
     justify-content: center;
-    inline-size: spacing(13);
 
     border-radius: $radius-xl;
 
     background-color: var(--enter-btn-bg);
 
-    @include variants.md {
-      display: flex !important;
-    }
+    inline-size: spacing(13);
 
     &:hover {
       background-color: var(--enter-btn-bg-hover);
     }
 
     &:active {
-      background-color: var(--enter-btn-bg-active);
       scale: 95%;
+
+      background-color: var(--enter-btn-bg-active);
     }
 
     :global(svg) {
@@ -62,6 +60,10 @@ const { title } = entry.data
       margin-inline: auto;
 
       color: var(--primary);
+    }
+
+    @include variants.md {
+      display: block flex !important;
     }
   }
 </style>

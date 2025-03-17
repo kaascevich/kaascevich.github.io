@@ -23,11 +23,11 @@ import siteConfig from '$/config/site'
   @use '$/styles/variants';
 
   .avatar {
-    display: block;
+    display: block flow;
     position: relative;
-    max-inline-size: spacing(48);
-    margin: spacing(1) auto spacing(3);
-    overflow: hidden;
+
+    margin-block: spacing(1) spacing(3);
+    margin-inline: auto;
 
     border-radius: $radius-xl;
 
@@ -37,32 +37,9 @@ import siteConfig from '$/config/site'
       alpha(var(--profile-gradient-bottom), 20%)
     );
 
-    .icon-wrapper {
-      @include transition;
+    max-inline-size: spacing(48);
 
-      display: flex;
-
-      position: absolute;
-      z-index: 50;
-      align-items: center;
-      justify-content: center;
-      block-size: 100%;
-      inline-size: 100%;
-
-      pointer-events: none;
-
-      svg {
-        @include transition;
-        block-size: spacing(12);
-
-        inline-size: spacing(12);
-
-        opacity: 0%;
-
-        color: white;
-        scale: 90%;
-      }
-    }
+    overflow: hidden;
 
     &:active {
       scale: 95%;
@@ -82,21 +59,53 @@ import siteConfig from '$/config/site'
       }
     }
 
-    img {
+    .icon-wrapper {
+      @include transition;
+
+      display: block flex;
+      position: absolute;
+
+      align-items: center;
+      justify-content: center;
+
+      z-index: 50;
+
       block-size: 100%;
+      inline-size: 100%;
+
+      pointer-events: none;
+
+      svg {
+        @include transition;
+        scale: 90%;
+
+        opacity: 0%;
+
+        block-size: spacing(12);
+        inline-size: spacing(12);
+
+        color: white;
+      }
+    }
+
+    img {
       margin-inline: auto;
+
+      block-size: 100%;
     }
   }
 
   @include variants.lg {
     .avatar {
-      max-inline-size: none;
       margin-block-start: 0;
       margin-inline: 0;
 
+      max-inline-size: none;
+
       img {
-        inline-size: 100%;
         margin-block-start: 0;
+
+        inline-size: 100%;
       }
     }
   }

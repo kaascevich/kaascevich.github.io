@@ -26,28 +26,33 @@ const { text, icon } = Astro.props
   .meta-item {
     @include text-plain(40%);
 
-    display: flex;
+    display: block flex;
+
     flex-direction: row;
+
     align-items: center;
 
     .icon-wrapper {
       @include transition;
       @include text-plain(50%);
 
-      display: flex;
+      @include variants.dark {
+        background-color: white(10%);
+      }
+
+      display: block flex;
+
       align-items: center;
       justify-content: center;
-      block-size: spacing(6);
-      inline-size: spacing(6);
+
       margin-inline-end: spacing(2);
 
       border-radius: $radius-md;
 
       background-color: black(5%);
 
-      @include variants.dark {
-        background-color: white(10%);
-      }
+      block-size: spacing(6);
+      inline-size: spacing(6);
     }
 
     .text {

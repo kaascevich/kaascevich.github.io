@@ -40,20 +40,26 @@ const nextEntry = allPosts[index + 1]
   @use '$/styles/variants';
 
   nav {
-    display: flex;
+    display: block flex;
+
     flex-direction: column;
-    justify-content: space-between;
-    inline-size: 100%;
-    margin-block-end: spacing(4);
-    overflow: hidden;
+
     gap: spacing(4);
 
-    @include variants.md {
-      flex-direction: row;
-    }
+    justify-content: space-between;
+
+    margin-block-end: spacing(4);
+
+    inline-size: 100%;
+
+    overflow: hidden;
 
     .spacer {
       visibility: hidden;
+    }
+
+    @include variants.md {
+      flex-direction: row;
     }
   }
 </style>

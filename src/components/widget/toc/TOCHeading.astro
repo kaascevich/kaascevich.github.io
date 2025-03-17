@@ -25,14 +25,17 @@ const { id, text, depth, h1Index } = Astro.props
 
   a {
     @include transition;
-    display: flex;
+    display: block flex;
     position: relative;
-    min-block-size: spacing(9);
-    inline-size: 100%;
-    padding: spacing(2);
+
+    gap: spacing(2);
 
     border-radius: $radius-xl;
-    gap: spacing(2);
+
+    padding: spacing(2);
+
+    min-block-size: spacing(9);
+    inline-size: 100%;
 
     &:hover {
       background-color: var(--toc-btn-hover);
@@ -46,14 +49,17 @@ const { id, text, depth, h1Index } = Astro.props
       @include transition;
       @include font-size($text-xs);
 
-      display: flex;
+      display: block flex;
+
       flex-shrink: 0;
+
       align-items: center;
       justify-content: center;
-      block-size: spacing(5);
-      inline-size: spacing(5);
 
       border-radius: $radius-lg;
+
+      block-size: spacing(5);
+      inline-size: spacing(5);
 
       font-weight: $font-weight-bold;
     }
@@ -77,12 +83,12 @@ const { id, text, depth, h1Index } = Astro.props
         margin-inline-start: spacing(4);
 
         .dot {
-          block-size: spacing(2);
-          inline-size: spacing(2);
-
           border-radius: spacing(0.75);
 
           background-color: var(--toc-badge-bg);
+
+          block-size: spacing(2);
+          inline-size: spacing(2);
         }
       }
     }

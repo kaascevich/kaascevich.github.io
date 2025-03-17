@@ -59,22 +59,24 @@
 </div>
 
 <style lang='scss'>
-  @use "sass:math";
   @use "../../../styles/main";
   @use "../../../styles/theme" as *;
   @use "../../../styles/utils" as *;
   @use "../../../styles/variants";
 
   @mixin slider-thumb {
-    block-size: spacing(4);
-    inline-size: spacing(2);
+    appearance: none;
 
     border-width: 0;
+
     border-radius: $radius-sm;
 
-    background-color: white(70%);
     box-shadow: $shadow-none;
-    appearance: none;
+
+    background-color: white(70%);
+
+    block-size: spacing(4);
+    inline-size: spacing(2);
 
     &:hover {
       background-color: white(80%);
@@ -87,10 +89,11 @@
 
   #color-settings-switch {
     @extend %btn-plain, %expand-animation;
-    block-size: spacing(11);
-    inline-size: spacing(11);
 
     border-radius: $radius-lg;
+
+    block-size: spacing(11);
+    inline-size: spacing(11);
 
     &:active {
       scale: 90%;
@@ -109,55 +112,64 @@
     position: absolute;
     inset-inline-end: spacing(4);
 
-    inline-size: spacing(80);
     padding: spacing(4);
 
+    inline-size: spacing(80);
+
     header {
-      display: flex;
+      display: block flex;
+
       flex-direction: row;
+
+      gap: spacing(2);
+
       align-items: center;
       justify-content: space-between;
+
       margin-block-end: spacing(3);
-      gap: spacing(2);
 
       .title {
         @include transition;
         @include font-size($text-lg);
 
-        display: flex;
-        position: relative;
-        margin-inline-start: spacing(3);
-
-        color: $color-neutral-900;
-        font-weight: $font-weight-bold;
-        gap: spacing(2);
-
         @include variants.dark {
-          color: $color-neutral-100;
+          color: gray(97%);
         }
 
+        display: block flex;
+        position: relative;
+
+        gap: spacing(2);
+
+        margin-inline-start: spacing(3);
+
+        color: gray(20.5%);
+
+        font-weight: $font-weight-bold;
+
         &::before {
-          content: "";
-
           position: absolute;
-          block-size: spacing(4);
-
-          inline-size: spacing(1);
+          inset-block-start: calc(1rem / 3);
+          inset-inline-start: spacing(-3);
 
           border-radius: $radius-md;
 
           background-color: var(--primary);
-          inset-block-start: math.div(1rem, 3);
-          inset-inline-start: spacing(-3);
+
+          block-size: spacing(4);
+          inline-size: spacing(1);
+
+          content: "";
         }
       }
 
       button.reset {
         @extend %btn-regular;
-        block-size: spacing(7);
-        inline-size: spacing(7);
 
         border-radius: $radius-md;
+
+        block-size: spacing(7);
+        inline-size: spacing(7);
 
         &:active {
           scale: 90%;
@@ -179,45 +191,49 @@
         @include transition;
         @include font-size($text-sm);
 
-        display: flex;
+        display: block flex;
+
         align-items: center;
         justify-content: center;
-        block-size: spacing(7);
-        inline-size: spacing(12);
 
         border-radius: $radius-md;
 
         background-color: var(--btn-regular-bg);
 
+        block-size: spacing(7);
+        inline-size: spacing(12);
+
         color: var(--btn-content);
+
         font-weight: $font-weight-bold;
       }
     }
 
     .hue-slider-wrapper {
-      block-size: spacing(6);
-      inline-size: 100%;
-      padding-inline: spacing(1);
+      @include variants.dark {
+        background-color: oklch(70% 25% 0deg);
+      }
 
       border-radius: $radius-sm;
 
-      background-color: oklch(80% 0.1 0deg);
+      background-color: oklch(80% 25% 0deg);
+
+      padding-inline: spacing(1);
+
+      block-size: spacing(6);
+      inline-size: 100%;
 
       user-select: none;
 
-      @include variants.dark {
-        background-color: oklch(70% 0.1 0deg);
-      }
-
       input[type="range"] {
         @include transition($properties: background-image);
-        block-size: spacing(6);
 
-        inline-size: 100%;
+        appearance: none;
 
         background-image: var(--color-selection-bar);
 
-        appearance: none;
+        block-size: spacing(6);
+        inline-size: 100%;
 
         &::-webkit-slider-thumb {
           @include slider-thumb;
