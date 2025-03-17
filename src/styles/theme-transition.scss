@@ -1,0 +1,30 @@
+@use '$/styles/theme' as *;
+
+:root::view-transition-group(*) {
+  animation-duration: 400ms;
+  animation-timing-function: $transition-function
+}
+
+:root::view-transition-new(*) {
+  animation-name: view-transition-fade-in;
+}
+
+// @keyframes mix-blend-mode-plus-lighter {
+//   from {
+//     mix-blend-mode: plus-lighter;
+//   }
+
+//   to {
+//     mix-blend-mode: plus-lighter;
+//   }
+// }
+
+@keyframes view-transition-fade-in {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}

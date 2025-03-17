@@ -80,8 +80,6 @@ const { links } = Astro.props
     padding: spacing(2);
 
     a {
-      @include transition;
-
       display: block flex;
 
       gap: spacing(8);
@@ -107,15 +105,12 @@ const { links } = Astro.props
       }
 
       header {
-        @include transition;
         @include text-plain(75%);
 
         font-weight: $font-weight-bold;
       }
 
       %link-icon {
-        @include transition;
-
         block-size: spacing(5);
         inline-size: spacing(5);
       }

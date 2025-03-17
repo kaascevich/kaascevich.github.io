@@ -37,9 +37,13 @@ export function setColorScheme(colorScheme: ColorScheme) {
 
 export function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.dataset.colorScheme
-    = colorScheme === 'auto'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-      : colorScheme
+    = getComputedColorScheme(colorScheme)
+}
+
+export function getComputedColorScheme(colorScheme: ColorScheme) {
+  return colorScheme === 'auto'
+    ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+    : colorScheme
 }

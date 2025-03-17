@@ -52,12 +52,7 @@ const {
     padding-block-end: spacing(4);
 
     header {
-      @include transition;
       @include font-size($text-lg);
-
-      @include variants.dark {
-        color: gray(97%);
-      }
 
       position: relative;
 
@@ -81,6 +76,10 @@ const {
         inline-size: spacing(1);
 
         content: '';
+      }
+
+      @include variants.dark {
+        color: gray(97%);
       }
     }
 

@@ -106,8 +106,6 @@
   @use "../../styles/variants";
 
   a {
-    @include transition;
-
     display: block flow;
     position: relative;
 
@@ -344,9 +342,5 @@
     100% {
       opacity: 15%;
     }
-  }
-
-  a, .description, header, footer {
-    @include transition;
   }
 </style>

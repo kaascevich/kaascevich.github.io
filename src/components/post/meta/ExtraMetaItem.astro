@@ -33,12 +33,7 @@ const { text, icon } = Astro.props
     align-items: center;
 
     .icon-wrapper {
-      @include transition;
       @include text-plain(50%);
-
-      @include variants.dark {
-        background-color: white(10%);
-      }
 
       display: block flex;
 
@@ -53,6 +48,10 @@ const { text, icon } = Astro.props
 
       block-size: spacing(6);
       inline-size: spacing(6);
+
+      @include variants.dark {
+        background-color: white(10%);
+      }
     }
 
     .text {

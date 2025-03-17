@@ -6,17 +6,18 @@
   import {
     applyColorScheme,
     getColorScheme,
+    getComputedColorScheme,
     setColorScheme,
   } from '$/utils/settings'
   import Icon from '@iconify/svelte'
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
 
-  let mode: ColorScheme = $state('auto')
+  let currentScheme: ColorScheme = $state('auto')
 
   onMount(() => {
-    mode = getColorScheme()
+    currentScheme = getColorScheme()
     const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)')
-    const updateColorScheme = () => applyColorScheme(mode)
+    const updateColorScheme = () => applyColorScheme(currentScheme)
 
     darkModePreference.addEventListener('change', updateColorScheme)
     return () => {
@@ -24,13 +25,28 @@
     }
   })
 
-  function switchScheme(newMode: ColorScheme) {
-    mode = newMode
-    setColorScheme(newMode)
+  function switchScheme(newScheme: ColorScheme) {
+    const oldScheme = currentScheme
+    currentScheme = newScheme
+
+    if (getComputedColorScheme(newScheme) === getComputedColorScheme(oldScheme)) {
+      return // skip the transition if nothing's changed
+    }
+
+    if (!document.startViewTransition) {
+      // fallback if we don't support view transitions
+      setColorScheme(newScheme)
+      return
+    }
+
+    setTimeout(() => document.startViewTransition(async () => {
+      await tick()
+      setColorScheme(newScheme)
+    }), 0)
   }
 
   function toggleScheme() {
-    const currentIndex = colorSchemes.findIndex((m) => m === mode)
+    const currentIndex = colorSchemes.findIndex((m) => m === currentScheme)
     const nextIndex = (currentIndex + 1) % colorSchemes.length
     const nextScheme = colorSchemes[nextIndex]!
     switchScheme(nextScheme)
@@ -63,7 +79,7 @@
     onmouseenter={showPanel}
   >
     {#each icons as [colorScheme, icon]}
-      <div class={{ inactive: mode !== colorScheme }}>
+      <div class={{ inactive: currentScheme !== colorScheme }}>
         <Icon {icon} />
       </div>
     {/each}
@@ -73,7 +89,7 @@
     <menu>
       {#each icons as [colorScheme, icon]}
         <button
-          class={{ 'current-scheme-btn': mode === colorScheme }}
+          class={{ 'current-scheme-btn': currentScheme === colorScheme }}
           onclick={() => switchScheme(colorScheme)}
         >
           <Icon {icon} />

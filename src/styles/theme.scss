@@ -57,6 +57,7 @@ $text-xl3: (1.875rem, calc(6 / 5)); // 1.2
 $text-xl4: (2rem, calc(11 / 9)); // 1.22222
 
 // MARK: Transitions
+$transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 $transition-duration: 150ms;
 $transition-colors:
   color, background-color, border-color, text-decoration-color, fill, stroke,

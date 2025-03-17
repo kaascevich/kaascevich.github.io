@@ -57,8 +57,6 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   @use '$/styles/variants';
 
   .license {
-    @include transition;
-
     position: relative;
 
     background-color: var(--license-block-bg);
@@ -70,7 +68,6 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     hgroup {
       header {
-        @include transition;
         @include text-plain(75%);
 
         font-weight: $font-weight-bold;
@@ -93,13 +90,11 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       margin-block-start: spacing(2);
 
       header {
-        @include transition;
         @include text-plain(30%);
         @include font-size($text-sm);
       }
 
       .details-text {
-        @include transition;
         @include text-plain(75%);
 
         white-space: nowrap;

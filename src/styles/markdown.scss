@@ -95,8 +95,6 @@ article.markdown {
 
     span.line {
       &::before {
-        @include transition;
-
         display: inline flow-root;
 
         margin-inline-end: spacing(4);
@@ -166,8 +164,6 @@ article.markdown {
     font-style: normal;
 
     &::before {
-      @include transition;
-
       display: block flow;
       position: absolute;
       inset-inline-start: spacing(-1);

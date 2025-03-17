@@ -80,7 +80,6 @@ const { entry, image, url } = Astro.props
       pointer-events: none;
 
       :global(svg) {
-        @include transition;
         scale: 50%;
 
         opacity: 0%;
@@ -93,7 +92,6 @@ const { entry, image, url } = Astro.props
     }
 
     :global(.image) {
-      @include transition;
       block-size: 100%;
       inline-size: 100%;
     }

@@ -119,7 +119,6 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     }
 
     time {
-      @include transition;
       @include text-plain(50%);
 
       inline-size: 15%;
@@ -188,7 +187,6 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     }
 
     .tag-list {
-      @include transition;
       @include font-size($text-sm);
       @include text-plain(30%);
 

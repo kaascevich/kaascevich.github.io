@@ -27,7 +27,6 @@
   @use "../../../../styles/variants";
 
   a {
-    @include transition;
     @include font-size($text-lg);
 
     display: block flow;
@@ -58,7 +57,6 @@
     }
 
     header {
-      @include transition;
       @include text-plain(90%);
 
       display: inline flex;
@@ -66,8 +64,6 @@
       font-weight: $font-weight-bold;
 
       :global(svg) {
-        @include transition;
-
         translate: spacing(1);
 
         margin-block: auto;
@@ -77,7 +73,6 @@
     }
 
     .excerpt {
-      @include transition;
       @include font-size($text-sm);
       @include text-plain(50%);
     }

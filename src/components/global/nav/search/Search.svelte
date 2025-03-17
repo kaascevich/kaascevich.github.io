@@ -127,14 +127,6 @@
   search {
     @include transition($properties: all);
 
-    @include variants.dark {
-      background-color: white(5%);
-
-      &:hover, &:focus-within {
-        background-color: white(10%);
-      }
-    }
-
     align-items: center;
 
     background-color: black(4%);
@@ -145,8 +137,15 @@
       background-color: black(6%);
     }
 
+    @include variants.dark {
+      background-color: white(5%);
+
+      &:hover, &:focus-within {
+        background-color: white(10%);
+      }
+    }
+
     :global(svg) {
-      @include transition;
       @include text-plain(30%);
 
       position: absolute;

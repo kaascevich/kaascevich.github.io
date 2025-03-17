@@ -36,23 +36,20 @@ const { config } = Astro.props
       padding-inline: spacing(2);
 
       .name {
-        @include transition;
         @include font-size($text-xl);
-
-        @include variants.dark {
-          color: gray(98.5%);
-        }
 
         margin-block-end: spacing(1);
 
         text-align: center;
 
         font-weight: $font-weight-bold;
+
+        @include variants.dark {
+          color: gray(98.5%);
+        }
       }
 
       hr {
-        @include transition;
-
         margin-block: spacing(2);
         margin-inline: auto;
 
@@ -67,8 +64,6 @@ const { config } = Astro.props
       }
 
       .bio {
-        @include transition;
-
         margin-block-end: spacing(2.5);
 
         text-align: center;

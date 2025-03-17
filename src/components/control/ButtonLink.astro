@@ -28,14 +28,6 @@ const { badge, url, label } = Astro.props
   button {
     @include transition($properties: all);
 
-    @include variants.dark {
-      color: gray(87%);
-
-      &:hover {
-        color: var(--primary);
-      }
-    }
-
     border-radius: $radius-lg;
 
     background-image: none;
@@ -57,6 +49,14 @@ const { badge, url, label } = Astro.props
       padding-inline-start: spacing(3);
 
       color: var(--primary);
+    }
+
+    @include variants.dark {
+      color: gray(87%);
+
+      &:hover {
+        color: var(--primary);
+      }
     }
   }
 
@@ -80,14 +80,7 @@ const { badge, url, label } = Astro.props
   }
 
   .badge {
-    @include transition;
     @include font-size($text-sm);
-
-    @include variants.dark {
-      background-color: var(--primary);
-
-      color: var(--deep-text);
-    }
 
     display: block flex;
 
@@ -108,5 +101,11 @@ const { badge, url, label } = Astro.props
     color: var(--btn-content);
 
     font-weight: $font-weight-bold;
+
+    @include variants.dark {
+      background-color: var(--primary);
+
+      color: var(--deep-text);
+    }
   }
 </style>

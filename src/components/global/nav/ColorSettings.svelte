@@ -129,12 +129,7 @@
       margin-block-end: spacing(3);
 
       .title {
-        @include transition;
         @include font-size($text-lg);
-
-        @include variants.dark {
-          color: gray(97%);
-        }
 
         display: block flex;
         position: relative;
@@ -160,6 +155,10 @@
           inline-size: spacing(1);
 
           content: "";
+        }
+
+        @include variants.dark {
+          color: gray(97%);
         }
       }
 
@@ -188,7 +187,6 @@
       }
 
       #hue-value {
-        @include transition;
         @include font-size($text-sm);
 
         display: block flex;
@@ -210,10 +208,6 @@
     }
 
     .hue-slider-wrapper {
-      @include variants.dark {
-        background-color: oklch(70% 25% 0deg);
-      }
-
       border-radius: $radius-sm;
 
       background-color: oklch(80% 25% 0deg);
@@ -224,6 +218,10 @@
       inline-size: 100%;
 
       user-select: none;
+
+      @include variants.dark {
+        background-color: oklch(70% 25% 0deg);
+      }
 
       input[type="range"] {
         @include transition($properties: background-image);

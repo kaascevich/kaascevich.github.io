@@ -38,21 +38,17 @@ const currentYear = new Date().getFullYear()
   @use '$/styles/variants';
 
   hr {
-    @include transition;
-
-    @include variants.dark {
-      border-block-start-color: white(15%);
-    }
-
     margin-block: spacing(10);
     margin-inline: spacing(16);
 
     border-block-start: 1px dashed black(10%);
+
+    @include variants.dark {
+      border-block-start-color: white(15%);
+    }
   }
 
   footer {
-    @include transition;
-
     display: block flex;
 
     flex-direction: column;

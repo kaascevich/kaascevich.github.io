@@ -70,7 +70,7 @@
 
 @mixin transition(
   $properties: $transition-properties,
-  $function: ease-in-out,
+  $function: $transition-function,
   $duration: $transition-duration
 ) {
   transition-duration: $duration;

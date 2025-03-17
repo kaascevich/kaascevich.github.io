@@ -62,9 +62,6 @@ const showUpdated =
   @use '$/styles/variants';
 
   .meta-items {
-    @include variants.dark {
-      color: gray(70.8%);
-    }
     display: block flex;
 
     flex-wrap: wrap;
@@ -74,6 +71,10 @@ const showUpdated =
     align-items: center;
 
     color: gray(55.6%);
+
+    @include variants.dark {
+      color: gray(70.8%);
+    }
   }
 
   ul {
@@ -84,10 +85,6 @@ const showUpdated =
     align-items: center;
 
     white-space: nowrap;
-
-    li {
-      @include transition;
-    }
 
     li + li::before {
       white-space: pre;

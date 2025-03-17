@@ -69,17 +69,15 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
     // post separator
     &:not(:first-child)::after {
-      @include transition;
-
-      @include variants.dark {
-        border-block-start-color: white(15%);
-      }
-
       margin-inline: spacing(6);
 
       border-block-start: 1px dashed black(10%);
 
       content: '';
+
+      @include variants.dark {
+        border-block-start-color: white(15%);
+      }
 
       @include variants.md {
         display: none;
@@ -90,19 +88,8 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       padding: spacing(6);
 
       h2 a {
-        @include transition;
         @include font-size($text-xl3);
         @include text-plain(90%);
-
-        @include variants.dark {
-          &:hover {
-            color: var(--primary);
-          }
-
-          &:active {
-            color: var(--title-active);
-          }
-        }
 
         display: block flow;
 
@@ -140,6 +127,16 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           color: var(--title-active);
         }
 
+        @include variants.dark {
+          &:hover {
+            color: var(--primary);
+          }
+
+          &:active {
+            color: var(--title-active);
+          }
+        }
+
         svg {
           display: inline flow;
           position: absolute;
@@ -152,8 +149,6 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           color: var(--primary);
 
           @include variants.md {
-            @include transition;
-
             translate: spacing(-1);
 
             opacity: 0%;
@@ -174,7 +169,6 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       }
 
       .description {
-        @include transition;
         @include text-plain(75%);
 
         margin-block-end: spacing(3.5);
@@ -188,10 +182,6 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
         inline-size: calc(100% - var(--cover-width) - 12px);
       }
-    }
-
-    footer {
-      @include transition;
     }
 
     @include variants.md {
