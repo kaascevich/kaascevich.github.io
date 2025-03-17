@@ -44,8 +44,6 @@ article.markdown {
   :any-link:not(.no-styling) {
     @extend %link;
 
-    position: relative;
-
     background-image: none;
 
     text-decoration: underline dashed var(--link-underline) 1px;
@@ -123,7 +121,6 @@ article.markdown {
   }
 
   :not(pre) code {
-    position: relative;
     inset-block-end: spacing(0.2);
 
     font-weight: $font-weight-medium;

@@ -88,6 +88,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       padding: spacing(6);
 
       h2 a {
+        @include transition;
         @include font-size($text-xl3);
         @include text-plain(90%);
 
@@ -138,8 +139,11 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         }
 
         svg {
+          @include transition;
+
           display: inline flow;
           position: absolute;
+          inset-block-start: spacing(7.5);
 
           translate: 0;
 

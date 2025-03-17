@@ -27,6 +27,7 @@
   @use "../../../../styles/variants";
 
   a {
+    @include transition;
     @include font-size($text-lg);
 
     display: block flow;

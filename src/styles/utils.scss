@@ -4,23 +4,21 @@
 @use 'theme' as *;
 @use 'variants';
 
-/* MARK: Layout */
+// MARK: Layout
 
 @function spacing($value) {
   @return calc($spacing * $value);
 }
 
-/* MARK: Colors */
+// MARK: Colors
 
 @function alpha($color, $alpha) {
-  /* make sure Sass knows this is a color value */
+  // make sure Sass knows this is a color value
   @if meta.type-of($color) == color {
     @return color.change($color, $alpha: $alpha);
   } @else {
-    /*
-     * this isn't a color Sass can handle, so fall back to CSS builtins
-     * defaulting to oklch because that's primarily what I'm using on this site
-     */
+    // this isn't a color Sass can handle, so fall back to CSS builtins
+    // defaulting to oklch because that's primarily what I'm using on this site
     @return oklch(from $color l c h / $alpha);
   }
 }
@@ -49,7 +47,7 @@
   }
 }
 
-/* MARK: Mixins */
+// MARK: Mixins
 
 @mixin font-size($font-size, $line-height: null) {
   @if $line-height {
@@ -57,11 +55,9 @@
 
     font-size: $font-size;
   } @else {
-    /*
-     * if there is no $line-height parameter, assume that $font-size is a
-     * 2-element list (we do this so we can use a single variable to describe a
-     * font size and a line height)
-     */
+    // if there is no $line-height parameter, assume that $font-size is a
+    // 2-element list (we do this so we can use a single variable to describe a
+    // font size and a line height)
     line-height: list.nth($font-size, 2);
 
     font-size: list.nth($font-size, 1);

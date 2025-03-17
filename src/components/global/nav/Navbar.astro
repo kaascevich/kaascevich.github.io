@@ -31,13 +31,13 @@ const { class: className } = Astro.props
   @use '$/styles/variants';
 
   @keyframes fade-in-down {
-    0% {
+    from {
       translate: 0 spacing(-16);
 
       opacity: 0%;
     }
 
-    100% {
+    to {
       translate: 0 0;
 
       opacity: 100%;

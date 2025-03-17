@@ -106,8 +106,9 @@
   @use "../../styles/variants";
 
   a {
+    @include transition;
+
     display: block flow;
-    position: relative;
 
     margin-block: spacing(2);
     margin-inline: 0;

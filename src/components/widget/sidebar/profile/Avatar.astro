@@ -23,6 +23,8 @@ import siteConfig from '$/config/site'
   @use '$/styles/variants';
 
   .avatar {
+    @include transition;
+
     display: block flow;
     position: relative;
 
@@ -60,6 +62,8 @@ import siteConfig from '$/config/site'
     }
 
     .icon-wrapper {
+      @include transition;
+
       display: block flex;
       position: absolute;
 
@@ -74,6 +78,8 @@ import siteConfig from '$/config/site'
       pointer-events: none;
 
       svg {
+        @include transition;
+
         scale: 90%;
 
         opacity: 0%;
