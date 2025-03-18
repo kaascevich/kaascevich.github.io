@@ -139,13 +139,10 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         }
 
         svg {
-          @include transition;
-
           display: inline flow;
           position: absolute;
-          inset-block-start: spacing(7.5);
 
-          translate: 0;
+          translate: 0 spacing(0.5);
 
           block-size: spacing(8);
           inline-size: spacing(8);

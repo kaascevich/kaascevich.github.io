@@ -36,6 +36,13 @@ const calloutIcons: Record<CalloutType, string> = {
   @use '$/styles/variants';
 
   blockquote {
+    // remove the double quotes
+    :global(p) {
+      &::before, &::after {
+        content: none;
+      }
+    }
+
     @each $type in ('tip', 'note', 'important', 'warning', 'caution') {
       $color: var(--admonitions-color-#{$type});
 
