@@ -22,7 +22,8 @@
     }
 
     &.os-scrollbar-vertical {
-      padding: spacing(1);
+      padding-block: spacing(1);
+      padding-inline: spacing(1);
 
       inline-size: spacing(4);
 

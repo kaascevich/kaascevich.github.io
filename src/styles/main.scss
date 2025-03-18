@@ -78,11 +78,13 @@
   @extend %expand-animation;
   @include transition;
 
-  margin: spacing(-1);
+  margin-block: spacing(-1);
+  margin-inline: spacing(-1);
 
   border-radius: $radius-md;
 
-  padding: spacing(1);
+  padding-block: spacing(1);
+  padding-inline: spacing(1);
 }
 
 %float-panel {

@@ -112,7 +112,8 @@
     position: absolute;
     inset-inline-end: spacing(4);
 
-    padding: spacing(4);
+    padding-block: spacing(4);
+    padding-inline: spacing(4);
 
     inline-size: spacing(80);
 

@@ -19,11 +19,13 @@ const { href, label } = Astro.props
   %link-lg {
     @extend %expand-animation;
 
-    margin: spacing(-1.5);
+    margin-block: spacing(-1.5);
+    margin-inline: spacing(-1.5);
 
     border-radius: $radius-md;
 
-    padding: spacing(1.5);
+    padding-block: spacing(1.5);
+    padding-inline: spacing(1.5);
   }
 
   a {

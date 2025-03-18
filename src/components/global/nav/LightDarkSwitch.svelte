@@ -141,6 +141,7 @@
 
     #scheme-panel {
       @include transition;
+
       display: none;
       position: absolute;
       inset-block-start: spacing(11);
@@ -151,7 +152,8 @@
       menu {
         @extend %card-base, %float-panel;
 
-        padding: spacing(2);
+        padding-block: spacing(2);
+        padding-inline: spacing(2);
 
         button {
           @extend %btn-plain, %expand-animation;

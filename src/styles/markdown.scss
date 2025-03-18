@@ -26,10 +26,11 @@ article.markdown {
 
       opacity: 0%;
 
-      margin: spacing(-0.5);
-      margin-inline-start: 0.2ch !important;
+      margin-block: spacing(-0.5);
+      margin-inline: 0.2ch spacing(-0.5) !important;
 
-      padding: spacing(0.5) !important;
+      padding-block: spacing(0.5) !important;
+      padding-inline: spacing(0.5) !important;
 
       text-decoration-line: none !important;
 
@@ -70,7 +71,8 @@ article.markdown {
 
     background-color: var(--inline-code-bg);
 
-    padding: spacing(1);
+    padding-block: spacing(1);
+    padding-inline: spacing(1);
 
     overflow: hidden;
 
@@ -138,7 +140,8 @@ article.markdown {
 
       background-color: transparent;
 
-      padding: 0;
+      padding-block: 0;
+      padding-inline: 0;
 
       color: inherit;
 

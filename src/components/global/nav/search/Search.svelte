@@ -109,7 +109,8 @@
 
     box-shadow: $shadow-xl2;
 
-    padding: spacing(2);
+    padding-block: spacing(2);
+    padding-inline: spacing(2);
 
     :global(mark) {
       background-color: transparent;

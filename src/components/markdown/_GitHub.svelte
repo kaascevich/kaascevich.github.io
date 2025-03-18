@@ -184,18 +184,6 @@
 
           font-weight: $font-weight-light;
 
-          &::after {
-            display: none;
-
-            font-weight: $font-weight-normal;
-
-            content: '/';
-
-            @include md {
-              display: block flow;
-            }
-          }
-
           .avatar {
             display: block flow;
 
@@ -208,6 +196,16 @@
             inline-size: spacing(6);
 
             overflow: hidden;
+          }
+
+          @include md {
+            &::after {
+              display: block flow;
+
+              font-weight: $font-weight-normal;
+
+              content: '/';
+            }
           }
         }
 

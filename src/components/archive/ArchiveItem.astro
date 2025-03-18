@@ -181,8 +181,8 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       font-weight: $font-weight-bold;
 
       @include md {
-        inline-size: 60%;
-        max-inline-size: 60%;
+        inline-size: 50%;
+        max-inline-size: 50%;
       }
     }
 
@@ -191,9 +191,11 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       display: none;
 
+      margin-inline-end: spacing(3);
+
       overflow: hidden;
 
-      text-align: start;
+      text-align: end;
       text-overflow: ellipsis;
 
       white-space: nowrap;
@@ -202,7 +204,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       @include md {
         display: block flow;
 
-        inline-size: 20%;
+        inline-size: 30%;
       }
     }
   }
