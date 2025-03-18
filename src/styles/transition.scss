@@ -4,7 +4,7 @@
 
 // page transition animations with swup
 html.is-changing .transition-swup-fade {
-  @include transition($properties: all, $duration: 200ms);
+  @include transition($duration: 200ms, $properties: all);
 }
 
 html.is-animating .transition-swup-fade {

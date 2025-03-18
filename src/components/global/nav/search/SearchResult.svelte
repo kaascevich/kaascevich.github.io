@@ -58,9 +58,9 @@
     }
 
     header {
-      @include text-plain(90%);
-
       display: inline flex;
+
+      color: bw(90%);
 
       font-weight: $font-weight-bold;
 
@@ -75,7 +75,7 @@
 
     .excerpt {
       @include font-size($text-sm);
-      @include text-plain(50%);
+      color: bw(50%);
     }
   }
 </style>

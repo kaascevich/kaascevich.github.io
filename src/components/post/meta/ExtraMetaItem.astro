@@ -24,17 +24,15 @@ const { text, icon } = Astro.props
   @use '$/styles/variants';
 
   .meta-item {
-    @include text-plain(40%);
-
     display: block flex;
 
     flex-direction: row;
 
     align-items: center;
 
-    .icon-wrapper {
-      @include text-plain(50%);
+    color: bw(40%);
 
+    .icon-wrapper {
       display: block flex;
 
       align-items: center;
@@ -48,6 +46,8 @@ const { text, icon } = Astro.props
 
       block-size: spacing(6);
       inline-size: spacing(6);
+
+      color: bw(50%);
     }
 
     .text {

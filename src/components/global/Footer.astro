@@ -60,10 +60,11 @@ const currentYear = new Date().getFullYear()
     padding-inline: spacing(6);
 
     .footer-content {
-      @include text-plain(50%);
       @include font-size($text-sm);
 
       text-align: center;
+
+      color: bw(50%);
 
       a {
         @extend %link;

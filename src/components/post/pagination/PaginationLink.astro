@@ -58,8 +58,6 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
       max-inline-size: 100%;
 
       .title {
-        @include text-plain(75%);
-
         max-inline-size: calc(100% - spacing(12));
 
         overflow: hidden;
@@ -67,6 +65,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
         text-overflow: ellipsis;
 
         white-space: nowrap;
+        color: bw(75%);
       }
 
       svg {

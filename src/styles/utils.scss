@@ -24,11 +24,11 @@
 }
 
 @function white($alpha) {
-  @return oklch(100% 0% none / $alpha);
+  @return alpha(white, $alpha);
 }
 
 @function black($alpha) {
-  @return oklch(0% 0% none / $alpha);
+  @return alpha(black, $alpha);
 }
 
 @function gray($lightness) {
@@ -39,8 +39,14 @@
   @return oklch($lightness $chroma var(--hue));
 }
 
-@mixin text-plain($alpha) {
-  color: light-dark(black($alpha), white($alpha));
+/// Returns black if the current color scheme is `light`, or white if the
+/// current color scheme is `dark`.
+///
+/// @param {number} $alpha - An alpha value.
+/// @return {color} - Black or white, depending on the current color scheme. The
+/// alpha channel of the color is set to the `$alpha` parameter.
+@function bw($alpha) {
+  @return light-dark(black($alpha), white($alpha));
 }
 
 // MARK: Mixins
@@ -61,9 +67,9 @@
 }
 
 @mixin transition(
+  $duration: $transition-duration,
   $properties: $transition-properties,
-  $function: $transition-function,
-  $duration: $transition-duration
+  $function: $transition-function
 ) {
   transition-duration: $duration;
   transition-property: $properties;

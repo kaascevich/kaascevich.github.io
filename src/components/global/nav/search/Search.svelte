@@ -138,8 +138,6 @@
     }
 
     :global(svg) {
-      @include text-plain(30%);
-
       position: absolute;
 
       margin-block: auto;
@@ -148,12 +146,13 @@
       block-size: spacing(5);
       inline-size: spacing(5);
 
+      color: bw(30%);
+
       pointer-events: none;
     }
 
     /* stylelint-disable-next-line no-descending-specificity */
     input {
-      @include text-plain(50%);
       @include font-size($text-sm);
 
       outline-width: 0;
@@ -161,6 +160,8 @@
       background-color: transparent;
 
       padding-inline-start: spacing(10);
+
+      color: bw(50%);
     }
   }
 

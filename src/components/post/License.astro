@@ -68,7 +68,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     hgroup {
       header {
-        @include text-plain(75%);
+        color: bw(75%);
 
         font-weight: $font-weight-bold;
       }
@@ -90,14 +90,13 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       margin-block-start: spacing(2);
 
       header {
-        @include text-plain(30%);
         @include font-size($text-sm);
+        color: bw(30%);
       }
 
       .details-text {
-        @include text-plain(75%);
-
         white-space: nowrap;
+        color: bw(75%);
       }
 
       .details-link {
@@ -115,7 +114,6 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     .cc-icon {
       @include transition($properties: $transition-colors);
-      @include text-plain(5%);
 
       position: absolute;
       inset-block-end: 50%;
@@ -125,6 +123,8 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       block-size: spacing(60);
       inline-size: spacing(60);
+
+      color: bw(5%);
 
       pointer-events: none;
 

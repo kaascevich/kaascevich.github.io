@@ -130,7 +130,7 @@
   }
 
   &[aria-disabled='true'] {
-    @include text-plain(10%);
+    color: bw(10%);
 
     pointer-events: none;
   }

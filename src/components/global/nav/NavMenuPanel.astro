@@ -105,7 +105,7 @@ const { links } = Astro.props
       }
 
       header {
-        @include text-plain(75%);
+        color: bw(75%);
 
         font-weight: $font-weight-bold;
       }
@@ -117,7 +117,7 @@ const { links } = Astro.props
 
       .link-icon-external {
         @extend %link-icon;
-        @include text-plain(25%);
+        color: bw(25%);
       }
 
       .link-icon-internal {

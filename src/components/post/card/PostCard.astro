@@ -86,13 +86,14 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       h2 a {
         @include transition;
         @include font-size($text-xl3);
-        @include text-plain(90%);
 
         display: block flow;
 
         margin-block-end: spacing(3);
 
         inline-size: 100%;
+
+        color: bw(90%);
 
         font-weight: $font-weight-bold;
 
@@ -157,11 +158,11 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       }
 
       .description {
-        @include text-plain(75%);
-
         margin-block-end: spacing(3.5);
 
         padding-inline-end: spacing(4);
+
+        color: bw(75%);
       }
 
       @include variants.md {
