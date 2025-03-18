@@ -11,26 +11,26 @@ const { config } = Astro.props
 
 <a
   href={config.url}
-  id="banner-credit"
-  target="_blank"
-  rel="noopener"
+  id='banner-credit'
+  target='_blank'
+  rel='noopener'
   aria-label={strings.alts.bannerCredit}
 >
-  <Icon class="copyright-icon" name="tabler:copyright" />
+  <Icon class='copyright-icon' name='tabler:copyright' />
 
-  <div class="credit-text">
+  <div class='credit-text'>
     {config.text}
   </div>
 
-  <Icon class="external-icon" name="tabler:external-link" />
+  <Icon class='external-icon' name='tabler:external-link' />
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   #banner-credit {
     @extend %onload-animation;

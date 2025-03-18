@@ -35,11 +35,11 @@ const groups = await groupPostsByYear(posts)
   {groups.map((group) => <ArchiveGroup {group} />)}
 </ol>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   ol {
     @extend %card-base;

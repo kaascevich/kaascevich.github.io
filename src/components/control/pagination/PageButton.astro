@@ -18,11 +18,11 @@ const { url, label, icon } = Astro.props
   <Icon name={icon} />
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   a {
     @extend %btn-card;

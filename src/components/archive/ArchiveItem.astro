@@ -24,34 +24,34 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 ---
 
 <a href={getPostUrlByID(post.id)} aria-label={post.data.title}>
-  <div class="item-wrapper">
+  <div class='item-wrapper'>
     <!-- date -->
     <time datetime={post.data.published.toISOString()}>
       {formatDate(post.data.published)}
     </time>
 
     <!-- dot and line -->
-    <div class="separator">
+    <div class='separator'>
       <div></div>
     </div>
 
     <!-- post title -->
-    <div class="title">
+    <div class='title'>
       {post.data.title}
     </div>
 
     <!-- tag list -->
-    <div class="tag-list">
+    <div class='tag-list'>
       {formatTagList(post.data.tags)}
     </div>
   </div>
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   %dash-line {
     position: relative;
@@ -125,7 +125,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       color: bw(50%);
 
-      @include variants.md {
+      @include md {
         inline-size: 10%;
       }
     }
@@ -158,7 +158,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
         inline-size: spacing(1);
       }
 
-      @include variants.md {
+      @include md {
         inline-size: 10%;
       }
     }
@@ -180,7 +180,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       font-weight: $font-weight-bold;
 
-      @include variants.md {
+      @include md {
         inline-size: 60%;
         max-inline-size: 60%;
       }
@@ -199,7 +199,7 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       white-space: nowrap;
       color: bw(30%);
 
-      @include variants.md {
+      @include md {
         display: block flow;
 
         inline-size: 20%;

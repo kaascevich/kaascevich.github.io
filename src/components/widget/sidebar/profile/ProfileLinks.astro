@@ -12,10 +12,10 @@ const { links } = Astro.props
   {
     links.map(({ name, url, icon }) => (
       <a
-        rel="me"
+        rel='me'
         aria-label={name}
         href={url}
-        target="_blank"
+        target='_blank'
         class:list={[links.length === 1 ? 'small' : 'large']}
       >
         <Icon name={icon} />
@@ -25,11 +25,11 @@ const { links } = Astro.props
   }
 </ul>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   ul {
     display: block flex;

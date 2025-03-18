@@ -31,7 +31,7 @@
 
       stars = data.stargazers_count
       forks = data.forks_count
-      license = data.license?.spdx_id ?? strings.github.noLicense
+      license = data.license?.name ?? strings.github.noLicense
 
       card.classList.remove('fetch-waiting')
     } catch (err) {
@@ -100,10 +100,10 @@
 </a>
 
 <style lang='scss'>
-  @use "../../styles/main";
-  @use "../../styles/theme" as *;
-  @use "../../styles/utils" as *;
-  @use "../../styles/variants";
+  @use '../../styles/main';
+  @use '../../styles/theme' as *;
+  @use '../../styles/utils' as *;
+  @use '../../styles/variants' as *;
 
   a {
     @include transition;
@@ -164,6 +164,8 @@
       font-weight: $font-weight-medium;
 
       .titlebar-left {
+        @include transition;
+
         display: block flex;
 
         flex-flow: column nowrap;
@@ -187,9 +189,9 @@
 
             font-weight: $font-weight-normal;
 
-            content: "/";
+            content: '/';
 
-            @include variants.md {
+            @include md {
               display: block flow;
             }
           }
@@ -213,7 +215,7 @@
           font-weight: $font-weight-bold;
         }
 
-        @include variants.md {
+        @include md {
           flex-flow: row nowrap;
 
           gap: spacing(2);
@@ -225,12 +227,13 @@
         inline-size: spacing(6);
       }
 
-      @include variants.md {
+      @include md {
         @include font-size($text-xl);
       }
     }
 
     .description {
+      @include transition;
       @include font-size($text-base);
 
       margin-block-end: spacing(3);
@@ -255,6 +258,7 @@
     .stars,
     .forks,
     .license {
+      @include transition;
       @include font-size($text-sm);
 
       display: block flex;
@@ -268,12 +272,8 @@
       font-weight: $font-weight-medium;
 
       :global(svg) {
-        @include transition(
-          $properties: (
-            background-color,
-            background,
-          )
-        );
+        @include transition($properties: (background-color, background));
+
         margin-inline-end: spacing(1);
 
         block-size: spacing(5);
@@ -285,7 +285,7 @@
       }
     }
 
-    @include variants.md {
+    @include md {
       padding-block: spacing(4.5);
       padding-inline: spacing(6);
     }

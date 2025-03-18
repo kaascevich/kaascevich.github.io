@@ -10,19 +10,19 @@ const { icon, hideOnMobile = false } = Astro.props
 ---
 
 <div class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]}>
-  <div class="meta-icon">
+  <div class='meta-icon'>
     <Icon name={icon} />
   </div>
-  <span class="meta-content">
+  <span class='meta-content'>
     <slot />
   </span>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   .meta-item {
     display: block flex;
@@ -32,7 +32,7 @@ const { icon, hideOnMobile = false } = Astro.props
     &.mobile-hidden {
       display: none;
 
-      @include variants.md {
+      @include md {
         display: block flex;
       }
     }

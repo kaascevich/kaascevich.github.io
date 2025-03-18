@@ -11,22 +11,15 @@ const { entry, url } = Astro.props
 const { title } = entry.data
 ---
 
-<a
-  href={url}
-  aria-label={title}
-  class=""
->
-  <Icon
-    size="2.25rem"
-    name="tabler:chevron-right"
-  />
+<a href={url} aria-label={title}>
+  <Icon name='tabler:chevron-right'/>
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   a {
     @extend %btn-regular;
@@ -58,10 +51,13 @@ const { title } = entry.data
     :global(svg) {
       margin-inline: auto;
 
+      block-size: spacing(9);
+      inline-size: spacing(9);
+
       color: var(--primary);
     }
 
-    @include variants.md {
+    @include md {
       display: block flex !important;
     }
   }

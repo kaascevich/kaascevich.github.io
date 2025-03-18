@@ -13,17 +13,17 @@ const { wordCount, readingTime, class: className } = Astro.props
 
 <div class={className}>
   <ExtraMetaItem
-    icon="tabler:align-justified"
+    icon='tabler:align-justified'
     text={strings.meta.words(wordCount)}
   />
-  <ExtraMetaItem icon="tabler:clock" text={strings.meta.minutes(readingTime)} />
+  <ExtraMetaItem icon='tabler:clock' text={strings.meta.minutes(readingTime)} />
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   div {
     display: block flex;

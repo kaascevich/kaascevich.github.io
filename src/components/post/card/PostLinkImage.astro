@@ -15,25 +15,27 @@ const { entry, image, url } = Astro.props
 ---
 
 <a href={url} aria-label={entry.data.title}>
-  <div class="icon-wrapper">
-    <Icon name="tabler:chevron-right" />
+  <div class='icon-wrapper'>
+    <Icon name='tabler:chevron-right' />
   </div>
 
   <ImageWrapper
     src={image.source}
     basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
     alt={image.alt}
-    class="image"
+    class='image'
   />
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   a {
+    @include transition;
+
     position: relative;
 
     margin-block: spacing(4) spacing(-2);
@@ -80,6 +82,8 @@ const { entry, image, url } = Astro.props
       pointer-events: none;
 
       :global(svg) {
+        @include transition;
+
         scale: 50%;
 
         opacity: 0%;
@@ -92,11 +96,13 @@ const { entry, image, url } = Astro.props
     }
 
     :global(.image) {
+      @include transition;
+
       block-size: 100%;
       inline-size: 100%;
     }
 
-    @include variants.md {
+    @include md {
       position: absolute;
       inset-block: spacing(3);
       inset-inline-end: spacing(3);

@@ -1,7 +1,7 @@
 @use 'main';
 @use 'theme' as *;
 @use 'utils' as *;
-@use 'variants';
+@use 'variants' as *;
 
 article.markdown {
   word-break: break-word;

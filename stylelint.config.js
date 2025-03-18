@@ -1,8 +1,8 @@
 // @ts-check
 import defineConfig from 'stylelint-define-config'
 
-/// <reference types="@stylelint-types/stylelint-scss" />
-/// <reference types="@stylelint-types/stylelint-order" />
+/// <reference types='@stylelint-types/stylelint-scss' />
+/// <reference types='@stylelint-types/stylelint-order' />
 
 /** @satisfies {Record<string, string[]>} */
 const properties = /** @type {const} */ ({

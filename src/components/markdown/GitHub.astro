@@ -8,4 +8,4 @@ interface Props {
 const { owner, repo } = Astro.props
 ---
 
-<GitHubSvelte client:visible {owner} {repo} />
+<GitHubSvelte client:visible={{ rootMargin: '15%' }} {owner} {repo} />

@@ -30,9 +30,9 @@ const {
   </div>
   {
     isCollapsed === true && (
-      <button class="expand">
-        <div class="icon-wrapper">
-          <Icon name="tabler:dots" />
+      <button class='expand'>
+        <div class='icon-wrapper'>
+          <Icon name='tabler:dots' />
           {strings.widget.more}
         </div>
       </button>
@@ -40,11 +40,11 @@ const {
   }
 </widget-layout>
 
-<style lang="scss" define:vars={{ 'collapsed-height': collapsedHeight }}>
+<style lang='scss' define:vars={{ 'collapsed-height': collapsedHeight }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   widget-layout {
     @extend %card-base;

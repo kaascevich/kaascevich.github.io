@@ -62,13 +62,13 @@ const jsonLd: WithContext<BlogPosting> = {
 >
   <script
     is:inline
-    slot="head"
-    type="application/ld+json"
+    slot='head'
+    type='application/ld+json'
     set:html={JSON.stringify(jsonLd)}
   />
 
-  <div class="post-container-wrapper">
-    <div id="post-container" data-pagefind-body>
+  <div class='post-container-wrapper'>
+    <div id='post-container' data-pagefind-body>
       <PostHeader
         {entry}
         wordCount={remarkPluginFrontmatter.words}
@@ -85,7 +85,7 @@ const jsonLd: WithContext<BlogPosting> = {
             config={siteConfig.license}
             title={entry.data.title}
             pubDate={entry.data.published}
-            class="license"
+            class='license'
           />
         )
       }
@@ -95,12 +95,12 @@ const jsonLd: WithContext<BlogPosting> = {
   <PostPagination {entry} />
 </MainGridLayout>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   .post-container-wrapper {
     display: block flex;
@@ -129,7 +129,7 @@ const jsonLd: WithContext<BlogPosting> = {
         margin-block-end: spacing(6);
       }
 
-      :global(.license) {
+      .license {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
@@ -137,7 +137,7 @@ const jsonLd: WithContext<BlogPosting> = {
         border-radius: $radius-xl;
       }
 
-      @include variants.md {
+      @include md {
         padding-inline: spacing(9);
       }
     }

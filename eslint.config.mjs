@@ -1,8 +1,8 @@
 import antfu from '@antfu/eslint-config'
 
 /**
- * @import {FlatConfigComposer} from "eslint-flat-config-utils"
- * @import {TypedFlatConfigItem, ConfigNames} from "@antfu/eslint-config"
+ * @import {FlatConfigComposer} from 'eslint-flat-config-utils'
+ * @import {TypedFlatConfigItem, ConfigNames} from '@antfu/eslint-config'
  */
 
 /** @type {FlatConfigComposer<TypedFlatConfigItem, ConfigNames>} */

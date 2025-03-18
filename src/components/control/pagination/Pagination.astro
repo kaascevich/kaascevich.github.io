@@ -21,21 +21,21 @@ const pageLinks = pageLinkLayout(page)
   <PageButton
     url={page.url.prev}
     label={strings.alts.prevPage}
-    icon="tabler:chevron-left"
+    icon='tabler:chevron-left'
   />
   <PageLinks {pageLinks} current={page.currentPage} />
   <PageButton
     url={page.url.next}
     label={strings.alts.nextPage}
-    icon="tabler:chevron-right"
+    icon='tabler:chevron-right'
   />
 </nav>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   nav {
     display: block flex;

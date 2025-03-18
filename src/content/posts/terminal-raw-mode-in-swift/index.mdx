@@ -44,7 +44,7 @@ private let standardInput = FileHandle.standardInput.fileDescriptor
   }
 
   /// Sets the terminal state to the given `termios` struct.
-  /// 
+  ///
   /// - Parameter state: A `termios` struct to set the terminal
   ///   state to.
   @MainActor private static func setTerminalState(_ state: termios) {
@@ -55,26 +55,26 @@ private let standardInput = FileHandle.standardInput.fileDescriptor
 
   /// The original state of the terminal.
   @MainActor private static let originalTerminalState = getTerminalState()
-  
+
   /// Enables raw mode.
   ///
-  /// - Parameter enableEcho: Whether to echo characters as they 
+  /// - Parameter enableEcho: Whether to echo characters as they
   ///   are typed.
   @MainActor static func enable(echoing enableEcho: Bool) {
     var rawTerminalState = self.originalTerminalState
-    
+
     // enable raw mode by disabling line buffering
     rawTerminalState.c_lflag &= ~UInt(ICANON)
-    
+
     if !enableEcho {
       // disable echoing
       rawTerminalState.c_lflag &= ~UInt(ECHO)
     }
-    
+
     // apply the new settings
     setTerminalState(rawTerminalState)
   }
-  
+
   /// Disables raw mode.
   @MainActor static func disable() {
     setTerminalState(self.originalTerminalState)
@@ -93,13 +93,13 @@ And here's how you should use it:
 }
 ```
 
-<Callout type="important">
+<Callout type='important'>
 Don't forget to run `TerminalRawMode.disable()` at some point before your app
 exits -- if you forget to do this, your user's terminal will be all kinds of
 messed up.
 </Callout>
 
-<Callout type="note">
+<Callout type='note'>
 If you use this in code that isn't isolated to the main thread with
 `@MainActor`, you won't be able to run `disable()` in a `defer` block. This is
 because you need to use `await` to call these functions from another thread, and

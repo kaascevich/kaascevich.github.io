@@ -103,7 +103,7 @@ indirect enum Expression: Equatable {
 }
 ```
 
-<Callout type="note">
+<Callout type='note'>
 Don't forget to mark the `enum` as `indirect`.
 </Callout>
 
@@ -150,7 +150,7 @@ extension Expression: Parsable {
         op: .add
       ))
     }
-    
+
     @Test("Expression with whitespace")
     func expressionWithWhitespace() throws {
       try #expect(Expression(parsing: "35 / 7") == .operation(
@@ -371,7 +371,7 @@ And now we've got tests to fix:
     func onePlusTwo() throws {
       try #expect(ExpressionParser().parse("1+2") == .operation(/* ... */))
     }
-    
+
     @Test("Expression with whitespace")
     func expressionWithWhitespace() throws {
       try #expect(ExpressionParser().parse("35 / 7") == .operation(/* ... */))

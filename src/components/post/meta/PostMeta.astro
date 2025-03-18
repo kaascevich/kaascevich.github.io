@@ -21,10 +21,10 @@ const showUpdated =
 ---
 
 <div class:list={['meta-items', className]}>
-  <MetaDate icon="tabler:calendar-plus" date={published} />
-  {showUpdated && <MetaDate icon="tabler:calendar-cog" date={updated} />}
+  <MetaDate icon='tabler:calendar-plus' date={published} />
+  {showUpdated && <MetaDate icon='tabler:calendar-cog' date={updated} />}
 
-  <MetaItem icon="tabler:category">
+  <MetaItem icon='tabler:category'>
     <MetaLink
       href={`/archive/category/${category}/`}
       label={strings.alts.category(category)}
@@ -33,7 +33,7 @@ const showUpdated =
     </MetaLink>
   </MetaItem>
 
-  <MetaItem icon="tabler:hash" hideOnMobile={compactOnMobile}>
+  <MetaItem icon='tabler:hash' hideOnMobile={compactOnMobile}>
     <ul>
       {
         tags.length === 0 ? (
@@ -55,11 +55,11 @@ const showUpdated =
   </MetaItem>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   .meta-items {
     display: block flex;

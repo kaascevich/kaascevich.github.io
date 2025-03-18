@@ -87,10 +87,10 @@
 </div>
 
 <style lang='scss'>
-  @use "../../../../styles/main";
-  @use "../../../../styles/theme" as *;
-  @use "../../../../styles/utils" as *;
-  @use "../../../../styles/variants";
+  @use '../../../../styles/main';
+  @use '../../../../styles/theme' as *;
+  @use '../../../../styles/utils' as *;
+  @use '../../../../styles/variants' as *;
 
   // MARK: All devices
 
@@ -117,7 +117,7 @@
       color: var(--primary);
     }
 
-    @include variants.md {
+    @include md {
       inset-inline-start: unset;
 
       inline-size: spacing(120);
@@ -151,7 +151,7 @@
       pointer-events: none;
     }
 
-    /* stylelint-disable-next-line no-descending-specificity */
+    // stylelint-disable-next-line no-descending-specificity
     input {
       @include font-size($text-sm);
 
@@ -185,7 +185,7 @@
       }
     }
 
-    @include variants.lg {
+    @include lg {
       display: block flex;
     }
   }
@@ -209,7 +209,7 @@
       inline-size: spacing(5);
     }
 
-    @include variants.lg {
+    @include lg {
       display: none !important;
     }
   }
@@ -220,13 +220,13 @@
 
     border-radius: $radius-xl;
 
-    /* stylelint-disable-next-line no-descending-specificity */
+    // stylelint-disable-next-line no-descending-specificity
     input {
       position: absolute;
       inset: 0;
     }
 
-    @include variants.lg {
+    @include lg {
       display: none;
     }
   }

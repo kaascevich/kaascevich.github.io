@@ -38,8 +38,8 @@ if (typeof description !== 'string') {
 ---
 
 <MainGridLayout {title} {description}>
-  <div class="outer-wrapper">
-    <div class="inner-wrapper">
+  <div class='outer-wrapper'>
+    <div class='inner-wrapper'>
       <Markdown>
         <slot />
       </Markdown>
@@ -47,11 +47,11 @@ if (typeof description !== 'string') {
   </div>
 </MainGridLayout>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   .outer-wrapper {
     display: block flex;

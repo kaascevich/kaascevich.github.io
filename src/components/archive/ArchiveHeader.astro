@@ -9,24 +9,24 @@ const { group } = Astro.props
 ---
 
 <header>
-  <div class="year">
+  <div class='year'>
     {group.year}
   </div>
 
-  <div class="dot-wrapper">
-    <div class="dot"></div>
+  <div class='dot-wrapper'>
+    <div class='dot'></div>
   </div>
 
-  <div class="count">
+  <div class='count'>
     {strings.meta.posts(group.posts.length)}
   </div>
 </header>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   header {
     display: block flex;
@@ -49,7 +49,7 @@ const { group } = Astro.props
 
       font-weight: $font-weight-bold;
 
-      @include variants.md {
+      @include md {
         @include font-size($text-xl2);
 
         inline-size: 10%;
@@ -76,7 +76,7 @@ const { group } = Astro.props
         inline-size: spacing(3);
       }
 
-      @include variants.md {
+      @include md {
         inline-size: 10%;
       }
     }
@@ -88,7 +88,7 @@ const { group } = Astro.props
 
       color: bw(50%);
 
-      @include variants.md {
+      @include md {
         inline-size: 80%;
       }
     }

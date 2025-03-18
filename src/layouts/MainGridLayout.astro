@@ -31,23 +31,21 @@ const mainPanelTop =
 
 <Layout {title} {description} {setOGTypeArticle}>
   <!-- navbar -->
-  <slot slot="head" name="head" />
-  <header id="top-row">
-    <div id="navbar-wrapper">
+  <slot slot='head' name='head' />
+  <header id='top-row'>
+    <div id='navbar-wrapper'>
       <Navbar />
     </div>
   </header>
 
   {siteConfig.banner !== undefined && <Banner config={siteConfig.banner} />}
 
-  <!-- main content -->
-  <!-- pointer-events-none prevents blocking TOC click events -->
   <div
-    class="main-outer-wrapper"
+    class='main-outer-wrapper'
     style={{ insetBlockStart: mainPanelTop }}
   >
-    <div class="main-inner-wrapper">
-      <div id="main-grid">
+    <div class='main-inner-wrapper'>
+      <div id='main-grid'>
         {
           siteConfig.banner?.credit !== undefined && (
             <BannerCredit config={siteConfig.banner.credit} />
@@ -56,16 +54,16 @@ const mainPanelTop =
 
         <Sidebar />
 
-        <main id="swup-container" class="transition-swup-fade">
-          <div id="content-wrapper">
+        <main id='swup-container' class='transition-swup-fade'>
+          <div id='content-wrapper'>
             <slot />
-            <div class="footer-mobile">
+            <div class='footer-mobile'>
               <Footer />
             </div>
           </div>
         </main>
 
-        <div class="footer-desktop">
+        <div class='footer-desktop'>
           <Footer />
         </div>
       </div>
@@ -77,12 +75,12 @@ const mainPanelTop =
   <TOCWrapper {headings} />
 </Layout>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   #top-row {
     @include transition($duration: 700ms, $properties: all);
@@ -106,7 +104,7 @@ const mainPanelTop =
       pointer-events: auto;
     }
 
-    @include variants.md {
+    @include md {
       padding-inline: spacing(4);
     }
   }
@@ -152,7 +150,7 @@ const mainPanelTop =
 
           margin-block-end: spacing(4);
 
-          @include variants.lg {
+          @include lg {
             grid-row: 1 / 2;
             grid-column: span 1 / span 1;
 
@@ -160,11 +158,11 @@ const mainPanelTop =
           }
         }
 
-        @include variants.md {
+        @include md {
           padding-inline: spacing(4);
         }
 
-        @include variants.lg {
+        @include lg {
           grid-template-rows: auto;
         }
       }
@@ -185,7 +183,7 @@ const mainPanelTop =
       animation-delay: var(--content-delay);
     }
 
-    @include variants.lg {
+    @include lg {
       grid-column: span 1 / span 1;
     }
   }
@@ -203,7 +201,7 @@ const mainPanelTop =
 
     display: block flow;
 
-    @include variants.lg {
+    @include lg {
       display: none;
     }
   }
@@ -213,7 +211,7 @@ const mainPanelTop =
 
     display: none;
 
-    @include variants.lg {
+    @include lg {
       display: block flow;
     }
   }

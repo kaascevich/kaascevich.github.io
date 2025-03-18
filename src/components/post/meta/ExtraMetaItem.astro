@@ -8,20 +8,20 @@ interface Props {
 const { text, icon } = Astro.props
 ---
 
-<div class="meta-item">
-  <div class="icon-wrapper">
+<div class='meta-item'>
+  <div class='icon-wrapper'>
     <Icon name={icon} />
   </div>
-  <div class="text">
+  <div class='text'>
     {text}
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   .meta-item {
     display: block flex;

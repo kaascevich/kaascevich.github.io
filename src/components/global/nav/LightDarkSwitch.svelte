@@ -101,12 +101,12 @@
 </div>
 
 <style lang='scss'>
-  @use "../../../styles/main";
-  @use "../../../styles/theme" as *;
-  @use "../../../styles/utils" as *;
-  @use "../../../styles/variants";
+  @use '../../../styles/main';
+  @use '../../../styles/theme' as *;
+  @use '../../../styles/utils' as *;
+  @use '../../../styles/variants' as *;
 
-  [role="menu"] {
+  [role='menu'] {
     position: relative;
 
     z-index: 50;
@@ -202,7 +202,7 @@
         }
       }
 
-      @include variants.lg {
+      @include lg {
         display: block flow;
       }
     }

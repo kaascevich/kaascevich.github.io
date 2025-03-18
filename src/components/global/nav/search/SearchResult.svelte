@@ -21,10 +21,10 @@
 </a>
 
 <style lang='scss'>
-  @use "../../../../styles/main";
-  @use "../../../../styles/theme" as *;
-  @use "../../../../styles/utils" as *;
-  @use "../../../../styles/variants";
+  @use '../../../../styles/main';
+  @use '../../../../styles/theme' as *;
+  @use '../../../../styles/utils' as *;
+  @use '../../../../styles/variants' as *;
 
   a {
     @include transition;
@@ -40,7 +40,7 @@
     &:first-of-type {
       margin-block-start: spacing(2);
 
-      @include variants.lg {
+      @include lg {
         margin-block-start: 0;
       }
     }

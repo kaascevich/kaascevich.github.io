@@ -33,10 +33,10 @@ const content = `---
 title: ${title}
 published: ${getDate()}
 draft: true
-description: ""
-image: ""
+description: ''
+image: ''
 tags: []
-category: ""
+category: ''
 ---
 ` as const
 fs.writeFileSync(path.join(dirPath, 'index.md'), content)

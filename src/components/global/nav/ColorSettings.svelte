@@ -59,10 +59,10 @@
 </div>
 
 <style lang='scss'>
-  @use "../../../styles/main";
-  @use "../../../styles/theme" as *;
-  @use "../../../styles/utils" as *;
-  @use "../../../styles/variants";
+  @use '../../../styles/main';
+  @use '../../../styles/theme' as *;
+  @use '../../../styles/utils' as *;
+  @use '../../../styles/variants' as *;
 
   @mixin slider-thumb {
     appearance: none;
@@ -154,7 +154,7 @@
           block-size: spacing(4);
           inline-size: spacing(1);
 
-          content: "";
+          content: '';
         }
       }
 
@@ -215,7 +215,7 @@
 
       user-select: none;
 
-      input[type="range"] {
+      input[type='range'] {
         @include transition($properties: background-image);
 
         appearance: none;

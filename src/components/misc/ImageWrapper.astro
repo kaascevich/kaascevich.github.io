@@ -59,11 +59,11 @@ const img = await (() => {
   }
 </div>
 
-<style lang="scss" define:vars={{ position }}>
+<style lang='scss' define:vars={{ position }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   div {
     position: relative;
@@ -76,7 +76,7 @@ const img = await (() => {
       object-fit: cover;
       object-position: var(--position);
 
-      @include variants.dark {
+      @include dark {
         filter: brightness(0.9);
       }
     }

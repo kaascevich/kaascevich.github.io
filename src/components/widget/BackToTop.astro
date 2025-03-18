@@ -5,20 +5,20 @@ import { Icon } from 'astro-icon/components'
 
 <div>
   <button
-    id="back-to-top-btn"
-    class="hide"
-    onclick="window.scroll({ top: 0, behavior: 'smooth'})"
+    id='back-to-top-btn'
+    class='hide'
+    onclick='window.scroll({ top: 0, behavior: "smooth"})'
     aria-label={strings.alts.backToTop}
   >
-    <Icon name="tabler:chevron-up" />
+    <Icon name='tabler:chevron-up' />
   </button>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   div {
     display: none;
@@ -74,7 +74,7 @@ import { Icon } from 'astro-icon/components'
       }
     }
 
-    @include variants.lg {
+    @include lg {
       display: block flow;
     }
   }

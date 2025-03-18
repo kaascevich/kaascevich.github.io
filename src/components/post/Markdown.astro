@@ -2,15 +2,15 @@
 import '@fontsource/monaspace-radon'
 ---
 
-<article class="prose prose-base dark:prose-invert markdown">
+<article class='prose prose-base dark:prose-invert markdown'>
   <slot />
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   article.markdown {
     max-inline-size: none !important;
@@ -45,36 +45,36 @@ import '@fontsource/monaspace-radon'
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
 
       const copyIcon = `<svg
-        class="copy-btn-icon copy-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        height="20px"
-        width="20px"
-        viewBox="0 0 24 24"
+        class='copy-btn-icon copy-icon'
+        xmlns='http://www.w3.org/2000/svg'
+        height='20px'
+        width='20px'
+        viewBox='0 0 24 24'
       >
         <g
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          fill='none'
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
         >
           <path
-            d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
+            d='M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z'
           />
           <path
-            d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
+            d='M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1'
           />
         </g>
       </svg>`
       const successIcon = `<svg
-        class="copy-btn-icon success-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        height="20px"
-        width="20px"
-        viewBox="0 -960 960 960"
+        class='copy-btn-icon success-icon'
+        xmlns='http://www.w3.org/2000/svg'
+        height='20px'
+        width='20px'
+        viewBox='0 -960 960 960'
       >
         <path
-          d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"
+          d='m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z'
         />
       </svg>`
 

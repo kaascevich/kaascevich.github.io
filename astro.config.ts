@@ -56,7 +56,7 @@ export default defineConfig({
           minifyCSS: true,
           minifyJS: true,
           minifyURLs: true,
-          quoteCharacter: '"',
+          quoteCharacter: "'",
           removeAttributeQuotes: true,
           removeComments: true,
           removeScriptTypeAttributes: true,

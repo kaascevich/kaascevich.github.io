@@ -24,19 +24,19 @@ const entriesWithDelays = R.pipe(
       <PostCard
         {entry}
         url={getPostUrlByID(entry.id)}
-        class="post-card"
+        class='post-card'
         style={`animation-delay: calc(var(--content-delay) + ${delay}ms);`}
       />
     ))
   }
 </ol>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   ol {
     display: block flex;
@@ -55,7 +55,7 @@ const entriesWithDelays = R.pipe(
       @extend %onload-animation;
     }
 
-    @include variants.md {
+    @include md {
       gap: spacing(4);
 
       background-color: transparent;

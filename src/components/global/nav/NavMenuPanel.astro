@@ -10,11 +10,11 @@ interface Props {
 const { links } = Astro.props
 ---
 
-<button aria-label={strings.alts.navMenuButton} id="nav-menu-switch">
-  <Icon name="tabler:menu-2" />
+<button aria-label={strings.alts.navMenuButton} id='nav-menu-switch'>
+  <Icon name='tabler:menu-2' />
 </button>
 
-<nav id="nav-menu-panel" class="float-panel-closed">
+<nav id='nav-menu-panel' class='float-panel-closed'>
   {
     links.map(({ name, url, external = false }) => (
       <a
@@ -41,11 +41,11 @@ const { links } = Astro.props
     )
 </script>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   #nav-menu-switch {
     @extend %btn-plain, %expand-animation;
@@ -65,7 +65,7 @@ const { links } = Astro.props
       inline-size: spacing(5);
     }
 
-    @include variants.md {
+    @include md {
       display: none !important;
     }
   }

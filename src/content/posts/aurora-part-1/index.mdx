@@ -52,7 +52,7 @@ diagnostics_):
 [32m    ^[0m
 ```
 
-<Callout type="tip">
+<Callout type='tip'>
 We're gonna get a _lot_ of those "no calls to throwing functions occur within
 'try' expression" warnings, so I'll omit them from here on out to try and reduce
 noise.
@@ -154,7 +154,7 @@ extension Parsable {
 }
 ```
 
-<Callout type="tip">
+<Callout type='tip'>
 The `Parsing` library makes it _very_ clear that `Substring` is more performant
 than `String` when parsing, which is why this protocol uses `Substring`s.
 </Callout>
@@ -337,7 +337,7 @@ enum Expression: Equatable, Parsable {
 }
 ```
 
-<Callout type="important">
+<Callout type='important'>
 The `operation` parser _must_ come before the `number` parser -- otherwise, the
 `number` parser will _always_ take precedence over the `operation` parser, even
 when a number is followed by an operator.

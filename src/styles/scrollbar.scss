@@ -1,6 +1,6 @@
 @use 'theme' as *;
 @use 'utils' as *;
-@use 'variants';
+@use 'variants' as *;
 
 .os-scrollbar {
   &.scrollbar-base {

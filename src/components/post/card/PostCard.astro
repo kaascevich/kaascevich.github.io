@@ -22,17 +22,17 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 ---
 
 <article class={className} {style}>
-  <div class="info-wrapper">
+  <div class='info-wrapper'>
     <h2>
       <a href={url}>
         {title}
-        <Icon name="tabler:chevron-right" />
+        <Icon name='tabler:chevron-right' />
       </a>
     </h2>
 
-    <PostMeta {entry} compactOnMobile={true} class="meta-items" />
+    <PostMeta {entry} compactOnMobile={true} class='meta-items' />
 
-    <div class="description">
+    <div class='description'>
       {description}
     </div>
 
@@ -47,11 +47,11 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
   <PostLink {entry} {url} />
 </article>
 
-<style lang="scss" define:vars={{ 'cover-width': coverWidth }}>
+<style lang='scss' define:vars={{ 'cover-width': coverWidth }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   article {
     @extend %card-base;
@@ -75,7 +75,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
       content: '';
 
-      @include variants.md {
+      @include md {
         display: none;
       }
     }
@@ -112,7 +112,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
           content: '';
 
-          @include variants.md {
+          @include md {
             display: block flow;
           }
         }
@@ -137,14 +137,14 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
           color: var(--primary);
 
-          @include variants.md {
+          @include md {
             translate: spacing(-1);
 
             opacity: 0%;
           }
         }
 
-        @include variants.md {
+        @include md {
           &:hover svg {
             translate: 0;
 
@@ -165,7 +165,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         color: bw(75%);
       }
 
-      @include variants.md {
+      @include md {
         padding-block-start: spacing(7);
         padding-inline: spacing(9) spacing(2);
 
@@ -173,7 +173,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
       }
     }
 
-    @include variants.md {
+    @include md {
       flex-direction: column;
     }
   }

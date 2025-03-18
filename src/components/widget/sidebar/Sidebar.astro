@@ -5,22 +5,22 @@ import Tag from '$/components/widget/sidebar/Tags.astro'
 import Categories from '$/components/widget/sidebar/Categories.astro'
 ---
 
-<aside class="sidebar">
-  <section class="profile">
+<aside class='sidebar'>
+  <section class='profile'>
     <Profile config={siteConfig.profile} />
   </section>
-  <section class="sticky">
-    <Categories class="categories" />
-    <Tag class="tags" />
+  <section class='sticky'>
+    <Categories class='categories' />
+    <Tag class='tags' />
   </section>
 </aside>
 
-<style lang="scss">
+<style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
   @use '$/styles/utils' as *;
-  @use '$/styles/variants';
+  @use '$/styles/variants' as *;
 
   aside.sidebar {
     inline-size: 100%;
