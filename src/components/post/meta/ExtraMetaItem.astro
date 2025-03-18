@@ -44,14 +44,10 @@ const { text, icon } = Astro.props
 
       border-radius: $radius-md;
 
-      background-color: black(5%);
+      background-color: light-dark(black(5%), white(10%));
 
       block-size: spacing(6);
       inline-size: spacing(6);
-
-      @include variants.dark {
-        background-color: white(10%);
-      }
     }
 
     .text {

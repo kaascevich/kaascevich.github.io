@@ -71,13 +71,9 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
     &:not(:first-child)::after {
       margin-inline: spacing(6);
 
-      border-block-start: 1px dashed black(10%);
+      border-block-start: 1px dashed light-dark(black(10%), white(15%));
 
       content: '';
-
-      @include variants.dark {
-        border-block-start-color: white(15%);
-      }
 
       @include variants.md {
         display: none;
@@ -128,17 +124,8 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           color: var(--title-active);
         }
 
-        @include variants.dark {
-          &:hover {
-            color: var(--primary);
-          }
-
-          &:active {
-            color: var(--title-active);
-          }
-        }
-
         svg {
+          @include transition;
           display: inline flow;
           position: absolute;
 

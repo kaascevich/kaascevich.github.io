@@ -37,7 +37,7 @@ const { badge, url, label } = Astro.props
     block-size: spacing(10);
     inline-size: 100%;
 
-    color: gray(37.1%);
+    color: light-dark(gray(37.1%), gray(87%));
 
     &:active {
       background-color: var(--btn-plain-bg-active);
@@ -49,14 +49,6 @@ const { badge, url, label } = Astro.props
       padding-inline-start: spacing(3);
 
       color: var(--primary);
-    }
-
-    @include variants.dark {
-      color: gray(87%);
-
-      &:hover {
-        color: var(--primary);
-      }
     }
   }
 
@@ -91,21 +83,15 @@ const { badge, url, label } = Astro.props
 
     border-radius: $radius-lg;
 
-    background-color: oklch(95% 6.25% var(--hue));
+    background-color: light-dark(with-hue(95%, 6.25%), var(--primary));
 
     padding-inline: spacing(2);
 
     block-size: spacing(7);
     min-inline-size: spacing(8);
 
-    color: var(--btn-content);
+    color: light-dark(var(--btn-content), var(--deep-text));
 
     font-weight: $font-weight-bold;
-
-    @include variants.dark {
-      background-color: var(--primary);
-
-      color: var(--deep-text);
-    }
   }
 </style>

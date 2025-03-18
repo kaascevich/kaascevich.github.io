@@ -129,20 +129,12 @@
 
     align-items: center;
 
-    background-color: black(4%);
+    background-color: light-dark(black(4%), white(5%));
 
     block-size: spacing(11);
 
     &:hover, &:focus-within {
-      background-color: black(6%);
-    }
-
-    @include variants.dark {
-      background-color: white(5%);
-
-      &:hover, &:focus-within {
-        background-color: white(10%);
-      }
+      background-color: light-dark(black(6%), white(10%));
     }
 
     :global(svg) {

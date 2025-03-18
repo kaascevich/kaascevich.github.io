@@ -71,13 +71,14 @@ const img = await (() => {
     overflow: hidden;
 
     img {
-      @include variants.dark {
-        filter: brightness(0.9);
-      }
       block-size: 100%;
       inline-size: 100%;
       object-fit: cover;
       object-position: var(--position);
+
+      @include variants.dark {
+        filter: brightness(0.9);
+      }
     }
   }
 </style>

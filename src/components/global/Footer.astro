@@ -41,11 +41,7 @@ const currentYear = new Date().getFullYear()
     margin-block: spacing(10);
     margin-inline: spacing(16);
 
-    border-block-start: 1px dashed black(10%);
-
-    @include variants.dark {
-      border-block-start-color: white(15%);
-    }
+    border-block-start: 1px dashed light-dark(black(10%), white(15%));
   }
 
   footer {

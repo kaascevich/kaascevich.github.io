@@ -1,16 +1,6 @@
 @use 'sass:list';
 @use 'utils' as *;
 
-$rainbow-light: linear-gradient(
-  to right in oklch longer hue,
-  oklch(80% 25% 0deg),
-  oklch(80% 25% 359deg)
-);
-$rainbow-dark: linear-gradient(
-  to right in oklch longer hue,
-  oklch(70% 25% 0deg),
-  oklch(70% 25% 359deg)
-);
 $variables: (
   --primary: with-hue(70%, 35%) with-hue(75%, 35%),
   --page-bg: with-hue(95%, 2.5%) with-hue(16%, 3.5%),
@@ -75,7 +65,10 @@ $variables: (
   --scrollbar-bg-active: var(--scrollbar-bg-active-light)
     var(--scrollbar-bg-active-dark),
   //
-  --color-selection-bar: $rainbow-light $rainbow-dark,
+  --color-selection-bar: linear-gradient(
+    to right in oklch longer hue,
+    light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg)) 0% 100%
+  ),
   //
   --display-light-icon: 1 0,
   --display-dark-icon: 0 1,
@@ -97,14 +90,22 @@ $variables: (
   --content-delay: 150ms;
 
   @each $name, $value in $variables {
-    #{$name}: list.nth($value, 1);
-  }
-
-  &[data-color-scheme='dark'] {
-    @each $name, $value in $variables {
-      @if list.length($value) > 1 {
-        #{$name}: list.nth($value, 2);
-      }
+    @if list.length($value) == 1 {
+      #{$name}: list.nth($value, 1);
+    } @else {
+      #{$name}: light-dark(list.nth($value, 1), list.nth($value, 2));
     }
   }
+
+  // @each $name, $value in $variables {
+  //   #{$name}: list.nth($value, 1);
+  // }
+
+  // &[data-color-scheme='dark'] {
+  //   @each $name, $value in $variables {
+  //     @if list.length($value) > 1 {
+  //       #{$name}: list.nth($value, 2);
+  //     }
+  //   }
+  // }
 }

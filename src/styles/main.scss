@@ -6,6 +6,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: light dark;
+
+  @each $scheme in (light, dark) {
+    &[data-color-scheme='#{$scheme}'] {
+      color-scheme: $scheme;
+    }
+  }
+
+  caret-color: var(--caret-color);
+}
+
 :root[data-color-scheme='dark'] {
   .astro-code,
   .astro-code span {
@@ -134,7 +146,7 @@
 
   background-image: none;
 
-  color: black(75%);
+  color: light-dark(black(75%), white(75%));
 
   &:hover {
     color: var(--primary);
@@ -149,14 +161,6 @@
       background-color: var(--btn-plain-bg-active);
     }
   }
-
-  @include variants.dark {
-    color: white(75%);
-
-    &:hover {
-      color: var(--primary);
-    }
-  }
 }
 
 %btn-regular {
@@ -169,7 +173,7 @@
 
   background-color: var(--btn-regular-bg);
 
-  color: var(--btn-content);
+  color: light-dark(var(--btn-content), white(75%));
 
   &:hover {
     background-color: var(--btn-regular-bg-hover);
@@ -177,10 +181,6 @@
 
   &:active {
     background-color: var(--btn-regular-bg-active);
-  }
-
-  @include variants.dark {
-    color: white(75%);
   }
 }
 
@@ -207,43 +207,23 @@
   align-items: center;
   justify-content: center;
 
-  background-color: with-hue(45%, 2.5%);
+  background-color: light-dark(with-hue(45%, 2.5%), with-hue(30%, 5%));
 
   &:hover {
-    background-color: with-hue(50%, 2.5%);
+    background-color: light-dark(with-hue(50%, 2.5%), with-hue(35%, 5%));
   }
 
   &:active {
-    background-color: with-hue(55%, 2.5%);
-  }
-
-  @include variants.dark {
-    background-color: with-hue(30%, 5%);
-
-    &:hover {
-      background-color: with-hue(35%, 5%);
-    }
-
-    &:active {
-      background-color: with-hue(40%, 7.5%);
-    }
+    background-color: light-dark(with-hue(55%, 2.5%), with-hue(40%, 7.5%));
   }
 
   &.success {
     background-color: with-hue(75%, 35%);
-
-    @include variants.dark {
-      background-color: with-hue(75%, 35%);
-    }
   }
 
   .copy-icon {
     opacity: 100%;
-    fill: white;
-
-    @include variants.dark {
-      fill: white(75%);
-    }
+    fill: light-dark(white, #{white(75%)});
   }
 
   &.copy-btn.success .copy-icon {
@@ -266,8 +246,4 @@
 
 ::selection {
   background-color: var(--selection-bg);
-}
-
-:root {
-  caret-color: var(--caret-color);
 }

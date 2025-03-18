@@ -68,9 +68,6 @@ function getPageUrl<Page extends number>(page: Page) {
   @use '$/styles/variants';
 
   ol {
-    @include variants.dark {
-      color: gray(87%);
-    }
     display: block flex;
 
     flex-direction: row;
@@ -81,7 +78,7 @@ function getPageUrl<Page extends number>(page: Page) {
 
     background-color: var(--card-bg);
 
-    color: gray(37.1%);
+    color: light-dark(gray(37.1%), gray(87%));
 
     font-weight: $font-weight-bold;
   }
@@ -99,9 +96,6 @@ function getPageUrl<Page extends number>(page: Page) {
   }
 
   .current-page {
-    @include variants.dark {
-      color: black(70%);
-    }
     display: block flex;
 
     align-items: center;
@@ -109,7 +103,7 @@ function getPageUrl<Page extends number>(page: Page) {
 
     background-color: var(--primary);
 
-    color: white;
+    color: light-dark(white, black(70%));
   }
 
   .other-page {

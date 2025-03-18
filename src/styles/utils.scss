@@ -40,11 +40,7 @@
 }
 
 @mixin text-plain($alpha) {
-  color: black($alpha);
-
-  @include variants.dark {
-    color: white($alpha);
-  }
+  color: light-dark(black($alpha), white($alpha));
 }
 
 // MARK: Mixins

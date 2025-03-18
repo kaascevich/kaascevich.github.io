@@ -138,7 +138,7 @@
 
         margin-inline-start: spacing(3);
 
-        color: gray(20.5%);
+        color: light-dark(gray(20.5%), gray(97%));
 
         font-weight: $font-weight-bold;
 
@@ -155,10 +155,6 @@
           inline-size: spacing(1);
 
           content: "";
-        }
-
-        @include variants.dark {
-          color: gray(97%);
         }
       }
 
@@ -210,7 +206,7 @@
     .hue-slider-wrapper {
       border-radius: $radius-sm;
 
-      background-color: oklch(80% 25% 0deg);
+      background-color: light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg));
 
       padding-inline: spacing(1);
 
@@ -218,10 +214,6 @@
       inline-size: 100%;
 
       user-select: none;
-
-      @include variants.dark {
-        background-color: oklch(70% 25% 0deg);
-      }
 
       input[type="range"] {
         @include transition($properties: background-image);
