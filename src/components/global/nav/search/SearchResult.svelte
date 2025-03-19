@@ -3,7 +3,7 @@
 
   import Icon from '@iconify/svelte'
 
-  interface Props {
+  export interface Props {
     item: PagefindSearchFragment
   }
   const { item }: Props = $props()

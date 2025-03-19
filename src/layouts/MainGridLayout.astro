@@ -3,7 +3,7 @@ import Footer from '$/components/global/Footer.astro'
 import Navbar from '$/components/global/nav/Navbar.astro'
 import BackToTop from '$/components/widget/BackToTop.astro'
 import Sidebar from '$/components/widget/sidebar/Sidebar.astro'
-import Layout from '$/layouts/Layout.astro'
+import Layout, { type Props as LayoutProps } from '$/layouts/Layout.astro'
 import siteConfig from '$/config/site'
 import type { MarkdownHeading } from 'astro'
 import TOCWrapper from '$/components/widget/toc/TOCWrapper.astro'
@@ -14,14 +14,11 @@ import {
 import Banner from '$/components/global/Banner.astro'
 import BannerCredit from '$/components/global/BannerCredit.astro'
 
-interface Props {
-  title?: string
-  description?: string
-  setOGTypeArticle?: boolean
+export interface Props extends LayoutProps {
   headings?: readonly MarkdownHeading[]
 }
 
-const { title, description, setOGTypeArticle, headings = [] } = Astro.props
+const { headings = [], ...props } = Astro.props
 
 const mainPanelTop =
   siteConfig.banner === undefined
@@ -29,7 +26,7 @@ const mainPanelTop =
     : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 ---
 
-<Layout {title} {description} {setOGTypeArticle}>
+<Layout {...props}>
   <!-- navbar -->
   <slot slot='head' name='head' />
   <header id='top-row'>

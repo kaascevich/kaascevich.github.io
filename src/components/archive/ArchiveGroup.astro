@@ -3,7 +3,7 @@ import type { PostsForYear } from '$/types/content'
 import ArchiveHeader from '$/components/archive/ArchiveHeader.astro'
 import ArchiveItem from '$/components/archive/ArchiveItem.astro'
 
-interface Props {
+export interface Props {
   group: PostsForYear
 }
 const { group } = Astro.props

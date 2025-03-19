@@ -4,7 +4,7 @@ import type { MarkdownHeading } from 'astro'
 import siteConfig from '$/config/site'
 import TOC from '$/components/widget/toc/TOC.astro'
 
-interface Props {
+export interface Props {
   headings: readonly MarkdownHeading[]
 }
 const { headings } = Astro.props

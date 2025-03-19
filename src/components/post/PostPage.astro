@@ -6,7 +6,7 @@ import * as R from 'remeda'
 import { getPostUrlByID } from '$/utils/urls'
 import PostCard from '$/components/post/card/PostCard.astro'
 
-interface Props {
+export interface Props {
   page: Page<Post>
 }
 const { page } = Astro.props

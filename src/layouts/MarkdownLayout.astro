@@ -1,6 +1,7 @@
 ---
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import Markdown from '$/components/post/Markdown.astro'
+import { InvalidPropError } from '$/utils/errors'
 
 interface Props {
   frontmatter: Readonly<{
@@ -9,25 +10,12 @@ interface Props {
   }>
 }
 
-const { title, description = title } = Astro.props.frontmatter
+const {
+  title,
+  description = title
+} = Astro.props.frontmatter as Record<keyof Props['frontmatter'], unknown>
 
-class InvalidPropError extends TypeError {
-  constructor(
-    readonly propName: string,
-    readonly expectedType: string,
-    readonly actualType: string,
-  ) {
-    super()
-  }
-
-  override get message() {
-    return `\
-invalid '${this.propName}' prop (type '${this.actualType}' \
-is not assignable to '${this.expectedType}')` as const
-  }
-}
-
-// Astro doesn't validate prop types in Markdown layouts, so we've gotta do it
+// Astro doesn't validate prop types in Markdown layouts, so we have to do it
 // manually.
 if (typeof title !== 'string') {
   throw new InvalidPropError('title', 'string', typeof title)

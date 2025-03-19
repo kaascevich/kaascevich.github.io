@@ -13,14 +13,14 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   }) satisfies GetStaticPathsResult
 }
 
-interface Props {
+export interface Props {
   page: Page<Post>
 }
 
 const { page } = Astro.props
 ---
 
-<MainGridLayout>
+<MainGridLayout fullHeightBanner>
   <PostPage {page} />
   <Pagination
     class='pagination'

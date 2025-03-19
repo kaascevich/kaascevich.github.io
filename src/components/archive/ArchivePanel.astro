@@ -7,7 +7,7 @@ type Filter =
   | { type: 'tag'; tag: string }
   | { type: 'category'; category: string }
 
-interface Props {
+export interface Props {
   filter?: Filter
 }
 const { filter } = Astro.props

@@ -15,6 +15,33 @@ import '@fontsource/monaspace-radon'
   article.markdown {
     max-inline-size: none !important;
   }
+
+  :global(.code-block) {
+    position: relative;
+  }
+
+  :global(.copy-btn) {
+    @include font-size($text-sm);
+    @include transition($properties: all);
+
+    position: absolute;
+    inset-block-start: spacing(2);
+    inset-inline-end: spacing(2);
+
+    opacity: 75%;
+
+    border-radius: $radius-lg;
+
+    padding-block: spacing(1.5);
+    padding-inline: spacing(1.5);
+
+    block-size: spacing(8);
+    inline-size: spacing(8);
+
+    &:active {
+      scale: 90%;
+    }
+  }
 </style>
 
 <script>
@@ -35,11 +62,11 @@ import '@fontsource/monaspace-radon'
       }
 
       const wrapper = document.createElement('div')
-      wrapper.className = 'relative code-block'
+      wrapper.className = 'code-block'
 
       const copyButton = document.createElement('button')
       copyButton.className =
-        'copy-btn absolute active:scale-90 h-8 w-8 top-2 right-2 opacity-75 text-sm p-1.5 rounded-lg transition-all ease-in-out'
+        'copy-btn'
 
       codeBlock.tabIndex = 0
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock)

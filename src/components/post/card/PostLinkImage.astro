@@ -5,7 +5,7 @@ import { getDir } from '$/utils/urls'
 import { Icon } from 'astro-icon/components'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
-interface Props {
+export interface Props {
   entry: Post
   image: NonNullable<Post['data']['image']>
   url: string

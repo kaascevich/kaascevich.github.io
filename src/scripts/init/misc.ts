@@ -15,7 +15,7 @@ export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
     const threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
     const navbar = document.getElementById('navbar-wrapper')
 
-    if (navbar === null || !document.body.classList.contains('is-home')) {
+    if (navbar === null || !document.body.classList.contains('full-height-banner')) {
       return
     }
 
@@ -29,11 +29,10 @@ export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
 
   swupGlobal.hooks.on('visit:start', (visit) => {
     // change banner height immediately when a link is clicked
-    const bodyElement = document.body!
-    if (pathsEqual(visit.to.url, '/')) {
-      bodyElement.classList.add('is-home')
+    if (visit.to.document?.body.classList.contains('full-height-banner')) {
+      document.body?.classList.add('full-height-banner')
     } else {
-      bodyElement.classList.remove('is-home')
+      document.body?.classList.remove('full-height-banner')
     }
 
     // increase page height during transition to keep scroll animation from jumping

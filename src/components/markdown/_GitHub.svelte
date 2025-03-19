@@ -4,7 +4,7 @@
   import { Octokit } from 'octokit'
   import { onMount } from 'svelte'
 
-  interface Props {
+  export interface Props {
     owner: string
     repo: string
   }

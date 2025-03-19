@@ -5,27 +5,18 @@ import '$/styles/tailwind.scss'
 import '$/styles/main.scss'
 
 import siteConfig from '$/config/site'
-import Head from '$/components/global/Head.astro'
+import Head, { type Props as HeadProps } from '$/components/global/Head.astro'
 import {
   BANNER_HEIGHT_EXTEND,
   BANNER_HEIGHT_HOME,
   PAGE_WIDTH,
 } from '$/constants/constants'
-import { pathsEqual } from '$/utils/urls'
 
-interface Props {
-  title?: string
-  description?: string
-  setOGTypeArticle?: boolean
+export interface Props extends HeadProps {
+  fullHeightBanner?: boolean
 }
 
-// apply a class to the body element to decide the height of the banner, only
-// used for initial page load
-//
-// Swup can update the body for each page visit, but it's after the page
-// transition, causing a delay for banner height change. so we use Swup hooks
-// instead to change the height immediately when a link is clicked.
-const isHomePage = pathsEqual(Astro.url.pathname, '/')
+const { fullHeightBanner = false, ...props } = Astro.props
 
 const bannerOffset = (
   {
@@ -38,7 +29,7 @@ const bannerOffset = (
 
 <!doctype html>
 <html lang='en-US' data-overlayscrollbars-initialize>
-  <Head {...Astro.props}>
+  <Head {...props}>
     <!-- define global CSS variables -->
     <style
       lang='scss'
@@ -55,7 +46,7 @@ const bannerOffset = (
 
   <body
     class:list={{
-      'is-home': isHomePage,
+      'full-height-banner': fullHeightBanner,
       'enable-banner': siteConfig.banner !== undefined,
     }}
     data-overlayscrollbars-initialize
@@ -122,7 +113,7 @@ const bannerOffset = (
     }
 
     @include lg {
-      &.is-home {
+      &.full-height-banner {
         #banner-wrapper {
           translate: 0 var(--banner-height-extend);
 

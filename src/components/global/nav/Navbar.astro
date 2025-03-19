@@ -4,7 +4,7 @@ import siteConfig from '$/config/site'
 import NavExtras from '$/components/global/nav/NavExtras.astro'
 import NavLink from '$/components/global/nav/NavLink.astro'
 
-interface Props {
+export interface Props {
   class?: string
 }
 const { class: className } = Astro.props
@@ -40,7 +40,7 @@ const { class: className } = Astro.props
     const navbar = document.getElementById('navbar-wrapper')!
 
     const bannerHeight =
-      document.body.classList.contains('is-home') && window.innerWidth >= 1024
+      document.body.classList.contains('full-height-banner') && window.innerWidth >= 1024
         ? BANNER_HEIGHT_HOME
         : BANNER_HEIGHT
 

@@ -2,13 +2,15 @@ import type { ColorScheme } from '$/types/config'
 
 import { DEFAULT_COLOR_SCHEME } from '$/constants/constants.ts'
 
-function isValidColorScheme(value: string | null): value is ColorScheme {
-  return value !== null && ['light', 'dark', 'auto'].includes(value)
+function isValidColorScheme(value: string): value is ColorScheme {
+  return ['light', 'dark', 'auto'].includes(value)
 }
 
 export function getColorScheme() {
   const stored = localStorage.getItem('colorScheme')
-  return isValidColorScheme(stored) ? stored : DEFAULT_COLOR_SCHEME
+  return stored !== null && isValidColorScheme(stored)
+    ? stored
+    : DEFAULT_COLOR_SCHEME
 }
 
 export function setColorScheme(colorScheme: ColorScheme) {
