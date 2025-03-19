@@ -51,35 +51,21 @@ $variables: (
   //
   --float-panel-bg: light-dark(white, with-hue(19%, 3.75%)),
   //
-  --scrollbar-bg-light: black(40%),
-  --scrollbar-bg-hover-light: black(50%),
-  --scrollbar-bg-active-light: black(60%),
-  //
-  --scrollbar-bg-dark: white(40%),
-  --scrollbar-bg-hover-dark: white(50%),
-  --scrollbar-bg-active-dark: white(60%),
-  //
-  --scrollbar-bg: light-dark(var(--scrollbar-bg-light), var(--scrollbar-bg-dark)),
-  --scrollbar-bg-hover: light-dark(var(--scrollbar-bg-hover-light),
-    var(--scrollbar-bg-hover-dark)),
-  --scrollbar-bg-active: light-dark(var(--scrollbar-bg-active-light),
-    var(--scrollbar-bg-active-dark)),
-  //
   --color-selection-bar: linear-gradient(
     to right in oklch longer hue,
     light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg)) 0% 100%
   ),
   //
-  --admonitions-color-tip: light-dark(oklch(70% 35% 180deg), oklch(75% 35% 180deg)),
-  --admonitions-color-note: light-dark(oklch(70% 35% 250deg), oklch(75% 35% 250deg)),
-  --admonitions-color-important: light-dark(oklch(70% 35% 310deg), oklch(75% 35% 310deg)),
-  --admonitions-color-warning: light-dark(oklch(70% 35% 60deg), oklch(75% 35% 60deg)),
-  --admonitions-color-caution: light-dark(oklch(60% 50% 25deg), oklch(65% 50% 25deg)),
+  --callout-color-tip: light-dark(oklch(70% 35% 180deg), oklch(75% 35% 180deg)),
+  --callout-color-note: light-dark(oklch(70% 35% 250deg), oklch(75% 35% 250deg)),
+  --callout-color-important: light-dark(oklch(70% 35% 310deg), oklch(75% 35% 310deg)),
+  --callout-color-warning: light-dark(oklch(70% 35% 60deg), oklch(75% 35% 60deg)),
+  --callout-color-caution: light-dark(oklch(60% 50% 25deg), oklch(65% 50% 25deg)),
   //
   --toc-badge-bg: light-dark(with-hue(90%, 11.25%), var(--btn-regular-bg)),
   --toc-btn-hover: light-dark(with-hue(92%, 3.75%), with-hue(22%, 5%)),
   --toc-btn-active: light-dark(with-hue(90%, 3.75%), with-hue(25%, 5%)),
-  --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem),
+  --toc-width: calc((100vw - var(--page-width)) / 2 - spacing(4)),
   --toc-item-active: light-dark(with-hue(70%, 32.5%), with-hue(35%, 17.5%)),
 );
 

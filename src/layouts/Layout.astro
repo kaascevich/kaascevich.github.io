@@ -118,7 +118,7 @@ const bannerOffset = (
     #top-row {
       @include transition($properties: all, $duration: 300ms);
 
-      block-size: calc(var(--banner-height-home) - 4.5rem);
+      block-size: calc(var(--banner-height-home) - spacing(18));
     }
 
     @include lg {
@@ -140,7 +140,7 @@ const bannerOffset = (
         }
 
         section.sticky {
-          inset-block-start: calc(1rem - var(--banner-height-extend));
+          inset-block-start: calc(spacing(4) - var(--banner-height-extend));
         }
       }
     }
@@ -160,308 +160,34 @@ const bannerOffset = (
 </style>
 
 <script>
-  import 'overlayscrollbars/overlayscrollbars.css'
-  import { OverlayScrollbars } from 'overlayscrollbars'
-  import {
-    getHue,
-    getColorScheme,
-    setHue,
-    setColorScheme,
-  } from '$/utils/settings'
-  import { pathsEqual } from '$/utils/urls'
-  import {
-    BANNER_HEIGHT,
-    BANNER_HEIGHT_HOME,
-    BANNER_HEIGHT_EXTEND,
-    MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
-  } from '$/constants/constants'
+  import { applyColorScheme } from '$/utils/settings/colorScheme'
+  import { applyHue } from '$/utils/settings/hue'
   import siteConfig from '$/config/site'
 
-  const bannerEnabled = document.getElementById('banner-wrapper') !== null
+  applyColorScheme()
+  applyHue()
 
-  function setClickOutsideToClose(panel: string, ignores: readonly string[]) {
-    document.addEventListener('click', (event) => {
-      if (!(event.target instanceof Node)) {
-        return
-      }
-
-      for (const ignored of ignores) {
-        const element = document.getElementById(ignored)
-        if (element === event.target || element?.contains(event.target)) {
-          return
-        }
-      }
-      document.getElementById(panel)?.classList.add('float-panel-closed')
-    })
-  }
-  setClickOutsideToClose('color-settings', [
-    'color-settings',
-    'color-settings-switch',
-  ])
-  setClickOutsideToClose('nav-menu-panel', [
-    'nav-menu-panel',
-    'nav-menu-switch',
-  ])
-  setClickOutsideToClose('search-panel', [
-    'search-panel',
-    'search-bar',
-    'search-switch',
-  ])
-
-  function loadColorScheme() {
-    setColorScheme(getColorScheme())
-  }
-
-  function loadHue() {
-    setHue(getHue())
-  }
-
-  function initCustomScrollbar() {
-    if (document.body === null) {
-      return
-    }
-
-    OverlayScrollbars(
-      // docs say that initializing the body element would affect native
-      // functionality like `window.scrollTo`, but just leave it here for now
-      {
-        target: document.body,
-        cancel: {
-          nativeScrollbarsOverlaid: true,
-        },
-      },
-      {
-        scrollbars: {
-          theme: 'scrollbar-base scrollbar-auto py-1',
-          autoHide: 'move',
-          autoHideDelay: 500,
-          autoHideSuspend: false,
-        },
-      },
-    )
-
-    for (const element of document.querySelectorAll('pre')) {
-      OverlayScrollbars(element, {
-        scrollbars: {
-          theme: 'scrollbar-base scrollbar-dark px-2',
-          autoHide: 'leave',
-          autoHideDelay: 500,
-          autoHideSuspend: false,
-        },
-      })
-    }
-
-    for (const element of document.querySelectorAll<HTMLElement>(
-      '.katex-display',
-    )) {
-      OverlayScrollbars(element, {
-        scrollbars: {
-          theme: 'scrollbar-base scrollbar-auto py-1',
-        },
-      })
-    }
-  }
-
-  function showBanner() {
+  if (siteConfig.banner !== undefined) {
     document.getElementById('banner')!.style.opacity = '100%'
     document.getElementById('banner')!.style.scale = '100%'
-  }
-
-  function init() {
-    loadColorScheme()
-    loadHue()
-    initCustomScrollbar()
-    if (siteConfig.banner !== undefined) {
-      showBanner()
-    }
-  }
-
-  // load settings when entering the site
-  init()
-
-  function setup() {
-    window.swup.hooks.on('link:click', () => {
-      // remove first load delay
-      document.documentElement.style.setProperty('--content-delay', '0ms')
-
-      // prevent elements from overlapping the navbar
-      if (!bannerEnabled) {
-        return
-      }
-
-      const threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
-      const navbar = document.getElementById('navbar-wrapper')
-
-      if (navbar === null || !document.body.classList.contains('is-home')) {
-        return
-      }
-
-      if (
-        document.body.scrollTop >= threshold ||
-        document.documentElement.scrollTop >= threshold
-      ) {
-        navbar.classList.add('navbar-hidden')
-      }
-    })
-    window.swup.hooks.on('content:replace', initCustomScrollbar)
-    window.swup.hooks.on('visit:start', (visit) => {
-      // change banner height immediately when a link is clicked
-      const bodyElement = document.body!
-      if (pathsEqual(visit.to.url, '/')) {
-        bodyElement.classList.add('is-home')
-      } else {
-        bodyElement.classList.remove('is-home')
-      }
-
-      // increase page height during transition to keep scroll animation from jumping
-      document.getElementById('page-height-extend')?.classList.remove('hidden')
-
-      // hide the TOC while scrolling back to top
-      document.getElementById('toc-wrapper')?.classList.add('toc-not-ready')
-    })
-    window.swup.hooks.on('page:view', () => {
-      // hide the temp high element when the transition is done
-      document.getElementById('page-height-extend')?.classList.remove('hidden')
-    })
-    window.swup.hooks.on('visit:end', () => {
-      setTimeout(() => {
-        document.getElementById('page-height-extend')?.classList.add('hidden')
-
-        document
-          .getElementById('toc-wrapper')
-          ?.classList.remove('toc-not-ready')
-      }, 200)
-    })
-  }
-
-  if (window.swup?.hooks) {
-    setup()
-  } else {
-    document.addEventListener('swup:enable', setup)
-  }
-
-  const backToTopBtn = document.getElementById('back-to-top-btn')
-  const toc = document.getElementById('toc-wrapper')
-  const navbar = document.getElementById('navbar-wrapper')
-  function scrollFunction() {
-    const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
-
-    if (backToTopBtn !== null) {
-      if (
-        document.body.scrollTop > bannerHeight ||
-        document.documentElement.scrollTop > bannerHeight
-      ) {
-        backToTopBtn.classList.remove('hide')
-      } else {
-        backToTopBtn.classList.add('hide')
-      }
-    }
-
-    if (!bannerEnabled) {
-      return
-    }
-
-    if (toc !== null) {
-      if (
-        document.body.scrollTop > bannerHeight ||
-        document.documentElement.scrollTop > bannerHeight
-      ) {
-        toc.classList.remove('toc-hide')
-      } else {
-        toc.classList.add('toc-hide')
-      }
-    }
-    if (navbar !== null) {
-      const NAVBAR_HEIGHT = 72
-
-      // the height the main panel overlaps the banner
-      const MAIN_PANEL_EXCESS_HEIGHT = MAIN_PANEL_OVERLAPS_BANNER_HEIGHT * 16
-
-      const bannerHeight =
-        document.body.classList.contains('is-home') && window.innerWidth >= 1024
-          ? BANNER_HEIGHT_HOME
-          : BANNER_HEIGHT
-
-      const threshold =
-        window.innerHeight * (bannerHeight / 100) -
-        NAVBAR_HEIGHT -
-        MAIN_PANEL_EXCESS_HEIGHT -
-        16
-
-      if (
-        document.body.scrollTop >= threshold ||
-        document.documentElement.scrollTop >= threshold
-      ) {
-        navbar.classList.add('navbar-hidden')
-      } else {
-        navbar.classList.remove('navbar-hidden')
-      }
-    }
-  }
-  window.onscroll = scrollFunction
-
-  window.onresize = () => {
-    // --banner-height-extend needs to be a multiple of 4 to avoid blurry text
-    const offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
-    const boundedOffset = offset - (offset % 4)
-    document.documentElement.style.setProperty(
-      '--banner-height-extend',
-      `${boundedOffset}px`,
-    )
   }
 </script>
 
 <script>
-  import PhotoSwipeLightbox from 'photoswipe/lightbox'
-  import 'photoswipe/style.css'
+  import panelSetup from '$/scripts/init/panels'
+  import photoswipeSetup from '$/scripts/init/photoswipe'
+  import miscSetup from '$/scripts/init/misc'
 
-  let lightbox: PhotoSwipeLightbox | undefined = undefined
+  panelSetup()
 
-  function createPhotoSwipe() {
-    lightbox = new PhotoSwipeLightbox({
-      gallery: 'article.markdown img, #post-cover img',
-      pswpModule: async () => await import('photoswipe'),
-      closeSVG: `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M18 6L6 18M6 6l12 12' /></svg>`,
-      zoomSVG: `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m4 0h6m-3-3v6m11 8l-6-6' /></svg>`,
-      padding: { top: 20, bottom: 20, left: 20, right: 20 },
-      wheelToZoom: true,
-      arrowPrev: false,
-      arrowNext: false,
-      imageClickAction: 'close',
-      tapAction: 'close',
-      doubleTapAction: 'zoom',
-    })
-
-    lightbox.addFilter('domItemData', (itemData, element) => {
-      if (element instanceof HTMLImageElement) {
-        itemData.src = element.src
-
-        itemData.width = element.naturalWidth || window.innerWidth
-        itemData.height = element.naturalHeight || window.innerHeight
-
-        itemData.msrc = element.src
-      }
-
-      return itemData
-    })
-
-    lightbox.init()
-  }
-
-  function setup() {
-    if (lightbox === undefined) {
-      createPhotoSwipe()
-    }
-    window.swup.hooks.on('page:view', () => createPhotoSwipe())
-
-    window.swup.hooks.on('content:replace', () => lightbox?.destroy(), {
-      before: true,
-    })
+  function setup(swupGlobal: NonNullable<typeof window.swup>) {
+    photoswipeSetup(swupGlobal)
+    miscSetup(swupGlobal)
   }
 
   if (window.swup) {
-    setup()
+    setup(window.swup)
   } else {
-    document.addEventListener('swup:enable', setup)
+    document.addEventListener('swup:enable', () => setup(window.swup!))
   }
 </script>

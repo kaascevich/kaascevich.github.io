@@ -1,7 +1,7 @@
 <script lang='ts'>
   import siteConfig from '$/config/site'
   import strings from '$/config/strings'
-  import { getHue, setHue } from '$/utils/settings'
+  import { getHue, setHue } from '$/utils/settings/hue'
   import Icon from '@iconify/svelte'
 
   let hue = $state(getHue())

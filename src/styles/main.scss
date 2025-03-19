@@ -225,12 +225,14 @@
 
   .copy-icon {
     opacity: 100%;
-    fill: light-dark(white, #{white(75%)});
+
+    color: light-dark(white, #{white(75%)});
   }
 
   &.copy-btn.success .copy-icon {
     opacity: 0%;
-    fill: var(--deep-text);
+
+    color: var(--deep-text);
   }
 
   .success-icon {

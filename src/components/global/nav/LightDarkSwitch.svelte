@@ -8,7 +8,7 @@
     getColorScheme,
     getComputedColorScheme,
     setColorScheme,
-  } from '$/utils/settings'
+  } from '$/utils/settings/colorScheme'
   import Icon from '@iconify/svelte'
   import { onMount, tick } from 'svelte'
 
@@ -39,10 +39,10 @@
       return
     }
 
-    setTimeout(() => document.startViewTransition(async () => {
+    document.startViewTransition(async () => {
       await tick()
       setColorScheme(newScheme)
-    }), 0)
+    })
   }
 
   function toggleScheme() {

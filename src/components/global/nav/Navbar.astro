@@ -24,6 +24,43 @@ const { class: className } = Astro.props
   </nav>
 </div>
 
+<script>
+  import {
+    NAVBAR_HEIGHT,
+    BANNER_HEIGHT,
+    BANNER_HEIGHT_HOME,
+    MAIN_PANEL_EXCESS_HEIGHT,
+  } from '$/constants/constants'
+
+  window.addEventListener('scroll', () => {
+    if (document.getElementById('banner-wrapper') === null) {
+      return
+    }
+
+    const navbar = document.getElementById('navbar-wrapper')!
+
+    const bannerHeight =
+      document.body.classList.contains('is-home') && window.innerWidth >= 1024
+        ? BANNER_HEIGHT_HOME
+        : BANNER_HEIGHT
+
+    const threshold =
+      window.innerHeight * (bannerHeight / 100) -
+      NAVBAR_HEIGHT -
+      MAIN_PANEL_EXCESS_HEIGHT -
+      16
+
+    if (
+      document.body.scrollTop >= threshold ||
+      document.documentElement.scrollTop >= threshold
+    ) {
+      navbar.classList.add('navbar-hidden')
+    } else {
+      navbar.classList.remove('navbar-hidden')
+    }
+  })
+</script>
+
 <style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;

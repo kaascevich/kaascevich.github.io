@@ -14,6 +14,24 @@ import { Icon } from 'astro-icon/components'
   </button>
 </div>
 
+<script>
+  import { BANNER_HEIGHT } from "$/constants/constants"
+
+  const backToTopBtn = document.getElementById('back-to-top-btn')!
+
+  window.addEventListener('scroll', () => {
+    const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
+    if (
+      document.body.scrollTop > bannerHeight ||
+      document.documentElement.scrollTop > bannerHeight
+    ) {
+      backToTopBtn.classList.remove('hide')
+    } else {
+      backToTopBtn.classList.add('hide')
+    }
+  })
+</script>
+
 <style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;

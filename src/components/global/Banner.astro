@@ -20,6 +20,20 @@ const { config } = Astro.props
   />
 </div>
 
+<script>
+  import { BANNER_HEIGHT_EXTEND } from '$/constants/constants'
+
+  window.addEventListener('resize', () => {
+    // --banner-height-extend needs to be a multiple of 4 to avoid blurry text
+    const offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100))
+    const boundedOffset = offset - (offset % 4)
+    document.documentElement.style.setProperty(
+      '--banner-height-extend',
+      `${boundedOffset}px`,
+    )
+  })
+</script>
+
 <style lang='scss' define:vars={{ 'end-stop': 0.5, multiplier: 1 / 2 }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;

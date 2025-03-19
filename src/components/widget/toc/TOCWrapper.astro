@@ -28,6 +28,30 @@ const { headings } = Astro.props
   </div>
 </div>
 
+<script>
+  import { BANNER_HEIGHT } from '$/constants/constants'
+
+  window.addEventListener('scroll', () => {
+    if (document.getElementById('banner-wrapper') === null) {
+      return
+    }
+
+    const toc = document.getElementById('toc-wrapper')
+    if (toc !== null) {
+      const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
+
+      if (
+        document.body.scrollTop > bannerHeight ||
+        document.documentElement.scrollTop > bannerHeight
+      ) {
+        toc.classList.remove('toc-hide')
+      } else {
+        toc.classList.add('toc-hide')
+      }
+    }
+  })
+</script>
+
 <style lang='scss'>
   @use '$/styles/main';
   @use '$/styles/theme' as *;

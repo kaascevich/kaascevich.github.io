@@ -2,9 +2,11 @@ import type Swup from 'swup'
 
 declare global {
   interface Window {
-    swup: Swup
+    swup: Swup | undefined
   }
 }
+
+// MARK: Specific Typings
 
 declare global {
   interface NumberConstructor {
