@@ -45,11 +45,7 @@
     maximumFractionDigits: 1,
   }).format
 
-  const footerItems: Record<string, {
-    icon: string
-    label: string
-    content: string
-  }> = $derived({
+  const footerItems = $derived({
     stars: {
       icon: 'tabler:star',
       label: strings.github.starCount(stars),
@@ -65,7 +61,11 @@
       label: strings.github.license(license),
       content: license,
     },
-  })
+  } as const satisfies Record<string, {
+    icon: string
+    label: string
+    content: string
+  }>)
 </script>
 
 <a

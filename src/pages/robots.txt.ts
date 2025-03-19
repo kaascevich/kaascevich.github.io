@@ -1,5 +1,3 @@
-import type { APIRoute } from 'astro'
-
 import * as R from 'remeda'
 
 const userAgents = [
@@ -69,9 +67,10 @@ Allow: /
 Sitemap: ${sitemapURL}
 ` as const
 
-export const GET: APIRoute = () =>
-  new Response(robotsTxt, {
+export function GET() {
+  return new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
     },
   })
+}

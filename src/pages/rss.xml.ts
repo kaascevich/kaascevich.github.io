@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro'
+import type { APIContext } from 'astro'
 
 import siteConfig from '$/config/site'
 import { getSortedPosts } from '$/utils/content'
@@ -9,7 +9,7 @@ import sanitizeHtml from 'sanitize-html'
 
 const parser = new MarkdownIt()
 
-export const GET: APIRoute = async (context) => {
+export async function GET(context: APIContext) {
   const posts = await getSortedPosts()
 
   return rss({

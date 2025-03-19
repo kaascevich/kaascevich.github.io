@@ -15,6 +15,10 @@
     <Icon icon='tabler:chevron-right' />
   </header>
   <div class='excerpt'>
+    <!--
+      this has already been sanitized by Pagefind -- it needs to be `@html`
+      instead of `@text` to keep the `<mark>` element intact
+    -->
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html item.excerpt}
   </div>

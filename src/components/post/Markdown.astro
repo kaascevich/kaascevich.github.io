@@ -54,6 +54,7 @@ import '@fontsource/monaspace-radon'
     observer.disconnect()
 
     for (const codeBlock of document.querySelectorAll('pre')) {
+      // check if we've already handled this element
       if (
         codeBlock.parentElement?.nodeName === 'DIV' &&
         codeBlock.parentElement.classList.contains('code-block')
@@ -61,15 +62,16 @@ import '@fontsource/monaspace-radon'
         continue
       }
 
+      // create and insert the wrapper element
       const wrapper = document.createElement('div')
       wrapper.className = 'code-block'
 
-      const copyButton = document.createElement('button')
-      copyButton.className =
-        'copy-btn'
-
-      codeBlock.tabIndex = 0
       codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
+
+      // create the copy button
+      const copyButton = document.createElement('button')
+      copyButton.className = 'copy-btn'
+      codeBlock.tabIndex = 0
 
       const copyIcon = `<svg
         class='copy-btn-icon copy-icon'
@@ -88,7 +90,7 @@ import '@fontsource/monaspace-radon'
           <path d='M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z' />
           <path d='M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1' />
         </g>
-      </svg>`
+      </svg>` as const
       const successIcon = `<svg
         class='copy-btn-icon success-icon'
         xmlns='http://www.w3.org/2000/svg'
@@ -97,14 +99,17 @@ import '@fontsource/monaspace-radon'
         viewBox='0 -960 960 960'
       >
         <path d='m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z' />
-      </svg>`
+      </svg>` as const
 
+      // add the icons, trimming excess whitespace
       copyButton.innerHTML = `<div>${copyIcon} ${successIcon}</div>`
         .replaceAll(/\n\s*/g, ' ')
 
+      // add the elements to the DOM
       wrapper.appendChild(codeBlock)
       wrapper.appendChild(copyButton)
 
+      // make the copy button do the copy thing
       let timeout: ReturnType<typeof setTimeout> | undefined
       copyButton.addEventListener('click', async () => {
         if (timeout !== undefined) {

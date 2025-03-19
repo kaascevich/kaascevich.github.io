@@ -40,7 +40,8 @@ const { class: className } = Astro.props
     const navbar = document.getElementById('navbar-wrapper')!
 
     const bannerHeight =
-      document.body.classList.contains('full-height-banner') && window.innerWidth >= 1024
+      document.body.classList.contains('full-height-banner') &&
+      window.innerWidth >= 1024
         ? BANNER_HEIGHT_HOME
         : BANNER_HEIGHT
 
