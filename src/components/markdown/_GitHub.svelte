@@ -116,7 +116,7 @@
 
     border-radius: $radius-xl2;
 
-    background-color: var(--color-license-block-bg);
+    background-color: var(--color-license-bg);
 
     padding-block: spacing(4.5);
     padding-inline: spacing(4);
