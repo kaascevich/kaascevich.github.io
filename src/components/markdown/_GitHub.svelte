@@ -73,6 +73,7 @@
   class='fetch-waiting no-styling'
   href={`https://github.com/${repo}`}
   target='_blank'
+  data-pagefind-ignore
 >
   <header>
     <div class='titlebar-left'>

@@ -11,9 +11,9 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
-    "type-check": "tsc --noEmit --isolatedDeclarations",
+    "typecheck": "tsc --noEmit --isolatedDeclarations",
     "new-post": "npx ts-node scripts/new-post.ts",
-    "preinstall": "npx only-allow pnpm"
+    "update-pagefind": "cp -r dist/pagefind/ public/pagefind"
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.8.1",

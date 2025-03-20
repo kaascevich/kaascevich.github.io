@@ -16,7 +16,6 @@ import remarkSectionize from 'remark-sectionize'
 import { pagefind } from 'vite-plugin-pagefind'
 
 import siteConfig from './src/config/site'
-import { remarkExcerpt } from './src/plugins/remark-excerpt'
 import { remarkReadingTime } from './src/plugins/remark-reading-time'
 
 export default defineConfig({
@@ -56,7 +55,7 @@ export default defineConfig({
           minifyCSS: true,
           minifyJS: true,
           minifyURLs: true,
-          quoteCharacter: "'",
+          quoteCharacter: '\'',
           removeAttributeQuotes: true,
           removeComments: true,
           removeScriptTypeAttributes: true,
@@ -74,7 +73,6 @@ export default defineConfig({
     remarkPlugins: [
       remarkMath,
       remarkReadingTime,
-      remarkExcerpt,
       remarkDefinitionList,
       remarkSectionize,
     ],
