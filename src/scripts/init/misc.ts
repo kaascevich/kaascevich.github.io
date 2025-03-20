@@ -1,5 +1,4 @@
 import { BANNER_HEIGHT } from '$/constants/constants'
-import { pathsEqual } from '$/utils/urls'
 import { sleep } from '$/utils/promises'
 
 export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
