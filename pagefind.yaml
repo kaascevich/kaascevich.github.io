@@ -1,0 +1,4 @@
+exclude_selectors:
+  - '[data-footnote-ref]' # footnote superscripts
+  - 'pre[data-language]' # code blocks
+  - 'section[data-footnotes]' # footnote section
