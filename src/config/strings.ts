@@ -38,7 +38,7 @@ export default {
     colorScheme: {
       light: 'Light',
       dark: 'Dark',
-      auto: 'System',
+      auto: 'Auto',
     } satisfies Record<ColorScheme, unknown>,
   },
   license: {
