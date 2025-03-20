@@ -108,26 +108,26 @@ function formatTagList<T extends readonly string[]>(tags: T) {
     }
 
     .item-wrapper {
-      display: block flex;
+      display: block grid;
 
-      flex-direction: row;
+      grid-template: 'date separator title' / 15% 15% 75%;
 
       align-items: center;
       justify-content: flex-start;
 
       block-size: 100%;
+
+      @include md {
+        grid-template: 'date separator title tags' / 10% 10% 45% 35%;
+      }
     }
 
     time {
-      inline-size: 15%;
+      grid-area: date;
 
       text-align: end;
 
       color: var(--color-archive-date);
-
-      @include md {
-        inline-size: 10%;
-      }
     }
 
     .separator {
@@ -136,10 +136,11 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       display: block flex;
       position: relative;
 
+      grid-area: separator;
+
       align-items: center;
 
       block-size: 100%;
-      inline-size: 15%;
 
       div {
         @include transition($properties: all);
@@ -157,18 +158,14 @@ function formatTagList<T extends readonly string[]>(tags: T) {
         block-size: spacing(1);
         inline-size: spacing(1);
       }
-
-      @include md {
-        inline-size: 10%;
-      }
     }
 
     .title {
       @include transition($properties: all);
 
-      padding-inline-end: spacing(8);
+      grid-area: title;
 
-      inline-size: 70%;
+      padding-inline-end: spacing(8);
 
       overflow: hidden;
 
@@ -179,17 +176,16 @@ function formatTagList<T extends readonly string[]>(tags: T) {
       color: var(--color-archive-title);
 
       font-weight: $font-weight-bold;
-
-      @include md {
-        inline-size: 45%;
-        max-inline-size: 45%;
-      }
     }
 
     .tag-list {
       @include font-size($text-sm);
 
       display: none;
+
+      grid-area: tags;
+
+      margin-inline-end: spacing(3);
 
       overflow: hidden;
 
@@ -201,8 +197,6 @@ function formatTagList<T extends readonly string[]>(tags: T) {
 
       @include md {
         display: block flow;
-
-        inline-size: 30%;
       }
     }
   }

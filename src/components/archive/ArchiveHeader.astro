@@ -29,9 +29,9 @@ const { group } = Astro.props
   @use '$/styles/variants' as *;
 
   header {
-    display: block flex;
+    display: block grid;
 
-    flex-direction: row;
+    grid-template: 'year dot count' / 15% 15% 70%;
 
     align-items: center;
 
@@ -41,7 +41,7 @@ const { group } = Astro.props
     .year {
       @include font-size($text-xl);
 
-      inline-size: 15%;
+      grid-area: year;
 
       text-align: end;
 
@@ -51,13 +51,11 @@ const { group } = Astro.props
 
       @include md {
         @include font-size($text-xl2);
-
-        inline-size: 10%;
       }
     }
 
     .dot-wrapper {
-      inline-size: 15%;
+      grid-area: dot;
 
       .dot {
         z-index: 50;
@@ -75,22 +73,18 @@ const { group } = Astro.props
         block-size: spacing(3);
         inline-size: spacing(3);
       }
-
-      @include md {
-        inline-size: 10%;
-      }
     }
 
     .count {
-      inline-size: 70%;
+      grid-area: count;
 
       text-align: start;
 
       color: var(--color-archive-post-count);
+    }
 
-      @include md {
-        inline-size: 80%;
-      }
+    @include md {
+      grid-template-columns: 10% 10% 80%;
     }
   }
 </style>
