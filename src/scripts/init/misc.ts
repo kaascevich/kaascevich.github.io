@@ -28,7 +28,8 @@ export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
 
   swupGlobal.hooks.on('visit:start', (visit) => {
     // change banner height immediately when a link is clicked
-    if (visit.to.document?.body.classList.contains('full-height-banner')) {
+    // TODO: avoid hardcoding the URL check
+    if (visit.to.url.match(/^\/\d*$/g)) {
       document.body?.classList.add('full-height-banner')
     } else {
       document.body?.classList.remove('full-height-banner')
