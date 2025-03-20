@@ -1,16 +1,16 @@
 ---
 import Search from '$/components/global/nav/search/Search.svelte'
-import LightDarkSwitch from '$/components/global/nav/LightDarkSwitch.svelte'
+import ColorSchemePicker from '$/components/global/nav/ColorSchemePicker.svelte'
 import NavMenuPanel from '$/components/global/nav/NavMenuPanel.astro'
-import ColorSettings from '$/components/global/nav/ColorSettings.svelte'
+import HuePicker from '$/components/global/nav/HuePicker.svelte'
 
 import siteConfig from '$/config/site'
 ---
 
 <div class='nav-extras'>
   <Search client:load />
-  <ColorSettings client:only='svelte' />
-  <LightDarkSwitch client:load />
+  <HuePicker client:only='svelte' />
+  <ColorSchemePicker client:load />
   <NavMenuPanel links={siteConfig.navbar.links} />
 </div>
 

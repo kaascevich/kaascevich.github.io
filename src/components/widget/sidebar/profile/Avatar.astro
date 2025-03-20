@@ -35,8 +35,8 @@ import siteConfig from '$/config/site'
 
     background-image: linear-gradient(
       to bottom,
-      alpha(var(--profile-gradient-top), 20%),
-      alpha(var(--profile-gradient-bottom), 20%)
+      alpha(var(--color-profile-gradient-top), 20%),
+      alpha(var(--color-profile-gradient-bottom), 20%)
     );
 
     max-inline-size: spacing(48);
@@ -47,12 +47,12 @@ import siteConfig from '$/config/site'
       scale: 95%;
 
       .icon-wrapper {
-        background-color: black(50%);
+        background-color: var(--color-profile-about-icon-bg);
       }
     }
 
     &:hover .icon-wrapper {
-      background-color: black(30%);
+      background-color: var(--color-profile-about-icon-bg-hover);
 
       svg {
         scale: 100%;
@@ -87,7 +87,7 @@ import siteConfig from '$/config/site'
         block-size: spacing(12);
         inline-size: spacing(12);
 
-        color: white;
+        color: var(--color-profile-about-icon);
       }
     }
 

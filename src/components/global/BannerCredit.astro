@@ -46,7 +46,7 @@ const { config } = Astro.props
 
     border-radius: 9999px;
 
-    background-color: black(60%);
+    background-color: var(--color-banner-credit-bg);
 
     padding-inline: spacing(3);
 
@@ -55,7 +55,7 @@ const { config } = Astro.props
     animation-delay: 400ms;
 
     &:hover {
-      background-color: black(70%);
+      background-color: var(--color-banner-credit-bg-hover);
 
       padding-inline-end: spacing(9);
 
@@ -65,7 +65,7 @@ const { config } = Astro.props
     }
 
     &:active {
-      background-color: black(80%);
+      background-color: var(--color-banner-credit-bg-active);
     }
 
     .external-icon {
@@ -76,7 +76,7 @@ const { config } = Astro.props
 
       opacity: 0%;
 
-      color: with-hue(75%, 35%);
+      color: var(--color-primary);
     }
   }
 
@@ -86,12 +86,12 @@ const { config } = Astro.props
     block-size: spacing(5);
     inline-size: spacing(5);
 
-    color: white(75%);
+    color: var(--color-banner-credit-icon);
   }
 
   .credit-text {
     @include font-size($text-xs);
 
-    color: white(75%);
+    color: var(--color-banner-credit-text);
   }
 </style>

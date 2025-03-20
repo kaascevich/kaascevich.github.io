@@ -1,6 +1,6 @@
 ---
 import WidgetLayout from '$/components/widget/WidgetLayout.astro'
-import ButtonLink from '$/components/control/ButtonLink.astro'
+import CategoryLink from '$/components/control/CategoryLink.astro'
 import { getCategoryCounts } from '$/utils/content'
 import strings from '$/config/strings'
 
@@ -25,13 +25,13 @@ const { class: className } = Astro.props
 >
   {
     categories.map(([category, count]) => (
-      <ButtonLink
+      <CategoryLink
         url={`/archive/category/${category}/`}
         badge={String(count)}
         label={strings.alts.category(category)}
       >
         {category}
-      </ButtonLink>
+      </CategoryLink>
     ))
   }
 </WidgetLayout>

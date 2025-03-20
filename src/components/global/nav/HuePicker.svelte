@@ -73,17 +73,17 @@
 
     box-shadow: $shadow-none;
 
-    background-color: white(70%);
+    background-color: var(--color-hue-picker-thumb);
 
     block-size: spacing(4);
     inline-size: spacing(2);
 
     &:hover {
-      background-color: white(80%);
+      background-color: var(--color-hue-picker-thumb-hover);
     }
 
     &:active {
-      background-color: white(60%);
+      background-color: var(--color-hue-picker-thumb-active);
     }
   }
 
@@ -139,7 +139,7 @@
 
         margin-inline-start: spacing(3);
 
-        color: light-dark(gray(20.5%), gray(97%));
+        color: var(--color-hue-picker-title);
 
         font-weight: $font-weight-bold;
 
@@ -150,7 +150,7 @@
 
           border-radius: $radius-md;
 
-          background-color: var(--primary);
+          background-color: var(--color-primary);
 
           block-size: spacing(4);
           inline-size: spacing(1);
@@ -175,7 +175,7 @@
           block-size: spacing(3.5);
           inline-size: spacing(3.5);
 
-          color: var(--btn-content);
+          color: var(--color-btn-content);
         }
 
         &.inactive {
@@ -193,12 +193,12 @@
 
         border-radius: $radius-md;
 
-        background-color: var(--btn-regular-bg);
+        background-color: var(--color-hue-picker-value-bg);
 
         block-size: spacing(7);
         inline-size: spacing(12);
 
-        color: var(--btn-content);
+        color: var(--color-hue-picker-value);
 
         font-weight: $font-weight-bold;
       }
@@ -207,7 +207,7 @@
     .hue-slider-wrapper {
       border-radius: $radius-sm;
 
-      background-color: light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg));
+      background-color: var(--color-hue-picker-gradient);
 
       padding-inline: spacing(1);
 
@@ -221,7 +221,10 @@
 
         appearance: none;
 
-        background-image: var(--color-selection-bar);
+        background-image: linear-gradient(
+          to right in oklch longer hue,
+          var(--color-hue-picker-gradient) 0% 100%
+        );
 
         block-size: spacing(6);
         inline-size: 100%;

@@ -14,17 +14,17 @@
 
   margin-inline-end: 0;
 
-  background-color: black(40%);
+  background-color: var(--color-photoswipe-button-bg);
 
   block-size: spacing(12);
   inline-size: spacing(12);
 
   &:hover {
-    background-color: black(50%);
+    background-color: var(--color-photoswipe-button-bg-hover);
   }
 
   &:active {
-    background-color: black(60%);
+    background-color: var(--color-photoswipe-button-bg-active);
   }
 
   &--zoom {

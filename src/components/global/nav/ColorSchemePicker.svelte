@@ -182,14 +182,14 @@
           }
 
           &.current-scheme-btn {
-            color: var(--primary) !important;
+            color: var(--color-primary) !important;
 
             &::before {
               scale: 100%;
 
               opacity: 100%;
 
-              background-color: var(--btn-plain-bg-hover);
+              background-color: var(--color-btn-plain-bg-hover);
 
               content: '';
             }

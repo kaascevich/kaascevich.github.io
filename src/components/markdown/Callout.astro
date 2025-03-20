@@ -44,7 +44,7 @@ const calloutIcons: Record<CalloutType, string> = {
     }
 
     @each $type in ('tip', 'note', 'important', 'warning', 'caution') {
-      $color: var(--callout-color-#{$type});
+      $color: var(--color-callout-#{$type});
 
       &.bdm-#{$type} {
         // left border

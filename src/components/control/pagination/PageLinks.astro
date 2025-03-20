@@ -76,9 +76,9 @@ function getPageUrl<Page extends number>(page: Page) {
 
     border-radius: $radius-lg;
 
-    background-color: var(--card-bg);
+    background-color: var(--color-card-bg);
 
-    color: light-dark(gray(37.1%), gray(87%));
+    color: var(--color-pagination-link);
 
     font-weight: $font-weight-bold;
   }
@@ -101,9 +101,9 @@ function getPageUrl<Page extends number>(page: Page) {
     align-items: center;
     justify-content: center;
 
-    background-color: var(--primary);
+    background-color: var(--color-primary);
 
-    color: light-dark(white, black(70%));
+    color: var(--color-pagination-current);
   }
 
   .other-page {

@@ -38,11 +38,11 @@ const { id, text, depth, h1Index } = Astro.props
     inline-size: 100%;
 
     &:hover {
-      background-color: var(--toc-btn-hover);
+      background-color: var(--color-toc-btn-hover);
     }
 
     &:active {
-      background-color: var(--toc-btn-active);
+      background-color: var(--color-toc-btn-active);
     }
 
     .marker {
@@ -65,14 +65,14 @@ const { id, text, depth, h1Index } = Astro.props
 
     .title {
       @include font-size($text-sm);
-      color: bw(50%);
+      color: var(--color-toc-item-text);
     }
 
     &.depth-1 {
       .marker {
-        background-color: var(--toc-badge-bg);
+        background-color: var(--color-toc-badge-bg);
 
-        color: var(--btn-content);
+        color: var(--color-btn-content);
       }
     }
 
@@ -83,7 +83,7 @@ const { id, text, depth, h1Index } = Astro.props
         .dot {
           border-radius: spacing(0.75);
 
-          background-color: var(--toc-badge-bg);
+          background-color: var(--color-toc-badge-bg);
 
           block-size: spacing(2);
           inline-size: spacing(2);

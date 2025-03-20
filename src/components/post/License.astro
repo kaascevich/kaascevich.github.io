@@ -59,7 +59,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
   .license {
     position: relative;
 
-    background-color: var(--license-block-bg);
+    background-color: var(--color-license-bg);
 
     padding-block: spacing(5);
     padding-inline: spacing(6);
@@ -68,7 +68,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
     hgroup {
       header {
-        color: bw(75%);
+        color: var(--color-license-title);
 
         font-weight: $font-weight-bold;
       }
@@ -76,7 +76,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       a {
         @extend %link;
 
-        color: var(--primary);
+        color: var(--color-primary);
       }
     }
 
@@ -91,18 +91,18 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       header {
         @include font-size($text-sm);
-        color: bw(30%);
+        color: var(--color-license-details-header);
       }
 
       .details-text {
         white-space: nowrap;
-        color: bw(75%);
+        color: var(--color-license-details-text);
       }
 
       .details-link {
         @extend %link;
         white-space: nowrap;
-        color: var(--primary);
+        color: var(--color-primary);
       }
 
       @include sm {
@@ -124,7 +124,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       block-size: spacing(60);
       inline-size: spacing(60);
 
-      color: bw(5%);
+      color: var(--color-license-cc-icon);
 
       pointer-events: none;
 

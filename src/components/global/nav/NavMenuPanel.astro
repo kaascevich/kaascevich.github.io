@@ -94,15 +94,15 @@ const { links } = Astro.props
       padding-inline: spacing(3) spacing(1);
 
       &:hover {
-        background-color: var(--btn-plain-bg-hover);
+        background-color: var(--color-btn-plain-bg-hover);
       }
 
       &:active {
-        background-color: var(--btn-plain-bg-active);
+        background-color: var(--color-btn-plain-bg-active);
       }
 
       &:is(:hover, :active) header {
-        color: var(--primary);
+        color: var(--color-primary);
       }
 
       header {
@@ -118,13 +118,13 @@ const { links } = Astro.props
 
       .link-icon-external {
         @extend %link-icon;
-        color: bw(25%);
+        color: var(--color-nav-link-external-icon);
       }
 
       .link-icon-internal {
         @extend %link-icon;
 
-        color: var(--primary);
+        color: var(--color-primary);
       }
     }
   }

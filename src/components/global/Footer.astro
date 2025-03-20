@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear()
     margin-block: spacing(10);
     margin-inline: spacing(16);
 
-    border-block-start: 1px dashed light-dark(black(10%), white(15%));
+    border-block-start: 1px dashed var(--color-footer-border);
   }
 
   footer {
@@ -64,12 +64,12 @@ const currentYear = new Date().getFullYear()
 
       text-align: center;
 
-      color: bw(50%);
+      color: var(--color-footer-text);
 
       a {
         @extend %link;
 
-        color: var(--primary);
+        color: var(--color-primary);
 
         font-weight: $font-weight-medium;
       }

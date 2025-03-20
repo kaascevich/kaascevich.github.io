@@ -116,7 +116,7 @@
 
     border-radius: $radius-xl2;
 
-    background-color: var(--license-block-bg);
+    background-color: var(--color-license-block-bg);
 
     padding-block: spacing(4.5);
     padding-inline: spacing(4);
@@ -127,10 +127,10 @@
     text-decoration-thickness: 0;
 
     &:hover {
-      background-color: var(--btn-regular-bg-hover);
+      background-color: var(--color-btn-regular-bg-hover);
 
       header {
-        color: var(--btn-content);
+        color: var(--color-btn-content);
 
         :global(svg) {
           color: var(--tw-prose-headings);
@@ -148,7 +148,7 @@
     &:active {
       scale: 98%;
 
-      background-color: var(--btn-regular-bg-active);
+      background-color: var(--color-btn-regular-bg-active);
     }
 
     header {
@@ -190,7 +190,7 @@
 
             border-radius: 50%;
 
-            background-color: var(--primary);
+            background-color: var(--color-primary);
             background-size: cover;
 
             block-size: spacing(6);

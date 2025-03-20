@@ -66,7 +66,7 @@ const { entry, wordCount, readingTime } = Astro.props
 
     inline-size: 100%;
 
-    color: bw(90%);
+    color: var(--color-post-title);
 
     font-weight: $font-weight-bold;
 
@@ -82,7 +82,7 @@ const { entry, wordCount, readingTime } = Astro.props
 
         border-radius: $radius-md;
 
-        background-color: var(--primary);
+        background-color: var(--color-primary);
 
         block-size: spacing(5);
         inline-size: spacing(1);
@@ -102,7 +102,7 @@ const { entry, wordCount, readingTime } = Astro.props
     hr {
       margin-block-end: spacing(5);
 
-      border: 1px dashed var(--line-divider);
+      border: 1px dashed var(--color-line-divider);
     }
   }
 

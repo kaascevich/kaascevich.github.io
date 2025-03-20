@@ -15,7 +15,7 @@
     }
   }
 
-  caret-color: var(--caret-color);
+  caret-color: var(--color-caret);
 }
 
 :root[data-color-scheme='dark'] {
@@ -30,7 +30,7 @@
 
   border-radius: $radius-xl2;
 
-  background-color: var(--card-bg);
+  background-color: var(--color-card-bg);
 
   overflow: hidden;
 }
@@ -58,7 +58,7 @@
   &:hover::before {
     scale: 100%;
 
-    background-color: var(--btn-plain-bg-hover);
+    background-color: var(--color-btn-plain-bg-hover);
 
     content: '';
   }
@@ -67,7 +67,7 @@
     background-image: none;
 
     &::before {
-      background-color: var(--btn-plain-bg-active);
+      background-color: var(--color-btn-plain-bg-active);
 
       content: '';
     }
@@ -96,7 +96,7 @@
 
   box-shadow: $shadow-xl;
 
-  background-color: var(--float-panel-bg);
+  background-color: var(--color-float-panel-bg);
 
   overflow: hidden;
 
@@ -121,14 +121,14 @@
   align-items: center;
   justify-content: center;
 
-  background-color: var(--card-bg);
+  background-color: var(--color-card-bg);
 
   &:hover {
-    background-color: var(--btn-card-bg-hover);
+    background-color: var(--color-btn-card-bg-hover);
   }
 
   &:active {
-    background-color: var(--btn-card-bg-active);
+    background-color: var(--color-btn-card-bg-active);
   }
 
   &[aria-disabled='true'] {
@@ -148,19 +148,19 @@
 
   background-image: none;
 
-  color: light-dark(black(75%), white(75%));
+  color: bw(75%);
 
   &:hover {
-    color: var(--primary);
+    color: var(--color-primary);
   }
 
   &:not(%expand-animation) {
     &:hover {
-      background-color: var(--btn-plain-bg-hover);
+      background-color: var(--color-btn-plain-bg-hover);
     }
 
     &:active {
-      background-color: var(--btn-plain-bg-active);
+      background-color: var(--color-btn-plain-bg-active);
     }
   }
 }
@@ -173,16 +173,16 @@
   align-items: center;
   justify-content: center;
 
-  background-color: var(--btn-regular-bg);
+  background-color: var(--color-btn-regular-bg);
 
-  color: light-dark(var(--btn-content), white(75%));
+  color: var(--color-btn-content);
 
   &:hover {
-    background-color: var(--btn-regular-bg-hover);
+    background-color: var(--color-btn-regular-bg-hover);
   }
 
   &:active {
-    background-color: var(--btn-regular-bg-active);
+    background-color: var(--color-btn-regular-bg-active);
   }
 }
 
@@ -209,30 +209,30 @@
   align-items: center;
   justify-content: center;
 
-  background-color: light-dark(with-hue(45%, 2.5%), with-hue(30%, 5%));
+  background-color: var(--color-copy-btn-bg);
 
   &:hover {
-    background-color: light-dark(with-hue(50%, 2.5%), with-hue(35%, 5%));
+    background-color: var(--color-copy-btn-bg-hover);
   }
 
   &:active {
-    background-color: light-dark(with-hue(55%, 2.5%), with-hue(40%, 7.5%));
+    background-color: var(--color-copy-btn-bg-active);
   }
 
   &.success {
-    background-color: with-hue(75%, 35%);
+    background-color: var(--color-copy-btn-bg-success);
   }
 
   .copy-icon {
     opacity: 100%;
 
-    color: light-dark(white, #{white(75%)});
+    color: var(--color-copy-btn-icon);
   }
 
   &.copy-btn.success .copy-icon {
     opacity: 0%;
 
-    color: var(--deep-text);
+    color: var(--color-deep-text);
   }
 
   .success-icon {
@@ -249,5 +249,5 @@
 }
 
 ::selection {
-  background-color: var(--selection-bg);
+  background-color: var(--color-selection-bg);
 }

@@ -115,7 +115,7 @@
     :global(mark) {
       background-color: transparent;
 
-      color: var(--primary);
+      color: var(--color-primary);
     }
 
     @include md {
@@ -130,12 +130,12 @@
 
     align-items: center;
 
-    background-color: light-dark(black(4%), white(5%));
+    background-color: var(--color-search-bar-bg);
 
     block-size: spacing(11);
 
     &:hover, &:focus-within {
-      background-color: light-dark(black(6%), white(10%));
+      background-color: var(--color-search-bar-bg-hover);
     }
 
     :global(svg) {
@@ -147,7 +147,7 @@
       block-size: spacing(5);
       inline-size: spacing(5);
 
-      color: bw(30%);
+      color: var(--color-search-icon);
 
       pointer-events: none;
     }
@@ -162,7 +162,7 @@
 
       padding-inline-start: spacing(10);
 
-      color: bw(50%);
+      color: var(--color-search-text);
     }
   }
 

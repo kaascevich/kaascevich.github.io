@@ -50,21 +50,21 @@
     }
 
     &:hover {
-      background-color: var(--btn-plain-bg-hover);
+      background-color: var(--color-btn-plain-bg-hover);
 
       header {
-        color: var(--primary);
+        color: var(--color-primary);
       }
     }
 
     &:active {
-      background-color: var(--btn-plain-bg-active);
+      background-color: var(--color-btn-plain-bg-active);
     }
 
     header {
       display: inline flex;
 
-      color: bw(90%);
+      color: var(--color-search-result-title);
 
       font-weight: $font-weight-bold;
 
@@ -73,13 +73,13 @@
 
         margin-block: auto;
 
-        color: var(--primary);
+        color: var(--color-primary);
       }
     }
 
     .excerpt {
       @include font-size($text-sm);
-      color: bw(50%);
+      color: var(--color-search-result-excerpt);
     }
   }
 </style>

@@ -47,9 +47,9 @@ article.markdown {
 
     background-image: none;
 
-    text-decoration: underline dashed var(--link-underline) 1px;
+    text-decoration: underline dashed var(--color-link-underline) 1px;
 
-    color: var(--primary);
+    color: var(--color-primary);
 
     font-weight: $font-weight-medium;
     text-underline-offset: 4px;
@@ -69,14 +69,14 @@ article.markdown {
   code {
     border-radius: $radius-md;
 
-    background-color: var(--inline-code-bg);
+    background-color: var(--color-inline-code-bg);
 
     padding-block: spacing(1);
     padding-inline: spacing(1);
 
     overflow: hidden;
 
-    color: var(--inline-code-color);
+    color: var(--color-inline-code);
 
     font-family:
       'Monaspace Radon', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -103,7 +103,7 @@ article.markdown {
 
         text-align: end;
 
-        color: var(--line-number);
+        color: var(--color-line-number);
 
         content: counter(line);
 
@@ -131,7 +131,7 @@ article.markdown {
   pre {
     border-radius: $radius-xl;
 
-    background-color: var(--codeblock-bg) !important;
+    background-color: var(--color-codeblock-bg) !important;
 
     padding-inline: spacing(5);
 
@@ -144,15 +144,11 @@ article.markdown {
       padding-inline: 0;
 
       color: inherit;
-
-      ::selection {
-        background-color: var(--codeblock-selection);
-      }
     }
   }
 
   :is(ul, ol) li::marker {
-    color: var(--primary);
+    color: var(--color-primary);
   }
 
   blockquote {
@@ -170,7 +166,7 @@ article.markdown {
 
       border-radius: 9999px;
 
-      background-color: var(--btn-regular-bg);
+      background-color: var(--color-btn-regular-bg);
 
       block-size: 100%;
       inline-size: spacing(1);
@@ -186,7 +182,7 @@ article.markdown {
   hr {
     border-style: dashed;
 
-    border-color: var(--line-divider);
+    border-color: var(--color-line-divider);
   }
 
   iframe {

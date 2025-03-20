@@ -71,7 +71,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
     &:not(:first-child)::after {
       margin-inline: spacing(6);
 
-      border-block-start: 1px dashed light-dark(black(10%), white(15%));
+      border-block-start: 1px dashed var(--color-post-card-separator);
 
       content: '';
 
@@ -94,7 +94,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
         inline-size: 100%;
 
-        color: bw(90%);
+        color: var(--color-post-title);
 
         font-weight: $font-weight-bold;
 
@@ -106,7 +106,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
           border-radius: $radius-md;
 
-          background-color: var(--primary);
+          background-color: var(--color-primary);
 
           block-size: spacing(5);
           inline-size: spacing(1);
@@ -119,11 +119,11 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
         }
 
         &:hover {
-          color: var(--primary);
+          color: var(--color-primary);
         }
 
         &:active {
-          color: var(--title-active);
+          color: var(--color-title-active);
         }
 
         svg {
@@ -136,7 +136,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           block-size: spacing(8);
           inline-size: spacing(8);
 
-          color: var(--primary);
+          color: var(--color-primary);
 
           @include md {
             translate: spacing(-1);

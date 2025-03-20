@@ -1,78 +1,166 @@
 @use 'sass:list';
 @use 'utils' as *;
 
-$variables: (
-  --primary: light-dark(with-hue(70%, 35%), with-hue(75%, 35%)),
-  --page-bg: light-dark(with-hue(95%, 2.5%), with-hue(16%, 3.5%)),
-  --card-bg: light-dark(white, with-hue(23%, 3.75%)),
-  //
-  --btn-content: light-dark(with-hue(55%, 30%), with-hue(75%, 25%)),
-  //
-  --btn-regular-bg: light-dark(with-hue(95%, 6.25%), with-hue(33%, 8.75%)),
-  --btn-regular-bg-hover: light-dark(with-hue(90%, 12.5%), with-hue(38%, 10%)),
-  --btn-regular-bg-active: light-dark(with-hue(85%, 20%), with-hue(43%, 11.25%)),
-  //
-  --btn-plain-bg-hover: light-dark(with-hue(95%, 6.25%), with-hue(30%, 8.75%)),
-  --btn-plain-bg-active: light-dark(with-hue(98%, 2.5%), with-hue(27%, 6.25%)),
-  //
-  --btn-card-bg-hover: light-dark(with-hue(98%, 1.25%), with-hue(30%, 7.5%)),
-  --btn-card-bg-active: light-dark(with-hue(90%, 7.5%), with-hue(35%, 8.75%)),
-  //
-  --enter-btn-bg: var(--btn-regular-bg),
-  --enter-btn-bg-hover: var(--btn-regular-bg-hover),
-  --enter-btn-bg-active: var(--btn-regular-bg-active),
-  //
-  --deep-text: with-hue(25%, 5%),
-  //
-  --title-active: with-hue(60%, 25%),
-  //
-  --line-divider: light-dark(black(20%), white(20%)),
-  //
-  --line-color: light-dark(black(10%), white(10%)),
-  --meta-divider: light-dark(black(20%), white(20%)),
-  //
-  --caret-color: light-dark(with-hue(75%, 20%), with-hue(70%, 20%)),
-  //
-  --inline-code-bg: var(--btn-regular-bg),
-  --inline-code-color: var(--btn-content),
-  --selection-bg: light-dark(with-hue(90%, 12.5%), with-hue(70%, 20%)),
-  --codeblock-selection: with-hue(40%, 20%),
-  --codeblock-bg: light-dark(black(3%), with-hue(17%, 3.75%)),
-  --line-number: light-dark(black(25%), white(25%)),
-  //
-  --license-block-bg: var(--codeblock-bg),
-  //
-  --profile-gradient-top: light-dark(with-hue(70%, 35%), with-hue(75%, 35%)),
-  --profile-gradient-bottom: light-dark(with-hue(50%, 35%), with-hue(55%, 35%)),
-  //
-  --link-underline: light-dark(with-hue(93%, 10%), with-hue(40%, 20%)),
-  --link-hover: light-dark(with-hue(95%, 6.25%), with-hue(40%, 20%)),
-  --link-active: light-dark(with-hue(90%, 12.5%), with-hue(35%, 17.5%)),
-  //
-  --float-panel-bg: light-dark(white, with-hue(19%, 3.75%)),
-  //
-  --color-selection-bar: linear-gradient(
-    to right in oklch longer hue,
-    light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg)) 0% 100%
-  ),
-  //
-  --callout-color-tip: light-dark(oklch(70% 35% 180deg), oklch(75% 35% 180deg)),
-  --callout-color-note: light-dark(oklch(70% 35% 250deg), oklch(75% 35% 250deg)),
-  --callout-color-important: light-dark(oklch(70% 35% 310deg), oklch(75% 35% 310deg)),
-  --callout-color-warning: light-dark(oklch(70% 35% 60deg), oklch(75% 35% 60deg)),
-  --callout-color-caution: light-dark(oklch(60% 50% 25deg), oklch(65% 50% 25deg)),
-  //
-  --toc-badge-bg: light-dark(with-hue(90%, 11.25%), var(--btn-regular-bg)),
-  --toc-btn-hover: light-dark(with-hue(92%, 3.75%), with-hue(22%, 5%)),
-  --toc-btn-active: light-dark(with-hue(90%, 3.75%), with-hue(25%, 5%)),
-  --toc-width: calc((100vw - var(--page-width)) / 2 - spacing(4)),
-  --toc-item-active: light-dark(with-hue(70%, 32.5%), with-hue(35%, 17.5%)),
-);
-
 :root {
   --content-delay: 150ms;
+  --toc-width: calc((100vw - var(--page-width)) / 2 - #{spacing(4)});
 
-  @each $name, $value in $variables {
-    #{$name}: $value
-  }
+  //
+  --color-primary: light-dark(#{with-hue(70%, 35%)}, #{with-hue(75%, 35%)});
+  --color-page-bg: light-dark(#{with-hue(95%, 2.5%)}, #{with-hue(16%, 3.5%)});
+  --color-card-bg: light-dark(white, #{with-hue(23%, 3.75%)});
+
+  //
+  --color-btn-content: light-dark(#{with-hue(55%, 30%)}, #{with-hue(75%, 25%)});
+
+  //
+  --color-btn-regular-bg: light-dark(#{with-hue(95%, 6.25%)}, #{with-hue(33%, 8.75%)});
+  --color-btn-regular-bg-hover: light-dark(#{with-hue(90%, 12.5%)}, #{with-hue(38%, 10%)});
+  --color-btn-regular-bg-active: light-dark(#{with-hue(85%, 20%)}, #{with-hue(43%, 11.25%)});
+
+  //
+  --color-btn-plain-bg-hover: light-dark(#{with-hue(95%, 6.25%)}, #{with-hue(30%, 8.75%)});
+  --color-btn-plain-bg-active: light-dark(#{with-hue(98%, 2.5%)}, #{with-hue(27%, 6.25%)});
+
+  //
+  --color-btn-card-bg-hover: light-dark(#{with-hue(98%, 1.25%)}, #{with-hue(30%, 7.5%)});
+  --color-btn-card-bg-active: light-dark(#{with-hue(90%, 7.5%)}, #{with-hue(35%, 8.75%)});
+
+  //
+  --color-enter-btn-bg: var(--color-btn-regular-bg);
+  --color-enter-btn-bg-hover: var(--color-btn-regular-bg-hover);
+  --color-enter-btn-bg-active: var(--color-btn-regular-bg-active);
+
+  //
+  --color-deep-text: #{with-hue(25%, 5%)};
+
+  //
+  --color-title-active: #{with-hue(60%, 25%)};
+
+  //
+  --color-line-divider: light-dark(#{black(20%)}, #{white(20%)});
+
+  //
+  --color-line-color: light-dark(#{black(10%)}, #{white(10%)});
+
+  //
+  --color-caret: light-dark(#{with-hue(75%, 20%)}, #{with-hue(70%, 20%)});
+  --color-selection-bg: light-dark(#{with-hue(90%, 12.5%)}, #{with-hue(70%, 20%)});
+
+  //
+  --color-inline-code-bg: var(--color-btn-regular-bg);
+  --color-inline-code: var(--color-btn-content);
+  --color-codeblock-bg: light-dark(#{black(3%)}, #{with-hue(17%, 3.75%)});
+  --color-line-number: light-dark(#{black(25%)}, #{white(25%)});
+
+  // MARK: Post Cards
+  --color-post-card-separator: light-dark(#{black(10%)}, #{white(15%)});
+
+  // MARK: License
+  --color-license-bg: var(--color-codeblock-bg);
+  --color-license-title: #{bw(75%)};
+  --color-license-details-header: #{bw(30%)};
+  --color-license-details-text: #{bw(75%)};
+  --color-license-cc-icon: #{bw(5%)};
+
+  // MARK: Profile
+  --color-profile-bio: #{gray(70%)};
+  --color-profile-gradient-top: light-dark(#{with-hue(70%, 35%)}, #{with-hue(75%, 35%)});
+  --color-profile-gradient-bottom: light-dark(#{with-hue(50%, 35%)}, #{with-hue(55%, 35%)});
+  --color-profile-about-icon: white;
+  --color-profile-about-icon-bg: #{black(50%)};
+  --color-profile-about-icon-bg-hover: #{black(30%)};
+
+  // MARK: Links
+  --color-link-underline: light-dark(#{with-hue(93%, 10%)}, #{with-hue(40%, 20%)});
+  --color-link-hover: light-dark(#{with-hue(95%, 6.25%)}, #{with-hue(40%, 20%)});
+  --color-link-active: light-dark(#{with-hue(90%, 12.5%)}, #{with-hue(35%, 17.5%)});
+
+  // MARK: Panels
+  --color-float-panel-bg: light-dark(white, #{with-hue(19%, 3.75%)});
+
+  // MARK: Callouts
+  --color-callout-tip: light-dark(oklch(70% 35% 180deg), oklch(75% 35% 180deg));
+  --color-callout-note: light-dark(oklch(70% 35% 250deg), oklch(75% 35% 250deg));
+  --color-callout-important: light-dark(oklch(70% 35% 310deg), oklch(75% 35% 310deg));
+  --color-callout-warning: light-dark(oklch(70% 35% 60deg), oklch(75% 35% 60deg));
+  --color-callout-caution: light-dark(oklch(60% 50% 25deg), oklch(65% 50% 25deg));
+
+  // MARK: Table of Contents
+  --color-toc-badge-bg: light-dark(#{with-hue(90%, 11.25%)}, var(--color-btn-regular-bg));
+  --color-toc-btn-hover: light-dark(#{with-hue(92%, 3.75%)}, #{with-hue(22%, 5%)});
+  --color-toc-btn-active: light-dark(#{with-hue(90%, 3.75%)}, #{with-hue(25%, 5%)});
+  --color-toc-item-text: #{bw(50%)};
+  --color-toc-item-active: light-dark(#{with-hue(70%, 32.5%)}, #{with-hue(35%, 17.5%)});
+
+  // MARK: Copy Button
+  --color-copy-btn-icon: light-dark(white, #{white(75%)});
+  --color-copy-btn-bg: light-dark(#{with-hue(45%, 2.5%)}, #{with-hue(30%, 5%)});
+  --color-copy-btn-bg-hover: light-dark(#{with-hue(50%, 2.5%)}, #{with-hue(35%, 5%)});
+  --color-copy-btn-bg-active: light-dark(#{with-hue(55%, 2.5%)}, #{with-hue(40%, 7.5%)});
+  --color-copy-btn-bg-success: #{with-hue(75%, 35%)};
+
+  // MARK: Category Link
+  --color-category-link-badge: light-dark(#{with-hue(95%, 6.25%)}, var(--color-primary));
+  --color-category-link-badge-text: light-dark(var(--color-btn-content), var(--color-deep-text));
+  --color-category-link-text: light-dark(#{gray(37%)}, #{gray(87%)});
+
+  // MARK: Posts
+  --color-post-title: #{bw(90%)};
+
+  // MARK: Post Meta
+  --color-meta-text: light-dark(gray(55%), gray(70%));
+  --color-meta-divider: #{bw(20%)};
+  --color-meta-extra-bg: light-dark(#{black(5%)}, #{white(10%)});
+
+  // MARK: Footer
+  --color-footer-text: #{bw(50%)};
+  --color-footer-border: light-dark(#{black(10%)}, #{white(15%)});
+
+  // MARK: Search
+  --color-search-bar-bg: light-dark(#{black(4%)}, #{white(5%)});
+  --color-search-bar-bg-hover: light-dark(#{black(6%)}, #{white(10%)});
+  --color-search-icon: #{bw(30%)};
+  --color-search-text: #{bw(50%)};
+  --color-search-result-title: #{bw(90%)};
+  --color-search-result-excerpt: #{bw(50%)};
+
+  // MARK: Pagination
+  --color-pagination-link: light-dark(#{gray(37.1%)}, #{gray(87%)});
+  --color-pagination-current: light-dark(white, #{black(70%)});
+
+  // MARK: Photoswipe
+  --color-photoswipe-button-bg: #{black(40%)};
+  --color-photoswipe-button-bg-hover: #{black(50%)};
+  --color-photoswipe-button-bg-active: #{black(60%)};
+
+  // MARK: Archive
+  --color-archive-year: #{bw(75%)};
+  --color-archive-post-count: #{bw(50%)};
+  --color-archive-date: #{bw(50%)};
+  --color-archive-separator: #{with-hue(50%, 12.5%)};
+  --color-archive-title: #{bw(75%)};
+  --color-archive-tags: #{bw(30%)};
+
+  // MARK: Banner Credit
+  --color-banner-credit-bg: #{black(60%)};
+  --color-banner-credit-bg-hover: #{black(70%)};
+  --color-banner-credit-bg-active: #{black(80%)};
+  --color-banner-credit-text: #{white(75%)};
+  --color-banner-credit-icon: #{white(75%)};
+
+  // MARK: Hue Picker
+  --color-hue-picker-title: light-dark(#{gray(20.5%)}, #{gray(97%)});
+  --color-hue-picker-thumb: #{white(70%)};
+  --color-hue-picker-thumb-hover: #{white(80%)};
+  --color-hue-picker-thumb-active: #{white(60%)};
+  --color-hue-picker-value: var(--color-btn-content);
+  --color-hue-picker-value-bg: var(--color-btn-regular-bg);
+  --color-hue-picker-gradient: light-dark(oklch(80% 25% 0deg), oklch(70% 25% 0deg));
+
+  // MARK: Navigation
+  --color-nav-link-external-icon: #{bw(25%)};
+
+  // MARK: Widgets
+  --color-widget-header: light-dark(#{gray(20.5%)}, #{gray(97%)});
 }
