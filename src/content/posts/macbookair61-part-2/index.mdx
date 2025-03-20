@@ -38,17 +38,21 @@ Here's the part of my `macbookair61` NixOS config that handles partitioning:
                 compress = "compress-force=zstd";
                 noatime = "noatime";
               in {
+                "/" = {
+                  mountpoint = "/";
+                  mountOptions = [ "subvol=@" compress noatime ];
+                };
                 "/nix" = {
                   mountpoint = "/nix";
-                  mountOptions = [ "subvol=nix" compress noatime ];
+                  mountOptions = [ "subvol=@nix" compress noatime ];
                 };
                 "/persist" = {
                   mountpoint = "/persist";
-                  mountOptions = [ "subvol=persist" compress noatime ];
+                  mountOptions = [ "subvol=@persist" compress noatime ];
                 };
                 "/config" = {
                   mountpoint = "/config";
-                  mountOptions = [ "subvol=config" compress noatime ];
+                  mountOptions = [ "subvol=@config" compress noatime ];
                 };
                 "/swap" = {
                   mountpoint = "/swap";
@@ -170,7 +174,7 @@ content = {
     };
     "/config" = {
       mountpoint = "/config";
-      mountOptions = [ "subvol=@/config" compress noatime ];
+      mountOptions = [ "subvol=@config" compress noatime ];
     };
     "/swap" = {
       mountpoint = "/swap";
