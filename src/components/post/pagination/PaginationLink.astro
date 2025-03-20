@@ -28,6 +28,8 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
   @use '$/styles/variants' as *;
 
   a {
+    @include transition;
+
     inline-size: 100%;
     max-inline-size: 100%;
 
