@@ -1,6 +1,6 @@
-import type { Config } from '$/types/config'
+import type { Config } from '../types/config'
 
-import { config } from '$/types/config'
+import { config } from '../types/config'
 
 import licenseConfig from './license'
 import navbarConfig from './navbar'
