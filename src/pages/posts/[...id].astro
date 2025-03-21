@@ -123,18 +123,16 @@ const jsonLd: WithContext<BlogPosting> = {
 
       inline-size: 100%;
 
-      .markdown {
+      :global(.markdown) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
       }
 
-      .license {
+      :global(.license) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
-
-        border-radius: var(--radius-xl);
       }
 
       @include md {

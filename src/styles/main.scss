@@ -153,7 +153,7 @@
 
   background-color: var(--color-btn-regular-bg);
 
-  color: var(--color-btn-content);
+  color: light-dark(var(--color-btn-content), white(75%));
 
   &:hover {
     background-color: var(--color-btn-regular-bg-hover);
