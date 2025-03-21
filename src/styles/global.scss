@@ -1,0 +1,33 @@
+@use 'theme' as *;
+@use 'utils' as *;
+@use 'variants' as *;
+@import '@fontsource/monaspace-radon';
+@import '@fontsource-variable/playpen-sans';
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Playpen Sans Variable', sans-serif;
+  color-scheme: light dark;
+
+  @each $scheme in (light, dark) {
+    &[data-color-scheme='#{$scheme}'] {
+      color-scheme: $scheme;
+    }
+  }
+
+  caret-color: var(--color-caret);
+}
+
+:root[data-color-scheme='dark'] {
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+  }
+}
+
+button {
+  cursor: pointer;
+}
