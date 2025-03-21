@@ -1,7 +1,7 @@
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import svelte from '@astrojs/svelte'
-import tailwind from '@tailwindcss/vite';
+import tailwind from '@astrojs/tailwind'
 import shellSession from '@robot-inventor/shell-session-syntax'
 import swup from '@swup/astro'
 import compress from 'astro-compress'
@@ -23,6 +23,10 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'ignore',
   integrations: [
+    tailwind({
+      nesting: true,
+      applyBaseStyles: false,
+    }),
     swup({
       theme: false,
       animationClass: 'transition-swup-',
@@ -119,10 +123,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [
-      pagefind({ outputDirectory: 'dist' }),
-      tailwind(),
-    ],
+    plugins: [pagefind({ outputDirectory: 'dist' })],
   },
   experimental: {
     contentIntellisense: true,

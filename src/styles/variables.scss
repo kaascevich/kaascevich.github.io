@@ -5,49 +5,49 @@
   --content-delay: 150ms;
   --toc-width: calc((100vw - var(--page-width)) / 2 - #{spacing(4)});
 
-  // <empty>
+  //
   --color-primary: light-dark(#{with-hue(70%, 35%)}, #{with-hue(75%, 35%)});
   --color-page-bg: light-dark(#{with-hue(95%, 2.5%)}, #{with-hue(16%, 3.5%)});
   --color-card-bg: light-dark(white, #{with-hue(23%, 3.75%)});
 
-  // <empty>
+  //
   --color-btn-content: light-dark(#{with-hue(55%, 30%)}, #{with-hue(75%, 25%)});
 
-  // <empty>
+  //
   --color-btn-regular-bg: light-dark(#{with-hue(95%, 6.25%)}, #{with-hue(33%, 8.75%)});
   --color-btn-regular-bg-hover: light-dark(#{with-hue(90%, 12.5%)}, #{with-hue(38%, 10%)});
   --color-btn-regular-bg-active: light-dark(#{with-hue(85%, 20%)}, #{with-hue(43%, 11.25%)});
 
-  // <empty>
+  //
   --color-btn-plain-bg-hover: light-dark(#{with-hue(95%, 6.25%)}, #{with-hue(30%, 8.75%)});
   --color-btn-plain-bg-active: light-dark(#{with-hue(98%, 2.5%)}, #{with-hue(27%, 6.25%)});
 
-  // <empty>
+  //
   --color-btn-card-bg-hover: light-dark(#{with-hue(98%, 1.25%)}, #{with-hue(30%, 7.5%)});
   --color-btn-card-bg-active: light-dark(#{with-hue(90%, 7.5%)}, #{with-hue(35%, 8.75%)});
 
-  // <empty>
+  //
   --color-enter-btn-bg: var(--color-btn-regular-bg);
   --color-enter-btn-bg-hover: var(--color-btn-regular-bg-hover);
   --color-enter-btn-bg-active: var(--color-btn-regular-bg-active);
 
-  // <empty>
+  //
   --color-deep-text: #{with-hue(25%, 5%)};
 
-  // <empty>
+  //
   --color-title-active: #{with-hue(60%, 25%)};
 
-  // <empty>
+  //
   --color-line-divider: light-dark(#{black(20%)}, #{white(20%)});
 
-  // <empty>
+  //
   --color-line-color: light-dark(#{black(10%)}, #{white(10%)});
 
-  // <empty>
+  //
   --color-caret: light-dark(#{with-hue(75%, 20%)}, #{with-hue(70%, 20%)});
   --color-selection-bg: light-dark(#{with-hue(90%, 12.5%)}, #{with-hue(70%, 20%)});
 
-  // <empty>
+  //
   --color-inline-code-bg: var(--color-btn-regular-bg);
   --color-inline-code: var(--color-btn-content);
   --color-codeblock-bg: light-dark(#{black(3%)}, #{with-hue(17%, 3.75%)});
