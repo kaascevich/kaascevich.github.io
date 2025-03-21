@@ -1,6 +1,7 @@
-import type { NavBarConfig } from '../types/config'
+import type { NavBarConfig } from '$/types/config'
 
-import { config } from '../types/config'
+import { config } from '$/types/config'
+
 import strings from './strings'
 
 export default config<NavBarConfig>({

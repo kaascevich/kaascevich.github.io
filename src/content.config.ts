@@ -1,7 +1,6 @@
+import strings from '$/config/strings'
 import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
-
-import strings from './config/strings'
 
 const postsCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),

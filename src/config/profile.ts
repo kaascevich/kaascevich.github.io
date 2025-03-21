@@ -1,6 +1,6 @@
-import type { ProfileConfig } from '../types/config'
+import type { ProfileConfig } from '$/types/config'
 
-import { config } from '../types/config'
+import { config } from '$/types/config'
 
 export default config<ProfileConfig>({
   avatar: 'assets/images/me (bg-less).png',

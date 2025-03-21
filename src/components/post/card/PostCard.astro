@@ -1,11 +1,11 @@
 ---
 import type { Post } from '$/types/content'
 
-import PostMeta from '$/components/post/meta/PostMeta.astro'
-import PostLink from '$/components/post/card/PostLink.astro'
+import PostMeta from '../meta/PostMeta.astro'
+import PostLink from './PostLink.astro'
 import { Icon } from 'astro-icon/components'
 import { render } from 'astro:content'
-import PostExtraMeta from '$/components/post/meta/PostExtraMeta.astro'
+import PostExtraMeta from '../meta/PostExtraMeta.astro'
 
 export interface Props {
   class?: string

@@ -2,9 +2,9 @@
 import type { Page } from 'astro'
 import type { Post } from '$/types/content'
 import strings from '$/config/strings'
-import PageButton from '$/components/control/pagination/PageButton.astro'
+import PageButton from './PageButton.astro'
 import { pageLinkLayout } from '$/utils/pages'
-import PageLinks from '$/components/control/pagination/PageLinks.astro'
+import PageLinks from './PageLinks.astro'
 
 export interface Props {
   page: Page<Post>

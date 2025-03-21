@@ -1,6 +1,6 @@
 import type { Post, PostsForYear } from '$/types/content'
 
-import { elementCounts } from '$/utils/arrays'
+import { elementCounts } from './arrays'
 import { getCollection } from 'astro:content'
 import * as R from 'remeda'
 

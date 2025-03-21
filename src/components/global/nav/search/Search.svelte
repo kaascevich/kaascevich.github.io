@@ -1,7 +1,7 @@
 <script lang='ts'>
   import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
 
-  import SearchResult from '$/components/global/nav/search/SearchResult.svelte'
+  import SearchResult from './SearchResult.svelte'
   import strings from '$/config/strings'
   import Icon from '@iconify/svelte'
   import * as R from 'remeda'

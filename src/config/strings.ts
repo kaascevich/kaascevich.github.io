@@ -1,4 +1,4 @@
-import type { ColorScheme, StringList } from '../types/config'
+import type { ColorScheme, StringList } from '$/types/config'
 
 function count<Singular extends string, Plural extends string>(
   num: number,
