@@ -1,18 +1,17 @@
 ---
 import type { Post } from '$/types/content'
 import type { GetStaticPathsResult } from 'astro'
-import type { WithContext, BlogPosting } from 'schema-dts'
 
 import { render } from 'astro:content'
+import PageSchema from '$/components/misc/PageSchema.astro'
 import License from '$/components/post/License.astro'
 import Markdown from '$/components/post/Markdown.astro'
 import PostHeader from '$/components/post/PostHeader.astro'
 import PostPagination from '$/components/post/pagination/PostPagination.astro'
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import siteConfig from '$/config/site'
-import { formatDate } from '$/utils/dates'
 import { getSortedPosts } from '$/utils/content'
-import strings from '$/config/strings'
+import { postStructuredData } from '$/utils/structuredData'
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts()
@@ -28,30 +27,6 @@ export interface Props {
 
 const { entry }: Props = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(entry)
-
-const jsonLd: WithContext<BlogPosting> = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-
-  headline: entry.data.title,
-  description: entry.data.description,
-  keywords: entry.data.tags,
-  inLanguage: 'en-US',
-  author: {
-    '@type': 'Person',
-    name: siteConfig.profile.name,
-    url: siteConfig.url,
-  },
-
-  datePublished: formatDate(entry.data.published),
-  dateModified: formatDate(entry.data.updated ?? entry.data.published),
-
-  wordCount: remarkPluginFrontmatter.wordCount,
-  timeRequired: strings.meta.minutes(remarkPluginFrontmatter.readingTime),
-
-  copyrightYear: new Date().getFullYear(),
-  license: siteConfig.license?.url,
-}
 ---
 
 <MainGridLayout
@@ -60,12 +35,9 @@ const jsonLd: WithContext<BlogPosting> = {
   setOGTypeArticle={true}
   {headings}
 >
-  <script
-    is:inline
-    slot="head"
-    type="application/ld+json"
-    set:html={JSON.stringify(jsonLd)}
-  />
+  <Fragment slot="head">
+    <PageSchema json={postStructuredData(entry, remarkPluginFrontmatter)} />
+  </Fragment>
 
   <div class="post-container-wrapper">
     <div id="post-container">
