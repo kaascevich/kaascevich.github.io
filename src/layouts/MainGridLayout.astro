@@ -22,7 +22,7 @@ const { headings = [], ...props } = Astro.props
 
 const mainPanelTop =
   siteConfig.banner === undefined
-    ? '5.5rem'
+    ? 'calc(var(--spacing) * 22)'
     : `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 ---
 

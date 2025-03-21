@@ -28,7 +28,7 @@ const { badge, url, label } = Astro.props
   button {
     @include transition($properties: all);
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     background-image: none;
 
@@ -81,7 +81,7 @@ const { badge, url, label } = Astro.props
 
     margin-inline-start: spacing(4);
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     background-color: var(--color-category-link-badge);
 
@@ -92,6 +92,6 @@ const { badge, url, label } = Astro.props
 
     color: var(--color-category-link-badge-text);
 
-    font-weight: $font-weight-bold;
+    font-weight: var(--fw-bold);
   }
 </style>

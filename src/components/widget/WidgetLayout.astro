@@ -61,14 +61,14 @@ const {
 
       color: var(--color-widget-header);
 
-      font-weight: $font-weight-bold;
+      font-weight: var(--fw-bold);
 
       &::before {
         position: absolute;
         inset-block-start: 5.5px;
         inset-inline-start: -16px;
 
-        border-radius: $radius-md;
+        border-radius: var(--radius-md);
 
         background-color: var(--color-primary);
 
@@ -94,7 +94,7 @@ const {
       margin-block-end: spacing(-2);
       margin-inline: spacing(4);
 
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
 
       block-size: spacing(9);
       inline-size: stretch;

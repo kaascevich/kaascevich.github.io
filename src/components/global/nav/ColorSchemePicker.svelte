@@ -116,7 +116,7 @@
 
       position: relative;
 
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
 
       block-size: spacing(11);
       inline-size: spacing(11);
@@ -166,7 +166,7 @@
 
           margin-block-end: spacing(0.5);
 
-          border-radius: $radius-lg;
+          border-radius: var(--radius-lg);
 
           padding-inline: spacing(3);
 
@@ -175,7 +175,7 @@
 
           white-space: nowrap;
 
-          font-weight: $font-weight-medium;
+          font-weight: var(--fw-medium);
 
           &:active {
             scale: 95%;

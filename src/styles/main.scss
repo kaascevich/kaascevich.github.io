@@ -28,7 +28,7 @@
 %card-base {
   @include transition;
 
-  border-radius: $radius-xl2;
+  border-radius: var(--radius-xl2);
 
   background-color: var(--color-card-bg);
 
@@ -81,7 +81,7 @@
   margin-block: spacing(-1);
   margin-inline: spacing(-1);
 
-  border-radius: $radius-md;
+  border-radius: var(--radius-md);
 
   padding-block: spacing(1);
   padding-inline: spacing(1);
@@ -92,16 +92,16 @@
 
   inset-block-start: spacing(21);
 
-  border-radius: $radius-xl2;
+  border-radius: var(--radius-xl2);
 
-  box-shadow: $shadow-xl;
+  box-shadow: var(--shadow-xl);
 
   background-color: var(--color-float-panel-bg);
 
   overflow: hidden;
 
   @include dark {
-    box-shadow: $shadow-none;
+    box-shadow: var(--shadow-none);
   }
 }
 

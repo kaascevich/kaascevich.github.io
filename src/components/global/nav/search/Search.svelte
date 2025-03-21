@@ -105,9 +105,9 @@
     inset-block-start: spacing(20);
     inset-inline: spacing(4);
 
-    border-radius: $radius-xl2;
+    border-radius: var(--radius-xl2);
 
-    box-shadow: $shadow-xl2;
+    box-shadow: var(--shadow-xl2);
 
     padding-block: spacing(2);
     padding-inline: spacing(2);
@@ -173,7 +173,7 @@
 
     margin-inline-end: spacing(2);
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     input {
       @include transition($properties: all);
@@ -196,7 +196,7 @@
   #search-switch {
     @extend %btn-plain, %expand-animation;
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     block-size: spacing(11);
     inline-size: spacing(11);
@@ -219,7 +219,7 @@
     display: block flex;
     position: relative;
 
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
 
     // stylelint-disable-next-line no-descending-specificity
     input {

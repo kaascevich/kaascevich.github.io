@@ -36,7 +36,7 @@
 
     display: block flow;
 
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
 
     padding-block: spacing(2);
     padding-inline: spacing(3);
@@ -66,7 +66,7 @@
 
       color: var(--color-search-result-title);
 
-      font-weight: $font-weight-bold;
+      font-weight: var(--fw-bold);
 
       :global(svg) {
         translate: spacing(1);

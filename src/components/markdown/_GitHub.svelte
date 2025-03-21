@@ -114,7 +114,7 @@
     margin-block: spacing(2);
     margin-inline: 0;
 
-    border-radius: $radius-xl2;
+    border-radius: var(--radius-xl2);
 
     background-color: var(--color-license-bg);
 
@@ -162,7 +162,7 @@
 
       color: var(--tw-prose-headings);
 
-      font-weight: $font-weight-medium;
+      font-weight: var(--fw-medium);
 
       .titlebar-left {
         @include transition;
@@ -183,7 +183,7 @@
 
           align-items: center;
 
-          font-weight: $font-weight-light;
+          font-weight: var(--fw-light);
 
           .avatar {
             display: block flow;
@@ -203,7 +203,7 @@
             &::after {
               display: block flow;
 
-              font-weight: $font-weight-normal;
+              font-weight: var(--fw-normal);
 
               content: '/';
             }
@@ -211,7 +211,7 @@
         }
 
         .repo {
-          font-weight: $font-weight-bold;
+          font-weight: var(--fw-bold);
         }
 
         @include md {
@@ -239,7 +239,7 @@
 
       color: var(--tw-prose-body);
 
-      font-weight: $font-weight-light;
+      font-weight: var(--fw-light);
     }
 
     footer {
@@ -268,7 +268,7 @@
 
       opacity: 90%;
 
-      font-weight: $font-weight-medium;
+      font-weight: var(--fw-medium);
 
       :global(svg) {
         @include transition($properties: (background-color, background));
@@ -320,7 +320,7 @@
     }
 
     .description, footer {
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
     }
   }
 

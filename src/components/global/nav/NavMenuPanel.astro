@@ -50,7 +50,7 @@ const { links } = Astro.props
   #nav-menu-switch {
     @extend %btn-plain, %expand-animation;
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     block-size: spacing(11);
     inline-size: spacing(11);
@@ -88,7 +88,7 @@ const { links } = Astro.props
       align-items: center;
       justify-content: space-between;
 
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
 
       padding-block: spacing(2);
       padding-inline: spacing(3) spacing(1);
@@ -108,7 +108,7 @@ const { links } = Astro.props
       header {
         color: bw(75%);
 
-        font-weight: $font-weight-bold;
+        font-weight: var(--fw-bold);
       }
 
       %link-icon {

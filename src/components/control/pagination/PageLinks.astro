@@ -74,13 +74,13 @@ function getPageUrl<Page extends number>(page: Page) {
 
     align-items: center;
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     background-color: var(--color-card-bg);
 
     color: var(--color-pagination-link);
 
-    font-weight: $font-weight-bold;
+    font-weight: var(--fw-bold);
   }
 
   .hidden-pages {
@@ -89,7 +89,7 @@ function getPageUrl<Page extends number>(page: Page) {
 
   .current-page,
   .other-page {
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     block-size: spacing(11);
     inline-size: spacing(11);

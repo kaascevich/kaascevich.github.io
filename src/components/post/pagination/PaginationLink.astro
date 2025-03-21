@@ -35,7 +35,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
 
     overflow: hidden;
 
-    font-weight: $font-weight-bold;
+    font-weight: var(--fw-bold);
 
     &:active {
       scale: 95%;
@@ -51,7 +51,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
       align-items: center;
       justify-content: flex-start;
 
-      border-radius: $radius-xl2;
+      border-radius: var(--radius-xl2);
 
       padding-inline: spacing(4);
 

@@ -7,7 +7,7 @@
 // MARK: Layout
 
 @function spacing($value) {
-  @return calc($spacing * $value);
+  @return calc(var(--spacing) * $value);
 }
 
 // MARK: Colors

@@ -18,7 +18,7 @@ const { class: className, entry, url, style } = Astro.props
 const { title, image, description } = entry.data
 const { remarkPluginFrontmatter } = await render(entry)
 
-const coverWidth = image === undefined ? '3.25rem' : '28%'
+const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 ---
 
 <article class={className} {style}>
@@ -61,7 +61,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
     flex-direction: column-reverse;
 
-    border-radius: $radius-xl2;
+    border-radius: var(--radius-xl2);
 
     inline-size: 100%;
 
@@ -96,7 +96,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
 
         color: var(--color-post-title);
 
-        font-weight: $font-weight-bold;
+        font-weight: var(--fw-bold);
 
         &::before {
           display: none;
@@ -104,7 +104,7 @@ const coverWidth = image === undefined ? '3.25rem' : '28%'
           inset-block-start: spacing(9);
           inset-inline-start: spacing(4.5);
 
-          border-radius: $radius-md;
+          border-radius: var(--radius-md);
 
           background-color: var(--color-primary);
 

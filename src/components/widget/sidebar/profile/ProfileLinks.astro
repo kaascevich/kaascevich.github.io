@@ -45,7 +45,7 @@ const { links } = Astro.props
 
       gap: spacing(1);
 
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
 
       block-size: spacing(10);
 
@@ -57,7 +57,7 @@ const { links } = Astro.props
       &.small {
         padding-inline: spacing(2);
 
-        font-weight: $font-weight-bold;
+        font-weight: var(--fw-bold);
 
         &:active {
           scale: 95%;

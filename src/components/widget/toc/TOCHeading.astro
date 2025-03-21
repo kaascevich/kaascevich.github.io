@@ -29,7 +29,7 @@ const { id, text, depth, h1Index } = Astro.props
 
     gap: spacing(2);
 
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
 
     padding-block: spacing(2);
     padding-inline: spacing(2);
@@ -55,12 +55,12 @@ const { id, text, depth, h1Index } = Astro.props
       align-items: center;
       justify-content: center;
 
-      border-radius: $radius-lg;
+      border-radius: var(--radius-lg);
 
       block-size: spacing(5);
       inline-size: spacing(5);
 
-      font-weight: $font-weight-bold;
+      font-weight: var(--fw-bold);
     }
 
     .title {

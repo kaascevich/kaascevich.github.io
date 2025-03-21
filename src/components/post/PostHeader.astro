@@ -68,7 +68,7 @@ const { entry, wordCount, readingTime } = Astro.props
 
     color: var(--color-post-title);
 
-    font-weight: $font-weight-bold;
+    font-weight: var(--fw-bold);
 
     @include md {
       @include font-size($text-xl4);
@@ -80,7 +80,7 @@ const { entry, wordCount, readingTime } = Astro.props
         inset-block-start: spacing(2);
         inset-inline-start: spacing(-4.5);
 
-        border-radius: $radius-md;
+        border-radius: var(--radius-md);
 
         background-color: var(--color-primary);
 
@@ -111,6 +111,6 @@ const { entry, wordCount, readingTime } = Astro.props
 
     margin-block-end: spacing(8);
 
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
   }
 </style>

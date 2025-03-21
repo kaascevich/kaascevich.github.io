@@ -51,7 +51,7 @@ article.markdown {
 
     color: var(--color-primary);
 
-    font-weight: $font-weight-medium;
+    font-weight: var(--fw-medium);
     text-underline-offset: 4px;
 
     &:hover,
@@ -67,7 +67,7 @@ article.markdown {
   }
 
   code {
-    border-radius: $radius-md;
+    border-radius: var(--radius-md);
 
     background-color: var(--color-inline-code-bg);
 
@@ -125,11 +125,11 @@ article.markdown {
   :not(pre) code {
     inset-block-end: spacing(0.2);
 
-    font-weight: $font-weight-medium;
+    font-weight: var(--fw-medium);
   }
 
   pre {
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
 
     background-color: var(--color-codeblock-bg) !important;
 
@@ -176,7 +176,7 @@ article.markdown {
   }
 
   img {
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
   }
 
   hr {
@@ -188,7 +188,7 @@ article.markdown {
   iframe {
     margin-inline: auto;
 
-    border-radius: $radius-xl;
+    border-radius: var(--radius-xl);
 
     max-inline-size: 100%;
   }

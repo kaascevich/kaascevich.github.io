@@ -69,9 +69,9 @@
 
     border-width: 0;
 
-    border-radius: $radius-sm;
+    border-radius: var(--radius-sm);
 
-    box-shadow: $shadow-none;
+    box-shadow: var(--shadow-none);
 
     background-color: var(--color-hue-picker-thumb);
 
@@ -90,7 +90,7 @@
   #color-settings-switch {
     @extend %btn-plain, %expand-animation;
 
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
 
     block-size: spacing(11);
     inline-size: spacing(11);
@@ -141,14 +141,14 @@
 
         color: var(--color-hue-picker-title);
 
-        font-weight: $font-weight-bold;
+        font-weight: var(--fw-bold);
 
         &::before {
           position: absolute;
-          inset-block-start: calc(1rem / 3);
+          inset-block-start: spacing(calc(4 / 3));
           inset-inline-start: spacing(-3);
 
-          border-radius: $radius-md;
+          border-radius: var(--radius-md);
 
           background-color: var(--color-primary);
 
@@ -162,7 +162,7 @@
       button.reset {
         @extend %btn-regular;
 
-        border-radius: $radius-md;
+        border-radius: var(--radius-md);
 
         block-size: spacing(7);
         inline-size: spacing(7);
@@ -191,7 +191,7 @@
         align-items: center;
         justify-content: center;
 
-        border-radius: $radius-md;
+        border-radius: var(--radius-md);
 
         background-color: var(--color-hue-picker-value-bg);
 
@@ -200,12 +200,12 @@
 
         color: var(--color-hue-picker-value);
 
-        font-weight: $font-weight-bold;
+        font-weight: var(--fw-bold);
       }
     }
 
     .hue-slider-wrapper {
-      border-radius: $radius-sm;
+      border-radius: var(--radius-sm);
 
       background-color: var(--color-hue-picker-gradient);
 

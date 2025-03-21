@@ -6,7 +6,7 @@ import strings from '$/config/strings'
 
 const categories = Array.from(await getCategoryCounts())
 
-const COLLAPSED_HEIGHT = '7.5rem'
+const COLLAPSED_HEIGHT = 'calc(var(--spacing) * 30)'
 const COLLAPSE_THRESHOLD = 5
 
 export interface Props {

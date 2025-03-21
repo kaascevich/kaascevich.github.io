@@ -45,7 +45,7 @@ const { icon, hideOnMobile = false } = Astro.props
 
       margin-inline-end: spacing(2);
 
-      border-radius: $radius-md;
+      border-radius: var(--radius-md);
 
       background-color: var(--color-btn-regular-bg);
 
@@ -64,7 +64,7 @@ const { icon, hideOnMobile = false } = Astro.props
       @include font-size($text-sm);
       color: bw(50%);
 
-      font-weight: $font-weight-medium;
+      font-weight: var(--fw-medium);
     }
   }
 </style>
