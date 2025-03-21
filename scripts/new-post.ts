@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import * as R from 'remeda'
+import { toKebabCase } from 'remeda'
 
 function getDate() {
   const today = new Date()
@@ -9,7 +9,7 @@ function getDate() {
   const month = String(today.getMonth() + 1).padStart(2, '0')
   const day = String(today.getDate()).padStart(2, '0')
 
-  return `${year}-${month}-${day}` as const
+  return `${year}-${month}-${day}`
 }
 
 // first arg is execPath, second arg is path to script file
@@ -18,7 +18,7 @@ if (title === undefined) {
   throw new Error('no title argument provided')
 }
 
-const fileName = R.toKebabCase(title)
+const fileName = toKebabCase(title)
 const dirPath = path.join('./src/content/posts/', fileName)
 
 if (fs.existsSync(dirPath)) {
@@ -36,7 +36,7 @@ image: ''
 tags: []
 category: ''
 ---
-` as const
+`
 fs.writeFileSync(path.join(dirPath, 'index.md'), content)
 
 console.log(`post ${dirPath} created`)

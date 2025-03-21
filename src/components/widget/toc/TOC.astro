@@ -2,7 +2,7 @@
 import type { MarkdownHeading } from 'astro'
 import type { TOCConfig } from '$/types/config'
 
-import * as R from 'remeda'
+import { filter, map, pipe, set } from 'remeda'
 import TOCHeading from './TOCHeading.astro'
 
 export interface Props {
@@ -11,14 +11,12 @@ export interface Props {
 }
 const { config, headings: _headings } = Astro.props
 
-const minDepth = R.pipe(_headings, R.map(R.prop('depth')), (x) =>
-  Math.min(...x),
-)
+const minDepth = pipe(_headings, map(x => x.depth), (x) => Math.min(...x))
 
-const headings = R.pipe(
+const headings = pipe(
   _headings,
-  R.map((x) => R.set(x, 'depth', x.depth - minDepth)),
-  R.filter((x) => x.depth < config.depth),
+  map((x) => set(x, 'depth', x.depth - minDepth)),
+  filter((x) => x.depth < config.depth),
 )
 
 let heading1Count = 1
@@ -113,8 +111,6 @@ let heading1Count = 1
 </style>
 
 <script>
-  import * as R from 'remeda'
-
   interface TOCEntry {
     id: string
     anchor: HTMLAnchorElement
@@ -272,16 +268,15 @@ let heading1Count = 1
         { capture: true },
       )
 
-      this.entries = R.pipe(
+      this.entries = Array.from(
         document.querySelectorAll<HTMLAnchorElement>('#toc a[href^="#"]'),
-        (x) => Array.from(x),
-        R.map((anchor) => {
+        (anchor) => {
           const id = decodeURIComponent(anchor.hash.substring(1))
           const heading = document.getElementById(id)!
           const section = heading.parentElement!
 
           return { id, anchor, section, heading, isActive: false }
-        }),
+        },
       )
 
       this.entries.forEach(({ section }) => this.observer.observe(section))

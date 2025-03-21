@@ -1,7 +1,7 @@
 import type { Post } from '$/types/content'
 import type { Page } from 'astro'
 
-import * as R from 'remeda'
+import { range } from 'remeda'
 
 export type PageLinkLayout = ReturnType<typeof pageLinkLayout>
 
@@ -38,7 +38,7 @@ export function pageLinkLayout(
 
   const leftPage = leftmost > first + INCLUSION_THRESHOLD ? first : null
   const rightPage = rightmost < last - INCLUSION_THRESHOLD ? last : null
-  const middlePages = R.range(leftmost, rightmost + 1)
+  const middlePages = range(leftmost, rightmost + 1)
 
   return [leftPage, middlePages, rightPage] as const
 }

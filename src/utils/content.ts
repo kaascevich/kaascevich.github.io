@@ -1,48 +1,49 @@
 import type { Post, PostsForYear } from '$/types/content'
 
-import { elementCounts } from './arrays'
 import { getCollection } from 'astro:content'
-import * as R from 'remeda'
+import { entries, flatMap, groupBy, map, pipe, reverse, sortBy } from 'remeda'
+
+import { elementCounts } from './arrays'
 
 export async function getSortedPosts() {
-  return R.pipe(
+  return pipe(
     await getCollection(
       'posts',
       (post) => import.meta.env.DEV || !post.data.draft,
     ),
-    R.sortBy((x) => x.data.published),
-    R.reverse(),
+    sortBy((x) => x.data.published),
+    reverse(),
   )
 }
 
 export async function getTagCounts() {
-  return R.pipe(
+  return pipe(
     await getSortedPosts(),
-    R.flatMap((x) => x.data.tags),
-    R.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
+    flatMap((x) => x.data.tags),
+    sortBy((x) => x.toLowerCase()),
     elementCounts,
   )
 }
 
 export async function getCategoryCounts() {
-  return R.pipe(
+  return pipe(
     await getSortedPosts(),
-    R.map((x) => x.data.category),
-    R.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
+    map((x) => x.data.category),
+    sortBy((x) => x.toLowerCase()),
     elementCounts,
   )
 }
 
 export async function groupPostsByYear(posts?: Post[]): Promise<PostsForYear[]> {
-  return R.pipe(
+  return pipe(
     posts ?? await getSortedPosts(),
 
-    R.groupBy((post) => post.data.published.getFullYear()),
-    R.entries(),
-    R.map(([year, posts]) => ({ year: Number(year), posts })),
+    groupBy((post) => post.data.published.getFullYear()),
+    entries(),
+    map(([year, posts]) => ({ year: Number(year), posts })),
 
     // sort by year, descending
-    R.sortBy(R.prop('year')),
-    R.reverse(),
+    sortBy((x) => x.year),
+    reverse(),
   )
 }

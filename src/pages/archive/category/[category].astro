@@ -1,17 +1,17 @@
 ---
 import type { GetStaticPathsResult } from 'astro'
 
-import * as R from 'remeda'
+import { map, pipe } from 'remeda'
 import { getCategoryCounts } from '$/utils/content'
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import ArchivePanel from '$/components/archive/ArchivePanel.astro'
 import strings from '$/config/strings'
 
 export async function getStaticPaths() {
-  return R.pipe(
+  return pipe(
     await getCategoryCounts(),
     (x) => Array.from(x),
-    R.map(([category]) => ({ params: { category } })),
+    map(([category]) => ({ params: { category } })),
   ) satisfies GetStaticPathsResult
 }
 

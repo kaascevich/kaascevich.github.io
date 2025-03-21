@@ -1,14 +1,14 @@
 import type { Hue } from '$/types/config'
 
 import siteConfig from '$/config/site'
-import * as R from 'remeda'
+import { pipe } from 'remeda'
 
 function isValidHue(value: number): value is Hue {
   return Number.isInteger(value) && value >= 0 && value < 360
 }
 
 export function getHue(): Hue {
-  const stored = R.pipe(
+  const stored = pipe(
     localStorage.getItem('hue') ?? 'NaN',
     Number.parseInt,
   )

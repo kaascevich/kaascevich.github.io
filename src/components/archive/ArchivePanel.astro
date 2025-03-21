@@ -1,5 +1,4 @@
 ---
-import * as R from 'remeda'
 import { getSortedPosts, groupPostsByYear } from '$/utils/content'
 import ArchiveGroup from './ArchiveGroup.astro'
 
@@ -12,23 +11,21 @@ export interface Props {
 }
 const { filter } = Astro.props
 
-const posts = R.pipe(
-  await getSortedPosts(),
-  R.filter(({ data }) => {
-    if (filter === undefined) {
-      return true
-    }
+const posts = await getSortedPosts()
+const filteredPosts = posts.filter(({ data }) => {
+  if (filter === undefined) {
+    return true
+  }
 
-    switch (filter.type) {
-      case 'tag':
-        return data.tags.includes(filter.tag)
-      case 'category':
-        return data.category === filter.category
-    }
-  }),
-)
+  switch (filter.type) {
+    case 'tag':
+      return data.tags.includes(filter.tag)
+    case 'category':
+      return data.category === filter.category
+  }
+})
 
-const groups = await groupPostsByYear(posts)
+const groups = await groupPostsByYear(filteredPosts)
 ---
 
 <ol>

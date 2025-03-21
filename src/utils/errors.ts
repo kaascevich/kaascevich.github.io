@@ -1,20 +1,13 @@
-export class InvalidPropError<
-  PropName extends string,
-  ExpectedType extends string,
-  ActualType extends string
-> extends TypeError {
+export class InvalidPropError extends TypeError {
   constructor(
-    readonly propName: PropName,
-    readonly expectedType: ExpectedType,
-    readonly actualType: ActualType,
+    readonly propName: string,
+    readonly expectedType: string,
+    readonly actualType: string,
   ) {
     super()
   }
 
   override get message() {
-    return `\
-invalid '${this.propName}' prop (type '${this.actualType}' \
-is not assignable to '${this.expectedType}')\
-` as const
+    return `invalid '${this.propName}' prop (type '${this.actualType}' is not assignable to '${this.expectedType}')`
   }
 }

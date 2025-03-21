@@ -1,5 +1,3 @@
-import * as R from 'remeda'
-
 const userAgents = [
   'AI2Bot',
   'Ai2Bot-Dolma',
@@ -47,13 +45,11 @@ const userAgents = [
   'VelenPublicWebCrawler',
   'Webzio-Extended',
   'YouBot',
-] as const
+]
 
-const userAgentDirectives = R.pipe(
-  userAgents,
-  R.map((x) => `User-agent: ${x as string}` as const),
-  R.join('\n'),
-)
+const userAgentDirectives = userAgents
+  .map((x) => `User-agent: ${x}`)
+  .join('\n')
 
 const sitemapURL = new URL('sitemap-index.xml', import.meta.env.SITE).href
 
@@ -65,7 +61,7 @@ User-agent: *
 Allow: /
 
 Sitemap: ${sitemapURL}
-` as const
+`
 
 export function GET() {
   return new Response(robotsTxt, {

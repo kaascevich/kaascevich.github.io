@@ -1,11 +1,10 @@
-import * as R from 'remeda'
+import { countBy, entries, pipe } from 'remeda'
 
 export function elementCounts<Items extends readonly PropertyKey[]>(array: Items) {
-  return R.pipe(
+  return pipe(
     array,
-    R.countBy(R.identity()),
-
-    R.entries(),
+    countBy((x) => x),
+    entries(),
     (x) => new Map(x),
   )
 }

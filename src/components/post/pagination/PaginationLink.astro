@@ -11,7 +11,7 @@ export interface Props {
 
 const { entry, type } = Astro.props
 
-const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}` as const
+const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 ---
 
 <a href={getPostUrlByID(entry.id)} class={type}>

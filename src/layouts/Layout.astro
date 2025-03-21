@@ -18,13 +18,11 @@ export interface Props extends HeadProps {
 
 const { fullHeightBanner = false, ...props } = Astro.props
 
-const bannerOffset = (
-  {
-    top: `${BANNER_HEIGHT_EXTEND}vh`,
-    center: `${BANNER_HEIGHT_EXTEND / 4}vh`,
-    bottom: '0',
-  } as const
-)[siteConfig.banner?.position ?? 'center']
+const bannerOffset = {
+  top: `${BANNER_HEIGHT_EXTEND}vh`,
+  center: `${BANNER_HEIGHT_EXTEND / 4}vh`,
+  bottom: '0',
+}[siteConfig.banner?.position ?? 'center']
 ---
 
 <!doctype html>
@@ -35,7 +33,7 @@ const bannerOffset = (
       lang='scss'
       define:vars={{
         configHue: siteConfig.defaultHue,
-        'page-width': `${PAGE_WIDTH}rem` as const,
+        'page-width': `${PAGE_WIDTH}rem`,
       }}
     >
       /* empty */

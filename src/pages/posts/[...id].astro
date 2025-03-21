@@ -3,7 +3,6 @@ import type { Post } from '$/types/content'
 import type { GetStaticPathsResult } from 'astro'
 import type { WithContext, BlogPosting } from 'schema-dts'
 
-import * as R from 'remeda'
 import { render } from 'astro:content'
 import License from '$/components/post/License.astro'
 import Markdown from '$/components/post/Markdown.astro'
@@ -16,7 +15,8 @@ import { getSortedPosts } from '$/utils/content'
 import strings from '$/config/strings'
 
 export async function getStaticPaths() {
-  return R.map(await getSortedPosts(), (entry) => ({
+  const posts = await getSortedPosts()
+  return posts.map((entry) => ({
     params: { id: entry.id },
     props: { entry },
   })) satisfies GetStaticPathsResult

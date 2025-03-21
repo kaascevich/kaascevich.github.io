@@ -1,7 +1,6 @@
 ---
 import type { Post } from '$/types/content'
 
-import * as R from 'remeda'
 import { getPostUrlByID } from '$/utils/urls'
 
 export interface Props {
@@ -14,12 +13,8 @@ const formatDate = new Intl.DateTimeFormat('en-US', {
   day: '2-digit',
 }).format
 
-function formatTagList<T extends readonly string[]>(tags: T) {
-  return R.pipe(
-    tags,
-    R.map((x) => `#${x}` as const),
-    R.join(' '),
-  )
+function formatTagList(tags: readonly string[]) {
+  return tags.map((x) => `#${x}`).join(' ')
 }
 ---
 

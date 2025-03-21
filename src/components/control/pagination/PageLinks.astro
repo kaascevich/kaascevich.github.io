@@ -11,7 +11,7 @@ export interface Props {
 const { pageLinks, current } = Astro.props
 
 function getPageUrl<Page extends number>(page: Page) {
-  return page === 1 ? '/' : `/${page}/` as const
+  return page === 1 ? '/' : `/${page}/`
 }
 ---
 

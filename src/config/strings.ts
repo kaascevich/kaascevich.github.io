@@ -1,11 +1,7 @@
 import type { ColorScheme, StringList } from '$/types/config'
 
-function count<Singular extends string, Plural extends string>(
-  num: number,
-  singular: Singular,
-  plural: Plural,
-) {
-  return `${num} ${num === 1 ? singular : plural}` as const
+function count(num: number, singular: string, plural: string) {
+  return `${num} ${num === 1 ? singular : plural}`
 }
 
 export default {
@@ -45,15 +41,14 @@ export default {
     author: 'Author',
     publishedAt: 'Published at',
     license: 'License',
-    copyright: (year: number, name: string) =>
-      `\u00A9 ${year} ${name}` as const,
+    copyright: (year: number, name: string) => `\u00A9 ${year} ${name}`,
   },
   github: {
     loading: 'Waiting for the GitHub API...',
 
     starCount: (stars: number) => count(stars, 'star', 'stars'),
     forkCount: (forks: number) => count(forks, 'fork', 'forks'),
-    license: (license: string) => `License: ${license}` as const,
+    license: (license: string) => `License: ${license}`,
 
     noDescription: 'No description',
     noLicense: 'No license',
@@ -61,13 +56,10 @@ export default {
   alts: {
     prevPage: 'Previous page',
     nextPage: 'Next page',
-    pageNum: (page: number) =>
-      `Page ${page}` as const,
+    pageNum: (page: number) => `Page ${page}`,
 
-    tag: (tag: string) =>
-      `All posts tagged with ${tag}` as const,
-    category: (category: string) =>
-      `All posts categorized under ${category}` as const,
+    tag: (tag: string) => `All posts tagged with ${tag}`,
+    category: (category: string) => `All posts categorized under ${category}`,
 
     goToAbout: 'Go to about page',
     profile: 'My profile',
@@ -82,4 +74,4 @@ export default {
     backToTop: 'Back to top',
     navMenuButton: 'Nav menu',
   },
-} as const satisfies StringList
+} satisfies StringList

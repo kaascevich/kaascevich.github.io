@@ -14,8 +14,8 @@ const { title, setOGTypeArticle = false } = Astro.props
 
 const pageTitle =
   title === undefined
-    ? (`${siteConfig.title} - ${siteConfig.subtitle}` as const)
-    : (`${title} - ${siteConfig.title}` as const)
+    ? `${siteConfig.title} - ${siteConfig.subtitle}`
+    : `${title} - ${siteConfig.title}`
 
 const description = Astro.props.description ?? pageTitle
 ---

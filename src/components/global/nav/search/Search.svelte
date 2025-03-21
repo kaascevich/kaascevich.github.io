@@ -1,10 +1,11 @@
 <script lang='ts'>
   import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
 
-  import SearchResult from './SearchResult.svelte'
   import strings from '$/config/strings'
   import Icon from '@iconify/svelte'
-  import * as R from 'remeda'
+  import { map, pipe } from 'remeda'
+
+  import SearchResult from './SearchResult.svelte'
 
   let keywordDesktop = $state('')
   let keywordMobile = $state('')
@@ -21,10 +22,10 @@
       return
     }
 
-    results = await R.pipe(
+    results = await pipe(
       await window.pagefind!.search(keyword),
-      R.prop('results'),
-      R.map((x) => x.data()),
+      (x) => x.results,
+      map((x) => x.data()),
       (x) => Promise.all(x),
     )
 

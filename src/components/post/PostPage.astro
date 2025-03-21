@@ -2,7 +2,6 @@
 import type { Page } from 'astro'
 import type { Post } from '$/types/content'
 
-import * as R from 'remeda'
 import { getPostUrlByID } from '$/utils/urls'
 import PostCard from './card/PostCard.astro'
 
@@ -12,9 +11,8 @@ export interface Props {
 const { page } = Astro.props
 
 const DELAY_INTERVAL = 50
-const entriesWithDelays = R.pipe(
-  page.data,
-  R.map((entry, index) => [index * DELAY_INTERVAL, entry] as const),
+const entriesWithDelays = page.data.map(
+  (entry, index) => [index * DELAY_INTERVAL, entry] as const,
 )
 ---
 
