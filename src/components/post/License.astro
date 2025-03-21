@@ -21,12 +21,12 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     <header>{title}</header>
     <a href={postUrl}>{postUrl}</a>
   </hgroup>
-  <div class='details'>
+  <div class="details">
     <div>
       <header>
         {strings.license.author}
       </header>
-      <div class='details-text'>
+      <div class="details-text">
         {siteConfig.profile.name}
       </div>
     </div>
@@ -34,7 +34,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <header>
         {strings.license.publishedAt}
       </header>
-      <div class='details-text'>
+      <div class="details-text">
         {formatDate(pubDate)}
       </div>
     </div>
@@ -42,15 +42,15 @@ const postUrl = decodeURIComponent(Astro.url.toString())
       <header>
         {strings.license.license}
       </header>
-      <a href={config.url} target='_blank' class='details-link' rel='license'>
+      <a href={config.url} target="_blank" class="details-link" rel="license">
         {config.name}
       </a>
     </div>
   </div>
-  <Icon name='tabler:creative-commons' class='cc-icon' />
+  <Icon name="tabler:creative-commons" class="cc-icon" />
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

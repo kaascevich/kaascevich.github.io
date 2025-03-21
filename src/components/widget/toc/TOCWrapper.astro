@@ -10,15 +10,15 @@ export interface Props {
 const { headings } = Astro.props
 ---
 
-<div class='outer-wrapper'>
-  <div class='inner-wrapper'>
+<div class="outer-wrapper">
+  <div class="inner-wrapper">
     {
       siteConfig.toc === undefined || headings.length === 0 ? (
         // #toc needs to exist for Swup to work properly
-        <div id='toc' />
+        <div id="toc" />
       ) : (
         <div
-          id='toc-wrapper'
+          id="toc-wrapper"
           class:list={{ 'toc-hide': siteConfig.banner !== undefined }}
         >
           <TOC config={siteConfig.toc} {headings} />
@@ -52,7 +52,7 @@ const { headings } = Astro.props
   })
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

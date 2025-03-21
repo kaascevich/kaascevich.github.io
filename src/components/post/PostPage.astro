@@ -22,14 +22,14 @@ const entriesWithDelays = page.data.map(
       <PostCard
         {entry}
         url={getPostUrlByID(entry.id)}
-        class='post-card'
+        class="post-card"
         style={`animation-delay: calc(var(--content-delay) + ${delay}ms);`}
       />
     ))
   }
 </ol>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';

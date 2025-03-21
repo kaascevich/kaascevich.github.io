@@ -23,13 +23,13 @@ const { page } = Astro.props
 <MainGridLayout fullHeightBanner>
   <PostPage {page} />
   <Pagination
-    class='pagination'
+    class="pagination"
     {page}
     style={`--pagination-delay: ${page.data.length * 50}ms`}
   />
 </MainGridLayout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';

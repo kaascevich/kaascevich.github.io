@@ -11,16 +11,16 @@ const { class: className } = Astro.props
 ---
 
 <aside class:list={['sidebar', className]}>
-  <section class='profile'>
+  <section class="profile">
     <Profile config={siteConfig.profile} />
   </section>
-  <section class='sticky'>
-    <Categories class='categories' />
-    <Tags class='tags' />
+  <section class="sticky">
+    <Categories class="categories" />
+    <Tags class="tags" />
   </section>
 </aside>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';

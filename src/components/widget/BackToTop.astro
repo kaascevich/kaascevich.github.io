@@ -5,17 +5,17 @@ import { Icon } from 'astro-icon/components'
 
 <div>
   <button
-    id='back-to-top-btn'
-    class='hide'
+    id="back-to-top-btn"
+    class="hide"
     onclick='window.scroll({ top: 0, behavior: "smooth"})'
     aria-label={strings.alts.backToTop}
   >
-    <Icon name='tabler:chevron-up' />
+    <Icon name="tabler:chevron-up" />
   </button>
 </div>
 
 <script>
-  import { BANNER_HEIGHT } from "$/constants/constants"
+  import { BANNER_HEIGHT } from '$/constants/constants'
 
   const backToTopBtn = document.getElementById('back-to-top-btn')!
 
@@ -32,7 +32,7 @@ import { Icon } from 'astro-icon/components'
   })
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

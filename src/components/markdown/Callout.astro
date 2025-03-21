@@ -29,7 +29,7 @@ const calloutIcons: Record<CalloutType, string> = {
   <slot />
 </blockquote>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -38,7 +38,8 @@ const calloutIcons: Record<CalloutType, string> = {
   blockquote {
     // remove the double quotes
     :global(p) {
-      &::before, &::after {
+      &::before,
+      &::after {
         content: none;
       }
     }

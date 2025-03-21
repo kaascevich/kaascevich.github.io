@@ -9,19 +9,19 @@ export interface Props {
 const { config } = Astro.props
 ---
 
-<div class='profile-card'>
+<div class="profile-card">
   <Avatar />
 
-  <div class='info'>
-    <div class='name'>{config.name}</div>
+  <div class="info">
+    <div class="name">{config.name}</div>
     <hr />
-    <div class='bio'>{config.bio}</div>
+    <div class="bio">{config.bio}</div>
   </div>
 
   <ProfileLinks links={config.links} />
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

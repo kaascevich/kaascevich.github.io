@@ -10,16 +10,16 @@ const { badge, url, label } = Astro.props
 
 <a href={url} aria-label={label}>
   <button>
-    <div class='wrapper'>
-      <header class='title'>
+    <div class="wrapper">
+      <header class="title">
         <slot />
       </header>
-      {badge !== undefined && <div class='badge'>{badge}</div>}
+      {badge !== undefined && <div class="badge">{badge}</div>}
     </div>
   </button>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

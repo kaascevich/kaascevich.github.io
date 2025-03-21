@@ -28,39 +28,36 @@ const mainPanelTop =
 
 <Layout {...props}>
   <!-- navbar -->
-  <slot slot='head' name='head' />
-  <header id='top-row'>
-    <div id='navbar-wrapper'>
+  <slot slot="head" name="head" />
+  <header id="top-row">
+    <div id="navbar-wrapper">
       <Navbar />
     </div>
   </header>
 
   {siteConfig.banner !== undefined && <Banner config={siteConfig.banner} />}
 
-  <div
-    class='main-outer-wrapper'
-    style={{ insetBlockStart: mainPanelTop }}
-  >
-    <div class='main-inner-wrapper'>
-      <div id='main-grid'>
+  <div class="main-outer-wrapper" style={{ insetBlockStart: mainPanelTop }}>
+    <div class="main-inner-wrapper">
+      <div id="main-grid">
         {
           siteConfig.banner?.credit !== undefined && (
             <BannerCredit config={siteConfig.banner.credit} />
           )
         }
 
-        <Sidebar class='sidebar'/>
+        <Sidebar class="sidebar" />
 
-        <main id='swup-container' class='transition-swup-fade'>
-          <div id='content-wrapper'>
+        <main id="swup-container" class="transition-swup-fade">
+          <div id="content-wrapper">
             <slot />
-            <div class='footer-mobile'>
+            <div class="footer-mobile">
               <Footer />
             </div>
           </div>
         </main>
 
-        <div class='footer-desktop'>
+        <div class="footer-desktop">
           <Footer />
         </div>
       </div>
@@ -72,7 +69,7 @@ const mainPanelTop =
   <TOCWrapper {headings} />
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
@@ -151,7 +148,7 @@ const mainPanelTop =
             grid-row: 1 / 2;
             grid-column: span 1 / span 1;
 
-            max-inline-size: spacing(70)l
+            max-inline-size: spacing(70) l;
           }
         }
 

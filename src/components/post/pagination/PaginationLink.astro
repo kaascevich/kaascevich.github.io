@@ -15,13 +15,13 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 ---
 
 <a href={getPostUrlByID(entry.id)} class={type}>
-  <div class='link-wrapper'>
+  <div class="link-wrapper">
     <Icon name={icon} />
-    <div class='title'>{entry.data.title}</div>
+    <div class="title">{entry.data.title}</div>
   </div>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

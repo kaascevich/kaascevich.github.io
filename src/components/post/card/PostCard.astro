@@ -22,17 +22,17 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 ---
 
 <article class={className} {style}>
-  <div class='info-wrapper'>
+  <div class="info-wrapper">
     <h2>
       <a href={url}>
         {title}
-        <Icon name='tabler:chevron-right' />
+        <Icon name="tabler:chevron-right" />
       </a>
     </h2>
 
-    <PostMeta {entry} compactOnMobile={true} class='meta-items' />
+    <PostMeta {entry} compactOnMobile={true} class="meta-items" />
 
-    <div class='description'>
+    <div class="description">
       {description}
     </div>
 
@@ -47,7 +47,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
   <PostLink {entry} {url} />
 </article>
 
-<style lang='scss' define:vars={{ 'cover-width': coverWidth }}>
+<style lang="scss" define:vars={{ 'cover-width': coverWidth }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

@@ -10,13 +10,7 @@ export interface Props {
   class?: string
 }
 
-const {
-  id,
-  name,
-  isCollapsed,
-  collapsedHeight,
-  class: className,
-} = Astro.props
+const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
 ---
 
 <widget-layout
@@ -30,9 +24,9 @@ const {
   </div>
   {
     isCollapsed === true && (
-      <button class='expand'>
-        <div class='icon-wrapper'>
-          <Icon name='tabler:dots' />
+      <button class="expand">
+        <div class="icon-wrapper">
+          <Icon name="tabler:dots" />
           {strings.widget.more}
         </div>
       </button>
@@ -40,7 +34,7 @@ const {
   }
 </widget-layout>
 
-<style lang='scss' define:vars={{ 'collapsed-height': collapsedHeight }}>
+<style lang="scss" define:vars={{ 'collapsed-height': collapsedHeight }}>
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

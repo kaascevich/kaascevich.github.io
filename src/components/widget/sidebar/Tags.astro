@@ -18,7 +18,7 @@ const { class: className } = Astro.props
 
 <WidgetLayout
   name={strings.tags.label}
-  id='tags'
+  id="tags"
   isCollapsed={tags.length >= COLLAPSE_THRESHOLD}
   collapsedHeight={COLLAPSED_HEIGHT}
   class={className}
@@ -34,7 +34,7 @@ const { class: className } = Astro.props
   </ul>
 </WidgetLayout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

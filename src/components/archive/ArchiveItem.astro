@@ -19,30 +19,30 @@ function formatTagList(tags: readonly string[]) {
 ---
 
 <a href={getPostUrlByID(post.id)} aria-label={post.data.title}>
-  <div class='item-wrapper'>
+  <div class="item-wrapper">
     <!-- date -->
     <time datetime={post.data.published.toISOString()}>
       {formatDate(post.data.published)}
     </time>
 
     <!-- dot and line -->
-    <div class='separator'>
+    <div class="separator">
       <div></div>
     </div>
 
     <!-- post title -->
-    <div class='title'>
+    <div class="title">
       {post.data.title}
     </div>
 
     <!-- tag list -->
-    <div class='tag-list'>
+    <div class="tag-list">
       {formatTagList(post.data.tags)}
     </div>
   </div>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

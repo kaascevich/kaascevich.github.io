@@ -10,10 +10,10 @@ interface Props {
   }>
 }
 
-const {
-  title,
-  description = title
-} = Astro.props.frontmatter as Record<keyof Props['frontmatter'], unknown>
+const { title, description = title } = Astro.props.frontmatter as Record<
+  keyof Props['frontmatter'],
+  unknown
+>
 
 // Astro doesn't validate prop types in Markdown layouts, so we have to do it
 // manually.
@@ -26,16 +26,16 @@ if (typeof description !== 'string') {
 ---
 
 <MainGridLayout {title} {description}>
-  <div class='outer-wrapper'>
-    <div class='inner-wrapper'>
-      <Markdown class='markdown'>
+  <div class="outer-wrapper">
+    <div class="inner-wrapper">
+      <Markdown class="markdown">
         <slot />
       </Markdown>
     </div>
   </div>
 </MainGridLayout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

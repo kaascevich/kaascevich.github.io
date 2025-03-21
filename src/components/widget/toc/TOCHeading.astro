@@ -9,15 +9,15 @@ const { id, text, depth, h1Index } = Astro.props
 ---
 
 <a href={`#${id}`} class={`depth-${depth}`}>
-  <div class='marker'>
-    {depth === 1 ? h1Index : <div class='dot' />}
+  <div class="marker">
+    {depth === 1 ? h1Index : <div class="dot" />}
   </div>
-  <div class='title'>
+  <div class="title">
     {text.replace(/#$/g, '')}
   </div>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

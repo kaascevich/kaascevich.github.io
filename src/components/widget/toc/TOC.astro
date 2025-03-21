@@ -11,7 +11,11 @@ export interface Props {
 }
 const { config, headings: _headings } = Astro.props
 
-const minDepth = pipe(_headings, map(x => x.depth), (x) => Math.min(...x))
+const minDepth = pipe(
+  _headings,
+  map((x) => x.depth),
+  (x) => Math.min(...x),
+)
 
 const headings = pipe(
   _headings,
@@ -22,9 +26,9 @@ const headings = pipe(
 let heading1Count = 1
 ---
 
-<div id='toc-inner-wrapper'>
-  <div id='toc' class='transition-swup-fade'>
-    <div class='spacer'></div>
+<div id="toc-inner-wrapper">
+  <div id="toc" class="transition-swup-fade">
+    <div class="spacer"></div>
 
     <table-of-contents>
       {
@@ -37,14 +41,14 @@ let heading1Count = 1
           />
         ))
       }
-      <div id='active-indicator'></div>
+      <div id="active-indicator"></div>
     </table-of-contents>
 
-    <div class='spacer'></div>
+    <div class="spacer"></div>
   </div>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

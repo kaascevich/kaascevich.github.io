@@ -10,10 +10,10 @@ export interface Props {
 const { class: className } = Astro.props
 ---
 
-<div id='navbar'>
+<div id="navbar">
   <nav class={className}>
-    <a href='/' class='home-link'>
-      <Icon name='tabler:home' />
+    <a href="/" class="home-link">
+      <Icon name="tabler:home" />
       {siteConfig.title}
     </a>
     <menu>
@@ -62,7 +62,7 @@ const { class: className } = Astro.props
   })
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

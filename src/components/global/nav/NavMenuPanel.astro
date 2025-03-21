@@ -10,17 +10,14 @@ export interface Props {
 const { links } = Astro.props
 ---
 
-<button aria-label={strings.alts.navMenuButton} id='nav-menu-switch'>
-  <Icon name='tabler:menu-2' />
+<button aria-label={strings.alts.navMenuButton} id="nav-menu-switch">
+  <Icon name="tabler:menu-2" />
 </button>
 
-<nav id='nav-menu-panel' class='float-panel-closed'>
+<nav id="nav-menu-panel" class="float-panel-closed">
   {
     links.map(({ name, url, external = false }) => (
-      <a
-        href={url}
-        target={external ? '_blank' : null}
-      >
+      <a href={url} target={external ? '_blank' : null}>
         <header>{name}</header>
         <Icon
           name={`tabler:${external ? 'external-link' : 'chevron-right'}`}
@@ -41,7 +38,7 @@ const { links } = Astro.props
     )
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -58,7 +55,6 @@ const { links } = Astro.props
     &:active {
       scale: 90%;
     }
-
 
     [data-icon] {
       block-size: spacing(5);

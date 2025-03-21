@@ -14,10 +14,10 @@ const { link } = Astro.props
   target={link.external === true ? '_blank' : null}
 >
   {link.name}
-  {link.external === true && <Icon name='tabler:external-link' />}
+  {link.external === true && <Icon name="tabler:external-link" />}
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

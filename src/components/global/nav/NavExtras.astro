@@ -7,15 +7,14 @@ import HuePicker from './HuePicker.svelte'
 import siteConfig from '$/config/site'
 ---
 
-<div class='nav-extras'>
+<div class="nav-extras">
   <Search client:load />
-  <HuePicker client:only='svelte' />
+  <HuePicker client:only="svelte" />
   <ColorSchemePicker client:load />
   <NavMenuPanel links={siteConfig.navbar.links} />
 </div>
 
 <script is:inline>
-
   async function loadPagefind() {
     /** @type {import('vite-plugin-pagefind/types').Pagefind} */
     // @ts-expect-error -- this is relative to the site root
@@ -30,7 +29,7 @@ import siteConfig from '$/config/site'
   loadPagefind()
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

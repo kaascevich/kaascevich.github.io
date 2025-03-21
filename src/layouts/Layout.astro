@@ -25,11 +25,11 @@ const bannerOffset = {
 ---
 
 <!doctype html>
-<html lang='en-US' data-overlayscrollbars-initialize>
+<html lang="en-US" data-overlayscrollbars-initialize>
   <Head {...props}>
     <!-- define global CSS variables -->
     <style
-      lang='scss'
+      lang="scss"
       define:vars={{
         configHue: siteConfig.defaultHue,
         'page-width': `${PAGE_WIDTH}rem`,
@@ -38,7 +38,7 @@ const bannerOffset = {
       /* empty */
     </style>
 
-    <slot name='head' slot='head' />
+    <slot name="head" slot="head" />
   </Head>
 
   <body
@@ -54,11 +54,11 @@ const bannerOffset = {
       increase page height during transition to prevent scroll animation from
       jumping
     -->
-    <div id='page-height-extend'></div>
+    <div id="page-height-extend"></div>
   </body>
 </html>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -80,7 +80,7 @@ const bannerOffset = {
 </style>
 
 <style
-  lang='scss'
+  lang="scss"
   is:global
   define:vars={{
     'banner-offset': bannerOffset,

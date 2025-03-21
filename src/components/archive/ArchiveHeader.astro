@@ -9,20 +9,20 @@ const { group } = Astro.props
 ---
 
 <header>
-  <div class='year'>
+  <div class="year">
     {group.year}
   </div>
 
-  <div class='dot-wrapper'>
-    <div class='dot'></div>
+  <div class="dot-wrapper">
+    <div class="dot"></div>
   </div>
 
-  <div class='count'>
+  <div class="count">
     {strings.meta.posts(group.posts.length)}
   </div>
 </header>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

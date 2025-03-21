@@ -5,18 +5,18 @@ import strings from '$/config/strings'
 import siteConfig from '$/config/site'
 ---
 
-<a aria-label={strings.alts.goToAbout} href='/about/' class='avatar'>
-  <div class='icon-wrapper'>
-    <Icon name='tabler:user-square' />
+<a aria-label={strings.alts.goToAbout} href="/about/" class="avatar">
+  <div class="icon-wrapper">
+    <Icon name="tabler:user-square" />
   </div>
   <ImageWrapper
     src={siteConfig.profile.avatar}
     alt={strings.alts.profile}
-    loading='eager'
+    loading="eager"
   />
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

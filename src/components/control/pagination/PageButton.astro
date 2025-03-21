@@ -10,15 +10,11 @@ export interface Props {
 const { url, label, icon } = Astro.props
 ---
 
-<a
-  href={url}
-  aria-label={label}
-  aria-disabled={url === undefined}
->
+<a href={url} aria-label={label} aria-disabled={url === undefined}>
   <Icon name={icon} />
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

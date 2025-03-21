@@ -14,27 +14,23 @@ export interface Props {
 const { entry, wordCount, readingTime } = Astro.props
 ---
 
-<PostExtraMeta {wordCount} {readingTime} class='extra-meta' />
+<PostExtraMeta {wordCount} {readingTime} class="extra-meta" />
 
 <!-- title -->
-<h1
-  data-pagefind-body
-  data-pagefind-weight='10'
-  data-pagefind-meta='title'
->
+<h1 data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title">
   {entry.data.title}
 </h1>
 
 <!-- metadata -->
-<div class='meta-wrapper'>
-  <PostMeta {entry} class='meta-items' />
+<div class="meta-wrapper">
+  <PostMeta {entry} class="meta-items" />
   {entry.data.image === undefined && <hr />}
 </div>
 
 {
   entry.data.image !== undefined && (
     <ImageWrapper
-      id='post-cover'
+      id="post-cover"
       src={entry.data.image.source}
       alt={entry.data.image.alt}
       basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
@@ -42,7 +38,7 @@ const { entry, wordCount, readingTime } = Astro.props
   )
 }
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';

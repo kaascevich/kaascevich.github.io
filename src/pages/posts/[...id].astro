@@ -62,20 +62,20 @@ const jsonLd: WithContext<BlogPosting> = {
 >
   <script
     is:inline
-    slot='head'
-    type='application/ld+json'
+    slot="head"
+    type="application/ld+json"
     set:html={JSON.stringify(jsonLd)}
   />
 
-  <div class='post-container-wrapper'>
-    <div id='post-container'>
+  <div class="post-container-wrapper">
+    <div id="post-container">
       <PostHeader
         {entry}
         wordCount={remarkPluginFrontmatter.words}
         readingTime={remarkPluginFrontmatter.minutes}
       />
 
-      <Markdown class='markdown'>
+      <Markdown class="markdown">
         <Content />
       </Markdown>
 
@@ -85,7 +85,7 @@ const jsonLd: WithContext<BlogPosting> = {
             config={siteConfig.license}
             title={entry.data.title}
             pubDate={entry.data.published}
-            class='post-license'
+            class="post-license"
           />
         )
       }
@@ -95,7 +95,7 @@ const jsonLd: WithContext<BlogPosting> = {
   <PostPagination {entry} />
 </MainGridLayout>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
@@ -142,7 +142,14 @@ const jsonLd: WithContext<BlogPosting> = {
   }
 
   #post-container {
-    $delays: (1: 0ms, 2: 50ms, 3: 100ms, 4: 175ms, 5: 250ms, 6: 325ms);
+    $delays: (
+      1: 0ms,
+      2: 50ms,
+      3: 100ms,
+      4: 175ms,
+      5: 250ms,
+      6: 325ms,
+    );
 
     @each $index, $delay in $delays {
       > :global(:nth-child(#{$index})) {
