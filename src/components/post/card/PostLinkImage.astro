@@ -48,7 +48,7 @@ const { entry, image, url } = Astro.props
     overflow: hidden;
 
     &:hover {
-      .icon-wrapper :global(svg) {
+      .icon-wrapper [data-icon] {
         scale: 100%;
 
         opacity: 100%;
@@ -81,7 +81,7 @@ const { entry, image, url } = Astro.props
 
       pointer-events: none;
 
-      :global(svg) {
+      [data-icon] {
         @include transition;
 
         scale: 50%;

@@ -54,7 +54,7 @@ import siteConfig from '$/config/site'
     &:hover .icon-wrapper {
       background-color: var(--color-profile-about-icon-bg-hover);
 
-      svg {
+      [data-icon] {
         scale: 100%;
 
         opacity: 100%;
@@ -77,7 +77,7 @@ import siteConfig from '$/config/site'
 
       pointer-events: none;
 
-      svg {
+      [data-icon] {
         @include transition;
 
         scale: 90%;

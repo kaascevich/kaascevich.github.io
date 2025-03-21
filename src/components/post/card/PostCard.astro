@@ -126,7 +126,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
           color: var(--color-title-active);
         }
 
-        svg {
+        [data-icon] {
           @include transition;
           display: inline flow;
           position: absolute;
@@ -146,7 +146,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
         }
 
         @include md {
-          &:hover svg {
+          &:hover [data-icon] {
             translate: 0;
 
             opacity: 100%;

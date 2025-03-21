@@ -49,7 +49,7 @@ const mainPanelTop =
           )
         }
 
-        <Sidebar />
+        <Sidebar class='sidebar'/>
 
         <main id='swup-container' class='transition-swup-fade'>
           <div id='content-wrapper'>
@@ -140,7 +140,7 @@ const mainPanelTop =
 
         inline-size: 100%;
 
-        :global(aside.sidebar) {
+        .sidebar {
           @extend %onload-animation;
           grid-row: 2 / 3;
           grid-column: span 2 / span 2;

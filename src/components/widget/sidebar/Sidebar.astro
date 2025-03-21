@@ -3,9 +3,14 @@ import siteConfig from '$/config/site'
 import Profile from './profile/Profile.astro'
 import Tags from './Tags.astro'
 import Categories from './Categories.astro'
+
+export interface Props {
+  class: string
+}
+const { class: className } = Astro.props
 ---
 
-<aside class='sidebar'>
+<aside class:list={['sidebar', className]}>
   <section class='profile'>
     <Profile config={siteConfig.profile} />
   </section>
