@@ -19,8 +19,8 @@ export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
     }
 
     if (
-      document.body.scrollTop >= threshold ||
-      document.documentElement.scrollTop >= threshold
+      document.body.scrollTop >= threshold
+      || document.documentElement.scrollTop >= threshold
     ) {
       navbar.classList.add('navbar-hidden')
     }
@@ -50,8 +50,6 @@ export default function setup(swupGlobal: NonNullable<typeof window.swup>) {
   swupGlobal.hooks.on('visit:end', async () => {
     await sleep(200)
     document.getElementById('page-height-extend')?.classList.add('hidden')
-    document
-      .getElementById('toc-wrapper')
-      ?.classList.remove('toc-not-ready')
+    document.getElementById('toc-wrapper')?.classList.remove('toc-not-ready')
   })
 }

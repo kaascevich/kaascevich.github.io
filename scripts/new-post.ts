@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import slugify from 'slugify'
+import * as R from 'remeda'
 
 function getDate() {
   const today = new Date()
@@ -15,16 +15,14 @@ function getDate() {
 // first arg is execPath, second arg is path to script file
 const [, , title] = process.argv
 if (title === undefined) {
-  console.error('error: no title argument provided\nusage: pnpm run new-post <title>')
-  process.exit(1)
+  throw new Error('no title argument provided')
 }
 
-const fileName = slugify(title, { lower: true, strict: true })
+const fileName = R.toKebabCase(title)
 const dirPath = path.join('./src/content/posts/', fileName)
 
 if (fs.existsSync(dirPath)) {
-  console.error(`error: directory ${dirPath} already exists`)
-  process.exit(1)
+  throw new Error(`directory ${dirPath} already exists`)
 }
 
 fs.mkdirSync(dirPath)

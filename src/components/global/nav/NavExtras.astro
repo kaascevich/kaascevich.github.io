@@ -15,13 +15,16 @@ import siteConfig from '$/config/site'
 </div>
 
 <script is:inline>
-  // @ts-nocheck
+
   async function loadPagefind() {
     /** @type {import('vite-plugin-pagefind/types').Pagefind} */
+    // @ts-expect-error -- this is relative to the site root
     const pagefind = await import('/pagefind/pagefind.js')
+
     await pagefind.options({ excerptLength: 20 })
     pagefind.init()
     window.pagefind = pagefind
+
     pagefind.search('') // speed up the first search
   }
   loadPagefind()

@@ -1,9 +1,3 @@
-<script lang='ts' module>
-  import type { Pagefind } from 'vite-plugin-pagefind/types'
-
-  declare let pagefind: Pagefind
-</script>
-
 <script lang='ts'>
   import type { PagefindSearchFragment } from 'vite-plugin-pagefind/types'
 
@@ -28,7 +22,7 @@
     }
 
     results = await R.pipe(
-      await pagefind.search(keyword),
+      await window.pagefind!.search(keyword),
       R.prop('results'),
       R.map((x) => x.data()),
       (x) => Promise.all(x),

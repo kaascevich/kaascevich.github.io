@@ -14,6 +14,7 @@ export default function setup() {
       document.getElementById(panel)?.classList.add('float-panel-closed')
     })
   }
+
   setClickOutsideToClose('color-settings', [
     'color-settings',
     'color-settings-switch',

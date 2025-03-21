@@ -123,12 +123,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [
-      pagefind({
-        outputDirectory: 'dist',
-
-      }),
-    ],
+    plugins: [pagefind({ outputDirectory: 'dist' })],
   },
   experimental: {
     contentIntellisense: true,
