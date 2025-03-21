@@ -9,7 +9,7 @@ export interface Props {
   config: LicenseConfig
   title: string
   pubDate: Date
-  class: string
+  class?: string
 }
 
 const { config, title, pubDate, class: className } = Astro.props

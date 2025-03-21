@@ -171,57 +171,6 @@
   pointer-events: none;
 }
 
-.copy-btn-icon {
-  @include transition;
-
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-
-  translate: -50% -50%;
-}
-
-.copy-btn {
-  display: block flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background-color: var(--color-copy-btn-bg);
-
-  &:hover {
-    background-color: var(--color-copy-btn-bg-hover);
-  }
-
-  &:active {
-    background-color: var(--color-copy-btn-bg-active);
-  }
-
-  &.success {
-    background-color: var(--color-copy-btn-bg-success);
-  }
-
-  .copy-icon {
-    opacity: 100%;
-
-    color: var(--color-copy-btn-icon);
-  }
-
-  &.copy-btn.success .copy-icon {
-    opacity: 0%;
-
-    color: var(--color-deep-text);
-  }
-
-  .success-icon {
-    opacity: 0%;
-  }
-
-  &.success .success-icon {
-    opacity: 100%;
-  }
-}
-
 :is(article.markdown, #post-cover) img {
   cursor: zoom-in;
 }

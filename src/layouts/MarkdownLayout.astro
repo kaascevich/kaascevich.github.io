@@ -28,7 +28,7 @@ if (typeof description !== 'string') {
 <MainGridLayout {title} {description}>
   <div class='outer-wrapper'>
     <div class='inner-wrapper'>
-      <Markdown>
+      <Markdown class='markdown'>
         <slot />
       </Markdown>
     </div>
@@ -64,7 +64,7 @@ if (typeof description !== 'string') {
 
       inline-size: 100%;
 
-      :global(article.markdown) {
+      .markdown {
         margin-block-start: spacing(2);
       }
     }
