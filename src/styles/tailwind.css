@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/playpen-sans';
 
-/* stylelint-disable-next-line scss/at-rule-no-unknown */
-@plugin "@tailwindcss/typography";
+:root {
+  font-family: 'Playpen Sans Variable', sans-serif;
+}

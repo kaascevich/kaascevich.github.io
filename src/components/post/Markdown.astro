@@ -1,4 +1,5 @@
 ---
+import '@fontsource/monaspace-radon'
 ---
 
 <article data-pagefind-body class='prose prose-base dark:prose-invert markdown'>
@@ -23,19 +24,13 @@
     @include font-size($text-sm);
     @include transition($properties: all);
 
-    display: block flex;
     position: absolute;
     inset-block-start: spacing(2);
     inset-inline-end: spacing(2);
 
-    align-items: center;
-    justify-content: center;
-
     opacity: 75%;
 
     border-radius: var(--radius-lg);
-
-    background-color: var(--color-copy-btn-bg);
 
     padding-block: spacing(1.5);
     padding-inline: spacing(1.5);
@@ -43,49 +38,9 @@
     block-size: spacing(8);
     inline-size: spacing(8);
 
-    &:hover {
-      background-color: var(--color-copy-btn-bg-hover);
-    }
-
     &:active {
       scale: 90%;
-
-      background-color: var(--color-copy-btn-bg-active);
     }
-
-    &.success {
-      background-color: var(--color-copy-btn-bg-success);
-    }
-
-    .copy-icon {
-      opacity: 100%;
-
-      color: var(--color-copy-btn-icon);
-    }
-
-    &.copy-btn.success .copy-icon {
-      opacity: 0%;
-
-      color: var(--color-deep-text);
-    }
-
-    .success-icon {
-      opacity: 0%;
-    }
-
-    &.success .success-icon {
-      opacity: 100%;
-    }
-  }
-
-  :global(.copy-btn-icon) {
-    @include transition;
-
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-
-    translate: -50% -50%;
   }
 </style>
 
