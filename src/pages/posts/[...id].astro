@@ -85,7 +85,7 @@ const jsonLd: WithContext<BlogPosting> = {
             config={siteConfig.license}
             title={entry.data.title}
             pubDate={entry.data.published}
-            class='license'
+            class='post-license'
           />
         )
       }
@@ -129,7 +129,7 @@ const jsonLd: WithContext<BlogPosting> = {
         margin-block-end: spacing(6);
       }
 
-      :global(.license) {
+      :global(.post-license) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);
