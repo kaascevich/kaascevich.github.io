@@ -78,15 +78,8 @@ article.markdown {
 
     color: var(--color-inline-code);
 
-    font-family:
-      'Monaspace Radon', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      'Liberation Mono', 'Courier New', monospace;
-
     // MARK: Line Numbers
     counter-reset: line;
-    font-feature-settings:
-      'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07',
-      'ss08', 'ss09';
 
     &::before,
     &::after {
