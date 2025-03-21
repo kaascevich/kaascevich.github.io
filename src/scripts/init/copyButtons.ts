@@ -1,6 +1,5 @@
-import { mount } from 'svelte'
-
 import CopyButton from '$/components/control/CopyButton.svelte'
+import { mount } from 'svelte'
 
 const observer = new MutationObserver(addCopyButtons)
 document.addEventListener('DOMContentLoaded', addCopyButtons)

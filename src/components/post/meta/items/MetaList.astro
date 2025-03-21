@@ -1,0 +1,29 @@
+<ul>
+  <slot/>
+</ul>
+
+<style lang='scss'>
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants' as *;
+
+  ul {
+    display: block flex;
+
+    flex-flow: row nowrap;
+
+    align-items: center;
+
+    white-space: nowrap;
+
+    > :global(li + li::before) {
+      margin-inline: spacing(0.5);
+
+      white-space: pre;
+      color: var(--color-meta-divider);
+
+      content: ' /';
+    }
+  }
+</style>

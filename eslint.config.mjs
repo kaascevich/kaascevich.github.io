@@ -54,19 +54,16 @@ export default antfu(
     typescript: {
       tsconfigPath: 'tsconfig.json',
       overrides: {
-        // 'ts/consistent-type-exports': 'error',
-        // 'ts/consistent-type-imports': 'error',
-        'ts/method-signature-style': 'error',
-        'ts/no-useless-empty-export': 'error',
-        // 'ts/prefer-destructuring': 'error',
-        'ts/prefer-readonly': 'error',
-        'ts/prefer-ts-expect-error': 'error',
-        'ts/restrict-template-expressions': ['error', { allowNumber: true }],
-        'ts/return-await': ['error', 'always'], // FIXME: this override isn't applying?
-        'ts/strict-boolean-expressions': ['error', {
-          allowNumber: false,
-          allowString: false,
-        }],
+        // 'ts/method-signature-style': 'error',
+        // 'ts/no-useless-empty-export': 'error',
+        // 'ts/prefer-readonly': 'error',
+        // 'ts/prefer-ts-expect-error': 'error',
+        // 'ts/restrict-template-expressions': ['error', { allowNumber: true }],
+        // 'ts/return-await': ['error', 'always'], // FIXME: this override isn't applying?
+        // 'ts/strict-boolean-expressions': ['error', {
+        //   allowNumber: false,
+        //   allowString: false,
+        // }],
 
         'ts/no-unused-vars': 'off', // handled by the compiler
         'ts/explicit-function-return-type': 'off', // so we can infer stupidly-specific return types

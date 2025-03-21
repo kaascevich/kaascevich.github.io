@@ -4,8 +4,9 @@ import type { Post } from '$/types/content'
 import strings from '$/config/strings'
 
 import MetaItem from './MetaItem.astro'
-import MetaDate from './MetaDate.astro'
-import MetaLink from './MetaLink.astro'
+import MetaDate from './items/MetaDate.astro'
+import MetaLink from './items/MetaLink.astro'
+import MetaList from './items/MetaList.astro'
 
 export interface Props {
   class?: string
@@ -21,10 +22,18 @@ const showUpdated =
 ---
 
 <div class:list={['meta-items', className]}>
-  <MetaDate icon='tabler:calendar-plus' date={published} />
-  {showUpdated && <MetaDate icon='tabler:calendar-cog' date={updated} />}
+  <MetaItem icon="tabler:calendar-plus">
+    <MetaDate date={published} />
+  </MetaItem>
+  {
+    showUpdated && (
+      <MetaItem icon="tabler:calendar-cog">
+        <MetaDate date={updated} />
+      </MetaItem>
+    )
+  }
 
-  <MetaItem icon='tabler:category'>
+  <MetaItem icon="tabler:category">
     <MetaLink
       href={`/archive/category/${category}/`}
       label={strings.alts.category(category)}
@@ -33,8 +42,8 @@ const showUpdated =
     </MetaLink>
   </MetaItem>
 
-  <MetaItem icon='tabler:hash' hideOnMobile={compactOnMobile}>
-    <ul>
+  <MetaItem icon="tabler:hash" hideOnMobile={compactOnMobile}>
+    <MetaList>
       {
         tags.length === 0 ? (
           <li>{strings.tags.none}</li>
@@ -51,11 +60,11 @@ const showUpdated =
           ))
         )
       }
-    </ul>
+    </MetaList>
   </MetaItem>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
@@ -71,24 +80,5 @@ const showUpdated =
     align-items: center;
 
     color: var(--color-meta-text);
-  }
-
-  ul {
-    display: block flex;
-
-    flex-flow: row nowrap;
-
-    align-items: center;
-
-    white-space: nowrap;
-
-    li + li::before {
-      margin-inline: spacing(0.5);
-
-      white-space: pre;
-      color: var(--color-meta-divider);
-
-      content: ' /';
-    }
   }
 </style>
