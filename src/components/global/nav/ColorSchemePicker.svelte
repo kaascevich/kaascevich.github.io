@@ -33,15 +33,19 @@
       return // skip the transition if nothing's changed
     }
 
+    document.documentElement.classList.add('transitioning')
+
     if (!document.startViewTransition) {
       // fallback if we don't support view transitions
       setColorScheme(newScheme)
+      document.documentElement.classList.remove('transitioning')
       return
     }
 
     document.startViewTransition(async () => {
       await tick()
       setColorScheme(newScheme)
+      document.documentElement.classList.remove('transitioning')
     })
   }
 
@@ -162,7 +166,7 @@
           display: block flex;
 
           align-items: center;
-          justify-content: flex-start !important;
+          justify-content: flex-start;
 
           margin-block-end: spacing(0.5);
 
@@ -182,7 +186,7 @@
           }
 
           &.current-scheme-btn {
-            color: var(--color-primary) !important;
+            color: var(--color-primary);
 
             &::before {
               scale: 100%;
