@@ -95,7 +95,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(entry)
 
       inline-size: 100%;
 
-      :global(.markdown) {
+      :global(article.prose) {
         @extend %onload-animation;
 
         margin-block-end: spacing(6);

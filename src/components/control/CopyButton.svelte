@@ -41,75 +41,77 @@
   @use '../../styles/utils' as *;
   @use '../../styles/variants' as *;
 
-  .copy-btn {
-    @include font-size($text-sm);
-    @include transition($properties: all);
+  :global {
+    .copy-btn {
+      @include font-size($text-sm);
+      @include transition($properties: all);
 
-    display: block flex;
-    position: absolute;
-    inset-block-start: spacing(2);
-    inset-inline-end: spacing(2);
-
-    align-items: center;
-    justify-content: center;
-
-    opacity: 75%;
-
-    border-radius: var(--radius-lg);
-
-    background-color: var(--color-copy-btn-bg);
-
-    padding-block: spacing(1.5);
-    padding-inline: spacing(1.5);
-
-    block-size: spacing(8);
-    inline-size: spacing(8);
-
-    &:not(.success):hover {
-      background-color: var(--color-copy-btn-bg-hover);
-    }
-
-    &:not(.success):active {
-      scale: 90%;
-
-      background-color: var(--color-copy-btn-bg-active);
-    }
-
-    &.success {
-      background-color: var(--color-copy-btn-bg-success);
-
-      :global(.copy-icon) {
-        opacity: 0%;
-      }
-
-      :global(.success-icon) {
-        opacity: 100%;
-      }
-    }
-
-    :global(.copy-icon) {
-      opacity: 100%;
-
-      color: var(--color-copy-btn-icon);
-    }
-
-    :global(.success-icon) {
-      opacity: 0%;
-
-      color: var(--color-deep-text);
-    }
-
-    :global(.copy-icon), :global(.success-icon) {
-      @include transition;
-
+      display: block flex;
       position: absolute;
-      inset-block-start: 50%;
-      inset-inline-start: 50%;
+      inset-block-start: spacing(2);
+      inset-inline-end: spacing(2);
 
-      translate: -50% -50%;
+      align-items: center;
+      justify-content: center;
 
-      block-size: spacing(4.5);
-      inline-size: spacing(4.5);
+      opacity: 75%;
+
+      border-radius: var(--radius-lg);
+
+      background-color: var(--color-copy-btn-bg);
+
+      padding-block: spacing(1.5);
+      padding-inline: spacing(1.5);
+
+      block-size: spacing(8);
+      inline-size: spacing(8);
+
+      &:not(.success):hover {
+        background-color: var(--color-copy-btn-bg-hover);
+      }
+
+      &:not(.success):active {
+        scale: 90%;
+
+        background-color: var(--color-copy-btn-bg-active);
+      }
+
+      &.success {
+        background-color: var(--color-copy-btn-bg-success);
+
+        .copy-icon {
+          opacity: 0%;
+        }
+
+        .success-icon {
+          opacity: 100%;
+        }
+      }
+
+      .copy-icon {
+        opacity: 100%;
+
+        color: var(--color-copy-btn-icon);
+      }
+
+      .success-icon {
+        opacity: 0%;
+
+        color: var(--color-deep-text);
+      }
+
+      :is(.copy-icon, .success-icon) {
+        @include transition;
+
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+
+        translate: -50% -50%;
+
+        block-size: spacing(4.5);
+        inline-size: spacing(4.5);
+      }
     }
   }
 </style>

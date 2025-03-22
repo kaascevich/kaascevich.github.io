@@ -1,7 +1,4 @@
 ---
-// import CopyButtonScript from '$/components/scripts/CopyButtonScript.svelte'
-// import '$/scripts/init/copyButtons'
-
 export interface Props {
   class?: string
 }
@@ -15,9 +12,6 @@ const { class: className } = Astro.props
   <slot />
 </article>
 
-<!-- <CopyButtonScript client:load /> -->
-<script src="$/scripts/init/copyButtons"></script>
-
 <style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
@@ -26,9 +20,5 @@ const { class: className } = Astro.props
 
   article {
     max-inline-size: none !important;
-  }
-
-  :global(.code-block) {
-    position: relative;
   }
 </style>

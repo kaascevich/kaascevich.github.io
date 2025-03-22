@@ -6,7 +6,7 @@ let lightbox: PhotoSwipeLightbox | undefined
 
 function initLightbox() {
   lightbox = new PhotoSwipeLightbox({
-    gallery: ':is(article.markdown, #post-cover) img',
+    gallery: ':is(article.prose, #post-cover) img',
     // eslint-disable-next-line ts/return-await
     pswpModule: async () => await import('photoswipe'),
 

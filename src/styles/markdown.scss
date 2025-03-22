@@ -3,7 +3,7 @@
 @use 'utils' as *;
 @use 'variants' as *;
 
-article.markdown {
+article.prose {
   word-break: break-word;
 
   h1 {

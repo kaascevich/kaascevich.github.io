@@ -161,10 +161,12 @@ const bannerOffset = {
 </script>
 
 <script>
+  import copyButtonSetup from '$/scripts/init/copyButtons'
   import panelSetup from '$/scripts/init/panels'
   import photoswipeSetup from '$/scripts/init/photoswipe'
   import miscSetup from '$/scripts/init/misc'
 
+  copyButtonSetup()
   panelSetup()
 
   function setup(swupGlobal: NonNullable<typeof window.swup>) {
