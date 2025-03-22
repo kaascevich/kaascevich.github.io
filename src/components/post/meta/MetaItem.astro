@@ -3,15 +3,16 @@ import { Icon } from 'astro-icon/components'
 
 export interface Props {
   icon: string
+  label: string
   hideOnMobile?: boolean
 }
 
-const { icon, hideOnMobile = false } = Astro.props
+const { icon, label, hideOnMobile = false } = Astro.props
 ---
 
-<div class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]}>
-  <div class="meta-icon">
-    <Icon name={icon} />
+<div class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]} aria-label={label}>
+  <div class="meta-icon" aria-hidden="true">
+    <Icon name={icon}/>
   </div>
   <span class="meta-content">
     <slot />

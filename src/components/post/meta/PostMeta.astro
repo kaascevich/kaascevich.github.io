@@ -22,18 +22,18 @@ const showUpdated =
 ---
 
 <div class:list={['meta-items', className]}>
-  <MetaItem icon="tabler:calendar-plus">
+  <MetaItem icon="tabler:calendar-plus" label={strings.alts.published}>
     <MetaDate date={published} />
   </MetaItem>
   {
     showUpdated && (
-      <MetaItem icon="tabler:calendar-cog">
+      <MetaItem icon="tabler:calendar-cog" label={strings.alts.updated}>
         <MetaDate date={updated} />
       </MetaItem>
     )
   }
 
-  <MetaItem icon="tabler:category">
+  <MetaItem icon="tabler:category" label={strings.alts.category}>
     <MetaLink
       href={`/archive/category/${category}/`}
       label={strings.alts.category(category)}
@@ -42,7 +42,11 @@ const showUpdated =
     </MetaLink>
   </MetaItem>
 
-  <MetaItem icon="tabler:hash" hideOnMobile={compactOnMobile}>
+  <MetaItem
+    icon="tabler:hash"
+    hideOnMobile={compactOnMobile}
+    label={strings.alts.tags}
+  >
     <MetaList>
       {
         tags.length === 0 ? (

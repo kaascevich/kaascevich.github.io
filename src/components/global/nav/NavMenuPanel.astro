@@ -123,5 +123,9 @@ const { links } = Astro.props
         color: var(--color-primary);
       }
     }
+
+    @include md {
+      display: none !important;
+    }
   }
 </style>

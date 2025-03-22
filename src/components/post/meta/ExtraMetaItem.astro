@@ -3,14 +3,15 @@ import { Icon } from 'astro-icon/components'
 
 export interface Props {
   text: string
+  label: string
   icon: string
 }
-const { text, icon } = Astro.props
+const { text, label, icon } = Astro.props
 ---
 
-<div class="meta-item">
-  <div class="icon-wrapper">
-    <Icon name={icon} />
+<div class="meta-item" aria-label={label}>
+  <div class="icon-wrapper" aria-hidden="true">
+    <Icon name={icon}/>
   </div>
   <div class="text">
     {text}

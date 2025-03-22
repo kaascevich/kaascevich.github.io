@@ -14,9 +14,14 @@ const { wordCount, readingTime, class: className } = Astro.props
 <div class={className}>
   <ExtraMetaItem
     icon="tabler:align-justified"
+    label={strings.alts.wordCount}
     text={strings.meta.words(wordCount)}
   />
-  <ExtraMetaItem icon="tabler:clock" text={strings.meta.minutes(readingTime)} />
+  <ExtraMetaItem
+    icon="tabler:clock"
+    label={strings.alts.readingTime}
+    text={strings.meta.minutes(readingTime)}
+  />
 </div>
 
 <style lang="scss">

@@ -73,5 +73,12 @@ export default {
 
     backToTop: 'Back to top',
     navMenuButton: 'Nav menu',
+
+    wordCount: 'Word count',
+    readingTime: 'Reading time',
+    published: 'Publish date',
+    updated: 'Last updated',
+    categories: 'Categories',
+    tags: 'Tags',
   },
 } satisfies StringList
