@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background-color: var(--color-selection-bg);
+}
+
 :root {
   font-family: 'Playpen Sans Variable', sans-serif;
   color-scheme: light dark;
@@ -36,4 +40,8 @@ code {
   font-feature-settings:
     'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07',
     'ss08', 'ss09';
+}
+
+:is(article, #post-cover) img {
+  cursor: zoom-in;
 }

@@ -19,21 +19,21 @@ const nextEntry = allPosts[index + 1]
 <nav>
   {
     nextEntry !== undefined ? (
-      <PaginationLink entry={nextEntry} type=next />
+      <PaginationLink entry={nextEntry} type="next" />
     ) : (
-      <div class=spacer />
+      <div class="spacer" />
     )
   }
   {
     prevEntry !== undefined ? (
-      <PaginationLink entry={prevEntry} type=prev />
+      <PaginationLink entry={prevEntry} type="prev" />
     ) : (
-      <div class=spacer />
+      <div class="spacer" />
     )
   }
 </nav>
 
-<style lang=scss>
+<style lang="scss">
   @use '$/styles/main';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;

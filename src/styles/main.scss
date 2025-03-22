@@ -22,7 +22,8 @@
     @include transition($function: cubic-bezier(0, 0, 0.2, 1));
 
     position: absolute;
-    inset: 0;
+    inset-block: 0;
+    inset-inline: 0;
 
     scale: 85%;
 
@@ -169,12 +170,4 @@
   opacity: 0%;
 
   pointer-events: none;
-}
-
-:is(article.markdown, #post-cover) img {
-  cursor: zoom-in;
-}
-
-::selection {
-  background-color: var(--color-selection-bg);
 }

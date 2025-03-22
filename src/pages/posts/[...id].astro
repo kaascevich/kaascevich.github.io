@@ -3,7 +3,7 @@ import type { Post } from '$/types/content'
 import type { GetStaticPathsResult } from 'astro'
 
 import { render } from 'astro:content'
-import PageSchema from '$/components/misc/PageSchema.astro'
+import StructuredData from '$/components/misc/StructuredData.astro'
 import License from '$/components/post/License.astro'
 import Markdown from '$/components/post/Markdown.astro'
 import PostHeader from '$/components/post/PostHeader.astro'
@@ -36,7 +36,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(entry)
   {headings}
 >
   <Fragment slot="head">
-    <PageSchema json={postStructuredData(entry, remarkPluginFrontmatter)} />
+    <StructuredData json={postStructuredData(entry, remarkPluginFrontmatter)} />
   </Fragment>
 
   <div class="post-container-wrapper">
