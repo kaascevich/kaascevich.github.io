@@ -1,15 +1,19 @@
 ---
-import type { PostsForYear } from '$/types/content'
+import type { Post } from '$/types/content'
 import ArchiveHeader from './ArchiveHeader.astro'
 import ArchiveItem from './ArchiveItem.astro'
 
 export interface Props {
-  group: PostsForYear
+  /** The year these posts were published. */
+  year: number
+
+  /** A list of posts. */
+  posts: readonly Post[]
 }
-const { group } = Astro.props
+const { year, posts } = Astro.props
 ---
 
 <div>
-  <ArchiveHeader {group} />
-  {group.posts.map((post) => <ArchiveItem {post} />)}
+  <ArchiveHeader {year} {posts} />
+  {posts.map((post) => <ArchiveItem {post} />)}
 </div>

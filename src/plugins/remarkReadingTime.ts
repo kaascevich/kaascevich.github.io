@@ -14,7 +14,7 @@ export const remarkReadingTime: RemarkPlugin = () => (tree, { data }) => {
   data.astro.frontmatter.minutes = pipe(
     minutes,
     Math.round,
-    (x) => Math.min(1, x),
+    (x) => Math.max(1, x),
   )
   data.astro.frontmatter.words = words
 }

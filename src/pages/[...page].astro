@@ -8,9 +8,8 @@ import { getSortedPosts } from '$/utils/content'
 import type { Post } from '$/types/content'
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  return paginate(await getSortedPosts(), {
-    pageSize: PAGE_SIZE,
-  }) satisfies GetStaticPathsResult
+  const posts = await getSortedPosts()
+  return paginate(posts, { pageSize: PAGE_SIZE }) satisfies GetStaticPathsResult
 }
 
 export interface Props {

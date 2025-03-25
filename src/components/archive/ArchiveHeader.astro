@@ -1,16 +1,20 @@
 ---
 import strings from '$/config/strings'
-import type { PostsForYear } from '$/types/content'
+import type { Post } from '$/types/content'
 
 export interface Props {
-  group: PostsForYear
+  /** The year these posts were published. */
+  year: number
+
+  /** A list of posts. */
+  posts: readonly Post[]
 }
-const { group } = Astro.props
+const { year, posts } = Astro.props
 ---
 
 <header>
   <div class="year">
-    {group.year}
+    {year}
   </div>
 
   <div class="dot-wrapper">
@@ -18,7 +22,7 @@ const { group } = Astro.props
   </div>
 
   <div class="count">
-    {strings.meta.posts(group.posts.length)}
+    {strings.meta.posts(posts.length)}
   </div>
 </header>
 

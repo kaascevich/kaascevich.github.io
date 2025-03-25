@@ -12,6 +12,10 @@
   let results: PagefindSearchFragment[] = $state([])
 
   async function search(keyword: string, isDesktop: boolean) {
+    if (window.pagefind === undefined) {
+      return
+    }
+
     const panel = document.getElementById('search-panel')
     if (panel === null) {
       return
@@ -23,7 +27,7 @@
     }
 
     results = await pipe(
-      await window.pagefind!.search(keyword),
+      await window.pagefind.search(keyword),
       (x) => x.results,
       map((x) => x.data()),
       (x) => Promise.all(x),
@@ -106,12 +110,6 @@
 
     padding-block: spacing(2);
     padding-inline: spacing(2);
-
-    :global(mark) {
-      background-color: transparent;
-
-      color: var(--color-primary);
-    }
 
     @include md {
       inset-inline-start: unset;

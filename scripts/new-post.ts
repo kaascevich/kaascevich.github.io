@@ -3,13 +3,14 @@ import path from 'node:path'
 import process from 'node:process'
 import { toKebabCase } from 'remeda'
 
+/** Returns the current date, formatted as 'year-month-day'. */
 function getDate() {
   const today = new Date()
   const year = today.getFullYear()
   const month = String(today.getMonth() + 1).padStart(2, '0')
   const day = String(today.getDate()).padStart(2, '0')
 
-  return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}` as const
 }
 
 // first arg is execPath, second arg is path to script file

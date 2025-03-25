@@ -1,0 +1,105 @@
+---
+import type { Post } from '$/types/content'
+
+import { render } from 'astro:content'
+import License from './License.astro'
+import Markdown from './Markdown.astro'
+import PostHeader from './header/PostHeader.astro'
+import siteConfig from '$/config/site'
+
+export interface Props {
+  entry: Post
+}
+
+const { entry }: Props = Astro.props
+const { Content, remarkPluginFrontmatter } = await render(entry)
+---
+
+<div class="post-container-wrapper">
+  <div id="post-container">
+    <PostHeader
+      {entry}
+      wordCount={remarkPluginFrontmatter.words}
+      readingTime={remarkPluginFrontmatter.minutes}
+    />
+
+    <Markdown class="markdown">
+      <Content />
+    </Markdown>
+
+    {
+      siteConfig.license !== undefined && (
+        <License
+          config={siteConfig.license}
+          title={entry.data.title}
+          pubDate={entry.data.published}
+          class="post-license"
+        />
+      )
+    }
+  </div>
+</div>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/transition';
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants' as *;
+
+  .post-container-wrapper {
+    display: block flex;
+
+    margin-block-end: spacing(4);
+
+    border-radius: var(--radius-xl2);
+
+    inline-size: 100%;
+
+    overflow: hidden;
+
+    #post-container {
+      @extend %card-base;
+
+      z-index: 10;
+
+      padding-block: spacing(6) spacing(4);
+      padding-inline: spacing(6);
+
+      inline-size: 100%;
+
+      :global(article.prose) {
+        @extend %onload-animation;
+
+        margin-block-end: spacing(6);
+      }
+
+      :global(.post-license) {
+        @extend %onload-animation;
+
+        margin-block-end: spacing(6);
+      }
+
+      @include md {
+        padding-inline: spacing(9);
+      }
+    }
+  }
+
+  #post-container {
+    $delays: (
+      1: 0ms,
+      2: 50ms,
+      3: 100ms,
+      4: 175ms,
+      5: 250ms,
+      6: 325ms,
+    );
+
+    @each $index, $delay in $delays {
+      > :global(:nth-child(#{$index})) {
+        animation-delay: calc(var(--content-delay) + #{$delay});
+      }
+    }
+  }
+</style>

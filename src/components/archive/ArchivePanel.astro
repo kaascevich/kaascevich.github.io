@@ -29,7 +29,7 @@ const groups = await groupPostsByYear(filteredPosts)
 ---
 
 <ol>
-  {groups.map((group) => <ArchiveGroup {group} />)}
+  {groups.map(([year, posts]) => <ArchiveGroup {year} {posts} />)}
 </ol>
 
 <style lang="scss">

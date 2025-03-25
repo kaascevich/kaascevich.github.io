@@ -10,7 +10,6 @@ import strings from '$/config/strings'
 export async function getStaticPaths() {
   return pipe(
     await getCategoryCounts(),
-    (x) => Array.from(x),
     map(([category]) => ({ params: { category } })),
   ) satisfies GetStaticPathsResult
 }

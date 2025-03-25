@@ -80,6 +80,12 @@
     .excerpt {
       @include font-size($text-sm);
       color: var(--color-search-result-excerpt);
+
+      :global(mark) {
+        background-color: transparent;
+
+        color: var(--color-primary);
+      }
     }
   }
 </style>

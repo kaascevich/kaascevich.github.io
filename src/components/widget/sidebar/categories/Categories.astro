@@ -1,10 +1,10 @@
 ---
 import WidgetLayout from '$/components/widget/WidgetLayout.astro'
-import CategoryLink from '$/components/control/CategoryLink.astro'
+import CategoryLink from './CategoryLink.astro'
 import { getCategoryCounts } from '$/utils/content'
 import strings from '$/config/strings'
 
-const categories = Array.from(await getCategoryCounts())
+const categories = await getCategoryCounts()
 
 const COLLAPSED_HEIGHT = 'calc(var(--spacing) * 30)'
 const COLLAPSE_THRESHOLD = 5

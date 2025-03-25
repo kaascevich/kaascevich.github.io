@@ -27,10 +27,18 @@ export interface Config {
   /** The default hue, from 0 to 359. */
   readonly defaultHue: Hue
 
-  /** Configuration for the site-wide banner. */
+  /**
+   * Configuration for the site-wide banner.
+   *
+   * Omit this property to disable the banner.
+   */
   readonly banner?: BannerConfig
 
-  /** Configuration for the table of contents on the right side of the page. */
+  /**
+   * Configuration for the table of contents on the right side of the page.
+   *
+   * Omit this property to disable the table of contents.
+   */
   readonly toc?: TOCConfig
 
   /** Configuration for the navbar. */
@@ -39,7 +47,11 @@ export interface Config {
   /** Configuration for the author's profile. */
   readonly profile: ProfileConfig
 
-  /** Configuration for post licenses. */
+  /**
+   * Configuration for post licenses.
+   *
+   * Omit this property to disable the license card.
+   */
   readonly license?: LicenseConfig
 }
 
@@ -55,11 +67,15 @@ export interface BannerConfig {
   /**
    * The value of the banner's `object-position` property.
    *
-   * Defaults to `center`.
+   * @default 'center'
    */
-  readonly position: 'top' | 'center' | 'bottom'
+  readonly position?: 'top' | 'center' | 'bottom'
 
-  /** Configuration for the banner attribution link. */
+  /**
+   * Configuration for the banner attribution link.
+   *
+   * Omit this property to disable the attribution link.
+   */
   readonly credit?: BannerCreditConfig
 }
 
@@ -86,7 +102,11 @@ export interface NavBarLink {
   /** The URL of this navbar link. */
   readonly url: string
 
-  /** Whether this navbar link leads to an external site. */
+  /**
+   * Whether this navbar link leads to an external site.
+   *
+   * @default false
+   */
   readonly external?: boolean
 }
 
@@ -132,9 +152,13 @@ export interface LicenseConfig {
   readonly url: string
 }
 
+/** A list of color schemes. */
 export const colorSchemes = ['light', 'dark', 'auto'] as const
+
+/** A color scheme. */
 export type ColorScheme = typeof colorSchemes[number]
 
+/** A hue value. */
 export type Hue = NumsUpTo<360>[number]
 
 type Stringable = string | ((...args: never[]) => string)

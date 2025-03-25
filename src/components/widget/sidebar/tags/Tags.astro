@@ -1,10 +1,10 @@
 ---
 import WidgetLayout from '$/components/widget/WidgetLayout.astro'
-import TagLink from '$/components/control/TagLink.astro'
+import TagLink from './TagLink.astro'
 import { getTagCounts } from '$/utils/content'
 import strings from '$/config/strings'
 
-const tags = Array.from(await getTagCounts())
+const tags = await getTagCounts()
 
 const COLLAPSED_HEIGHT = 'calc(var(--spacing) * 30)'
 const COLLAPSE_THRESHOLD = 20

@@ -16,7 +16,7 @@ import remarkSectionize from 'remark-sectionize'
 import { pagefind } from 'vite-plugin-pagefind'
 
 import siteConfig from './src/config/site'
-import { remarkReadingTime } from './src/plugins/remark-reading-time'
+import { remarkReadingTime } from './src/plugins/remarkReadingTime'
 
 export default defineConfig({
   site: siteConfig.url,

@@ -16,7 +16,7 @@ import siteConfig from '$/config/site'
 
 <script is:inline>
   async function loadPagefind() {
-    /** @type {import('vite-plugin-pagefind/types').Pagefind} */
+    /** @type {NonNullable<Window['pagefind']>} */
     // @ts-expect-error -- this is relative to the site root
     const pagefind = await import('/pagefind/pagefind.js')
 

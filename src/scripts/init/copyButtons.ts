@@ -27,7 +27,10 @@ export default function setup() {
 
       // add the elements to the DOM
       // eslint-disable-next-line unicorn/prefer-dom-node-text-content
-      mount(CopyButton, { props: { text: codeBlock.innerText }, target: wrapper })
+      mount(CopyButton, {
+        props: { text: codeBlock.innerText },
+        target: wrapper,
+      })
       wrapper.appendChild(codeBlock)
     }
 

@@ -1,18 +1,17 @@
 ---
 import type { GetStaticPathsResult } from 'astro'
 
-import { map, pipe } from 'remeda'
 import ArchivePanel from '$/components/archive/ArchivePanel.astro'
 import strings from '$/config/strings'
 import MainGridLayout from '$/layouts/MainGridLayout.astro'
 import { getTagCounts } from '$/utils/content'
 
 export async function getStaticPaths() {
-  return pipe(
-    await getTagCounts(),
-    (x) => Array.from(x),
-    map(([tag]) => ({ params: { tag } })),
-  ) satisfies GetStaticPathsResult
+  const tagCounts = await getTagCounts()
+  const tags = tagCounts.map(([tag]) => tag)
+  return tags.map((tag) => ({
+    params: { tag },
+  })) satisfies GetStaticPathsResult
 }
 
 const { tag } = Astro.params

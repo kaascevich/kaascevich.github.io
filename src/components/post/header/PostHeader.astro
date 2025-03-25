@@ -2,8 +2,9 @@
 import type { Post } from '$/types/content'
 import path from 'node:path'
 import { getDir } from '$/utils/urls'
-import PostMeta from './meta/PostMeta.astro'
-import PostExtraMeta from './meta/PostExtraMeta.astro'
+import PostTitle from './PostTitle.astro'
+import PostMeta from '../meta/PostMeta.astro'
+import PostExtraMeta from '../meta/PostExtraMeta.astro'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
 
 export interface Props {
@@ -17,9 +18,7 @@ const { entry, wordCount, readingTime } = Astro.props
 <PostExtraMeta {wordCount} {readingTime} class="extra-meta" />
 
 <!-- title -->
-<h1 data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title">
-  {entry.data.title}
-</h1>
+<PostTitle {entry} />
 
 <!-- metadata -->
 <div class="meta-wrapper">
@@ -49,43 +48,6 @@ const { entry, wordCount, readingTime } = Astro.props
     @extend %onload-animation;
 
     margin-block-end: spacing(3);
-  }
-
-  h1 {
-    @extend %onload-animation;
-    @include font-size($text-xl3);
-
-    display: block flow;
-    position: relative;
-
-    margin-block-end: spacing(3);
-
-    inline-size: 100%;
-
-    color: var(--color-post-title);
-
-    font-weight: var(--fw-bold);
-
-    @include md {
-      @include font-size($text-xl4);
-    }
-
-    @include md {
-      &::before {
-        position: absolute;
-        inset-block-start: spacing(2);
-        inset-inline-start: spacing(-4.5);
-
-        border-radius: var(--radius-md);
-
-        background-color: var(--color-primary);
-
-        block-size: spacing(5);
-        inline-size: spacing(1);
-
-        content: '';
-      }
-    }
   }
 
   .meta-wrapper {

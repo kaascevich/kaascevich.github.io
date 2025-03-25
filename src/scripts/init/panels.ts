@@ -11,6 +11,7 @@ export default function setup() {
           return
         }
       }
+
       document.getElementById(panel)?.classList.add('float-panel-closed')
     })
   }

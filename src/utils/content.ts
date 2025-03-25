@@ -1,11 +1,19 @@
-import type { Post, PostsForYear } from '$/types/content'
+import type { Post } from '$/types/content'
 
 import { getCollection } from 'astro:content'
 import { entries, flatMap, groupBy, map, pipe, reverse, sortBy } from 'remeda'
 
 import { elementCounts } from './arrays'
 
-export async function getSortedPosts() {
+/**
+ * Returns a list of posts, sorted by publish date.
+ *
+ * If `import.meta.env.PROD` is `true`, excludes posts with the `draft` property
+ * set to `true`.
+ *
+ * @return A list of posts, sorted by publish date.
+ */
+export async function getSortedPosts(): Promise<Post[]> {
   return pipe(
     await getCollection(
       'posts',
@@ -16,6 +24,11 @@ export async function getSortedPosts() {
   )
 }
 
+/**
+ * Returns a map of tags and their counts.
+ *
+ * @return A map of tags and their counts.
+ */
 export async function getTagCounts() {
   return pipe(
     await getSortedPosts(),
@@ -25,6 +38,11 @@ export async function getTagCounts() {
   )
 }
 
+/**
+ * Returns a map of categories and their counts.
+ *
+ * @return A map of categories and their counts.
+ */
 export async function getCategoryCounts() {
   return pipe(
     await getSortedPosts(),
@@ -34,16 +52,16 @@ export async function getCategoryCounts() {
   )
 }
 
-export async function groupPostsByYear(posts?: Post[]): Promise<PostsForYear[]> {
+export async function groupPostsByYear(posts?: Post[]) {
   return pipe(
     posts ?? await getSortedPosts(),
 
     groupBy((post) => post.data.published.getFullYear()),
     entries(),
-    map(([year, posts]) => ({ year: Number(year), posts })),
+    map(([year, posts]) => [Number(year), posts] as const),
 
     // sort by year, descending
-    sortBy((x) => x.year),
+    sortBy((x) => x[0]),
     reverse(),
   )
 }

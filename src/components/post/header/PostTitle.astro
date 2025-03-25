@@ -1,0 +1,57 @@
+---
+import type { Post } from '$/types/content'
+
+export interface Props {
+  entry: Post
+}
+const { entry } = Astro.props
+---
+
+<h1 data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title">
+  {entry.data.title}
+</h1>
+
+<style lang="scss">
+  @use '$/styles/main';
+  @use '$/styles/theme' as *;
+  @use '$/styles/transition';
+  @use '$/styles/utils' as *;
+  @use '$/styles/variants' as *;
+
+  h1 {
+    @extend %onload-animation;
+    @include font-size($text-xl3);
+
+    display: block flow;
+    position: relative;
+
+    margin-block-end: spacing(3);
+
+    inline-size: 100%;
+
+    color: var(--color-post-title);
+
+    font-weight: var(--fw-bold);
+
+    @include md {
+      @include font-size($text-xl4);
+    }
+
+    @include md {
+      &::before {
+        position: absolute;
+        inset-block-start: spacing(2);
+        inset-inline-start: spacing(-4.5);
+
+        border-radius: var(--radius-md);
+
+        background-color: var(--color-primary);
+
+        block-size: spacing(5);
+        inline-size: spacing(1);
+
+        content: '';
+      }
+    }
+  }
+</style>
