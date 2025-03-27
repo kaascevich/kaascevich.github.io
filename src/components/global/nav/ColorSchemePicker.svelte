@@ -107,7 +107,6 @@
 <style lang='scss'>
   @use '../../../styles/classes';
   @use '../../../styles/theme' as *;
-  @use '../../../styles/variants' as *;
 
   [role='menu'] {
     position: relative;

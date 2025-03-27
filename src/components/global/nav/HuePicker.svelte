@@ -61,30 +61,6 @@
 <style lang='scss'>
   @use '../../../styles/classes';
   @use '../../../styles/theme' as *;
-  @use '../../../styles/variants' as *;
-
-  @mixin slider-thumb {
-    appearance: none;
-
-    border-width: 0;
-
-    border-radius: var(--radius-sm);
-
-    box-shadow: 0 0 transparent;
-
-    background-color: var(--color-hue-picker-thumb);
-
-    block-size: spacing(4);
-    inline-size: spacing(2);
-
-    &:hover {
-      background-color: var(--color-hue-picker-thumb-hover);
-    }
-
-    &:active {
-      background-color: var(--color-hue-picker-thumb-active);
-    }
-  }
 
   #color-settings-switch {
     @extend %btn-plain, %expand-animation;
@@ -217,6 +193,29 @@
       user-select: none;
 
       input[type='range'] {
+        @mixin slider-thumb {
+          appearance: none;
+
+          border-width: 0;
+
+          border-radius: var(--radius-sm);
+
+          box-shadow: 0 0 transparent;
+
+          background-color: var(--color-hue-picker-thumb);
+
+          block-size: spacing(4);
+          inline-size: spacing(2);
+
+          &:hover {
+            background-color: var(--color-hue-picker-thumb-hover);
+          }
+
+          &:active {
+            background-color: var(--color-hue-picker-thumb-active);
+          }
+        }
+
         appearance: none;
 
         transition-duration: var(--transition-duration);

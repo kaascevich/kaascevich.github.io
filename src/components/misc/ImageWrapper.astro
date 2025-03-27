@@ -62,7 +62,6 @@ const img = await (() => {
 <style lang="scss" define:vars={{ position }}>
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/variants' as *;
 
   div {
     position: relative;
@@ -72,12 +71,11 @@ const img = await (() => {
     img {
       block-size: 100%;
       inline-size: 100%;
+
       object-fit: cover;
       object-position: var(--position);
 
-      @include dark {
-        filter: brightness(0.9);
-      }
+      filter: var(--image-filter);
     }
   }
 </style>

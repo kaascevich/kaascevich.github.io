@@ -88,7 +88,6 @@
 <style lang='scss'>
   @use '../../../../styles/classes';
   @use '../../../../styles/theme' as *;
-  @use '../../../../styles/variants' as *;
 
   // MARK: All devices
 

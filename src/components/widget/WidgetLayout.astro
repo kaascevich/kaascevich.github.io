@@ -37,7 +37,6 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
 <style lang="scss" define:vars={{ 'collapsed-height': collapsedHeight }}>
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/variants' as *;
 
   widget-layout {
     @extend %card-base;

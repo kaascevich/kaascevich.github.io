@@ -24,6 +24,8 @@
 }
 
 :root[data-color-scheme='dark'] {
+  --image-filter: brightness(90%);
+
   .astro-code,
   .astro-code span {
     color: var(--shiki-dark) !important;
