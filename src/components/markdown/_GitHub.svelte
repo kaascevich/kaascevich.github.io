@@ -101,7 +101,7 @@
 </a>
 
 <style lang='scss'>
-  @use '../../styles/main';
+  @use '../../styles/classes';
   @use '../../styles/theme' as *;
   @use '../../styles/utils' as *;
   @use '../../styles/variants' as *;

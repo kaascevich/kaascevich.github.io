@@ -2,9 +2,6 @@
 @use 'utils' as *;
 
 :root {
-  --content-delay: 150ms;
-  --toc-width: calc((100vw - var(--page-width)) / 2 - #{spacing(4)});
-
   // <empty>
   --color-primary: light-dark(#{with-hue(70%, 35%)}, #{with-hue(75%, 35%)});
   --color-page-bg: light-dark(#{with-hue(95%, 2.5%)}, #{with-hue(16%, 3.5%)});

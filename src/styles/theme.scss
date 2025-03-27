@@ -27,6 +27,9 @@ $transition-transform: transform, scale, translate, rotate;
 $transition-properties: list.join($transition-colors, $transition-transform);
 
 :root {
+  --content-delay: 150ms;
+  --toc-width: calc((100vw - var(--page-width)) / 2 - #{spacing(4)});
+
   // MARK: Font Weights
   --fw-thin: 100;
   --fw-extralight: 200;

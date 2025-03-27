@@ -1,4 +1,4 @@
-@use 'main';
+@use 'classes';
 @use 'theme' as *;
 @use 'utils' as *;
 @use 'variants' as *;
@@ -78,7 +78,7 @@ article.prose {
 
     color: var(--color-inline-code);
 
-    // MARK: Line Numbers
+    // MARK: Line Numbers;
     counter-reset: line;
 
     &::before,

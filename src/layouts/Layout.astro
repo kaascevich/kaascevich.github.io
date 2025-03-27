@@ -2,7 +2,7 @@
 import 'katex/dist/katex.css'
 import '$/styles/tailwind.scss'
 import '$/styles/global.scss'
-import '$/styles/main.scss'
+import '$/styles/classes.scss'
 
 import siteConfig from '$/config/site'
 import Head, { type Props as HeadProps } from '$/components/global/Head.astro'
@@ -53,7 +53,7 @@ const bannerOffset = {
 </html>
 
 <style lang="scss">
-  @use '$/styles/main';
+  @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
@@ -81,7 +81,7 @@ const bannerOffset = {
     'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
   }}
 >
-  @use '$/styles/main';
+  @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
