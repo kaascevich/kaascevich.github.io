@@ -39,14 +39,10 @@
 <style lang='scss'>
   @use '../../styles/classes';
   @use '../../styles/theme' as *;
-  @use '../../styles/utils' as *;
   @use '../../styles/variants' as *;
 
   :global {
     .copy-btn {
-      @include font-size($text-sm);
-      @include transition($properties: all);
-
       display: block flex;
       position: absolute;
       inset-block-start: spacing(2);
@@ -54,6 +50,10 @@
 
       align-items: center;
       justify-content: center;
+
+      transition-duration: var(--transition-duration);
+      transition-property: all;
+      transition-timing-function: var(--transition-function);
 
       opacity: 75%;
 
@@ -66,6 +66,8 @@
 
       block-size: spacing(8);
       inline-size: spacing(8);
+
+      font-size: var(--text-sm);
 
       &:not(.success):hover {
         background-color: var(--color-copy-btn-bg-hover);
@@ -102,13 +104,15 @@
       }
 
       :is(.copy-icon, .success-icon) {
-        @include transition;
-
         position: absolute;
         inset-block-start: 50%;
         inset-inline-start: 50%;
 
         translate: -50% -50%;
+
+        transition-duration: var(--transition-duration);
+        transition-property: var(--transition-properties);
+        transition-timing-function: var(--transition-function);
 
         block-size: spacing(4.5);
         inline-size: spacing(4.5);

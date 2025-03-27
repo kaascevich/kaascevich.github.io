@@ -55,7 +55,6 @@ const bannerOffset = {
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   html {
@@ -83,7 +82,6 @@ const bannerOffset = {
 >
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   .enable-banner {
@@ -98,7 +96,9 @@ const bannerOffset = {
     }
 
     #top-row {
-      @include transition($properties: all, $duration: 300ms);
+      transition-duration: 300ms;
+      transition-property: all;
+      transition-timing-function: var(--transition-function);
 
       block-size: calc(var(--banner-height-home) - spacing(18));
     }

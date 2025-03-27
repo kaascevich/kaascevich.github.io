@@ -19,14 +19,15 @@ import siteConfig from '$/config/site'
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   .avatar {
-    @include transition;
-
     display: block flow;
     position: relative;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     margin-block: spacing(1) spacing(3);
     margin-inline: auto;
@@ -62,13 +63,15 @@ import siteConfig from '$/config/site'
     }
 
     .icon-wrapper {
-      @include transition;
-
       display: block flex;
       position: absolute;
 
       align-items: center;
       justify-content: center;
+
+      transition-duration: var(--transition-duration);
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
 
       z-index: 50;
 
@@ -78,9 +81,11 @@ import siteConfig from '$/config/site'
       pointer-events: none;
 
       [data-icon] {
-        @include transition;
-
         scale: 90%;
+
+        transition-duration: var(--transition-duration);
+        transition-property: var(--transition-properties);
+        transition-timing-function: var(--transition-function);
 
         opacity: 0%;
 

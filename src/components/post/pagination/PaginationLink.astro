@@ -22,12 +22,10 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   a {
     @extend %btn-card;
-    @include transition;
 
     display: block flex;
 
@@ -35,6 +33,10 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 
     align-items: center;
     justify-content: flex-start;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     border-radius: var(--radius-xl2);
 

@@ -29,12 +29,10 @@ const { config } = Astro.props
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   #banner-credit {
     @extend %onload-animation;
-    @include transition($properties: all);
 
     display: block flex;
     position: absolute;
@@ -43,6 +41,10 @@ const { config } = Astro.props
 
     align-items: center;
     justify-content: center;
+
+    transition-duration: var(--transition-duration);
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     border-radius: 9999px;
 
@@ -69,10 +71,12 @@ const { config } = Astro.props
     }
 
     .external-icon {
-      @include transition($properties: opacity);
-
       position: absolute;
       inset-inline-end: spacing(4);
+
+      transition-duration: var(--transition-duration);
+      transition-property: opacity;
+      transition-timing-function: var(--transition-function);
 
       opacity: 0%;
 
@@ -90,8 +94,8 @@ const { config } = Astro.props
   }
 
   .credit-text {
-    @include font-size($text-xs);
-
     color: var(--color-banner-credit-text);
+
+    font-size: var(--text-xs);
   }
 </style>

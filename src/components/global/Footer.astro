@@ -31,7 +31,6 @@ const templateURL = 'https://github.com/saicaca/fuwari'
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   hr {
@@ -57,11 +56,11 @@ const templateURL = 'https://github.com/saicaca/fuwari'
     padding-inline: spacing(6);
 
     .footer-content {
-      @include font-size($text-sm);
-
       text-align: center;
 
       color: var(--color-footer-text);
+
+      font-size: var(--text-sm);
 
       a {
         @extend %link;

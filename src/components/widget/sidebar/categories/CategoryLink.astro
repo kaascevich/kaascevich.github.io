@@ -22,11 +22,12 @@ const { badge, url, label } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   button {
-    @include transition($properties: all);
+    transition-duration: var(--transition-duration);
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     border-radius: var(--radius-lg);
 
@@ -72,8 +73,6 @@ const { badge, url, label } = Astro.props
   }
 
   .badge {
-    @include font-size($text-sm);
-
     display: block flex;
 
     align-items: center;
@@ -92,6 +91,7 @@ const { badge, url, label } = Astro.props
 
     color: var(--color-category-link-badge-text);
 
+    font-size: var(--text-sm);
     font-weight: var(--fw-bold);
   }
 </style>

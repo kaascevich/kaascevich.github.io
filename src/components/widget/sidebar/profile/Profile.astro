@@ -24,7 +24,6 @@ const { config } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   .profile-card {
@@ -37,12 +36,11 @@ const { config } = Astro.props
       padding-inline: spacing(2);
 
       .name {
-        @include font-size($text-xl);
-
         margin-block-end: spacing(1);
 
         text-align: center;
 
+        font-size: var(--text-xl);
         font-weight: var(--fw-bold);
       }
 

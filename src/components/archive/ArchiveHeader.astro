@@ -29,7 +29,6 @@ const { year, posts } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   header {
@@ -43,18 +42,17 @@ const { year, posts } = Astro.props
     inline-size: 100%;
 
     .year {
-      @include font-size($text-xl2);
-
       grid-area: year;
 
       text-align: end;
 
       color: var(--color-archive-year);
 
+      font-size: var(--text-xl2);
       font-weight: var(--fw-bold);
 
       @media (width < $breakpoint-md) {
-        @include font-size($text-xl);
+        font-size: var(--text-xl);
       }
     }
 

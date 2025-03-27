@@ -25,8 +25,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
   <div class="info-wrapper">
     <h2>
       <a href={url}>
-        {title}
-        <Icon name="tabler:chevron-right" />
+        {title}<Icon name="tabler:chevron-right" />
       </a>
     </h2>
 
@@ -50,7 +49,6 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 <style lang="scss" define:vars={{ 'cover-width': coverWidth }}>
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   article {
@@ -68,55 +66,73 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
     overflow: hidden;
 
     .info-wrapper {
-      padding-block: spacing(6);
+      padding-block: spacing(5) spacing(6);
       padding-inline: spacing(6);
 
-      h2 a {
-        @include transition;
-        @include font-size($text-xl3);
-
-        display: block flow;
+      h2 {
+        position: relative;
 
         margin-block-end: spacing(3);
 
-        inline-size: 100%;
+        a {
+          display: block flow;
 
-        color: var(--color-post-title);
+          transition-duration: var(--transition-duration);
+          transition-property: var(--transition-properties);
+          transition-timing-function: var(--transition-function);
 
-        font-weight: var(--fw-bold);
+          inline-size: 100%;
 
-        &:hover {
-          color: var(--color-primary);
-        }
+          color: var(--color-post-title);
 
-        &:active {
-          color: var(--color-post-card-title-active);
-        }
+          font-size: var(--text-xl3);
+          font-weight: var(--fw-bold);
 
-        [data-icon] {
-          @include transition;
-          display: inline flow;
-          position: absolute;
+          &:hover {
+            color: var(--color-primary);
+          }
 
-          translate: 0 spacing(0.5);
+          &:active {
+            color: var(--color-post-card-title-active);
+          }
 
-          block-size: spacing(8);
-          inline-size: spacing(8);
+          [data-icon] {
+            display: inline flow;
+            position: relative;
+            inset-block-start: spacing(-0.75);
 
-          color: var(--color-primary);
+            transition-duration: var(--transition-duration);
+            transition-property: var(--transition-properties);
+            transition-timing-function: var(--transition-function);
+
+            block-size: spacing(8);
+            inline-size: spacing(8);
+
+            vertical-align: middle;
+
+            color: var(--color-primary);
+
+            @media (width >= $breakpoint-md) {
+              translate: spacing(-1);
+
+              opacity: 0%;
+            }
+          }
 
           @media (width >= $breakpoint-md) {
-            translate: spacing(-1);
+            &:hover [data-icon] {
+              translate: 0;
 
-            opacity: 0%;
+              opacity: 100%;
+            }
           }
         }
 
         @media (width >= $breakpoint-md) {
           &::before {
             position: absolute;
-            inset-block-start: spacing(9);
-            inset-inline-start: spacing(4.5);
+            inset-block-start: spacing(3.25);
+            inset-inline-start: spacing(-4.5);
 
             border-radius: var(--radius-md);
 
@@ -126,14 +142,6 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
             inline-size: spacing(1);
 
             content: '';
-          }
-        }
-
-        @media (width >= $breakpoint-md) {
-          &:hover [data-icon] {
-            translate: 0;
-
-            opacity: 100%;
           }
         }
       }
@@ -151,7 +159,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
       }
 
       @media (width >= $breakpoint-md) {
-        padding-block-start: spacing(7);
+        // padding-block-start: spacing(7);
         padding-inline: spacing(9) spacing(2);
 
         inline-size: calc(100% - var(--cover-width) - 12px);

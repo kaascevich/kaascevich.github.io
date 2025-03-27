@@ -1,10 +1,11 @@
 @use 'theme' as *;
-@use 'utils' as *;
 @use 'variants' as *;
 
 // page transition animations with swup
 html.is-changing .transition-swup-fade {
-  @include transition($duration: 200ms, $properties: all);
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: var(--transition-function);
 }
 
 html.is-animating .transition-swup-fade {

@@ -88,7 +88,6 @@
 <style lang='scss'>
   @use '../../../../styles/classes';
   @use '../../../../styles/theme' as *;
-  @use '../../../../styles/utils' as *;
   @use '../../../../styles/variants' as *;
 
   // MARK: All devices
@@ -119,9 +118,11 @@
   }
 
   search {
-    @include transition($properties: all);
-
     align-items: center;
+
+    transition-duration: var(--transition-duration);
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     background-color: var(--color-search-bar-bg);
 
@@ -147,8 +148,6 @@
 
     // stylelint-disable-next-line no-descending-specificity
     input {
-      @include font-size($text-sm);
-
       outline-width: 0;
 
       background-color: transparent;
@@ -156,6 +155,8 @@
       padding-inline-start: spacing(10);
 
       color: var(--color-search-text);
+
+      font-size: var(--text-sm);
     }
   }
 
@@ -169,7 +170,9 @@
     border-radius: var(--radius-lg);
 
     input {
-      @include transition($properties: all);
+      transition-duration: var(--transition-duration);
+      transition-property: all;
+      transition-timing-function: var(--transition-function);
 
       block-size: 100%;
       inline-size: spacing(40);

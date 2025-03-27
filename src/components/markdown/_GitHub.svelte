@@ -103,13 +103,14 @@
 <style lang='scss'>
   @use '../../styles/classes';
   @use '../../styles/theme' as *;
-  @use '../../styles/utils' as *;
   @use '../../styles/variants' as *;
 
   a {
-    @include transition;
-
     display: block flow;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     margin-block: spacing(2);
     margin-inline: 0;
@@ -152,26 +153,27 @@
     }
 
     header {
-      @include font-size($text-xl);
-
       display: block flex;
 
       justify-content: space-between;
 
-      margin-block-end: spacing(2);
+      margin-block-end: spacing(1);
 
       color: var(--tw-prose-headings);
 
+      font-size: var(--text-xl);
       font-weight: var(--fw-medium);
 
       .titlebar-left {
-        @include transition;
-
         display: block flex;
 
         flex-flow: row nowrap;
 
         gap: spacing(2);
+
+        transition-duration: var(--transition-duration);
+        transition-property: var(--transition-properties);
+        transition-timing-function: var(--transition-function);
 
         .owner {
           display: block flex;
@@ -227,15 +229,16 @@
       }
 
       @media (width < $breakpoint-md) {
-        @include font-size($text-lg);
+        font-size: var(--text-lg);
       }
     }
 
     .description {
-      @include transition;
-      @include font-size($text-md);
+      transition-duration: var(--transition-duration);
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
 
-      margin-block-end: spacing(3);
+      margin-block-end: spacing(2);
 
       color: var(--tw-prose-body);
 
@@ -257,21 +260,25 @@
     .stars,
     .forks,
     .license {
-      @include transition;
-      @include font-size($text-sm);
-
       display: block flex;
 
       flex-direction: row;
 
       align-items: center;
 
+      transition-duration: var(--transition-duration);
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
+
       opacity: 90%;
 
+      font-size: var(--text-sm);
       font-weight: var(--fw-medium);
 
       :global(svg) {
-        @include transition($properties: (background-color, background));
+        transition-duration: var(--transition-duration);
+        transition-property: background-color, background;
+        transition-timing-function: var(--transition-function);
 
         margin-inline-end: spacing(1);
 
@@ -290,7 +297,10 @@
   }
 
   a.fetch-waiting {
-    @include transition($properties: opacity);
+    transition-duration: var(--transition-duration);
+    transition-property: opacity;
+    transition-timing-function: var(--transition-function);
+
     opacity: 70%;
 
     pointer-events: none;
@@ -304,7 +314,7 @@
 
       animation-name: pulsate;
       animation-duration: 2s;
-      animation-timing-function: linear;
+      animation-timing-function: var(--transition-function);
       animation-iteration-count: infinite;
 
       color: transparent;

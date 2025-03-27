@@ -37,7 +37,6 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
 <style lang="scss" define:vars={{ 'collapsed-height': collapsedHeight }}>
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   widget-layout {
@@ -46,8 +45,6 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
     padding-block-end: spacing(4);
 
     header {
-      @include font-size($text-lg);
-
       position: relative;
 
       margin-block: spacing(4) spacing(2);
@@ -55,6 +52,7 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
 
       color: var(--color-widget-header);
 
+      font-size: var(--text-lg);
       font-weight: var(--fw-bold);
 
       &::before {

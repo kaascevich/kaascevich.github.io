@@ -37,13 +37,14 @@ const { config } = Astro.props
 <style lang="scss" define:vars={{ 'end-stop': 0.5, multiplier: 1 / 2 }}>
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   #banner-wrapper {
-    @include transition($duration: 700ms);
-
     position: absolute;
+
+    transition-duration: 700ms;
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     z-index: 10;
 
@@ -58,9 +59,11 @@ const { config } = Astro.props
     );
 
     :global(#banner) {
-      @include transition($duration: 700ms);
-
       scale: 105%;
+
+      transition-duration: 700ms;
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
 
       opacity: 0%;
 

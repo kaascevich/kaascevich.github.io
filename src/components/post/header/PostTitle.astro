@@ -15,12 +15,10 @@ const { entry } = Astro.props
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   h1 {
     @extend %onload-animation;
-    @include font-size($text-xl4);
 
     display: block flow;
     position: relative;
@@ -31,16 +29,17 @@ const { entry } = Astro.props
 
     color: var(--color-post-title);
 
+    font-size: var(--text-xl4);
     font-weight: var(--fw-bold);
 
     @media (width < $breakpoint-md) {
-      @include font-size($text-xl3);
+      font-size: var(--text-xl3);
     }
 
     @media (width >= $breakpoint-md) {
       &::before {
         position: absolute;
-        inset-block-start: spacing(2);
+        inset-block-start: spacing(3.25);
         inset-inline-start: spacing(-4.5);
 
         border-radius: var(--radius-md);

@@ -1,13 +1,12 @@
 @use 'classes';
 @use 'theme' as *;
-@use 'utils' as *;
 @use 'variants' as *;
 
 article.prose {
   word-break: break-word;
 
   h1 {
-    @include font-size($text-xl3);
+    font-size: var(--text-xl3);
   }
 
   h1,
@@ -129,14 +128,14 @@ article.prose {
     padding-inline: spacing(5);
 
     code {
-      @include font-size($text-sm);
-
       background-color: transparent;
 
       padding-block: 0;
       padding-inline: 0;
 
       color: inherit;
+
+      font-size: var(--text-sm);
     }
   }
 

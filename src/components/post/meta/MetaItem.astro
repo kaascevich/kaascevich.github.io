@@ -25,7 +25,6 @@ const { icon, label, hideOnMobile = false } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   .meta-item {
@@ -63,9 +62,9 @@ const { icon, label, hideOnMobile = false } = Astro.props
     }
 
     .meta-content {
-      @include font-size($text-sm);
       color: var(--color-meta-text);
 
+      font-size: var(--text-sm);
       font-weight: var(--fw-medium);
     }
   }

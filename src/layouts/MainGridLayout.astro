@@ -73,13 +73,14 @@ const mainPanelTop =
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   #top-row {
-    @include transition($duration: 700ms, $properties: all);
-
     position: relative;
+
+    transition-duration: 700ms;
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     z-index: 50;
 
@@ -92,9 +93,12 @@ const mainPanelTop =
     pointer-events: none;
 
     #navbar-wrapper {
-      @include transition($properties: all);
       position: sticky;
       inset-block-start: 0;
+
+      transition-duration: var(--transition-duration);
+      transition-property: all;
+      transition-timing-function: var(--transition-function);
 
       pointer-events: auto;
     }
@@ -123,7 +127,6 @@ const mainPanelTop =
       pointer-events: auto;
 
       #main-grid {
-        @include transition($duration: 700ms);
         display: block grid;
         inset-inline: 0;
 
@@ -131,6 +134,10 @@ const mainPanelTop =
         grid-template-columns: spacing(70) auto;
 
         gap: spacing(4);
+
+        transition-duration: 700ms;
+        transition-property: var(--transition-properties);
+        transition-timing-function: var(--transition-function);
 
         margin-inline: auto;
 

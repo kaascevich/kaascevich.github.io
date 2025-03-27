@@ -30,13 +30,14 @@ const { entry, image, url } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   a {
-    @include transition;
-
     position: relative;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     margin-block: spacing(4) spacing(-2);
     margin-inline: spacing(4);
@@ -82,9 +83,11 @@ const { entry, image, url } = Astro.props
       pointer-events: none;
 
       [data-icon] {
-        @include transition;
-
         scale: 50%;
+
+        transition-duration: var(--transition-duration);
+        transition-property: var(--transition-properties);
+        transition-timing-function: var(--transition-function);
 
         opacity: 0%;
 
@@ -96,7 +99,9 @@ const { entry, image, url } = Astro.props
     }
 
     :global(.image) {
-      @include transition;
+      transition-duration: var(--transition-duration);
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
 
       block-size: 100%;
       inline-size: 100%;

@@ -107,7 +107,6 @@
 <style lang='scss'>
   @use '../../../styles/classes';
   @use '../../../styles/theme' as *;
-  @use '../../../styles/utils' as *;
   @use '../../../styles/variants' as *;
 
   [role='menu'] {
@@ -144,11 +143,13 @@
     }
 
     #scheme-panel {
-      @include transition;
-
       position: absolute;
       inset-block-start: spacing(11);
       inset-inline-end: spacing(-2);
+
+      transition-duration: var(--transition-duration);
+      transition-property: var(--transition-properties);
+      transition-timing-function: var(--transition-function);
 
       padding-block-start: spacing(5);
 
@@ -160,12 +161,15 @@
 
         button {
           @extend %btn-plain, %expand-animation;
-          @include transition;
 
           display: block flex;
 
           align-items: center;
           justify-content: flex-start;
+
+          transition-duration: var(--transition-duration);
+          transition-property: var(--transition-properties);
+          transition-timing-function: var(--transition-function);
 
           margin-block-end: spacing(0.5);
 

@@ -51,7 +51,6 @@ let heading1Count = 1
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   %hide-scrollbar {
@@ -93,10 +92,12 @@ let heading1Count = 1
   }
 
   #active-indicator {
-    @include transition($properties: all);
-
     position: absolute;
     inset-inline: 0;
+
+    transition-duration: var(--transition-duration);
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     z-index: -10;
 

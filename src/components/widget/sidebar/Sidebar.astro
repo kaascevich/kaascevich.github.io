@@ -24,7 +24,6 @@ const { class: className } = Astro.props
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
   @use '$/styles/transition';
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   aside.sidebar {
@@ -46,8 +45,6 @@ const { class: className } = Astro.props
   }
 
   section.sticky {
-    @include transition($duration: 700ms);
-
     display: block flex;
     position: sticky;
     inset-block-start: spacing(4);
@@ -55,6 +52,10 @@ const { class: className } = Astro.props
     flex-direction: column;
 
     gap: spacing(4);
+
+    transition-duration: 700ms;
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     :global(.categories, .tags) {
       @extend %onload-animation;

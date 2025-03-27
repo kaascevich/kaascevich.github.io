@@ -45,7 +45,6 @@ function formatTagList(tags: readonly string[]) {
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   %dash-line {
@@ -138,7 +137,9 @@ function formatTagList(tags: readonly string[]) {
       block-size: 100%;
 
       div {
-        @include transition($properties: all);
+        transition-duration: var(--transition-duration);
+        transition-property: all;
+        transition-timing-function: var(--transition-function);
 
         z-index: 50;
 
@@ -156,9 +157,11 @@ function formatTagList(tags: readonly string[]) {
     }
 
     .title {
-      @include transition($properties: all);
-
       grid-area: title;
+
+      transition-duration: var(--transition-duration);
+      transition-property: all;
+      transition-timing-function: var(--transition-function);
 
       padding-inline-end: spacing(8);
 
@@ -174,8 +177,6 @@ function formatTagList(tags: readonly string[]) {
     }
 
     .tag-list {
-      @include font-size($text-sm);
-
       grid-area: tags;
 
       margin-inline-end: spacing(3);
@@ -187,6 +188,8 @@ function formatTagList(tags: readonly string[]) {
 
       white-space: nowrap;
       color: var(--color-archive-tags);
+
+      font-size: var(--text-sm);
 
       @media (width < $breakpoint-md) {
         display: none;

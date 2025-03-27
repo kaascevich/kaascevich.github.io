@@ -27,19 +27,21 @@
 <style lang='scss'>
   @use '../../../../styles/classes';
   @use '../../../../styles/theme' as *;
-  @use '../../../../styles/utils' as *;
   @use '../../../../styles/variants' as *;
 
   a {
-    @include transition;
-    @include font-size($text-lg);
-
     display: block flow;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: var(--transition-function);
 
     border-radius: var(--radius-xl);
 
     padding-block: spacing(2);
     padding-inline: spacing(3);
+
+    font-size: var(--text-lg);
 
     &:hover {
       background-color: var(--color-btn-plain-bg-hover);
@@ -70,8 +72,9 @@
     }
 
     .excerpt {
-      @include font-size($text-sm);
       color: var(--color-search-result-excerpt);
+
+      font-size: var(--text-sm);
 
       :global(mark) {
         background-color: transparent;

@@ -13,17 +13,17 @@ const { href, label } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   :any-link {
     @extend %btn-regular;
-    @include font-size($text-sm);
 
     border-radius: var(--radius-lg);
 
     padding-inline: spacing(3);
 
     block-size: spacing(8);
+
+    font-size: var(--text-sm);
   }
 </style>

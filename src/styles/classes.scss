@@ -1,9 +1,10 @@
 @use 'theme' as *;
-@use 'utils' as *;
 @use 'variants' as *;
 
 %card-base {
-  @include transition;
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   border-radius: var(--radius-xl2);
 
@@ -18,13 +19,15 @@
   z-index: 0;
 
   &::before {
-    @include transition($function: cubic-bezier(0, 0, 0.2, 1));
-
     position: absolute;
     inset-block: 0;
     inset-inline: 0;
 
     scale: 85%;
+
+    transition-duration: var(--transition-duration);
+    transition-property: var(--transition-properties);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 
     z-index: -10;
 
@@ -54,7 +57,10 @@
 
 %link {
   @extend %expand-animation;
-  @include transition;
+
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   margin-block: spacing(-1);
   margin-inline: spacing(-1);
@@ -66,9 +72,11 @@
 }
 
 %float-panel {
-  @include transition;
-
   inset-block-start: spacing(21);
+
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   border-radius: var(--radius-xl2);
 
@@ -91,12 +99,14 @@
 }
 
 %btn-card {
-  @include transition;
-
   display: block flex;
 
   align-items: center;
   justify-content: center;
+
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   background-color: var(--color-card-bg);
 
@@ -116,12 +126,14 @@
 }
 
 %btn-plain {
-  @include transition;
-
   display: block flex;
 
   align-items: center;
   justify-content: center;
+
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   background-image: none;
 
@@ -143,12 +155,14 @@
 }
 
 %btn-regular {
-  @include transition;
-
   display: block flex;
 
   align-items: center;
   justify-content: center;
+
+  transition-duration: var(--transition-duration);
+  transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function);
 
   background-color: var(--color-btn-regular-bg);
 

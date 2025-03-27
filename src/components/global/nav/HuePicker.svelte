@@ -61,7 +61,6 @@
 <style lang='scss'>
   @use '../../../styles/classes';
   @use '../../../styles/theme' as *;
-  @use '../../../styles/utils' as *;
   @use '../../../styles/variants' as *;
 
   @mixin slider-thumb {
@@ -107,10 +106,13 @@
 
   #color-settings {
     @extend %float-panel;
-    @include transition($properties: all);
 
     position: absolute;
     inset-inline-end: spacing(4);
+
+    transition-duration: var(--transition-duration);
+    transition-property: all;
+    transition-timing-function: var(--transition-function);
 
     padding-block: spacing(4);
     padding-inline: spacing(4);
@@ -130,8 +132,6 @@
       margin-block-end: spacing(3);
 
       .title {
-        @include font-size($text-lg);
-
         display: block flex;
         position: relative;
 
@@ -141,6 +141,7 @@
 
         color: var(--color-hue-picker-title);
 
+        font-size: var(--text-lg);
         font-weight: var(--fw-bold);
 
         &::before {
@@ -184,8 +185,6 @@
       }
 
       #hue-value {
-        @include font-size($text-sm);
-
         display: block flex;
 
         align-items: center;
@@ -200,6 +199,7 @@
 
         color: var(--color-hue-picker-value);
 
+        font-size: var(--text-sm);
         font-weight: var(--fw-bold);
       }
     }
@@ -217,9 +217,11 @@
       user-select: none;
 
       input[type='range'] {
-        @include transition($properties: background-image);
-
         appearance: none;
+
+        transition-duration: var(--transition-duration);
+        transition-property: background-image;
+        transition-timing-function: var(--transition-function);
 
         background-image: linear-gradient(
           to right in oklch longer hue,

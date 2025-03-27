@@ -21,7 +21,6 @@ const { text, label, icon } = Astro.props
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
-  @use '$/styles/utils' as *;
   @use '$/styles/variants' as *;
 
   .meta-item {
@@ -52,7 +51,7 @@ const { text, label, icon } = Astro.props
     }
 
     .text {
-      @include font-size($text-sm);
+      font-size: var(--text-sm);
     }
   }
 </style>
