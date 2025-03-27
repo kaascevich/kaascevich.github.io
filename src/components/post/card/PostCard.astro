@@ -59,7 +59,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
     display: block flex;
     position: relative;
 
-    flex-direction: column-reverse;
+    flex-direction: column;
 
     border-radius: var(--radius-xl2);
 
@@ -158,8 +158,8 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
       }
     }
 
-    @media (width >= $breakpoint-md) {
-      flex-direction: column;
+    @media (width < $breakpoint-md) {
+      flex-direction: column-reverse;
     }
 
     // post separator

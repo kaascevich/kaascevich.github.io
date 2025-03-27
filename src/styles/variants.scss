@@ -7,17 +7,3 @@
     @content;
   }
 }
-
-// MARK: Accessibility
-
-@mixin motion($prefers-reduced-motion: false) {
-  @if $prefers-reduced-motion {
-    $query: reduced;
-  } @else {
-    $query: no-preference
-  }
-
-  @media (prefers-reduced-motion: $query) {
-    @content;
-  }
-}

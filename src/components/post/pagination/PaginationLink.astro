@@ -42,7 +42,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 
     block-size: spacing(15);
     inline-size: 100%;
-    max-inline-size: 100%;
+    max-inline-size: calc(50% - spacing(2));
 
     overflow: hidden;
 
@@ -78,8 +78,8 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
       flex-direction: row-reverse;
     }
 
-    @media (width >= $breakpoint-md) {
-      max-inline-size: calc(50% - spacing(2));
+    @media (width < $breakpoint-md) {
+      max-inline-size: 100%;
     }
   }
 </style>

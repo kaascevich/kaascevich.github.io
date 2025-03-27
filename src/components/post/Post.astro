@@ -64,7 +64,7 @@ const { Content, remarkPluginFrontmatter } = await render(entry)
       z-index: 10;
 
       padding-block: spacing(6) spacing(4);
-      padding-inline: spacing(6);
+      padding-inline: spacing(9);
 
       inline-size: 100%;
 
@@ -80,8 +80,8 @@ const { Content, remarkPluginFrontmatter } = await render(entry)
         margin-block-end: spacing(6);
       }
 
-      @media (width >= $breakpoint-md) {
-        padding-inline: spacing(9);
+      @media (width < $breakpoint-md) {
+        padding-inline: spacing(6);
       }
     }
   }

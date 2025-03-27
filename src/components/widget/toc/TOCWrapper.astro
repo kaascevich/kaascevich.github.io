@@ -87,6 +87,13 @@ const { headings } = Astro.props
 
     inline-size: var(--toc-width);
 
+    &.toc-hide,
+    &.toc-not-ready {
+      opacity: 0%;
+
+      pointer-events: none;
+    }
+
     @media (width < $breakpoint-lg) {
       display: none;
     }

@@ -85,9 +85,9 @@ const postUrl = decodeURIComponent(Astro.url.toString())
     .details {
       display: block flex;
 
-      flex-direction: column;
+      flex-direction: row;
 
-      gap: spacing(3);
+      gap: spacing(6);
 
       margin-block-start: spacing(2);
 
@@ -107,10 +107,10 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         color: var(--color-primary);
       }
 
-      @media (width >= $breakpoint-sm) {
-        flex-direction: row;
+      @media (width < $breakpoint-sm) {
+        flex-direction: column;
 
-        gap: spacing(6);
+        gap: spacing(3);
       }
     }
 
@@ -119,9 +119,9 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       position: absolute;
       inset-block-end: 50%;
-      inset-inline-end: 50%;
+      inset-inline-end: spacing(6);
 
-      translate: 50% 50%;
+      translate: 0 50%;
 
       block-size: spacing(60);
       inline-size: spacing(60);
@@ -130,10 +130,10 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       pointer-events: none;
 
-      @media (width >= $breakpoint-sm) {
-        inset-inline-end: spacing(6);
+      @media (width < $breakpoint-sm) {
+        inset-inline-end: 50%;
 
-        translate: 0 50%;
+        translate: 50% 50%;
       }
     }
   }

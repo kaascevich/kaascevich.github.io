@@ -43,7 +43,7 @@ const { year, posts } = Astro.props
     inline-size: 100%;
 
     .year {
-      @include font-size($text-xl);
+      @include font-size($text-xl2);
 
       grid-area: year;
 
@@ -53,8 +53,8 @@ const { year, posts } = Astro.props
 
       font-weight: var(--fw-bold);
 
-      @media (width >= $breakpoint-md) {
-        @include font-size($text-xl2);
+      @media (width < $breakpoint-md) {
+        @include font-size($text-xl);
       }
     }
 

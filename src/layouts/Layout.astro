@@ -61,14 +61,14 @@ const bannerOffset = {
   html {
     background-color: var(--color-page-bg);
 
-    font-size: 14px;
+    font-size: 16px;
 
     body {
       min-block-size: 100vh;
     }
 
-    @media (width >= $breakpoint-md) {
-      font-size: 16px;
+    @media (width < $breakpoint-md) {
+      font-size: 14px;
     }
   }
 </style>

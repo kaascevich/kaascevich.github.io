@@ -119,7 +119,7 @@
     background-color: var(--color-license-bg);
 
     padding-block: spacing(4.5);
-    padding-inline: spacing(4);
+    padding-inline: spacing(6);
 
     text-decoration-line: none;
 
@@ -152,7 +152,7 @@
     }
 
     header {
-      @include font-size($text-lg);
+      @include font-size($text-xl);
 
       display: block flex;
 
@@ -169,9 +169,9 @@
 
         display: block flex;
 
-        flex-flow: column nowrap;
+        flex-flow: row nowrap;
 
-        gap: spacing(1);
+        gap: spacing(2);
 
         .owner {
           display: block flex;
@@ -214,10 +214,10 @@
           font-weight: var(--fw-bold);
         }
 
-        @media (width >= $breakpoint-md) {
-          flex-flow: row nowrap;
+        @media (width < $breakpoint-md) {
+          flex-flow: column nowrap;
 
-          gap: spacing(2);
+          gap: spacing(1);
         }
       }
 
@@ -226,8 +226,8 @@
         inline-size: spacing(6);
       }
 
-      @media (width >= $breakpoint-md) {
-        @include font-size($text-xl);
+      @media (width < $breakpoint-md) {
+        @include font-size($text-lg);
       }
     }
 
@@ -284,9 +284,8 @@
       }
     }
 
-    @media (width >= $breakpoint-md) {
-      padding-block: spacing(4.5);
-      padding-inline: spacing(6);
+    @media (width < $breakpoint-md) {
+      padding-inline: spacing(4);
     }
   }
 

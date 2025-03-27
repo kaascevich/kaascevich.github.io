@@ -42,7 +42,7 @@ const nextEntry = allPosts[index + 1]
   nav {
     display: block flex;
 
-    flex-direction: column;
+    flex-direction: row;
 
     gap: spacing(4);
 
@@ -58,8 +58,8 @@ const nextEntry = allPosts[index + 1]
       visibility: hidden;
     }
 
-    @media (width >= $breakpoint-md) {
-      flex-direction: row;
+    @media (width < $breakpoint-md) {
+      flex-direction: column;
     }
   }
 </style>

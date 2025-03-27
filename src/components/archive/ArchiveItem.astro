@@ -105,15 +105,15 @@ function formatTagList(tags: readonly string[]) {
     .item-wrapper {
       display: block grid;
 
-      grid-template: 'date separator title' / 15% 15% 75%;
+      grid-template: 'date separator title tags' / 10% 10% 45% 35%;
 
       align-items: center;
       justify-content: flex-start;
 
       block-size: 100%;
 
-      @media (width >= $breakpoint-md) {
-        grid-template: 'date separator title tags' / 10% 10% 45% 35%;
+      @media (width < $breakpoint-md) {
+        grid-template: 'date separator title' / 15% 15% 75%;
       }
     }
 
