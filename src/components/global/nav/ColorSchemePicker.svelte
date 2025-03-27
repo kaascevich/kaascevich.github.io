@@ -1,8 +1,8 @@
 <script lang='ts'>
-  import type { ColorScheme } from '$/types/config'
+  import type { ColorScheme } from '$/types/theme'
 
   import strings from '$/config/strings'
-  import { colorSchemes } from '$/types/config'
+  import { colorSchemes } from '$/types/theme'
   import {
     applyColorScheme,
     getColorScheme,

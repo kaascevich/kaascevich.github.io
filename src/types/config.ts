@@ -1,4 +1,4 @@
-import type { NumsUpTo } from './misc'
+import type { Hue } from './theme'
 
 /**
  * Returns the argument unchanged.
@@ -23,6 +23,9 @@ export interface Config {
 
   /** The subtitle of the site. */
   readonly subtitle: string
+
+  /** The URL to the site's source code, if it's public. */
+  readonly sourceURL?: string
 
   /** The default hue, from 0 to 359. */
   readonly defaultHue: Hue
@@ -150,20 +153,4 @@ export interface LicenseConfig {
 
   /** The URL to the license. */
   readonly url: string
-}
-
-/** A list of color schemes. */
-export const colorSchemes = ['light', 'dark', 'auto'] as const
-
-/** A color scheme. */
-export type ColorScheme = typeof colorSchemes[number]
-
-/** A hue value. */
-export type Hue = NumsUpTo<360>[number]
-
-type Stringable = string | ((...args: never[]) => string)
-
-/** A list of strings. */
-export interface StringList {
-  readonly [key: string]: Stringable | StringList
 }

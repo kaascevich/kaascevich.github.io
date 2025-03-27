@@ -1,4 +1,5 @@
 <script lang='ts'>
+  import strings from '$/config/strings'
   import Icon from '@iconify/svelte'
 
   export interface Props {
@@ -27,7 +28,7 @@
   tabindex='0'
   onclick={copy}
   bind:this={copyButton}
-  aria-label='Copy code'
+  aria-label={strings.alts.copyCode}
 >
   <div>
     <Icon icon='tabler:copy' class='copy-icon' />

@@ -10,9 +10,12 @@ export interface Props {
 const { icon, label, hideOnMobile = false } = Astro.props
 ---
 
-<div class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]} aria-label={label}>
+<div
+  class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]}
+  aria-label={label}
+>
   <div class="meta-icon" aria-hidden="true">
-    <Icon name={icon}/>
+    <Icon name={icon} />
   </div>
   <span class="meta-content">
     <slot />

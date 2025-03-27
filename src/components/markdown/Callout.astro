@@ -1,8 +1,8 @@
 ---
-import { Icon } from 'astro-icon/components'
-import { capitalize } from 'remeda'
+import strings from '$/config/strings'
+import type { CalloutType } from '$/types/content'
 
-type CalloutType = 'tip' | 'note' | 'important' | 'warning' | 'caution'
+import { Icon } from 'astro-icon/components'
 
 export interface Props {
   /** The title for this callout. Defaults to the callout type. */
@@ -24,7 +24,7 @@ const calloutIcons: Record<CalloutType, string> = {
 <blockquote class={`bdm-${type}`}>
   <header>
     <Icon name={calloutIcons[type]} />
-    {title ?? capitalize(type)}
+    {title ?? strings.content.callouts[type]}
   </header>
   <slot />
 </blockquote>

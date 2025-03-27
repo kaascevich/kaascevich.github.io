@@ -1,7 +1,6 @@
 import type { Config } from '../types/config'
 
 import { config } from '../types/config'
-
 import licenseConfig from './license'
 import navbarConfig from './navbar'
 import profileConfig from './profile'
@@ -10,6 +9,7 @@ export default config<Config>({
   url: 'https://kaascevich.github.io',
   title: 'Haven',
   subtitle: 'my little home on the internet',
+  sourceURL: 'https://github.com/kaascevich/kaascevich.github.io',
   defaultHue: 250,
   banner: {
     src: 'assets/images/banner.png',

@@ -43,7 +43,7 @@
       </button>
     </div>
     <div id='hue-value'>
-      {hue}&deg;
+      {strings.theme.hueValue(hue)}
     </div>
   </header>
 

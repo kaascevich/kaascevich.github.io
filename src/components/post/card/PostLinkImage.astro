@@ -1,9 +1,9 @@
 ---
-import path from 'node:path'
 import type { Post } from '$/types/content'
-import { getDir } from '$/utils/urls'
+
 import { Icon } from 'astro-icon/components'
 import ImageWrapper from '$/components/misc/ImageWrapper.astro'
+import { getBasePath } from '$/utils/content'
 
 export interface Props {
   entry: Post
@@ -21,7 +21,7 @@ const { entry, image, url } = Astro.props
 
   <ImageWrapper
     src={image.source}
-    basePath={path.join('content/posts/', getDir(`${entry.id}/`))}
+    basePath={getBasePath(entry)}
     alt={image.alt}
     class="image"
   />

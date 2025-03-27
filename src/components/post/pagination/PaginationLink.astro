@@ -15,10 +15,8 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
 ---
 
 <a href={getPostUrlByID(entry.id)} class={type}>
-  <div class="link-wrapper">
-    <Icon name={icon} />
-    <div class="title">{entry.data.title}</div>
-  </div>
+  <Icon name={icon} />
+  <div class="title">{entry.data.title}</div>
 </a>
 
 <style lang="scss">
@@ -28,8 +26,21 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
   @use '$/styles/variants' as *;
 
   a {
+    @extend %btn-card;
     @include transition;
 
+    display: block flex;
+
+    gap: spacing(4);
+
+    align-items: center;
+    justify-content: flex-start;
+
+    border-radius: var(--radius-xl2);
+
+    padding-inline: spacing(4);
+
+    block-size: spacing(15);
     inline-size: 100%;
     max-inline-size: 100%;
 
@@ -41,48 +52,29 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
       scale: 95%;
     }
 
-    .link-wrapper {
-      @extend %btn-card;
+    .title {
+      max-inline-size: calc(100% - spacing(12));
 
-      display: block flex;
+      overflow: hidden;
 
-      gap: spacing(4);
+      text-overflow: ellipsis;
 
-      align-items: center;
-      justify-content: flex-start;
-
-      border-radius: var(--radius-xl2);
-
-      padding-inline: spacing(4);
-
-      block-size: spacing(15);
-      inline-size: 100%;
-      max-inline-size: 100%;
-
-      .title {
-        max-inline-size: calc(100% - spacing(12));
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        white-space: nowrap;
-        color: bw(75%);
-      }
-
-      [data-icon] {
-        block-size: spacing(8);
-        inline-size: spacing(8);
-
-        color: var(--color-primary);
-      }
+      white-space: nowrap;
+      color: bw(75%);
     }
 
-    &.next .link-wrapper {
+    [data-icon] {
+      block-size: spacing(8);
+      inline-size: spacing(8);
+
+      color: var(--color-primary);
+    }
+
+    &.next {
       flex-direction: row;
     }
 
-    &.prev .link-wrapper {
+    &.prev {
       flex-direction: row-reverse;
     }
 

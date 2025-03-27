@@ -1,5 +1,6 @@
 ---
 import siteConfig from '$/config/site'
+import strings from '$/config/strings'
 import {
   BANNER_HEIGHT_EXTEND,
   DEFAULT_COLOR_SCHEME,
@@ -14,8 +15,8 @@ const { title, setOGTypeArticle = false } = Astro.props
 
 const pageTitle =
   title === undefined
-    ? `${siteConfig.title} - ${siteConfig.subtitle}`
-    : `${title} - ${siteConfig.title}`
+    ? strings.global.title(siteConfig.title, siteConfig.subtitle)
+    : strings.global.title(title, siteConfig.title)
 
 const description = Astro.props.description ?? pageTitle
 ---

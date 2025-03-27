@@ -1,9 +1,11 @@
 import type { Post } from '$/types/content'
 
 import { getCollection } from 'astro:content'
+import path from 'node:path'
 import { entries, flatMap, groupBy, map, pipe, reverse, sortBy } from 'remeda'
 
 import { elementCounts } from './arrays'
+import { getDir } from './urls'
 
 /**
  * Returns a list of posts, sorted by publish date.
@@ -64,4 +66,8 @@ export async function groupPostsByYear(posts?: Post[]) {
     sortBy((x) => x[0]),
     reverse(),
   )
+}
+
+export function getBasePath(post: Post) {
+  return path.join('content/posts/', getDir(`${post.id}/`))
 }

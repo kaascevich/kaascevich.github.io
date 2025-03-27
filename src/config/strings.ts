@@ -1,10 +1,16 @@
-import type { ColorScheme, StringList } from '../types/config'
+import type { CalloutType } from '$/types/content'
+
+import type { StringList } from '../types/strings'
+import type { ColorScheme } from '../types/theme'
 
 function count(num: number, singular: string, plural: string) {
   return `${num} ${num === 1 ? singular : plural}`
 }
 
 export default {
+  global: {
+    title: (title: string, subtitle: string) => `${title} - ${subtitle}`,
+  },
   nav: {
     home: 'Home',
     about: 'About',
@@ -28,14 +34,32 @@ export default {
     minutes: (readingTime: number) => count(readingTime, 'minute', 'minutes'),
     posts: (postCount: number) => count(postCount, 'post', 'posts'),
   },
+  content: {
+    callouts: {
+      tip: 'Tip',
+      note: 'Note',
+      important: 'Important',
+      warning: 'Warning',
+      caution: 'Caution',
+    } satisfies Record<CalloutType, unknown>,
+  },
   theme: {
     themeColor: 'Theme Color',
+    hueValue: (hue: number) => `${hue}\u{BA}`,
 
     colorScheme: {
       light: 'Light',
       dark: 'Dark',
       auto: 'Auto',
     } satisfies Record<ColorScheme, unknown>,
+  },
+  footer: {
+    rss: 'RSS',
+    sitemap: 'Sitemap',
+    source: 'Source',
+
+    generator: 'Generator (Astro)',
+    template: 'Template (Fuwari)',
   },
   license: {
     author: 'Author',
@@ -80,5 +104,7 @@ export default {
     updated: 'Last updated',
     categories: 'Categories',
     tags: 'Tags',
+
+    copyCode: 'Copy code block',
   },
 } satisfies StringList

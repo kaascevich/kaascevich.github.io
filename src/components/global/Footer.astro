@@ -2,6 +2,9 @@
 import siteConfig from '$/config/site'
 import strings from '$/config/strings'
 const currentYear = new Date().getFullYear()
+
+const astroURL = 'https://astro.build'
+const templateURL = 'https://github.com/saicaca/fuwari'
 ---
 
 <hr />
@@ -11,23 +14,17 @@ const currentYear = new Date().getFullYear()
 
     <br />
 
-    <a target="_blank" href="/rss.xml">RSS</a>
+    <a target="_blank" href="/rss.xml">{strings.footer.rss}</a>
     /
-    <a target="_blank" href="/sitemap-index.xml">Sitemap</a>
+    <a target="_blank" href="/sitemap-index.xml">{strings.footer.sitemap}</a>
     /
-    <a
-      target="_blank"
-      href="https://github.com/kaascevich/kaascevich.github.io"
-    >
-      Source
-    </a>
+    <a target="_blank" href={siteConfig.sourceURL}>{strings.footer.source}</a>
 
     <br />
 
-    Powered by
-    <a target="_blank" href="https://astro.build">Astro</a>
-    &
-    <a target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
+    <a target="_blank" href={astroURL}>{strings.footer.generator}</a>
+    /
+    <a target="_blank" href={templateURL}>{strings.footer.template}</a>
   </div>
 </footer>
 
