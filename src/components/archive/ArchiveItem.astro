@@ -112,7 +112,7 @@ function formatTagList(tags: readonly string[]) {
 
       block-size: 100%;
 
-      @include md {
+      @media (width >= $breakpoint-md) {
         grid-template: 'date separator title tags' / 10% 10% 45% 35%;
       }
     }
@@ -176,8 +176,6 @@ function formatTagList(tags: readonly string[]) {
     .tag-list {
       @include font-size($text-sm);
 
-      display: none;
-
       grid-area: tags;
 
       margin-inline-end: spacing(3);
@@ -190,8 +188,8 @@ function formatTagList(tags: readonly string[]) {
       white-space: nowrap;
       color: var(--color-archive-tags);
 
-      @include md {
-        display: block flow;
+      @media (width < $breakpoint-md) {
+        display: none;
       }
     }
   }

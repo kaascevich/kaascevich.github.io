@@ -199,7 +199,7 @@
             overflow: hidden;
           }
 
-          @include md {
+          @media (width >= $breakpoint-md) {
             &::after {
               display: block flow;
 
@@ -214,7 +214,7 @@
           font-weight: var(--fw-bold);
         }
 
-        @include md {
+        @media (width >= $breakpoint-md) {
           flex-flow: row nowrap;
 
           gap: spacing(2);
@@ -226,7 +226,7 @@
         inline-size: spacing(6);
       }
 
-      @include md {
+      @media (width >= $breakpoint-md) {
         @include font-size($text-xl);
       }
     }
@@ -284,7 +284,7 @@
       }
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       padding-block: spacing(4.5);
       padding-inline: spacing(6);
     }

@@ -146,7 +146,6 @@
     #scheme-panel {
       @include transition;
 
-      display: none;
       position: absolute;
       inset-block-start: spacing(11);
       inset-inline-end: spacing(-2);
@@ -208,8 +207,8 @@
         }
       }
 
-      @include lg {
-        display: block flow;
+      @media (width < $breakpoint-lg) {
+        display: none;
       }
     }
   }

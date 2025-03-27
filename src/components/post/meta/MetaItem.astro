@@ -34,10 +34,8 @@ const { icon, label, hideOnMobile = false } = Astro.props
     align-items: center;
 
     &.mobile-hidden {
-      display: none;
-
-      @include md {
-        display: block flex;
+      @media (width < $breakpoint-md) {
+        display: none;
       }
     }
 

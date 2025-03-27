@@ -41,14 +41,6 @@
     padding-block: spacing(2);
     padding-inline: spacing(3);
 
-    &:first-of-type {
-      margin-block-start: spacing(2);
-
-      @include lg {
-        margin-block-start: 0;
-      }
-    }
-
     &:hover {
       background-color: var(--color-btn-plain-bg-hover);
 

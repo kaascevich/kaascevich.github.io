@@ -67,7 +67,7 @@ const bannerOffset = {
       min-block-size: 100vh;
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       font-size: 16px;
     }
   }
@@ -103,7 +103,7 @@ const bannerOffset = {
       block-size: calc(var(--banner-height-home) - spacing(18));
     }
 
-    @include lg {
+    @media (width >= $breakpoint-lg) {
       &.full-height-banner {
         #banner-wrapper {
           translate: 0 var(--banner-height-extend);

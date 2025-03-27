@@ -1,5 +1,12 @@
 @use 'sass:list';
 
+// MARK: Breakpoints
+$breakpoint-sm: 40rem;
+$breakpoint-md: 48rem;
+$breakpoint-lg: 64rem;
+$breakpoint-xl: 80rem;
+$breakpoint-xl2: 96rem;
+
 // MARK: Text
 $text-xs: (0.75rem, calc(10 / 7));  // 1.42857
 $text-sm: (0.875rem, calc(5 / 3));  // 1.33333

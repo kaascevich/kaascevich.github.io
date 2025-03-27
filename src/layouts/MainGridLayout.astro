@@ -99,7 +99,7 @@ const mainPanelTop =
       pointer-events: auto;
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       padding-inline: spacing(4);
     }
   }
@@ -145,19 +145,19 @@ const mainPanelTop =
 
           margin-block-end: spacing(4);
 
-          @include lg {
+          @media (width >= $breakpoint-lg) {
             grid-row: 1 / 2;
             grid-column: span 1 / span 1;
 
-            max-inline-size: spacing(70) l;
+            max-inline-size: spacing(70);
           }
         }
 
-        @include md {
+        @media (width >= $breakpoint-md) {
           padding-inline: spacing(4);
         }
 
-        @include lg {
+        @media (width >= $breakpoint-lg) {
           grid-template-rows: auto;
         }
       }
@@ -178,7 +178,7 @@ const mainPanelTop =
       animation-delay: var(--content-delay);
     }
 
-    @include lg {
+    @media (width >= $breakpoint-lg) {
       grid-column: span 1 / span 1;
     }
   }
@@ -194,9 +194,7 @@ const mainPanelTop =
   .footer-desktop {
     @extend %footer;
 
-    display: block flow;
-
-    @include lg {
+    @media (width >= $breakpoint-lg) {
       display: none;
     }
   }
@@ -204,10 +202,8 @@ const mainPanelTop =
   .footer-mobile {
     @extend %footer;
 
-    display: none;
-
-    @include lg {
-      display: block flow;
+    @media (width < $breakpoint-lg) {
+      display: none;
     }
   }
 </style>

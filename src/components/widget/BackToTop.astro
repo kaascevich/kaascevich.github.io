@@ -39,7 +39,6 @@ import { Icon } from 'astro-icon/components'
   @use '$/styles/variants' as *;
 
   div {
-    display: none;
     position: absolute;
     inset-block-start: 0;
     inset-inline-end: 0;
@@ -92,8 +91,8 @@ import { Icon } from 'astro-icon/components'
       }
     }
 
-    @include lg {
-      display: block flow;
+    @media (width < $breakpoint-lg) {
+      display: none;
     }
   }
 

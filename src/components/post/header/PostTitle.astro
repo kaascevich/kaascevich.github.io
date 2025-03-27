@@ -33,11 +33,9 @@ const { entry } = Astro.props
 
     font-weight: var(--fw-bold);
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       @include font-size($text-xl4);
-    }
 
-    @include md {
       &::before {
         position: absolute;
         inset-block-start: spacing(2);

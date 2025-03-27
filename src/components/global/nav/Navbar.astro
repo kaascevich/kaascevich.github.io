@@ -142,10 +142,10 @@ const { class: className } = Astro.props
       }
 
       menu {
-        display: none;
+        display: block flex;
 
-        @include md {
-          display: block flex;
+        @media (width < $breakpoint-md) {
+          display: none;
         }
       }
     }

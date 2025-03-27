@@ -21,35 +21,3 @@
     @content;
   }
 }
-
-// MARK: Responsive Design
-
-@mixin sm {
-  @media (width >= 40rem) {
-    @content;
-  }
-}
-
-@mixin md {
-  @media (width >= 48rem) {
-    @content;
-  }
-}
-
-@mixin lg {
-  @media (width >= 64rem) {
-    @content;
-  }
-}
-
-@mixin xl {
-  @media (width >= 80rem) {
-    @content;
-  }
-}
-
-@mixin xl2 {
-  @media (width >= 96rem) {
-    @content;
-  }
-}

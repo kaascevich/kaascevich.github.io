@@ -78,7 +78,7 @@ const icon = `tabler:chevron-${type === 'next' ? 'left' : 'right'}`
       flex-direction: row-reverse;
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       max-inline-size: calc(50% - spacing(2));
     }
   }

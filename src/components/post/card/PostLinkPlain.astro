@@ -24,7 +24,7 @@ const { title } = entry.data
   a {
     @extend %btn-regular;
 
-    display: none !important;
+    display: block flex;
     position: absolute;
     inset-block: spacing(3);
     inset-inline-end: spacing(3);
@@ -57,8 +57,8 @@ const { title } = entry.data
       color: var(--color-primary);
     }
 
-    @include md {
-      display: block flex !important;
+    @media (width < $breakpoint-md) {
+      display: none;
     }
   }
 </style>

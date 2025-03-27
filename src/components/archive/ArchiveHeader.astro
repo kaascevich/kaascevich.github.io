@@ -53,7 +53,7 @@ const { year, posts } = Astro.props
 
       font-weight: var(--fw-bold);
 
-      @include md {
+      @media (width >= $breakpoint-md) {
         @include font-size($text-xl2);
       }
     }
@@ -87,7 +87,7 @@ const { year, posts } = Astro.props
       color: var(--color-archive-post-count);
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       grid-template-columns: 10% 10% 80%;
     }
   }

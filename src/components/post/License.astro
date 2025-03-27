@@ -107,7 +107,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
         color: var(--color-primary);
       }
 
-      @include sm {
+      @media (width >= $breakpoint-sm) {
         flex-direction: row;
 
         gap: spacing(6);
@@ -130,7 +130,7 @@ const postUrl = decodeURIComponent(Astro.url.toString())
 
       pointer-events: none;
 
-      @include sm {
+      @media (width >= $breakpoint-sm) {
         inset-inline-end: spacing(6);
 
         translate: 0 50%;

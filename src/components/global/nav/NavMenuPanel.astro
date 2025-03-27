@@ -61,7 +61,7 @@ const { links } = Astro.props
       inline-size: spacing(5);
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       display: none;
     }
   }
@@ -124,7 +124,7 @@ const { links } = Astro.props
       }
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       display: none;
     }
   }

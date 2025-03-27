@@ -67,19 +67,6 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 
     overflow: hidden;
 
-    // post separator
-    &:not(:first-child)::after {
-      margin-inline: spacing(6);
-
-      border-block-start: 1px dashed var(--color-post-card-separator);
-
-      content: '';
-
-      @include md {
-        display: none;
-      }
-    }
-
     .info-wrapper {
       padding-block: spacing(6);
       padding-inline: spacing(6);
@@ -97,26 +84,6 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
         color: var(--color-post-title);
 
         font-weight: var(--fw-bold);
-
-        &::before {
-          display: none;
-          position: absolute;
-          inset-block-start: spacing(9);
-          inset-inline-start: spacing(4.5);
-
-          border-radius: var(--radius-md);
-
-          background-color: var(--color-primary);
-
-          block-size: spacing(5);
-          inline-size: spacing(1);
-
-          content: '';
-
-          @include md {
-            display: block flow;
-          }
-        }
 
         &:hover {
           color: var(--color-primary);
@@ -138,14 +105,31 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 
           color: var(--color-primary);
 
-          @include md {
+          @media (width >= $breakpoint-md) {
             translate: spacing(-1);
 
             opacity: 0%;
           }
         }
 
-        @include md {
+        @media (width >= $breakpoint-md) {
+          &::before {
+            position: absolute;
+            inset-block-start: spacing(9);
+            inset-inline-start: spacing(4.5);
+
+            border-radius: var(--radius-md);
+
+            background-color: var(--color-primary);
+
+            block-size: spacing(5);
+            inline-size: spacing(1);
+
+            content: '';
+          }
+        }
+
+        @media (width >= $breakpoint-md) {
           &:hover [data-icon] {
             translate: 0;
 
@@ -166,7 +150,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
         color: bw(75%);
       }
 
-      @include md {
+      @media (width >= $breakpoint-md) {
         padding-block-start: spacing(7);
         padding-inline: spacing(9) spacing(2);
 
@@ -174,8 +158,19 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
       }
     }
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       flex-direction: column;
+    }
+
+    // post separator
+    @media (width < $breakpoint-md) {
+      &:not(:first-child)::after {
+        margin-inline: spacing(6);
+
+        border-block-start: 1px dashed var(--color-post-card-separator);
+
+        content: '';
+      }
     }
   }
 </style>

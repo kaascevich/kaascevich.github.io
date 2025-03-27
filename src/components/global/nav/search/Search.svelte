@@ -111,7 +111,7 @@
     padding-block: spacing(2);
     padding-inline: spacing(2);
 
-    @include md {
+    @media (width >= $breakpoint-md) {
       inset-inline-start: unset;
 
       inline-size: spacing(120);
@@ -162,7 +162,7 @@
   // MARK: Desktop
 
   #search-bar {
-    display: none;
+    display: block flex;
 
     margin-inline-end: spacing(2);
 
@@ -179,8 +179,8 @@
       }
     }
 
-    @include lg {
-      display: block flex;
+    @media (width < $breakpoint-lg) {
+      display: none;
     }
   }
 
@@ -203,7 +203,7 @@
       inline-size: spacing(5);
     }
 
-    @include lg {
+    @media (width >= $breakpoint-lg) {
       display: none !important;
     }
   }
@@ -214,13 +214,18 @@
 
     border-radius: var(--radius-xl);
 
+    // only include bottom margin if there's at least 1 search result
+    &:has(+ :global(*)) {
+      margin-block-end: spacing(2);
+    }
+
     // stylelint-disable-next-line no-descending-specificity
     input {
       position: absolute;
       inset: 0;
     }
 
-    @include lg {
+    @media (width >= $breakpoint-lg) {
       display: none;
     }
   }
