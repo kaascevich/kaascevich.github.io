@@ -79,6 +79,8 @@ const { headings } = Astro.props
   }
 
   #toc-wrapper {
+    --toc-width: calc((100vw - var(--page-width)) / 2 - #{spacing(4)});
+    
     position: absolute;
     inset-block-start: 0;
     inset-inline-end: calc(var(--toc-width) * -1);

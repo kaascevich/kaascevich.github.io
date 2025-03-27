@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
 
-  transition: ease-in-out $transition-duration !important;
-  transition-property: $transition-properties;
+  transition: ease-in-out var(--transition-duration) !important;
+  transition-property: var(--transition-properties);
 
   margin-inline-end: 0;
 

@@ -71,7 +71,7 @@
 
     border-radius: var(--radius-sm);
 
-    box-shadow: var(--shadow-none);
+    box-shadow: 0 0 transparent;
 
     background-color: var(--color-hue-picker-thumb);
 

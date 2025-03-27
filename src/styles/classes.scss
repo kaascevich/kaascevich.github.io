@@ -72,15 +72,13 @@
 
   border-radius: var(--radius-xl2);
 
-  box-shadow: var(--shadow-xl);
+  box-shadow:
+    0 20px 25px -5px oklch(0% 0% none / 10%),
+    0 8px 10px -6px oklch(0% 0% none / 10%);
 
   background-color: var(--color-float-panel-bg);
 
   overflow: hidden;
-
-  @include dark {
-    box-shadow: var(--shadow-none);
-  }
 }
 
 .float-panel-closed {
@@ -103,15 +101,15 @@
   background-color: var(--color-card-bg);
 
   &:hover {
-    background-color: var(--color-btn-card-bg-hover);
+    background-color: var(--color-card-bg-hover);
   }
 
   &:active {
-    background-color: var(--color-btn-card-bg-active);
+    background-color: var(--color-card-bg-active);
   }
 
   &[aria-disabled='true'] {
-    color: bw(10%);
+    color: var(--color-card-disabled-text);
 
     pointer-events: none;
   }
@@ -127,7 +125,7 @@
 
   background-image: none;
 
-  color: bw(75%);
+  color: var(--color-btn-plain-text);
 
   &:hover {
     color: var(--color-primary);
@@ -154,7 +152,7 @@
 
   background-color: var(--color-btn-regular-bg);
 
-  color: light-dark(var(--color-btn-content), white(75%));
+  color: var(--color-btn-regular-text);
 
   &:hover {
     background-color: var(--color-btn-regular-bg-hover);

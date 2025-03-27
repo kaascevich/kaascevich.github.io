@@ -2,7 +2,7 @@
 
 :root::view-transition-group(*) {
   animation-duration: 400ms;
-  animation-timing-function: $transition-function
+  animation-timing-function: var(--transition-function);
 }
 
 :root::view-transition-new(*) {

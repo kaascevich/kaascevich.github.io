@@ -35,8 +35,8 @@ import siteConfig from '$/config/site'
 
     background-image: linear-gradient(
       to bottom,
-      alpha(var(--color-profile-gradient-top), 20%),
-      alpha(var(--color-profile-gradient-bottom), 20%)
+      oklch(from var(--color-profile-gradient-top) l c h / 20%),
+      oklch(from var(--color-profile-gradient-bottom) l c h / 20%)
     );
 
     max-inline-size: spacing(48);

@@ -90,7 +90,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
         }
 
         &:active {
-          color: var(--color-title-active);
+          color: var(--color-post-card-title-active);
         }
 
         [data-icon] {
@@ -147,7 +147,7 @@ const coverWidth = image === undefined ? 'calc(var(--spacing) * 13)' : '28%'
 
         padding-inline-end: spacing(4);
 
-        color: bw(75%);
+        color: var(--color-post-card-description);
       }
 
       @media (width >= $breakpoint-md) {

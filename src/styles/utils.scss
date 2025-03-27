@@ -6,49 +6,6 @@
 
 // MARK: Layout
 
-@function spacing($value) {
-  @return calc(var(--spacing) * $value);
-}
-
-// MARK: Colors
-
-@function alpha($color, $alpha) {
-  // make sure Sass knows this is a color value
-  @if meta.type-of($color) == color {
-    @return color.change($color, $alpha: $alpha);
-  } @else {
-    // this isn't a color Sass can handle, so fall back to CSS builtins
-    // defaulting to oklch because that's primarily what I'm using on this site
-    @return oklch(from $color l c h / $alpha);
-  }
-}
-
-@function white($alpha) {
-  @return alpha(white, $alpha);
-}
-
-@function black($alpha) {
-  @return alpha(black, $alpha);
-}
-
-@function gray($lightness) {
-  @return oklch($lightness 0% none);
-}
-
-@function with-hue($lightness, $chroma) {
-  @return oklch($lightness $chroma var(--hue));
-}
-
-/// Returns black if the current color scheme is `light`, or white if the
-/// current color scheme is `dark`.
-///
-/// @param {number} $alpha - An alpha value.
-/// @return {color} - Black or white, depending on the current color scheme. The
-/// alpha channel of the color is set to the `$alpha` parameter.
-@function bw($alpha) {
-  @return light-dark(black($alpha), white($alpha));
-}
-
 // MARK: Mixins
 
 @mixin font-size($font-size, $line-height: null) {
@@ -57,9 +14,11 @@
 
     font-size: $font-size;
   } @else {
-    // if there is no $line-height parameter, assume that $font-size is a
-    // 2-element list (we do this so we can use a single variable to describe a
-    // font size and a line height)
+    /*
+     * if there is no $line-height parameter, assume that $font-size is a
+     * 2-element list (we do this so we can use a single variable to describe a
+     * font size and a line height)
+     */
     line-height: list.nth($font-size, 2);
 
     font-size: list.nth($font-size, 1);
@@ -67,9 +26,9 @@
 }
 
 @mixin transition(
-  $duration: $transition-duration,
-  $properties: $transition-properties,
-  $function: $transition-function
+  $duration: var(--transition-duration),
+  $properties: var(--transition-properties),
+  $function: var(--transition-function)
 ) {
   transition-duration: $duration;
   transition-property: $properties;

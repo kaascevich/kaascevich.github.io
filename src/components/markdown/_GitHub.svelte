@@ -233,7 +233,7 @@
 
     .description {
       @include transition;
-      @include font-size($text-base);
+      @include font-size($text-md);
 
       margin-block-end: spacing(3);
 

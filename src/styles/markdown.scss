@@ -20,7 +20,7 @@ article.prose {
       opacity: 100%;
     }
 
-    // MARK: Heading Anchors
+    /* MARK: Heading Anchors */
     .anchor {
       transition-delay: 50ms !important;
 
@@ -69,16 +69,16 @@ article.prose {
   code {
     border-radius: var(--radius-md);
 
-    background-color: var(--color-inline-code-bg);
+    background-color: var(--color-code-inline-bg);
 
     padding-block: spacing(1);
     padding-inline: spacing(1);
 
     overflow: hidden;
 
-    color: var(--color-inline-code);
+    color: var(--color-code-inline-text);
 
-    // MARK: Line Numbers;
+    /* MARK: Line Numbers; */
     counter-reset: line;
 
     &::before,
@@ -96,7 +96,7 @@ article.prose {
 
         text-align: end;
 
-        color: var(--color-line-number);
+        color: var(--color-code-block-line-number);
 
         content: counter(line);
 
@@ -109,7 +109,7 @@ article.prose {
       }
     }
 
-    // italics don't look very good with my code font (Monaspace Radon)
+    /* italics don't look very good with my code font (Monaspace Radon) */
     [style*='italic'] {
       font-style: normal !important;
     }
@@ -124,7 +124,7 @@ article.prose {
   pre {
     border-radius: var(--radius-xl);
 
-    background-color: var(--color-codeblock-bg) !important;
+    background-color: var(--color-code-block-bg) !important;
 
     padding-inline: spacing(5);
 

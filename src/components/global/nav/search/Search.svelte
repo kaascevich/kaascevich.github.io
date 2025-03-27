@@ -106,7 +106,7 @@
 
     border-radius: var(--radius-xl2);
 
-    box-shadow: var(--shadow-xl2);
+    box-shadow: 0 25px 50px -12px oklch(0% 0% none / 25%);
 
     padding-block: spacing(2);
     padding-inline: spacing(2);
