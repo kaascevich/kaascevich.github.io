@@ -7,8 +7,9 @@
   align-items: center;
   justify-content: center;
 
-  transition: ease-in-out var(--transition-duration) !important;
+  transition-duration: (--transition-duration) !important;
   transition-property: var(--transition-properties);
+  transition-timing-function: var(--transition-function) !important;
 
   margin-inline-end: 0;
 

@@ -1,6 +1,4 @@
-@function alpha($color, $alpha) {
-  @return oklch(from $color l c h / $alpha);
-}
+@use 'theme' as *;
 
 :root {
   /* <empty> */

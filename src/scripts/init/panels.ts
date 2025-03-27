@@ -16,9 +16,9 @@ export default function setup() {
     })
   }
 
-  setClickOutsideToClose('color-settings', [
-    'color-settings',
-    'color-settings-switch',
+  setClickOutsideToClose('hue-picker', [
+    'hue-picker',
+    'hue-picker-switch',
   ])
   setClickOutsideToClose('nav-menu-panel', [
     'nav-menu-panel',

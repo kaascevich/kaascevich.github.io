@@ -2,6 +2,10 @@
   @return calc(var(--spacing) * $value);
 }
 
+@function alpha($color, $alpha) {
+  @return oklch(from $color l c h / $alpha);
+}
+
 /* MARK: Breakpoints */
 $breakpoint-sm: 40rem;
 $breakpoint-md: 48rem;

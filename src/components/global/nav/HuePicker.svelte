@@ -12,7 +12,7 @@
 
   function togglePanel() {
     document
-      .getElementById('color-settings')
+      .getElementById('hue-picker')
       ?.classList
       .toggle('float-panel-closed')
   }
@@ -24,13 +24,13 @@
 
 <button
   aria-label={strings.alts.hueSettings}
-  id='color-settings-switch'
+  id='hue-picker-switch'
   onclick={togglePanel}
 >
   <Icon icon='tabler:palette' />
 </button>
 
-<div id='color-settings' class='float-panel-closed'>
+<div id='hue-picker' class='float-panel-closed'>
   <header>
     <div class='title'>
       {strings.theme.themeColor}
@@ -62,7 +62,7 @@
   @use '../../../styles/classes';
   @use '../../../styles/theme' as *;
 
-  #color-settings-switch {
+  #hue-picker-switch {
     @extend %btn-plain, %expand-animation;
 
     border-radius: var(--radius-lg);
@@ -80,7 +80,7 @@
     }
   }
 
-  #color-settings {
+  #hue-picker {
     @extend %float-panel;
 
     position: absolute;

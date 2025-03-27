@@ -416,24 +416,8 @@ export default defineConfig({
         hasBlock: true,
       },
 
-      // Dark styles
-      {
-        type: 'at-rule',
-        name: 'include',
-        parameter: /dark$/i,
-        hasBlock: true,
-      },
-
       // Nested rules
       'rules',
-
-      // Breakpoint mixins
-      {
-        type: 'at-rule',
-        name: 'include',
-        parameter: /(?:sm|md|lg|xl2?)$/i,
-        hasBlock: true,
-      },
 
       // Media queries
       { type: 'at-rule', name: 'media', hasBlock: true },
