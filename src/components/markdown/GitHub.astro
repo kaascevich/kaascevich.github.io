@@ -1,5 +1,6 @@
 ---
 import GitHubSvelte from '$/components/markdown/_GitHub.svelte'
+import strings from '$/config/strings'
 
 export interface Props {
   owner: string
@@ -8,4 +9,22 @@ export interface Props {
 const { owner, repo } = Astro.props
 ---
 
-<GitHubSvelte client:visible={{ rootMargin: '15%' }} {owner} {repo} />
+{
+  Astro.locals.rss ? (
+    <a
+      href={`https://github.com/${owner}/${repo}`}
+      target="_blank"
+      data-pagefind-ignore
+    >
+      {strings.github.simpleText(owner, repo)}
+    </a>
+  ) : (
+    <GitHubSvelte client:visible={{ rootMargin: '15%' }} {owner} {repo} />
+  )
+}
+
+<style lang="scss">
+  a {
+    display: block flow;
+  }
+</style>

@@ -76,6 +76,8 @@ export default {
 
     noDescription: 'No description',
     noLicense: 'No license',
+
+    simpleText: (owner: string, repo: string) => `${owner}/${repo} (GitHub)`,
   },
   alts: {
     prevPage: 'Previous page',
