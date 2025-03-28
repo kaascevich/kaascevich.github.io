@@ -49,6 +49,7 @@
     "@typescript-eslint/parser": "^8.27.0",
     "@typescript-eslint/utils": "^8.27.0",
     "astro": "5.5.4",
+    "astro-auto-import": "^0.4.4",
     "astro-compress": "^2.3.6",
     "astro-eslint-parser": "^1.2.2",
     "astro-icon": "^1.1.5",

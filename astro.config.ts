@@ -4,6 +4,7 @@ import svelte from '@astrojs/svelte'
 import tailwind from '@astrojs/tailwind'
 import shellSession from '@robot-inventor/shell-session-syntax'
 import swup from '@swup/astro'
+import autoImport from 'astro-auto-import'
 import compress from 'astro-compress'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
@@ -42,6 +43,11 @@ export default defineConfig({
       },
     }),
     svelte(),
+    autoImport({
+      imports: [{
+        '$/components/markdown': ['Callout', 'GitHub'],
+      }],
+    }),
     mdx(),
     sitemap(),
     compress({
