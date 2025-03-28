@@ -71,7 +71,7 @@
 <a
   bind:this={card}
   class='fetch-waiting no-styling'
-  href={`https://github.com/${repo}`}
+  href={`https://github.com/${owner}/${repo}`}
   target='_blank'
   data-pagefind-ignore
 >
