@@ -11,20 +11,16 @@ const { owner, repo } = Astro.props
 
 {
   Astro.locals.rss ? (
-    <a
-      href={`https://github.com/${owner}/${repo}`}
-      target="_blank"
-      data-pagefind-ignore
-    >
-      {strings.github.simpleText(owner, repo)}
-    </a>
+    <p>
+      <a
+        href={`https://github.com/${owner}/${repo}`}
+        target="_blank"
+        data-pagefind-ignore
+      >
+        {strings.github.simpleText(owner, repo)}
+      </a>
+    </p>
   ) : (
     <GitHubSvelte client:visible={{ rootMargin: '15%' }} {owner} {repo} />
   )
 }
-
-<style lang="scss">
-  a {
-    display: block flow;
-  }
-</style>

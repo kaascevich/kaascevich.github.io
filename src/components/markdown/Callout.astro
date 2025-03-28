@@ -23,7 +23,7 @@ const calloutIcons: Record<CalloutType, string> = {
 
 <blockquote class={`bdm-${type}`}>
   <header>
-    <Icon name={calloutIcons[type]} />
+    {!Astro.locals.rss && <Icon name={calloutIcons[type]} />}
     {title ?? strings.content.callouts[type]}
   </header>
   <slot />
