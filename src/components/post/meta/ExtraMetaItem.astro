@@ -10,12 +10,10 @@ const { text, label, icon } = Astro.props
 ---
 
 <div class="meta-item" aria-label={label}>
-  <div class="icon-wrapper" aria-hidden="true">
-    <Icon name={icon} />
-  </div>
-  <div class="text">
+  <Icon name={icon} aria-hidden="true" />
+  <span class="meta-content">
     {text}
-  </div>
+  </span>
 </div>
 
 <style lang="scss">
@@ -31,7 +29,7 @@ const { text, label, icon } = Astro.props
 
     color: var(--color-meta-extra-text);
 
-    .icon-wrapper {
+    [data-icon] {
       display: block flex;
 
       align-items: center;
@@ -43,13 +41,16 @@ const { text, label, icon } = Astro.props
 
       background-color: var(--color-meta-extra-bg);
 
+      padding-block: spacing(1);
+      padding-inline: spacing(1);
+
       block-size: spacing(6);
       inline-size: spacing(6);
 
       color: var(--color-meta-extra-icon);
     }
 
-    .text {
+    .meta-content {
       font-size: var(--text-sm);
     }
   }

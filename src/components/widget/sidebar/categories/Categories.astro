@@ -23,15 +23,17 @@ const { class: className } = Astro.props
   collapsedHeight={COLLAPSED_HEIGHT}
   class={className}
 >
-  {
-    categories.map(([category, count]) => (
-      <CategoryLink
-        url={`/archive/category/${category}/`}
-        badge={String(count)}
-        label={strings.alts.category(category)}
-      >
-        {category}
-      </CategoryLink>
-    ))
-  }
+  <ul>
+    {
+      categories.map(([category, count]) => (
+        <CategoryLink
+          url={`/archive/category/${category}/`}
+          badge={String(count)}
+          label={strings.alts.category(category)}
+        >
+          {category}
+        </CategoryLink>
+      ))
+    }
+  </ul>
 </WidgetLayout>

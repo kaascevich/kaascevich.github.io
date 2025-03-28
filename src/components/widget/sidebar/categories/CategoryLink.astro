@@ -9,21 +9,23 @@ const { badge, url, label } = Astro.props
 ---
 
 <a href={url} aria-label={label}>
-  <button>
-    <div class="wrapper">
-      <header class="title">
-        <slot />
-      </header>
-      {badge !== undefined && <div class="badge">{badge}</div>}
-    </div>
-  </button>
+  <div class="title">
+    <slot />
+  </div>
+  {badge !== undefined && <div class="badge">{badge}</div>}
 </a>
 
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
 
-  button {
+  a {
+    display: block flex;
+    position: relative;
+
+    align-items: center;
+    justify-content: space-between;
+
     transition-duration: var(--transition-duration);
     transition-property: all;
     transition-timing-function: var(--transition-function);
@@ -32,7 +34,7 @@ const { badge, url, label } = Astro.props
 
     background-image: none;
 
-    padding-inline-start: spacing(2);
+    padding-inline: spacing(2);
 
     block-size: spacing(10);
     inline-size: 100%;
@@ -50,16 +52,6 @@ const { badge, url, label } = Astro.props
 
       color: var(--color-primary);
     }
-  }
-
-  .wrapper {
-    display: block flex;
-    position: relative;
-
-    align-items: center;
-    justify-content: space-between;
-
-    margin-inline-end: spacing(2);
   }
 
   .title {

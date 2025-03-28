@@ -1,8 +1,8 @@
-import type { ColorScheme } from '$/types/config'
+import type { ColorScheme } from '$/types/theme'
 
 export const NAVBAR_HEIGHT = 72
 
-export const PAGE_SIZE = 8
+export const PAGE_SIZE = 1
 
 export const DEFAULT_COLOR_SCHEME = 'auto' satisfies ColorScheme
 

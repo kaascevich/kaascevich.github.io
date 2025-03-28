@@ -18,7 +18,7 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
   data-is-collapsed={String(isCollapsed)}
   class={className}
 >
-  <header>{name}</header>
+  <h2>{name}</h2>
   <div {id} class:list={['widget-content', { collapsed: isCollapsed }]}>
     <slot />
   </div>
@@ -43,7 +43,7 @@ const { id, name, isCollapsed, collapsedHeight, class: className } = Astro.props
 
     padding-block-end: spacing(4);
 
-    header {
+    h2 {
       position: relative;
 
       margin-block: spacing(4) spacing(2);

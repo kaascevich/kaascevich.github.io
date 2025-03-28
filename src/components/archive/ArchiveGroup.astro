@@ -13,7 +13,7 @@ export interface Props {
 const { year, posts } = Astro.props
 ---
 
-<div>
+<section class="archive-group">
   <ArchiveHeader {year} {posts} />
   {posts.map((post) => <ArchiveItem {post} />)}
-</div>
+</section>

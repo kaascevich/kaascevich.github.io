@@ -1,0 +1,15 @@
+---
+import { Icon } from 'astro-icon/components'
+import strings from '$/config/strings'
+---
+
+<Icon name="tabler:dots" aria-label={strings.alts.hiddenPages} />
+
+<style lang="scss">
+  @use '$/styles/classes';
+  @use '$/styles/theme' as *;
+
+  [data-icon] {
+    margin-inline: spacing(1);
+  }
+</style>

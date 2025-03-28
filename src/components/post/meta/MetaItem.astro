@@ -4,19 +4,13 @@ import { Icon } from 'astro-icon/components'
 export interface Props {
   icon: string
   label: string
-  hideOnMobile?: boolean
 }
 
-const { icon, label, hideOnMobile = false } = Astro.props
+const { icon, label } = Astro.props
 ---
 
-<div
-  class:list={['meta-item', { 'mobile-hidden': hideOnMobile }]}
-  aria-label={label}
->
-  <div class="meta-icon" aria-hidden="true">
-    <Icon name={icon} />
-  </div>
+<div class="meta-item" aria-label={label}>
+  <Icon name={icon} aria-hidden="true" />
   <span class="meta-content">
     <slot />
   </span>
@@ -31,13 +25,7 @@ const { icon, label, hideOnMobile = false } = Astro.props
 
     align-items: center;
 
-    &.mobile-hidden {
-      @media (width < $breakpoint-md) {
-        display: none;
-      }
-    }
-
-    .meta-icon {
+    [data-icon] {
       display: block flex;
 
       align-items: center;
@@ -49,15 +37,13 @@ const { icon, label, hideOnMobile = false } = Astro.props
 
       background-color: var(--color-btn-regular-bg);
 
+      padding-block: spacing(1.5);
+      padding-inline: spacing(1.5);
+
       block-size: spacing(8);
       inline-size: spacing(8);
 
       color: var(--color-btn-content);
-
-      [data-icon] {
-        block-size: spacing(5);
-        inline-size: spacing(5);
-      }
     }
 
     .meta-content {

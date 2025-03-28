@@ -93,7 +93,7 @@
     <menu>
       {#each icons as [colorScheme, icon]}
         <button
-          class={{ 'current-scheme-btn': currentScheme === colorScheme }}
+          aria-current={currentScheme === colorScheme}
           onclick={() => switchScheme(colorScheme)}
         >
           <Icon {icon} />
@@ -187,7 +187,7 @@
             scale: 95%;
           }
 
-          &.current-scheme-btn {
+          &[aria-current='true'] {
             color: var(--color-primary);
 
             &::before {

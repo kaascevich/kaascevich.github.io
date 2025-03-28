@@ -83,6 +83,7 @@ export default {
     prevPage: 'Previous page',
     nextPage: 'Next page',
     pageNum: (page: number) => `Page ${page}`,
+    hiddenPages: 'Hidden pages',
 
     tag: (tag: string) => `All posts tagged with ${tag}`,
     category: (category: string) => `All posts categorized under ${category}`,

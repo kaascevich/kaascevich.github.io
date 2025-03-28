@@ -11,10 +11,9 @@ import MetaList from './items/MetaList.astro'
 export interface Props {
   class?: string
   entry: Post
-  compactOnMobile?: boolean
 }
 
-const { class: className, entry, compactOnMobile = false } = Astro.props
+const { class: className, entry } = Astro.props
 const { published, updated, category, tags } = entry.data
 
 const showUpdated =
@@ -42,11 +41,7 @@ const showUpdated =
     </MetaLink>
   </MetaItem>
 
-  <MetaItem
-    icon="tabler:hash"
-    hideOnMobile={compactOnMobile}
-    label={strings.alts.tags}
-  >
+  <MetaItem icon="tabler:hash" label={strings.alts.tags}>
     <MetaList>
       {
         tags.length === 0 ? (

@@ -19,26 +19,24 @@ function formatTagList(tags: readonly string[]) {
 ---
 
 <a href={getPostUrlByID(post.id)} aria-label={post.data.title}>
-  <div class="item-wrapper">
-    <!-- date -->
-    <time datetime={post.data.published.toISOString()}>
-      {formatDate(post.data.published)}
-    </time>
+  <!-- date -->
+  <time datetime={post.data.published.toISOString()}>
+    {formatDate(post.data.published)}
+  </time>
 
-    <!-- dot and line -->
-    <div class="separator">
-      <div></div>
-    </div>
+  <!-- dot and line -->
+  <div class="separator-border">
+    <div class="separator"></div>
+  </div>
 
-    <!-- post title -->
-    <div class="title">
-      {post.data.title}
-    </div>
+  <!-- post title -->
+  <div class="title">
+    {post.data.title}
+  </div>
 
-    <!-- tag list -->
-    <div class="tag-list">
-      {formatTagList(post.data.tags)}
-    </div>
+  <!-- tag list -->
+  <div class="tag-list">
+    {formatTagList(post.data.tags)}
   </div>
 </a>
 
@@ -71,7 +69,12 @@ function formatTagList(tags: readonly string[]) {
   a {
     @extend %btn-plain;
 
-    display: block flow !important;
+    display: block grid;
+
+    grid-template: 'date separator title tags' / 10% 10% 45% 35%;
+
+    align-items: center;
+    justify-content: flex-start;
 
     border-radius: var(--radius-lg);
 
@@ -79,15 +82,13 @@ function formatTagList(tags: readonly string[]) {
     inline-size: 100%;
 
     &:hover {
-      color: initial;
-
       .title {
         padding-inline-start: spacing(1);
 
         color: var(--color-primary) !important;
       }
 
-      .separator div {
+      .separator-border .separator {
         outline-color: var(--color-btn-plain-bg-hover);
 
         background-color: var(--color-primary);
@@ -96,23 +97,8 @@ function formatTagList(tags: readonly string[]) {
       }
     }
 
-    &:active .separator div {
+    &:active .separator-border .separator {
       outline-color: var(--color-btn-plain-bg-active);
-    }
-
-    .item-wrapper {
-      display: block grid;
-
-      grid-template: 'date separator title tags' / 10% 10% 45% 35%;
-
-      align-items: center;
-      justify-content: flex-start;
-
-      block-size: 100%;
-
-      @media (width < $breakpoint-md) {
-        grid-template: 'date separator title' / 15% 15% 75%;
-      }
     }
 
     time {
@@ -123,7 +109,7 @@ function formatTagList(tags: readonly string[]) {
       color: var(--color-archive-date);
     }
 
-    .separator {
+    .separator-border {
       @extend %dash-line;
 
       display: block flex;
@@ -135,7 +121,7 @@ function formatTagList(tags: readonly string[]) {
 
       block-size: 100%;
 
-      div {
+      .separator {
         transition-duration: var(--transition-duration);
         transition-property: all;
         transition-timing-function: var(--transition-function);
@@ -193,6 +179,10 @@ function formatTagList(tags: readonly string[]) {
       @media (width < $breakpoint-md) {
         display: none;
       }
+    }
+
+    @media (width < $breakpoint-md) {
+      grid-template: 'date separator title' / 15% 15% 75%;
     }
   }
 </style>

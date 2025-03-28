@@ -1,0 +1,52 @@
+---
+import strings from '$/config/strings'
+
+export interface Props {
+  page: number
+  current: number
+}
+const { page, current } = Astro.props
+
+function getPageUrl(page: number) {
+  return page === 1 ? '/' : `/${page}/`
+}
+---
+
+<a
+  href={getPageUrl(page)}
+  aria-label={strings.alts.pageNum(page)}
+  aria-current={page === current ? 'page' : false}
+>
+  {page}
+</a>
+
+<style lang="scss">
+  @use '$/styles/classes';
+  @use '$/styles/theme' as *;
+
+  a {
+    @extend %btn-card;
+
+    display: block flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: var(--radius-lg);
+
+    block-size: spacing(11);
+    inline-size: spacing(11);
+
+    overflow: hidden;
+
+    &:active {
+      scale: 85%;
+    }
+
+    &[aria-current='page'] {
+      background-color: var(--color-primary);
+
+      color: var(--color-pagination-current);
+    }
+  }
+</style>

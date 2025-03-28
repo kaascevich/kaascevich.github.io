@@ -28,15 +28,15 @@ const filteredPosts = posts.filter(({ data }) => {
 const groups = await groupPostsByYear(filteredPosts)
 ---
 
-<ol>
+<ul>
   {groups.map(([year, posts]) => <ArchiveGroup {year} {posts} />)}
-</ol>
+</ul>
 
 <style lang="scss">
   @use '$/styles/classes';
   @use '$/styles/theme' as *;
 
-  ol {
+  ul {
     @extend %card-base;
     padding-block: spacing(6);
     padding-inline: spacing(8);
